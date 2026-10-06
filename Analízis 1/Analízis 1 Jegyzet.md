@@ -37,6 +37,7 @@ Mindkét kérdés megválaszolásához két fogalomra van szükség: a **határ�
 A valós számok szigorú, axiomatikus megalapozását (vagyis annak bizonyítását, hogy ilyen struktúra létezik, és lényegében egyértelmű) más tárgyra hagyjuk; itt az axiómákat adottnak vesszük, és megnézzük, mire elegendők.
 
 **Definíció (alapvető számhalmazok).**
+
 - $\mathbb{N} = \{1, 2, 3, \dots\}$ a **természetes számok** halmaza. (Egyes szerzők a nullával kezdik; ez pusztán konvenció kérdése.)
 - $\mathbb{Z}$ az **egész számok** halmaza.
 - $\mathbb{Q} = \left\{ \frac{p}{q} : p, q \in \mathbb{Z},\ q \neq 0 \right\}$ a **racionális számok** halmaza.
@@ -99,6 +100,7 @@ $$|a + b| \le |a| + |b|. \qquad \blacksquare$$
 A háromszög-egyenlőtlenség több tagra való általánosításához egy bizonyítási elvre van szükségünk, amely az egész félévet végigkíséri.
 
 **A teljes indukció (TIND) elve.** Legyen $A_1, A_2, A_3, \dots$ állítások egy sorozata. Ha
+
 1. $A_1$ igaz, és
 2. minden $n \in \mathbb{N}$ esetén $A_n \implies A_{n+1}$ igaz,
 
@@ -183,6 +185,7 @@ Legyen $m = -M$. Először: $m$ alsó korlát. Valóban, minden $h \in H$ eseté
 Másodszor: $m$ a **legnagyobb** alsó korlát. Tegyük fel indirekt, hogy létezik $m' > m$ alsó korlát. Ekkor minden $h \in H$-ra $m' \le h$, tehát $-m' \ge -h$, azaz $-m'$ felső korlátja $-H$-nak. Csakhogy $m < m'$ miatt $-m' < -m = M$, vagyis találtunk $M$-nél kisebb felső korlátot $-H$-hoz — ez ellentmond annak, hogy $M = \sup(-H)$ a legkisebb felső korlát. $\blacksquare$
 
 **Egyezmény (a $\pm\infty$ használata).** A jelölés kiterjesztésével minden halmaznak lesz szuprémuma és infimuma a bővített számegyenesen:
+
 - Ha $H \neq \emptyset$ nem korlátos felülről, akkor $\sup H = +\infty$.
 - Ha $H \neq \emptyset$ nem korlátos alulról, akkor $\inf H = -\infty$.
 - $\sup \emptyset = -\infty$ és $\inf \emptyset = +\infty$.
@@ -218,6 +221,7 @@ Legyen $H = \{a_n : n \in \mathbb{N}\}$. Ez nem üres, és felülről korlátos:
 $$c \stackrel{\text{def}}{=} \sup H \in \mathbb{R}.$$
 
 Azt állítjuk, hogy **minden** $b_n$ felső korlátja $H$-nak. Legyen $n$ rögzített, és tekintsünk egy tetszőleges $a_k$ elemet.
+
 - Ha $k \le n$, akkor $a_k \le a_n \le b_n$.
 - Ha $k \ge n$, akkor $a_k \le b_k \le b_n$.
 
@@ -238,6 +242,7 @@ Az analízisben az egzakt egyenlőség ritkán érhető el; az igazi eszköz az 
 ## 10. A számtani és a mértani közép
 
 **Definíció (közepek).** Legyenek $a_1, \dots, a_n$ pozitív valós számok. Ekkor
+
 - a **számtani közép** $\displaystyle S = \frac{a_1 + \dots + a_n}{n}$,
 - a **mértani közép** $\displaystyle m = \sqrt[n]{a_1 \cdots a_n}$,
 - a **harmonikus közép** $\displaystyle h = \frac{n}{\frac{1}{a_1} + \dots + \frac{1}{a_n}}$.
@@ -394,6 +399,7 @@ Ez a definíció mutatja meg, hogyan tehető a függvényfogalom is halmazelmél
 Innentől kezdve $\mathbb{R}$-beli sorozatokkal, azaz $a : \mathbb{N} \to \mathbb{R}$ függvényekkel foglalkozunk.
 
 **Definíció (monotonitás).** Az $(a_n)$ sorozat
+
 - **monoton növekedő**, ha minden $n \in \mathbb{N}$-re $a_n \le a_{n+1}$;
 - **monoton csökkenő**, ha minden $n$-re $a_n \ge a_{n+1}$;
 - **szigorúan monoton növekedő**, illetve **csökkenő**, ha a fenti egyenlőtlenségek szigorúak ($<$, illetve $>$).
@@ -450,6 +456,7 @@ $$\lim_{n \to \infty} a_n = a, \qquad a_n \to a \ \text{ha } n \to +\infty, \qqu
 **Definíció.** Ha $(a_n)$-nek van **véges** határértéke, akkor a sorozat **konvergens**. Ha nem konvergens, akkor **divergens**.
 
 **Példák.**
+
 - $\displaystyle \lim_{n\to\infty} \frac{(-1)^n}{2n} = 0$. Adott $\varepsilon$-hoz a küszöb megkereshető; például $\varepsilon = 0{,}01$ esetén $n_\varepsilon = 50$ megfelel. Fontos: **$n_\varepsilon$ nem egyértelmű**, minden nála nagyobb szám is jó küszöb.
 - $\displaystyle \lim_{n\to\infty} (-1)^n n$ nem létezik.
 - Az $a_n = n$ és a $b_n = (-1)^n$ sorozat is divergens; mindkettő a definíció tagadásával igazolható.
@@ -457,6 +464,7 @@ $$\lim_{n \to \infty} a_n = a, \qquad a_n \to a \ \text{ha } n \to +\infty, \qqu
 ## 19. A határérték alaptulajdonságai
 
 **Tétel (átfogalmazás véges sok kivétellel).** A következő két állítás ekvivalens:
+
 - **(A)** $a_n \to a$, ha $n \to +\infty$.
 - **(B)** Minden $\varepsilon > 0$ esetén az $(a_n)$ sorozatnak csak **véges sok** (indexű) tagja esik $B(a,\varepsilon)$-on kívülre.
 
@@ -550,6 +558,7 @@ Ilyenkor azt mondjuk, hogy $(a_n)$ **a $+\infty$-hez divergál**. Hasonlóan def
 | **divergens**: $(a_n)$ nem tart sehova (oszcillálva divergál) | nincs határértéke |
 
 **Tétel.** A következők ekvivalensek:
+
 - **(A)** $\lim_{n\to\infty} a_n = +\infty$.
 - **(B)** Minden $K \in \mathbb{R}$-re az $(a_n)$-nek csak véges sok tagja kisebb vagy egyenlő $K$-nál (azaz esik $B(+\infty,K)$-n kívülre).
 
@@ -558,6 +567,7 @@ Ilyenkor azt mondjuk, hogy $(a_n)$ **a $+\infty$-hez divergál**. Hasonlóan def
 **Definíció (átrendezés).** Ha adott az $(a_n)$ sorozat és egy $f : \mathbb{N} \to \mathbb{N}$ **bijekció**, akkor a $b_n = a_{f(n)}$ sorozatot az $(a_n)$ **átrendezésének** nevezzük.
 
 **Tétel.** Ha $a_n \to \alpha \in \overline{\mathbb{R}}$, és $(b_n)$ az alábbi négy eljárás véges sokszori alkalmazásával keletkezik $(a_n)$-ből, akkor $b_n \to \alpha$:
+
 1. **(I)** átrendezés;
 2. **(II)** bizonyos (akár végtelen sok) tag véges sokszori megismétlése;
 3. **(III)** véges sok tag hozzávétele;
@@ -590,6 +600,7 @@ A bal oldal állandóan $2$, a jobb oldal pedig $2$-höz tart (mert $\sqrt[n]{2}
 **Definíció.** Adott $(a_n)$ és $(b_n)$ sorozatok esetén $(a_n + b_n)$ az **összegük**, $(a_n \cdot b_n)$ a **szorzatuk**, és ha minden $n$-re $b_n \neq 0$, akkor $\left(\frac{a_n}{b_n}\right)$ a **hányadosuk**.
 
 **Tétel.** Ha $a_n \to a \in \mathbb{R}$ és $b_n \to b \in \mathbb{R}$, akkor
+
 1. **(I)** $a_n + b_n \to a + b$;
 2. **(II)** $a_n b_n \to ab$;
 3. **(III)** ha minden $n$-re $b_n \neq 0$ és $b \neq 0$, akkor $\frac{a_n}{b_n} \to \frac{a}{b}$;
@@ -628,6 +639,7 @@ Ha $a_n \to +\infty$ és $b_n \to -\infty$, akkor az $a_n + b_n$ összegről **s
 - $a_n = 2n$, $b_n = -n$: ekkor $a_n + b_n = n \to +\infty$.
 
 **További tételek.**
+
 - Ha $a_n \to a > 0$ és $b_n \to \pm\infty$, akkor $a_n b_n \to \pm\infty$.
 - Az $a_n \to 0$, $b_n \to +\infty$ eset a szorzatra nézve **kritikus**.
 - Ha $a_n \to \infty$, akkor $\frac{1}{a_n} \to 0$.
@@ -744,6 +756,7 @@ Egy másik szokásos bizonyítás a törteket táblázatba rendezi (soronként a
 *Bizonyítás (a Cantor-féle tulajdonság segítségével).* Indirekt. Tegyük fel, hogy $\mathbb{R} = \{c_n : n \in \mathbb{N}\}$, azaz az összes valós szám felsorolható.
 
 Konstruáljunk egymásba skatulyázott zárt intervallumokat úgy, hogy sorra „kizárjuk" a felsorolás tagjait:
+
 - Válasszunk $a_1 < b_1$-et úgy, hogy $c_1 \notin [a_1, b_1]$ (ez mindig lehetséges, hiszen egyetlen pont nem tölti ki a számegyenest).
 - Válasszunk $a_1 \le a_2 < b_2 \le b_1$-et úgy, hogy $c_2 \notin [a_2, b_2]$.
 - Általában: ha $[a_{n-1}, b_{n-1}]$ már megvan, válasszunk $a_{n-1} \le a_n < b_n \le b_{n-1}$-et úgy, hogy $c_n \notin [a_n, b_n]$. (Ez lehetséges: $[a_{n-1}, b_{n-1}]$-et három részre osztva legalább az egyik nem tartalmazza $c_n$-t.)
@@ -764,6 +777,7 @@ Ez ekvivalenciareláció:
 $$A \sim A, \qquad A \sim B \iff B \sim A, \qquad (A \sim B \ \wedge\ B \sim C) \implies A \sim C.$$
 
 Ezzel a nyelvvel:
+
 - $A$ megszámlálhatóan végtelen $\iff A \sim \mathbb{N}$.
 - $A$ **kontinuum számosságú** $\iff A \sim \mathbb{R}$.
 
@@ -794,6 +808,7 @@ továbbá minden $n$-re $m_n \le M_n$, tehát
 $$\underline{\lim}\, a_n \le \overline{\lim}\, a_n.$$
 
 **Példák.**
+
 1. $\overline{\lim}\, (-1)^n = 1$, $\underline{\lim}\, (-1)^n = -1$.
 2. Ha $(q_n)$ a $[0,1] \cap \mathbb{Q}$ halmaz egy sorozatba rendezése (ami a 29. szakasz szerint lehetséges), akkor $\overline{\lim}\, q_n = 1$ és $\underline{\lim}\, q_n = 0$.
 
@@ -806,6 +821,7 @@ Vagyis a határérték létezése pontosan azt jelenti, hogy a felső és az als
 **Definíció.** Az $a \in \overline{\mathbb{R}}$ szám az $(a_n)$ sorozat **sűrűsödési értéke**, ha létezik olyan $(a_{n_k})$ részsorozat, amelyre $a_{n_k} \to a$.
 
 **Példák.**
+
 - A fenti $(q_n)$ sorozat sűrűsödési értékei a $[0,1]$ intervallum **összes** pontja.
 - A $(-1)^n$ sorozat sűrűsödési értékeinek halmaza $\{-1, 1\}$.
 
@@ -907,6 +923,7 @@ A hányados értelmezési tartományából tehát ki kell venni a nevező zérus
 **Polinomfüggvények.** $p(x) = a_n x^n + \dots + a_1 x + a_0$, ahol $a_n \neq 0$; ekkor $p$ **foka** $n$.
 
 Speciális esetek:
+
 - Ha $c \in \mathbb{R}$, akkor az $x \mapsto c$ függvény az **állandó függvény**. Ha $c \neq 0$, akkor ez nulladfokú polinom; a $p(x) \equiv 0$ azonosan nulla polinomnak viszont **nincs foka**.
 - Az $ax + b$ alakú függvények a **lineáris függvények**.
 - Az $x^n$ alakúak a **hatványfüggvények**.
@@ -929,6 +946,7 @@ $$D(x) = \begin{cases} 1 & \text{ha } x \in \mathbb{Q}, \\ 0 & \text{ha } x \in 
 ## 40. Globális tulajdonságok
 
 **Definíció (paritás).** Legyen $f : X \to \mathbb{R}$, és tegyük fel, hogy $x \in D(f) \iff -x \in D(f)$ (azaz az értelmezési tartomány szimmetrikus). Ha minden $x \in X$-re
+
 - $f(x) = f(-x)$, akkor $f$ **páros**;
 - $f(x) = -f(-x)$, akkor $f$ **páratlan**.
 
@@ -1071,6 +1089,7 @@ tehát ha $t$ közel van $t_0$-hoz, akkor $f(t)$ közel van $2t_0$-hoz.
 ## 46. A határérték definíciója
 
 **Definíció.** Az $f$ függvény $a \in \mathbb{R}$ helyen vett **határértéke** a $b \in \mathbb{R}$ szám, ha
+
 - **(I)** létezik $\delta_0 > 0$, amelyre $\dot{B}(a, \delta_0) \subset D(f)$, és
 - **(II)** minden $\varepsilon > 0$-hoz létezik $\delta > 0$ úgy, hogy minden $x \in \dot{B}(a,\delta)$ esetén
 $$|f(x) - b| < \varepsilon, \qquad \text{azaz} \qquad f(x) \in B(b, \varepsilon).$$
@@ -1100,6 +1119,7 @@ A minimum képzése tipikus fogás: az egyik feltétel a becslés érvényesség
 A $\operatorname{sgn}(x)$ függvény a $0$-ban „jobbról az $1$-hez tart", balról pedig a $(-1)$-hez. Ezt is érdemes precízzé tenni.
 
 **Definíció (jobb oldali határérték).** Az $f$-nek az $a \in \mathbb{R}$ helyen a **jobb oldali határértéke** a $b \in \mathbb{R}$ szám, ha
+
 - **(I)** létezik $\delta_0 > 0$, amelyre $(a, a+\delta_0) = \dot{B}(a+0, \delta_0) \subset D(f)$, és
 - **(II)** minden $\varepsilon > 0$-hoz létezik $\delta > 0$ úgy, hogy minden $x \in (a, a+\delta)$ esetén $|f(x) - b| < \varepsilon$.
 
@@ -1114,6 +1134,7 @@ $$B(a+0,\delta) = [a, a+\delta), \qquad \dot{B}(a+0,\delta) = (a, a+\delta),$$
 **Definíció (egységes séma).** Legyen $\alpha$ a következők valamelyike: $a-0$, $a$, $a+0$; és legyen $\beta = b \in \mathbb{R}$. Ekkor
 $$\lim_{x \to \alpha} f(x) = \beta,$$
 ha
+
 - **(I)** $f$ értelmezve van az $\alpha$ egy $\dot{U}_0$ „pontozott" környezetében, és
 - **(II)** a $\beta$ bármely $V$ környezetéhez van az $\alpha$-nak olyan $\dot{U}$ pontozott környezete, hogy minden $x \in \dot{U}$-ra $f(x) \in V$.
 
@@ -1132,6 +1153,7 @@ A $B(-\infty, K) = (-\infty, K)$ környezettel ugyanígy definiálható a $\lim_
 **Határérték a végtelenben.** Az $\frac{1}{x} \to 0$, ha $x \to +\infty$; tehát a határérték a $\pm\infty$-ben is értelmezhető, azaz $\alpha = \pm\infty$ is megengedett.
 
 **Összesen tehát $15$ féle limesz definiálható:**
+
 - $\alpha$ lehet: $-\infty$, $a-0$, $a$, $a+0$, $+\infty$ (öt lehetőség);
 - $\beta$ lehet: $-\infty$, $b$, $+\infty$ (három lehetőség).
 
@@ -1159,6 +1181,7 @@ Mindkét leszűkített határérték létezik, de különbözők — ezért a (n
 Az analízis egyik leghatékonyabb eszköze az, hogy a **függvényhatárértéket visszavezeti a sorozathatárértékre**. Így minden sorozatokra bizonyított tétel „átvihető" a függvényekre.
 
 **Motiváló példák.**
+
 - $\lim_{x\to 2} x^2 = 4$; és valóban, ha $a_n = 2 + \frac{1}{n}$, akkor $\lim_{n\to\infty}\left(2 + \frac{1}{n}\right)^2 = 4$.
 - $\lim_{n\to\infty} \left\{\frac{1}{n}\right\} = 0$, azaz **egyetlen** $u_n = \frac{1}{n} \to 0$ sorozatra a képek $0$-hoz tartanak — de $\lim_{x\to 0}\{x\}$ mégsem létezik. Egyetlen sorozat tehát nem elég.
 - Ha $f = D$, akkor $\lim_{n\to\infty} D\!\left(\frac{1}{n}\right) = 1$ (hiszen $\frac{1}{n}$ racionális), de $\lim_{x\to 0+0} D(x)$ nem létezik.
@@ -1183,6 +1206,7 @@ Az átviteli elv **kiválóan használható annak megmutatására, hogy bizonyos
 ## 51. Határérték és műveletek; kompozíció
 
 **Tétel.** Ha $\lim_{x\to\alpha} f(x) = b$ és $\lim_{x\to\alpha} g(x) = c$, akkor
+
 1. **(i)** $\displaystyle \lim_{x\to\alpha} \big(f(x) + g(x)\big) = b + c$;
 2. **(ii)** $\displaystyle \lim_{x\to\alpha} f(x)g(x) = bc$;
 3. **(iii)** ha $c \neq 0$, akkor $\displaystyle \lim_{x\to\alpha} \frac{f(x)}{g(x)} = \frac{b}{c}$.
@@ -1192,6 +1216,7 @@ Az átviteli elv **kiválóan használható annak megmutatására, hogy bizonyos
 Ez a bizonyítási minta végig ismétlődik: sorozatra visszavezetni, ott alkalmazni a kész tételt, majd visszatérni.
 
 **Tétel (határérték és kompozíció).** Tegyük fel, hogy
+
 - $\lim_{x\to\alpha} g(x) = \gamma \in \overline{\mathbb{R}}$,
 - $g(x) \neq \gamma$ az $\alpha$ valamely $\dot{U}$ pontozott környezetében, és
 - $\lim_{t\to\gamma} f(t) = \beta$.
@@ -1232,6 +1257,7 @@ Az $f$ **folytonos az $[a,b]$ zárt intervallumon**, ha $a$-ban jobbról, $b$-be
 A végpontokban tett megkülönböztetés nem pedantéria: enélkül a definíció értelmetlen lenne, hiszen $a$-tól balra a függvény nincs is értelmezve.
 
 **Példák.**
+
 - Az $f(x) = c$ állandó függvény folytonos $\mathbb{R}$-en.
 - A Dirichlet-függvény **sehol sem** folytonos.
 - Az $f(x) = [x]$ egészrész-függvény folytonos a $\left[0, \frac{1}{2}\right]$ intervallumon, de **nem** folytonos a $[0,1]$ intervallumon: az $1$-ben balról a határérték $0$, az érték viszont $1$ — a függvény „szakad".
@@ -1255,6 +1281,7 @@ akkor létezik az $\alpha$-nak olyan $\dot{U}$ pontozott környezete, hogy minde
 *Bizonyítás.* Legyen $x_n \in \dot{U}$, $x_n \to \alpha$. Ekkor $f(x_n) \le g(x_n)$ minden $n$-re, és a két oldal rendre $b$-hez, illetve $c$-hez tart; a sorozatokra vonatkozó rendezési tétel szerint $b \le c$. $\blacksquare$
 
 **Következmények (előjeltartás).**
+
 - Ha $f$ folytonos $a$-ban és $f(a) > 0$, akkor létezik $\delta > 0$ úgy, hogy minden $x \in B(a,\delta)$ esetén $f(x) > 0$.
 - Ha létezik $\delta > 0$, amelyre minden $x \in \dot{B}(a,\delta)$-ra $f(x) \ge 0$, akkor $f(a) \ge 0$.
 
@@ -1329,12 +1356,14 @@ $$(\alpha, \beta) \subset f(I) \subset [\alpha, \beta],$$
 tehát $f(I)$ intervallum. $\blacksquare$
 
 **Példák (a végpontok viselkedése tetszőleges).**
+
 - $I = (-1,1)$, $f(x) = x^2$: ekkor $f(I) = [0,1)$ — nyílt intervallum képe félig zárt.
 - $I = (0,1)$, $f(x) = \frac{1}{x}$: ekkor $f(I) = (1,+\infty)$ — korlátos intervallum képe nem korlátos.
 
 ## 55. Az inverz függvény folytonossága
 
 **Tétel.** Ha $f$ szigorúan monoton növekedő és $f \in C[a,b]$, akkor
+
 - **a)** $R(f) = [f(a), f(b)]$;
 - **b)** létezik $f^{-1}$;
 - **c)** $f^{-1}$ szigorúan monoton növekedő $[f(a), f(b)]$-n;
@@ -1407,6 +1436,7 @@ amit átrendezve $h_{a,b}(x) \le h_{a,x}(x) = f(x)$. Szigorú konvexitás eseté
 **Tétel.** Ha $f$ konvex az $I$ **nyílt** intervallumon, akkor $f \in C(I)$.
 
 *Bizonyítás.* Legyen $c \in I$, és — kihasználva, hogy $I$ nyílt — válasszunk $a, b \in I$ pontokat úgy, hogy $a < c < b$. Legyen $x \in (c, b)$. Ekkor
+
 - a lemma szerint (az $[a,c]$ húrra, $x \notin [a,c]$): $h_{a,c}(x) \le f(x)$;
 - a konvexitás szerint (a $[c,b]$ húrra, $x \in [c,b]$): $f(x) \le h_{c,b}(x)$.
 
@@ -1590,6 +1620,7 @@ függvény a **$b$ kitevőjű hatványfüggvény**.
 A kettő megkülönböztetése lényeges: az elsőben a **kitevő** a változó, a másodikban az **alap**.
 
 **Tétel (az exponenciális függvény tulajdonságai).**
+
 - Ha $a > 1$: minden $x$-re $a^x > 0$, a függvény szigorúan monoton növekedő és folytonos, továbbá
  $$(*) \qquad \lim_{x\to+\infty} a^x = +\infty, \qquad \lim_{x\to-\infty} a^x = 0.$$
 - Ha $0 < a < 1$: minden $x$-re $a^x > 0$, a függvény szigorúan monoton csökkenő és folytonos, továbbá
@@ -1602,6 +1633,7 @@ $$a^x \ge a^{[x]} > K,$$
 tehát $a^x \to +\infty$, ha $x \to +\infty$. Végül ha $x \to -\infty$, akkor $-x \to +\infty$, tehát $a^{-x} \to +\infty$, azaz $a^x = \frac{1}{a^{-x}} \to 0$. $\blacksquare$
 
 **Tétel (a hatványfüggvény tulajdonságai).**
+
 - **i)** Ha $b > 0$: $x^b > 0$, szigorúan monoton növekedő és folytonos $(0,+\infty)$-en, továbbá
  $$\lim_{x\to 0+0} x^b = 0, \qquad \lim_{x\to+\infty} x^b = +\infty.$$
 - **ii)** Ha $b < 0$: $x^b > 0$, szigorúan monoton csökkenő és folytonos $(0,+\infty)$-en, továbbá
@@ -1625,6 +1657,7 @@ Legyen $a > 0$, $a \neq 1$. Az $a^x$ függvény szigorúan monoton és folytonos
 $$(*) \qquad \log_a x = y \iff a^y = x \iff \exp_a y = x.$$
 
 **Tulajdonságok.**
+
 1. $D(\log_a x) = (0,+\infty)$ és $R(\log_a x) = \mathbb{R}$.
 2. $\log_a x \in C(0,+\infty)$.
 3. Ha $a > 1$, akkor $\log_a x$ szigorúan monoton növekedő; ha $0 < a < 1$, akkor szigorúan monoton csökkenő.
@@ -1792,11 +1825,13 @@ $$\exists f'(a) \iff \exists f'_+(a) \ \wedge\ \exists f'_-(a) \ \wedge\ f'_+(a)
 ## 67. Differenciálási szabályok
 
 **Tétel.** Legyen $f$ és $g$ differenciálható $a$-ban. Ekkor $cf$, $f \pm g$ és $f\cdot g$ is differenciálható $a$-ban, és
+
 1. $(cf)'(a) = c f'(a)$;
 2. $(f+g)'(a) = f'(a) + g'(a)$;
 3. $(f\cdot g)'(a) = f'(a)g(a) + f(a)g'(a)$ **(szorzatszabály)**.
 
 Ha ezen felül $g(a) \neq 0$, akkor $\frac{1}{g}$ és $\frac{f}{g}$ is differenciálható $a$-ban, és
+
 4. $\displaystyle \left(\frac{1}{g}\right)'(a) = -\frac{g'(a)}{g^2(a)}$;
 5. $\displaystyle \left(\frac{f}{g}\right)'(a) = \frac{f'(a)g(a) - f(a)g'(a)}{g^2(a)}$ **(hányadosszabály)**.
 
@@ -2008,6 +2043,7 @@ $$(x^x)' = \left(e^{x\ln x}\right)' = e^{x\ln x}\left(\ln x + x\cdot\frac{1}{x}\
 ## 73. Lokális növekedés és szélsőérték
 
 **Definíció.** Az $f$ **(szigorúan) lokálisan növekedő** az $a \in \mathbb{R}$ helyen, ha létezik $\delta > 0$ úgy, hogy $(a-\delta, a+\delta) \subset D(f)$, és
+
 - minden $x \in (a-\delta, a)$-ra $f(x) \le f(a)$ (illetve $f(x) < f(a)$),
 - minden $x \in (a, a+\delta)$-ra $f(a) \le f(x)$ (illetve $f(a) < f(x)$).
 
@@ -2026,11 +2062,13 @@ $$f(x) = \begin{cases} x\sin^2\frac{1}{x} & \text{ha } x \neq 0, \\ 0 & \text{ha
 Ez lokálisan nő a $0$-ban, de a $0$ egyetlen környezetében sem monoton (a $\sin^2$ faktor végtelen sokszor „megáll").
 
 **Tétel (a szélsőérték szükséges feltétele).** Tegyük fel, hogy $f$ differenciálható $a$-ban. Ekkor
+
 1. ha $f$ lokálisan nő $a$-ban, akkor $f'(a) \ge 0$;
 2. ha $f$ lokálisan csökken $a$-ban, akkor $f'(a) \le 0$;
 3. ha $f$-nek lokális szélsőértéke van $a$-ban, akkor $f'(a) = 0$.
 
 *Bizonyítás.*
+
 1. Minden $x \in \dot{B}(a,\delta)$-ra a differenciahányados nemnegatív: ha $x > a$, akkor a számláló és a nevező is nemnegatív; ha $x < a$, akkor mindkettő nempozitív. Határértéket véve $f'(a) \ge 0$.
 2. Ugyanígy, fordított előjelekkel.
 3. Tegyük fel, hogy $a$-ban lokális maximum van. Ekkor minden $x \in (a, a+\delta)$-ra
@@ -2042,12 +2080,14 @@ A kettőből $f'(a) = 0$. $\blacksquare$
 A 3. pont a szélsőérték-keresés alapja: **a lehetséges helyeket a $f'(x) = 0$ egyenlet megoldásai között kell keresni.**
 
 **A megfordítások hamisak.**
+
 - Az 1. és 2. ponthoz: $f(x) = x^2$ esetén $f'(0) = 0$, de $f$ nem lokálisan növekedő a $0$-ban.
 - A 3. ponthoz: $f(x) = x^3$ esetén $f'(0) = 0$, de $f$-nek nincs szélsőértéke a $0$-ban.
 
 A $f'(a) = 0$ feltétel tehát **szükséges, de nem elégséges**.
 
 **Tétel (elégséges feltétel a szigorú lokális monotonitásra).** Ha $f$ differenciálható $a$-ban és
+
 1. $f'(a) > 0$, akkor $f$ szigorúan lokálisan nő $a$-ban;
 2. $f'(a) < 0$, akkor $f$ szigorúan lokálisan csökken $a$-ban.
 
@@ -2151,6 +2191,7 @@ $$\frac{f(x_2)-f(x_1)}{x_2-x_1} = f'(c) > 0. \qquad \blacksquare$$
 **Ez nem fordítható meg:** $f(x) = x^3$ szigorúan monoton növekedő $\mathbb{R}$-en, mégis $f'(0) = 0$.
 
 **Tétel (pontos jellemzés).** Legyen $f \in C[a,b]$, differenciálható $(a,b)$-n. Ekkor $f$ szigorúan monoton növekedő $[a,b]$-n akkor és csak akkor, ha
+
 - minden $x \in (a,b)$-re $f'(x) \ge 0$, **és**
 - nincs olyan $[c,d] \subset [a,b]$, $c < d$ részintervallum, amelyen $f' \equiv 0$.
 
@@ -2204,6 +2245,7 @@ Vagyis: a derivált **előjelváltása** dönt.
 Indukcióval: ha $f$ $k$-adik deriváltját $f^{(k)}$ jelöli, és $f^{(k)}$ differenciálható $a$-ban, akkor $(f^{(k)})'(a)$ az $f$ $a$-beli **$(k+1)$-edik deriváltja**, jelölése $f^{(k+1)}(a)$, illetve $\left.\frac{d^{k+1}f}{dx^{k+1}}\right|_{x=a}$.
 
 **Tétel (másodrendű elégséges feltétel).** Legyen $f$ differenciálható az $a$ egy környezetében, és tegyük fel, hogy létezik $f''(a)$. Ekkor
+
 1. ha $f'(a) = 0$ és $f''(a) > 0$, akkor $a$ az $f$ **szigorú lokális minimumhelye**;
 2. ha $f'(a) = 0$ és $f''(a) < 0$, akkor $a$ az $f$ **szigorú lokális maximumhelye**.
 
@@ -2218,6 +2260,7 @@ $$f_1(x) = x^3 \ (\text{nincs szélsőérték}), \qquad f_2(x) = x^4 \ (\text{mi
 és mindháromra $f'(0) = f''(0) = 0$.
 
 **Tétel (magasabb rendű deriválási szabályok).** Ha $f$ és $g$ is $n$-szer differenciálható $a$-ban, akkor $f+g$ és $f\cdot g$ is az, és
+
 1. $(f+g)^{(n)} = f^{(n)} + g^{(n)}$;
 2. **(Leibniz-szabály)**
 $$(f\cdot g)^{(n)} = \sum_{k=0}^{n}\binom{n}{k} f^{(k)} g^{(n-k)}, \qquad \text{ahol } f^{(0)} \stackrel{\text{def}}{=} f.$$
@@ -2249,6 +2292,7 @@ $$f''(x) = \begin{cases} 2 & \text{ha } x > 0, \\ -2 & \text{ha } x < 0, \end{ca
 ## 79. Konvexitás és a derivált
 
 **Tétel.** Tegyük fel, hogy $f$ differenciálható az $I$ intervallumon. Ekkor
+
 1. **(i)** $f$ akkor és csak akkor konvex (illetve konkáv) $I$-n, ha $f'$ monoton növekedő (illetve csökkenő) $I$-n;
 2. **(ii)** $f$ akkor és csak akkor szigorúan konvex (illetve szigorúan konkáv) $I$-n, ha $f'$ szigorúan monoton növekedő (illetve csökkenő) $I$-n.
 
@@ -2285,6 +2329,7 @@ $$f'' > 0 \implies f \ \text{szigorúan konvex}, \qquad f'' < 0 \implies f \ \te
 **Megjegyzés (a szigorú esetben nincs megfordítás).** $f$ szigorúan konvex $\not\Rightarrow f'' > 0$. Ellenpélda: $f(x) = x^4$, ahol $f'(x) = 4x^3$ szigorúan monoton növekedő (tehát $f$ szigorúan konvex), mégis $f''(0) = 0$.
 
 **Példák.**
+
 - $f(x) = \sin x$: $f'(x) = \cos x$, $f''(x) = -\sin x$. Tehát $\sin$ szigorúan konkáv a $[0,\pi] + 2k\pi$ intervallumokon, és szigorúan konvex a $[\pi, 2\pi] + 2k\pi$ intervallumokon.
 - $f(x) = \ln x$: $f'(x) = \frac{1}{x}$, $f''(x) = -\frac{1}{x^2} < 0$, tehát $\ln$ **szigorúan konkáv** $(0,+\infty)$-en.
 
@@ -2353,6 +2398,7 @@ Az inflexiós pont tehát a **görbületváltás** helye.
 **Megjegyzés.** Az $f(x) = x^5$ függvénynek a $0$ inflexiós pontja, holott $f''(0) = f'''(0) = f^{(4)}(0) = 0$; itt csak $f^{(5)}(0) \neq 0$. Ez vezet az általános tételhez.
 
 **Tétel (általános, magasabb rendű próba).** Tegyük fel, hogy $f$ $(2k+1)$-szer differenciálható $a$-ban ($k \ge 1$).
+
 - **i)** Ha $f''(a) = \dots = f^{(2k)}(a) = 0$ és $f^{(2k+1)}(a) \neq 0$, akkor $a$ az $f$ inflexiós pontja.
 - **ii)** Ha $f''(a) = \dots = f^{(2k-1)}(a) = 0$ és $f^{(2k)}(a) \neq 0$, akkor $f$ az $a$ egy környezetében szigorúan konvex (illetve konkáv).
 
@@ -2376,6 +2422,7 @@ $$\lim_{x\to+\infty}\big(f(x) - (ax+b)\big) = 0,$$
 akkor az $ax+b$ lineáris függvényt az $f$ **aszimptotájának** nevezzük a $+\infty$-ben. Hasonlóan a $-\infty$-ben.
 
 **Példák.**
+
 - $f(x) = e^{-x} + x + 5$: itt $\lim_{x\to+\infty}(f(x) - x - 5) = 0$, tehát $y = x+5$ aszimptota a $+\infty$-ben.
 - $f(x) = \arctan x$: az $y = -\frac{\pi}{2}$ egyenes aszimptota a $-\infty$-ben, az $y = \frac{\pi}{2}$ pedig a $+\infty$-ben.
 
@@ -2405,6 +2452,7 @@ $$f'(x) = 0 \iff x = 0, \qquad f''(x) = 0 \iff 6x^2 = 2 \iff x = \pm\frac{1}{\sq
 | $f$ | nő, konvex | **infl.** | nő, konkáv | **lok. max.** | csökken, konkáv | **infl.** | csökken, konvex |
 
 **Összefoglalás.**
+
 - $f$ szigorúan monoton növekedő $(-\infty, 0]$-n, és szigorúan monoton csökkenő $[0,+\infty)$-en.
 - $f$ szigorúan konvex a $\left(-\infty, -\frac{1}{\sqrt3}\right]$ és $\left[\frac{1}{\sqrt3}, +\infty\right)$ intervallumokon, és szigorúan konkáv a $\left[-\frac{1}{\sqrt3}, \frac{1}{\sqrt3}\right]$ intervallumon.
 - A maximumát a $0$-ban veszi fel: $f(0) = 1$. Abszolút minimuma **nincs** (az infimum $0$, de nem vétetik fel).
@@ -2415,6 +2463,7 @@ $$f'(x) = 0 \iff x = 0, \qquad f''(x) = 0 \iff 6x^2 = 2 \iff x = \pm\frac{1}{\sq
 **Történeti megjegyzés.** A szabály névadója Guillaume-François-Antoine, Marquis de l'Hôpital, Marquis de Sainte-Mesme, Comte d'Entremont, Seigneur d'Ouques-la-Chaise. A szabályt valójában tanára, Johann Bernoulli fedezte fel, aki szerződésben átengedte matematikai eredményei közlésének jogát l'Hôpitalnak. Bernoulli később a saját fiával, Daniellel is féltékenységi viszonyba került: amikor a Párizsi Egyetem tudományos versenyén holtversenyben végeztek, apja kitiltotta őt otthonról.
 
 **Tétel (L'Hospital-szabály).** Legyen $f$ és $g$ differenciálható az $a$ egy $\dot{U}(a)$ pontozott környezetében, ahol $g \neq 0$ és $g' \neq 0$, továbbá teljesüljön az alábbiak közül **valamelyik**:
+
 - **(1)** $\displaystyle \lim_{x\to a} f(x) = \lim_{x\to a} g(x) = 0$ (a $\frac{0}{0}$ eset), vagy
 - **(2)** $\displaystyle \lim_{x\to a}|g(x)| = \infty$ (a $\frac{\ast}{\infty}$ eset).
 
