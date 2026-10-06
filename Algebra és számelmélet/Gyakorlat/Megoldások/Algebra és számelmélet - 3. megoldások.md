@@ -32,6 +32,10 @@ A $\sum 2j + 1$ alakokat $\sum (2j + 1)$-ként értelmezzük.
 - $\sum_{i=0}^{100} \binom{100}{2i} = 2^{99}$: ($i > 50$-re a tagok nullák) a páros indexű binomiális együtthatók összege, és $(1+1)^{100} + (1-1)^{100} = 2\sum_{k \text{ páros}}\binom{100}{k}$, tehát az összeg $\frac{2^{100}}{2} = 2^{99}$.
 - $\left(\sum_{i=1}^{n} a_i\right)\left(\sum_{j=1}^{k} b_j\right) = \sum_{i=1}^{n}\sum_{j=1}^{k} a_i b_j$ (disztributivitás).
 
+::: elmelet
+**Elméleti háttér — a $\Sigma$ és $\Pi$ jelölés szabályai.** Véges összegeknél: (1) az összegzés sorrendje felcserélhető (kettős összegek); (2) konstans kiemelhető, összeg szétbontható; (3) a hatványok szorzata a kitevők összegével számolható. Nevezetes összegek: számtani sor $\frac{n(n+1)}{2}$, mértani sor $\frac{q^{n+1}-1}{q-1}$, binomiális tétel $\sum_i \binom ni a^ib^{n-i} = (a+b)^n$. A páros indexű binomiális együtthatók összegét az $(1+1)^n + (1-1)^n$ kombinációból kapjuk.
+:::
+
 ## 2. feladat
 
 Alakítsuk szorzattá az $a^3 + b^3$ kifejezést. Általánosan, mi lesz $a^n + b^n$ szorzat alakja, ha $n$ páratlan?
@@ -41,6 +45,10 @@ Alakítsuk szorzattá az $a^3 + b^3$ kifejezést. Általánosan, mi lesz $a^n + 
 $$a^3 + b^3 = (a + b)(a^2 - ab + b^2).$$
 Páratlan $n$-re $a^n + b^n = a^n - (-b)^n$, így az $x^n - y^n = (x - y)\sum_{i=0}^{n-1}x^{n-1-i}y^i$ azonosságot $x = a$, $y = -b$-re alkalmazva
 $$a^n + b^n = (a + b)\left(a^{n-1} - a^{n-2}b + a^{n-3}b^2 - \dots - ab^{n-2} + b^{n-1}\right).$$
+
+::: elmelet
+**Elméleti háttér — nevezetes azonosságok.** $x^n - y^n = (x - y)(x^{n-1} + x^{n-2}y + \dots + y^{n-1})$ minden $n$-re; páratlan $n$-re $y \mapsto -y$ helyettesítéssel $x^n + y^n = (x + y)(x^{n-1} - x^{n-2}y + \dots + y^{n-1})$. Az azonosság teleszkopikus kibontással ellenőrizhető.
+:::
 
 ## 3. feladat
 
@@ -58,6 +66,10 @@ $$\frac{4(\sqrt[3]{3} + 1)}{3 + 1} = \sqrt[3]{3} + 1.$$
 - $\dfrac{1}{\sqrt2 + \sqrt3 + \sqrt5}$: bővítsünk $(\sqrt2 + \sqrt3 - \sqrt5)$-tel: a nevező $(\sqrt2 + \sqrt3)^2 - 5 = 2\sqrt6$. Majd $\sqrt6$-tal bővítve:
 $$\frac{\sqrt2 + \sqrt3 - \sqrt5}{2\sqrt6} = \frac{(\sqrt2 + \sqrt3 - \sqrt5)\sqrt6}{12} = \frac{2\sqrt3 + 3\sqrt2 - \sqrt{30}}{12}.$$
 
+::: elmelet
+**Elméleti háttér — gyöktelenítés konjugálttal.** A nevezőt olyan kifejezéssel bővítjük, amellyel szorozva egy nevezetes azonosság racionális számot ad: négyzetgyököknél $(a - b)(a + b) = a^2 - b^2$, köbgyököknél $(a \pm b)(a^2 \mp ab + b^2) = a^3 \pm b^3$. Több tagnál lépésenként haladunk (először két tagot csoportosítunk, a maradék gyököt egy újabb lépésben távolítjuk el).
+:::
+
 ## 4. feladat
 
 Oldjuk meg az $x^3 + 3x^2 + 3x + 1 = 0$, $x^3 - 3x^2 + 3x - 1 = 0$, $x^3 + 3x^2 + 3x + 2 = 0$ egyenleteket.
@@ -67,6 +79,10 @@ Oldjuk meg az $x^3 + 3x^2 + 3x + 1 = 0$, $x^3 - 3x^2 + 3x - 1 = 0$, $x^3 + 3x^2 
 - $x^3 + 3x^2 + 3x + 1 = (x + 1)^3 = 0$: $x = -1$ (háromszoros gyök).
 - $x^3 - 3x^2 + 3x - 1 = (x - 1)^3 = 0$: $x = 1$ (háromszoros gyök).
 - $x^3 + 3x^2 + 3x + 2 = (x + 1)^3 + 1 = 0$, azaz $(x + 1)^3 = -1$. A valós megoldás $x + 1 = -1$, $x = -2$. Szorzattá alakítva $(x + 2)(x^2 + x + 1) = 0$, és $x^2 + x + 1$-nek nincs valós gyöke (diszkrimináns $-3$); a komplex gyökök $x = \frac{-1 \pm i\sqrt3}{2}$.
+
+::: elmelet
+**Elméleti háttér — teljes köbbé alakítás.** $x^3 \pm 3x^2 + 3x \pm 1 = (x \pm 1)^3$ (binomiális tétel $n = 3$-ra). Ha egy harmadfokú egyenletben ez a minta látszik, $y = x \pm 1$ helyettesítéssel tiszta $y^3 = c$ egyenletet kapunk. Egy talált gyök után a gyöktényező kiemelése a maradékot másodfokúvá teszi, amelynek gyökei a megoldóképletből jönnek.
+:::
 
 ## 5. feladat
 
@@ -81,6 +97,10 @@ A Viète-formulák szerint $u + v = s$, $uv = p$ pontosan akkor, ha $u$ és $v$ 
 - $u + v = 7$, $uv = 10$: $t^2 - 7t + 10 = (t - 2)(t - 5)$, így **$(u, v) = (2, 5)$ vagy $(5, 2)$**.
 - $u + v = 6$, $uv = 9$: $t^2 - 6t + 9 = (t - 3)^2$, így **egyetlen megoldás: $u = v = 3$**.
 
+::: elmelet
+**Elméleti háttér — Viète-formulák.** A $t^2 - st + p$ polinom gyökei $u, v$ pontosan akkor, ha $u + v = s$ és $uv = p$ (a $(t - u)(t - v)$ kibontásából). Így egy „összeg–szorzat” egyenletrendszer egy másodfokú egyenletre vezet, és **minden** megoldását (a gyökök sorrendjeit) megkapjuk.
+:::
+
 ## 6. feladat
 
 Végezzük el az alábbi műveleteket a polinomok körében, és állapítsuk meg az eredmény fokát: $(2x^4 - x^2 + 5) - (2x^4 + 3x^3 - x)$, $(x^3 - 2x + 1)(2x^2 + x)$.
@@ -90,6 +110,10 @@ Végezzük el az alábbi műveleteket a polinomok körében, és állapítsuk me
 - $(2x^4 - x^2 + 5) - (2x^4 + 3x^3 - x) = -3x^3 - x^2 + x + 5$, **foka 3** (a negyedfokú tagok kiestek).
 - $(x^3 - 2x + 1)(2x^2 + x) = 2x^5 + x^4 - 4x^3 - 2x^2 + 2x^2 + x = 2x^5 + x^4 - 4x^3 + x$, **foka 5** $= 3 + 2$.
 
+::: elmelet
+**Elméleti háttér — fokszám összegnél és szorzatnál.** $\deg(f + g) \le \max\{\deg f, \deg g\}$ (egyenlőtlenség, mert a főtagok kiejthetik egymást); $\deg(fg) = \deg f + \deg g$ (test feletti, sőt integritástartomány feletti polinomokra, mert a főegyütthatók szorzata nem nulla).
+:::
+
 ## 7. feladat
 
 Mi lesz a 15-ödfokú tag együtthatója az $(x^8 - 3x^5 + 2)(x^{10} + 2x^7 - x^2 + 5)$ polinomban?
@@ -97,6 +121,10 @@ Mi lesz a 15-ödfokú tag együtthatója az $(x^8 - 3x^5 + 2)(x^{10} + 2x^7 - x^
 **Megoldás.**
 
 Az $x^{15}$ tag azokból a szorzatokból jön, ahol a kitevők összege 15: $x^8 \cdot 2x^7$ (együttható $2$) és $(-3x^5) \cdot x^{10}$ (együttható $-3$). **Az együttható $2 - 3 = -1$.**
+
+::: elmelet
+**Elméleti háttér — szorzat együtthatója (konvolúció).** $\left(\sum a_ix^i\right)\left(\sum b_jx^j\right)$-ben az $x^k$ együtthatója $\sum_{i + j = k} a_ib_j$: minden olyan tagpárt össze kell gyűjteni, amelyek kitevőinek összege $k$.
+:::
 
 ## 8. feladat
 
@@ -106,6 +134,10 @@ Egy nyolcadfokú és egy $m$-edfokú polinom összege harmadfokú. Mik $m$ lehet
 
 Ha $m \neq 8$, akkor az összeg foka $\max\{8, m\} \ge 8$ volna. Tehát **$m = 8$**, és a két polinom főegyütthatója egymás ellentettje (sőt az $x^8, \dots, x^4$ együtthatók is kiejtik egymást).
 
+::: elmelet
+**Elméleti háttér — fokszám és kiejtés.** Ha két polinom foka különböző, az összeg foka a nagyobbik (a nagyobb fokú főtag nem ejtődhet ki). Ha az összeg foka kisebb mindkettőnél, a fokuk szükségképpen egyenlő, és a főegyütthatók egymás ellentettjei.
+:::
+
 ## 9. feladat
 
 Két polinom szorzata tizedfokú, az összegük pedig negyedfokú. Mennyi lehet a két polinom fokszáma?
@@ -113,6 +145,10 @@ Két polinom szorzata tizedfokú, az összegük pedig negyedfokú. Mennyi lehet 
 **Megoldás.**
 
 Legyenek a fokszámok $a$ és $b$; ekkor $a + b = 10$ (a szorzat foka a fokok összege). Ha $a \neq b$, akkor az összeg foka $\max\{a, b\}$, ami $a + b = 10$ miatt legalább $6$ – nem lehet $4$. Tehát $a = b = 5$, és az összegben a főtagok kiejtik egymást. **Mindkét polinom ötödfokú.** Példa: $f = x^5 + x^4$, $g = -x^5$: $fg = -x^{10} - x^9$, $f + g = x^4$.
+
+::: elmelet
+**Elméleti háttér — fokszám-egyenletek.** A szorzat foka meghatározza a fokok összegét ($a + b = 10$), az összeg foka pedig megköveteli a kiejtést, ami csak egyenlő fokoknál lehetséges. A két feltételből a fokok egyértelműek.
+:::
 
 ## 10. feladat
 
@@ -127,6 +163,10 @@ Horner-elrendezés a $2$ helyen:
 | $2$ | $1$ | $-2$ | $-3$ | $0$ |
 
 Tehát $x^3 - 4x^2 + x + 6 = (x - 2)(x^2 - 2x - 3) = (x - 2)(x - 3)(x + 1)$. **A gyökök: $2$, $3$, $-1$.**
+
+::: elmelet
+**Elméleti háttér — gyöktényező kiemelése (Horner).** Ha $f(c) = 0$, akkor $f(x) = (x - c)g(x)$ (gyöktényező-tétel, a maradékos osztásból: $f(x) = (x - c)g(x) + f(c)$). A **Horner-elrendezés** egyszerre adja $f(c)$-t (utolsó elem) és $g$ együtthatóit (a többi elem). A kapott másodfokú hányadost szorzattá bontva megkapjuk az összes gyököt.
+:::
 
 ## 11. feladat
 
@@ -144,6 +184,10 @@ $f(2) = -13 \neq 0$, tehát **a 2 nem gyök**, és
 $$f(x) = (x - 2)(x^5 - x^4 - 2x^3 - 2x^2 - 4x - 9) - 13.$$
 (Ellenőrzés: $f(2) = 64 - 96 + 16 - 2 + 5 = -13$.)
 
+::: elmelet
+**Elméleti háttér — Horner-elrendezés és maradéktétel.** A Horner-séma rekurziója $b_{k} = a_k + c\,b_{k+1}$; az utolsó elem $f(c)$, a többi a $g$ hányados együtthatói, és $f(x) = (x - c)g(x) + f(c)$ (**maradéktétel**: lineáris polinommal való osztás maradéka a behelyettesítési érték). A hiányzó tagokat $0$ együtthatóval kell beírni.
+:::
+
 ## 12. feladat
 
 Hányszoros gyöke az $x^4 + 2x^3 + 2x^2 + 2x + 1$ polinomnak a $-1$? (Iterált Horner.)
@@ -159,6 +203,10 @@ Iterált Horner a $-1$ helyen:
 | $-1$ | $1$ | $-1$ | $\mathbf{2}$ | | |
 
 Az első két maradék $0$, a harmadik $2 \neq 0$, így **a $-1$ kétszeres gyök**: $x^4 + 2x^3 + 2x^2 + 2x + 1 = (x + 1)^2(x^2 + 1)$.
+
+::: elmelet
+**Elméleti háttér — gyök multiplicitása iterált Hornerrel.** $c$ pontosan $k$-szoros gyök, ha $(x - c)^k \mid f$, de $(x - c)^{k+1} \nmid f$. A Horner-sémát a kapott hányadosra újra és újra alkalmazva: ahány egymás utáni maradék $0$, annyiszoros a gyök (az első nem nulla maradéknál megállunk).
+:::
 
 ## 13. feladat
 
@@ -180,6 +228,10 @@ Iterált Horner a $2$ helyen; az egymás utáni maradékok adják $g$ együtthat
 $$\begin{aligned} f(x) &= 3(x-2)^5 + 28(x-2)^4 + 108(x-2)^3 \\ &\quad + 211(x-2)^2 + 205(x-2) + 74, \end{aligned}$$
 azaz $g(y) = 3y^5 + 28y^4 + 108y^3 + 211y^2 + 205y + 74$. (Ellenőrzés: $g(1) = 629 = f(3)$, és $g(0) = 74 = f(2)$.)
 
+::: elmelet
+**Elméleti háttér — Taylor-alak iterált Hornerrel.** Bármely $f$ polinom egyértelműen felírható $\sum_k d_k(x - c)^k$ alakban. Az iterált Horner-séma egymás utáni maradékai éppen $d_0, d_1, d_2, \dots$, mert $f = (x - c)q_1 + d_0$, $q_1 = (x - c)q_2 + d_1$ stb. (Ezek a $\frac{f^{(k)}(c)}{k!}$ Taylor-együtthatók.)
+:::
+
 ## 14. feladat
 
 Az $n$-edfokú $f(x)$ polinomba behelyettesítjük a $b$ számot. Hány szorzásra van szükség $f(b)$ kiszámításához, ha egyáltalán nem trükközünk; ha a $b$ hatványait előre kiszámoljuk; ha a Horner-elrendezést használjuk?
@@ -192,6 +244,10 @@ Legyen $f(x) = a_nx^n + \dots + a_1x + a_0$.
 - **A hatványokat előre kiszámolva:** $b^2, \dots, b^n$ összesen $n - 1$ szorzás ($b^{k} = b^{k-1} \cdot b$), majd az $n$ együtthatóval való szorzás: összesen $2n - 1$.
 - **Horner-elrendezéssel:** $f(b) = (\dots((a_nb + a_{n-1})b + a_{n-2})b + \dots)b + a_0$, összesen **$n$ szorzás** (és $n$ összeadás).
 
+::: elmelet
+**Elméleti háttér — műveletigény.** A Horner-séma az $f(b) = (\dots(a_nb + a_{n-1})b + \dots)b + a_0$ zárójelezés, amelyben minden együtthatóhoz pontosan egy szorzás és egy összeadás tartozik: $n$ szorzás, és ez optimális általános polinomra. A naiv módszer $\Theta(n^2)$, a hatványok tárolásával $2n - 1$ szorzás kell.
+:::
+
 ## 15. feladat
 
 Bizonyítsuk be, hogy nem létezik olyan egész együtthatós $v(x)$ polinom, amelyre igaz, hogy $v(7) = 11$ és $v(11) = 13$.
@@ -200,6 +256,10 @@ Bizonyítsuk be, hogy nem létezik olyan egész együtthatós $v(x)$ polinom, am
 
 Egész együtthatós $v$-re és egész $a, b$-re $a - b \mid v(a) - v(b)$, mert $v(a) - v(b) = \sum_k c_k(a^k - b^k)$, és $a - b \mid a^k - b^k$. Itt $11 - 7 = 4$ kellene, hogy osztója legyen $v(11) - v(7) = 13 - 11 = 2$-nek – ez hamis. Tehát nincs ilyen polinom. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — $a - b \mid v(a) - v(b)$.** Egész együtthatós polinomra minden egész $a, b$-re $a - b \mid v(a) - v(b)$, mert $v(a) - v(b) = \sum_k c_k(a^k - b^k)$, és minden tag osztható $a - b$-vel. Ez kongruenciával: $a \equiv b \pmod m \Rightarrow v(a) \equiv v(b) \pmod m$. Egyetlen sérülő oszthatóság elég a lehetetlenség igazolásához.
+:::
+
 ## 16. feladat
 
 Bizonyítsuk be, hogy egyetlen nem konstans, egész együtthatós $v(x)$ polinom sem adhat minden $x$ egész számra prímszám értéket.
@@ -207,6 +267,10 @@ Bizonyítsuk be, hogy egyetlen nem konstans, egész együtthatós $v(x)$ polinom
 **Megoldás.**
 
 Tegyük fel, hogy $v$ nem konstans, egész együtthatós, és minden egész helyen prímet vesz fel. Legyen $a$ egész és $p = v(a)$ (prím). Minden $k$ egészre $(a + kp) - a = kp \mid v(a + kp) - v(a)$, így $p \mid v(a + kp)$. Mivel $v(a + kp)$ prím és osztható $p$-vel, $v(a + kp) = p$ (illetve negatív prímeket is megengedve $\pm p$). Tehát $v - p$ (vagy $v + p$) végtelen sok helyen nulla, így azonosan nulla, azaz $v$ konstans – ellentmondás. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — polinom gyökeinek száma.** Egy nem nulla, $d$-edfokú polinomnak legfeljebb $d$ gyöke van (test felett). Ha tehát egy polinom végtelen sok helyen felvesz egy értéket, akkor konstans. A $v(a + kp) \equiv v(a) \equiv 0 \pmod p$ kongruencia (az előző feladat elve) a végtelen sok egyenlő értéket kikényszeríti.
+:::
 
 ## 17. feladat
 
@@ -222,6 +286,10 @@ valamely $w \in \mathbb{Z}[t]$-vel, mert minden $j \ge 1$-re a tag osztható $c_
 
 **2. eset: $c_0 = 0$.** Írjuk $v(x) = x^mu(x)$ alakba, $u(0) \neq 0$. Ha $u$ konstans, akkor $v(p) = u \cdot p^m$ minden $p$ prímre osztható $p$-vel – végtelen sok prímosztó. Ha $u$ nem konstans, akkor az 1. eset szerint az $u(n)$ értékeknek végtelen sok prímosztója van, és ezek $v(n)$-t is osztják. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — Schur tétele, Euklidesz-típusú érveléssel.** Feltesszük, hogy véges sok prím osztja az értékeket, és egy olyan helyet választunk ($x = |c_0|Pt$), ahol a polinom értéke $c_0(1 + P\cdot \text{valami})$ alakú: a második tényező minden feltételezett prímmel osztva $1$ maradékot ad, tehát „új” prímtényezője van. A kulcs: $v(x) - v(0)$ osztható $x$-szel, és nem konstans polinom abszolút értéke végtelenbe tart.
+:::
+
 ## 18. feladat
 
 Ha a 2 (pontosan) háromszoros gyöke $f$-nek és négyszeres gyöke $g$-nek, akkor hányszoros gyöke $f + g$-nek, illetve $f + g + fg$-nek?
@@ -234,6 +302,10 @@ $$f + g = (x - 2)^3\big(f_1 + (x - 2)g_1\big),$$
 $$f + g + fg = (x - 2)^3\big(f_1 + (x - 2)g_1 + (x - 2)^4f_1g_1\big),$$
 a zárójel értéke a $2$-ben ismét $f_1(2) \neq 0$: **$f + g + fg$-nek is pontosan háromszoros gyöke.**
 
+::: elmelet
+**Elméleti háttér — multiplicitás kiemeléssel.** $c$ pontosan $k$-szoros gyöke $f$-nek $\iff$ $f = (x - c)^kf_1$, ahol $f_1(c) \ne 0$. Összegnél és szorzatnál a legkisebb közös hatványt emeljük ki, és megnézzük, hogy a maradék tényező értéke a $c$ helyen nulla-e. Ha a multiplicitások különbözők, az összegé a kisebbik.
+:::
+
 ## 19. feladat
 
 Igazoljuk, hogy az $x^2 + bx + c$-nek pontosan akkor van kétszeres gyöke, ha $b^2 = 4c$.
@@ -244,6 +316,10 @@ Teljes négyzetté alakítva
 $$x^2 + bx + c = \left(x + \frac b2\right)^2 - \frac{b^2 - 4c}{4}.$$
 Ha $b^2 = 4c$, akkor $x^2 + bx + c = \left(x + \frac b2\right)^2$, tehát $-\frac b2$ kétszeres gyök. Megfordítva, ha $r$ kétszeres gyök, akkor (a polinom normált és másodfokú) $x^2 + bx + c = (x - r)^2 = x^2 - 2rx + r^2$, így $b = -2r$, $c = r^2$, és $b^2 = 4r^2 = 4c$. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — teljes négyzetté alakítás és diszkrimináns.** $x^2 + bx + c = \left(x + \frac b2\right)^2 - \frac{D}{4}$, ahol $D = b^2 - 4c$ a **diszkrimináns**. $D = 0$ esetén a polinom teljes négyzet, tehát kétszeres gyöke van; megfordítva egy normált másodfokú polinom kétszeres gyök esetén $(x - r)^2$, és az együtthatók összevetése $D = 0$-t ad.
+:::
+
 ## 20. feladat
 
 (A racionális gyökteszt) Bizonyítsuk be, hogy ha a $\frac{p}{q}$ (ahol $p$ és $q$ relatív prím egész számok) racionális szám gyöke az $f(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$ egész együtthatós polinomnak, akkor $p \mid a_0$ és $q \mid a_n$.
@@ -253,6 +329,10 @@ Ha $b^2 = 4c$, akkor $x^2 + bx + c = \left(x + \frac b2\right)^2$, tehát $-\fra
 $f\left(\frac pq\right) = 0$-t $q^n$-nel szorozva:
 $$a_np^n + a_{n-1}p^{n-1}q + \dots + a_1pq^{n-1} + a_0q^n = 0.$$
 Az $a_0q^n$ kivételével minden tag osztható $p$-vel, így $p \mid a_0q^n$. Mivel $(p, q) = 1$, $(p, q^n) = 1$, tehát $p \mid a_0$. Ugyanígy az $a_np^n$ kivételével minden tag osztható $q$-val, így $q \mid a_np^n$, és $(q, p^n) = 1$ miatt $q \mid a_n$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — racionális gyökteszt.** Ha $\frac pq$ (egyszerűsített tört) gyöke az egész együtthatós $f$-nek, akkor $p \mid a_0$ és $q \mid a_n$. A bizonyítás: a nevezővel felszorzunk, és minden tag osztható $p$-vel (illetve $q$-val), egy kivételével; a kivételes tagra az **Euklideszi lemma** ($p \mid ab$, $(p, b) = 1 \Rightarrow p \mid a$) alkalmazható.
+:::
 
 ## 21. feladat
 
@@ -269,3 +349,7 @@ Próbálgatással $f(3) = 54 - 27 - 33 + 6 = 0$. Horner:
 | $3$ | $2$ | $3$ | $-2$ | $0$ |
 
 $f(x) = (x - 3)(2x^2 + 3x - 2) = (x - 3)(2x - 1)(x + 2)$. **A racionális gyökök: $3$, $\frac12$, $-2$** (és ez az összes gyök).
+
+::: elmelet
+**Elméleti háttér — racionális gyökök keresése.** A racionális gyökteszt véges jelöltlistát ad ($\pm \frac{a_0 \text{ osztói}}{a_n \text{ osztói}}$). Egy talált gyököt Hornerrel kiemelünk, és a hányadosra (amely már alacsonyabb fokú) folytatjuk; másodfokú hányadosnál a megoldóképlet vagy szorzattá bontás befejezi a munkát.
+:::

@@ -51,6 +51,10 @@ $$\begin{vmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{vmatrix} = -1.$$
 
 (Ez permutációmátrix: a $\begin{pmatrix} 1&2&3&4 \\ 2&4&1&3 \end{pmatrix}$ permutációé, amelynek 3 inverziója van, ezért páratlan.)
 
+::: elmelet
+**Elméleti háttér — a determináns kiszámításának módszerei.** (1) **Elemi sorműveletek:** sor többszörösének hozzáadása nem változtat, sorcsere előjelet vált, sor $c$-szerese $c$-vel szorozza a determinánst; háromszögmátrix determinánsa a főátló szorzata. (2) **Kifejtési tétel:** $\det A = \sum_j (-1)^{i+j}a_{ij}M_{ij}$ bármely $i$-edik sor (vagy oszlop) szerint — érdemes a legtöbb nullát tartalmazó sort választani. (3) **Sarrus-szabály** csak $3 \times 3$-asra. Mindhárom ugyanazt adja, mert mindegyik a permutációs definícióból ($\sum_\sigma \operatorname{sgn}\sigma\prod a_{i\sigma(i)}$) vezethető le. Permutációmátrix determinánsa a permutáció előjele.
+:::
+
 ## 2. feladat
 
 Számítsuk ki az alábbi determinánsokat.
@@ -79,6 +83,10 @@ Kifejtés az első sor szerint, majd a második tagban az első oszlop szerint:
 $$D_n = 3D_{n-1} - 1 \cdot 1 \cdot D_{n-2}, \qquad D_1 = 3,\ D_2 = 8\ (\text{és } D_0 = 1).$$
 Így $D_3 = 21$, $D_4 = 55$, $D_5 = 144$, … A $\lambda^2 - 3\lambda + 1 = 0$ karakterisztikus egyenlet gyökei $\lambda_{1,2} = \frac{3 \pm \sqrt5}{2}$. A kezdőértékekből $D_n = \frac{\lambda_1^{n+1} - \lambda_2^{n+1}}{\lambda_1 - \lambda_2}$, és $\lambda_1 - \lambda_2 = \sqrt5$. Mivel $\lambda_1 = \varphi^2$, $\lambda_2 = \psi^2$ ($\varphi, \psi = \frac{1 \pm \sqrt5}{2}$), a Binet-képlet szerint ez éppen $F_{2n+2}$.
 
+::: elmelet
+**Elméleti háttér — speciális determinánsok.** Általános $n \times n$-es determinánsnál a cél sor-/oszlopműveletekkel **háromszög alakot** vagy **rekurziót** kapni. Tipikus fogások: szomszédos sorok kivonása (lépcsős mátrix); minden oszlop összeadása egy oszlopba és a közös tényező kiemelése (ha minden sorösszeg ugyanaz); az előző sor többszörösének kivonása (Vandermonde: indukcióval $\prod_{i<j}(y_j - y_i)$); tridiagonális mátrixnál kifejtés az első sor szerint, ami **másodrendű lineáris rekurziót** ad, amelyet a karakterisztikus egyenlettel oldunk meg.
+:::
+
 ## 3. feladat
 
 Ha egy $B \in \mathbb{R}^{4 \times 4}$ mátrixra $\det B = 3$, akkor mennyi $\det(B + B + B)$?
@@ -88,6 +96,10 @@ Ha egy $B \in \mathbb{R}^{4 \times 4}$ mátrixra $\det B = 3$, akkor mennyi $\de
 $B + B + B = 3B$. Egy $4 \times 4$-es mátrix minden elemét 3-mal szorozva mind a 4 sorából kiemelhetünk egy 3-ast:
 $$\det(3B) = 3^4 \det B = 81 \cdot 3 = \mathbf{243}.$$
 (Nem $3 \cdot 3 = 9$, és nem $3 \det B$!)
+
+::: elmelet
+**Elméleti háttér — a determináns homogenitása.** A determináns minden sorában **lineáris** (multilineáris függvény). Ezért egy sor $c$-szerese a determinánst $c$-szeresére változtatja, és ha mind az $n$ sort $c$-vel szorozzuk, $\det(cA) = c^n\det A$. A determináns nem lineáris a mátrixban, csak soronként!
+:::
 
 ## 4. feladat (házi feladat)
 
@@ -100,6 +112,10 @@ Vonjuk ki az első sort a második és a harmadik sorból:
 $$\begin{vmatrix} a & a + d & a + 2d \\ 3d & 3d & 3d \\ 6d & 6d & 6d \end{vmatrix}.$$
 A harmadik sor a második kétszerese, tehát **a determináns $0$** (bármely $a$, $d$ esetén).
 
+::: elmelet
+**Elméleti háttér — lineárisan összefüggő sorok.** Ha a sorok lineárisan összefüggők (valamelyik sor a többi lineáris kombinációja), a determináns $0$. Sor kivonása egy másikból nem változtatja a determinánst, és ha két arányos sor jön létre, az egyiket a másik többszörösével kinullázhatjuk.
+:::
+
 ## 5. feladat
 
 Egy $2026 \times 2026$-os determináns minden oszlopa számtani sorozat. Mennyi az értéke?
@@ -109,6 +125,10 @@ Egy $2026 \times 2026$-os determináns minden oszlopa számtani sorozat. Mennyi 
 Legyen a $j$-edik oszlop $c_j, c_j + d_j, c_j + 2d_j, \dots$. Ekkor a sorokra $S_3 - S_2 = S_2 - S_1 = (d_1, \dots, d_{2026})$, azaz
 $$S_1 - 2S_2 + S_3 = 0.$$
 A sorok lineárisan összefüggők, tehát **a determináns $0$**. (Konkrétan $S_3 \leftarrow S_3 - 2S_2 + S_1$ után csupa 0 sort kapunk. Ehhez legalább 3 sor kell; $2026 \ge 3$.)
+
+::: elmelet
+**Elméleti háttér — összefüggés és determináns.** Ha az oszlopok számtani sorozatok, akkor a sorok között **lineáris összefüggés** van ($S_1 - 2S_2 + S_3 = 0$, minden oszlopban a második differencia $0$). Egy sorművelettel csupa nulla sort hozunk létre, így a determináns $0$. ($\det A \ne 0 \iff$ a sorok lineárisan függetlenek.)
+:::
 
 ## 6. feladat
 
@@ -120,6 +140,10 @@ Adjuk az utolsó oszlophoz az összes többi oszlopot; ez nem változtat a deter
 $$\det A = 13 \cdot \det A',$$
 ahol $A'$ is egész elemű, így $\det A'$ egész (a determináns az elemek szorzatainak előjeles összege). Tehát $13 \mid \det A$. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — oszlopműveletek és egész determináns.** Oszlopok összeadása nem változtatja a determinánst (a determináns a transzponáltra is ugyanaz, tehát oszlopokra is érvényesek a sorszabályok). Ha egy oszlop minden eleme osztható $13$-mal, a $13$ kiemelhető, és a maradék determináns egész, mert **egész elemű mátrix determinánsa egész** (egész számok szorzatainak előjeles összege).
+:::
+
 ## 7. feladat
 
 Egy 3x3-as determináns egyjegyű számokból áll. Minden oszlopban a három számjegyből felülről lefelé összeolvasott háromjegyű szám osztható 11-gyel. Igazoljuk, hogy a determináns is osztható 11-gyel.
@@ -129,6 +153,10 @@ Egy 3x3-as determináns egyjegyű számokból áll. Minden oszlopban a három sz
 Legyenek a sorok $S_1, S_2, S_3$; a $j$-edik oszlop számjegyei felülről $a_j, b_j, c_j$, és $11 \mid 100a_j + 10b_j + c_j$. Cseréljük $S_3$-at $100 S_1 + 10 S_2 + S_3$-ra. (Más sorok többszörösét adjuk hozzá, így a determináns nem változik.) Az új harmadik sor elemei éppen a $100a_j + 10b_j + c_j$ háromjegyű számok, mind oszthatók 11-gyel. Ebből a sorból kiemelve a 11-et, egész elemű determinánst kapunk, tehát $11 \mid \det$. $\blacksquare$
 
 (Ugyanez mod 11-gyel: $100 \equiv 1$, $10 \equiv -1$, így $a_j - b_j + c_j \equiv 0 \pmod{11}$. Ekkor $S_3 \leftarrow S_1 - S_2 + S_3$ után a harmadik sor minden eleme osztható 11-gyel.)
+
+::: elmelet
+**Elméleti háttér — sorok egész kombinációja.** A $S_3 \leftarrow 100S_1 + 10S_2 + S_3$ művelet nem változtatja a determinánst (más sorok többszörösét adjuk hozzá). Az oszlopokban így a számjegyekből összeolvasott számok jelennek meg, amelyek a feltétel szerint oszthatók $11$-gyel, és a $11$ kiemelhető. Ugyanez kongruenciával: a determináns elemenként modulo $11$ számolható ($\det$ polinom az elemekben).
+:::
 
 ## 8. feladat
 
@@ -144,6 +172,10 @@ Inverzió: olyan $i < j$ pár, amelyre $\sigma(i) > \sigma(j)$. Minden elemhez m
 - $\begin{pmatrix} a&b&c&d&e \\ b&e&a&c&d \end{pmatrix}$, az $a < b < c < d < e$ sorrenddel ez $2\,5\,1\,3\,4$: $2 \to 1$, $5 \to 3$. **Összesen 4 inverzió** (páros).
 - **„Hátulról előre"** ($n, n-1, \dots, 1$): bármely két elem inverzióban áll, így **$\binom n2 = \frac{n(n-1)}{2}$ inverzió**. 8 elemre $28$, 5 elemre $10$.
 
+::: elmelet
+**Elméleti háttér — inverziók és a permutáció paritása.** Egy $(i, j)$ pár **inverzió**, ha $i < j$, de $\sigma(i) > \sigma(j)$. A permutáció **előjele** $(-1)^{\text{inverziók száma}}$. Gyors számolás: minden elemhez megszámoljuk, hány nála kisebb áll tőle jobbra. A fordított sorrendben minden pár inverzió: $\binom n2$.
+:::
+
 ## 9. feladat
 
 Hány inverzió lehet maximum egy 6 elemű halmaz egy páros permutációjában?
@@ -151,6 +183,10 @@ Hány inverzió lehet maximum egy 6 elemű halmaz egy páros permutációjában?
 **Megoldás.**
 
 6 elemű permutációban legfeljebb $\binom62 = 15$ inverzió lehet, és ez csak a „hátulról előre" permutációban teljesül. A 15 viszont páratlan. 14 inverzió elérhető: $6\,5\,4\,3\,1\,2$ (a két utolsó elem cseréje egy inverziót megszüntet). **A maximum 14.**
+
+::: elmelet
+**Elméleti háttér — paritás és szomszédos csere.** Két szomszédos elem cseréje pontosan eggyel változtatja az inverziók számát, tehát a paritást is. A maximális ($\binom n2$ inverziójú) permutációból egy szomszédos csere a paritást megfordítja — ha a maximum rossz paritású, egy cserével megkapjuk a legnagyobb jó paritásút.
+:::
 
 ## 10. feladat
 
@@ -174,3 +210,7 @@ A feladatlap a „9. feladatban szereplő" permutációkat említi. Ilyenek csak
 - $(135)(24)(531)(14)$: $1 \xrightarrow{(14)} 4 \xrightarrow{(24)} 2$, $2 \xrightarrow{(24)} 4 \xrightarrow{(135)} 4$, $4 \xrightarrow{(14)} 1 \xrightarrow{(531)} 5 \xrightarrow{(135)} 1$. A 3 és az 5 fix. Eredmény **$(124)$**, **páros**. (Balról jobbra komponálva az inverzét, $(142)$-t kapjuk; az előjel ugyanaz.)
 - $(1357246)(357)(1357246)^{-1}$: konjugálás. $\tau\,(357)\,\tau^{-1} = (\tau(3)\ \tau(5)\ \tau(7))$, ahol $\tau = (1357246)$, és $\tau(3) = 5$, $\tau(5) = 7$, $\tau(7) = 2$. Eredmény **$(572) = (257)$**, 3-ciklus, **páros**. (Balról jobbra komponálva $(135)$ jön ki; az előjel ugyanaz.)
 - $[(12)(13)(14)]^{2026}$: $(12)(13)(14) = (1432)$, mert $1 \to 4$, $4 \to 3$, $3 \to 2$, $2 \to 1$. Ez 4-ciklus, rendje 4. $2026 = 4 \cdot 506 + 2$, így az eredmény $(1432)^2 =$ **$(13)(24)$**, **páros**. (Balról jobbra komponálva $(1234)$ a szorzat, a négyzete ugyanúgy $(13)(24)$.)
+
+::: elmelet
+**Elméleti háttér — ciklusfelbontás, kompozíció, konjugálás.** Minden permutáció egyértelműen felbomlik diszjunkt ciklusok szorzatára (elemeket követve a $\sigma$ szerint, amíg vissza nem érünk). Egy $k$ hosszú ciklus előjele $(-1)^{k-1}$ (ennyi transzpozíció szorzata), az előjel multiplikatív. A kompozíciót a konvenció szerint **jobbról balra** számoljuk. **Konjugálás:** $\tau(a_1 \dots a_k)\tau^{-1} = (\tau(a_1) \dots \tau(a_k))$ — csak „átnevezi” az elemeket, a ciklustípus (és így az előjel) megmarad. Hatványozásnál a ciklus rendjével (hosszával) redukáljuk a kitevőt.
+:::

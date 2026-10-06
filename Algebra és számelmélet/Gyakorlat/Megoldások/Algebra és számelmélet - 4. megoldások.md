@@ -16,6 +16,10 @@ Elég az összes maradékosztály egy-egy reprezentánsát négyzetre emelni:
 | 8 | $0, 1, 4, 1, 0, 1, 4, 1$ | $0, 1, 4$ |
 | 9 | $0, 1, 4, 0, 7, 7, 0, 4, 1$ | $0, 1, 4, 7$ |
 
+::: elmelet
+**Elméleti háttér — kongruenciák és maradékosztályok.** $a \equiv b \pmod m$, ha $m \mid a - b$; a kongruencia összeadással, szorzással és hatványozással kompatibilis. Ezért egy kifejezés ($x^2$) maradéka csak $x$ maradékától függ, és elég a $0, 1, \dots, m-1$ reprezentánsokat végignézni. (Szimmetria: $(-x)^2 = x^2$, így elég a „fél” maradékrendszer.)
+:::
+
 ## 2. feladat
 
 Határozzuk meg a $3^{2026}$ utolsó számjegyét.
@@ -23,6 +27,10 @@ Határozzuk meg a $3^{2026}$ utolsó számjegyét.
 **Megoldás.**
 
 $3$ hatványainak utolsó jegye 4-es periódussal ismétlődik: $3, 9, 7, 1, 3, \dots$ (mert $3^4 = 81 \equiv 1 \pmod{10}$). Mivel $2026 = 4 \cdot 506 + 2$, $3^{2026} \equiv 3^2 = 9 \pmod{10}$. **Az utolsó jegy 9.**
+
+::: elmelet
+**Elméleti háttér — hatványok periodicitása.** Egy szám hatványainak maradéka modulo $m$ periodikus (véges sok maradék van, és a következő tag csak az előzőtől függ). Ha $a^k \equiv 1 \pmod m$, akkor $a^n \equiv a^{n \bmod k} \pmod m$, így elég a kitevő maradékát ismerni ($k$-val osztva). Utolsó jegy = maradék $10$-zel osztva.
+:::
 
 ## 3. feladat
 
@@ -32,6 +40,10 @@ Milyen számjegyre végződik a $4^{100} + 5^{100}$ összeg?
 
 $4^{100} = 16^{50}$, és $6$-ra végződő szám minden hatványa $6$-ra végződik. $5^{100}$ $5$-re végződik. $6 + 5 = 11$, így **az összeg 1-re végződik.**
 
+::: elmelet
+**Elméleti háttér — utolsó jegy kongruenciával.** Az utolsó jegy a $10$-es maradék, és a kongruenciák összeadhatók. Bizonyos jegyek „fixpontok” a hatványozásra ($0, 1, 5, 6$ minden hatványa ugyanarra végződik), ezért a kitevőt alkalmasan átírva ($4^{100} = 16^{50}$) a maradék azonnal látszik.
+:::
+
 ## 4. feladat
 
 Lehet-e $1! + 2! + 3! + \dots + 2026!$ egy egész szám négyzete?
@@ -40,6 +52,10 @@ Lehet-e $1! + 2! + 3! + \dots + 2026!$ egy egész szám négyzete?
 
 **Nem.** $1! + 2! + 3! + 4! = 1 + 2 + 6 + 24 = 33$, és $k \ge 5$-re $k!$ osztható 10-zel. Így az összeg $3$-ra végződik. Négyzetszám viszont csak $0, 1, 4, 5, 6, 9$-re végződhet (az $0^2, \dots, 9^2$ utolsó jegyei). (Ugyanez mod 5: az összeg $\equiv 3$, a négyzetek $\equiv 0, 1, 4$.)
 
+::: elmelet
+**Elméleti háttér — négyzetszámok kizárása maradékkal.** Egy szám nem négyzetszám, ha olyan maradékot ad valamely modulus szerint, amelyet négyzetszám nem adhat (kvadratikus maradékok). A faktoriálisok egy indextől kezdve oszthatók a modulussal, így az összeg maradéka csak az első néhány tagtól függ.
+:::
+
 ## 5. feladat
 
 Igazoljuk, hogy három egymást követő egész szám négyzetösszege 3-mal osztva mindig 2-t ad maradékul.
@@ -47,6 +63,10 @@ Igazoljuk, hogy három egymást követő egész szám négyzetösszege 3-mal osz
 **Megoldás.**
 
 $$(n - 1)^2 + n^2 + (n + 1)^2 = 3n^2 + 2 \equiv 2 \pmod 3. \qquad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — szimmetrikus változóválasztás.** Három egymást követő számot $n - 1, n, n + 1$ alakban írva a lineáris tagok kiesnek, és a kifejezés egyszerű: $3n^2 + 2$. A maradék ebből leolvasható (a $3n^2$ tag osztható $3$-mal).
+:::
 
 ## 6. feladat
 
@@ -61,6 +81,10 @@ $$14 = 42 - 28 = 42 - (112 - 2 \cdot 42) = 3 \cdot 42 - 112 = 3(154 - 112) - 112
 $$14 = 3 \cdot 154 - 4(420 - 2 \cdot 154) = 11 \cdot 154 - 4 \cdot 420.$$
 (Ellenőrzés: $1694 - 1680 = 14$.)
 
+::: elmelet
+**Elméleti háttér — euklideszi algoritmus és Bézout-azonosság.** $(a, b) = (b, a \bmod b)$, mert a közös osztók ugyanazok; az ismételt maradékos osztás véges sok lépésben megáll, és az utolsó nem nulla maradék a legnagyobb közös osztó. Az egyenlőségeket visszafelé behelyettesítve $(a, b) = ua + vb$ alakot kapunk (**Bézout-azonosság**, „kibővített euklideszi algoritmus”).
+:::
+
 ## 7. feladat
 
 Bizonyítsuk be, hogy minden $n \in \mathbb{N}$ esetén $(2n + 1, 9n + 4) = 1$.
@@ -70,6 +94,10 @@ Bizonyítsuk be, hogy minden $n \in \mathbb{N}$ esetén $(2n + 1, 9n + 4) = 1$.
 $$2(9n + 4) - 9(2n + 1) = -1,$$
 így bármely közös osztó osztja $1$-et: $(2n + 1, 9n + 4) = 1$. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — lnko lineáris kombinációval.** Ha $d \mid x$ és $d \mid y$, akkor $d$ osztja $x$ és $y$ minden egész lineáris kombinációját. Ha találunk olyan kombinációt, amely $\pm 1$, akkor a közös osztó csak $1$ lehet: a két szám relatív prím. A kombinációt úgy keressük, hogy a változó ($n$) kiessen.
+:::
+
 ## 8. feladat
 
 Határozzuk meg a $(3n + 5, 2n + 3)$ és a $(n^2 + n, 2n + 1)$ értékét, ha $n$ tetszőleges pozitív egész szám.
@@ -78,6 +106,10 @@ Határozzuk meg a $(3n + 5, 2n + 3)$ és a $(n^2 + n, 2n + 1)$ értékét, ha $n
 
 - $3(2n + 3) - 2(3n + 5) = -1$, tehát **$(3n + 5, 2n + 3) = 1$**.
 - $(n, 2n + 1) = (n, 1) = 1$ és $(n + 1, 2n + 1) = (n + 1, 2n + 1 - 2(n+1)) = (n + 1, -1) = 1$. Mivel $2n + 1$ relatív prím $n$-hez és $n + 1$-hez is, a szorzatukhoz is: **$(n^2 + n, 2n + 1) = 1$**.
+
+::: elmelet
+**Elméleti háttér — relatív prímség és szorzat.** Ha $(a, c) = 1$ és $(b, c) = 1$, akkor $(ab, c) = 1$ (mert egy közös prímosztó $a$-t vagy $b$-t osztaná). Lineáris kifejezések lnko-jánál az euklideszi lépésekkel ($(a, b) = (a, b - ka)$) a változót kiküszöböljük.
+:::
 
 ## 9. feladat
 
@@ -92,6 +124,10 @@ $$p(x) = (x^2 - 1)(x^2 - 2x + 1) = (x - 1)^3(x + 1).$$
 $$(p, q) = (x - 1)^2(x + 1) = x^3 - x^2 - x + 1 = q(x).$$
 Az euklideszi algoritmus egy lépésben ugyanezt adja: $p(x) = (x - 1)\,q(x) + 0$.
 
+::: elmelet
+**Elméleti háttér — polinomok lnko-ja.** $K[x]$-ben is van maradékos osztás, így euklideszi algoritmus és legnagyobb közös osztó; ez csak konstans szorzó erejéig egyértelmű, a **kitüntetett** (normált, főegyüttható $1$) változatot választjuk. Ha a polinomok gyöktényezős alakja ismert, az lnko a közös gyöktényezők a kisebbik multiplicitással (mint egészeknél a prímkitevők minimuma).
+:::
+
 ## 10. feladat
 
 Tegyük fel, hogy az $a$ és $b$ egész számok relatív prímek, azaz $(a, b) = 1$. Határozzuk meg az $(a + b, a - b)$ legnagyobb közös osztó lehetséges értékeit.
@@ -99,6 +135,10 @@ Tegyük fel, hogy az $a$ és $b$ egész számok relatív prímek, azaz $(a, b) =
 **Megoldás.**
 
 Legyen $d = (a + b, a - b)$. Ekkor $d \mid (a + b) + (a - b) = 2a$ és $d \mid (a + b) - (a - b) = 2b$, így $d \mid (2a, 2b) = 2(a, b) = 2$. Tehát **$d \in \{1, 2\}$**, és mindkettő előfordul: $a = 2, b = 1$: $(3, 1) = 1$; $a = 3, b = 1$: $(4, 2) = 2$. ($d = 2$ pontosan akkor, ha $a$ és $b$ mindkettő páratlan.)
+
+::: elmelet
+**Elméleti háttér — a közös osztó mindkét számot „örökli”.** $d = (a + b, a - b)$ osztja az összegüket és különbségüket ($2a$, $2b$), tehát $d \mid (2a, 2b) = 2(a, b) = 2$. A lehetséges értékeket példákkal igazoljuk. (Általában: invertálható egész együtthatós lineáris transzformáció — itt determináns $-2$ — legfeljebb a determináns osztóival változtatja az lnko-t.)
+:::
 
 ## 11. feladat
 
@@ -109,6 +149,10 @@ Keressük meg az összes olyan $x, y$ természetes számokból álló párt, ame
 Legyen $x = 14a$, $y = 14b$, ahol $(a, b) = 1$. Ekkor $[x, y] = 14ab = 168$, azaz $ab = 12$. A relatív prím felbontások: $1 \cdot 12$, $3 \cdot 4$ (a $2 \cdot 6$ nem jó). **A megoldások:**
 $$(x, y) \in \{(14, 168),\ (168, 14),\ (42, 56),\ (56, 42)\}.$$
 
+::: elmelet
+**Elméleti háttér — lnko és lkkt kapcsolata.** $(x, y)\,[x, y] = xy$, és ha $d = (x, y)$, akkor $x = da$, $y = db$, ahol $(a, b) = 1$, és $[x, y] = dab$. Így a feladat a $\frac{[x,y]}{(x,y)}$ szám **relatív prím** tényezőpárokra bontására vezet (egy prímhatvány nem oszolhat meg $a$ és $b$ között).
+:::
+
 ## 12. feladat
 
 Mely pozitív egész $n$ számok esetén teljesül, hogy $n + 3 \mid n^2 + 7$?
@@ -116,6 +160,10 @@ Mely pozitív egész $n$ számok esetén teljesül, hogy $n + 3 \mid n^2 + 7$?
 **Megoldás.**
 
 $n^2 + 7 = (n + 3)(n - 3) + 16$, tehát $n + 3 \mid n^2 + 7 \iff n + 3 \mid 16$. Mivel $n + 3 \ge 4$: $n + 3 \in \{4, 8, 16\}$, azaz **$n \in \{1, 5, 13\}$**. (Ellenőrzés: $4 \mid 8$, $8 \mid 32$, $16 \mid 176$.)
+
+::: elmelet
+**Elméleti háttér — polinomosztás és oszthatóság.** Ha $n^2 + 7 = (n + 3)q(n) + r$ (maradékos osztás polinomként, egész maradékkal), akkor $n + 3 \mid n^2 + 7 \iff n + 3 \mid r$. Így a végtelen sok $n$-re vonatkozó kérdés egy rögzített szám ($16$) osztóinak felsorolására redukálódik.
+:::
 
 ## 13. feladat
 
@@ -133,6 +181,10 @@ $$x = (7x + 2y) - 2(3x + y), \qquad y = 7(3x + y) - 3(7x + 2y).$$
 
 **(2) Hamis.** Itt a determináns $4 \cdot 1 - 3 \cdot 2 = -2$, és valóban: $d = 2$, $x = 1$, $y = 0$ esetén $4x + 3y = 4$ és $2x + y = 2$ osztható 2-vel, de $x = 1$ nem.
 
+::: elmelet
+**Elméleti háttér — unimoduláris transzformáció.** Ha $(u, v) = (x, y)M$ egy egész mátrixszal, akkor $x$ és $y$ pontosan akkor fejezhető ki egész együtthatókkal $u$-ból és $v$-ből, ha $\det M = \pm 1$ (az inverz mátrix is egész). Ekkor a közös osztók halmaza ugyanaz. Ha $|\det M| > 1$, a determináns prímosztói „elrejthetnek” osztót — erre ellenpéldát keresünk.
+:::
+
 ## 14. feladat
 
 Legyen $F_n$ az $n$-edik Fibonacci-szám ($F_1 = 1$, $F_2 = 1$, $F_{n+1} = F_n + F_{n-1}$). Igazoljuk, hogy tetszőleges $n \ge 1$ egész számra $(F_n, F_{n+1}) = 1$.
@@ -142,6 +194,10 @@ Legyen $F_n$ az $n$-edik Fibonacci-szám ($F_1 = 1$, $F_2 = 1$, $F_{n+1} = F_n +
 Az euklideszi lépés $(a, b) = (a, b - a)$ szerint
 $$(F_n, F_{n+1}) = (F_n, F_{n+1} - F_n) = (F_n, F_{n-1}) = (F_{n-1}, F_n) = \dots = (F_1, F_2) = (1, 1) = 1.$$
 (Formálisan: indukció $n$ szerint.) $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — euklideszi lépés Fibonacci-számokon.** $(a, b) = (a, b - a)$, és a Fibonacci-rekurzió szerint $F_{n+1} - F_n = F_{n-1}$: az euklideszi algoritmus a Fibonacci-sorozaton visszafelé lépked, amíg $(1, 1) = 1$-hez ér. (Ez a legrosszabb eset az euklideszi algoritmusban: Lamé tétele.)
+:::
 
 ## 15. feladat
 
@@ -156,6 +212,10 @@ $p^2 - 1 = (p - 1)(p + 1)$.
 
 Mivel $(8, 3) = 1$, $24 \mid p^2 - 1$. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — oszthatóság relatív prím tényezőkre bontva.** $24 = 8 \cdot 3$, $(8, 3) = 1$. $8$-cal: két szomszédos páros szám szorzata (az egyik $4$-gyel is osztható). $3$-mal: három egymást követő szám közül egy osztható $3$-mal, és ez nem $p$ (mert $p \ge 5$ prím). Kongruenciával: $p \equiv \pm 1 \pmod 6$, így $p^2 \equiv 1 \pmod{24}$.
+:::
+
 ## 16. feladat
 
 Igazoljuk, hogy egy pozitív egész szám pozitív osztóinak száma pontosan akkor páratlan, ha a szám egy egész szám négyzete.
@@ -165,6 +225,10 @@ Igazoljuk, hogy egy pozitív egész szám pozitív osztóinak száma pontosan ak
 Párosítsuk az $n$ szám $d$ osztóját az $\frac nd$ osztóval. Ez a párosítás involúció; egy osztó akkor és csak akkor van párban önmagával, ha $d = \frac nd$, azaz $d^2 = n$. A többi osztó kételemű párokba rendeződik. Tehát az osztók száma pontosan akkor páratlan, ha van $d$, amelyre $d^2 = n$, vagyis ha $n$ négyzetszám. $\blacksquare$
 
 (Képlettel: $n = \prod p_i^{\alpha_i}$ esetén az osztók száma $\prod(\alpha_i + 1)$, ami pontosan akkor páratlan, ha minden $\alpha_i$ páros.)
+
+::: elmelet
+**Elméleti háttér — párosítás involúcióval.** Ha egy véges halmazon adott egy önmaga inverz leképezés ($d \mapsto \frac nd$), akkor az elemek kételemű párokba és fixpontokba rendeződnek, így a halmaz elemszámának paritása a fixpontok számának paritása. Itt fixpont csak $d = \sqrt n$ lehet. Az osztószám-függvény $d(n) = \prod(\alpha_i + 1)$ képlete ugyanezt mutatja.
+:::
 
 ## 17. feladat
 
@@ -180,6 +244,10 @@ hiszen $1$ és $n$ között $\lfloor n/p^k \rfloor$ darab $p^k$-val osztható sz
 
 **Becslés.** $\lfloor x \rfloor \le x$ miatt, és mert csak véges sok nem nulla tag van, míg a végtelen mértani sor minden tagja pozitív:
 $$v_p(n!) = \sum_{k=1}^{K}\left\lfloor \frac{n}{p^k}\right\rfloor \le \sum_{k=1}^{K}\frac{n}{p^k} < \sum_{k=1}^{\infty}\frac{n}{p^k} = \frac{n/p}{1 - 1/p} = \frac{n}{p - 1}. \qquad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — Legendre-formula kettős leszámlálással.** $v_p(n!) = \sum_{m \le n} v_p(m)$, és $v_p(m)$ = azon $k$-k száma, amelyekre $p^k \mid m$. Az $(m, k)$ párokat kétféleképpen számolva (előbb $m$, majd $k$ szerint) a $\sum_k \lfloor n/p^k \rfloor$ alakot kapjuk. A becsléshez $\lfloor x \rfloor \le x$ és a **mértani sor összege** ($\sum_{k \ge 1} p^{-k} = \frac{1}{p-1}$) elég.
+:::
 
 ## 18. feladat
 
@@ -200,3 +268,7 @@ $$\sum_{n \le x}\frac1n \le \sum_{n \in S_x}\frac1n = \prod_{p \le x}\left(1 - \
 Ha $x \ge 2$, az egyenlőtlenség **szigorú**, mert pl. $2^k \in S_x$ minden $k$-ra, és $2^k > x$ is előfordul. $\blacksquare$
 
 *Megjegyzés:* $1 \le x < 2$ esetén nincs $x$-nél nem nagyobb prím, a szorzat üres ($= 1$), és a bal oldal is $1$ – itt egyenlőség áll, tehát a szigorú egyenlőtlenség $x \ge 2$-re igaz. *Következmény:* mivel a harmonikus sor divergens, $\prod_p (1 - 1/p)^{-1} = \infty$, amiből $\sum_p \frac1p = \infty$ is adódik.
+
+::: elmelet
+**Elméleti háttér — Euler-szorzat (elemi változat).** A $(1 - \frac1p)^{-1} = \sum_k p^{-k}$ mértani sorokat összeszorozva és kifejtve **minden** olyan $n$ reciproka pontosan egyszer jelenik meg, amelynek prímtényezői $\le x$ — ez a **számelmélet alaptételének** (egyértelmű prímfelbontás) következménye. Az $n \le x$ számok mind ilyenek, ezért a szorzat legalább a harmonikus részletösszeg. Mivel a harmonikus sor divergens, a prímek reciprokainak összege is divergens (Euler).
+:::

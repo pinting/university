@@ -31,6 +31,10 @@ c) $|i - j| = 3$ párból $97$ van ($i = 1, \dots, 97$), $|i - j| = 8$ párból 
 - Ha $i \le 91$: $i \to i + 3 \to i + 6 \to i + 9 \to i + 1$ (lépések: $+3, +3, +3, -8$; minden csúcs $1$ és $100$ közé esik).
 - Ha $i \ge 92$ (és $i \le 99$): $i \to i - 8 \to i - 5 \to i - 2 \to i + 1$ (lépések: $-8, +3, +3, +3$).
 
+::: elmelet
+**Elméleti háttér — élszám és komponensek.** Az élek számát a definiáló feltételt kielégítő párok közvetlen leszámlálásával kapjuk (például osztályonként teljes gráf: $\binom{m}{2}$ él). A komponensek a „van köztük séta” ekvivalenciareláció osztályai. Összefüggőség bizonyításához elég megmutatni, hogy minden $i$ és $i + 1$ között van séta: a tranzitivitás miatt ekkor bármely kettő között van. Ha az élek egy invariánst őriznek (b-ben a $3$-mal vett maradékot), akkor a komponensek ennek az invariánsnak az osztályain belül maradnak.
+:::
+
 ## 57. feladat
 
 Egy körmérkőzéses sakkversenyen 27-en indultak. Lehetett olyan pillanat, amikor mindenki pontosan 9 ellenfélen volt túl?
@@ -38,6 +42,10 @@ Egy körmérkőzéses sakkversenyen 27-en indultak. Lehetett olyan pillanat, ami
 **Megoldás.**
 
 **Nem.** Ha mindenki pontosan 9 meccsen lett volna túl, akkor a lejátszott meccsek gráfjában (27 csúcs, él = lejátszott meccs) minden fokszám 9 lenne. A fokszámok összege $27 \cdot 9 = 243$ páratlan volna. Ez lehetetlen, mert a fokszámösszeg az élszám kétszerese.
+
+::: elmelet
+**Elméleti háttér — kézfogási lemma.** Minden gráfban $\sum_v \deg(v) = 2|E|$, mert minden élt mindkét végpontjánál egyszer számolunk. Következmény: a fokszámösszeg páros, és a páratlan fokú csúcsok száma páros. Páratlan sok csúcsú gráf tehát nem lehet páratlan fokszámú reguláris.
+:::
 
 ## 58. feladat
 
@@ -48,6 +56,10 @@ Mutass olyan négy, öt, illetve hat csúcsú egyszerű gráfot, ami izomorf a k
 - **4 csúcs:** a $P_4$ út: $a - b - c - d$. Komplementerének élei $ac$, $ad$, $bd$, ez a $c - a - d - b$ út, tehát szintén $P_4$.
 - **5 csúcs:** a $C_5$ kör. A komplementere az 5 átló, ami szintén 5 hosszú kör (az „ötágú csillag").
 - **6 csúcs: nincs ilyen.** Önkomplementer gráfban $G$ és $\overline G$ együtt $\binom n2$ élt tartalmaz, és egyenlő sok élük van. Tehát $G$-nek $\frac{n(n-1)}{4}$ éle van, ami $n = 6$-ra $\frac{15}{2}$, nem egész. (Lásd a 69. feladatot is.)
+
+::: elmelet
+**Elméleti háttér — komplementer és izomorfia.** $G$ és $\overline{G}$ élhalmaza diszjunkt, uniójuk a teljes gráf $\binom n2$ éle. Izomorf gráfoknak ugyanannyi élük van, így egy önkomplementer gráfnak pontosan $\frac{n(n-1)}{4}$ éle van — ennek egésznek kell lennie (szükséges feltétel). A létezést egy konkrét izomorfizmus megadása igazolja (pl. $P_4$-nél az $a \mapsto c$, $b \mapsto a$, $c \mapsto d$, $d \mapsto b$ megfeleltetés éltartó $G$ és $\overline G$ között).
+:::
 
 ## 59. feladat
 
@@ -61,6 +73,10 @@ Egy 6 pontú, egyszerű, összefüggő gráfban van 1, 2, 3, 4 és 5 fokú csúc
 - **$x = 5$ nem lehet:** két 5-ödfokú csúcs mindegyike mind a többi csúccsal szomszédos. Így minden csúcs foka legalább 2 lenne, de van 1-edfokú.
 - **$x = 1$ nem lehet:** az 5-ödfokú csúcs mindenkivel szomszédos. A két 1-edfokú csúcsnak más szomszédja nincs. A 4-edfokú csúcs így legfeljebb az 5-ödfokúval, a 2-edfokúval és a 3-adfokúval lehet szomszédos: csak 3 szomszéd.
 - **$x = 3$ megvalósítható:** legyenek a fokok $v_1 : 5$, $v_2 : 4$, $v_3, v_4 : 3$, $v_5 : 2$, $v_6 : 1$. Élek: $v_1$ mind az öt másikkal, valamint $v_2v_3$, $v_2v_4$, $v_2v_5$, $v_3v_4$. A gráf összefüggő, mert $v_1$ mindenkivel szomszédos.
+
+::: elmelet
+**Elméleti háttér — szükséges feltételek és konstrukció.** Fokszámsorozatoknál először a szükséges feltételeket használjuk a lehetséges értékek szűkítésére: paritás (kézfogási lemma), $0 < d \le n - 1$ (összefüggő, egyszerű), és a „mindenkivel szomszédos” csúcsok következményei (egy $(n-1)$-edfokú csúcs mellett nincs izolált csúcs, két ilyen mellett nincs elsőfokú). A megmaradt értéknél a létezést konstrukcióval igazoljuk.
+:::
 
 ## 60. feladat
 
@@ -106,6 +122,10 @@ Megmutatjuk, hogy mindegyik állítás ekvivalens az a)-val. Két segédállít�
 
 Mivel mind a hat állítás ekvivalens a)-val, bármely kettő ekvivalens egymással. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — a fák jellemzési tétele.** A hat állítás a fa hat egyenértékű definíciója. A bizonyítás kulcslépései: (1) egy legalább $2$ csúcsú fának van levele (leghosszabb út végpontja); (2) levél letépése után fa marad, ebből indukcióval $|E| = n - 1$; (3) egy él pontosan akkor nem elvágó él, ha körön van; (4) két különböző út két csúcs között kört tartalmaz; (5) körmentes gráf komponensei fák, így $|E| = n - (\text{komponensek száma})$. Elég mindegyik állítást az a)-val ekvivalensnek látni (az ekvivalencia tranzitív).
+:::
+
 ## 61. feladat
 
 a) Bizonyítsuk be, hogy minden fában van legalább 2 elsőfokú csúcs!
@@ -125,6 +145,10 @@ Az elsőfokú csúcsok $-1$-gyel járulnak hozzá, $v$ $(k - 2)$-vel, a többi c
 (Szemléletesen: a $v$-ből induló $k$ él mindegyikén elindulva és a fában tovább haladva egy-egy különböző levélben kell véget érni.)
 
 c) Mindegyik komponens fa: az $n_i$ csúcsú komponensnek $n_i - 1$ éle van. Az élszám $\sum_{i=1}^k (n_i - 1) =$ **$n - k$**.
+
+::: elmelet
+**Elméleti háttér — fokszámösszeg fában.** Egy $n$ csúcsú fában $\sum \deg = 2(n-1)$, vagyis $\sum (\deg u - 2) = -2$. Ebből az átlagos fok $2$ alatt van, így a $2$-nél nagyobb fokú csúcsok „többletét” levelek ellensúlyozzák: minden $k$-adfokú csúcs legalább $k - 2$ többletet jelent, amit legalább $k - 2 + 2 = k$ levél kompenzál. Erdő esetén komponensenként alkalmazzuk az $n_i - 1$ képletet.
+:::
 
 ## 62. feladat
 
@@ -150,6 +174,10 @@ Bármely további él metszi $ab$-t, $bc$-t és $ca$-t is. Ehhez két végpontja
 
 (Nem egyszerű gráfban ezek többszörös élekkel, illetve a csillag középpontjában hurokélekkel is előfordulhatnak.)
 
+::: elmelet
+**Elméleti háttér — skatulyaelv fokszámokra és a kézfogási lemma.** a) Egyszerű $n$ csúcsú gráfban a fokok $\{0, \dots, n-1\}$-ből valók, de $0$ és $n - 1$ egyszerre nem fordulhat elő, így csak $n - 1$ lehetséges érték marad $n$ csúcsra (skatulyaelv). Többszörös élekkel a fok tetszőlegesen nagy lehet, ezért az érvelés összeomlik. b) A kézfogási lemma paritásos következménye. c) Esetszétválasztás: vagy van minden élen rajta levő csúcs (csillag), vagy a metszési feltétel egy háromszöget kényszerít ki, és utána minden további élnek a háromszög két csúcsát kellene összekötnie.
+:::
+
 ## 63. feladat
 
 Bizonyítsd be, hogy egy hattagú társaságban van három ember, akik ismerik egymást, vagy van három olyan ember, akik közül senki sem ismeri a másik kettőt!
@@ -162,6 +190,10 @@ Gráffal: 6 csúcs (emberek), él = ismeretség. Legyen $v$ egy ember; az 5 más
 - **Legalább 3-at nem ismer:** ugyanez a komplementer gráfban, a szerepek felcserélésével. $\blacksquare$
 
 (Ez az $R(3, 3) \le 6$ Ramsey-állítás. 5 emberre nem igaz: az ötszög és komplementere is háromszögmentes.)
+
+::: elmelet
+**Elméleti háttér — Ramsey-típusú érvelés skatulyaelvvel.** Egy csúcs $5$ „élét” két osztályba soroljuk (ismeri / nem ismeri): a skatulyaelv szerint valamelyik osztályban legalább $\lceil 5/2 \rceil = 3$ van. Ezután a kapott hármason belüli kapcsolatokat vizsgáljuk: bármelyik eset jó. A szimmetria (gráf $\leftrightarrow$ komplementer) miatt elég az egyik esetet végiggondolni. Az élesség ellenpéldája ($C_5$) mutatja, hogy $6$ a legkisebb ilyen létszám.
+:::
 
 ## 64. feladat
 
@@ -179,6 +211,10 @@ a) Ha van hurokél vagy többszörös él, az már kör (1, ill. 2 hosszú). Kü
 
 b) Legyen $k \ge 2$, és $P = v_0 v_1 \dots v_m$ egy leghosszabb út. $v_0$ minden szomszédja az úton van (maximalitás). Egyszerű gráfban ezek különböző csúcsok, és legalább $k$ darab van, így a legtávolabbi, $v_i$ indexére $i \ge k$. A $v_0 v_1 \dots v_i v_0$ kör $i + 1 \ge k + 1$ csúcsot tartalmaz. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — leghosszabb út módszer.** Véges gráfban van leghosszabb út; ennek végpontja **minden** szomszédja az úton van (különben meghosszabbítható volna). Ha a végpont foka legalább $2$ (illetve $k$), akkor van szomszédja az úton „messzebb” is, és a visszakötés kört ad, amelynek hossza a szomszéd indexével becsülhető. Végtelen gráfban nincs garantáltan leghosszabb út, ezért ott az érvelés nem működik.
+:::
+
 ## 65. feladat
 
 Mutasd meg, hogy ha $G$ tetszőleges egyszerű gráf, akkor $G$ és $\overline{G}$ ($G$ komplementere) közül legalább az egyik összefüggő! Lehet-e $G$ és $\overline{G}$ is összefüggő, ha a csúcsok száma legalább kettő?
@@ -194,6 +230,10 @@ Tegyük fel, hogy $G$ nem összefüggő. Megmutatjuk, hogy $\overline G$ összef
 
 $n = 2$ és $n = 3$ esetén nem lehet. $n = 2$-re egy él és az üres gráf a két lehetőség. $n = 3$-ra az összefüggő gráfok a $P_3$ és a $K_3$; komplementerük $K_2 + K_1$, illetve az üres gráf, egyik sem összefüggő.
 
+::: elmelet
+**Elméleti háttér — komplementer és távolság.** Ha $G$ nem összefüggő, akkor a különböző komponensek közötti összes pár $\overline G$-ben él, és ugyanabban a komponensben levő csúcsok egy másik komponensbeli csúcson át $2$ lépésben elérik egymást $\overline G$-ben. Mindkettő akkor lehet összefüggő, ha a csúcsszám elég nagy ahhoz, hogy egy út és komplementere is „átérje” a gráfot.
+:::
+
 ## 66. feladat
 
 Igazold, hogy ha $G$ összefüggő gráf, akkor $G$-ben bármely két leghosszabb útnak van közös csúcsa! Igaz-e az állítás nem összefüggő gráfra is?
@@ -205,6 +245,10 @@ Tegyük fel, hogy $P$ és $Q$ két leghosszabb út (hosszuk $L$ él), amelyeknek
 $p$ két részre vágja $P$-t; a hosszabbik rész, $P'$ hossza legalább $L/2$. Ugyanígy $Q$-nak van legalább $L/2$ hosszú, $q$-ban végződő $Q'$ része. A $P' + R + Q'$ út hossza legalább $\frac L2 + 1 + \frac L2 = L + 1$, ellentmondás. $\blacksquare$
 
 **Nem összefüggő gráfra nem igaz:** két diszjunkt él (2 komponens). Mindkettő leghosszabb út, és nincs közös csúcsuk.
+
+::: elmelet
+**Elméleti háttér — szélsőérték-elv (extremális érvelés).** Feltesszük az állítás ellenkezőjét, és a feltételezett objektumokból (két diszjunkt leghosszabb út és egy összekötő út) **hosszabb** objektumot építünk, ami ellentmond a maximalitásnak. A kulcs: egy út bármely belső pontja két részre osztja, amelyek közül a hosszabbik legalább fél hosszúságú.
+:::
 
 ## 67. feladat
 
@@ -243,6 +287,10 @@ g) **Nincs.** Az Erdős–Gallai-feltétel $k = 4$-re sérül:
 $$6 + 6 + 6 + 6 = 24 > 4 \cdot 3 + (3 + 3 + 2 + 2) = 22.$$
 Szemléletesen: a négy 6-odfokú csúcs egymás között legfeljebb 6 élt, azaz 12 fokot használ el. Kifelé még $24 - 12 = 12$ élvég kellene, de a többi négy csúcs fokainak összege csak $10$.
 
+::: elmelet
+**Elméleti háttér — fokszámsorozat realizálhatósága.** Egyszerű gráfra a szükséges és elégséges feltétel az **Erdős–Gallai-tétel**: csökkenő $d_1 \ge \dots \ge d_n$ esetén $\sum d_i$ páros, és minden $k$-ra $\sum_{i \le k} d_i \le k(k-1) + \sum_{i>k}\min(d_i, k)$ (a $k$ legnagyobb fokú csúcs egymás közt legfeljebb $k(k-1)$ fokot „nyel el”, a többi csúcs mindegyike legfeljebb $\min(d_i, k)$ élt fogadhat tőlük). Algoritmikus változat a **Havel–Hakimi-tétel**: a sorozat pontosan akkor realizálható, ha a legnagyobb elem elhagyásával és a következő $d_1$ elem $1$-gyel csökkentésével kapott sorozat az. A komplementerre váltás ($d \mapsto n - 1 - d$) gyakran egyszerűbb sorozatot ad.
+:::
+
 ## 68. feladat
 
 Melyik az a legnagyobb $X$ szám, melyre a $8, 8, 7, 5, 4, 4, 3, 2, 1, X$ számsorozat realizálható egy egyszerű gráf fokszámsorozataként?
@@ -252,10 +300,16 @@ Melyik az a legnagyobb $X$ szám, melyre a $8, 8, 7, 5, 4, 4, 3, 2, 1, X$ száms
 **$X = 6$.**
 
 - 10 csúcs van, így $X \le 9$. A fokszámösszeg $42 + X$ páros, tehát $X$ páros: $X \le 8$.
-- **$X = 8$ nem jó.** A sorozat $8,8,8,7,5,4,4,3,2,1$, és az Erdős–Gallai-feltétel $k = 3$-ra sérül: $8 + 8 + 8 = 24 > 3 \cdot 2 + (3 + 3 + 3 + 3 + 2 + 1) = 21$.
+- **$X = 8$ nem jó.** A sorozat $8,8,8,7,5,4,4,3,2,1$, és az Erdős–Gallai-feltétel $k = 4$-re sérül:
+$$8 + 8 + 8 + 7 = 31 > 4 \cdot 3 + (4 + 4 + 4 + 3 + 2 + 1) = 30.$$
+  (A $k = 3$ eset még éppen teljesül: $24 \le 3 \cdot 2 + (3 + 3 + 3 + 3 + 3 + 2 + 1) = 24$.) Szemléletesen: a négy legnagyobb fokú csúcs egymás közt legfeljebb $6$ élt, azaz $12$ fokot „nyel el”, kifelé tehát legalább $31 - 12 = 19$ él kellene, de a maradék hat csúcs mindegyike legfeljebb $\min(d_i, 4)$ élt fogadhat tőlük, összesen $18$-at.
 - **$X = 6$ jó.** A sorozat $8,8,7,6,5,4,4,3,2,1$. Havel–Hakimi:
 $$8,8,7,6,5,4,4,3,2,1 \to 7,6,5,4,3,3,2,1,1 \to 5,4,3,2,2,1,1,0 \to 3,2,1,1,1,0,0 \to 1,1,0,0,0,0,$$
   ami egyetlen él, realizálható.
+
+::: elmelet
+**Elméleti háttér — Erdős–Gallai és Havel–Hakimi együtt.** A maximum megtalálásához szűkítjük a jelölteket (fok $\le n - 1$, paritás), a nagyobb jelölteket egy sérülő Erdős–Gallai-egyenlőtlenséggel kizárjuk (ehhez a megfelelő $k$-t kell megtalálni: itt $k = 4$), a legnagyobb megmaradót pedig Havel–Hakimi-lépésekkel igazoljuk. A Havel–Hakimi-tétel miatt elég, ha a redukált sorozat realizálható: a lépéseket visszafelé végrehajtva a gráf meg is konstruálható.
+:::
 
 ## 69. feladat
 
@@ -266,6 +320,10 @@ Igazold, hogy minden önkomplementer gráf összefüggő és csúcsszáma 4-gyel
 **Összefüggőség:** a 65. feladat szerint $G$ és $\overline G$ közül az egyik összefüggő. Mivel izomorfak, mindkettő az.
 
 **Csúcsszám:** $G$ és $\overline G$ élhalmaza diszjunkt, uniójuk $K_n$ élhalmaza, és élszámuk egyenlő. Így $|E(G)| = \frac{n(n-1)}{4}$, tehát $4 \mid n(n - 1)$. $n$ és $n - 1$ közül pontosan egy páros, annak oszthatónak kell lennie 4-gyel. Tehát $n \equiv 0$ vagy $n \equiv 1 \pmod 4$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — izomorfia-invariánsok.** Izomorf gráfoknak ugyanazok az izomorfia-invariáns tulajdonságaik (élszám, összefüggőség, fokszámsorozat stb.). Így ha $G \cong \overline G$, akkor $|E(G)| = |E(\overline G)| = \frac{1}{2}\binom n2$, és az összefüggőség is egyszerre teljesül vagy nem teljesül. Az egészrészfeltétel számelméleti: $4 \mid n(n-1)$, és két szomszédos szám közül csak az egyik páros.
+:::
 
 ## 70. feladat
 
@@ -285,6 +343,10 @@ b) Ugyanaz a bizonyítás: két nem szomszédos $u, v$-re $|N(u)| + |N(v)| = \de
 
 **Nem egyszerű gráfra ez is hamis**, ugyanazzal a példával: a két hurkos csúcs nem szomszédos, fokszámösszegük $4 \ge 1$, és a gráf nem összefüggő. (A bizonyítás ott bukik el, hogy a fokszám nem egyezik a szomszédok számával.)
 
+::: elmelet
+**Elméleti háttér — közös szomszéd skatulyaelvvel.** Két nem szomszédos csúcs szomszédsága a maradék $n - 2$ csúcs között van. Ha a két szomszédság mérete együtt nagyobb $n - 2$-nél, a skatulyaelv szerint van közös elemük: a két csúcs távolsága $2$. Ha bármely két csúcs távolsága legfeljebb $2$, a gráf összefüggő. Egyszerű gráfban a fok egyenlő a szomszédok számával — hurok- és többszörös élekkel ez már nem igaz, ezért ott az érvelés megbukik.
+:::
+
 ## 71. feladat
 
 Adott négy darab egyenként ötcsúcsú fa, négy páronként diszjunkt csúcshalmazon. A négy fában szereplő összesen 20 csúcs közül néhány összekötésével hány különböző módon egészíthető ki ez a négy fa egyetlen nagy fává, ha a csúcsokat címkézettnek tekintjük?
@@ -302,6 +364,10 @@ $$\sum_{d_1 + \dots + d_k = 2k - 2} \frac{(k-2)!}{\prod(d_i - 1)!}\prod n_i^{d_i
 
 Itt $k = 4$, $n_i = 5$, $n = 20$: $5^4 \cdot 20^2 = 625 \cdot 400 = 250\,000$.
 
+::: elmelet
+**Elméleti háttér — Cayley-tétel általánosítása.** A Cayley-tétel ($n^{n-2}$ címkézett fa) Prüfer-kódos bizonyításából az is kiolvasható, hogy adott $d_1, \dots, d_k$ fokszámú címkézett fák száma $\frac{(k-2)!}{\prod (d_i - 1)!}$ (a $i$ címke pontosan $d_i - 1$-szer szerepel a kódban — ismétléses permutáció). Ha a „szuper-csúcsok” komponensek, minden él végpontját a komponensen belül is meg kell választani ($n_i$-féle), és a multinomiális tétel összegzi az eseteket.
+:::
+
 ## 72. feladat (házi feladat)
 
 Elhelyezhető-e 15 ló egy $100 \times 100$-as sakktáblára úgy, hogy mindegyik
@@ -318,6 +384,10 @@ a) **Nem.** A gráf 3-reguláris lenne 15 csúcson, így a fokszámösszeg $45$ 
 
 b) **Nem.** Ha mindenki pontosan két másikat üt, a gráf 2-reguláris, azaz diszjunkt körök uniója. A ló mindig ellenkező színű mezőre lép, ezért a gráf páros: minden él egy fehér és egy fekete mező között fut. Így minden köre páros hosszú, és a körök összes csúcsszáma páros. 15 páratlan, ellentmondás.
 
+::: elmelet
+**Elméleti háttér — reguláris és páros gráfok.** a) A kézfogási lemma szerint páratlan sok csúcsú gráf nem lehet páratlan fokú reguláris. b) A $2$-reguláris gráfok pontosan a diszjunkt körök uniói. A lóugrás-gráf **páros** (kétszínezhető a sakktábla színezésével), páros gráfban pedig minden kör páros hosszú (a színek váltakoznak). Így a csúcsszám, mint páros számok összege, páros.
+:::
+
 ## 73. feladat (házi feladat)
 
 Legyen $k \ge 2$. Az $n$ csúcsú $G$ egyszerű gráfnak legalább $(k - 1)n$ éle van. Bizonyítsd be, hogy ekkor van $G$-ben legalább $k + 1$ hosszú kör.
@@ -330,6 +400,10 @@ Ha a folyamat az összes csúcsot elhagyná, összesen legfeljebb $(k - 1)(n - 1
 
 Tehát a folyamat egy nem üres $H$ részgráfnál áll meg, amelyben minden fok legalább $k$. A 64. b) feladat szerint $H$-ban, így $G$-ben is van legalább $k + 1$ csúcsú, azaz legalább $k + 1$ hosszú kör. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — magas minimális fokú részgráf (degeneráltság).** Ha egy gráfnak „sok” éle van (legalább $(k-1)n$), akkor ismételten elhagyva a $k$-nál kisebb fokú csúcsokat nem fogyhat el minden él, így marad egy nem üres részgráf, amelyben minden fok legalább $k$. Erre már alkalmazható a leghosszabb út módszer (64. b), amely legalább $k + 1$ hosszú kört ad.
+:::
+
 ## 74. feladat (házi feladat)
 
 Egy összefüggő gráfban minden fokszám páros. Bizonyítsd be, hogy ha kitöröljük egy élét, továbbra is összefüggő marad.
@@ -341,3 +415,7 @@ Hagyjuk el az $e = uv$ élt. Tegyük fel, hogy $G - e$ nem összefüggő, és le
 $C$-ben $u$ foka $\deg_G u - 1$, ami páratlan, minden más csúcs foka változatlan, tehát páros. Így $C$-ben pontosan egy páratlan fokú csúcs van. Ez ellentmond annak, hogy minden gráfban páros sok páratlan fokú csúcs van (62. b)). Tehát $G - e$ összefüggő. $\blacksquare$
 
 (Másképp: $G$-ben van Euler-kör. Ebből $e$-t elhagyva egy Euler-vonal marad, ami minden élt és így minden csúcsot bejár.)
+
+::: elmelet
+**Elméleti háttér — paritás komponensenként.** A kézfogási lemma *minden* gráfra, így egy komponensre (mint önálló gráfra) is érvényes: minden komponensben páros sok páratlan fokú csúcs van. Egy él törlése pontosan két csúcs fokát változtatja meg $1$-gyel; ha a két végpont különböző komponensbe kerülne, mindkét komponensben egy-egy páratlan fokú csúcs lenne — ellentmondás.
+:::

@@ -15,6 +15,10 @@ $$\forall K \in \mathbb{R}\ \exists N \in \mathbb{N}\ \forall n \ge N : a_n < K.
 $$\exists K \in \mathbb{R}\ \forall N \in \mathbb{N}\ \exists n \ge N : a_n \ge K,$$
 azaz van olyan $K$, amelynél nem kisebb tagja végtelen sok van a sorozatnak.
 
+::: elmelet
+**Elméleti háttér — végtelen határérték.** $a_n \to -\infty$, ha minden $K$ korlátnál a sorozat egy indextől kezdve kisebb: a környezetek szerepét itt a $(-\infty, K)$ félegyenesek veszik át (ezek a $-\infty$ környezetei a bővített számegyenesen). A tagadás a szokásos szabállyal: kvantorcsere, és a $<$ helyett $\ge$.
+:::
+
 ## 45. feladat
 
 Mutassuk meg, hogy $\lim\limits_{n \to \infty} a_n = \infty$ acsa, ha $\forall K \in \mathbb{R}$-re az $(a_n)$-nek csak véges sok tagja kisebb $K$-nál.
@@ -24,6 +28,10 @@ Mutassuk meg, hogy $\lim\limits_{n \to \infty} a_n = \infty$ acsa, ha $\forall K
 ($\Rightarrow$) Legyen $\lim a_n = \infty$ és $K \in \mathbb{R}$. A definíció szerint van $N$, hogy $n \ge N$ esetén $a_n > K$. Így $K$-nál kisebb tag csak az $a_1, \dots, a_{N-1}$ között lehet: véges sok.
 
 ($\Leftarrow$) Legyen $K \in \mathbb{R}$ tetszőleges. A feltételt $K + 1$-re alkalmazva csak véges sok $n$ index van, amelyre $a_n < K + 1$; legyen $N$ ezek mindegyikénél nagyobb. Ekkor $n \ge N$ esetén $a_n \ge K + 1 > K$. Tehát $\lim a_n = \infty$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — „egy indextől kezdve” $\iff$ „csak véges sok kivétel”.** Ha egy tulajdonság egy $N$ indextől kezdve teljesül, akkor kivétel csak az első $N - 1$ tag között lehet (véges sok). Megfordítva, véges sok kivételes indexnek van maximuma, és onnan kezdve nincs kivétel. Ez a megfogalmazás teszi szemléletessé a határérték fogalmát: minden környezeten kívül csak véges sok tag van. (A $K + 1$-es trükk a szigorú és nem szigorú egyenlőtlenség közötti különbséget hidalja át.)
+:::
 
 ## 46. feladat
 
@@ -49,6 +57,10 @@ $$\frac{n^2 - 10n}{10n + 100} \ge \frac{n^2/2}{15n} = \frac{n}{30} > K, \quad \t
 
 e) A binomiális tétel szerint $n \ge 2$-re $2^n = (1 + 1)^n \ge \binom n2 = \frac{n(n-1)}{2}$, így $\frac{2^n}{n} \ge \frac{n - 1}{2} > K$, ha $n > 2K + 1$. **$n_K = \lfloor 2K \rfloor + 2$.**
 
+::: elmelet
+**Elméleti háttér — $+\infty$-be tartás bizonyítása alsó becsléssel.** $a_n \to +\infty$ igazolásához $a_n$-t **alulról** becsüljük egy egyszerű, nyilvánvalóan végtelenbe tartó kifejezéssel (pl. $\frac n2$, $\frac{\sqrt n}{C}$), és ebből olvassuk ki az $n_K$ küszöböt. Eszközök: domináns tag kiemelése, a „nagy fél” becslése (az összeg felének minden tagja legalább akkora, mint a középső), és a binomiális tétel egyetlen tagja ($2^n \ge \binom n2$).
+:::
+
 ## 47. feladat
 
 Bizonyítandó, hogy egy konvergens sorozatnak mindig van legkisebb vagy legnagyobb tagja.
@@ -66,6 +78,10 @@ Tehát $M$ a sorozat legnagyobb tagja. $\blacksquare$
 
 Példák: $\frac1n$-nek van legnagyobb tagja ($1$), de legkisebb nincs; $\frac{(-1)^n}{n}$-nek mindkettő van.
 
+::: elmelet
+**Elméleti háttér — konvergens sorozat „véges része” és „farka”.** Egy konvergens sorozat egy indextől kezdve a határérték tetszőlegesen kicsi környezetében marad; a „fej” (az első $N - 1$ tag) véges halmaz, és véges halmaznak mindig van maximuma és minimuma. Ha egy tag a határérték fölött van, a farok egy indextől kezdve alatta marad, így a maximumot a véges fejben kell keresni. Ez a „fej + farok” felbontás sok sorozatos bizonyítás alapja.
+:::
+
 ## 48. feladat
 
 Bizonyítsuk be, hogy ha $A \subset \mathbb{R}$, $A \neq \emptyset$ és $\sup A = \alpha \notin A$, akkor létezik olyan $(a_n)$ sorozat, amelyre $\forall n \in \mathbb{N}$-re $a_n \in A$, $(a_n)$ szigorúan monoton növekedő és $a_n \to \alpha$. Igaz-e az állítás akkor is, ha $\alpha \in A$?
@@ -80,6 +96,10 @@ Ekkor $a_{n+1} > a_n$ (szigorúan monoton nő), és $\alpha - \frac1n < a_{n+1} 
 
 **Ha $\alpha \in A$, az állítás nem igaz általában:** $A = \{0\}$ esetén $\sup A = 0 \in A$, de $A$-ban nincs szigorúan monoton növő sorozat. (Lehet igaz is, pl. $A = [0, 1]$ és $a_n = 1 - \frac1n$; ez akkor teljesül, ha $\alpha$ balról torlódási pontja $A$-nak.)
 
+::: elmelet
+**Elméleti háttér — a szuprémum sorozatos jellemzése.** $\alpha = \sup A$ esetén minden $c < \alpha$ szám nem felső korlát, tehát van $a \in A$, amelyre $a > c$. Ezt iterálva — mindig az előző tagnál és $\alpha - \frac1n$-nél is nagyobb $c$-t választva — szigorúan növő, $\alpha$-hoz tartó sorozatot kapunk; a konvergenciát a **rendőrelv** adja ($\alpha - \frac1n < a_{n+1} < \alpha$). Az $\alpha \notin A$ feltétel kell ahhoz, hogy a sorozat sose érje el $\alpha$-t (és így mindig lehessen szigorúan növelni).
+:::
+
 ## 49. feladat
 
 a) $\sqrt[n]{2^n + 3^n + 1000n^3} \to ?$ b) $\dfrac{1}{n^2} + \dfrac{2}{n^2} + \dots + \dfrac{n}{n^2} \to ?$ c) $\sqrt[n]{1 + \frac{1}{2} + \dots + \frac{1}{n}} \to ?$
@@ -93,6 +113,10 @@ Továbbá $1 \le \sqrt[n]{2 + 1000n^3} \le \sqrt[n]{1002}\cdot\left(\sqrt[n]{n}\
 b) $\frac{1 + 2 + \dots + n}{n^2} = \frac{n(n+1)}{2n^2} = \frac12 + \frac{1}{2n} \to \frac12$.
 
 c) $1 \le 1 + \frac12 + \dots + \frac1n \le n$, így $1 \le \sqrt[n]{1 + \frac12 + \dots + \frac1n} \le \sqrt[n]{n} \to 1$. A határérték $1$.
+
+::: elmelet
+**Elméleti háttér — domináns tag és rendőrelv $n$-edik gyökre.** $\sqrt[n]{\text{összeg}}$ esetén a legnagyobb nagyságrendű tag dominál: alulról becsüljük csak vele, felülről a tagok számával (vagy egy polinommal) szorozva. Kulcs: $\sqrt[n]{c} \to 1$ ($c > 0$) és $\sqrt[n]{n} \to 1$, így polinomiális szorzók $n$-edik gyöke $1$-hez tart. A **rendőrelv**: ha $a_n \le b_n \le c_n$ és $a_n, c_n \to L$, akkor $b_n \to L$.
+:::
 
 ## 50. feladat
 
@@ -112,6 +136,10 @@ $a_n \to 0$, $b_n \to +\infty$ esetén az $a_n b_n$ szorzat bármi lehet („$0 
 
 Tehát a tényezők határértékéből nem lehet következtetni a szorzatéra.
 
+::: elmelet
+**Elméleti háttér — kritikus határértékek.** A határérték és a műveletek kapcsolatáról szóló tételek a „$0 \cdot \infty$”, „$\infty - \infty$”, „$\frac00$”, „$\frac\infty\infty$” esetekben nem mondanak semmit: ezek **kritikus (határozatlan)** típusok. Kritikusságot példákkal igazolunk: olyan sorozatpárokat adunk, amelyek az adott típusba esnek, de a művelet eredménye különböző határértékű (vagy divergens).
+:::
+
 ## 51. feladat
 
 Mutassuk meg, hogy ha $a_n \to 0$ és $a_n \neq 0$, akkor $\frac{1}{|a_n|} \to \infty$.
@@ -119,6 +147,10 @@ Mutassuk meg, hogy ha $a_n \to 0$ és $a_n \neq 0$, akkor $\frac{1}{|a_n|} \to \
 **Megoldás.**
 
 Legyen $K > 0$. Az $a_n \to 0$ definícióját $\varepsilon = \frac1K$-ra alkalmazva van $N$, hogy $n \ge N$ esetén $0 < |a_n| < \frac1K$ (a pozitivitás az $a_n \neq 0$ feltételből jön). Ekkor $\frac{1}{|a_n|} > K$. Tehát $\frac{1}{|a_n|} \to +\infty$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — $\frac10$ és a reciprok.** A definíciók „összefordítása”: ha $|a_n| < \varepsilon$ egy indextől, akkor $\frac{1}{|a_n|} > \frac1\varepsilon$; $\varepsilon = \frac1K$ választással ez épp a $+\infty$-be tartás definíciója. Előjelről nem tudunk semmit, ezért csak $\frac{1}{|a_n|}$-ről állíthatunk végtelen határértéket ($\frac{1}{a_n}$ váltakozó előjelnél divergens lehet).
+:::
 
 ## 52. feladat
 
@@ -133,6 +165,10 @@ Van-e olyan sorozat, amelyik korlátos, de se minimuma, se maximuma nincs?
 - Hasonlóan a páratlan indexű tagok szigorúan csökkennek $-1$-hez, így minimum sincs.
 
 (A 47. feladat szerint egy ilyen sorozat szükségképpen divergens.)
+
+::: elmelet
+**Elméleti háttér — korlátosság kontra szélsőértékek.** A korlátosság csak azt mondja, hogy van felső és alsó korlát (így létezik szuprémum és infimum), de nem, hogy ezeket a sorozat el is éri. Két „ellentétes oldalról” közelítő részsorozat egyszerre akadályozza meg a maximum és a minimum létezését — ez csak divergens sorozatnál lehetséges (47. feladat).
+:::
 
 ## 53. feladat
 
@@ -171,6 +207,10 @@ k) $k_n \ge \dfrac{5n^2 - 1}{8n} \ge \dfrac{4n^2}{8n} = \dfrac n2 \to +\infty$.
 
 l) $l_n = \dfrac6n + 2(-1)^n$: a páros indexű részsorozat $2$-höz, a páratlan indexű $-2$-höz tart, tehát $(l_n)$ **divergens** (nincs határértéke).
 
+::: elmelet
+**Elméleti háttér — standard technikák.** (1) Racionális törtnél **a legmagasabb fokú taggal osztunk** számlálót és nevezőt. (2) Gyökös különbségnél **gyöktelenítés**. (3) Korlátos szorozva nullsorozattal nullsorozat ($|\sin n| \le 1$). (4) $n$-edik gyöknél **rendőrelv** a domináns taggal. (5) Nagyságrendek: $n^k \ll a^n \ll n! \ll n^n$, és ennek becslésekkel való kihasználása. (6) Divergencia igazolása: két különböző határértékű **részsorozat** (konvergens sorozat minden részsorozata ugyanoda tart).
+:::
+
 ## 54. feladat
 
 Bizonyítsuk be, hogy ha $|a_{n+1} - a_n| \le 2^{-n}$ minden $n$-re, akkor $(a_n)$ konvergens.
@@ -180,6 +220,10 @@ Bizonyítsuk be, hogy ha $|a_{n+1} - a_n| \le 2^{-n}$ minden $n$-re, akkor $(a_n
 A Cauchy-kritériumot ellenőrizzük. Ha $m > n$, akkor a háromszög-egyenlőtlenség és a mértani sor összegképlete szerint
 $$|a_m - a_n| \le \sum_{k=n}^{m-1} |a_{k+1} - a_k| \le \sum_{k=n}^{m-1} 2^{-k} < \sum_{k=n}^{\infty} 2^{-k} = 2^{1-n}.$$
 Adott $\varepsilon > 0$-hoz válasszunk $N$-et úgy, hogy $2^{1-N} < \varepsilon$. Ekkor minden $m > n \ge N$-re $|a_m - a_n| < \varepsilon$, tehát $(a_n)$ Cauchy-sorozat, így ($\mathbb{R}$ teljessége miatt) konvergens. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Cauchy-kritérium és teleszkopikus becslés.** $\mathbb R$-ben egy sorozat pontosan akkor konvergens, ha Cauchy-sorozat: $\forall \varepsilon\ \exists N\ \forall m, n \ge N: |a_m - a_n| < \varepsilon$. Két távoli tag különbségét a szomszédos különbségek összegével becsüljük (háromszög-egyenlőtlenség, „teleszkóp”), és ha ezek egy **konvergens sor** (itt mértani sor) tagjaival becsülhetők, akkor a különbség a sor maradékával, vagyis tetszőlegesen kicsivel becsülhető. A kritérium előnye, hogy a határérték ismerete nélkül igazolja a konvergenciát.
+:::
 
 ## Röpzhra
 

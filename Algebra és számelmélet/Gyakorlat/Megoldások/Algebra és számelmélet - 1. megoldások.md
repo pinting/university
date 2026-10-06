@@ -29,6 +29,10 @@ $$\text{első: } 2x - y + z = 2, \quad \text{harmadik: } 2x - y + z = 2, \quad \
 Mindhárom ugyanaz az egyenlet, így $z = 2 - 2x + y$. **Végtelen sok megoldás**, két szabad paraméterrel:
 $$(x, y, z, t) = (x,\ y,\ 2 - 2x + y,\ x), \qquad x, y \in \mathbb{R}.$$
 
+::: elmelet
+**Elméleti háttér — Gauss-elimináció.** Az **elemi sorműveletek** (egyenlet szorzása nem nulla számmal, egyenlet többszörösének hozzáadása egy másikhoz, egyenletek cseréje) nem változtatják meg a megoldáshalmazt, mert megfordíthatók. Ezekkel lépcsős alakra hozzuk a rendszert. Ekkor: ha van $0 = c$ ($c \ne 0$) tilos sor, nincs megoldás; különben a vezéregyes nélküli oszlopok ismeretlenjei **szabad paraméterek**, és ha van ilyen, végtelen sok, ha nincs, pontosan egy megoldás van.
+:::
+
 ## 2. feladat
 
 Az alábbi táblázat celláiba írjunk be egy-egy megfelelő $m$ ismeretlenes, $n$ egyenletből álló (minél egyszerűbb) $\mathbb{R}$ feletti lineáris egyenletrendszert, melynek $t$ (valós) megoldása van ($t = \infty$ is lehetséges), illetve N betűt, ha a megfelelő eset nem fordulhat elő.
@@ -66,6 +70,10 @@ Indoklás a lehetetlen esetekre:
 - **Homogén, $t = 0$:** a csupa nulla vektor mindig megoldás.
 - **$m > n$, $t = 1$:** Gauss-eliminációval a lépcsős alakban legfeljebb $n < m$ vezérelem van, tehát van szabad ismeretlen; ha a rendszer megoldható, akkor végtelen sok megoldása van.
 
+::: elmelet
+**Elméleti háttér — a megoldások száma.** Egy test feletti lineáris egyenletrendszer megoldásainak száma $0$, $1$ vagy végtelen (végtelen test esetén): ha két különböző megoldás van, a különbségük a homogén rendszer nemtriviális megoldása, és annak minden skalárszorosát hozzáadva újabb megoldást kapunk. **Homogén** rendszernek mindig megoldása a nullvektor. Ha az ismeretlenek száma nagyobb a vezérelemek lehetséges számánál (az egyenletek számánál), mindig van szabad ismeretlen, így $t = 1$ lehetetlen.
+:::
+
 ## 3. feladat
 
 Adott 1849 szám úgy, hogy közülük bármelyik 1848 összege 1849. Melyek ezek a számok?
@@ -74,6 +82,10 @@ Adott 1849 szám úgy, hogy közülük bármelyik 1848 összege 1849. Melyek eze
 
 Legyenek a számok $a_1, \dots, a_{1849}$, összegük $S$. Az $a_i$-t kihagyva a maradék összege $S - a_i = 1849$, tehát $a_i = S - 1849$ **minden $i$-re ugyanaz**, mondjuk $a$. Ekkor $S = 1849a$, és $1848a = 1849$, azaz
 $$a_1 = a_2 = \dots = a_{1849} = \frac{1849}{1848}.$$
+
+::: elmelet
+**Elméleti háttér — szimmetria kihasználása.** Ha egy feltétel minden indexre ugyanaz („bármelyik 1848 összege”), érdemes az **összes** elem összegét bevezetni: a feltételből minden elem ugyanazzal a kifejezéssel áll elő, tehát mind egyenlők. Ez valójában egy speciális lineáris egyenletrendszer, amelynek a mátrixa $J - I$ alakú ($J$ a csupa-1 mátrix), és amely invertálható, így a megoldás egyértelmű.
+:::
 
 ## 4. feladat
 
@@ -93,6 +105,10 @@ A $c = 2$ esetben $x = 1 - 2z$, $y = 1 + 2z$, így
 $$xy = (1 - 2z)(1 + 2z) = 1 - 4z^2 \le 1,$$
 és a maximum pontosan $z = 0$-nál van. **A keresett érték $z = 0$** (ekkor $x = y = 1$).
 
+::: elmelet
+**Elméleti háttér — paraméteres rendszer.** Kiküszöbölés után a rendszer egyetlen $\alpha(c)\,z = \beta(c)$ egyenletre redukálódik. Három eset: $\alpha(c) \ne 0$ — egyértelmű megoldás; $\alpha(c) = 0 = \beta(c)$ — $z$ szabad, végtelen sok megoldás; $\alpha(c) = 0 \ne \beta(c)$ — ellentmondás. A maximumkeresés a szabad paraméter függvényében egy egyváltozós szélsőérték-feladat (itt teljes négyzet).
+:::
+
 ## 5. feladat
 
 Ha egy $\mathbb{Q}$ feletti homogén lineáris egyenletrendszernek van nemtriviális komplex megoldása, akkor hány racionális megoldása van? Ha egy $\mathbb{R}$ feletti lineáris egyenletrendszernek van komplex nem valós megoldása, akkor hány valós megoldása van?
@@ -102,6 +118,10 @@ Ha egy $\mathbb{Q}$ feletti homogén lineáris egyenletrendszernek van nemtrivi�
 **Első kérdés: végtelen sok racionális megoldása van.** A Gauss-elimináció csak a négy alapműveletet használja, így a racionális együtthatós $A$ mátrix lépcsős alakja (és rangja) ugyanaz, akár $\mathbb{Q}$, akár $\mathbb{C}$ felett végezzük. Ha van nemtriviális komplex megoldás, akkor $\operatorname{rang} A$ kisebb az ismeretlenek számánál, azaz van szabad ismeretlen. A szabad ismeretleneknek tetszőleges racionális értéket adva racionális megoldást kapunk; így végtelen sok (megszámlálhatóan végtelen) racionális megoldás van. Pl. ha $v$ nemtriviális racionális megoldás, akkor $qv$ is az minden $q \in \mathbb{Q}$-ra.
 
 **Második kérdés: végtelen sok valós megoldása van.** Legyen $A\mathbf{z} = \mathbf{b}$ ($A$, $\mathbf{b}$ valós), és $\mathbf{z} = \mathbf{u} + i\mathbf{v}$ megoldás, ahol $\mathbf{u}, \mathbf{v}$ valós vektorok és $\mathbf{v} \neq \mathbf{0}$. Ekkor $A\mathbf{u} + iA\mathbf{v} = \mathbf{b}$, és a valós, illetve képzetes részeket összevetve $A\mathbf{u} = \mathbf{b}$, $A\mathbf{v} = \mathbf{0}$. Így $\mathbf{u} + t\mathbf{v}$ minden $t \in \mathbb{R}$-re valós megoldás, és ezek különbözőek.
+
+::: elmelet
+**Elméleti háttér — a rang nem függ a testbővítéstől.** A Gauss-elimináció csak a négy alapműveletet használja, ezért ha az együtthatók egy $K$ részteshez (pl. $\mathbb Q$, $\mathbb R$) tartoznak, a lépcsős alak és a rang ugyanaz $K$ felett és a bővebb test ($\mathbb C$) felett is. Valós rendszer komplex megoldásánál a **valós és képzetes rész szétválasztása** két valós rendszert ad: $A\mathbf u = \mathbf b$, $A\mathbf v = \mathbf 0$.
+:::
 
 ## 6. feladat
 
@@ -119,6 +139,10 @@ $$BA = \begin{pmatrix} 1 & 3 \\ 2 & 1 \end{pmatrix}\begin{pmatrix} 2 & -1 & 1 \\
 - $BC$: $(2 \times 2)(3 \times 2)$ – **nem végezhető el.**
 - $CB - C$: $CB$ $(3 \times 2)(2 \times 2) = 3 \times 2$, ugyanakkora, mint $C$:
 $$CB = \begin{pmatrix} 7 & 6 \\ 2 & 6 \\ 1 & -2 \end{pmatrix}, \qquad CB - C = \begin{pmatrix} 6 & 3 \\ 0 & 6 \\ 2 & -3 \end{pmatrix}.$$
+
+::: elmelet
+**Elméleti háttér — mátrixszorzás és méretek.** Az $AB$ szorzat pontosan akkor értelmezett, ha $A$ oszlopainak száma egyenlő $B$ sorainak számával; ekkor $(n \times m)(m \times k) = n \times k$, és $(AB)_{ij} = \sum_r a_{ir}b_{rj}$ („$i$-edik sor szor $j$-edik oszlop”). Összeadni csak azonos méretű mátrixokat lehet. A transzponálás felcseréli a sorokat és oszlopokat ($(C^T)^T = C$).
+:::
 
 ## 7. feladat
 
@@ -142,6 +166,10 @@ Méretek: $A$: $3 \times 3$, $B$: $1 \times 3$, $C$: $3 \times 1$, $D$: $3 \time
 - $BC = (2 \cdot (-2) + (-1) \cdot 1 + 3 \cdot 2) = (1)$, egy $1 \times 1$-es mátrix.
 - $CB = \begin{pmatrix} -4 & 2 & -6 \\ 2 & -1 & 3 \\ 4 & -2 & 6 \end{pmatrix}$ ($3 \times 3$-as, 1 rangú).
 
+::: elmelet
+**Elméleti háttér — mátrixműveletek.** Az összeadás és a skalárral szorzás elemenként történik (azonos méret kell), a szorzás „sor-oszlop” szabállyal. Hasznos megfigyelések: $DD^T$ és $D^TD$ mindig értelmezett és **szimmetrikus** ($(DD^T)^T = DD^T$); egy oszlop- és egy sorvektor szorzata ($CB$) **1 rangú** mátrix (minden sora ugyanannak a sornak többszöröse), míg a fordított sorrendű szorzat ($BC$) egy szám (skaláris szorzat).
+:::
+
 ## 8. feladat
 
 Bizonyítsuk be, hogy két felső háromszögmátrix szorzata is felső háromszögmátrix.
@@ -151,6 +179,10 @@ Bizonyítsuk be, hogy két felső háromszögmátrix szorzata is felső háromsz
 Legyenek $A = (a_{ij})$, $B = (b_{ij})$ $n \times n$-es felső háromszögmátrixok: $a_{ij} = 0$ és $b_{ij} = 0$, ha $i > j$. Legyen $i > j$. Ekkor
 $$(AB)_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj}.$$
 Minden tagban vagy $k < i$, és akkor $a_{ik} = 0$; vagy $k \ge i > j$, és akkor $b_{kj} = 0$. Tehát $(AB)_{ij} = 0$ minden $i > j$-re, azaz $AB$ felső háromszögmátrix. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — indexes érvelés mátrixszorzatra.** Szorzat egy elemének eltűnését úgy látjuk be, hogy a $\sum_k a_{ik}b_{kj}$ összeg **minden tagjáról** megmutatjuk, hogy valamelyik tényezője $0$. A felső háromszög tulajdonság ($a_{ik} = 0$, ha $i > k$) és az összegzési index két esete ($k < i$ vagy $k \ge i$) lefedi az összes tagot.
+:::
 
 ## 9. feladat
 
@@ -163,6 +195,10 @@ $$((AB)C)_{ij} = \sum_{s=1}^{k} (AB)_{is}\,c_{sj} = \sum_{s=1}^{k}\sum_{r=1}^{m}
 $$(A(BC))_{ij} = \sum_{r=1}^{m} a_{ir}\,(BC)_{rj} = \sum_{r=1}^{m}\sum_{s=1}^{k} a_{ir}b_{rs}c_{sj}.$$
 A két véges összeg csak az összegzés sorrendjében különbözik (a valós számok összeadása kommutatív és asszociatív, és a szorzás disztributív), tehát egyenlők. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — asszociativitás a skalárok tulajdonságaiból.** A mátrixszorzás asszociativitása elemenként egy **kettős összeg** átrendezése: a véges összegek sorrendje felcserélhető, mert a test összeadása kommutatív és asszociatív, a szorzás pedig disztributív. Ugyanez a bizonyítás bármely kommutatív gyűrű feletti mátrixokra működik.
+:::
+
 ## 10. feladat
 
 Ha
@@ -174,6 +210,10 @@ akkor mi az $N$ mátrix második sorának első eleme?
 $N$ $2 \times 3$-as; legyenek sorai $\mathbf{n}_1$, $\mathbf{n}_2$. A szorzat sorai a bal oldali mátrix sorai szerinti lineáris kombinációk:
 $$\begin{pmatrix} 0 & -1 \\ 0 & 0 \end{pmatrix} N = \begin{pmatrix} -\mathbf{n}_2 \\ \mathbf{0} \end{pmatrix} = \begin{pmatrix} 2 & -3 & 4 \\ 0 & 0 & 0 \end{pmatrix}.$$
 Tehát $\mathbf{n}_2 = (-2, 3, -4)$, és **$N$ második sorának első eleme $-2$**. ($N$ első sora tetszőleges lehet.)
+
+::: elmelet
+**Elméleti háttér — sorok lineáris kombinációja.** Az $AN$ szorzat $i$-edik sora $N$ sorainak lineáris kombinációja, az együtthatók $A$ $i$-edik sorának elemei: $(AN)_{i\cdot} = \sum_k a_{ik}\,N_{k\cdot}$. (Hasonlóan $NA$ oszlopai $N$ oszlopainak kombinációi.) Így egy mátrixegyenletből közvetlenül kiolvasható, mely sorokra van feltétel és melyek szabadok.
+:::
 
 ## 11. feladat
 
@@ -193,6 +233,10 @@ Az elemenkénti egyenlőség:
 
 **A megoldások: $A = \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} = aI$, $a \in \mathbb{R}$.**
 
+::: elmelet
+**Elméleti háttér — mátrixegyenlet mint lineáris rendszer.** Egy ismeretlen mátrixra vonatkozó egyenlet (itt $MA = A^TM$) az elemekre nézve **lineáris egyenletrendszer**: mindkét oldalt kiszámoljuk, és az elemeket összevetjük. A megoldáshalmaz altér (itt az $I$ skalárszorosai), mert az egyenlet homogén és lineáris az $A$ elemeiben.
+:::
+
 ## 12. feladat
 
 Számítsuk ki az $5 \times 5$-ös $N = ((n_{ij}))$ mátrix első öt hatványát, ahol $n_{ij} = 1$, ha $j - i = 1$, és $0$ egyébként. Tegyük fel, hogy egy $n \times n$-es $M = ((m_{ij}))$ mátrix főátlójában és ez alatt csupa nulla van (azaz $m_{ij} = 0$, ha $i \ge j$). Bizonyítsuk be, hogy $M^n = 0$.
@@ -206,6 +250,10 @@ $$N^4 = \begin{pmatrix} 0&0&0&0&1\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0 \e
 **Általános állítás.** Ha $m_{ij} = 0$ minden $i \ge j$-re, akkor indukcióval: $(M^k)_{ij} = 0$, ha $j - i < k$. $k = 1$-re ez a feltétel. Ha $k$-ra igaz, akkor
 $$(M^{k+1})_{ij} = \sum_{s} (M^k)_{is}\,m_{sj},$$
 és egy tag csak akkor lehet nem nulla, ha $s - i \ge k$ és $j - s \ge 1$, azaz $j - i \ge k + 1$. Tehát $j - i < k + 1$ esetén $(M^{k+1})_{ij} = 0$. Mivel $j - i \le n - 1 < n$ mindig, $M^n = 0$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — szigorúan felső háromszögmátrix nilpotens.** Ha $m_{ij} = 0$ minden $i \ge j$-re, akkor indukcióval $M^k$ nem nulla elemei csak a főátló fölötti $k$-adik mellékátlón és afölött lehetnek: minden szorzás legalább eggyel „feljebb tolja” a nem nulla sávot. $n \times n$-es mátrixban csak $n - 1$ mellékátló van a főátló fölött, ezért $M^n = 0$. (A „nilpotens” mátrixok tipikus példája a **shift-mátrix** $N$.)
+:::
 
 ## 13. feladat
 
@@ -245,6 +293,10 @@ ugyanaz. Ellenőrzés: $MM^{-1} = I$ (pl. az első sor és első oszlop szorzata
 $$U^{-1} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 3 \\ 0 & 0 & 1 \end{pmatrix}.$$
 Ellenőrzés: pl. az első sor és harmadik oszlop szorzata $1 - 3 + 2 = 0$.
 
+::: elmelet
+**Elméleti háttér — inverz Gauss-eliminációval és adjungálttal.** Ha az $[A \mid I]$ mátrixot sorműveletekkel $[I \mid X]$ alakra hozzuk, akkor $X = A^{-1}$ (a sorműveletek elemi mátrixokkal való balról szorzások, és $EA = I \Rightarrow E = A^{-1}$). Másik út a **ferde kifejtési tétel**: $\sum_j a_{ij}A_{kj} = \delta_{ik}\det A$, amiből $A^{-1} = \frac{1}{\det A}\operatorname{adj}(A)$, ahol $\operatorname{adj}(A)$ az előjeles aldeterminánsok mátrixának **transzponáltja**. $A$ pontosan akkor invertálható, ha $\det A \ne 0$.
+:::
+
 ## 14. feladat
 
 Bizonyítsuk be, hogy invertálható mátrixok szorzata is invertálható. Adjunk ellenpéldát a következő állításra: invertálható mátrixok összege is invertálható.
@@ -257,6 +309,10 @@ tehát $AB$ invertálható, és $(AB)^{-1} = B^{-1}A^{-1}$.
 
 **Ellenpélda az összegre:** $I$ és $-I$ invertálható, de $I + (-I) = 0$ nem.
 
+::: elmelet
+**Elméleti háttér — invertálható mátrixok csoportja.** Az invertálható $n \times n$-es mátrixok szorzásra **csoportot** alkotnak ($GL_n$): zárt a szorzásra, $(AB)^{-1} = B^{-1}A^{-1}$ (fordított sorrend — mint a ruha felvétele és levétele), és van egységelem. Összeadásra viszont nem zárt: az invertálhatóság nem lineáris tulajdonság, egy ellenpélda elég.
+:::
+
 ## 15. feladat
 
 Bizonyítsuk be, hogy $(AB)^T = B^T A^T$, és ha $A \in \mathbb{R}^{n \times n}$ invertálható, akkor $A^T$ is invertálható, továbbá $(A^T)^{-1} = (A^{-1})^T$.
@@ -268,6 +324,10 @@ Ha $A$ invertálható, akkor ezt felhasználva
 $$A^T(A^{-1})^T = (A^{-1}A)^T = I^T = I, \qquad (A^{-1})^TA^T = (AA^{-1})^T = I,$$
 tehát $A^T$ invertálható, és $(A^T)^{-1} = (A^{-1})^T$. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — transzponálás és szorzás.** $(AB)^T = B^TA^T$ (fordított sorrend), ami elemenként a $\sum_k a_{jk}b_{ki}$ összeg kétféle olvasata. Ebből az inverz is „átvihető”: egy mátrix inverzének ellenőrzéséhez elég megmutatni, hogy mindkét oldalról szorozva az egységmátrixot adja, és a transzponálás az egységmátrixot önmagába viszi.
+:::
+
 ## 16. feladat
 
 Egy mátrix első két sorát megcseréljük. Hogyan változik meg az inverze?
@@ -277,6 +337,10 @@ Egy mátrix első két sorát megcseréljük. Hogyan változik meg az inverze?
 Az első két sor cseréje balról szorzás a $P$ permutációmátrixszal (az egységmátrix első két sorát cseréljük fel): $A' = PA$. Nyilván $P^2 = I$, így $P^{-1} = P$, és
 $$(A')^{-1} = (PA)^{-1} = A^{-1}P^{-1} = A^{-1}P.$$
 Jobbról $P$-vel szorozva az oszlopok cserélődnek: **az inverz első két oszlopa cserélődik fel.**
+
+::: elmelet
+**Elméleti háttér — elemi mátrixok.** Minden elemi sorművelet egy **elemi mátrixszal** való balról szorzás (az egységmátrixon végrehajtott ugyanazon művelet). A sorcsere mátrixa $P$, és $P^{-1} = P$. Mivel $(PA)^{-1} = A^{-1}P^{-1}$, és jobbról szorzás **oszlopműveletet** jelent, a sorcsere az inverzben a megfelelő oszlopok cseréjét okozza.
+:::
 
 ## 17. feladat
 
@@ -299,3 +363,7 @@ Döntsük el, melyek igazak az alábbi következtetések közül.
 **(c) Igaz.** Az egyértelműség miatt a homogén rendszernek csak a triviális megoldása van (különben az (a)-beli gondolatmenet fordítottjával két megoldás volna), így $A$ oszlopai lineárisan függetlenek, $\operatorname{rang} A = 5$. Négyzetes mátrixról lévén szó, $A$ invertálható, és $\mathbf{x} = A^{-1}\mathbf{c}$ megoldás minden $\mathbf{c}$-re.
 
 **(d) Hamis.** $A$ képtere legfeljebb 5 dimenziós altere $\mathbb{R}^6$-nak, tehát nem minden $\mathbf{c}$ áll elő. Pl. $A = \begin{pmatrix} I_5 \\ \mathbf{0}^T \end{pmatrix}$ (az utolsó sor nulla), $\mathbf{b} = \mathbf{0}$: a megoldás egyértelmű ($\mathbf{x} = \mathbf{0}$), de $\mathbf{c} = \mathbf{e}_6$-ra nincs megoldás.
+
+::: elmelet
+**Elméleti háttér — a megoldáshalmaz szerkezete.** Az $A\mathbf x = \mathbf b$ megoldáshalmaza — ha nem üres — egy partikuláris megoldás és a homogén rendszer megoldásainak (a **magtérnek**) összege: $\mathbf x_0 + \operatorname{Ker} A$. Ezért egyértelműség $\iff$ $\operatorname{Ker} A = \{\mathbf 0\}$ (de létezést nem garantál). Négyzetes mátrixnál $\operatorname{Ker} A = \{\mathbf 0\} \iff A$ invertálható $\iff$ minden $\mathbf c$-re megoldható; nem négyzetes ($6 \times 5$) mátrix képtere legfeljebb $5$ dimenziós, így nem lehet egész $\mathbb R^6$ (rang–nullitás tétel).
+:::

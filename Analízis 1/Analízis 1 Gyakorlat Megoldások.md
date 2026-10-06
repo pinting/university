@@ -41,6 +41,10 @@ Ezt $y = x - a$-ra alkalmazva:
 $$|x - a| < \varepsilon \iff -\varepsilon < x - a < \varepsilon \iff a - \varepsilon < x < a + \varepsilon,$$
 ahol az utolsó lépésben mindhárom oldalhoz $a$-t adtunk (az egyenlőtlenség ekkor megmarad). $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — abszolút érték és esetszétválasztás.** Az abszolút értéket esetekkel definiáljuk ($|x| = x$, ha $x \ge 0$; $|x| = -x$, ha $x < 0$), ezért a tulajdonságait is esetszétválasztással bizonyítjuk, a rendezési axiómák (például: egyenlőtlenség mindkét oldalához ugyanazt adva az egyenlőtlenség megmarad) felhasználásával. A c) rész a **távolság** nyelvén: $|x - a| < \varepsilon$ azt jelenti, hogy $x$ az $a$ körüli $\varepsilon$ sugarú nyílt intervallumban, a $K_\varepsilon(a) = (a - \varepsilon, a + \varepsilon)$ környezetben van — ez lesz a határérték-definíciók alapja.
+:::
+
 ## 2. feladat
 
 Legyen $a, b$ racionális, $c, d$ irracionális. Mit mondhatunk $a + b$, $a + c$, $c + d$, $ab$, $ac$ és $cd$-ről?
@@ -54,6 +58,10 @@ Legyen $a, b$ racionális, $c, d$ irracionális. Mit mondhatunk $a + b$, $a + c$
 - $cd$ **szintén lehet mindkettő**: $\sqrt{2}\cdot\sqrt{2} = 2 \in \mathbb{Q}$, míg $\sqrt{2}\cdot\sqrt{3} = \sqrt{6} \notin \mathbb{Q}$.
 
 Az utóbbi igazolása: ha $\sqrt{6} = p/q$ lenne ($p, q \in \mathbb{N}$, relatív prímek), akkor $p^2 = 6q^2$, így $2 \mid p^2$, tehát $2 \mid p$, $p = 2p'$, és $4p'^2 = 6q^2$, azaz $2p'^2 = 3q^2$. Ekkor $2 \mid 3q^2$, tehát $2 \mid q$ – ellentmondás a relatív prímséggel.
+
+::: elmelet
+**Elméleti háttér — $\mathbb{Q}$ test, indirekt bizonyítás.** A racionális számok **testet** alkotnak: zártak az összeadásra, kivonásra, szorzásra és (nem nulla számmal való) osztásra. Ezért ha egy racionális és egy irracionális szám összege (illetve nem nulla racionálissal vett szorzata) racionális volna, a művelet „visszafordításával” az irracionális számot racionálisként fejeznénk ki — ellentmondás. Két irracionális szám esetén nincs ilyen zártság (az irracionálisak nem alkotnak testet), ezért konkrét példák mutatják, hogy mindkét eset előfordulhat.
+:::
 
 ## 3. feladat
 
@@ -78,6 +86,10 @@ ahol felhasználtuk, hogy $n^2 \ge 2n + 1$, ami $(n-1)^2 \ge 2$ miatt minden $n 
 
 Mivel $n = 4$-re az egyenlőtlenség nem teljesül, a lehető legkisebb küszöb $N_0 = 5$.
 
+::: elmelet
+**Elméleti háttér — teljes indukció tetszőleges kezdőponttól.** Ha $P(N_0)$ igaz, és minden $n \ge N_0$-ra $P(n) \Rightarrow P(n+1)$, akkor $P(n)$ minden $n \ge N_0$-ra igaz. Az indukciós lépésben gyakran egy **segédegyenlőtlenség** kell (itt $n^2 \ge 2n + 1$), amely csak elég nagy $n$-re igaz — ez határozza meg, honnan indulhat az indukció. A küszöb minimalitásához egy ellenpélda kell közvetlenül alatta ($n = 4$).
+:::
+
 ## 4. feladat
 
 Bizonyítsuk be az úgynevezett *binomiális tételt*, azaz hogy
@@ -97,6 +109,10 @@ $$(a+b)^{n+1} = (a+b)\sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^k = \sum_{k=0}^{n}\binom
 A második összegben $j = k + 1$ új indexet bevezetve az $\sum_{j=1}^{n+1}\binom{n}{j-1}a^{n+1-j}b^j$ alakot kapjuk. A két összeget összevonva:
 $$(a+b)^{n+1} = a^{n+1} + \sum_{k=1}^{n}\left[\binom{n}{k} + \binom{n}{k-1}\right]a^{n+1-k}b^k + b^{n+1} = \sum_{k=0}^{n+1}\binom{n+1}{k}a^{n+1-k}b^k,$$
 a Pascal-azonosság és $\binom{n+1}{0} = \binom{n+1}{n+1} = 1$ miatt. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — indukció és indexeltolás.** A binomiális tétel indukciós bizonyításának két kulcsa: (1) a $(a+b)$-vel való szorzás két összegre bontja a kifejezést, és az egyikben az összegzési index eltolásával ($j = k+1$) azonos hatványokat gyűjtünk össze; (2) az együtthatók összeadására a **Pascal-azonosság** ($\binom nk + \binom n{k-1} = \binom{n+1}{k}$) adja a következő sor együtthatóit. Kombinatorikusan: $x^{n-k}y^k$ együtthatója annyi, ahányféleképpen az $n$ tényezőből kiválasztható az a $k$, amelyből $y$-t veszünk.
+:::
 
 ## 5. feladat
 
@@ -124,6 +140,10 @@ g) $\{x \in \mathbb{R} : x \le \sqrt{2}\}$: f.k., nem a.k., maximum $\sqrt{2}$, 
 
 h) $\{x \in \mathbb{Q} : x \le \sqrt{2}\}$: f.k. (pl. $\sqrt2$ vagy $2$ felső korlát), nem a.k., minimum nincs. **Maximum sincs:** $\sqrt{2} \notin \mathbb{Q}$, így a halmaz minden $q$ eleme $q < \sqrt{2}$, és $\mathbb{Q}$ sűrűsége miatt van $q'$ racionális szám, amelyre $q < q' < \sqrt{2}$. A szuprémum $\sqrt{2}$, de az nem eleme a halmaznak.
 
+::: elmelet
+**Elméleti háttér — korlátok, minimum, maximum.** $K$ **felső korlát**, ha $\forall x \in H: x \le K$; a **maximum** olyan felső korlát, amely eleme $H$-nak. Nemlétezést mindig úgy bizonyítunk, hogy minden elemhez mutatunk nagyobbat (illetve kisebbet) a halmazban. Két alapeszköz: az **arkhimédészi tulajdonság** (bármely valós számnál van nagyobb természetes szám, ekvivalensen $\forall \varepsilon > 0\ \exists n: \frac1n < \varepsilon$) és $\mathbb{Q}$ **sűrűsége** (bármely két valós szám között van racionális). Az utóbbi miatt nincs a $\{q \in \mathbb Q : q \le \sqrt2\}$ halmaznak maximuma.
+:::
+
 ## 6. feladat
 
 Legyen $H$ egy valós számokból álló halmaz. A $H$ halmaz milyen tulajdonságait fejezik ki az alábbi állítások?
@@ -141,6 +161,10 @@ a) Bármely valós számnál van nagyobb eleme $H$-nak: **$H$ felülről nem kor
 b) $H$ minden eleménél van nagyobb valós szám – ez **minden** $H \subset \mathbb{R}$-re igaz (pl. $y = x + 1$), tehát **semmit sem mond** $H$-ról.
 
 c) $H$ minden eleménél van nagyobb eleme $H$-nak: **$H$-nak nincs legnagyobb eleme** (maximuma). Pl. $(-\infty, 1)$ teljesíti, $(-\infty, 1]$ nem. (Ha $H \neq \emptyset$, ebből következik, hogy $H$ végtelen; az üres halmaz üresen teljesíti.)
+
+::: elmelet
+**Elméleti háttér — kvantorok sorrendje.** A kvantoros állítás jelentését az határozza meg, hogy **mi függhet mitől**: $\forall x\ \exists y$ esetén $y$ választása függhet $x$-től. Az a) rész a „felülről korlátos” definíciójának ($\exists K\ \forall y \in H: y \le K$) tagadása. A b) részben az $y$-t $\mathbb{R}$-ből választjuk, ezért mindig van ($x + 1$). A c) rész a maximum létezésének ($\exists y \in H\ \forall x \in H: x \le y$) tagadása — a kvantorok tagadáskor felcserélődnek.
+:::
 
 ## 7. feladat
 
@@ -167,6 +191,10 @@ Itt $\mathbb{N} = \{1, 2, 3, \dots\}$.
 
 **$F = -E$:** $\min F = \inf F = -1$, $\sup F = 0$, maximum nincs.
 
+::: elmelet
+**Elméleti háttér — a szuprémum jellemzése.** $s = \sup H$ pontosan akkor, ha (1) $s$ felső korlát, és (2) $\forall \varepsilon > 0\ \exists x \in H: x > s - \varepsilon$ (semmi kisebb nem felső korlát). Az infimumra ugyanez megfordítva. A szuprémum létezését nem üres, felülről korlátos halmazra a **teljességi axióma** garantálja; a maximum pontosan akkor létezik, ha $\sup H \in H$. A (2) feltétel ellenőrzéséhez általában az arkhimédészi tulajdonságot használjuk (az $\frac{1}{2^n}$, $\frac1n$ tagok tetszőlegesen kicsik lesznek).
+:::
+
 ## 8. feladat
 
 Legyen $A \cap B \neq \emptyset$. Mit tudunk mondani $\sup A$, $\sup B$ és $\sup(A \cup B)$, $\sup(A \cap B)$, illetve $\sup(A \setminus B)$ kapcsolatáról?
@@ -179,6 +207,10 @@ Legyen $A \cap B \neq \emptyset$. Mit tudunk mondani $\sup A$, $\sup B$ és $\su
 
 **$\sup(A \setminus B)$:** ha $A \setminus B \neq \emptyset$, akkor $\sup(A \setminus B) \le \sup A$, és lehet egyenlőség is, szigorú egyenlőtlenség is: $A = \{1, 2\}$, $B = \{2\}$: $\sup(A \setminus B) = 1 < 2$; $A = \{1, 3\}$, $B = \{1\}$: $\sup(A \setminus B) = 3 = \sup A$. $\sup B$-vel nincs általános összefüggés (az előző két példában egyszer kisebb, egyszer nagyobb nála). Ha $A \subset B$, akkor $A \setminus B = \emptyset$, és a szuprémum nem is értelmezett. Mindig igaz viszont, hogy $A \setminus B \ne \emptyset$ esetén $\sup A = \max\{\sup(A \setminus B), \sup(A \cap B)\}$, hiszen $A = (A \setminus B) \cup (A \cap B)$.
 
+::: elmelet
+**Elméleti háttér — a szuprémum monoton és „uniótartó”.** Ha $A \subseteq B$, akkor $B$ minden felső korlátja $A$-nak is felső korlátja, így $\sup A \le \sup B$. Unióra pontosan $\sup(A \cup B) = \max\{\sup A, \sup B\}$: a nagyobbik felső korlátja mindkét halmaznak, és ennél kisebb szám már az egyik halmaznak sem felső korlátja. Metszetre és különbségre csak egyenlőtlenség igaz, ezért ott ellenpéldák mutatják, hogy egyenlőség nem várható.
+:::
+
 ## 9*. feladat
 
 A négyzetrácspontokon egy bolha ugrál. Az origóból indul, és egyforma hosszú és egyforma irányú ugrásokat hajt végre. Minden ugrás után mi rácsaphatunk egy rácspontra. Van-e olyan stratégia, amivel biztosan le tudjuk csapni?
@@ -190,6 +222,10 @@ A négyzetrácspontokon egy bolha ugrál. Az origóból indul, és egyforma hoss
 A $\mathbb{Z}^2$ halmaz megszámlálható, tehát sorba rendezhető: $v_1, v_2, v_3, \dots$ (pl. a $\max(|a|, |b|) = 0, 1, 2, \dots$ „négyzetes héjak" szerint, mindegyik héj véges sok pontját valamilyen sorrendben). **Stratégia:** a $k$-adik ugrás után a $k \cdot v_k$ pontra csapunk le.
 
 A bolha tényleges ugrásvektora szerepel a felsorolásban, mondjuk $v = v_K$. A $K$-adik ugrás után a bolha a $K \cdot v_K$ pontban van, és mi éppen oda csapunk – tehát legkésőbb ekkor eltaláljuk.
+
+::: elmelet
+**Elméleti háttér — megszámlálhatóság.** Egy halmaz **megszámlálható**, ha elemei sorozatba rendezhetők ($\mathbb{N}$-ről vett szürjekció van rá). $\mathbb{Z}^2$ ilyen: „héjanként” sorolhatók fel az elemei, és minden héj véges. A stratégia lényege, hogy a $k$-adik lépésben a $k$-adik **lehetséges ugrásvektor hipotézisét** teszteljük: mivel a tényleges vektor valamikor sorra kerül, és akkor pont a megfelelő időpontban csapunk, biztosan eltaláljuk. Ez az ötlet (minden lehetőség véges időn belül sorra kerül) a megszámlálhatóság tipikus alkalmazása.
+:::
 
 ## 10*. feladat
 
@@ -205,6 +241,10 @@ Legyen $R_n \subseteq D_n$ azon pontok halmaza, ahová a bolha az origóból mé
 $$|R_{n+1}| \ge r + 1 - p_{n+1} \ge (n + 1 - p_0 - \dots - p_n) + 1 - p_{n+1} = n + 2 - (p_0 + \dots + p_{n+1}) \ge 1.$$
 
 **Végtelen út (König-lemma).** Nevezzünk egy biztonságosan elérhető $P$ pontot *jónak*, ha $P$-ből minden későbbi átlóra el lehet jutni biztonságos úton. Az origó jó, mert minden $R_N$ nemüres. Ha $P$ jó, akkor (legfeljebb kettő) biztonságos szomszédja közül valamelyik jó: ha egyik sem volna az, akkor mindegyik szomszédból csak egy-egy véges $N_Q$ átlóig lehetne eljutni, és $P$-ből sem lehetne $\max N_Q$-nál messzebbre jutni – ellentmondás. Így az origóból indulva lépésenként mindig jó pontra ugorva egy végtelen, mérgezett pontot elkerülő utat kapunk. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — indukció és König-lemma.** Az első rész indukciója egy **számolási invariánst** tart fenn: minden átlón legalább $1$ elérhető pont marad, mert az elérhető pontok száma lépésenként legalább eggyel nő, a mérgezettek pedig a feltétel szerint ennél lassabban gyűlnek. A második rész a **König-lemma** gondolata: egy végtelen, de minden csúcsban véges elágazású fában (itt: a biztonságos utak fája) van végtelen út, mert mindig tovább lehet lépni egy olyan csúcsba, amelynek „végtelen sok leszármazottja” van.
+:::
 
 ## Röpzhra
 
@@ -234,6 +274,10 @@ A Cantor-tulajdonság: ha $I_1 \supseteq I_2 \supseteq \dots$ korlátos, zárt, 
 
 (Megjegyzés: az *egymásba skatulyázottság* is lényeges: $I_n = [n, n]$ korlátos, zárt, nemüres intervallumok, de metszetük üres.)
 
+::: elmelet
+**Elméleti háttér — egy tétel feltételeinek szükségessége.** Ha egy tétel több feltételt tartalmaz, mindegyikről úgy látjuk be, hogy nem hagyható el, hogy olyan **ellenpéldát** adunk, amelyben csak az az egy feltétel sérül, a többi teljesül, és a következtetés hamis. A Cantor-tulajdonság (egymásba skatulyázott, korlátos, zárt, nemüres intervallumok metszete nem üres) a valós számok **teljességének** egyik megfogalmazása; az ellenpéldák azt mutatják, hogy a „lyuk” a végtelenbe ($[n, \infty)$) vagy egy kihagyott végpontba ($(0, \frac1n]$) menekülhet.
+:::
+
 ## 12. feladat
 
 Bizonyítsuk be, hogy $\lg 6$ irracionális!
@@ -243,6 +287,10 @@ Bizonyítsuk be, hogy $\lg 6$ irracionális!
 $\lg 6 = \log_{10} 6 > 0$, mert $6 > 1$. Tegyük fel, hogy $\lg 6 = \frac{p}{q}$, ahol $p, q$ pozitív egészek. Ekkor $10^{p/q} = 6$, azaz
 $$10^p = 6^q \iff 2^p \cdot 5^p = 2^q \cdot 3^q.$$
 Mivel $q \ge 1$, a jobb oldal osztható 3-mal, a bal oldal viszont nem (a prímtényezős felbontás egyértelmű, és abban csak a 2 és az 5 szerepel). Ellentmondás, tehát $\lg 6$ irracionális. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — irracionalitás a számelmélet alaptételével.** Egy szám irracionalitását indirekt bizonyítjuk: feltesszük, hogy $\frac pq$ alakú, és az egyenletet egész számok közötti egyenlőséggé alakítjuk (itt hatványozással). A **számelmélet alaptétele** (a prímtényezős felbontás egyértelmű) szerint két egyenlő pozitív egész prímtényezői megegyeznek — ha az egyik oldalon szerepel egy prím (a $3$), a másikon nem, ellentmondásra jutunk.
+:::
 
 ## 13. feladat
 
@@ -257,6 +305,10 @@ $$m(B) \le m(C) \le m(A).$$
 
 Mindkét eset előfordulhat. Ha minden gyerek egyforma magas, egyenlőség áll. Szigorú egyenlőtlenségre példa: az $(i, j)$ pozícióban álló gyerek legyen 2 egység magas, ha $i + j$ páratlan, és 1 egység, ha $i + j$ páros (sakktábla-mintázat). Ekkor minden sorban a legmagasabb 2 egység, tehát $m(A) = 2$; minden oszlopban a legalacsonyabb 1 egység, tehát $m(B) = 1 < 2$. (Különböző magasságokkal is elérhető: kissé „zavarjuk meg" a magasságokat.) Ha minden magasság különböző, akkor vagy $A = B$, vagy $B$ alacsonyabb.
 
+::: elmelet
+**Elméleti háttér — minimax-egyenlőtlenség.** Bármely $m_{ij}$ táblázatra $\max_j \min_i m_{ij} \le \min_i \max_j m_{ij}$. A bizonyítás egyetlen „közvetítő” elemen keresztül megy: az $A$ sorának és $B$ oszlopának metszetében álló $C$ legfeljebb akkora, mint a sor maximuma, és legalább akkora, mint az oszlop minimuma. Ez az elv a játékelméletben és a $\sup\inf \le \inf\sup$ típusú egyenlőtlenségekben is visszatér.
+:::
+
 ## 14. feladat
 
 Ha létezik, akkor $\sup H$ egyértelmű.
@@ -267,6 +319,10 @@ A szuprémum a legkisebb felső korlát. Tegyük fel, hogy $s$ és $s'$ is szupr
 
 Ha $s < s'$ volna, akkor $s$ olyan felső korlát lenne, amely kisebb $s'$-nél, ellentmondva annak, hogy $s'$ a *legkisebb* felső korlát. Ugyanígy $s > s'$ sem lehet. Tehát $s = s'$. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — „a legkisebb” egyértelműsége.** A szuprémum a felső korlátok halmazának **legkisebb eleme**. Egy rendezett halmazban a legkisebb elem (ha létezik) egyértelmű: két legkisebb elem közül mindkettő kisebb vagy egyenlő a másiknál, így a trichotómia (és az antiszimmetria) miatt egyenlők. Ugyanez az érv mutatja a maximum, minimum, infimum egyértelműségét.
+:::
+
 ## 15. feladat
 
 Bizonyítsuk be, hogy $x^2 + \frac{1}{x^2} \ge 2$, ha $x \neq 0$.
@@ -276,6 +332,10 @@ Bizonyítsuk be, hogy $x^2 + \frac{1}{x^2} \ge 2$, ha $x \neq 0$.
 Ha $x \ne 0$, akkor
 $$x^2 + \frac{1}{x^2} - 2 = \left(x - \frac{1}{x}\right)^2 \ge 0,$$
 amiből az állítás következik. Egyenlőség pontosan akkor van, ha $x = \frac1x$, azaz $x = \pm 1$. (Ugyanez a számtani–mértani közép egyenlőtlenségből: $\frac{x^2 + 1/x^2}{2} \ge \sqrt{x^2 \cdot \frac{1}{x^2}} = 1$.)
+
+::: elmelet
+**Elméleti háttér — teljes négyzetté alakítás és a közepek közötti egyenlőtlenség.** Egy $\ge 0$ típusú egyenlőtlenséget gyakran úgy bizonyítunk, hogy a különbséget négyzetként (vagy négyzetek összegeként) írjuk fel, mert valós szám négyzete nemnegatív. Két pozitív számra ez éppen a **számtani–mértani közép** egyenlőtlenség: $\frac{u + v}{2} \ge \sqrt{uv}$, egyenlőséggel pontosan $u = v$ esetén.
+:::
 
 ## 16. feladat
 
@@ -290,6 +350,10 @@ $$\sqrt[n]{1 \cdot 2 \cdots n} \le \frac{1 + 2 + \dots + n}{n} = \frac{n(n+1)/2}
 Mindkét oldalt $n$-edik hatványra emelve: $n! \le \left(\frac{n+1}{2}\right)^n$. $\blacksquare$
 
 (Másik bizonyítás: párosítsuk a $k$ és $n + 1 - k$ tényezőket; $k(n+1-k) \le \left(\frac{n+1}{2}\right)^2$, és $(n!)^2 = \prod_{k=1}^n k(n+1-k)$.)
+
+::: elmelet
+**Elméleti háttér — a számtani–mértani közép egyenlőtlenség.** Nemnegatív $a_1, \dots, a_n$ számokra $\sqrt[n]{a_1\cdots a_n} \le \frac{a_1 + \dots + a_n}{n}$, egyenlőség pontosan akkor, ha mind egyenlők. Szorzatra (itt $n!$) felső becslést kapunk vele, ha a tényezők összegét ismerjük. A párosításos bizonyítás ugyanezt kéttagú közepekkel teszi: $k(n+1-k) \le \left(\frac{n+1}{2}\right)^2$.
+:::
 
 ## 17. feladat
 
@@ -308,6 +372,10 @@ Itt $A + B = \{a + b : a \in A,\ b \in B\}$.
 
 *Ha pl. $A$ felülről nem korlátos*, akkor $A + B$ sem: rögzített $b \in B$ és tetszőleges $K$ esetén van $a \in A$, $a > K - b$, és $a + b > K$. Ekkor mindkét oldal $+\infty$ (a bővített számegyenesen), tehát az egyenlőség ebben az értelemben is fennáll. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — a szuprémum $\varepsilon$-os jellemzése.** $s = \sup H$ pontosan akkor, ha (1) $s$ felső korlát és (2) $\forall \varepsilon > 0\ \exists h \in H: h > s - \varepsilon$. Összegeknél a hibakorlátot **felezzük** ($\frac\varepsilon2 + \frac\varepsilon2 = \varepsilon$): ha mindkét halmazból $\frac\varepsilon2$-nél közelebbi elemet választunk, az összeg $\varepsilon$-nál közelebb lesz $s + t$-hez. Ez a „$\frac\varepsilon2$-trükk” később a határérték-tételekben is újra és újra előjön.
+:::
+
 ## 18. feladat
 
 a) Bizonyítsuk be, hogy $(1 + x)^r \le 1 + rx$, ha $r \in \mathbb{Q}$, $0 < r < 1$ és $x \ge -1$.
@@ -325,6 +393,10 @@ b) Legyen $r > 1$ racionális, $x \ge -1$.
 - Ha $1 + rx \ge 0$: legyen $y = rx \ge -1$. Az a) részt az $\frac{1}{r} \in (0, 1)$ racionális kitevővel és $y$-nal alkalmazva:
 $$(1 + y)^{1/r} \le 1 + \frac{y}{r} = 1 + x.$$
 Mindkét oldal nemnegatív, és a $t \mapsto t^r$ függvény $[0, \infty)$-en monoton nő, így $r$-edik hatványra emelve $1 + y \le (1 + x)^r$, azaz $1 + rx \le (1 + x)^r$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Bernoulli-egyenlőtlenség racionális kitevőre.** A számtani–mértani közép egyenlőtlenség **súlyozott** használata: $p$ darab $(1+x)$-et és $q - p$ darab $1$-et átlagolva épp $(1 + x)^{p/q} \le 1 + \frac pq x$ adódik. Az $r > 1$ esetet „megfordítással” kapjuk: a $t \mapsto t^r$ függvény $[0, \infty)$-en szigorúan nő, így egyenlőtlenség mindkét oldalát hatványozhatjuk, és a $\frac1r < 1$ esetre vezetjük vissza. (Egész $r \ge 1$-re ez a teljes indukcióval bizonyított Bernoulli-egyenlőtlenség.)
+:::
 
 ## 19. feladat
 
@@ -347,6 +419,10 @@ Tehát $\xi = \sup H$. $\blacksquare$
 
 (Az arkhimédészi tulajdonság nem hagyható el: nem arkhimédészi rendezett testekben a felezett intervallumok hossza nem tart 0-hoz.)
 
+::: elmelet
+**Elméleti háttér — a teljességi axióma ekvivalens alakjai.** Rendezett testben a következők ekvivalensek: (1) teljességi (szuprémum-) axióma; (2) arkhimédészi + Cantor-tulajdonság; (3) minden monoton korlátos sorozat konvergens; (4) Bolzano–Weierstrass; (5) Cauchy-kritérium + arkhimédészi tulajdonság. A (2) $\Rightarrow$ (1) irányt **intervallumfelezéssel** bizonyítjuk: a bal végpontok sosem felső korlátok, a jobb végpontok mindig azok, a Cantor-tulajdonság ad egy közös pontot, az arkhimédészi tulajdonság pedig azt, hogy az intervallumok hossza tetszőlegesen kicsi lesz — így a közös pont csak a legkisebb felső korlát lehet.
+:::
+
 ## 20. feladat
 
 Adott felszínű téglatestek közül melyiknek a legnagyobb a térfogata?
@@ -356,6 +432,10 @@ Adott felszínű téglatestek közül melyiknek a legnagyobb a térfogata?
 Legyenek az élek $a, b, c > 0$, a felszín $F = 2(ab + bc + ca)$ rögzített, a térfogat $V = abc$. A számtani–mértani közép egyenlőtlenség az $ab$, $bc$, $ca$ számokra:
 $$V^{2/3} = \sqrt[3]{ab \cdot bc \cdot ca} \le \frac{ab + bc + ca}{3} = \frac{F}{6}.$$
 Tehát $V \le \left(\frac{F}{6}\right)^{3/2}$, és egyenlőség pontosan akkor áll, ha $ab = bc = ca$, azaz $a = b = c$. **Adott felszínű téglatestek közül a kocka térfogata a legnagyobb** (élhossza $\sqrt{F/6}$).
+
+::: elmelet
+**Elméleti háttér — szélsőérték közepekkel.** A számtani–mértani közép egyenlőtlenség szélsőérték-feladatok eszköze: ha valamely mennyiségek **összege** rögzített (itt a lapterületek, $ab + bc + ca = F/2$), akkor a **szorzatuk** akkor maximális, ha mind egyenlők. Ehhez a célfüggvényt ($V = abc$) a rögzített összegű mennyiségek szorzatával kell kifejezni ($V^2 = ab \cdot bc \cdot ca$).
+:::
 
 ## 21. feladat
 
@@ -372,6 +452,10 @@ $$n! \ge \left(\frac{n}{2}\right)^{n/2} > \left(100^2\right)^{n/2} = 100^n. \qqu
 
 (Megjegyzés: a $c_n = \frac{100^n}{n!}$ sorozatra $\frac{c_{n+1}}{c_n} = \frac{100}{n+1}$, ami $n \ge 199$-re legfeljebb $\frac12$; így $c_n \to 0$, ami szintén mutatja az állítást, csak kevésbé explicit küszöbbel.)
 
+::: elmelet
+**Elméleti háttér — a faktoriális gyorsabban nő bármely exponenciálisnál.** Alsó becslés a szorzat „nagy felére”: $n! \ge \left(\frac n2\right)^{n/2}$, mert legalább $n/2$ tényező legalább $n/2$. Ez az $n$ növekedésével egyre nagyobb alapú hatvány, így bármely rögzített $a^n$-t legyőz. A hányadoskritérium-szerű érv ($\frac{c_{n+1}}{c_n} \le q < 1$ egy indextől) ugyanezt mutatja: ekkor $c_n$ egy mértani sorozattal becsülhető felülről.
+:::
+
 ## 22. feladat
 
 Keressünk olyan $N_0$ számot, hogy $\forall n > N_0$ esetén teljesüljön, hogy
@@ -385,6 +469,10 @@ a) A Bernoulli-egyenlőtlenség szerint $\left(1 + \frac1n\right)^n \ge 1 + n \c
 b) $\sqrt[n]{2} < 1{,}01 \iff 2 < 1{,}01^n$. A Bernoulli-egyenlőtlenség szerint $1{,}01^n \ge 1 + \frac{n}{100}$, ami $n > 100$ esetén $2$-nél nagyobb. Tehát **$N_0 = 100$ megfelel.**
 
 (A legjobb küszöb: $1{,}01^n > 2 \iff n > \frac{\ln 2}{\ln 1{,}01} \approx 69{,}66$, tehát $n \ge 70$-re teljesül, $N_0 = 69$. A feladat azonban csak *egy* megfelelő $N_0$-t kér.)
+
+::: elmelet
+**Elméleti háttér — Bernoulli-egyenlőtlenség küszöbkereséshez.** $(1 + h)^n \ge 1 + nh$ ($h \ge -1$, $n \in \mathbb N$) egy egyszerű, **lineáris** alsó becslés a hatványra. Küszöbindex kereséséhez nem kell a legjobb $N_0$: elég egy olyan becslés, amelyből egy megfelelő $N_0$ könnyen kiolvasható. Hasonlóan, $\sqrt[n]{a} < 1 + h \iff a < (1 + h)^n$, és a jobb oldal Bernoulli-val alulról becsülhető.
+:::
 
 ## Röpzhra
 
@@ -409,6 +497,10 @@ $$a_{n+1} = \sqrt{2a_n + 3} \le \sqrt{2a_{n+1} + 3} = a_{n+2}. \qquad \blacksqua
 
 *Kiegészítés:* indukcióval $a_n \le 3$ is igaz ($a_n \le 3 \Rightarrow a_{n+1} \le \sqrt{9} = 3$), így a sorozat monoton és korlátos, tehát konvergens. Ha $a_n \to A$, akkor $A = \sqrt{2A + 3}$, azaz $A^2 - 2A - 3 = (A - 3)(A + 1) = 0$, és $A \ge 1$ miatt $A = 3$.
 
+::: elmelet
+**Elméleti háttér — rekurzív sorozatok monotonitása indukcióval.** Ha $a_{n+1} = f(a_n)$ és $f$ **monoton növő**, akkor a monotonitás „öröklődik”: $a_n \le a_{n+1} \Rightarrow f(a_n) \le f(a_{n+1})$, azaz $a_{n+1} \le a_{n+2}$. Így elég az első két tagot összehasonlítani. Hasonlóan egy $f$-invariáns intervallum ($f([1,3]) \subseteq [1,3]$) korlátot ad. A **monoton és korlátos sorozat konvergens** (teljességi axióma), a határérték pedig az $A = f(A)$ fixpontegyenletből jön (ha $f$ folytonos).
+:::
+
 ## 35. feladat
 
 Keressünk olyan $N_0$ számot, hogy $\forall n > N_0$ esetén teljesüljön, hogy
@@ -425,6 +517,10 @@ b) Hasonlóan
 $$\sqrt{n^2 + 5} - n = \frac{5}{\sqrt{n^2 + 5} + n} < \frac{5}{2n},$$
 ami $n \ge 250$ esetén legfeljebb $0{,}01$. Tehát **$N_0 = 249$** megfelel. (Ez is optimális: $n = 249$-re $\sqrt{62\,006} + 249 \approx 498{,}01 < 500$.)
 
+::: elmelet
+**Elméleti háttér — gyöktelenítés.** A $\sqrt{u} - \sqrt{v}$ alakú különbségeket az $(x - y)(x + y) = x^2 - y^2$ azonossággal alakítjuk át: $\sqrt u - \sqrt v = \frac{u - v}{\sqrt u + \sqrt v}$. Így a „$\infty - \infty$” típusú kifejezésből egy jól becsülhető tört lesz, amelynek nevezőjét alulról egyszerű kifejezéssel ($2\sqrt n$, $2n$) becsüljük. Küszöbindexhez elég egy felső becslés, amelyből $N_0$ kiolvasható.
+:::
+
 ## 36. feladat
 
 Előadáson szerepelt, hogy $\lim\limits_{n \to \infty} \frac{(-1)^n}{2n} = 0$. Adjunk $\varepsilon = 0{,}01$-hoz $n_\varepsilon$-t. Illetve általában $\varepsilon > 0$-hoz $n_\varepsilon$-t.
@@ -435,6 +531,10 @@ $\left|\frac{(-1)^n}{2n} - 0\right| = \frac{1}{2n} < \varepsilon \iff n > \frac{
 
 - $\varepsilon = 0{,}01$: $n > 50$, tehát **$n_\varepsilon = 51$** (minden $n \ge 51$-re teljesül).
 - Általában: **$n_\varepsilon = \left\lfloor \frac{1}{2\varepsilon} \right\rfloor + 1$** jó választás (az arkhimédészi tulajdonság garantálja, hogy ilyen egész létezik).
+
+::: elmelet
+**Elméleti háttér — a konvergencia definíciója.** $a_n \to a$, ha $\forall \varepsilon > 0\ \exists n_\varepsilon\ \forall n \ge n_\varepsilon: |a_n - a| < \varepsilon$. Az $n_\varepsilon$ megtalálása az $|a_n - a| < \varepsilon$ egyenlőtlenség $n$-re való megoldása (vagy felső becslés után megoldása); az **arkhimédészi tulajdonság** garantálja, hogy az így kapott valós korlátnál van nagyobb egész.
+:::
 
 ## 37. feladat
 
@@ -450,6 +550,10 @@ azaz van olyan $\varepsilon$-környezete $a$-nak, amelyen kívül a sorozatnak v
 
 b) $(a_n)$ divergens, azaz semmilyen valós számhoz nem tart:
 $$\forall a \in \mathbb{R}\ \exists \varepsilon > 0\ \forall N \in \mathbb{N}\ \exists n \ge N : |a_n - a| \ge \varepsilon.$$
+
+::: elmelet
+**Elméleti háttér — kvantoros állítás tagadása.** Tagadáskor a kvantorok felcserélődnek ($\forall \leftrightarrow \exists$), a sorrendjük megmarad, és a végén álló feltételt tagadjuk ($<$ helyett $\ge$). Divergencia = „semmilyen $a \in \mathbb R$-hez nem tart”, ezért a tagadás elé egy $\forall a$ kerül. Szemléletesen: $a_n \not\to a$ akkor, ha van olyan környezete $a$-nak, amelyen kívül **végtelen sok** tag van.
+:::
 
 ## 38. feladat
 
@@ -485,6 +589,10 @@ $$\sqrt[3]{n+2} - \sqrt[3]{n-2} = \frac{4}{A^2 + AB + B^2} \le \frac{4}{A^2} \le
 
 j) $\sqrt[n]{n} \to 1$: írjuk $\sqrt[n]n = 1 + h_n$, $h_n \ge 0$. A binomiális tétel szerint ($n \ge 2$) $n = (1 + h_n)^n \ge 1 + \binom n2 h_n^2$, így $h_n^2 \le \frac{n - 1}{n(n-1)/2} = \frac2n$, azaz $0 \le h_n \le \sqrt{2/n}$. Tehát $|\sqrt[n]n - 1| < \varepsilon$, ha $n > \frac{2}{\varepsilon^2}$.
 
+::: elmelet
+**Elméleti háttér — becslési technikák határértékhez.** A definíció ellenőrzéséhez $|a_n - a|$-t egy egyszerű, nullához tartó kifejezéssel (pl. $\frac Cn$, $\frac{C}{\sqrt n}$) becsüljük felülről. Eszközök: (1) **gyöktelenítés** ($\sqrt u - \sqrt v$, illetve köbgyökökre $A^3 - B^3 = (A - B)(A^2 + AB + B^2)$); (2) **Bernoulli-egyenlőtlenség** $\sqrt[n]{a} = 1 + h_n$ esetén ($a \ge 1 + nh_n$); (3) **binomiális tétel** egy kiválasztott tagja, ha a lineáris becslés nem elég ($\sqrt[n]n$-nél a $\binom n2 h_n^2$ tag); (4) a nevező alulról becslése (pl. $n - \sqrt n \ge \frac n2$, ha $n \ge 4$).
+:::
+
 ## 39. feladat
 
 a) Mutassuk meg, hogy $a_n \to a$ acsa, ha $(a_n - a) \to 0$.
@@ -501,6 +609,10 @@ b) $|a_n - 0| = |a_n| = \big||a_n| - 0\big|$, tehát a két definíció ismét a
 
 c) A fordított háromszög-egyenlőtlenség szerint $\big||a_n| - |a|\big| \le |a_n - a|$. Ha $a_n \to a$, akkor adott $\varepsilon$-hoz ugyanaz az $N$ jó $|a_n| \to |a|$-hoz is. **A megfordítás nem igaz:** $a_n = (-1)^n$ divergens, de $|a_n| = 1 \to 1$. (A b) rész szerint az $a = 0$ speciális esetben viszont a megfordítás is igaz.)
 
+::: elmelet
+**Elméleti háttér — definíciók egyezése és a fordított háromszög-egyenlőtlenség.** Két fogalom ekvivalenciáját sokszor elég a definíciók összevetésével látni (a) és b)). A $||x| - |y|| \le |x - y|$ fordított háromszög-egyenlőtlenség azt mutatja, hogy az abszolútérték-függvény „nem növeli a távolságot” (1-Lipschitz), ezért konvergens sorozatból konvergenset csinál. A megfordítás nem igaz, mert az abszolút érték „elfelejti” az előjelet.
+:::
+
 ## 40. feladat
 
 a) Készítendő divergens $(a_n)$ sorozat, melyre $a_{n+1} - a_n \to 0$.
@@ -512,6 +624,10 @@ b) Tegyük fel, hogy $a_{n+1} - a_n \to 0$. Következik-e ebből, hogy $a_{2n} -
 a) $a_n = \sqrt{n}$: $a_{n+1} - a_n = \frac{1}{\sqrt{n+1} + \sqrt n} \to 0$, de $a_n \to +\infty$, tehát divergens.
 
 b) **Nem következik.** Ugyanez a példa: $a_{2n} - a_n = \sqrt{2n} - \sqrt n = (\sqrt2 - 1)\sqrt n \to +\infty$. (Egy másik példa a harmonikus részletösszegek sorozata: $H_n = 1 + \frac12 + \dots + \frac1n$; ekkor $H_{n+1} - H_n = \frac{1}{n+1} \to 0$, de $H_{2n} - H_n = \sum_{k=n+1}^{2n} \frac1k \ge n \cdot \frac{1}{2n} = \frac12$.)
+
+::: elmelet
+**Elméleti háttér — szomszédos tagok különbsége nem elég a konvergenciához.** A Cauchy-kritérium szerint $(a_n)$ pontosan akkor konvergens, ha $|a_m - a_n|$ **tetszőleges** elég nagy $m, n$-re kicsi. Az $a_{n+1} - a_n \to 0$ feltétel csak a szomszédos tagokról szól; sok kicsi lépés összeadódhat (a $\sqrt n$ vagy a harmonikus sor részletösszegei lassan, de korlátlanul nőnek). Ellenpéldával cáfolunk: egyetlen sorozat elég.
+:::
 
 ## 41. feladat
 
@@ -547,6 +663,10 @@ f) **Ekvivalens.** Ha $a_n \to a$, alkalmazzuk a definíciót $1/\varepsilon$-na
 
 g) **Egyetlen sorozatra sem teljesül** (és $a$-tól független). $\varepsilon = 100$-ra egy indextől kezdve $a_n \ge 90$, míg $\varepsilon = \frac12$-re egy indextől kezdve $a_n \le 10{,}5$ – a kettő egyszerre lehetetlen.
 
+::: elmelet
+**Elméleti háttér — a definíció „robusztussága”.** Ha az $\varepsilon$ helyett egy $g(\varepsilon)$ hibakorlát áll, ahol $g$ **minden** pozitív értéket felvesz a $0$ körül, vagy legalább $g(\varepsilon) \to 0$, ha $\varepsilon \to 0$ (pl. $5\varepsilon$, $\varepsilon^2$, $\sqrt\varepsilon$, sőt $\frac1\varepsilon$, ha $\varepsilon \to \infty$), akkor az állítás ekvivalens a konvergenciával: a kívánt $\varepsilon'$-höz megfelelő $\varepsilon$-t választunk. Ha a hibakorlát nem tud tetszőlegesen kicsi lenni ($1 + \varepsilon$), az állítás gyengébb; ha pedig lehetetlen feltételt ír elő ($\varepsilon - 1 < 0$), akkor egyetlen sorozatra sem teljesül.
+:::
+
 ## 42*. feladat
 
 Bontsuk fel a számegyenest végtelen sok páronként diszjunkt sűrű halmaz egyesítésére.
@@ -561,6 +681,10 @@ Legyen $A_k = \{q + k\sqrt2 : q \in \mathbb{Q}\}$, $k = 1, 2, 3, \dots$, és $A_
 
 Tehát $\mathbb{R} = A_0 \cup A_1 \cup A_2 \cup \dots$ végtelen sok, páronként diszjunkt, sűrű halmaz egyesítése.
 
+::: elmelet
+**Elméleti háttér — sűrűség és eltolás.** Egy $A \subseteq \mathbb R$ halmaz **sűrű**, ha minden nyílt intervallum tartalmazza egy elemét. $\mathbb Q$ sűrű, és eltolással ($\mathbb Q + c$) a sűrűség megmarad. Az irracionális $\sqrt2$ különböző egész többszöröseivel eltolt példányok diszjunktak (különben $\sqrt2$ racionális volna). A maradék $A_0$ sűrűsége abból jön, hogy tartalmaz egy sűrű halmazt ($\mathbb Q$).
+:::
+
 ## 43*. feladat
 
 Adjunk meg olyan számsorozatot, melyben minden természetes szám végtelen sokszor szerepel.
@@ -572,6 +696,10 @@ $$1;\ 1, 2;\ 1, 2, 3;\ 1, 2, 3, 4;\ 1, 2, 3, 4, 5;\ \dots$$
 azaz a $k$-adik blokk az $1, 2, \dots, k$ számokból áll. Az $m$ természetes szám minden $k \ge m$ blokkban szerepel, tehát végtelen sokszor. (Ha a $0$-t is természetes számnak tekintjük, a blokkok legyenek $0, 1, \dots, k$.)
 
 Képlettel is: írjuk fel $n$-et $n = 2^a(2b + 1)$ alakban; legyen $x_n = a$. Ekkor minden $a \ge 0$ végtelen sokszor szerepel (minden páratlan $2b+1$-hez egyszer).
+
+::: elmelet
+**Elméleti háttér — megszámlálható sok megszámlálható halmaz felsorolása.** A blokkos felsorolás ugyanaz az ötlet, mint $\mathbb N \times \mathbb N$ megszámlálhatóságának bizonyításában: véges blokkokat sorolunk fel egymás után, és minden elem végtelen sok blokkban szerepel. A $2^a(2b+1)$ felírás egy explicit bijekció $\mathbb N$ és $\mathbb N_0 \times \mathbb N_0$ között (a számelmélet alaptétele miatt egyértelmű), és ennek első koordinátája adja a sorozatot.
+:::
 
 ## Röpzhra
 
@@ -596,6 +724,10 @@ $$\forall K \in \mathbb{R}\ \exists N \in \mathbb{N}\ \forall n \ge N : a_n < K.
 $$\exists K \in \mathbb{R}\ \forall N \in \mathbb{N}\ \exists n \ge N : a_n \ge K,$$
 azaz van olyan $K$, amelynél nem kisebb tagja végtelen sok van a sorozatnak.
 
+::: elmelet
+**Elméleti háttér — végtelen határérték.** $a_n \to -\infty$, ha minden $K$ korlátnál a sorozat egy indextől kezdve kisebb: a környezetek szerepét itt a $(-\infty, K)$ félegyenesek veszik át (ezek a $-\infty$ környezetei a bővített számegyenesen). A tagadás a szokásos szabállyal: kvantorcsere, és a $<$ helyett $\ge$.
+:::
+
 ## 45. feladat
 
 Mutassuk meg, hogy $\lim\limits_{n \to \infty} a_n = \infty$ acsa, ha $\forall K \in \mathbb{R}$-re az $(a_n)$-nek csak véges sok tagja kisebb $K$-nál.
@@ -605,6 +737,10 @@ Mutassuk meg, hogy $\lim\limits_{n \to \infty} a_n = \infty$ acsa, ha $\forall K
 ($\Rightarrow$) Legyen $\lim a_n = \infty$ és $K \in \mathbb{R}$. A definíció szerint van $N$, hogy $n \ge N$ esetén $a_n > K$. Így $K$-nál kisebb tag csak az $a_1, \dots, a_{N-1}$ között lehet: véges sok.
 
 ($\Leftarrow$) Legyen $K \in \mathbb{R}$ tetszőleges. A feltételt $K + 1$-re alkalmazva csak véges sok $n$ index van, amelyre $a_n < K + 1$; legyen $N$ ezek mindegyikénél nagyobb. Ekkor $n \ge N$ esetén $a_n \ge K + 1 > K$. Tehát $\lim a_n = \infty$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — „egy indextől kezdve” $\iff$ „csak véges sok kivétel”.** Ha egy tulajdonság egy $N$ indextől kezdve teljesül, akkor kivétel csak az első $N - 1$ tag között lehet (véges sok). Megfordítva, véges sok kivételes indexnek van maximuma, és onnan kezdve nincs kivétel. Ez a megfogalmazás teszi szemléletessé a határérték fogalmát: minden környezeten kívül csak véges sok tag van. (A $K + 1$-es trükk a szigorú és nem szigorú egyenlőtlenség közötti különbséget hidalja át.)
+:::
 
 ## 46. feladat
 
@@ -630,6 +766,10 @@ $$\frac{n^2 - 10n}{10n + 100} \ge \frac{n^2/2}{15n} = \frac{n}{30} > K, \quad \t
 
 e) A binomiális tétel szerint $n \ge 2$-re $2^n = (1 + 1)^n \ge \binom n2 = \frac{n(n-1)}{2}$, így $\frac{2^n}{n} \ge \frac{n - 1}{2} > K$, ha $n > 2K + 1$. **$n_K = \lfloor 2K \rfloor + 2$.**
 
+::: elmelet
+**Elméleti háttér — $+\infty$-be tartás bizonyítása alsó becsléssel.** $a_n \to +\infty$ igazolásához $a_n$-t **alulról** becsüljük egy egyszerű, nyilvánvalóan végtelenbe tartó kifejezéssel (pl. $\frac n2$, $\frac{\sqrt n}{C}$), és ebből olvassuk ki az $n_K$ küszöböt. Eszközök: domináns tag kiemelése, a „nagy fél” becslése (az összeg felének minden tagja legalább akkora, mint a középső), és a binomiális tétel egyetlen tagja ($2^n \ge \binom n2$).
+:::
+
 ## 47. feladat
 
 Bizonyítandó, hogy egy konvergens sorozatnak mindig van legkisebb vagy legnagyobb tagja.
@@ -647,6 +787,10 @@ Tehát $M$ a sorozat legnagyobb tagja. $\blacksquare$
 
 Példák: $\frac1n$-nek van legnagyobb tagja ($1$), de legkisebb nincs; $\frac{(-1)^n}{n}$-nek mindkettő van.
 
+::: elmelet
+**Elméleti háttér — konvergens sorozat „véges része” és „farka”.** Egy konvergens sorozat egy indextől kezdve a határérték tetszőlegesen kicsi környezetében marad; a „fej” (az első $N - 1$ tag) véges halmaz, és véges halmaznak mindig van maximuma és minimuma. Ha egy tag a határérték fölött van, a farok egy indextől kezdve alatta marad, így a maximumot a véges fejben kell keresni. Ez a „fej + farok” felbontás sok sorozatos bizonyítás alapja.
+:::
+
 ## 48. feladat
 
 Bizonyítsuk be, hogy ha $A \subset \mathbb{R}$, $A \neq \emptyset$ és $\sup A = \alpha \notin A$, akkor létezik olyan $(a_n)$ sorozat, amelyre $\forall n \in \mathbb{N}$-re $a_n \in A$, $(a_n)$ szigorúan monoton növekedő és $a_n \to \alpha$. Igaz-e az állítás akkor is, ha $\alpha \in A$?
@@ -661,6 +805,10 @@ Ekkor $a_{n+1} > a_n$ (szigorúan monoton nő), és $\alpha - \frac1n < a_{n+1} 
 
 **Ha $\alpha \in A$, az állítás nem igaz általában:** $A = \{0\}$ esetén $\sup A = 0 \in A$, de $A$-ban nincs szigorúan monoton növő sorozat. (Lehet igaz is, pl. $A = [0, 1]$ és $a_n = 1 - \frac1n$; ez akkor teljesül, ha $\alpha$ balról torlódási pontja $A$-nak.)
 
+::: elmelet
+**Elméleti háttér — a szuprémum sorozatos jellemzése.** $\alpha = \sup A$ esetén minden $c < \alpha$ szám nem felső korlát, tehát van $a \in A$, amelyre $a > c$. Ezt iterálva — mindig az előző tagnál és $\alpha - \frac1n$-nél is nagyobb $c$-t választva — szigorúan növő, $\alpha$-hoz tartó sorozatot kapunk; a konvergenciát a **rendőrelv** adja ($\alpha - \frac1n < a_{n+1} < \alpha$). Az $\alpha \notin A$ feltétel kell ahhoz, hogy a sorozat sose érje el $\alpha$-t (és így mindig lehessen szigorúan növelni).
+:::
+
 ## 49. feladat
 
 a) $\sqrt[n]{2^n + 3^n + 1000n^3} \to ?$ b) $\dfrac{1}{n^2} + \dfrac{2}{n^2} + \dots + \dfrac{n}{n^2} \to ?$ c) $\sqrt[n]{1 + \frac{1}{2} + \dots + \frac{1}{n}} \to ?$
@@ -674,6 +822,10 @@ Továbbá $1 \le \sqrt[n]{2 + 1000n^3} \le \sqrt[n]{1002}\cdot\left(\sqrt[n]{n}\
 b) $\frac{1 + 2 + \dots + n}{n^2} = \frac{n(n+1)}{2n^2} = \frac12 + \frac{1}{2n} \to \frac12$.
 
 c) $1 \le 1 + \frac12 + \dots + \frac1n \le n$, így $1 \le \sqrt[n]{1 + \frac12 + \dots + \frac1n} \le \sqrt[n]{n} \to 1$. A határérték $1$.
+
+::: elmelet
+**Elméleti háttér — domináns tag és rendőrelv $n$-edik gyökre.** $\sqrt[n]{\text{összeg}}$ esetén a legnagyobb nagyságrendű tag dominál: alulról becsüljük csak vele, felülről a tagok számával (vagy egy polinommal) szorozva. Kulcs: $\sqrt[n]{c} \to 1$ ($c > 0$) és $\sqrt[n]{n} \to 1$, így polinomiális szorzók $n$-edik gyöke $1$-hez tart. A **rendőrelv**: ha $a_n \le b_n \le c_n$ és $a_n, c_n \to L$, akkor $b_n \to L$.
+:::
 
 ## 50. feladat
 
@@ -693,6 +845,10 @@ $a_n \to 0$, $b_n \to +\infty$ esetén az $a_n b_n$ szorzat bármi lehet („$0 
 
 Tehát a tényezők határértékéből nem lehet következtetni a szorzatéra.
 
+::: elmelet
+**Elméleti háttér — kritikus határértékek.** A határérték és a műveletek kapcsolatáról szóló tételek a „$0 \cdot \infty$”, „$\infty - \infty$”, „$\frac00$”, „$\frac\infty\infty$” esetekben nem mondanak semmit: ezek **kritikus (határozatlan)** típusok. Kritikusságot példákkal igazolunk: olyan sorozatpárokat adunk, amelyek az adott típusba esnek, de a művelet eredménye különböző határértékű (vagy divergens).
+:::
+
 ## 51. feladat
 
 Mutassuk meg, hogy ha $a_n \to 0$ és $a_n \neq 0$, akkor $\frac{1}{|a_n|} \to \infty$.
@@ -700,6 +856,10 @@ Mutassuk meg, hogy ha $a_n \to 0$ és $a_n \neq 0$, akkor $\frac{1}{|a_n|} \to \
 **Megoldás.**
 
 Legyen $K > 0$. Az $a_n \to 0$ definícióját $\varepsilon = \frac1K$-ra alkalmazva van $N$, hogy $n \ge N$ esetén $0 < |a_n| < \frac1K$ (a pozitivitás az $a_n \neq 0$ feltételből jön). Ekkor $\frac{1}{|a_n|} > K$. Tehát $\frac{1}{|a_n|} \to +\infty$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — $\frac10$ és a reciprok.** A definíciók „összefordítása”: ha $|a_n| < \varepsilon$ egy indextől, akkor $\frac{1}{|a_n|} > \frac1\varepsilon$; $\varepsilon = \frac1K$ választással ez épp a $+\infty$-be tartás definíciója. Előjelről nem tudunk semmit, ezért csak $\frac{1}{|a_n|}$-ről állíthatunk végtelen határértéket ($\frac{1}{a_n}$ váltakozó előjelnél divergens lehet).
+:::
 
 ## 52. feladat
 
@@ -714,6 +874,10 @@ Van-e olyan sorozat, amelyik korlátos, de se minimuma, se maximuma nincs?
 - Hasonlóan a páratlan indexű tagok szigorúan csökkennek $-1$-hez, így minimum sincs.
 
 (A 47. feladat szerint egy ilyen sorozat szükségképpen divergens.)
+
+::: elmelet
+**Elméleti háttér — korlátosság kontra szélsőértékek.** A korlátosság csak azt mondja, hogy van felső és alsó korlát (így létezik szuprémum és infimum), de nem, hogy ezeket a sorozat el is éri. Két „ellentétes oldalról” közelítő részsorozat egyszerre akadályozza meg a maximum és a minimum létezését — ez csak divergens sorozatnál lehetséges (47. feladat).
+:::
 
 ## 53. feladat
 
@@ -752,6 +916,10 @@ k) $k_n \ge \dfrac{5n^2 - 1}{8n} \ge \dfrac{4n^2}{8n} = \dfrac n2 \to +\infty$.
 
 l) $l_n = \dfrac6n + 2(-1)^n$: a páros indexű részsorozat $2$-höz, a páratlan indexű $-2$-höz tart, tehát $(l_n)$ **divergens** (nincs határértéke).
 
+::: elmelet
+**Elméleti háttér — standard technikák.** (1) Racionális törtnél **a legmagasabb fokú taggal osztunk** számlálót és nevezőt. (2) Gyökös különbségnél **gyöktelenítés**. (3) Korlátos szorozva nullsorozattal nullsorozat ($|\sin n| \le 1$). (4) $n$-edik gyöknél **rendőrelv** a domináns taggal. (5) Nagyságrendek: $n^k \ll a^n \ll n! \ll n^n$, és ennek becslésekkel való kihasználása. (6) Divergencia igazolása: két különböző határértékű **részsorozat** (konvergens sorozat minden részsorozata ugyanoda tart).
+:::
+
 ## 54. feladat
 
 Bizonyítsuk be, hogy ha $|a_{n+1} - a_n| \le 2^{-n}$ minden $n$-re, akkor $(a_n)$ konvergens.
@@ -761,6 +929,10 @@ Bizonyítsuk be, hogy ha $|a_{n+1} - a_n| \le 2^{-n}$ minden $n$-re, akkor $(a_n
 A Cauchy-kritériumot ellenőrizzük. Ha $m > n$, akkor a háromszög-egyenlőtlenség és a mértani sor összegképlete szerint
 $$|a_m - a_n| \le \sum_{k=n}^{m-1} |a_{k+1} - a_k| \le \sum_{k=n}^{m-1} 2^{-k} < \sum_{k=n}^{\infty} 2^{-k} = 2^{1-n}.$$
 Adott $\varepsilon > 0$-hoz válasszunk $N$-et úgy, hogy $2^{1-N} < \varepsilon$. Ekkor minden $m > n \ge N$-re $|a_m - a_n| < \varepsilon$, tehát $(a_n)$ Cauchy-sorozat, így ($\mathbb{R}$ teljessége miatt) konvergens. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Cauchy-kritérium és teleszkopikus becslés.** $\mathbb R$-ben egy sorozat pontosan akkor konvergens, ha Cauchy-sorozat: $\forall \varepsilon\ \exists N\ \forall m, n \ge N: |a_m - a_n| < \varepsilon$. Két távoli tag különbségét a szomszédos különbségek összegével becsüljük (háromszög-egyenlőtlenség, „teleszkóp”), és ha ezek egy **konvergens sor** (itt mértani sor) tagjaival becsülhetők, akkor a különbség a sor maradékával, vagyis tetszőlegesen kicsivel becsülhető. A kritérium előnye, hogy a határérték ismerete nélkül igazolja a konvergenciát.
+:::
 
 ## Röpzhra
 
@@ -783,6 +955,10 @@ $$\Phi(z_1, \dots, z_k) = p_1^{\varphi(z_1)} \cdot p_2^{\varphi(z_2)} \cdots p_k
 természetes számot (az üres sorozathoz az $1$-et). A számelmélet alaptétele (a prímtényezős felbontás egyértelműsége) és $\varphi(z_i) \ge 1$ miatt $\Phi$-ből visszaolvasható a hossz és minden tag, tehát $\Phi$ injektív. Így a véges sorozatok halmaza legfeljebb megszámlálható; mivel végtelen (az egytagú sorozatok már $\mathbb{Z}$-vel ekvivalensek), **megszámlálhatóan végtelen**.
 
 (Másik út: a $k$ hosszú sorozatok halmaza $\mathbb{Z}^k$, ami megszámlálható, és megszámlálható sok megszámlálható halmaz uniója megszámlálható.)
+
+::: elmelet
+**Elméleti háttér — megszámlálhatóság injekcióval.** Egy halmaz pontosan akkor legfeljebb megszámlálható, ha van injekciója $\mathbb N$-be. Véges sorozatok kódolására a **számelmélet alaptétele** ad injekciót: a prímtényezős felbontás egyértelmű, így a kitevőkből minden adat visszaolvasható (a $\varphi(z) \ge 1$ eltolás biztosítja, hogy a hossz is látszódjon). Alternatíva: **megszámlálható sok megszámlálható halmaz uniója megszámlálható** ($\bigcup_k \mathbb Z^k$).
+:::
 
 ## 56. feladat
 
@@ -832,6 +1008,10 @@ $$i_n = \frac{(2 + 3/n)^5 (18 + 17/n)^{15}}{(6 + 5/n)^{20}} \to \frac{2^5 \cdot 
 (q) Gyöktelenítve:
 $$q_n = \frac{n \cdot 2n}{\sqrt{n^2+n} + \sqrt{n^2-n}} = \frac{2n}{\sqrt{1 + 1/n} + \sqrt{1 - 1/n}} \ge \frac{2n}{2\sqrt2} \to +\infty.$$
 
+::: elmelet
+**Elméleti háttér — határérték és műveletek, nagyságrendek.** Ha $a_n \to a$ és $b_n \to b$ (véges), akkor $a_n \pm b_n$, $a_nb_n$, $\frac{a_n}{b_n}$ ($b \ne 0$) a megfelelő határértékhez tart, és folytonos függvényekkel (gyök, hatvány) is felcserélhető a határérték. Kritikus típusoknál ($\frac\infty\infty$, $\infty - \infty$) először átalakítunk: **a domináns taggal osztunk**, illetve **gyöktelenítünk**, utána alkalmazzuk a műveleti tételeket. $n$-edik gyöknél a domináns tag és a rendőrelv dönt ($\sqrt[n]{c} \to 1$, $\sqrt[n]n \to 1$).
+:::
+
 ## 57. feladat
 
 Adjunk példákat arra, hogy $a_n - b_n \to 0$, de $a_n/b_n$ nem tart 1-hez, illetve $a_n/b_n \to 1$, de $a_n - b_n$ nem tart 0-hoz.
@@ -840,6 +1020,10 @@ Adjunk példákat arra, hogy $a_n - b_n \to 0$, de $a_n/b_n$ nem tart 1-hez, ill
 
 - $a_n - b_n \to 0$, de $a_n/b_n \not\to 1$: $a_n = \frac2n$, $b_n = \frac1n$. Ekkor $a_n - b_n = \frac1n \to 0$, de $a_n/b_n = 2$.
 - $a_n/b_n \to 1$, de $a_n - b_n \not\to 0$: $a_n = n + 1$, $b_n = n$. Ekkor $\frac{a_n}{b_n} = 1 + \frac1n \to 1$, de $a_n - b_n = 1$. (Vagy $a_n = n^2 + n$, $b_n = n^2$: a különbség $n \to \infty$.)
+
+::: elmelet
+**Elméleti háttér — abszolút és relatív közelség.** Az $a_n - b_n \to 0$ (a különbség kicsi) és az $\frac{a_n}{b_n} \to 1$ (az arány közel $1$, „aszimptotikus egyenlőség”, $a_n \sim b_n$) két különböző fogalom. Nullsorozatoknál a különbség mindig kicsi, az arány mégis bármi lehet; végtelenbe tartó sorozatoknál az arány lehet $1$, a különbség mégis nagy. Ellenpéldával cáfolunk.
+:::
 
 ## 58. feladat
 
@@ -865,6 +1049,10 @@ b) A fixpontok: $x = \frac{1}{3 - x} \iff x^2 - 3x + 1 = 0 \iff x = \frac{3 \pm 
 
 Így konvergens; ha $b_n \to B \in [0, \alpha]$, akkor $B = \frac{1}{3 - B}$, tehát $B$ fixpont, és $B \le \alpha$ miatt **$B = \alpha = \frac{3 - \sqrt5}{2}$**.
 
+::: elmelet
+**Elméleti háttér — rekurzív sorozat: korlát, monotonitás, fixpont.** $a_{n+1} = g(a_n)$ esetén: (1) **invariáns intervallum** (indukcióval: ha $a_n \in I$, akkor $g(a_n) \in I$) ad korlátot; (2) ha $g$ monoton nő, a monotonitás az első két tagból öröklődik, vagy közvetlenül az $a_{n+1} - a_n$ előjeléből látszik; (3) **monoton + korlátos $\Rightarrow$ konvergens**; (4) a határérték a $g$ **fixpontja** ($A = g(A)$, ha $g$ folytonos), és a korlátok döntik el, melyik fixpontról van szó.
+:::
+
 ## 59. feladat
 
 Bizonyítsuk be, hogy $\mathbb{R} \setminus \mathbb{Q}$ nem megszámlálható, pontosabban $(\mathbb{R} \setminus \mathbb{Q}) \sim \mathbb{R}$.
@@ -876,6 +1064,10 @@ Bizonyítsuk be, hogy $\mathbb{R} \setminus \mathbb{Q}$ nem megszámlálható, p
 **$(\mathbb{R} \setminus \mathbb{Q}) \sim \mathbb{R}$ („Hilbert-szálloda"):** legyen $\mathbb{Q} = \{q_1, q_2, \dots\}$ egy felsorolás, és $s_n = \sqrt2 + n$ ($n \in \mathbb{N}$) – ezek különböző irracionális számok; $S = \{s_1, s_2, \dots\}$. Definiáljuk $f : \mathbb{R} \to \mathbb{R} \setminus \mathbb{Q}$-t:
 $$f(q_n) = s_{2n}, \qquad f(s_n) = s_{2n-1}, \qquad f(x) = x \text{ egyébként}.$$
 $f$ a $\mathbb{Q} \cup S$ halmazt bijektíven képezi $S$-re (a racionálisok a páros, $S$ elemei a páratlan indexű helyekre kerülnek), a maradék $(\mathbb{R}\setminus\mathbb{Q}) \setminus S$ halmazon pedig az identitás. Tehát $f$ bijekció $\mathbb{R}$ és $\mathbb{R} \setminus \mathbb{Q}$ között. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — számosságok.** Két megszámlálható halmaz uniója megszámlálható, $\mathbb R$ viszont nem (Cantor átlós eljárása) — így az irracionálisak nem lehetnek megszámlálhatók. Az egyenlő számossághoz bijekció kell: a „**Hilbert-szálloda**” ötlete, hogy egy végtelen halmazból kiválasztott megszámlálható részhalmazba (itt $S$) „helyet csinálunk” egy további megszámlálható halmaznak ($\mathbb Q$) a páros/páratlan indexek szétválasztásával, a többi elemet pedig helyben hagyjuk.
+:::
 
 ## 60*. feladat
 
@@ -897,6 +1089,10 @@ b) **Nem.** Tegyük fel, hogy minden irracionális $x$-re áll egy $(h_x, w_x)$ 
 $$\mathbb{R} \setminus \mathbb{Q} = \bigcup_{n=1}^{\infty} \left\{x \notin \mathbb{Q} : w_x \ge \tfrac1n\right\},$$
 és a bal oldal nem megszámlálható, valamelyik $H_n = \{x : w_x \ge \frac1n\}$ nem megszámlálható. Osszuk a számegyenest $\frac1n$ hosszú $[\frac{k}{n}, \frac{k+1}{n})$ intervallumokra (megszámlálható sok); valamelyikbe $H_n$ legalább két pontja esik: $x < y$, $y - x < \frac1n$. Ha $h_x \ge h_y$, akkor $y$ kalapja ($w_y \ge \frac1n > y - x$) eléri az $x$ szárát a $h_y \le h_x$ magasságban; ha $h_y > h_x$, akkor szimmetrikusan $x$ kalapja metszi $y$ szárát. Ellentmondás.
 
+::: elmelet
+**Elméleti háttér — megszámlálható kontra nem megszámlálható.** Megszámlálható halmazon **sorban egyesével** tudunk dönteni (a $q_n$-hez tartozó T méretét csak a korábbi, véges sok T-hez kell igazítani), ezért a konstrukció működik. Nem megszámlálható halmaznál a **skatulyaelv végtelen változata** dolgozik: ha egy nem megszámlálható halmazt megszámlálható sok részre bontunk, valamelyik rész nem megszámlálható (sőt végtelen); és egy ilyen részből két pont közel kerül egymáshoz, ami a T-k ütközését okozza.
+:::
+
 ## 61. feladat
 
 Bizonyítsuk be, hogy az algebrai számok halmaza megszámlálható.
@@ -908,6 +1104,10 @@ $$\bigcup_{k} \{x : P_k(x) = 0\}$$
 megszámlálható sok véges halmaz uniója, így megszámlálható. Végtelen, mert tartalmazza $\mathbb{Q}$-t ($p/q$ a $qx - p$ gyöke). $\blacksquare$
 
 (Következmény: létezik transzcendens szám, sőt a valós számok „majdnem mind" transzcendensek.)
+
+::: elmelet
+**Elméleti háttér — algebrai számok.** Az egész együtthatós polinomok egy megszámlálható halmazt alkotnak (együtthatóik véges sorozatai), és egy nem nulla, $d$-edfokú polinomnak legfeljebb $d$ gyöke van. Megszámlálható sok véges halmaz uniója megszámlálható. Mivel $\mathbb R$ nem megszámlálható, **létezik transzcendens szám** — ez Cantor nem konstruktív bizonyítása.
+:::
 
 ## 62. feladat
 
@@ -921,6 +1121,10 @@ A Schröder–Bernstein-tétel szerint elég kölcsönösen injektív leképezé
 - **$\mathbb{R} \to \mathcal{P}(\mathbb{N})$:** $x \mapsto \{q \in \mathbb{Q} : q < x\} \subseteq \mathbb{Q}$. Injektív, mert $x < y$ esetén a racionális számok sűrűsége miatt van $q \in \mathbb{Q}$, $x < q < y$, amely $y$ képében benne van, $x$ képében nincs. Mivel $\mathbb{Q} \sim \mathbb{N}$, ez $\mathcal{P}(\mathbb{Q}) \sim \mathcal{P}(\mathbb{N})$ révén injekció $\mathcal{P}(\mathbb{N})$-be.
 
 Tehát $\mathcal{P}(\mathbb{N}) \sim \mathbb{R}$, azaz $\mathcal{P}(\mathbb{N})$ kontinuum számosságú. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Schröder–Bernstein-tétel.** Ha van injekció $A \to B$ és $B \to A$, akkor $A \sim B$ (van bijekció). Így két injekció megadása elég a számosságok egyenlőségéhez. A $\mathcal P(\mathbb N) \to \mathbb R$ irányban a tizedes tört egyértelműsége (csak $0$, $1$ jegyek, nincs $\dots 999$ vég) adja az injektivitást, az $\mathbb R \to \mathcal P(\mathbb Q)$ irányban a **Dedekind-szelet** ötlete ($x \mapsto \{q < x\}$) és $\mathbb Q$ sűrűsége.
+:::
 
 ## Röpzhra
 
@@ -956,6 +1160,10 @@ A sűrűsödési értékek $\{-2, 0, 2, 4\}$, így **$\liminf b_n = -2$, $\limsu
 
 c) A sorozat a $\frac{k}{m}$ ($m \ge 2$, $1 \le k \le m - 1$) törtek felsorolása. Minden tag $(0, 1)$-ben van, $\frac1m \to 0$ és $\frac{m-1}{m} \to 1$ részsorozatok. Sőt minden $x \in [0, 1]$ sűrűsödési érték (minden $(0,1)$-beli racionális szám végtelen sokszor szerepel bővített alakokban, és ezek sűrűek). Így **$\liminf = 0$, $\limsup = 1$**.
 
+::: elmelet
+**Elméleti háttér — sűrűsödési értékek, $\limsup$, $\liminf$.** $x$ **sűrűsödési értéke** $(a_n)$-nek, ha van hozzá tartó részsorozat (ekvivalensen: minden környezete végtelen sok tagot tartalmaz). Korlátos sorozatra $\limsup a_n$ a legnagyobb, $\liminf a_n$ a legkisebb sűrűsödési érték. Ha a sorozat véges sok konvergens részsorozatra bomlik (páros/páratlan indexek, periodikus mintázat), a sűrűsödési értékek pontosan ezek határértékei.
+:::
+
 ## 64. feladat
 
 Bizonyítsuk be, hogy $\lim\limits_{n\to\infty} a_n = a \in \mathbb{R}$ ekvivalens azzal, hogy $\limsup\limits_{n\to\infty} a_n = \liminf\limits_{n\to\infty} a_n = a$.
@@ -969,6 +1177,10 @@ Használjuk a $\limsup a_n = \lim_{n\to\infty} M_n$, $\liminf a_n = \lim_{n\to\i
 ($\Rightarrow$) Ha $a_n \to a$, akkor adott $\varepsilon > 0$-hoz van $N$, hogy $k \ge N$ esetén $a - \varepsilon < a_k < a + \varepsilon$. Így $n \ge N$-re $a - \varepsilon \le m_n \le M_n \le a + \varepsilon$, tehát $M_n \to a$ és $m_n \to a$, azaz $\limsup a_n = \liminf a_n = a$. $\blacksquare$
 
 (Ha a $\limsup$-ot a legnagyobb sűrűsödési értékként definiáltuk, a 65. feladat mutatja, hogy a két definíció megegyezik.)
+
+::: elmelet
+**Elméleti háttér — a $\limsup$ mint a „farkak” szuprémumainak határértéke.** $M_n = \sup_{k \ge n} a_k$ monoton fogyó, $m_n = \inf_{k \ge n} a_k$ monoton növő, így mindkettőnek van határértéke (a bővített számegyenesen): ezek a $\limsup$ és a $\liminf$. Mivel $m_n \le a_n \le M_n$, a **rendőrelv** adja az egyik irányt; a másik irányban a konvergencia definíciója a farkakat egy $2\varepsilon$ széles sávba szorítja.
+:::
 
 ## 65. feladat
 
@@ -984,6 +1196,10 @@ Legyen $a = \limsup a_n = \lim M_n$, ahol $M_n = \sup_{k \ge n} a_k \downarrow a
 
 Tehát $a = \max\{x : x \text{ sűrűsödési érték}\} = \sup\{\dots\}$. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — a két $\limsup$-definíció egyezése.** A „$\lim M_n$” és a „legnagyobb sűrűsödési érték” definíció ugyanazt adja. Két lépés: (1) $a$ maga sűrűsödési érték (minden környezetébe végtelen sok tag esik, mert a farkak szuprémuma közel van $a$-hoz, és a szuprémum-jellemzés szerint van is tag a közelében); (2) minden részsorozat-határérték legfeljebb $a$, mert a részsorozat tagjai a megfelelő farok szuprémuma alatt vannak, és **egyenlőtlenség határátmenetben megmarad**.
+:::
+
 ## 66. feladat
 
 Mutassuk meg, hogy $\limsup\limits_{n\to\infty} a_n = a \in \mathbb{R}$ acsa, ha $\forall \varepsilon > 0$-ra $a_n > a + \varepsilon$ csak véges sok $n$-re és $a_n > a - \varepsilon$ végtelen sok $n$-re.
@@ -995,6 +1211,10 @@ Ismét $M_n = \sup_{k \ge n} a_k$, és $\limsup a_n = \lim M_n$.
 ($\Rightarrow$) Legyen $M_n \downarrow a$ és $\varepsilon > 0$. Van $N$, hogy $M_N < a + \varepsilon$, így $n \ge N$-re $a_n \le M_N < a + \varepsilon$: csak véges sok $n$-re lehet $a_n > a + \varepsilon$. Másrészt minden $N$-re $M_N \ge a > a - \varepsilon$, így van $k \ge N$, $a_k > a - \varepsilon$: végtelen sok ilyen $k$ van.
 
 ($\Leftarrow$) Legyen $\varepsilon > 0$. Mivel csak véges sok $n$-re $a_n > a + \varepsilon$, van $N$, hogy $n \ge N$ esetén $a_n \le a + \varepsilon$, így $M_n \le a + \varepsilon$ (a sorozat felülről korlátos, $M_n$ véges). Mivel végtelen sok $n$-re $a_n > a - \varepsilon$, minden $n$-re van $k \ge n$ ilyen, tehát $M_n > a - \varepsilon$. Így $n \ge N$-re $|M_n - a| \le \varepsilon$, vagyis $M_n \to a$, $\limsup a_n = a$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — a $\limsup$ $\varepsilon$-os jellemzése.** $\limsup a_n = a$ pontosan akkor, ha minden $\varepsilon > 0$-ra (1) $a + \varepsilon$ fölött csak véges sok tag van (az $a$ „aszimptotikus felső korlát”), és (2) $a - \varepsilon$ fölött végtelen sok tag van ($a$-nál kisebb szám már nem ilyen). Ez a szuprémum $\varepsilon$-os jellemzésének „végtelenbeli” megfelelője: a „minden elem” helyére „véges sok kivétellel minden elem”, a „van elem” helyére „végtelen sok elem” kerül.
+:::
 
 ## 67. feladat
 
@@ -1010,6 +1230,10 @@ $$\sum_{n=2}^{\infty} 21\left(\frac23\right)^n = 21 \cdot \frac{(2/3)^2}{1 - 2/3
 b) Parciális törtekre bontás: $\dfrac{1}{(3n-2)(3n+1)} = \dfrac13\left(\dfrac{1}{3n-2} - \dfrac{1}{3n+1}\right)$. A részletösszeg teleszkopikus:
 $$S_N = \frac13\left[\left(1 - \frac14\right) + \left(\frac14 - \frac17\right) + \dots + \left(\frac{1}{3N-2} - \frac{1}{3N+1}\right)\right] = \frac13\left(1 - \frac{1}{3N+1}\right) \to \frac13.$$
 A sor összege $\dfrac13$.
+
+::: elmelet
+**Elméleti háttér — mértani és teleszkopikus sorok.** $\sum_{n=0}^\infty q^n = \frac{1}{1-q}$, ha $|q| < 1$; eltolt kezdőindexnél $\sum_{n=k}^\infty q^n = \frac{q^k}{1 - q}$ (első tag per $(1 - q)$). Egy sor összege a **részletösszegek** sorozatának határértéke; ha a tagok parciális törtekre bonthatók, $\frac{1}{(an+b)(an+b+a)} = \frac1a\left(\frac{1}{an+b} - \frac{1}{an+b+a}\right)$, a részletösszeg teleszkopikus, és a határérték közvetlenül számolható.
+:::
 
 ## 68. feladat
 
@@ -1030,6 +1254,10 @@ Feltesszük, hogy a sorozatok korlátosak (különben a $\pm\infty$-re vonatkoz�
 - $x_n = (-1)^n$, $y_n = (-1)^{n+1}$: $\liminf x_n + \liminf y_n = -2 < 0 = \liminf(x_n + y_n)$.
 - $x_n = y_n = (-1)^n$: $\liminf(x_n + y_n) = -2 < 0 = 1 + (-1) = \limsup x_n + \liminf y_n$.
 
+::: elmelet
+**Elméleti háttér — $\liminf$ szuperadditivitása.** Az infimum „szuperadditív”: $\inf(x + y) \ge \inf x + \inf y$ (ugyanazon indexhalmazon), mert minden tagra $x_k + y_k \ge \inf x + \inf y$. A farkakra alkalmazva és határt véve kapjuk az első egyenlőtlenséget; a másodikhoz az egyik sorozatot a farka szuprémumával becsüljük. Egyenlőség általában nincs, mert a két sorozat „rossz” tagjai különböző indexeken lehetnek.
+:::
+
 ## 69. feladat
 
 Ábrázoljuk az $\left\{\frac{1}{x}\right\}$ és az $x \cdot \left[\frac{1}{x}\right]$ függvényeket.
@@ -1044,6 +1272,10 @@ Feltesszük, hogy a sorozatok korlátosak (különben a $\pm\infty$-re vonatkoz�
 
 **$x \cdot [1/x]$**: mivel $[1/x] = \frac1x - \{1/x\}$, ezért $x[1/x] = 1 - x\{1/x\}$. Ha $\frac{1}{k+1} < x \le \frac1k$, akkor $x[1/x] = kx$: egy $\frac{k}{k+1}$-től $1$-ig emelkedő szakasz. $x > 1$-re az érték $0$, $x \le -1$-re $-x$ (pontosan $x = -1$-ben $1$). Mivel $0 \le \{1/x\} < 1$, a grafikon $x > 0$-ra az $y = 1 - x$ és $y = 1$, $x < 0$-ra az $y = 1$ és $y = 1 - x$ egyenesek között halad, így $\lim_{x \to 0} x[1/x] = 1$ (ld. 83. f).
 
+::: elmelet
+**Elméleti háttér — egészrész és törtrész.** $[x]$ a legnagyobb $x$-nél nem nagyobb egész, $\{x\} = x - [x] \in [0, 1)$. Összetett függvénynél ($\{1/x\}$) azokat az intervallumokat keressük, ahol a belső függvény értéke egy $[k, k+1)$ intervallumba esik — ott a külső függvény képlete egyszerű. Határértékhez a $0 \le \{t\} < 1$ becslés és a **rendőrelv** elég.
+:::
+
 ## 70. feladat
 
 Létezik-e $[0, 1]$-en korlátos függvény, aminek nincs legnagyobb értéke?
@@ -1053,6 +1285,10 @@ Létezik-e $[0, 1]$-en korlátos függvény, aminek nincs legnagyobb értéke?
 **Igen.** Például
 $$f(x) = \begin{cases} x, & 0 \le x < 1, \\ 0, & x = 1. \end{cases}$$
 $f$ korlátos ($0 \le f < 1$), értékkészlete $[0, 1)$, amelynek szuprémuma $1$, de ezt $f$ sehol sem veszi fel – nincs legnagyobb értéke. (Folytonos függvénnyel ez Weierstrass tétele miatt lehetetlen volna.)
+
+::: elmelet
+**Elméleti háttér — korlátos kontra maximumot felvevő függvény.** Korlátos függvény értékkészletének van szuprémuma (teljességi axióma), de azt nem feltétlenül veszi fel. **Weierstrass tétele** szerint *folytonos* függvény korlátos és zárt intervallumon felveszi a maximumát — ezért az ellenpéldának szakadásosnak kell lennie (itt az $x = 1$ pontban).
+:::
 
 ## 71. feladat
 
@@ -1065,6 +1301,10 @@ $$x = \frac{2y - 3}{3y - 2}.$$
 Az $y = \frac23$ értéket $f$ nem veszi fel (különben $3(2x - 3) = 2(3x - 2)$, azaz $-9 = -4$ volna). Tehát $f : \mathbb{R} \setminus \{\frac23\} \to \mathbb{R} \setminus \{\frac23\}$ bijekció, és
 $$f^{-1}(x) = \frac{2x - 3}{3x - 2} = f(x),$$
 vagyis **$f$ önmaga inverze** ($f \circ f = \mathrm{id}$).
+
+::: elmelet
+**Elméleti háttér — inverz függvény.** $f$ invertálható, ha injektív; az inverz az $y = f(x)$ egyenlet $x$-re való megoldása. Az értelmezési tartomány és az értékkészlet pontos megadása része a feladatnak (itt $\frac23$ kimarad mindkettőből). A **Möbius-típusú** $\frac{ax + b}{cx + d}$ függvények inverze is ilyen alakú; itt $a = -d$, ami éppen az **involúció** ($f \circ f = \mathrm{id}$) feltétele.
+:::
 
 ## 72. feladat
 
@@ -1093,6 +1333,10 @@ $$f(x) = \begin{cases} 2x, & 0 \le x < \frac12, \\ 2x + 1, & \frac12 \le x \le 1
 
 d) **Nem létezik.** Ha $f$ növő, a $[0, 1)$ ősképe $0$-t tartalmazó intervallum, $(2, 3]$ ősképe $1$-et tartalmazó intervallum. Ha az első $[0, a]$ alakú, akkor $f(a) = \max f([0, a]) = \max [0, 1)$ – nincs ilyen. Ha az első $[0, a)$, akkor a második $[a, 1]$, és $f(a) = \min (2, 3]$ – nincs ilyen. Csökkenő $f$-re ugyanígy (a szerepek felcserélődnek).
 
+::: elmelet
+**Elméleti háttér — monoton függvény értékkészlete.** Ha $f$ monoton nő $[a, b]$-n, akkor $f(a) = \min R(f)$ és $f(b) = \max R(f)$ — tehát az értékkészletnek van minimuma és maximuma. Monoton függvény ugrásai „hézagokat” hagynak az értékkészletben; konstans szakasz (nem szigorú monotonitás) segít, ha egy értéket egy intervallumon is fel kell venni. Nemlétezést úgy bizonyítunk, hogy az ősképek intervallumok, és a határpontjukban felvett érték valamelyik halmaz nem létező minimuma/maximuma volna.
+:::
+
 ## 73. feladat
 
 Legyen $f$ és $g$ értelmezve $\mathbb{R}$-en, és legyen
@@ -1119,6 +1363,10 @@ $f$ páros: $f(-x) = f(x)$; $g$ páratlan: $g(-x) = -g(x)$.
 
 **c) $f$, $g$ páratlan:** $f \pm g$ **páratlan**, $f \cdot g$ **páros** ($(-f)(-g) = fg$), $f \circ g$ **páratlan**: $f(g(-x)) = f(-g(x)) = -f(g(x))$.
 
+::: elmelet
+**Elméleti háttér — paritás és műveletek.** A paritás a $-x$ behelyettesítésére adott válasz: páros $f(-x) = f(x)$, páratlan $f(-x) = -f(x)$. Szorzatnál a paritások úgy viselkednek, mint az előjelek szorzása (páros $\cdot$ páratlan = páratlan); kompozíciónál, ha a belső függvény páratlan, a külső „dönt” ($f(g(-x)) = f(-g(x))$), ha páros, az eredmény mindig páros. Összegnél vegyes paritás esetén csak triviális esetben marad paritás.
+:::
+
 ## 74. feladat
 
 a) Konstruáljunk olyan $f : \mathbb{R} \to \mathbb{R}$ függvényt, mely se nem páros, se nem páratlan.
@@ -1136,6 +1384,10 @@ b) Ha $f$ páros és páratlan, akkor $f(x) = f(-x) = -f(x)$, tehát $f(x) = 0$ 
 c) Legyen
 $$p(x) = \frac{f(x) + f(-x)}{2}, \qquad q(x) = \frac{f(x) - f(-x)}{2}.$$
 Ekkor $p(-x) = p(x)$, $q(-x) = -q(x)$, és $p + q = f$. (A felbontás egyértelmű: ha $f = p + q = p' + q'$, akkor $p - p' = q' - q$ páros és páratlan, tehát a b) szerint $0$.)
+
+::: elmelet
+**Elméleti háttér — páros–páratlan felbontás.** Minden függvény egyértelműen felbomlik páros és páratlan részre: $f(x) = \frac{f(x) + f(-x)}{2} + \frac{f(x) - f(-x)}{2}$. Az egyértelműség abból jön, hogy az egyetlen egyszerre páros és páratlan függvény az azonosan nulla. (Lineáris algebrai nyelven: a függvénytér a páros és a páratlan függvények alterének **direkt összege**.)
+:::
 
 ## 75*. feladat
 
@@ -1158,6 +1410,10 @@ b) **Igen**, ugyanígy, csak $(z_j)$ helyett olyan $(r_j)$ racionális sorozatta
 c) **Igen.** Tekintsük az $x \sim y \iff x - y \in \mathbb{Q}$ ekvivalenciarelációt. Minden osztály $x + \mathbb{Q}$ alakú, tehát sűrű: minden $(a, b)$ intervallum minden osztályt metsz. Az osztályok száma kontinuum (minden osztály megszámlálható, és $\mathbb{R}$ ezek uniója), így van egy $\Phi$ bijekció az osztályok halmazáról $\mathbb{R}$-re (ehhez a kiválasztási axiómát használjuk). Legyen $f(x) = \Phi(x + \mathbb{Q})$. Bármely $(a, b)$ és $c \in \mathbb{R}$ esetén a $\Phi^{-1}(c)$ osztálynak van pontja $(a, b)$-ben, ott $f = c$.
 
 (Kiválasztási axióma nélkül is konstruálható ilyen függvény, pl. Conway 13-as számrendszerre épülő függvénye.)
+
+::: elmelet
+**Elméleti háttér — „mindenütt sűrűn” felvett értékek.** A konstrukció kulcsa egy olyan **sűrű** halmazrendszer, amelynek tagjai minden intervallumba belenyúlnak, és megszámlálható (a), b)) vagy kontinuum sok (c)) van belőlük. a)–b): a pontosan $q$ nevezőjű törtek elég nagy prím $q$-ra minden intervallumban előfordulnak, és egy minden értéket végtelen sokszor felsoroló sorozat osztja ki az értékeket. c): az $x - y \in \mathbb Q$ reláció osztályai ($x + \mathbb Q$) mind sűrűek, és kontinuum sok van belőlük; egy bijekció az osztályok és $\mathbb R$ között (kiválasztási axióma) adja a függvényt.
+:::
 
 ## Röpzhra
 
@@ -1183,6 +1439,10 @@ nem konstans, és minden $q \in \mathbb{Q}$ periódusa: $x + q \in \mathbb{Q} \i
 
 **Minden irracionális szám szerint periodikus: csak a konstans függvény.** Legyen $x, y \in \mathbb{R}$ tetszőleges, $d = y - x$. Ha $d$ irracionális, akkor $f(y) = f(x + d) = f(x)$. Ha $d$ racionális, írjuk $d = \sqrt2 + (d - \sqrt2)$ alakba, ahol mindkét tag irracionális; így $f(y) = f(x + \sqrt2 + (d - \sqrt2)) = f(x + \sqrt2) = f(x)$. (Negatív periódus $p$ esetén $f(x + p) = f(x)$ abból következik, hogy $-p$ periódus, és $f(x) = f((x + p) + (-p))$.) Tehát $f$ konstans.
 
+::: elmelet
+**Elméleti háttér — periódusok csoportja.** Egy függvény periódusainak halmaza zárt az összeadásra és az ellentettképzésre (ha $p, r$ periódusok, akkor $p + r$ és $-p$ is). Ha tehát minden irracionális szám periódus, akkor az irracionálisak által generált halmaz is az: minden valós szám előáll két irracionális összegeként, így minden szám periódus, és a függvény konstans. A racionális számok viszont csak egy valódi részcsoportot generálnak ($\mathbb Q$), ezért ott van nem konstans példa (Dirichlet-függvény).
+:::
+
 ## 77. feladat
 
 Létezik-e $f : \mathbb{R} \to \mathbb{R}$ függvény, melynek minden pontban szigorú lokális maximuma van?
@@ -1192,6 +1452,10 @@ Létezik-e $f : \mathbb{R} \to \mathbb{R}$ függvény, melynek minden pontban sz
 **Nem létezik.** Megmutatjuk, hogy bármely $f : \mathbb{R} \to \mathbb{R}$ szigorú lokális maximumhelyeinek halmaza megszámlálható; $\mathbb{R}$ viszont nem az.
 
 Ha $x$ szigorú lokális maximumhely, akkor van olyan $(p_x, q_x)$ intervallum racionális végpontokkal, hogy $x \in (p_x, q_x)$, és minden $y \in (p_x, q_x)$, $y \neq x$ esetén $f(y) < f(x)$. Az $x \mapsto (p_x, q_x) \in \mathbb{Q}^2$ hozzárendelés injektív: ha $x \neq x'$-hez ugyanaz az intervallum tartozna, akkor mindkettő benne lenne, így $f(x') < f(x)$ és $f(x) < f(x')$ is teljesülne – ellentmondás. Mivel $\mathbb{Q}^2$ megszámlálható, a szigorú lokális maximumhelyek is legfeljebb megszámlálhatóan sokan vannak. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — megszámlálhatósági érv racionális környezetekkel.** Minden pont környezetei közül választhatunk racionális végpontú intervallumot, és ilyen intervallumból csak **megszámlálhatóan** sok van ($\mathbb Q^2$). Ha a tulajdonság (szigorú lokális maximum) miatt két különböző ponthoz nem tartozhat ugyanaz az intervallum, akkor a pontok halmaza injektíven képződik $\mathbb Q^2$-be, így megszámlálható. Mivel $\mathbb R$ nem megszámlálható, nem lehet minden pont ilyen.
+:::
 
 ## 78. feladat
 
@@ -1206,6 +1470,10 @@ függvény szigorúan monoton nő.
 $f(x) = x^k$ esetén ($k \ge 2$ egész) az $x^k - a^k = (x - a)(x^{k-1} + x^{k-2}a + \dots + a^{k-1})$ azonosság szerint
 $$m_a(x) = \sum_{j=0}^{k-1} x^j a^{k-1-j}.$$
 Ha $a \ge 0$, ez $x$-nek nemnegatív együtthatós polinomja, amelyben az $x^{k-1}$ tag együtthatója $1$; $[0, \infty)$-en minden tag monoton nő, az $x^{k-1}$ tag pedig ($k - 1 \ge 1$ miatt) szigorúan. Tehát $m_a$ szigorúan monoton nő $[0, \infty) \setminus \{a\}$-n, és így $x^k$ szigorúan konvex $[0, \infty)$-ben. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — konvexitás és a különbségi hányados.** $f$ pontosan akkor (szigorúan) konvex $I$-n, ha minden $a \in I$-re a húrok meredeksége, $m_a(x) = \frac{f(x) - f(a)}{x - a}$, (szigorúan) monoton nő. Szemléletesen: konvex függvény grafikonján a húrok egyre meredekebbek. Polinomoknál az $x^k - a^k = (x - a)\sum_j x^ja^{k-1-j}$ azonosság a meredekséget explicit polinommá alakítja, aminek a monotonitása közvetlenül látszik.
+:::
 
 ## 79. feladat
 
@@ -1224,6 +1492,10 @@ $$y = \frac{p_1 x_1 + \dots + p_n x_n}{s}.$$
 Ez az $x_1, \dots, x_n$ pontok súlyozott átlaga ($\frac{p_i}{s} > 0$, összegük 1), így $\min x_i \le y \le \max x_i$, tehát $y \in I$. Ekkor $p_1 x_1 + \dots + p_{n+1}x_{n+1} = s\,y + p_{n+1}x_{n+1}$, és a két tagú Jensen-egyenlőtlenség, majd az indukciós feltevés (a $\frac{p_i}{s}$ súlyokkal) szerint
 $$f\Big(\sum_{i=1}^{n+1} p_i x_i\Big) \le s\,f(y) + p_{n+1}f(x_{n+1}) \le s\sum_{i=1}^{n}\frac{p_i}{s}f(x_i) + p_{n+1}f(x_{n+1}) = \sum_{i=1}^{n+1}p_i f(x_i). \qquad \blacksquare$$
 
+::: elmelet
+**Elméleti háttér — Jensen-egyenlőtlenség indukcióval.** A több tagú Jensen-egyenlőtlenséget úgy vezetjük vissza a két tagúra, hogy az első $n$ pont súlyozott átlagát egyetlen pontnak tekintjük (súlya $s = p_1 + \dots + p_n$), és a súlyokat **újranormáljuk** ($\frac{p_i}{s}$, összegük $1$). Fontos lépés: a súlyozott átlag a pontok között van, tehát az intervallumban marad (az intervallum konvex halmaz).
+:::
+
 ## 80. feladat
 
 Bizonyítsuk be, hogy ha $a_1, \dots, a_n \ge 0$ és $k > 1$ egész, akkor
@@ -1234,6 +1506,10 @@ $$\frac{a_1 + \dots + a_n}{n} \le \sqrt[k]{\frac{a_1^k + \dots + a_n^k}{n}}.$$
 A 78. feladat szerint $f(x) = x^k$ konvex $[0, \infty)$-ben. A Jensen-egyenlőtlenség a $p_i = \frac1n$ súlyokkal:
 $$\left(\frac{a_1 + \dots + a_n}{n}\right)^k \le \frac{a_1^k + \dots + a_n^k}{n}.$$
 Mindkét oldal nemnegatív, és a $t \mapsto \sqrt[k]{t}$ függvény monoton nő, így $k$-adik gyököt vonva kapjuk az állítást. $\blacksquare$ (Egyenlőség pontosan akkor, ha $a_1 = \dots = a_n$, a szigorú konvexitás miatt.)
+
+::: elmelet
+**Elméleti háttér — közepek a Jensen-egyenlőtlenségből.** Konvex $f$-re $f(\text{átlag}) \le \text{átlag}(f)$. Az $f(x) = x^k$ választással a számtani és a $k$-adik hatványközép közötti egyenlőtlenséget kapjuk (a négyzetes közép a $k = 2$ eset). A monoton $\sqrt[k]{\cdot}$ függvény alkalmazása megtartja az egyenlőtlenséget. Szigorú konvexitásnál egyenlőség csak egyenlő számokra áll.
+:::
 
 ## 81. feladat
 
@@ -1248,6 +1524,10 @@ $$f(c) = \lambda f(a) + (1 - \lambda) f(b)$$
 **Állítás:** $f = L$ az egész $[a, b]$-n. Tegyük fel, hogy valamely $x \in (a, c)$-re $f(x) < L(x)$. Ekkor $c$ az $x$ és $b$ között van: $c = \mu x + (1 - \mu) b$ valamely $\mu \in (0, 1)$-re, és
 $$f(c) \le \mu f(x) + (1 - \mu) f(b) < \mu L(x) + (1 - \mu) L(b) = L(c),$$
 hiszen $L$ lineáris. Ez ellentmond $f(c) = L(c)$-nek. Ugyanígy $x \in (c, b)$-re (ekkor $c$ az $a$ és $x$ között van). Tehát $f$ lineáris az $[a, b]$ részintervallumon. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — konvex függvény és húrjai.** Konvex függvény grafikonja a húrjai alatt (vagy rajtuk) halad. Ha egy belső pontban a grafikon **rajta van** a húron, akkor a teljes intervallumon rajta kell lennie: különben egy rövidebb húr (amely egy alacsonyabb ponthoz megy) a középső pontot a húr alá kényszerítené. A konvexitás definícióját tehát kis, ügyesen választott háromszögekre alkalmazzuk.
+:::
 
 ## 82. feladat
 
@@ -1266,6 +1546,10 @@ a) $f(x) = \sqrt x$: $m_a(x) = \dfrac{\sqrt x - \sqrt a}{x - a} = \dfrac{1}{\sqr
 b) $f(x) = \sqrt[k]{x}$: legyen $u = \sqrt[k]{x}$, $v = \sqrt[k]{a}$; ekkor $x - a = u^k - v^k$, és
 $$m_a(x) = \frac{u - v}{u^k - v^k} = \frac{1}{u^{k-1} + u^{k-2}v + \dots + v^{k-1}}.$$
 A nevező pozitív (nem lehet $u = v = 0$, mert $x \ne a$), és $u$-ban – így $x$-ben – szigorúan nő, tehát $m_a$ szigorúan fogy: $\sqrt[k]{x}$ szigorúan konkáv. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — konkávitás a különbségi hányadossal.** $f$ (szigorúan) konkáv $\iff$ $-f$ (szigorúan) konvex $\iff$ minden $a$-ra $m_a$ (szigorúan) fogy. Gyökfüggvényeknél a meredekség gyöktelenítéssel (illetve az $u^k - v^k$ szorzattá bontással) $\frac{1}{\text{növő pozitív kifejezés}}$ alakra hozható, ami szigorúan fogy.
+:::
 
 ## 83. feladat
 
@@ -1289,6 +1573,10 @@ e) $0 \le \{1/x\} < 1$ miatt $|x\{1/x\} - 0| \le |x|$. **A határérték $0$, $\
 
 f) $x[1/x] = x\left(\frac1x - \{1/x\}\right) = 1 - x\{1/x\}$, így $|x[1/x] - 1| \le |x|$. **A határérték $1$, $\delta_\varepsilon = \varepsilon$.**
 
+::: elmelet
+**Elméleti háttér — függvényhatárérték $\varepsilon$–$\delta$ definícióval.** $\lim_{x \to a} f(x) = b$, ha $\forall \varepsilon > 0\ \exists \delta > 0: 0 < |x - a| < \delta,\ x \in D(f) \Rightarrow |f(x) - b| < \varepsilon$. A szokásos technika: $|f(x) - b|$-ből kiemeljük az $|x - a|$ tényezőt, a maradékot $a$ egy rögzített környezetében (pl. $|x - a| < 1$) **korlátozzuk**, és $\delta = \min\{\text{a rögzített sugár}, \varepsilon/\text{korlát}\}$. Hányadosnál a nevezőt kell alulról becsülni, hogy ne lehessen közel $0$-hoz.
+:::
+
 ## 84. feladat
 
 Mutassuk meg, hogy $\lim\limits_{x \to a} f(x) = b$ acsa, ha $\lim\limits_{x \to a-0} f(x) = \lim\limits_{x \to a+0} f(x) = b$.
@@ -1300,6 +1588,10 @@ Mutassuk meg, hogy $\lim\limits_{x \to a} f(x) = b$ acsa, ha $\lim\limits_{x \to
 ($\Leftarrow$) Adott $\varepsilon$-hoz a bal oldali határérték ad $\delta_1$-et ($a - \delta_1 < x < a \Rightarrow |f(x) - b| < \varepsilon$), a jobb oldali $\delta_2$-t. $\delta = \min\{\delta_1, \delta_2\}$ esetén $0 < |x - a| < \delta$-ból $|f(x) - b| < \varepsilon$. $\blacksquare$
 
 (Feltettük, hogy $a$ mindkét oldalról torlódási pontja $D(f)$-nek; ha csak az egyik oldalról, akkor a határérték az ottani egyoldali határértékkel egyezik meg.)
+
+::: elmelet
+**Elméleti háttér — egyoldali határértékek.** A kétoldali határérték pontosan akkor létezik, ha mindkét egyoldali létezik és egyenlő. A bizonyítás a definíciók összevetése: a pontozott környezet a bal és a jobb félkörnyezet uniója, és két $\delta$ közül a **kisebbik** mindkét oldalon jó. (A $\min$-trükk az „és” kapcsolat szokásos kezelése a definíciókban.)
+:::
 
 ## 85. feladat
 
@@ -1315,6 +1607,10 @@ $a$ torlódási pontja $H$-nak, ha minden pontozott környezete tartalmaz $H$-be
 - $\mathbb{Q}$: minden valós szám torlódási pont ($\mathbb{Q}$ sűrű), azaz a halmaz $\mathbb{R}$.
 - $\{\frac1n : n \in \mathbb{N}\}$: egyetlen torlódási pont a $0$ (bármely más pontnak van olyan környezete, amelyben legfeljebb egy eleme van a halmaznak).
 
+::: elmelet
+**Elméleti háttér — torlódási pont.** $a$ torlódási pontja $H$-nak, ha minden pontozott környezete tartalmaz $H$-beli pontot (ekvivalensen: van $H$-beli, $a$-tól különböző pontokból álló, $a$-hoz tartó sorozat). Nem kell $H$-beli elemnek lennie, és $H$ elemei közül sem mindegyik torlódási pont (izolált pontok). A sűrű halmazok ($\mathbb Q$) torlódási pontjai az egész $\mathbb R$.
+:::
+
 ## 86. feladat
 
 Mutassuk meg, hogy ha $\lim\limits_{x \to a} f(x) = b < c = \lim\limits_{x \to a} g(x)$, akkor létezik az $a$-nak olyan $\dot{U}$ pontozott környezete, hogy minden $x \in \dot{U}$-ra $f(x) < g(x)$.
@@ -1323,6 +1619,10 @@ Mutassuk meg, hogy ha $\lim\limits_{x \to a} f(x) = b < c = \lim\limits_{x \to a
 
 Legyen $\varepsilon = \frac{c - b}{2} > 0$. A határértékek definíciója szerint van $\delta_1$, hogy $0 < |x - a| < \delta_1$ esetén $f(x) < b + \varepsilon = \frac{b + c}{2}$, és van $\delta_2$, hogy $0 < |x - a| < \delta_2$ esetén $g(x) > c - \varepsilon = \frac{b + c}{2}$. Legyen $\delta = \min\{\delta_1, \delta_2\}$ és $\dot U = (a - \delta, a + \delta) \setminus \{a\}$. Ekkor minden $x \in \dot U$-ra
 $$f(x) < \frac{b + c}{2} < g(x). \qquad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — határérték és egyenlőtlenség.** Ha két függvény határértéke különbözik, akkor a pont egy pontozott környezetében a függvények „elválnak”: $\varepsilon = \frac{c - b}{2}$ választással a két határérték köré rajzolt környezetek diszjunktak, és mindkét függvény a saját környezetében marad. Ez a **határérték-egyenlőtlenség (előjeltartás)** elve, ami sorozatokra is ugyanígy igaz.
+:::
 
 ## 87. feladat
 
@@ -1344,6 +1644,10 @@ Legyen $R(x)$ a Riemann-függvény, azaz $R(0) = 1$, $R(p/q) = 1/q$, ha $x = p/q
 $$\lim_{x \to 0} R(x) = 0, \qquad \lim_{x \to \sqrt2} R(x) = 0.$$
 
 $\operatorname{sgn}^2(R(x)) = 1$, ha $x \in \mathbb{Q}$, és $0$, ha $x \notin \mathbb{Q}$ – ez a Dirichlet-függvény. **$\lim_{x \to 0} \operatorname{sgn}^2(R(x))$ nem létezik**, mert $0$ minden pontozott környezetében felveszi a $0$ és az $1$ értéket is.
+
+::: elmelet
+**Elméleti háttér — a Riemann-függvény.** A kulcs-megfigyelés: egy korlátos intervallumban **csak véges sok** legfeljebb $N$ nevezőjű racionális szám van. Ezért minden pont egy elég kicsi pontozott környezetében $R$ értéke tetszőlegesen kicsi, azaz $\lim_{x\to a} R(x) = 0$ mindenhol — és $R$ pontosan az irracionális pontokban folytonos. A Dirichlet-függvénynek viszont sehol nincs határértéke, mert minden környezetben felveszi a $0$-t és az $1$-et is (a racionálisak és irracionálisak is sűrűek).
+:::
 
 ## Röpzhra
 
@@ -1374,6 +1678,10 @@ $$\forall P \in \mathbb{R}\ \exists K \in \mathbb{R}\ \forall x \in D(f),\ x < K
 
 (Környezetekkel egységesen: $\lim_{x \to \alpha} f(x) = \beta$, ha $\beta$ minden $V$ környezetéhez van $\alpha$-nak olyan $\dot U$ pontozott környezete, hogy $f(\dot U \cap D(f)) \subseteq V$; itt $-\infty$ környezetei a $(-\infty, K)$ félegyenesek, a bal oldali határértéknél pedig $\dot U$ helyett $(a - \delta, a)$ áll.)
 
+::: elmelet
+**Elméleti háttér — az egységes környezetes definíció.** Minden határérték-fogalom ugyanarra a sémára épül: $\lim_{x\to\alpha} f(x) = \beta$, ha $\beta$ **minden** $V$ környezetéhez van $\alpha$-nak olyan $\dot U$ pontozott környezete, hogy $f(\dot U \cap D(f)) \subseteq V$. Csak a környezetek alakja változik: véges pontnál $(a - \delta, a + \delta)$ (egyoldalinál a fele), $+\infty$-nél $(K, \infty)$, $-\infty$-nél $(-\infty, K)$. Feltétel, hogy $\alpha$ a $D(f)$ torlódási pontja legyen (különben a definíció üresen teljesülne).
+:::
+
 ## 89. feladat
 
 Mondjuk ki $\lim\limits_{x \to a} f(x) = +\infty$ tagadását!
@@ -1385,6 +1693,10 @@ $$\forall P \in \mathbb{R}\ \exists \delta > 0\ \forall x \in D(f),\ 0 < |x - a|
 Tagadása:
 $$\exists P \in \mathbb{R}\ \forall \delta > 0\ \exists x \in D(f),\ 0 < |x - a| < \delta:\ f(x) \le P.$$
 Szavakban: van olyan $P$ korlát, hogy $a$ bármely pontozott környezetében van olyan $x \in D(f)$, ahol $f(x) \le P$. (Átviteli elvvel: van olyan $x_n \in D(f) \setminus \{a\}$, $x_n \to a$ sorozat, amelyre $f(x_n) \not\to +\infty$; sőt, olyan is, amelyre $f(x_n) \le P$ minden $n$-re.)
+
+::: elmelet
+**Elméleti háttér — tagadás és átviteli elv.** A tagadás a kvantorok cseréjével készül. Az **átviteli elv** szerint $\lim_{x\to a} f(x) = \beta$ pontosan akkor, ha minden $x_n \to a$, $x_n \in D(f) \setminus \{a\}$ sorozatra $f(x_n) \to \beta$; így a tagadás egyetlen „rossz” sorozattal is igazolható. A tagadásban a $\forall \delta\ \exists x$ rész sorozatot ad: $\delta = \frac1n$-hez választott $x_n$-ek.
+:::
 
 ## 90. feladat
 
@@ -1403,6 +1715,10 @@ $$\frac{x^{-3} + 6x^{-2} + 7x^{-10}}{1 + 8x^{-10}} \xrightarrow{x \to \infty} \f
 c) $x > 0$-ra $\sqrt{1 + x^2} = x\sqrt{1/x^2 + 1}$, így
 $$\frac{x}{\sqrt{1 + x^2}} = \frac{1}{\sqrt{1/x^2 + 1}} \xrightarrow{x \to \infty} \mathbf{1}.$$
 
+::: elmelet
+**Elméleti háttér — racionális függvények határértéke.** $x \to 0$ esetén a „$\frac00$” alakot **egyszerűsítéssel** oldjuk fel: a számlálót kifejtjük (binomiális tétel), és kiemeljük a legkisebb kitevőjű $x$-hatványt. $x \to \infty$ esetén **a nevező legmagasabb fokú tagjával** osztunk: a fokszámok összevetése dönt (számláló foka kisebb: $0$; egyenlő: főegyütthatók hányadosa; nagyobb: $\pm\infty$). Gyökös kifejezésnél az $x > 0$ feltétel mellett $\sqrt{x^2} = x$.
+:::
+
 ## 91. feladat
 
 Bizonyítsuk be, hogy ha egy korlátos $H$ halmaznak csak egyetlen torlódási pontja van, akkor $H$ megszámlálható, és van olyan $(x_n)$ sorozatba rendezése, amelyre a $\lim\limits_{n \to \infty} x_n$ határérték létezik és egyenlő $H$ torlódási pontjával.
@@ -1420,6 +1736,10 @@ $$A_n = H \setminus (h - \tfrac1n, h + \tfrac1n).$$
 
 **$x_n \to h$.** Adott $\varepsilon > 0$-hoz legyen $N > \frac1\varepsilon$. A $h$-tól legalább $\varepsilon$ távolságra levő elemek mind $A_N$-ben vannak, és $A_N$ véges. Ezek a sorozatban véges sok indexen fordulnak elő. Van tehát olyan $n_0$, hogy $n > n_0$ esetén $|x_n - h| < \varepsilon$. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — Bolzano–Weierstrass és a „gyűrűs” felbontás.** Korlátos végtelen halmaznak van torlódási pontja (Bolzano–Weierstrass). Ezért ha a torlódási pont egy környezetén **kívül** végtelen sok pont volna, ott lenne egy másik torlódási pont. Így a torlódási ponttól egyre kisebb távolságokon kívül eső pontok mindig véges halmazt alkotnak; ezeket „rétegenként” sorolva megszámlálható felsorolást kapunk, amely a torlódási ponthoz tart.
+:::
+
 ## 92. feladat
 
 Bizonyítsuk be, hogy ha $f : \mathbb{R} \to \mathbb{R}$ periodikus és $\lim\limits_{x \to \infty} f(x) = 0$, akkor $f$ azonosan $0$.
@@ -1427,6 +1747,10 @@ Bizonyítsuk be, hogy ha $f : \mathbb{R} \to \mathbb{R}$ periodikus és $\lim\li
 **Megoldás.**
 
 Legyen $p > 0$ egy periódus (ha $p$ periódus, $-p$ is az). Rögzített $x \in \mathbb{R}$-re tekintsük az $x_n = x + np$ sorozatot. Erre $x_n \to \infty$, így az átviteli elv szerint $f(x_n) \to 0$. Másrészt $f(x_n) = f(x)$ minden $n$-re, tehát a sorozat konstans, és $f(x) = \lim f(x_n) = 0$. Mivel $x$ tetszőleges volt, $f \equiv 0$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — átviteli elv végtelenben.** $\lim_{x \to \infty} f(x) = b$ esetén minden $x_n \to \infty$ sorozatra $f(x_n) \to b$. Periodikus függvénynél a periódussal léptetett $x + np$ sorozaton $f$ konstans; egy konstans sorozat határértéke maga a konstans, így az értéknek egyenlőnek kell lennie $b = 0$-val. Egy jól választott sorozat sokszor az egész függvényt „letapogatja”.
+:::
 
 ## 93. feladat
 
@@ -1437,6 +1761,10 @@ $$\lim_{x \to 1} \frac{\sqrt[359]{x} - 1}{\sqrt[5]{x} - 1} = ?$$
 Helyettesítsünk $t = \sqrt[1795]{x}$-et ($1795 = 5 \cdot 359$; elég $x > 0$-t nézni). Ekkor $\sqrt[359]{x} = t^5$ és $\sqrt[5]{x} = t^{359}$. A $x \mapsto t$ leképezés folytonos és injektív, $x \to 1$, $x \neq 1$ esetén $t \to 1$, $t \neq 1$. Így
 $$\frac{t^5 - 1}{t^{359} - 1} = \frac{1 + t + t^2 + t^3 + t^4}{1 + t + \dots + t^{358}} \xrightarrow{t \to 1} \frac{5}{359}.$$
 **A határérték $\dfrac{5}{359}$.**
+
+::: elmelet
+**Elméleti háttér — helyettesítés határértékben.** Ha $t = \varphi(x)$ folytonos és injektív, és $x \to a$ esetén $t \to b$ úgy, hogy $t \ne b$, akkor $\lim_{x\to a} g(\varphi(x)) = \lim_{t \to b} g(t)$ (összetett függvény határértéke). A közös gyökkitevő ($\operatorname{lkkt}$) választásával a gyökök egész hatványokká válnak, és a $\frac{t^m - 1}{t^k - 1}$ tört a $t^n - 1 = (t - 1)(1 + t + \dots + t^{n-1})$ azonossággal egyszerűsíthető.
+:::
 
 ## 94. feladat
 
@@ -1461,6 +1789,10 @@ c) **$g$ folytonos $\mathbb{R} \setminus \{1/k : k \in \mathbb{Z} \setminus \{0\
 - **Ha $x_0 \neq 0$ és $1/x_0 \notin \mathbb{Z}$:** $1/x$ folytonos $x_0$-ban, és $1/x_0$ két egész szám közé esik. Így $x_0$ egy környezetében $[1/x]$ konstans, mondjuk $c$, és ott $g(x) = cx^2$ folytonos.
 - **Ha $x_0 = 1/k$, $k \in \mathbb{Z} \setminus \{0\}$:** ha $x$ úgy tart $x_0$-hoz, hogy $1/x$ fölülről tart $k$-hoz, akkor $[1/x] = k$ és $g(x) \to k \cdot \frac{1}{k^2} = \frac1k$. Ha alulról, akkor $[1/x] = k - 1$ és $g(x) \to \frac{k - 1}{k^2}$. A két egyoldali határérték különbözik, így $g$ nem folytonos $x_0$-ban. (Ugyanez $k < 0$-ra is így megy.)
 
+::: elmelet
+**Elméleti háttér — folytonosság és határérték.** $f$ folytonos $a$-ban $\iff$ $\lim_{x\to a} f(x) = f(a)$ (izolált pontban mindig folytonos). Sehol sem azonos képlettel megadott függvényeknél ($\mathbb Q$ / irracionális) a racionális és az irracionális sorozatok mentén vett határértékeket hasonlítjuk össze (**átviteli elv**): csak ott lehet folytonos, ahol a két képlet értéke egyezik. Egészrészes függvénynél a szakadások ott vannak, ahol a belső kifejezés egész értéket vesz fel; máshol a $[\cdot]$ lokálisan konstans.
+:::
+
 ## 95. feladat
 
 Bizonyítsuk be, hogy ha $R(x)$ a Riemann függvény, akkor a $\lim\limits_{x \to 0} \dfrac{R(x)}{x}$ határérték nem létezik.
@@ -1470,6 +1802,10 @@ Bizonyítsuk be, hogy ha $R(x)$ a Riemann függvény, akkor a $\lim\limits_{x \t
 Átviteli elvvel. Az $x_n = \frac1n \to 0$ sorozatra $R(x_n) = \frac1n$, így $\frac{R(x_n)}{x_n} = 1 \to 1$. Az $y_n = \frac{\sqrt2}{n} \to 0$ irracionális sorozatra $R(y_n) = 0$, így $\frac{R(y_n)}{y_n} = 0 \to 0$. Két $0$-hoz tartó (a $0$-t nem felvevő) sorozat mentén különböző a határérték, ezért $\lim_{x \to 0} \frac{R(x)}{x}$ nem létezik. $\blacksquare$
 
 (Sőt, $x_n = \frac{1}{n}$ helyett $x_n = -\frac1n$-nel $-1$-et kapunk, tehát egyoldali határértékek sincsenek.)
+
+::: elmelet
+**Elméleti háttér — nemlétezés átviteli elvvel.** A határérték nem létezik, ha van két, a pont felé tartó (a pontot fel nem vevő) sorozat, amely mentén a függvényértékek különböző határértékhez tartanak. Racionális és irracionális sorozatok szembeállítása a Riemann- és Dirichlet-típusú függvényeknél a természetes választás.
+:::
 
 ## 96. feladat
 
@@ -1486,6 +1822,10 @@ Ha $|x - 2| < \frac12$, akkor $|x - 1| > \frac12$, így a kifejezés $< 4|x - 2|
 b) $f(1) = \frac12$, és $x \ge 0$-ra
 $$\left|\frac{1}{\sqrt x + 1} - \frac12\right| = \frac{|1 - \sqrt x|}{2(\sqrt x + 1)} = \frac{|1 - x|}{2(\sqrt x + 1)^2} \le \frac{|x - 1|}{2}.$$
 **$\delta_\varepsilon = 2\varepsilon$** (minden $x \in D(f) = [0, \infty)$, $|x - 1| < 2\varepsilon$ esetén $|f(x) - \frac12| < \varepsilon$).
+
+::: elmelet
+**Elméleti háttér — folytonosság $\varepsilon$–$\delta$-val.** $f$ folytonos $a$-ban, ha $\forall \varepsilon\ \exists \delta: |x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon$. Technikája ugyanaz, mint a határértéknél: $|f(x) - f(a)| \le C\,|x - a|$ alakú becslést keresünk $a$ egy rögzített környezetében (a nevezőt alulról korlátozva), és $\delta = \min\{\text{rögzített sugár}, \varepsilon/C\}$.
+:::
 
 ## 97. feladat
 
@@ -1513,6 +1853,10 @@ c) **Mindkettő folytonos $a$-ban**, hiszen
 $$f = \frac{(f + g) + (f - g)}{2}, \qquad g = \frac{(f + g) - (f - g)}{2}$$
 folytonos függvények lineáris kombinációi.
 
+::: elmelet
+**Elméleti háttér — folytonosság és műveletek.** Folytonos függvények összege, különbsége, szorzata, hányadosa (ahol a nevező nem $0$) folytonos. Ebből **indirekt** következtetések adódnak: ha $f$ folytonos és $f + g$ is az, akkor $g = (f + g) - f$ is. Szorzatnál a $0$ érték „elnyelheti” a szakadást, ezért ott csak $f(a) \ne 0$ esetén következtethetünk (a nem nulla folytonos függvény a pont környezetében nem nulla). Nem folytonos függvények összege lehet folytonos, mert a szakadások kiolthatják egymást.
+:::
+
 ## 98. feladat
 
 Bizonyítsuk be, hogy ha $f : [a, b] \to \mathbb{R}$ szigorúan monoton növekvő függvény, akkor $R(f) = [f(a), f(b)]$ és $f^{-1}$ létezik és szigorúan monoton növekedő $R(f) = D(f^{-1})$-en.
@@ -1530,6 +1874,10 @@ Bizonyítsuk be, hogy ha $f : [a, b] \to \mathbb{R}$ szigorúan monoton növekv�
 Ha $f$ **folytonos** is (feltehetően ez a feladat szándéka), akkor a Bolzano-tétel (közbülsőérték-tétel) szerint $f$ minden $f(a)$ és $f(b)$ közötti értéket felvesz, tehát $R(f) = [f(a), f(b)]$. $\blacksquare$
 
 (Megfordítva is igaz: ha egy monoton $f$ értékkészlete intervallum, akkor $f$ folytonos. Egy szakadási helyen a monotonitás miatt ugrás van, és az ugrás kihagy egy értékintervallumot.)
+
+::: elmelet
+**Elméleti háttér — szigorúan monoton függvény inverze és a Bolzano-tétel.** Szigorú monotonitás $\Rightarrow$ injektivitás $\Rightarrow$ létezik inverz, és az inverz ugyanolyan irányban szigorúan monoton. Az értékkészlet teljes intervallum voltához viszont a **folytonosság** kell: a **Bolzano-tétel (közbülsőérték-tétel)** szerint folytonos függvény $[a, b]$-n minden $f(a)$ és $f(b)$ közötti értéket felvesz. Monoton függvénynél ez meg is fordítható: ha az értékkészlet intervallum, nincs ugrás, tehát a függvény folytonos.
+:::
 
 ## Röpzhra
 
