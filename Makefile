@@ -9,14 +9,14 @@
 #                 the root of a subject directory (X.md -> X.pdf)
 #   make clean    remove the concatenated Markdown files and the PDFs
 #
-# The page layout lives in header.tex; kiegeszites.lua turns `::: kiegeszites`
-# divs into the shaded box defined there. Override PANDOC or PDF_ENGINE to use
-# other binaries, e.g. `make PDF_ENGINE=tectonic`.
+# The page layout lives in header.tex; extension.lua turns `::: kiegeszites`
+# and `::: elmelet` divs into the shaded box defined there. Override PANDOC or
+# PDF_ENGINE to use other binaries, e.g. `make PDF_ENGINE=tectonic`.
 
 PANDOC     ?= pandoc
 PDF_ENGINE ?= xelatex
 HEADER     := header.tex
-FILTER     := kiegeszites.lua
+FILTER     := extension.lua
 
 # No -V lang: this TeX install has no Hungarian hyphenation patterns.
 PANDOC_FLAGS = \

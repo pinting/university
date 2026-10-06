@@ -22,6 +22,10 @@ A Cantor-tulajdonság: ha $I_1 \supseteq I_2 \supseteq \dots$ korlátos, zárt, 
 
 (Megjegyzés: az *egymásba skatulyázottság* is lényeges: $I_n = [n, n]$ korlátos, zárt, nemüres intervallumok, de metszetük üres.)
 
+::: elmelet
+**Elméleti háttér — egy tétel feltételeinek szükségessége.** Ha egy tétel több feltételt tartalmaz, mindegyikről úgy látjuk be, hogy nem hagyható el, hogy olyan **ellenpéldát** adunk, amelyben csak az az egy feltétel sérül, a többi teljesül, és a következtetés hamis. A Cantor-tulajdonság (egymásba skatulyázott, korlátos, zárt, nemüres intervallumok metszete nem üres) a valós számok **teljességének** egyik megfogalmazása; az ellenpéldák azt mutatják, hogy a „lyuk” a végtelenbe ($[n, \infty)$) vagy egy kihagyott végpontba ($(0, \frac1n]$) menekülhet.
+:::
+
 ## 12. feladat
 
 Bizonyítsuk be, hogy $\lg 6$ irracionális!
@@ -31,6 +35,10 @@ Bizonyítsuk be, hogy $\lg 6$ irracionális!
 $\lg 6 = \log_{10} 6 > 0$, mert $6 > 1$. Tegyük fel, hogy $\lg 6 = \frac{p}{q}$, ahol $p, q$ pozitív egészek. Ekkor $10^{p/q} = 6$, azaz
 $$10^p = 6^q \iff 2^p \cdot 5^p = 2^q \cdot 3^q.$$
 Mivel $q \ge 1$, a jobb oldal osztható 3-mal, a bal oldal viszont nem (a prímtényezős felbontás egyértelmű, és abban csak a 2 és az 5 szerepel). Ellentmondás, tehát $\lg 6$ irracionális. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — irracionalitás a számelmélet alaptételével.** Egy szám irracionalitását indirekt bizonyítjuk: feltesszük, hogy $\frac pq$ alakú, és az egyenletet egész számok közötti egyenlőséggé alakítjuk (itt hatványozással). A **számelmélet alaptétele** (a prímtényezős felbontás egyértelmű) szerint két egyenlő pozitív egész prímtényezői megegyeznek — ha az egyik oldalon szerepel egy prím (a $3$), a másikon nem, ellentmondásra jutunk.
+:::
 
 ## 13. feladat
 
@@ -45,6 +53,10 @@ $$m(B) \le m(C) \le m(A).$$
 
 Mindkét eset előfordulhat. Ha minden gyerek egyforma magas, egyenlőség áll. Szigorú egyenlőtlenségre példa: az $(i, j)$ pozícióban álló gyerek legyen 2 egység magas, ha $i + j$ páratlan, és 1 egység, ha $i + j$ páros (sakktábla-mintázat). Ekkor minden sorban a legmagasabb 2 egység, tehát $m(A) = 2$; minden oszlopban a legalacsonyabb 1 egység, tehát $m(B) = 1 < 2$. (Különböző magasságokkal is elérhető: kissé „zavarjuk meg" a magasságokat.) Ha minden magasság különböző, akkor vagy $A = B$, vagy $B$ alacsonyabb.
 
+::: elmelet
+**Elméleti háttér — minimax-egyenlőtlenség.** Bármely $m_{ij}$ táblázatra $\max_j \min_i m_{ij} \le \min_i \max_j m_{ij}$. A bizonyítás egyetlen „közvetítő” elemen keresztül megy: az $A$ sorának és $B$ oszlopának metszetében álló $C$ legfeljebb akkora, mint a sor maximuma, és legalább akkora, mint az oszlop minimuma. Ez az elv a játékelméletben és a $\sup\inf \le \inf\sup$ típusú egyenlőtlenségekben is visszatér.
+:::
+
 ## 14. feladat
 
 Ha létezik, akkor $\sup H$ egyértelmű.
@@ -55,6 +67,10 @@ A szuprémum a legkisebb felső korlát. Tegyük fel, hogy $s$ és $s'$ is szupr
 
 Ha $s < s'$ volna, akkor $s$ olyan felső korlát lenne, amely kisebb $s'$-nél, ellentmondva annak, hogy $s'$ a *legkisebb* felső korlát. Ugyanígy $s > s'$ sem lehet. Tehát $s = s'$. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — „a legkisebb” egyértelműsége.** A szuprémum a felső korlátok halmazának **legkisebb eleme**. Egy rendezett halmazban a legkisebb elem (ha létezik) egyértelmű: két legkisebb elem közül mindkettő kisebb vagy egyenlő a másiknál, így a trichotómia (és az antiszimmetria) miatt egyenlők. Ugyanez az érv mutatja a maximum, minimum, infimum egyértelműségét.
+:::
+
 ## 15. feladat
 
 Bizonyítsuk be, hogy $x^2 + \frac{1}{x^2} \ge 2$, ha $x \neq 0$.
@@ -64,6 +80,10 @@ Bizonyítsuk be, hogy $x^2 + \frac{1}{x^2} \ge 2$, ha $x \neq 0$.
 Ha $x \ne 0$, akkor
 $$x^2 + \frac{1}{x^2} - 2 = \left(x - \frac{1}{x}\right)^2 \ge 0,$$
 amiből az állítás következik. Egyenlőség pontosan akkor van, ha $x = \frac1x$, azaz $x = \pm 1$. (Ugyanez a számtani–mértani közép egyenlőtlenségből: $\frac{x^2 + 1/x^2}{2} \ge \sqrt{x^2 \cdot \frac{1}{x^2}} = 1$.)
+
+::: elmelet
+**Elméleti háttér — teljes négyzetté alakítás és a közepek közötti egyenlőtlenség.** Egy $\ge 0$ típusú egyenlőtlenséget gyakran úgy bizonyítunk, hogy a különbséget négyzetként (vagy négyzetek összegeként) írjuk fel, mert valós szám négyzete nemnegatív. Két pozitív számra ez éppen a **számtani–mértani közép** egyenlőtlenség: $\frac{u + v}{2} \ge \sqrt{uv}$, egyenlőséggel pontosan $u = v$ esetén.
+:::
 
 ## 16. feladat
 
@@ -78,6 +98,10 @@ $$\sqrt[n]{1 \cdot 2 \cdots n} \le \frac{1 + 2 + \dots + n}{n} = \frac{n(n+1)/2}
 Mindkét oldalt $n$-edik hatványra emelve: $n! \le \left(\frac{n+1}{2}\right)^n$. $\blacksquare$
 
 (Másik bizonyítás: párosítsuk a $k$ és $n + 1 - k$ tényezőket; $k(n+1-k) \le \left(\frac{n+1}{2}\right)^2$, és $(n!)^2 = \prod_{k=1}^n k(n+1-k)$.)
+
+::: elmelet
+**Elméleti háttér — a számtani–mértani közép egyenlőtlenség.** Nemnegatív $a_1, \dots, a_n$ számokra $\sqrt[n]{a_1\cdots a_n} \le \frac{a_1 + \dots + a_n}{n}$, egyenlőség pontosan akkor, ha mind egyenlők. Szorzatra (itt $n!$) felső becslést kapunk vele, ha a tényezők összegét ismerjük. A párosításos bizonyítás ugyanezt kéttagú közepekkel teszi: $k(n+1-k) \le \left(\frac{n+1}{2}\right)^2$.
+:::
 
 ## 17. feladat
 
@@ -96,6 +120,10 @@ Itt $A + B = \{a + b : a \in A,\ b \in B\}$.
 
 *Ha pl. $A$ felülről nem korlátos*, akkor $A + B$ sem: rögzített $b \in B$ és tetszőleges $K$ esetén van $a \in A$, $a > K - b$, és $a + b > K$. Ekkor mindkét oldal $+\infty$ (a bővített számegyenesen), tehát az egyenlőség ebben az értelemben is fennáll. $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — a szuprémum $\varepsilon$-os jellemzése.** $s = \sup H$ pontosan akkor, ha (1) $s$ felső korlát és (2) $\forall \varepsilon > 0\ \exists h \in H: h > s - \varepsilon$. Összegeknél a hibakorlátot **felezzük** ($\frac\varepsilon2 + \frac\varepsilon2 = \varepsilon$): ha mindkét halmazból $\frac\varepsilon2$-nél közelebbi elemet választunk, az összeg $\varepsilon$-nál közelebb lesz $s + t$-hez. Ez a „$\frac\varepsilon2$-trükk” később a határérték-tételekben is újra és újra előjön.
+:::
+
 ## 18. feladat
 
 a) Bizonyítsuk be, hogy $(1 + x)^r \le 1 + rx$, ha $r \in \mathbb{Q}$, $0 < r < 1$ és $x \ge -1$.
@@ -113,6 +141,10 @@ b) Legyen $r > 1$ racionális, $x \ge -1$.
 - Ha $1 + rx \ge 0$: legyen $y = rx \ge -1$. Az a) részt az $\frac{1}{r} \in (0, 1)$ racionális kitevővel és $y$-nal alkalmazva:
 $$(1 + y)^{1/r} \le 1 + \frac{y}{r} = 1 + x.$$
 Mindkét oldal nemnegatív, és a $t \mapsto t^r$ függvény $[0, \infty)$-en monoton nő, így $r$-edik hatványra emelve $1 + y \le (1 + x)^r$, azaz $1 + rx \le (1 + x)^r$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Bernoulli-egyenlőtlenség racionális kitevőre.** A számtani–mértani közép egyenlőtlenség **súlyozott** használata: $p$ darab $(1+x)$-et és $q - p$ darab $1$-et átlagolva épp $(1 + x)^{p/q} \le 1 + \frac pq x$ adódik. Az $r > 1$ esetet „megfordítással” kapjuk: a $t \mapsto t^r$ függvény $[0, \infty)$-en szigorúan nő, így egyenlőtlenség mindkét oldalát hatványozhatjuk, és a $\frac1r < 1$ esetre vezetjük vissza. (Egész $r \ge 1$-re ez a teljes indukcióval bizonyított Bernoulli-egyenlőtlenség.)
+:::
 
 ## 19. feladat
 
@@ -135,6 +167,10 @@ Tehát $\xi = \sup H$. $\blacksquare$
 
 (Az arkhimédészi tulajdonság nem hagyható el: nem arkhimédészi rendezett testekben a felezett intervallumok hossza nem tart 0-hoz.)
 
+::: elmelet
+**Elméleti háttér — a teljességi axióma ekvivalens alakjai.** Rendezett testben a következők ekvivalensek: (1) teljességi (szuprémum-) axióma; (2) arkhimédészi + Cantor-tulajdonság; (3) minden monoton korlátos sorozat konvergens; (4) Bolzano–Weierstrass; (5) Cauchy-kritérium + arkhimédészi tulajdonság. A (2) $\Rightarrow$ (1) irányt **intervallumfelezéssel** bizonyítjuk: a bal végpontok sosem felső korlátok, a jobb végpontok mindig azok, a Cantor-tulajdonság ad egy közös pontot, az arkhimédészi tulajdonság pedig azt, hogy az intervallumok hossza tetszőlegesen kicsi lesz — így a közös pont csak a legkisebb felső korlát lehet.
+:::
+
 ## 20. feladat
 
 Adott felszínű téglatestek közül melyiknek a legnagyobb a térfogata?
@@ -144,6 +180,10 @@ Adott felszínű téglatestek közül melyiknek a legnagyobb a térfogata?
 Legyenek az élek $a, b, c > 0$, a felszín $F = 2(ab + bc + ca)$ rögzített, a térfogat $V = abc$. A számtani–mértani közép egyenlőtlenség az $ab$, $bc$, $ca$ számokra:
 $$V^{2/3} = \sqrt[3]{ab \cdot bc \cdot ca} \le \frac{ab + bc + ca}{3} = \frac{F}{6}.$$
 Tehát $V \le \left(\frac{F}{6}\right)^{3/2}$, és egyenlőség pontosan akkor áll, ha $ab = bc = ca$, azaz $a = b = c$. **Adott felszínű téglatestek közül a kocka térfogata a legnagyobb** (élhossza $\sqrt{F/6}$).
+
+::: elmelet
+**Elméleti háttér — szélsőérték közepekkel.** A számtani–mértani közép egyenlőtlenség szélsőérték-feladatok eszköze: ha valamely mennyiségek **összege** rögzített (itt a lapterületek, $ab + bc + ca = F/2$), akkor a **szorzatuk** akkor maximális, ha mind egyenlők. Ehhez a célfüggvényt ($V = abc$) a rögzített összegű mennyiségek szorzatával kell kifejezni ($V^2 = ab \cdot bc \cdot ca$).
+:::
 
 ## 21. feladat
 
@@ -160,6 +200,10 @@ $$n! \ge \left(\frac{n}{2}\right)^{n/2} > \left(100^2\right)^{n/2} = 100^n. \qqu
 
 (Megjegyzés: a $c_n = \frac{100^n}{n!}$ sorozatra $\frac{c_{n+1}}{c_n} = \frac{100}{n+1}$, ami $n \ge 199$-re legfeljebb $\frac12$; így $c_n \to 0$, ami szintén mutatja az állítást, csak kevésbé explicit küszöbbel.)
 
+::: elmelet
+**Elméleti háttér — a faktoriális gyorsabban nő bármely exponenciálisnál.** Alsó becslés a szorzat „nagy felére”: $n! \ge \left(\frac n2\right)^{n/2}$, mert legalább $n/2$ tényező legalább $n/2$. Ez az $n$ növekedésével egyre nagyobb alapú hatvány, így bármely rögzített $a^n$-t legyőz. A hányadoskritérium-szerű érv ($\frac{c_{n+1}}{c_n} \le q < 1$ egy indextől) ugyanezt mutatja: ekkor $c_n$ egy mértani sorozattal becsülhető felülről.
+:::
+
 ## 22. feladat
 
 Keressünk olyan $N_0$ számot, hogy $\forall n > N_0$ esetén teljesüljön, hogy
@@ -173,6 +217,10 @@ a) A Bernoulli-egyenlőtlenség szerint $\left(1 + \frac1n\right)^n \ge 1 + n \c
 b) $\sqrt[n]{2} < 1{,}01 \iff 2 < 1{,}01^n$. A Bernoulli-egyenlőtlenség szerint $1{,}01^n \ge 1 + \frac{n}{100}$, ami $n > 100$ esetén $2$-nél nagyobb. Tehát **$N_0 = 100$ megfelel.**
 
 (A legjobb küszöb: $1{,}01^n > 2 \iff n > \frac{\ln 2}{\ln 1{,}01} \approx 69{,}66$, tehát $n \ge 70$-re teljesül, $N_0 = 69$. A feladat azonban csak *egy* megfelelő $N_0$-t kér.)
+
+::: elmelet
+**Elméleti háttér — Bernoulli-egyenlőtlenség küszöbkereséshez.** $(1 + h)^n \ge 1 + nh$ ($h \ge -1$, $n \in \mathbb N$) egy egyszerű, **lineáris** alsó becslés a hatványra. Küszöbindex kereséséhez nem kell a legjobb $N_0$: elég egy olyan becslés, amelyből egy megfelelő $N_0$ könnyen kiolvasható. Hasonlóan, $\sqrt[n]{a} < 1 + h \iff a < (1 + h)^n$, és a jobb oldal Bernoulli-val alulról becsülhető.
+:::
 
 ## Röpzhra
 

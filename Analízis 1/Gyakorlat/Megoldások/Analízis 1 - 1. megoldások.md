@@ -39,6 +39,10 @@ Ezt $y = x - a$-ra alkalmazva:
 $$|x - a| < \varepsilon \iff -\varepsilon < x - a < \varepsilon \iff a - \varepsilon < x < a + \varepsilon,$$
 ahol az utolsó lépésben mindhárom oldalhoz $a$-t adtunk (az egyenlőtlenség ekkor megmarad). $\blacksquare$
 
+::: elmelet
+**Elméleti háttér — abszolút érték és esetszétválasztás.** Az abszolút értéket esetekkel definiáljuk ($|x| = x$, ha $x \ge 0$; $|x| = -x$, ha $x < 0$), ezért a tulajdonságait is esetszétválasztással bizonyítjuk, a rendezési axiómák (például: egyenlőtlenség mindkét oldalához ugyanazt adva az egyenlőtlenség megmarad) felhasználásával. A c) rész a **távolság** nyelvén: $|x - a| < \varepsilon$ azt jelenti, hogy $x$ az $a$ körüli $\varepsilon$ sugarú nyílt intervallumban, a $K_\varepsilon(a) = (a - \varepsilon, a + \varepsilon)$ környezetben van — ez lesz a határérték-definíciók alapja.
+:::
+
 ## 2. feladat
 
 Legyen $a, b$ racionális, $c, d$ irracionális. Mit mondhatunk $a + b$, $a + c$, $c + d$, $ab$, $ac$ és $cd$-ről?
@@ -52,6 +56,10 @@ Legyen $a, b$ racionális, $c, d$ irracionális. Mit mondhatunk $a + b$, $a + c$
 - $cd$ **szintén lehet mindkettő**: $\sqrt{2}\cdot\sqrt{2} = 2 \in \mathbb{Q}$, míg $\sqrt{2}\cdot\sqrt{3} = \sqrt{6} \notin \mathbb{Q}$.
 
 Az utóbbi igazolása: ha $\sqrt{6} = p/q$ lenne ($p, q \in \mathbb{N}$, relatív prímek), akkor $p^2 = 6q^2$, így $2 \mid p^2$, tehát $2 \mid p$, $p = 2p'$, és $4p'^2 = 6q^2$, azaz $2p'^2 = 3q^2$. Ekkor $2 \mid 3q^2$, tehát $2 \mid q$ – ellentmondás a relatív prímséggel.
+
+::: elmelet
+**Elméleti háttér — $\mathbb{Q}$ test, indirekt bizonyítás.** A racionális számok **testet** alkotnak: zártak az összeadásra, kivonásra, szorzásra és (nem nulla számmal való) osztásra. Ezért ha egy racionális és egy irracionális szám összege (illetve nem nulla racionálissal vett szorzata) racionális volna, a művelet „visszafordításával” az irracionális számot racionálisként fejeznénk ki — ellentmondás. Két irracionális szám esetén nincs ilyen zártság (az irracionálisak nem alkotnak testet), ezért konkrét példák mutatják, hogy mindkét eset előfordulhat.
+:::
 
 ## 3. feladat
 
@@ -76,6 +84,10 @@ ahol felhasználtuk, hogy $n^2 \ge 2n + 1$, ami $(n-1)^2 \ge 2$ miatt minden $n 
 
 Mivel $n = 4$-re az egyenlőtlenség nem teljesül, a lehető legkisebb küszöb $N_0 = 5$.
 
+::: elmelet
+**Elméleti háttér — teljes indukció tetszőleges kezdőponttól.** Ha $P(N_0)$ igaz, és minden $n \ge N_0$-ra $P(n) \Rightarrow P(n+1)$, akkor $P(n)$ minden $n \ge N_0$-ra igaz. Az indukciós lépésben gyakran egy **segédegyenlőtlenség** kell (itt $n^2 \ge 2n + 1$), amely csak elég nagy $n$-re igaz — ez határozza meg, honnan indulhat az indukció. A küszöb minimalitásához egy ellenpélda kell közvetlenül alatta ($n = 4$).
+:::
+
 ## 4. feladat
 
 Bizonyítsuk be az úgynevezett *binomiális tételt*, azaz hogy
@@ -95,6 +107,10 @@ $$(a+b)^{n+1} = (a+b)\sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^k = \sum_{k=0}^{n}\binom
 A második összegben $j = k + 1$ új indexet bevezetve az $\sum_{j=1}^{n+1}\binom{n}{j-1}a^{n+1-j}b^j$ alakot kapjuk. A két összeget összevonva:
 $$(a+b)^{n+1} = a^{n+1} + \sum_{k=1}^{n}\left[\binom{n}{k} + \binom{n}{k-1}\right]a^{n+1-k}b^k + b^{n+1} = \sum_{k=0}^{n+1}\binom{n+1}{k}a^{n+1-k}b^k,$$
 a Pascal-azonosság és $\binom{n+1}{0} = \binom{n+1}{n+1} = 1$ miatt. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — indukció és indexeltolás.** A binomiális tétel indukciós bizonyításának két kulcsa: (1) a $(a+b)$-vel való szorzás két összegre bontja a kifejezést, és az egyikben az összegzési index eltolásával ($j = k+1$) azonos hatványokat gyűjtünk össze; (2) az együtthatók összeadására a **Pascal-azonosság** ($\binom nk + \binom n{k-1} = \binom{n+1}{k}$) adja a következő sor együtthatóit. Kombinatorikusan: $x^{n-k}y^k$ együtthatója annyi, ahányféleképpen az $n$ tényezőből kiválasztható az a $k$, amelyből $y$-t veszünk.
+:::
 
 ## 5. feladat
 
@@ -122,6 +138,10 @@ g) $\{x \in \mathbb{R} : x \le \sqrt{2}\}$: f.k., nem a.k., maximum $\sqrt{2}$, 
 
 h) $\{x \in \mathbb{Q} : x \le \sqrt{2}\}$: f.k. (pl. $\sqrt2$ vagy $2$ felső korlát), nem a.k., minimum nincs. **Maximum sincs:** $\sqrt{2} \notin \mathbb{Q}$, így a halmaz minden $q$ eleme $q < \sqrt{2}$, és $\mathbb{Q}$ sűrűsége miatt van $q'$ racionális szám, amelyre $q < q' < \sqrt{2}$. A szuprémum $\sqrt{2}$, de az nem eleme a halmaznak.
 
+::: elmelet
+**Elméleti háttér — korlátok, minimum, maximum.** $K$ **felső korlát**, ha $\forall x \in H: x \le K$; a **maximum** olyan felső korlát, amely eleme $H$-nak. Nemlétezést mindig úgy bizonyítunk, hogy minden elemhez mutatunk nagyobbat (illetve kisebbet) a halmazban. Két alapeszköz: az **arkhimédészi tulajdonság** (bármely valós számnál van nagyobb természetes szám, ekvivalensen $\forall \varepsilon > 0\ \exists n: \frac1n < \varepsilon$) és $\mathbb{Q}$ **sűrűsége** (bármely két valós szám között van racionális). Az utóbbi miatt nincs a $\{q \in \mathbb Q : q \le \sqrt2\}$ halmaznak maximuma.
+:::
+
 ## 6. feladat
 
 Legyen $H$ egy valós számokból álló halmaz. A $H$ halmaz milyen tulajdonságait fejezik ki az alábbi állítások?
@@ -139,6 +159,10 @@ a) Bármely valós számnál van nagyobb eleme $H$-nak: **$H$ felülről nem kor
 b) $H$ minden eleménél van nagyobb valós szám – ez **minden** $H \subset \mathbb{R}$-re igaz (pl. $y = x + 1$), tehát **semmit sem mond** $H$-ról.
 
 c) $H$ minden eleménél van nagyobb eleme $H$-nak: **$H$-nak nincs legnagyobb eleme** (maximuma). Pl. $(-\infty, 1)$ teljesíti, $(-\infty, 1]$ nem. (Ha $H \neq \emptyset$, ebből következik, hogy $H$ végtelen; az üres halmaz üresen teljesíti.)
+
+::: elmelet
+**Elméleti háttér — kvantorok sorrendje.** A kvantoros állítás jelentését az határozza meg, hogy **mi függhet mitől**: $\forall x\ \exists y$ esetén $y$ választása függhet $x$-től. Az a) rész a „felülről korlátos” definíciójának ($\exists K\ \forall y \in H: y \le K$) tagadása. A b) részben az $y$-t $\mathbb{R}$-ből választjuk, ezért mindig van ($x + 1$). A c) rész a maximum létezésének ($\exists y \in H\ \forall x \in H: x \le y$) tagadása — a kvantorok tagadáskor felcserélődnek.
+:::
 
 ## 7. feladat
 
@@ -165,6 +189,10 @@ Itt $\mathbb{N} = \{1, 2, 3, \dots\}$.
 
 **$F = -E$:** $\min F = \inf F = -1$, $\sup F = 0$, maximum nincs.
 
+::: elmelet
+**Elméleti háttér — a szuprémum jellemzése.** $s = \sup H$ pontosan akkor, ha (1) $s$ felső korlát, és (2) $\forall \varepsilon > 0\ \exists x \in H: x > s - \varepsilon$ (semmi kisebb nem felső korlát). Az infimumra ugyanez megfordítva. A szuprémum létezését nem üres, felülről korlátos halmazra a **teljességi axióma** garantálja; a maximum pontosan akkor létezik, ha $\sup H \in H$. A (2) feltétel ellenőrzéséhez általában az arkhimédészi tulajdonságot használjuk (az $\frac{1}{2^n}$, $\frac1n$ tagok tetszőlegesen kicsik lesznek).
+:::
+
 ## 8. feladat
 
 Legyen $A \cap B \neq \emptyset$. Mit tudunk mondani $\sup A$, $\sup B$ és $\sup(A \cup B)$, $\sup(A \cap B)$, illetve $\sup(A \setminus B)$ kapcsolatáról?
@@ -177,6 +205,10 @@ Legyen $A \cap B \neq \emptyset$. Mit tudunk mondani $\sup A$, $\sup B$ és $\su
 
 **$\sup(A \setminus B)$:** ha $A \setminus B \neq \emptyset$, akkor $\sup(A \setminus B) \le \sup A$, és lehet egyenlőség is, szigorú egyenlőtlenség is: $A = \{1, 2\}$, $B = \{2\}$: $\sup(A \setminus B) = 1 < 2$; $A = \{1, 3\}$, $B = \{1\}$: $\sup(A \setminus B) = 3 = \sup A$. $\sup B$-vel nincs általános összefüggés (az előző két példában egyszer kisebb, egyszer nagyobb nála). Ha $A \subset B$, akkor $A \setminus B = \emptyset$, és a szuprémum nem is értelmezett. Mindig igaz viszont, hogy $A \setminus B \ne \emptyset$ esetén $\sup A = \max\{\sup(A \setminus B), \sup(A \cap B)\}$, hiszen $A = (A \setminus B) \cup (A \cap B)$.
 
+::: elmelet
+**Elméleti háttér — a szuprémum monoton és „uniótartó”.** Ha $A \subseteq B$, akkor $B$ minden felső korlátja $A$-nak is felső korlátja, így $\sup A \le \sup B$. Unióra pontosan $\sup(A \cup B) = \max\{\sup A, \sup B\}$: a nagyobbik felső korlátja mindkét halmaznak, és ennél kisebb szám már az egyik halmaznak sem felső korlátja. Metszetre és különbségre csak egyenlőtlenség igaz, ezért ott ellenpéldák mutatják, hogy egyenlőség nem várható.
+:::
+
 ## 9*. feladat
 
 A négyzetrácspontokon egy bolha ugrál. Az origóból indul, és egyforma hosszú és egyforma irányú ugrásokat hajt végre. Minden ugrás után mi rácsaphatunk egy rácspontra. Van-e olyan stratégia, amivel biztosan le tudjuk csapni?
@@ -188,6 +220,10 @@ A négyzetrácspontokon egy bolha ugrál. Az origóból indul, és egyforma hoss
 A $\mathbb{Z}^2$ halmaz megszámlálható, tehát sorba rendezhető: $v_1, v_2, v_3, \dots$ (pl. a $\max(|a|, |b|) = 0, 1, 2, \dots$ „négyzetes héjak" szerint, mindegyik héj véges sok pontját valamilyen sorrendben). **Stratégia:** a $k$-adik ugrás után a $k \cdot v_k$ pontra csapunk le.
 
 A bolha tényleges ugrásvektora szerepel a felsorolásban, mondjuk $v = v_K$. A $K$-adik ugrás után a bolha a $K \cdot v_K$ pontban van, és mi éppen oda csapunk – tehát legkésőbb ekkor eltaláljuk.
+
+::: elmelet
+**Elméleti háttér — megszámlálhatóság.** Egy halmaz **megszámlálható**, ha elemei sorozatba rendezhetők ($\mathbb{N}$-ről vett szürjekció van rá). $\mathbb{Z}^2$ ilyen: „héjanként” sorolhatók fel az elemei, és minden héj véges. A stratégia lényege, hogy a $k$-adik lépésben a $k$-adik **lehetséges ugrásvektor hipotézisét** teszteljük: mivel a tényleges vektor valamikor sorra kerül, és akkor pont a megfelelő időpontban csapunk, biztosan eltaláljuk. Ez az ötlet (minden lehetőség véges időn belül sorra kerül) a megszámlálhatóság tipikus alkalmazása.
+:::
 
 ## 10*. feladat
 
@@ -203,6 +239,10 @@ Legyen $R_n \subseteq D_n$ azon pontok halmaza, ahová a bolha az origóból mé
 $$|R_{n+1}| \ge r + 1 - p_{n+1} \ge (n + 1 - p_0 - \dots - p_n) + 1 - p_{n+1} = n + 2 - (p_0 + \dots + p_{n+1}) \ge 1.$$
 
 **Végtelen út (König-lemma).** Nevezzünk egy biztonságosan elérhető $P$ pontot *jónak*, ha $P$-ből minden későbbi átlóra el lehet jutni biztonságos úton. Az origó jó, mert minden $R_N$ nemüres. Ha $P$ jó, akkor (legfeljebb kettő) biztonságos szomszédja közül valamelyik jó: ha egyik sem volna az, akkor mindegyik szomszédból csak egy-egy véges $N_Q$ átlóig lehetne eljutni, és $P$-ből sem lehetne $\max N_Q$-nál messzebbre jutni – ellentmondás. Így az origóból indulva lépésenként mindig jó pontra ugorva egy végtelen, mérgezett pontot elkerülő utat kapunk. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — indukció és König-lemma.** Az első rész indukciója egy **számolási invariánst** tart fenn: minden átlón legalább $1$ elérhető pont marad, mert az elérhető pontok száma lépésenként legalább eggyel nő, a mérgezettek pedig a feltétel szerint ennél lassabban gyűlnek. A második rész a **König-lemma** gondolata: egy végtelen, de minden csúcsban véges elágazású fában (itt: a biztonságos utak fája) van végtelen út, mert mindig tovább lehet lépni egy olyan csúcsba, amelynek „végtelen sok leszármazottja” van.
+:::
 
 ## Röpzhra
 

@@ -75,9 +75,10 @@
     {\endlist}%
 }
 
-% Light grey, page-breakable box for proofs that were not given in the
-% lecture. Markdown `::: kiegeszites` divs are turned into this environment by
-% kiegeszites.lua.
+% Light grey, page-breakable box. The textbooks use it for proofs that were
+% not given in the lecture (`::: kiegeszites`), the solution sheets for the
+% theory recap after each solution (`::: elmelet`); extension.lua turns both
+% Markdown divs into this environment.
 \usepackage{xcolor}
 \usepackage{framed}
 \definecolor{kiegeszitesszin}{gray}{0.91}

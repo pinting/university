@@ -14,6 +14,10 @@ természetes számot (az üres sorozathoz az $1$-et). A számelmélet alaptétel
 
 (Másik út: a $k$ hosszú sorozatok halmaza $\mathbb{Z}^k$, ami megszámlálható, és megszámlálható sok megszámlálható halmaz uniója megszámlálható.)
 
+::: elmelet
+**Elméleti háttér — megszámlálhatóság injekcióval.** Egy halmaz pontosan akkor legfeljebb megszámlálható, ha van injekciója $\mathbb N$-be. Véges sorozatok kódolására a **számelmélet alaptétele** ad injekciót: a prímtényezős felbontás egyértelmű, így a kitevőkből minden adat visszaolvasható (a $\varphi(z) \ge 1$ eltolás biztosítja, hogy a hossz is látszódjon). Alternatíva: **megszámlálható sok megszámlálható halmaz uniója megszámlálható** ($\bigcup_k \mathbb Z^k$).
+:::
+
 ## 56. feladat
 
 Határozzuk meg az alábbi sorozatok határértékét.
@@ -62,6 +66,10 @@ $$i_n = \frac{(2 + 3/n)^5 (18 + 17/n)^{15}}{(6 + 5/n)^{20}} \to \frac{2^5 \cdot 
 (q) Gyöktelenítve:
 $$q_n = \frac{n \cdot 2n}{\sqrt{n^2+n} + \sqrt{n^2-n}} = \frac{2n}{\sqrt{1 + 1/n} + \sqrt{1 - 1/n}} \ge \frac{2n}{2\sqrt2} \to +\infty.$$
 
+::: elmelet
+**Elméleti háttér — határérték és műveletek, nagyságrendek.** Ha $a_n \to a$ és $b_n \to b$ (véges), akkor $a_n \pm b_n$, $a_nb_n$, $\frac{a_n}{b_n}$ ($b \ne 0$) a megfelelő határértékhez tart, és folytonos függvényekkel (gyök, hatvány) is felcserélhető a határérték. Kritikus típusoknál ($\frac\infty\infty$, $\infty - \infty$) először átalakítunk: **a domináns taggal osztunk**, illetve **gyöktelenítünk**, utána alkalmazzuk a műveleti tételeket. $n$-edik gyöknél a domináns tag és a rendőrelv dönt ($\sqrt[n]{c} \to 1$, $\sqrt[n]n \to 1$).
+:::
+
 ## 57. feladat
 
 Adjunk példákat arra, hogy $a_n - b_n \to 0$, de $a_n/b_n$ nem tart 1-hez, illetve $a_n/b_n \to 1$, de $a_n - b_n$ nem tart 0-hoz.
@@ -70,6 +78,10 @@ Adjunk példákat arra, hogy $a_n - b_n \to 0$, de $a_n/b_n$ nem tart 1-hez, ill
 
 - $a_n - b_n \to 0$, de $a_n/b_n \not\to 1$: $a_n = \frac2n$, $b_n = \frac1n$. Ekkor $a_n - b_n = \frac1n \to 0$, de $a_n/b_n = 2$.
 - $a_n/b_n \to 1$, de $a_n - b_n \not\to 0$: $a_n = n + 1$, $b_n = n$. Ekkor $\frac{a_n}{b_n} = 1 + \frac1n \to 1$, de $a_n - b_n = 1$. (Vagy $a_n = n^2 + n$, $b_n = n^2$: a különbség $n \to \infty$.)
+
+::: elmelet
+**Elméleti háttér — abszolút és relatív közelség.** Az $a_n - b_n \to 0$ (a különbség kicsi) és az $\frac{a_n}{b_n} \to 1$ (az arány közel $1$, „aszimptotikus egyenlőség”, $a_n \sim b_n$) két különböző fogalom. Nullsorozatoknál a különbség mindig kicsi, az arány mégis bármi lehet; végtelenbe tartó sorozatoknál az arány lehet $1$, a különbség mégis nagy. Ellenpéldával cáfolunk.
+:::
 
 ## 58. feladat
 
@@ -95,6 +107,10 @@ b) A fixpontok: $x = \frac{1}{3 - x} \iff x^2 - 3x + 1 = 0 \iff x = \frac{3 \pm 
 
 Így konvergens; ha $b_n \to B \in [0, \alpha]$, akkor $B = \frac{1}{3 - B}$, tehát $B$ fixpont, és $B \le \alpha$ miatt **$B = \alpha = \frac{3 - \sqrt5}{2}$**.
 
+::: elmelet
+**Elméleti háttér — rekurzív sorozat: korlát, monotonitás, fixpont.** $a_{n+1} = g(a_n)$ esetén: (1) **invariáns intervallum** (indukcióval: ha $a_n \in I$, akkor $g(a_n) \in I$) ad korlátot; (2) ha $g$ monoton nő, a monotonitás az első két tagból öröklődik, vagy közvetlenül az $a_{n+1} - a_n$ előjeléből látszik; (3) **monoton + korlátos $\Rightarrow$ konvergens**; (4) a határérték a $g$ **fixpontja** ($A = g(A)$, ha $g$ folytonos), és a korlátok döntik el, melyik fixpontról van szó.
+:::
+
 ## 59. feladat
 
 Bizonyítsuk be, hogy $\mathbb{R} \setminus \mathbb{Q}$ nem megszámlálható, pontosabban $(\mathbb{R} \setminus \mathbb{Q}) \sim \mathbb{R}$.
@@ -106,6 +122,10 @@ Bizonyítsuk be, hogy $\mathbb{R} \setminus \mathbb{Q}$ nem megszámlálható, p
 **$(\mathbb{R} \setminus \mathbb{Q}) \sim \mathbb{R}$ („Hilbert-szálloda"):** legyen $\mathbb{Q} = \{q_1, q_2, \dots\}$ egy felsorolás, és $s_n = \sqrt2 + n$ ($n \in \mathbb{N}$) – ezek különböző irracionális számok; $S = \{s_1, s_2, \dots\}$. Definiáljuk $f : \mathbb{R} \to \mathbb{R} \setminus \mathbb{Q}$-t:
 $$f(q_n) = s_{2n}, \qquad f(s_n) = s_{2n-1}, \qquad f(x) = x \text{ egyébként}.$$
 $f$ a $\mathbb{Q} \cup S$ halmazt bijektíven képezi $S$-re (a racionálisok a páros, $S$ elemei a páratlan indexű helyekre kerülnek), a maradék $(\mathbb{R}\setminus\mathbb{Q}) \setminus S$ halmazon pedig az identitás. Tehát $f$ bijekció $\mathbb{R}$ és $\mathbb{R} \setminus \mathbb{Q}$ között. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — számosságok.** Két megszámlálható halmaz uniója megszámlálható, $\mathbb R$ viszont nem (Cantor átlós eljárása) — így az irracionálisak nem lehetnek megszámlálhatók. Az egyenlő számossághoz bijekció kell: a „**Hilbert-szálloda**” ötlete, hogy egy végtelen halmazból kiválasztott megszámlálható részhalmazba (itt $S$) „helyet csinálunk” egy további megszámlálható halmaznak ($\mathbb Q$) a páros/páratlan indexek szétválasztásával, a többi elemet pedig helyben hagyjuk.
+:::
 
 ## 60*. feladat
 
@@ -127,6 +147,10 @@ b) **Nem.** Tegyük fel, hogy minden irracionális $x$-re áll egy $(h_x, w_x)$ 
 $$\mathbb{R} \setminus \mathbb{Q} = \bigcup_{n=1}^{\infty} \left\{x \notin \mathbb{Q} : w_x \ge \tfrac1n\right\},$$
 és a bal oldal nem megszámlálható, valamelyik $H_n = \{x : w_x \ge \frac1n\}$ nem megszámlálható. Osszuk a számegyenest $\frac1n$ hosszú $[\frac{k}{n}, \frac{k+1}{n})$ intervallumokra (megszámlálható sok); valamelyikbe $H_n$ legalább két pontja esik: $x < y$, $y - x < \frac1n$. Ha $h_x \ge h_y$, akkor $y$ kalapja ($w_y \ge \frac1n > y - x$) eléri az $x$ szárát a $h_y \le h_x$ magasságban; ha $h_y > h_x$, akkor szimmetrikusan $x$ kalapja metszi $y$ szárát. Ellentmondás.
 
+::: elmelet
+**Elméleti háttér — megszámlálható kontra nem megszámlálható.** Megszámlálható halmazon **sorban egyesével** tudunk dönteni (a $q_n$-hez tartozó T méretét csak a korábbi, véges sok T-hez kell igazítani), ezért a konstrukció működik. Nem megszámlálható halmaznál a **skatulyaelv végtelen változata** dolgozik: ha egy nem megszámlálható halmazt megszámlálható sok részre bontunk, valamelyik rész nem megszámlálható (sőt végtelen); és egy ilyen részből két pont közel kerül egymáshoz, ami a T-k ütközését okozza.
+:::
+
 ## 61. feladat
 
 Bizonyítsuk be, hogy az algebrai számok halmaza megszámlálható.
@@ -138,6 +162,10 @@ $$\bigcup_{k} \{x : P_k(x) = 0\}$$
 megszámlálható sok véges halmaz uniója, így megszámlálható. Végtelen, mert tartalmazza $\mathbb{Q}$-t ($p/q$ a $qx - p$ gyöke). $\blacksquare$
 
 (Következmény: létezik transzcendens szám, sőt a valós számok „majdnem mind" transzcendensek.)
+
+::: elmelet
+**Elméleti háttér — algebrai számok.** Az egész együtthatós polinomok egy megszámlálható halmazt alkotnak (együtthatóik véges sorozatai), és egy nem nulla, $d$-edfokú polinomnak legfeljebb $d$ gyöke van. Megszámlálható sok véges halmaz uniója megszámlálható. Mivel $\mathbb R$ nem megszámlálható, **létezik transzcendens szám** — ez Cantor nem konstruktív bizonyítása.
+:::
 
 ## 62. feladat
 
@@ -151,6 +179,10 @@ A Schröder–Bernstein-tétel szerint elég kölcsönösen injektív leképezé
 - **$\mathbb{R} \to \mathcal{P}(\mathbb{N})$:** $x \mapsto \{q \in \mathbb{Q} : q < x\} \subseteq \mathbb{Q}$. Injektív, mert $x < y$ esetén a racionális számok sűrűsége miatt van $q \in \mathbb{Q}$, $x < q < y$, amely $y$ képében benne van, $x$ képében nincs. Mivel $\mathbb{Q} \sim \mathbb{N}$, ez $\mathcal{P}(\mathbb{Q}) \sim \mathcal{P}(\mathbb{N})$ révén injekció $\mathcal{P}(\mathbb{N})$-be.
 
 Tehát $\mathcal{P}(\mathbb{N}) \sim \mathbb{R}$, azaz $\mathcal{P}(\mathbb{N})$ kontinuum számosságú. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Schröder–Bernstein-tétel.** Ha van injekció $A \to B$ és $B \to A$, akkor $A \sim B$ (van bijekció). Így két injekció megadása elég a számosságok egyenlőségéhez. A $\mathcal P(\mathbb N) \to \mathbb R$ irányban a tizedes tört egyértelműsége (csak $0$, $1$ jegyek, nincs $\dots 999$ vég) adja az injektivitást, az $\mathbb R \to \mathcal P(\mathbb Q)$ irányban a **Dedekind-szelet** ötlete ($x \mapsto \{q < x\}$) és $\mathbb Q$ sűrűsége.
+:::
 
 ## Röpzhra
 
