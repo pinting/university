@@ -74,3 +74,14 @@
     {\list{}{\leftmargin=1em\rightmargin=0pt}\item\relax}%
     {\endlist}%
 }
+
+% Light grey, page-breakable box for proofs that were not given in the
+% lecture. Markdown `::: kiegeszites` divs are turned into this environment by
+% kiegeszites.lua.
+\usepackage{xcolor}
+\usepackage{framed}
+\definecolor{kiegeszitesszin}{gray}{0.91}
+\newenvironment{kiegeszites}%
+  {\def\FrameCommand{\fboxsep=6pt\colorbox{kiegeszitesszin}}%
+   \MakeFramed{\advance\hsize-\width\FrameRestore}}%
+  {\endMakeFramed}

@@ -9,12 +9,14 @@
 #                 the root of a subject directory (X.md -> X.pdf)
 #   make clean    remove the concatenated Markdown files and the PDFs
 #
-# The page layout lives in header.tex. Override PANDOC or PDF_ENGINE to use
+# The page layout lives in header.tex; kiegeszites.lua turns `::: kiegeszites`
+# divs into the shaded box defined there. Override PANDOC or PDF_ENGINE to use
 # other binaries, e.g. `make PDF_ENGINE=tectonic`.
 
 PANDOC     ?= pandoc
 PDF_ENGINE ?= xelatex
 HEADER     := header.tex
+FILTER     := kiegeszites.lua
 
 # No -V lang: this TeX install has no Hungarian hyphenation patterns.
 PANDOC_FLAGS = \
@@ -23,7 +25,7 @@ PANDOC_FLAGS = \
   -V documentclass=extarticle -V fontsize=11pt \
   -V mainfont=FreeSerif -V sansfont=FreeSans -V monofont=FreeMono \
   -V colorlinks=false \
-  -H $(HEADER)
+  -H $(HEADER) --lua-filter=$(FILTER)
 
 # Every path in this repository contains spaces, which make cannot keep apart
 # in a word list. Paths are carried around with each space encoded as "|":
@@ -67,7 +69,7 @@ endef
 # $1: Markdown source. Relative image paths resolve against the source's
 # own directory.
 define pdf_rule
-$(call esc,$(1:.md=.pdf)): $(call esc,$1) $(HEADER)
+$(call esc,$(1:.md=.pdf)): $(call esc,$1) $(HEADER) $(FILTER)
 	@echo "==> $(call dec,$(1:.md=.pdf))"
 	@$$(PANDOC) "$(call dec,$1)" -o "$(call dec,$(1:.md=.pdf))" \
 	  --resource-path="$(call dec,$(dir $1))" \
