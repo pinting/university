@@ -1,4 +1,9 @@
-% Common preamble for all device exports.
+% Preamble for the reMarkable-sized PDF exports built by the Makefile.
+%   reMarkable 1 — 1404x1872 px @ 226 dpi -> 447.29 x 596.39 bp (≈ 157 x 210 mm)
+% The page box matches the panel aspect ratio so the reader shows the page
+% full-screen with no letterboxing and no pinch-zooming.
+\usepackage[paperwidth=447.29bp,paperheight=596.39bp,%
+            top=11mm,bottom=13mm,left=11mm,right=11mm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{etoolbox}
@@ -18,12 +23,15 @@
 \newunicodechar{✓}{\ding{51}}
 \newunicodechar{✗}{\ding{55}}
 
-% Wrap long code lines instead of running off the narrow page.
-\fvset{breaklines=true,breakanywhere=true}
+% unicode-math maps \setminus to U+29F5, which Latin Modern Math lacks.
+\AtBeginDocument{\renewcommand{\setminus}{\mathbin{\backslash}}}
 
-% Table body font size, overridden per device.
-\providecommand{\deviceTableSize}{\footnotesize}
-\AtBeginEnvironment{longtable}{\deviceTableSize}
+% Wrap long code lines instead of running off the narrow page.
+\fvset{breaklines=true,breakanywhere=true,fontsize=\small}
+
+% Tables are set a step smaller than the body text, with a little extra row
+% height so that fractions in cells do not touch the neighbouring rows.
+\AtBeginEnvironment{longtable}{\footnotesize\renewcommand{\arraystretch}{1.4}}
 
 % Long derivations may break across pages; ragged bottom avoids stretched gaps.
 \allowdisplaybreaks
