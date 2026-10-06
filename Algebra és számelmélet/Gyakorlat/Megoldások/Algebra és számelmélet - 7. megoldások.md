@@ -1,0 +1,176 @@
+# Algebra és számelmélet – 7. feladatsor – megoldások
+
+## 1. feladat
+
+Számítsuk ki az alábbi determinánsokat a felső háromszög alakra hozás módszerével, azaz Gauss-eliminációval, az első sor, illetve az utolsó oszlop szerinti kifejtéssel, végül a $3 \times 3$-asokat a Sarrus-szabállyal is.
+$$\begin{vmatrix} -1 & 4 \\ 2 & 3 \end{vmatrix} \quad \begin{vmatrix} 0 & 2 & -1 \\ 4 & 1 & 3 \\ 2 & -3 & 2 \end{vmatrix} \quad \begin{vmatrix} x_1 & y_1 & z_1 \\ x_2 & y_2 & z_2 \\ x_3 & y_3 & z_3 \end{vmatrix} \quad \begin{vmatrix} 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 0 \\ 1 & 2 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{vmatrix} \quad \begin{vmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \end{vmatrix}$$
+
+**Megoldás.**
+
+**(a) $\begin{vmatrix} -1 & 4 \\ 2 & 3 \end{vmatrix} = -11$.**
+
+- *Gauss:* $S_2 \leftarrow S_2 + 2S_1$: $\begin{vmatrix} -1 & 4 \\ 0 & 11 \end{vmatrix} = (-1) \cdot 11 = -11$.
+- *Első sor szerint:* $(-1) \cdot 3 - 4 \cdot 2 = -11$.
+- *Utolsó oszlop szerint:* $4 \cdot (-1)^{1+2} \cdot 2 + 3 \cdot (-1)^{2+2} \cdot (-1) = -8 - 3 = -11$.
+
+**(b) $\begin{vmatrix} 0 & 2 & -1 \\ 4 & 1 & 3 \\ 2 & -3 & 2 \end{vmatrix} = 10$.**
+
+- *Gauss:* $S_1 \leftrightarrow S_2$ (előjelváltás), majd $S_3 \leftarrow S_3 - \frac12 S_1$, végül $S_3 \leftarrow S_3 + \frac74 S_2$:
+$$-\begin{vmatrix} 4 & 1 & 3 \\ 0 & 2 & -1 \\ 2 & -3 & 2 \end{vmatrix} = -\begin{vmatrix} 4 & 1 & 3 \\ 0 & 2 & -1 \\ 0 & -\frac72 & \frac12 \end{vmatrix} = -\begin{vmatrix} 4 & 1 & 3 \\ 0 & 2 & -1 \\ 0 & 0 & -\frac54 \end{vmatrix} = -4 \cdot 2 \cdot \left(-\tfrac54\right) = 10.$$
+- *Első sor szerint:* $0 \cdot \begin{vmatrix} 1 & 3 \\ -3 & 2 \end{vmatrix} - 2\begin{vmatrix} 4 & 3 \\ 2 & 2 \end{vmatrix} + (-1)\begin{vmatrix} 4 & 1 \\ 2 & -3 \end{vmatrix} = 0 - 2 \cdot 2 - (-14) = 10$.
+- *Utolsó oszlop szerint* (előjelek $+, -, +$): $(-1)\begin{vmatrix} 4 & 1 \\ 2 & -3 \end{vmatrix} - 3\begin{vmatrix} 0 & 2 \\ 2 & -3 \end{vmatrix} + 2\begin{vmatrix} 0 & 2 \\ 4 & 1 \end{vmatrix} = 14 + 12 - 16 = 10$.
+- *Sarrus:* $(0 \cdot 1 \cdot 2 + 2 \cdot 3 \cdot 2 + (-1) \cdot 4 \cdot (-3)) - ((-1) \cdot 1 \cdot 2 + 0 \cdot 3 \cdot (-3) + 2 \cdot 4 \cdot 2) = 24 - 14 = 10$.
+
+**(c) Az általános $3 \times 3$-as determináns.**
+
+- *Sarrus:*
+$$x_1y_2z_3 + y_1z_2x_3 + z_1x_2y_3 - z_1y_2x_3 - x_1z_2y_3 - y_1x_2z_3.$$
+- *Első sor szerint:* $x_1(y_2z_3 - z_2y_3) - y_1(x_2z_3 - z_2x_3) + z_1(x_2y_3 - y_2x_3)$. Kibontva ugyanaz a hat tag.
+- *Utolsó oszlop szerint:* $z_1(x_2y_3 - y_2x_3) - z_2(x_1y_3 - y_1x_3) + z_3(x_1y_2 - y_1x_2)$. Szintén ugyanaz.
+- *Gauss:* ha $x_1 \neq 0$, akkor $S_2 \leftarrow S_2 - \frac{x_2}{x_1}S_1$ és $S_3 \leftarrow S_3 - \frac{x_3}{x_1}S_1$ után
+$$x_1 \begin{vmatrix} y_2 - \frac{x_2}{x_1}y_1 & z_2 - \frac{x_2}{x_1}z_1 \\ y_3 - \frac{x_3}{x_1}y_1 & z_3 - \frac{x_3}{x_1}z_1 \end{vmatrix} = \frac{1}{x_1}\Big[(x_1y_2 - x_2y_1)(x_1z_3 - x_3z_1) - (x_1z_2 - x_2z_1)(x_1y_3 - x_3y_1)\Big].$$
+  Kibontva az $x_1^2$-et nem tartalmazó tagok ($x_2y_1x_3z_1$ kétszer, ellentétes előjellel) kiesnek. $x_1$-gyel osztva a fenti hattagú kifejezést kapjuk. ($x_1 = 0$ esetén először sorcserével kell nem nulla elemet a bal felső sarokba vinni.)
+
+**(d) $\begin{vmatrix} 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 0 \\ 1 & 2 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{vmatrix} = 24$.**
+
+- *Gauss:* $S_1 \leftarrow S_1 - S_2$, $S_2 \leftarrow S_2 - S_3$, $S_3 \leftarrow S_3 - S_4$, ebben a sorrendben, így mindig még változatlan sort vonunk ki. A sorok: $(0,0,0,4)$, $(0,0,3,0)$, $(0,2,0,0)$, $(1,0,0,0)$. Két sorcsere ($S_1 \leftrightarrow S_4$, $S_2 \leftrightarrow S_3$, előjel $+$) után a determináns $\operatorname{diag}(1, 2, 3, 4)$, értéke $24$.
+- *Első sor szerint:* az $M_{11}$, $M_{12}$, $M_{13}$ aldeterminánsok mind 0-k (van csupa 0 soruk vagy oszlopuk). Így a determináns
+$$-4\begin{vmatrix} 1 & 2 & 3 \\ 1 & 2 & 0 \\ 1 & 0 & 0 \end{vmatrix} = -4 \cdot (-6) = 24,$$
+  ahol a $3 \times 3$-as Sarrus-szabállyal $0 + 0 + 0 - (3 \cdot 2 \cdot 1 + 0 + 0) = -6$.
+- *Utolsó oszlop szerint:* egyetlen nem nulla elem, az $a_{14} = 4$, előjele $(-1)^{1+4} = -1$. Ugyanazt kapjuk: $-4 \cdot (-6) = 24$.
+
+**(e) $\begin{vmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \end{vmatrix} = -1$.**
+
+- *Gauss (sorcserékkel):* $S_1 \leftrightarrow S_3$, majd $S_2 \leftrightarrow S_3$, majd $S_3 \leftrightarrow S_4$ után az egységmátrixot kapjuk. Ez 3 csere, tehát a determináns $(-1)^3 = -1$.
+- *Első sor szerint:* csak $a_{12} = 1 \neq 0$, előjele $-$:
+$$-\begin{vmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{vmatrix} = -1.$$
+  A $3 \times 3$-as Sarrus-szabállyal $1 \cdot 1 \cdot 1 = 1$.
+- *Utolsó oszlop szerint:* csak $a_{24} = 1$, előjele $(-1)^{2+4} = +$:
+$$\begin{vmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{vmatrix} = -1.$$
+  Sarrusszal: egyetlen nem nulla szorzat a mellékátlós irányú $a_{12}a_{21}a_{33} = 1$, negatív előjellel.
+
+(Ez permutációmátrix: a $\begin{pmatrix} 1&2&3&4 \\ 2&4&1&3 \end{pmatrix}$ permutációé, amelynek 3 inverziója van, ezért páratlan.)
+
+## 2. feladat
+
+Számítsuk ki az alábbi determinánsokat.
+$$\begin{vmatrix} 1 & 1 & \dots & 1 \\ 1 & 2 & \dots & 2 \\ \vdots & \vdots & \ddots & \vdots \\ 1 & 2 & \dots & n \end{vmatrix} \quad \begin{vmatrix} 1 & 1 & \dots & 1 \\ y_1 & y_2 & \dots & y_n \\ \vdots & \vdots & \ddots & \vdots \\ y_1^{n-1} & y_2^{n-1} & \dots & y_n^{n-1} \end{vmatrix} \quad \begin{vmatrix} a & b & \dots & b \\ b & a & \dots & b \\ \vdots & \vdots & \ddots & \vdots \\ b & b & \dots & a \end{vmatrix} \quad \begin{vmatrix} 3 & 1 & 0 & \dots & 0 \\ 1 & 3 & 1 & \ddots & \vdots \\ 0 & 1 & 3 & \ddots & 0 \\ \vdots & \ddots & \ddots & \ddots & 1 \\ 0 & \dots & 0 & 1 & 3 \end{vmatrix}$$
+
+**Megoldás.**
+
+**(a) $\det = 1$.** Az $(i, j)$ elem $\min(i, j)$. Alulról felfelé haladva vonjuk ki minden sorból az előtte levőt: $S_i \leftarrow S_i - S_{i-1}$ ($i = n, n-1, \dots, 2$). Az $i$-edik sor $(0, \dots, 0, 1, \dots, 1)$ lesz, az első $1$ az $i$-edik helyen. Felső háromszögmátrixot kapunk csupa 1 főátlóval, így a determináns $1$.
+
+**(b) Vandermonde-determináns:**
+$$V(y_1, \dots, y_n) = \prod_{1 \le i < j \le n} (y_j - y_i).$$
+*Bizonyítás $n$ szerinti indukcióval.* $n = 1$-re $1$, ez stimmel. Alulról felfelé vonjuk ki minden sorból az előző sor $y_1$-szeresét: $S_k \leftarrow S_k - y_1 S_{k-1}$ ($k = n, \dots, 2$). Ez nem változtat a determinánson. Az első oszlop $(1, 0, \dots, 0)^T$ lesz, a $j$-edik oszlop $k$-adik eleme ($k \ge 2$) pedig $y_j^{k-1} - y_1 y_j^{k-2} = y_j^{k-2}(y_j - y_1)$. Kifejtve az első oszlop szerint, majd a $j$-edik oszlopból kiemelve $(y_j - y_1)$-et:
+$$V(y_1, \dots, y_n) = \prod_{j=2}^n (y_j - y_1) \cdot V(y_2, \dots, y_n),$$
+és ebből indukcióval adódik az állítás.
+
+**(c) $\det = (a + (n - 1)b)(a - b)^{n-1}$.**
+
+1. Adjuk az első oszlophoz az összes többit. Az első oszlop minden eleme $a + (n-1)b$ lesz; ezt kiemeljük.
+2. Az első oszlop így csupa $1$. Minden további sorból vonjuk ki az első sort.
+
+A $k$-adik sor ($k \ge 2$) $(0, \dots, 0, a - b, 0, \dots, 0)$ lesz, $a - b$ a főátlóban. A kapott háromszögmátrix determinánsa $1 \cdot (a - b)^{n-1}$.
+
+**(d) $D_n = F_{2n+2}$** (Fibonacci-számok, $F_1 = F_2 = 1$). Zárt alakban
+$$D_n = \frac{1}{\sqrt5}\left[\left(\frac{3 + \sqrt5}{2}\right)^{n+1} - \left(\frac{3 - \sqrt5}{2}\right)^{n+1}\right].$$
+Kifejtés az első sor szerint, majd a második tagban az első oszlop szerint:
+$$D_n = 3D_{n-1} - 1 \cdot 1 \cdot D_{n-2}, \qquad D_1 = 3,\ D_2 = 8\ (\text{és } D_0 = 1).$$
+Így $D_3 = 21$, $D_4 = 55$, $D_5 = 144$, … A $\lambda^2 - 3\lambda + 1 = 0$ karakterisztikus egyenlet gyökei $\lambda_{1,2} = \frac{3 \pm \sqrt5}{2}$. A kezdőértékekből $D_n = \frac{\lambda_1^{n+1} - \lambda_2^{n+1}}{\lambda_1 - \lambda_2}$, és $\lambda_1 - \lambda_2 = \sqrt5$. Mivel $\lambda_1 = \varphi^2$, $\lambda_2 = \psi^2$ ($\varphi, \psi = \frac{1 \pm \sqrt5}{2}$), a Binet-képlet szerint ez éppen $F_{2n+2}$.
+
+## 3. feladat
+
+Ha egy $B \in \mathbb{R}^{4 \times 4}$ mátrixra $\det B = 3$, akkor mennyi $\det(B + B + B)$?
+
+**Megoldás.**
+
+$B + B + B = 3B$. Egy $4 \times 4$-es mátrix minden elemét 3-mal szorozva mind a 4 sorából kiemelhetünk egy 3-ast:
+$$\det(3B) = 3^4 \det B = 81 \cdot 3 = \mathbf{243}.$$
+(Nem $3 \cdot 3 = 9$, és nem $3 \det B$!)
+
+## 4. feladat (házi feladat)
+
+Számítsuk ki az alábbi $3 \times 3$-as determináns értékét, ha tudjuk, hogy az elemei a bal felső sarokból jobbrafelé olvasva egy számtani sorozatot alkotnak:
+$$\begin{vmatrix} a & a + d & a + 2d \\ a + 3d & a + 4d & a + 5d \\ a + 6d & a + 7d & a + 8d \end{vmatrix}.$$
+
+**Megoldás.**
+
+Vonjuk ki az első sort a második és a harmadik sorból:
+$$\begin{vmatrix} a & a + d & a + 2d \\ 3d & 3d & 3d \\ 6d & 6d & 6d \end{vmatrix}.$$
+A harmadik sor a második kétszerese, tehát **a determináns $0$** (bármely $a$, $d$ esetén).
+
+## 5. feladat
+
+Egy $2026 \times 2026$-os determináns minden oszlopa számtani sorozat. Mennyi az értéke?
+
+**Megoldás.**
+
+Legyen a $j$-edik oszlop $c_j, c_j + d_j, c_j + 2d_j, \dots$. Ekkor a sorokra $S_3 - S_2 = S_2 - S_1 = (d_1, \dots, d_{2026})$, azaz
+$$S_1 - 2S_2 + S_3 = 0.$$
+A sorok lineárisan összefüggők, tehát **a determináns $0$**. (Konkrétan $S_3 \leftarrow S_3 - 2S_2 + S_1$ után csupa 0 sort kapunk. Ehhez legalább 3 sor kell; $2026 \ge 3$.)
+
+## 6. feladat
+
+Egy egész elemű determinánsban minden sorösszeg osztható 13-mal. Igazoljuk, hogy a determináns értéke is osztható 13-mal.
+
+**Megoldás.**
+
+Adjuk az utolsó oszlophoz az összes többi oszlopot; ez nem változtat a determinánson. Az utolsó oszlop $i$-edik eleme az $i$-edik sorösszeg lesz, ami $13k_i$ alakú ($k_i \in \mathbb{Z}$). Ebből az oszlopból kiemelhetjük a 13-at:
+$$\det A = 13 \cdot \det A',$$
+ahol $A'$ is egész elemű, így $\det A'$ egész (a determináns az elemek szorzatainak előjeles összege). Tehát $13 \mid \det A$. $\blacksquare$
+
+## 7. feladat
+
+Egy 3x3-as determináns egyjegyű számokból áll. Minden oszlopban a három számjegyből felülről lefelé összeolvasott háromjegyű szám osztható 11-gyel. Igazoljuk, hogy a determináns is osztható 11-gyel.
+
+**Megoldás.**
+
+Legyenek a sorok $S_1, S_2, S_3$; a $j$-edik oszlop számjegyei felülről $a_j, b_j, c_j$, és $11 \mid 100a_j + 10b_j + c_j$. Cseréljük $S_3$-at $100 S_1 + 10 S_2 + S_3$-ra. (Más sorok többszörösét adjuk hozzá, így a determináns nem változik.) Az új harmadik sor elemei éppen a $100a_j + 10b_j + c_j$ háromjegyű számok, mind oszthatók 11-gyel. Ebből a sorból kiemelve a 11-et, egész elemű determinánst kapunk, tehát $11 \mid \det$. $\blacksquare$
+
+(Ugyanez mod 11-gyel: $100 \equiv 1$, $10 \equiv -1$, így $a_j - b_j + c_j \equiv 0 \pmod{11}$. Ekkor $S_3 \leftarrow S_1 - S_2 + S_3$ után a harmadik sor minden eleme osztható 11-gyel.)
+
+## 8. feladat
+
+Hány inverzió van az alábbi permutációkban, illetve a 'hátulról előre' permutációban?
+$$\begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 3 & 1 & 4 & 2 & 8 & 5 & 7 & 6 \end{pmatrix} \quad \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 8 & 2 & 4 & 6 & 1 & 3 & 5 & 7 \end{pmatrix} \quad \begin{pmatrix} a & b & c & d & e \\ b & e & a & c & d \end{pmatrix}$$
+
+**Megoldás.**
+
+Inverzió: olyan $i < j$ pár, amelyre $\sigma(i) > \sigma(j)$. Minden elemhez megszámoljuk, hány nála kisebb áll utána.
+
+- $3\,1\,4\,2\,8\,5\,7\,6$: $3 \to 2$ ($1, 2$), $4 \to 1$, $8 \to 3$ ($5, 7, 6$), $7 \to 1$. **Összesen 7 inverzió** (páratlan).
+- $8\,2\,4\,6\,1\,3\,5\,7$: $8 \to 7$, $2 \to 1$, $4 \to 2$, $6 \to 3$. **Összesen 13 inverzió** (páratlan).
+- $\begin{pmatrix} a&b&c&d&e \\ b&e&a&c&d \end{pmatrix}$, az $a < b < c < d < e$ sorrenddel ez $2\,5\,1\,3\,4$: $2 \to 1$, $5 \to 3$. **Összesen 4 inverzió** (páros).
+- **„Hátulról előre"** ($n, n-1, \dots, 1$): bármely két elem inverzióban áll, így **$\binom n2 = \frac{n(n-1)}{2}$ inverzió**. 8 elemre $28$, 5 elemre $10$.
+
+## 9. feladat
+
+Hány inverzió lehet maximum egy 6 elemű halmaz egy páros permutációjában?
+
+**Megoldás.**
+
+6 elemű permutációban legfeljebb $\binom62 = 15$ inverzió lehet, és ez csak a „hátulról előre" permutációban teljesül. A 15 viszont páratlan. 14 inverzió elérhető: $6\,5\,4\,3\,1\,2$ (a két utolsó elem cseréje egy inverziót megszüntet). **A maximum 14.**
+
+## 10. feladat
+
+Adjuk meg a 9. feladatban szereplő és az alábbi permutációk diszjunkt ciklusfelbontását és előjelét:
+$$(135)(24)(531)(14), \qquad (1357246)(357)(1357246)^{-1}, \qquad [(12)(13)(14)]^{2026}.$$
+
+**Megoldás.**
+
+A feladatlap a „9. feladatban szereplő" permutációkat említi. Ilyenek csak a 8. feladatban vannak, nyilván azokra gondol.
+
+**A 8. feladat permutációi:**
+
+- $3\,1\,4\,2\,8\,5\,7\,6$: $1 \to 3 \to 4 \to 2 \to 1$, $5 \to 8 \to 6 \to 5$, $7$ fix. Ciklusfelbontás **$(1342)(586)$**. Előjel: a 4-ciklus páratlan, a 3-ciklus páros, tehát **páratlan ($-1$)**; ez egyezik a 7 inverzióval.
+- $8\,2\,4\,6\,1\,3\,5\,7$: $1 \to 8 \to 7 \to 5 \to 1$, $3 \to 4 \to 6 \to 3$, $2$ fix. Ciklusfelbontás **$(1875)(346)$**, **páratlan**; 13 inverzió.
+- $a \to b \to e \to d \to c \to a$: **$(abedc)$**, 5-ciklus, **páros**; 4 inverzió.
+
+(Egy $k$ hosszú ciklus előjele $(-1)^{k-1}$.)
+
+**A szorzatok.** Jobbról balra komponálunk: a jobb szélső ciklust alkalmazzuk először.
+
+- $(135)(24)(531)(14)$: $1 \xrightarrow{(14)} 4 \xrightarrow{(24)} 2$, $2 \xrightarrow{(24)} 4 \xrightarrow{(135)} 4$, $4 \xrightarrow{(14)} 1 \xrightarrow{(531)} 5 \xrightarrow{(135)} 1$. A 3 és az 5 fix. Eredmény **$(124)$**, **páros**. (Balról jobbra komponálva az inverzét, $(142)$-t kapjuk; az előjel ugyanaz.)
+- $(1357246)(357)(1357246)^{-1}$: konjugálás. $\tau\,(357)\,\tau^{-1} = (\tau(3)\ \tau(5)\ \tau(7))$, ahol $\tau = (1357246)$, és $\tau(3) = 5$, $\tau(5) = 7$, $\tau(7) = 2$. Eredmény **$(572) = (257)$**, 3-ciklus, **páros**. (Balról jobbra komponálva $(135)$ jön ki; az előjel ugyanaz.)
+- $[(12)(13)(14)]^{2026}$: $(12)(13)(14) = (1432)$, mert $1 \to 4$, $4 \to 3$, $3 \to 2$, $2 \to 1$. Ez 4-ciklus, rendje 4. $2026 = 4 \cdot 506 + 2$, így az eredmény $(1432)^2 =$ **$(13)(24)$**, **páros**. (Balról jobbra komponálva $(1234)$ a szorzat, a négyzete ugyanúgy $(13)(24)$.)

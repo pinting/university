@@ -484,3 +484,120 @@ A sík mely geometriai transzformációinak felelnek meg a komplex számok halma
 ## 24. feladat
 
 Igazoljuk, hogy egy paralelogramma oldalai hosszának négyzetösszege ugyanaz, mint az átlói hosszának négyzetösszege, és fogalmazzuk meg a megfelelő komplex azonosságot.
+
+# Algebra és számelmélet – 6. feladatsor
+
+## 1. feladat
+
+Igazoljuk a kongruencia alábbi elemi tulajdonságait:
+
+(1) $a \equiv b \pmod m$, akkor $b \equiv a \pmod m$
+
+(2) $a \equiv b \pmod m$ és $b \equiv c \pmod m$, akkor $a \equiv c \pmod m$
+
+(3) $a \equiv a' \pmod m$ és $b \equiv b' \pmod m$, akkor $a + a' \equiv b + b' \pmod m$, $ab \equiv a'b' \pmod m$
+
+(4) $x, y \in \mathbb{Z}$, $a \equiv a' \pmod m$ és $b \equiv b' \pmod m$, akkor $xa + yb \equiv xa' + yb' \pmod m$.
+
+## 2. feladat
+
+Adjunk meg egy-egy teljes maradékrendszert mod 7, amely (1) csupa páratlan számból, (2) csupa negatív számból áll, illetve (3) csupa prímszámból áll.
+
+## 3. feladat
+
+Redukált maradékrendszert alkot-e a $\{7, 19, 31, 43, 55, 67, 79, 91\}$ halmaz mod 30?
+
+## 4. feladat
+
+Határozzuk meg a $7^{2026}$ szám utolsó két számjegyét.
+
+## 5. feladat (házi feladat)
+
+Igazoljuk, hogy ha $m$ prím, akkor a kongruenciákból négyzetgyököt vonhatunk: ha $a^2 \equiv b^2 \pmod m$, akkor $a \equiv b$ vagy $a \equiv -b \pmod m$. Igaz-e ez minden összetett $m$ modulusra?
+
+## 6. feladat
+
+Számítsuk ki az alábbi hatványok maradékait a megadott modulusokra nézve: $12^{1003} \pmod{17}$ és $5^{123} \pmod{18}$.
+
+## 7. feladat
+
+Bizonyítsuk be, hogy az $n^7 - n$ kifejezés minden $n$ egész szám esetén osztható 42-vel.
+
+## 8. feladat
+
+Legyen $m$ páros, és $a_1, a_2, \dots, a_m$ illetve $b_1, b_2, \dots, b_m$ egy-egy teljes maradékrendszer mod $m$. Igazoljuk, hogy $a_1 + b_1, a_2 + b_2, \dots, a_m + b_m$ nem teljes maradékrendszer mod $m$.
+
+## 9. feladat
+
+Legyen $p$ egy $4k + 3$ alakú prímszám. Igazoljuk, hogy az $x^2 \equiv -1 \pmod p$ kongruenciának nincs megoldása az egész számok körében. (*Segítség.* Kis Fermat-tétel)
+
+## 10. feladat
+
+Oldjuk meg az alábbi kongruenciákat: $5x \equiv 8 \pmod{23}$, $17^{41}x \equiv 3 \pmod{100}$, $15x \equiv 7 \pmod{55}$.
+
+## 11. feladat
+
+Egy egyetemi rendezvényre 300 forintos és 500 forintos szendvicseket rendeltek, összesen pontosan 7300 forint értékben. Hány darabot vehettek az egyes szendvicsekből, ha mindkét fajtából rendeltek legalább egyet?
+
+## 12. feladat
+
+Oldjuk meg az egész számok halmazán a következő lineáris diofantoszi egyenleteket:
+
+(1) $14x + 35y = 91$
+
+(2) $15x + 21y = 38$.
+
+## 13. feladat
+
+Igazoljuk, hogy ha $N$ nem $m$-edik hatvány, akkor $\sqrt[m]{N}$ irracionális.
+
+## 14. feladat
+
+Határozzuk meg az összes olyan primitív pitagoraszi számhármast, amelyben az egyik szám 15.
+
+# Algebra és számelmélet – 7. feladatsor
+
+## 1. feladat
+
+Számítsuk ki az alábbi determinánsokat a felső háromszög alakra hozás módszerével, azaz Gauss-eliminációval, az első sor, illetve az utolsó oszlop szerinti kifejtéssel, végül a $3 \times 3$-asokat a Sarrus-szabállyal is.
+$$\begin{vmatrix} -1 & 4 \\ 2 & 3 \end{vmatrix} \quad \begin{vmatrix} 0 & 2 & -1 \\ 4 & 1 & 3 \\ 2 & -3 & 2 \end{vmatrix} \quad \begin{vmatrix} x_1 & y_1 & z_1 \\ x_2 & y_2 & z_2 \\ x_3 & y_3 & z_3 \end{vmatrix} \quad \begin{vmatrix} 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 0 \\ 1 & 2 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{vmatrix} \quad \begin{vmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \end{vmatrix}$$
+
+## 2. feladat
+
+Számítsuk ki az alábbi determinánsokat.
+$$\begin{vmatrix} 1 & 1 & \dots & 1 \\ 1 & 2 & \dots & 2 \\ \vdots & \vdots & \ddots & \vdots \\ 1 & 2 & \dots & n \end{vmatrix} \quad \begin{vmatrix} 1 & 1 & \dots & 1 \\ y_1 & y_2 & \dots & y_n \\ \vdots & \vdots & \ddots & \vdots \\ y_1^{n-1} & y_2^{n-1} & \dots & y_n^{n-1} \end{vmatrix} \quad \begin{vmatrix} a & b & \dots & b \\ b & a & \dots & b \\ \vdots & \vdots & \ddots & \vdots \\ b & b & \dots & a \end{vmatrix} \quad \begin{vmatrix} 3 & 1 & 0 & \dots & 0 \\ 1 & 3 & 1 & \ddots & \vdots \\ 0 & 1 & 3 & \ddots & 0 \\ \vdots & \ddots & \ddots & \ddots & 1 \\ 0 & \dots & 0 & 1 & 3 \end{vmatrix}$$
+
+## 3. feladat
+
+Ha egy $B \in \mathbb{R}^{4 \times 4}$ mátrixra $\det B = 3$, akkor mennyi $\det(B + B + B)$?
+
+## 4. feladat (házi feladat)
+
+Számítsuk ki az alábbi $3 \times 3$-as determináns értékét, ha tudjuk, hogy az elemei a bal felső sarokból jobbrafelé olvasva egy számtani sorozatot alkotnak:
+$$\begin{vmatrix} a & a + d & a + 2d \\ a + 3d & a + 4d & a + 5d \\ a + 6d & a + 7d & a + 8d \end{vmatrix}.$$
+
+## 5. feladat
+
+Egy $2026 \times 2026$-os determináns minden oszlopa számtani sorozat. Mennyi az értéke?
+
+## 6. feladat
+
+Egy egész elemű determinánsban minden sorösszeg osztható 13-mal. Igazoljuk, hogy a determináns értéke is osztható 13-mal.
+
+## 7. feladat
+
+Egy 3x3-as determináns egyjegyű számokból áll. Minden oszlopban a három számjegyből felülről lefelé összeolvasott háromjegyű szám osztható 11-gyel. Igazoljuk, hogy a determináns is osztható 11-gyel.
+
+## 8. feladat
+
+Hány inverzió van az alábbi permutációkban, illetve a 'hátulról előre' permutációban?
+$$\begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 3 & 1 & 4 & 2 & 8 & 5 & 7 & 6 \end{pmatrix} \quad \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 8 & 2 & 4 & 6 & 1 & 3 & 5 & 7 \end{pmatrix} \quad \begin{pmatrix} a & b & c & d & e \\ b & e & a & c & d \end{pmatrix}$$
+
+## 9. feladat
+
+Hány inverzió lehet maximum egy 6 elemű halmaz egy páros permutációjában?
+
+## 10. feladat
+
+Adjuk meg a 9. feladatban szereplő és az alábbi permutációk diszjunkt ciklusfelbontását és előjelét:
+$$(135)(24)(531)(14), \qquad (1357246)(357)(1357246)^{-1}, \qquad [(12)(13)(14)]^{2026}.$$
