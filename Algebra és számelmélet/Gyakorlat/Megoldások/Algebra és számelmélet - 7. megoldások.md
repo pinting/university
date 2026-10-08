@@ -214,3 +214,75 @@ A feladatlap a „9. feladatban szereplő" permutációkat említi. Ilyenek csak
 ::: elmelet
 **Elméleti háttér — ciklusfelbontás, kompozíció, konjugálás.** Minden permutáció egyértelműen felbomlik diszjunkt ciklusok szorzatára (elemeket követve a $\sigma$ szerint, amíg vissza nem érünk). Egy $k$ hosszú ciklus előjele $(-1)^{k-1}$ (ennyi transzpozíció szorzata), az előjel multiplikatív. A kompozíciót a konvenció szerint **jobbról balra** számoljuk. **Konjugálás:** $\tau(a_1 \dots a_k)\tau^{-1} = (\tau(a_1) \dots \tau(a_k))$ — csak „átnevezi” az elemeket, a ciklustípus (és így az előjel) megmarad. Hatványozásnál a ciklus rendjével (hosszával) redukáljuk a kitevőt.
 :::
+
+## 11. feladat
+
+Igazoljuk, hogy $(x_1 \dots x_k) = (x_1 x_2)(x_2 x_3) \dots (x_{k-2} x_{k-1})(x_{k-1} x_k)$.
+
+**Megoldás.**
+
+Jobbról balra komponálunk (a jobb szélső transzpozíciót alkalmazzuk először), és megnézzük, hová viszi a jobb oldal az egyes elemeket. Jelölje $\tau_j = (x_j x_{j+1})$, így a jobb oldal $\tau_1 \tau_2 \cdots \tau_{k-1}$, és először $\tau_{k-1}$ hat.
+
+- **$x_i$, ahol $1 \le i \le k - 1$:** a $\tau_{k-1}, \dots, \tau_{i+1}$ transzpozíciók csak az $x_{i+1}, \dots, x_k$ elemeket mozgatják, így $x_i$-t helyben hagyják. Ezután $\tau_i$ az $x_i$-t $x_{i+1}$-be viszi. A még hátralevő $\tau_{i-1}, \dots, \tau_1$ csak az $x_1, \dots, x_i$ elemeket mozgatják, $x_{i+1}$-et nem. Tehát $x_i \mapsto x_{i+1}$.
+- **$x_k$:** $\tau_{k-1}$ az $x_k$-t $x_{k-1}$-be viszi, $\tau_{k-2}$ ezt $x_{k-2}$-be, …, végül $\tau_1$ az $x_2$-t $x_1$-be. Tehát $x_k \mapsto x_1$.
+- **Minden más elemet** egyik transzpozíció sem mozdít el, ezek fixek.
+
+Ez pontosan az $x_1 \mapsto x_2 \mapsto \dots \mapsto x_k \mapsto x_1$ ciklus, azaz $(x_1 \dots x_k)$. $\blacksquare$
+
+*Indukcióval is megy:* $k = 2$-re az állítás triviális, és az előzőhöz hasonló követéssel $(x_1 \dots x_{k-1})(x_{k-1} x_k) = (x_1 \dots x_k)$: az $x_{k-1}$ előbb $x_k$-ba megy, amit a $(k-1)$-ciklus fixen hagy; az $x_k$ előbb $x_{k-1}$-be, majd $x_1$-be; a többi $x_i$ pedig $x_{i+1}$-be.
+
+**Következmény.** Egy $k$ hosszú ciklus $k - 1$ transzpozíció szorzata, ezért az előjele $(-1)^{k-1}$. (Balról jobbra komponálva a szorzat a fordított ciklust, $(x_k \dots x_1)$-et adná; ekkor a transzpozíciókat fordított sorrendben kell felírni. Az előjel mindkét konvencióban ugyanaz.)
+
+::: elmelet
+**Elméleti háttér — ciklus felbontása transzpozíciókra.** Permutációk szorzatánál egy elem útját követjük a tényezőkön keresztül, a konvenció szerint **jobbról balra** (mint függvénykompozíciónál, $(\sigma\tau)(x) = \sigma(\tau(x))$). Egy $k$-ciklus $k - 1$ szomszédos transzpozícióra bomlik, és mivel minden permutáció diszjunkt ciklusok szorzata, **minden permutáció transzpozíciók szorzata**. A felbontás nem egyértelmű, de a transzpozíciók számának paritása igen; ez adja az előjelet: $\operatorname{sgn}(x_1 \dots x_k) = (-1)^{k-1}$.
+:::
+
+## 12. feladat
+
+Mutassuk meg, hogy $f \circ (x_1 \dots x_k) \circ f^{-1} = (f(x_1) \dots f(x_k))$ (itt $f \in S_n$ és $(x_1 \dots x_k)$ egy tetszőleges ciklus $S_n$-ben).
+
+**Megoldás.**
+
+Legyen $\sigma = (x_1 \dots x_k)$, és az indexeket modulo $k$ értjük ($x_{k+1} = x_1$). Mivel $f$ bijekció, az $f(x_1), \dots, f(x_k)$ elemek különbözők, így a jobb oldal valódi $k$-ciklus. Megmutatjuk, hogy a két oldal minden $y \in \{1, \dots, n\}$ elemen ugyanazt adja.
+
+- **Ha $y = f(x_i)$ valamely $i$-re:** $f^{-1}(y) = x_i$, $\sigma(x_i) = x_{i+1}$, tehát
+$$(f \circ \sigma \circ f^{-1})(y) = f(x_{i+1}).$$
+  A jobb oldal is $f(x_i)$-t $f(x_{i+1})$-be viszi.
+- **Ha $y \notin \{f(x_1), \dots, f(x_k)\}$:** akkor $f^{-1}(y) \notin \{x_1, \dots, x_k\}$, ezért $\sigma$ fixen hagyja, és
+$$(f \circ \sigma \circ f^{-1})(y) = f(f^{-1}(y)) = y.$$
+  A jobb oldal $y$-t szintén fixen hagyja, hiszen nem szerepel a ciklusban.
+
+Tehát $f \circ (x_1 \dots x_k) \circ f^{-1} = (f(x_1) \dots f(x_k))$. $\blacksquare$
+
+**Következmény.** Ha $\pi = c_1 c_2 \cdots c_r$ diszjunkt ciklusok szorzata, akkor
+$$f \pi f^{-1} = (f c_1 f^{-1})(f c_2 f^{-1}) \cdots (f c_r f^{-1}),$$
+mert a közbülső $f^{-1} f$ tényezők kiesnek. A jobb oldali ciklusok is diszjunktak, mert $f$ injektív. A konjugálás tehát a ciklusok elemeit „átnevezi” $f$ szerint, a **ciklustípust megőrzi**, így az előjelet is. (Ezt használtuk a 10. feladat második szorzatánál.)
+
+::: elmelet
+**Elméleti háttér — konjugálás $S_n$-ben.** Az $f \sigma f^{-1}$ permutáció ugyanazt csinálja az $f(x)$ elemekkel, amit $\sigma$ az $x$ elemekkel: „$f$-fel átcímkézzük” a pontokat, alkalmazzuk $\sigma$-t, majd visszacímkézünk. Ezért konjugált permutációk ciklustípusa (a ciklushosszak multihalmaza) azonos, és meg is fordítható: két azonos ciklustípusú permutáció mindig konjugált. Az előjel konjugálásra invariáns, hiszen $\operatorname{sgn}(f\sigma f^{-1}) = \operatorname{sgn} f \cdot \operatorname{sgn} \sigma \cdot \operatorname{sgn} f^{-1} = \operatorname{sgn} \sigma$.
+:::
+
+## 13. feladat
+
+Adott a $\pi = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 1 & 3 \end{pmatrix}$ permutáció. Írjuk fel a hozzá tartozó $P_\pi$ permutációs mátrixot (amelynek az $i$-edik sorában a $\pi(i)$-edik oszlopban áll 1-es, máshol 0), majd számítsuk ki a determinánsát. Hogyan kapcsolódik a kapott determináns a permutáció inverziószámához?
+
+**Megoldás.**
+
+$\pi(1) = 2$, $\pi(2) = 4$, $\pi(3) = 1$, $\pi(4) = 3$, tehát
+$$P_\pi = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \end{pmatrix}.$$
+(Ez éppen az 1. feladat (e) részének mátrixa.)
+
+**A determináns: $\det P_\pi = -1$.**
+
+- *A permutációs definícióval:* $\det A = \sum_{\sigma \in S_4} \operatorname{sgn}\sigma \cdot a_{1\sigma(1)} a_{2\sigma(2)} a_{3\sigma(3)} a_{4\sigma(4)}$. A $P_\pi$ mátrixban $a_{i\sigma(i)} = 1$ pontosan akkor, ha $\sigma(i) = \pi(i)$, különben $0$. Így egyetlen nem nulla tag van, a $\sigma = \pi$-hez tartozó, és értéke $\operatorname{sgn}\pi \cdot 1$.
+- *Az inverziók:* a $2\,4\,1\,3$ sorban az inverziók $(2, 1)$, $(4, 1)$ és $(4, 3)$, tehát $I(\pi) = 3$, és $\operatorname{sgn}\pi = (-1)^3 = -1$.
+- *Ellenőrzés sorcserékkel:* $S_1 \leftrightarrow S_3$, $S_2 \leftrightarrow S_3$, $S_3 \leftrightarrow S_4$ után egységmátrixot kapunk. Ez 3 csere, tehát $\det P_\pi = (-1)^3 \det I = -1$.
+- *Ciklusfelbontással:* $\pi = (1243)$, ami 4-ciklus, tehát páratlan.
+
+**A kapcsolat.** Tetszőleges $\pi \in S_n$-re ugyanígy
+$$\det P_\pi = \operatorname{sgn}\pi = (-1)^{I(\pi)},$$
+ahol $I(\pi)$ az inverziók száma: a determináns $1$, ha $\pi$ páros, és $-1$, ha páratlan.
+
+::: elmelet
+**Elméleti háttér — permutációs mátrixok.** A $P_\pi$ mátrix minden sorában és oszlopában pontosan egy $1$-es áll. A determináns permutációs (Leibniz-) definíciójában $\det A = \sum_\sigma \operatorname{sgn}\sigma \prod_i a_{i\sigma(i)}$ minden tag egy „bástyaelhelyezésnek” felel meg (soronként és oszloponként egy elem). $P_\pi$-nél ezek közül egyetlen helyen áll csupa $1$-es, a $\pi$-hez tartozón, így $\det P_\pi = \operatorname{sgn}\pi = (-1)^{I(\pi)}$. Ezért a determináns definíciójában szereplő előjel éppen az inverziószám paritása.
+:::
