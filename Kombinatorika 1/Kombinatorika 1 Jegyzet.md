@@ -10,7 +10,7 @@
 
 ## Előszó
 
-A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv az előadáson készült kézírásos jegyzetekből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet első fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok). Ahol ismert, a szakasz elején feltüntettük az előadás dátumát is, hogy a könyv és a saját jegyzet könnyen összevethető legyen.
+A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv az előadáson készült kézírásos jegyzetekből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet első fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok, Euler-séták és Hamilton-körök). Ahol ismert, a szakasz elején feltüntettük az előadás dátumát is, hogy a könyv és a saját jegyzet könnyen összevethető legyen.
 
 A könyv azonban nem csupán a jegyzet letisztázott változata. Az előadáson sok minden szóban hangzik el, vagy csak egy rajz utal rá; itt ezeket a lépéseket kiírtuk. Minden új fogalom előtt igyekeztünk megmutatni, milyen kérdés teszi szükségessé, utána pedig példákon kipróbáltuk.
 
@@ -852,7 +852,7 @@ Ezzel a leszámlálás fejezet végére értünk.
 
 # III. RÉSZ: GRÁFELMÉLET
 
-A gráfelmélet a XX. században fejlődött igazán önálló tudományterületté, és mára a matematika egyik legtöbbet alkalmazott ága: hálózatok, útvonaltervezés, ütemezés, kémiai molekulák szerkezete — mind gráfokkal modellezhető. Ebben a részben az alapfogalmaktól a fák elméletén át a fokszámsorozatok vizsgálatáig jutunk el.
+A gráfelmélet a XX. században fejlődött igazán önálló tudományterületté, és mára a matematika egyik legtöbbet alkalmazott ága: hálózatok, útvonaltervezés, ütemezés, kémiai molekulák szerkezete — mind gráfokkal modellezhető. Ebben a részben az alapfogalmaktól a fák elméletén és a fokszámsorozatok vizsgálatán át az Euler-séták és a Hamilton-körök kérdéséig jutunk el.
 
 ## 17. Gráfok, egyszerű gráfok, izomorfia
 
@@ -1349,6 +1349,176 @@ Töröljük a $v_nv_a$ és $v_bw$ éleket, és vegyük hozzá a $v_nv_b$ és $v_
 **Miért helyes ebből az algoritmus?** A tétel szerint minden lépésben a sorozat pontosan akkor realizálható, ha a lépés után kapott rövidebb sorozat realizálható. Ha az algoritmus végigfut (minden igény $0$), az utolsó sorozatot az él nélküli gráf realizálja, és visszafelé haladva mindegyiket. Ha elakad, mert a legnagyobb igény nagyobb a többi csúcs számánál, vagy egy igény negatívvá válna (vagyis nincs elég pozitív igényű csúcs), akkor az aktuális sorozat nem realizálható, így — a tétel szerint visszafelé haladva — az eredeti sem.
 :::
 
+## 29. Fák fokszámsorozatai és reguláris gráfok
+
+### +1. típus: fák
+
+A 27–28. szakasz három típusa mellé vegyünk fel egy negyediket: mikor realizálja a fokszámsorozatot **fa**?
+
+> **Állítás.** Legyen $n \ge 2$, és $1 \le d_1 \le d_2 \le \dots \le d_n$ egészek. Pontosan akkor létezik olyan fa, amelynek csúcsai $v_1, \dots, v_n$, és $\deg(v_i) = d_i$ minden $i$-re, ha
+> $$\sum_{i=1}^{n} d_i = 2(n - 1).$$
+
+*Bizonyítás.* **$\Rightarrow$:** Egy $n$ csúcsú fának $n - 1$ éle van (22. szakasz), így a kézfogási lemma szerint a fokszámok összege $2(n-1)$.
+
+**$\Leftarrow$:** A Prüfer-kódot hívjuk segítségül (26. szakasz). Írjuk fel a következő sorozatot: az $1$-est $(d_1 - 1)$-szer, a $2$-est $(d_2 - 1)$-szer, …, az $n$-et $(d_n - 1)$-szer:
+$$\underbrace{1, 1, \dots, 1}_{d_1 - 1},\ \underbrace{2, 2, \dots, 2}_{d_2 - 1},\ \dots,\ \underbrace{n, n, \dots, n}_{d_n - 1}.$$
+(Ha $d_i = 1$, az $i$ egyszer sem szerepel.) A sorozat hossza
+$$\sum_{i=1}^{n}(d_i - 1) = \Big(\sum_{i=1}^{n} d_i\Big) - n = 2(n - 1) - n = n - 2,$$
+és minden tagja az $1, \dots, n$ számok valamelyike: ez tehát **egy Prüfer-kód**. Fejtsük vissza! Kapunk egy $n$ csúcsú címkézett fát, és mivel az $i$ szám a kódban $d_i - 1$-szer szerepel, a 26. szakasz állítása szerint ebben a fában az $i$ csúcs foka éppen $d_i$. $\blacksquare$
+
+> **Megjegyzés.** Ilyen fából sok van: a Prüfer-kód bijektivitása miatt a $\deg(i) = d_i$ ($i = 1, \dots, n$) feltételnek eleget tevő címkézett fák száma annyi, ahányféleképpen a fenti $n - 2$ hosszú sorozat tagjai sorba rendezhetők, vagyis (ismétléses permutáció)
+> $$\frac{(n-2)!}{(d_1 - 1)!\,(d_2 - 1)! \cdots (d_n - 1)!}.$$
+
+*Példa.* $n = 4$-re a $\deg(1) = \deg(2) = \deg(3) = 1$, $\deg(4) = 3$ feltételnek $\frac{2!}{0!\,0!\,0!\,2!} = 1$ fa felel meg (a $4$ közepű csillag), a $\deg(1) = \deg(4) = 1$, $\deg(2) = \deg(3) = 2$ feltételnek pedig $\frac{2!}{0!\,1!\,1!\,0!} = 2$ (az $1$–$2$–$3$–$4$ és az $1$–$3$–$2$–$4$ út).
+
+::: kiegeszites
+**Kiegészítés — miért kell, hogy minden $d_i \ge 1$?** Az előadáson ez hallgatólagos feltétel volt (a $d_i - 1$ darab ismétlés csak így értelmes), de lényeges: a $0, 2, 2, 2$ sorozatra $\sum d_i = 6 = 2(4 - 1)$, mégsem realizálja fa, hiszen egy legalább $2$ csúcsú fa összefüggő, így nincs $0$ fokú csúcsa. (Ezt a sorozatot egy háromszög és egy izolált csúcs realizálja.)
+:::
+
+### Reguláris gráfok
+
+> **Definíció.** Egy gráf **$r$-reguláris**, ha minden csúcsának a foka ugyanaz az $r$ szám. Röviden **reguláris** gráfról beszélünk, ha valamilyen $r$-re $r$-reguláris.
+
+Nézzük az egyszerű reguláris gráfokat kis $r$-ekre!
+
+- **$0$-reguláris:** csupa izolált pont, egyetlen él nélkül.
+- **$1$-reguláris:** diszjunkt élek: minden csúcsnak pontosan egy szomszédja van, így a csúcsok párokba rendeződnek.
+- **$2$-reguláris:** néhány **diszjunkt kör** uniója.
+- **$3$-reguláris:** a csúcsok száma **páros**; ilyen például a **kocka** élhálója ($8$ csúcs, $12$ él), vagy a teljes négypontú gráf.
+
+::: kiegeszites
+**Kiegészítés — a $2$- és $3$-reguláris gráfokról elmondottak bizonyítása.**
+
+*Egy $2$-reguláris egyszerű gráf minden komponense kör.* Induljunk el egy $u_0$ csúcsból, és sétáljunk úgy, hogy soha nem fordulunk vissza azon az élen, amelyen érkeztünk: $u_0, u_1, u_2, \dots$. Ez mindig lehetséges, mert minden csúcsnak $2$ éle van. A gráf véges, így egyszer egy már látott csúcsba érünk; legyen $u_j$ az első ilyen, $u_j = u_i$ ($i < j$). Ha $i \ge 1$ volna, akkor $u_i$-nek három különböző éle lenne: $u_{i-1}u_i$, $u_iu_{i+1}$ és $u_{j-1}u_j$ — ellentmondás. Tehát $u_j = u_0$, és $u_0, u_1, \dots, u_{j-1}, u_0$ kör (egyszerű gráfban $j \ge 3$). Ennek a körnek minden csúcsa már mindkét élét használja, így a kör a gráf egy teljes komponense. A többi komponensre ugyanezt megismételve kapjuk, hogy a gráf diszjunkt körök uniója. Megfordítva, diszjunkt körök uniója nyilván $2$-reguláris.
+
+*Egy $3$-reguláris gráf csúcsainak száma páros.* A kézfogási lemma szerint $3n = 2|E|$, tehát $3n$ páros, így $n$ is páros.
+
+*Minden páros $n \ge 4$-re van $n$ csúcsú, $3$-reguláris egyszerű gráf.* Vegyünk egy $n$ hosszú kört a $v_1, \dots, v_n$ csúcsokon, és kössük még össze a „szemközti” csúcsokat: $v_i$-t $v_{i + n/2}$-vel ($i = 1, \dots, n/2$). Minden csúcs kap egy új élt a két köréle mellé. $n = 4$-re ez a teljes négypontú gráf.
+:::
+
+## 30. Euler-séták és Euler-körséták
+
+A gráfelmélet születését egy **Leonhard Euler** által 1736-ban megoldott feladathoz kötik, a **königsbergi hidak problémájához**. Königsberg városát a Pregel folyó négy részre (két partra és két szigetre) osztotta, és a részeket hét híd kötötte össze. A kérdés: be lehet-e járni a várost úgy, hogy **minden hídon pontosan egyszer** menjünk át?
+
+Modellezzük gráffal: a csúcsok a négy városrész, az élek a hidak. (Ez a gráf nem egyszerű: két városrészt több híd is összeköthet, tehát **többszörös éleket** is megengedünk.) A nagyobbik szigetnek $5$ hídja van, a másik három városrésznek $3$-$3$: a gráf fokszámai $5, 3, 3, 3$.
+
+> **Definíció.** Legyen $G$ egy gráf.
+>
+> - **Euler-séta:** olyan séta $G$-ben, amely minden élen **pontosan egyszer** megy át.
+> - **Euler-körséta:** olyan Euler-séta, amely **visszaér a kiindulópontjához** (zárt).
+
+Mivel az Euler-séta egyetlen élen sem megy át kétszer, a 19. szakasz szóhasználatával egy **vonal** (az Euler-körséta pedig zárt vonal, *körvonal*), amely ráadásul az összes élt tartalmazza. Szemléletesen: az Euler-séta a gráf lerajzolása **a ceruza felemelése nélkül**, úgy, hogy egyetlen vonalat sem húzunk be kétszer.
+
+Néhány példa:
+
+| gráf | fokszámok | Euler-séta | Euler-körséta |
+|:--|:--|:-:|:-:|
+| königsbergi hidak | $5, 3, 3, 3$ | nincs | nincs |
+| négyzet a két átlójával | $3, 3, 3, 3$ | nincs | nincs |
+| ház (négyzet, rajta háromszög alakú tető) | $2, 2, 3, 3, 2$ | van | nincs |
+| ház a négyzet két átlójával | $3, 3, 4, 4, 2$ | van | nincs |
+| kör | $2, 2, \dots, 2$ | van | van |
+
+> **Tétel (Euler).**
+>
+> - $G$-ben pontosan akkor van **Euler-körséta**, ha $G$ összefüggő, és **minden csúcs foka páros**.
+> - $G$-ben pontosan akkor van **Euler-séta**, ha $G$ összefüggő, és a páratlan fokú csúcsok száma $0$ vagy $2$.
+
+A königsbergi gráfban mind a négy csúcs foka páratlan, tehát a hidakat nem lehet a kívánt módon bejárni.
+
+*Bizonyítás (Euler-körséta).* **$\Rightarrow$:** Az Euler-körséta minden élt bejár, így bármely két csúcs között halad séta: $G$ összefüggő. Valahányszor a körséta áthalad egy csúcson, egy élen **be**megy, egy másikon **ki**jön, és a kiindulópontban is párba állítható az első és az utolsó él. A körséta minden élt pontosan egyszer használ, így minden csúcs fokszáma páros.
+
+**$\Leftarrow$:** Tegyük fel, hogy $G$ összefüggő, és minden fok páros. Előbb egy megfigyelés:
+
+*Ha egy $u$ csúcsból elindulunk, és vonalat építünk (minden lépésben egy még be nem járt élen haladunk tovább), akkor csak a kiindulópontban akadhatunk el.* Ha ugyanis egy $w \ne u$ csúcsba érkezünk, akkor $w$-ben eddig eggyel több élt használtunk el befelé, mint kifelé — páratlan sokat —, és mivel $w$ foka páros, marad még be nem járt éle, amelyen továbbmehetünk. Mivel az élek száma véges, egyszer elakadunk, és ez csak $u$-ban történhet: a vonal zárt, körvonal.
+
+Most nézzük a $G$ **leghosszabb körvonalát**, és tegyük fel indirekten, hogy van olyan éle $G$-nek, amelyet nem járt be. Mivel $G$ összefüggő, van olyan be nem járt él is, amelynek az egyik végpontja, $u$, a körvonalon fekszik. A körvonal minden csúcsnál **páros sok** élt használ, így a be nem járt élek gráfjában is minden fok páros. Induljunk el $u$-ból a be nem járt éleken: a megfigyelés szerint ez a vonal is csak $u$-ban akadhat el, tehát körvonal. Ezt az új körvonalat az $u$ csúcsnál „befűzhetjük” a régibe: a régi körvonalon haladva, amikor $u$-ba érünk, előbb bejárjuk az újat, majd a régin folytatjuk. Így a leghosszabbnál hosszabb körvonalat kaptunk — ellentmondás. Tehát a leghosszabb körvonal minden élt bejár: Euler-körséta. $\blacksquare$
+
+::: kiegeszites
+**Kiegészítés — az Euler-sétára vonatkozó rész bizonyítása.**
+
+**$\Rightarrow$:** Az összefüggőség ugyanúgy következik, mint előbb. Ha az Euler-séta zárt, minden fok páros ($0$ páratlan fokú csúcs). Ha nyitott, az $x$ kezdőpontból az $y \ne x$ végpontba vezet, akkor a belső áthaladásokat ugyanúgy párba állíthatjuk, és csak $x$-nél marad egy párosítatlan (az első) és $y$-nál egy párosítatlan (az utolsó) él: pontosan $x$ és $y$ foka páratlan.
+
+**$\Leftarrow$:** Ha nincs páratlan fokú csúcs, az előző rész szerint van Euler-körséta, és ez Euler-séta is. Ha pontosan kettő van, $x$ és $y$, vegyünk hozzá $G$-hez egy új $xy$ élt (ez lehet többszörös él). Az új gráf összefüggő, és minden foka páros, tehát van benne Euler-körséta. Ezt úgy indíthatjuk, hogy az utolsó éle az új $xy$ él legyen; ezt elhagyva $G$ egy $x$-ből $y$-ba vezető Euler-sétáját kapjuk.
+
+*Megjegyzés az izolált csúcsokról.* Szigorúan véve az „összefüggő” feltételt úgy kell érteni, hogy **az élek** egy komponensben vannak: egy izolált csúcs (amelynek foka $0$, páros) nem akadályozza az Euler-körséta létezését, hiszen nincs bejárandó éle. Az izolált csúcsokat tehát a tétel alkalmazása előtt hagyjuk el.
+:::
+
+## 31. Hamilton-utak és Hamilton-körök
+
+Az Euler-sétánál minden **élt** pontosan egyszer kellett bejárni. Mi a helyzet, ha minden **csúcsot** szeretnénk pontosan egyszer meglátogatni?
+
+> **Definíció.** Legyen $G$ egy $n$ csúcsú gráf.
+>
+> - **Hamilton-út:** olyan út $G$-ben, amely a gráf **minden csúcsát** tartalmazza. Ez egy $n - 1$ hosszú út.
+> - **Hamilton-kör:** olyan kör $G$-ben, amely a gráf minden csúcsát tartalmazza. Ez egy $n$ hosszú kör.
+
+> **Kérdés.** Van-e $G$-ben Hamilton-kör (Hamilton-út)?
+
+Az Euler-séta kérdésére a fokszámok paritása egyszerű és teljes választ adott. A Hamilton-kör kérdése ezzel szemben **NP-teljes probléma**: nem ismerünk rá hatékony algoritmust, és ilyen nem is várható. Ezért be kell érnünk **szükséges** és **elégséges** feltételekkel: olyanokkal, amelyek ha nem teljesülnek, biztosan nincs Hamilton-kör, illetve olyanokkal, amelyek ha teljesülnek, biztosan van.
+
+### Szükséges feltételek
+
+> **Tétel.**
+>
+> - Ha $G$-ben van **Hamilton-kör**, akkor minden $k \ge 1$-re bármely $k$ csúcsot törölve a gráf **legfeljebb $k$** komponensre esik szét.
+> - Ha $G$-ben van **Hamilton-út**, akkor minden $k \ge 1$-re bármely $k$ csúcsot törölve a gráf **legfeljebb $k + 1$** komponensre esik szét.
+
+*Bizonyítás.* Rajzoljuk le a Hamilton-kört: ez a gráf összes csúcsa és néhány éle; a többi él csak „ráadás”.
+
+Gondoljunk a Hamilton-körre úgy, mint egy **nyakláncra**: ha $k$ szemet kiszedünk belőle, legfeljebb $k$ darabra esik. A darabok mindegyike egy-egy út, amely a megmaradt gráfban egyetlen komponensbe tartozik, és a darabok együtt az összes megmaradt csúcsot lefedik. A gráf további élei a darabokat legfeljebb összekapcsolhatják, szétszedni nem tudják, tehát a komponensek száma legfeljebb $k$.
+
+A Hamilton-út egy (nem zárt) **lánc**: ha $k$ szemet kiszedünk belőle, legfeljebb $k + 1$ részre esik. A többi ugyanígy megy. $\blacksquare$
+
+::: kiegeszites
+**Kiegészítés — két példa.**
+
+*A feltétel kizárhat Hamilton-kört.* Vegyünk két háromszöget, amelyeknek egy közös csúcsuk van (ez a „pillangó”, $5$ csúcs). A közös csúcsot törölve ($k = 1$) a gráf $2$ komponensre esik, tehát nincs Hamilton-köre. Hamilton-útja viszont van (az egyik háromszög két csúcsán át a közös csúcsba, onnan a másik háromszög két csúcsán át), összhangban azzal, hogy egy csúcs törlésével legfeljebb $1 + 1 = 2$ komponens keletkezik.
+
+*A feltétel nem elégséges.* Ismert, hogy a **Petersen-gráf** ($10$ csúcsú, $3$-reguláris gráf: egy ötszög, egy ötágú csillag, és a megfelelő csúcsaik összekötve) teljesíti a fenti szükséges feltételt, Hamilton-köre mégsincs. A szükséges feltétel teljesülése tehát még nem garantálja a Hamilton-kört.
+:::
+
+## 32. Elégséges feltétel: a Dirac- és az Ore-tétel
+
+Az elégséges feltételek azt mondják ki, hogy ha egy gráfnak „elég sok” éle van, akkor van Hamilton-köre.
+
+> **Tétel (Dirac-tétel).** Legyen $G$ egy $n \ge 3$ csúcsú egyszerű gráf. Ha minden csúcs foka legalább $\frac{n}{2}$, akkor $G$-ben van Hamilton-kör.
+
+(Az $n \ge 3$ feltétel azért kell, mert egyszerű gráfban a kör hossza legalább $3$: a $2$ csúcsú, egyetlen élből álló gráfban minden fok $1 = \frac{2}{2}$, Hamilton-kör mégsincs.)
+
+*Bizonyítás.* A bizonyítás három lépésből áll. Indirekt tegyük fel, hogy minden fok legalább $\frac{n}{2}$, de **nincs** Hamilton-kör.
+
+**1. lépés: telítés.** Húzzunk be $G$-be további éleket egyenként, amíg csak lehet úgy, hogy még mindig ne legyen Hamilton-kör. A fokszámok közben csak nőnek, így továbbra is mindegyik legalább $\frac{n}{2}$. A teljes gráfban ($n \ge 3$ esetén) van Hamilton-kör, ezért a folyamat előbb megáll. Olyan gráfot kapunk — nevezzük továbbra is $G$-nek —, amelyben
+
+> minden fok legalább $\frac{n}{2}$, nincs Hamilton-kör, de **bármelyik** hiányzó élt behúzva már lenne.
+
+Legyen $x$ és $y$ két nem szomszédos csúcs. Ha az $xy$ élt behúznánk, keletkezne egy Hamilton-kör, és ez szükségképpen használja az $xy$ élt (különben már $G$-ben is meglett volna). Ezt az élt elhagyva $G$-ben egy **Hamilton-utat** kapunk $x$-ből $y$-ba:
+$$x = u_1,\ u_2,\ \dots,\ u_n = y.$$
+
+**2. lépés: nincsenek „keresztélek”.** *Állítás:* ha $u_{i+1}$ szomszédja $x$-nek, akkor az előtte álló $u_i$ csúcs **nem** szomszédja $y$-nak.
+
+Ha ugyanis $x u_{i+1}$ és $u_i y$ is él volna, akkor
+$$x = u_1,\ u_2,\ \dots,\ u_i,\ y = u_n,\ u_{n-1},\ \dots,\ u_{i+1},\ x$$
+Hamilton-kör volna $G$-ben: az úton elmegyünk $u_i$-ig, átugrunk $y$-ba, az úton visszafelé haladunk $u_{i+1}$-ig, és onnan visszaugrunk $x$-be. Ez ellentmondás.
+
+**3. lépés: hányan lehetnek $y$ szomszédai?** Az $x$ csúcsnak $\deg(x)$ szomszédja van, mind az $u_2, \dots, u_n$ csúcsok között. Mindegyik szomszéd előtt áll az úton egy csúcs; ezek $\deg(x)$ darab különböző csúcsot adnak az $u_1, \dots, u_{n-1}$ közül, és a 2. lépés szerint egyikük sem szomszédja $y$-nak. Az $y$ szomszédai az $u_1, \dots, u_{n-1}$ csúcsok közül kerülnek ki ($y$ nem szomszédja önmagának), ezért
+$$\deg(y) \le (n - 1) - \deg(x), \quad \text{azaz} \quad n - 1 \ge \deg(x) + \deg(y) \ge \frac{n}{2} + \frac{n}{2} = n.$$
+Az $n - 1 \ge n$ egyenlőtlenség ellentmondás. $\blacksquare$
+
+**Megjegyzés.** A bizonyításban a fokszámfeltételt csak egyetlen helyen, a 3. lépés végén használtuk, és ott is csak az **összekötetlen** $x$, $y$ csúcsok fokszámösszegére: elég lett volna, hogy $\deg(x) + \deg(y) \ge n$. Valójában tehát egy erősebb tételt bizonyítottunk:
+
+> **Tétel (Ore-tétel).** Legyen $G$ egy $n \ge 3$ csúcsú egyszerű gráf. Ha $G$ bármely két **összekötetlen** $x$, $y$ csúcsára igaz, hogy
+> $$\deg(x) + \deg(y) \ge n,$$
+> akkor $G$-ben van Hamilton-kör.
+
+A Dirac-tétel ennek speciális esete: ha minden fok legalább $\frac{n}{2}$, akkor bármely két csúcs fokszámösszege legalább $n$.
+
+::: kiegeszites
+**Kiegészítés — miért működik a bizonyítás az Ore-feltétellel is?** Egyetlen pontot kell ellenőrizni: hogy az 1. lépésben a telítés megőrzi a feltételt. Ha két csúcs a telített gráfban nincs összekötve, akkor az eredetiben sem volt, így az eredeti gráfban $\deg(x) + \deg(y) \ge n$; a telítés közben a fokszámok csak nőttek, tehát a telített gráfban is $\deg(x) + \deg(y) \ge n$. A 2. és 3. lépés változtatás nélkül érvényes, és a 3. lépés végén az $n - 1 \ge \deg(x) + \deg(y) \ge n$ ellentmondásra jutunk.
+
+*A Dirac-tétel korlátja éles.* Az $\frac{n}{2}$ nem cserélhető kisebbre: ha $n = 2m + 1$ páratlan, vegyünk két $(m+1)$ csúcsú teljes gráfot, amelyeknek egy közös csúcsuk van. Minden fok legalább $m = \frac{n-1}{2}$, de a közös csúcsot törölve a gráf $2$ komponensre esik, így a 31. szakasz szükséges feltétele szerint nincs Hamilton-köre.
+:::
+
 ## A III. rész összefoglalása
 
 - **Gráf:** $G = (V, E)$; hurokél, többszörös él, **egyszerű gráf**. Izomorfia: éltartó bijekció a csúcshalmazok között. Egyszerű gráfban $|E| \le \binom{n}{2}$.
@@ -1358,5 +1528,8 @@ Töröljük a $v_nv_a$ és $v_bw$ éleket, és vegyük hozzá a $v_nv_b$ és $v_
 - **Fa:** összefüggő, körmentes. Legalább $2$ csúcs esetén van legalább $2$ levele; $n$ csúcsú fának $n - 1$ éle van. Ekvivalens jellemzések: minimális összefüggő; maximális körmentes; összefüggő és $n - 1$ élű; körmentes és $n - 1$ élű; bármely két csúcs között pontosan egy út.
 - **Feszítőfa:** minden összefüggő gráfnak van (körök éleinek törlésével). **Minimális összsúlyú feszítőfa:** az optimista (Kruskal) és a pesszimista algoritmus is optimális.
 - **Cayley-tétel:** az $n$ csúcsú címkézett fák száma $n^{n-2}$. **Prüfer-kód:** legkisebb levél letépése, a szomszéd feljegyzése; az $i$ csúcs $\deg(i) - 1$-szer szerepel; bijekció a fák és $[n]^{n-2}$ között.
-- **Fokszámsorozatok:** hurokélekkel: $\sum d_k$ páros; hurokél nélkül: még $d_n \le \sum_{k<n} d_k$; egyszerű gráf: **Erdős–Gallai-feltétel**, illetve a **Havel–Hakimi-algoritmus**, amely pont akkor akad el, amikor nincs megfelelő gráf.
+- **Fokszámsorozatok:** hurokélekkel: $\sum d_k$ páros; hurokél nélkül: még $d_n \le \sum_{k<n} d_k$; egyszerű gráf: **Erdős–Gallai-feltétel**, illetve a **Havel–Hakimi-algoritmus**, amely pont akkor akad el, amikor nincs megfelelő gráf. Fa ($d_i \ge 1$): pontosan akkor, ha $\sum d_i = 2(n-1)$ (Prüfer-kóddal); ilyen címkézett fából $\frac{(n-2)!}{\prod_i (d_i - 1)!}$ van.
+- **Reguláris gráf:** minden fok ugyanaz az $r$. A $2$-reguláris gráfok diszjunkt körök uniói; $3$-reguláris gráfnak páros sok csúcsa van.
+- **Euler-séta** (minden élen pontosan egyszer) és **Euler-körséta:** körséta pontosan akkor van, ha a gráf összefüggő és minden fok páros; séta pontosan akkor, ha összefüggő és $0$ vagy $2$ páratlan fokú csúcs van.
+- **Hamilton-út, Hamilton-kör** (minden csúcson pontosan egyszer): eldöntése NP-teljes. Szükséges feltétel: $k$ csúcsot törölve legfeljebb $k$ (útnál $k + 1$) komponens. Elégséges feltétel: **Dirac** (minden fok $\ge \frac{n}{2}$), illetve **Ore** (összekötetlen $x, y$-ra $\deg(x) + \deg(y) \ge n$), $n \ge 3$.
 
