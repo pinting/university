@@ -601,3 +601,15 @@ Hány inverzió lehet maximum egy 6 elemű halmaz egy páros permutációjában?
 
 Adjuk meg a 9. feladatban szereplő és az alábbi permutációk diszjunkt ciklusfelbontását és előjelét:
 $$(135)(24)(531)(14), \qquad (1357246)(357)(1357246)^{-1}, \qquad [(12)(13)(14)]^{2026}.$$
+
+## 11. feladat
+
+Igazoljuk, hogy $(x_1 \dots x_k) = (x_1 x_2)(x_2 x_3) \dots (x_{k-2} x_{k-1})(x_{k-1} x_k)$.
+
+## 12. feladat
+
+Mutassuk meg, hogy $f \circ (x_1 \dots x_k) \circ f^{-1} = (f(x_1) \dots f(x_k))$ (itt $f \in S_n$ és $(x_1 \dots x_k)$ egy tetszőleges ciklus $S_n$-ben).
+
+## 13. feladat
+
+Adott a $\pi = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 1 & 3 \end{pmatrix}$ permutáció. Írjuk fel a hozzá tartozó $P_\pi$ permutációs mátrixot (amelynek az $i$-edik sorában a $\pi(i)$-edik oszlopban áll 1-es, máshol 0), majd számítsuk ki a determinánsát. Hogyan kapcsolódik a kapott determináns a permutáció inverziószámához?
