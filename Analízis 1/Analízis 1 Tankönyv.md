@@ -2,6 +2,8 @@
 
 ### Bevezetés a differenciál- és integrálszámítás alapfogalmaiba, lépésről lépésre
 
+**Buczolich Zoltán előadásai alapján**
+
 ---
 
 > *„A matematikát nem nézni kell, hanem csinálni.”*
@@ -10,7 +12,7 @@
 
 ## Előszó
 
-Ez a könyv az *Analízis 1 Jegyzet* tankönyvváltozata. A jegyzet tömör: kimondja a definíciókat és a tételeket, és többnyire végig is vezeti a bizonyításokat, de feltételezi, hogy az olvasó az előadáson már hallotta a magyarázatot, látta a rajzokat, és tudja, *miért* éppen így épül fel az anyag. Ez a könyv ezt a hiányzó réteget pótolja. Ugyanazt az utat járja be, ugyanabban a sorrendben, de lassabban: minden új fogalom előtt megmutatja, milyen kérdés teszi szükségessé, minden definíció után példákon és ellenpéldákon próbálja ki, és minden bizonyításnál elmondja a mögötte álló ötletet is, nemcsak a lépéseit.
+Ez a könyv az *Analízis 1 Jegyzet* tankönyvváltozata. Mindkettő **Buczolich Zoltán** (ELTE TTK, Analízis Tanszék) Analízis 1 előadásának kézírásos jegyzetein alapul: az anyag felépítése, a tárgyalás sorrendje, a definíciók, a tételek és a bizonyítások gondolatmenete az ő előadásait követi. Az érdem az övé; a magyarázatok, a példák és a feladatok kibővítése, valamint az ezekben esetleg előforduló hibák a feldolgozásból erednek. A jegyzet tömör: kimondja a definíciókat és a tételeket, és többnyire végig is vezeti a bizonyításokat, de feltételezi, hogy az olvasó az előadáson már hallotta a magyarázatot, látta a rajzokat, és tudja, *miért* éppen így épül fel az anyag. Ez a könyv ezt a hiányzó réteget pótolja. Ugyanazt az utat járja be, ugyanabban a sorrendben, de lassabban: minden új fogalom előtt megmutatja, milyen kérdés teszi szükségessé, minden definíció után példákon és ellenpéldákon próbálja ki, és minden bizonyításnál elmondja a mögötte álló ötletet is, nemcsak a lépéseit.
 
 **A számozás megegyezik a jegyzetével.** Az 1–86. szakasz címe és tartalma a jegyzet azonos számú szakaszának felel meg, így a kettő párhuzamosan olvasható: ha a jegyzet egy pontja túl tömörnek tűnik, ugyanazon a számon itt megtalálható a részletes kifejtés. Egyetlen kiegészítés van: a könyv egy rövid *Előkészületek* résszel kezdődik (A–D. szakasz), amely a matematikai logika és a halmazok nyelvét foglalja össze. Erre azért van szükség, mert az analízis definíciói — különösen a határértéké — hosszú, kvantorokkal teli mondatok, és ezek olvasását, tagadását külön meg kell tanulni.
 
