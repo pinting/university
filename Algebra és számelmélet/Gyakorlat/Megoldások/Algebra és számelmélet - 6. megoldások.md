@@ -259,3 +259,229 @@ ahol $u > v > 0$, $(u, v) = 1$, és $u, v$ különböző paritású. 15 páratla
 ::: elmelet
 **Elméleti háttér — pitagoraszi számhármasok paraméterezése.** A primitív megoldások pontosan $(u^2 - v^2, 2uv, u^2 + v^2)$, ahol $u > v > 0$, $(u, v) = 1$, $u \not\equiv v \pmod 2$. Adott elem esetén eldöntjük, melyik szerepet töltheti be (páratlan elem nem lehet $2uv$; az átfogó $u^2 + v^2$ nem lehet $\equiv 3 \pmod 4$), majd a megfelelő egyenletet szorzattá bontjuk ($u^2 - v^2 = (u - v)(u + v)$).
 :::
+
+## 15. feladat
+
+Keressük meg az összes olyan derékszögű háromszöget, amelynek oldalhosszai egész számok, és a területének mérőszáma pontosan megegyezik a kerületének mérőszámával.
+
+**Megoldás.**
+
+Legyenek a derékszögű háromszög befogói $a$ és $b$, átfogója $c$ ($a, b, c \in \mathbb{Z}^+$, feltehető, hogy $a \le b$). A feltétel szerint
+$$\frac{ab}{2} = a + b + c \iff ab - 2(a + b) = 2c.$$
+Négyzetre emelve mindkét oldalt, és kihasználva a Pitagorasz-tételt ($c^2 = a^2 + b^2$):
+$$(ab - 2(a + b))^2 = 4c^2 = 4(a^2 + b^2).$$
+Kifejtve a bal oldalt:
+$$a^2 b^2 - 4ab(a + b) + 4(a^2 + 2ab + b^2) = 4a^2 + 8ab + 4b^2.$$
+Mindkét oldalból kivonva $4a^2 + 8ab + 4b^2$-et:
+$$a^2 b^2 - 4ab(a + b) + 8ab = 0.$$
+Mivel $a, b > 0$, így $ab \neq 0$, oszthatunk $ab$-vel:
+$$ab - 4(a + b) + 8 = 0 \iff ab - 4a - 4b + 8 = 0.$$
+Ezt szorzattá alakítva:
+$$(a - 4)(b - 4) = 8.$$
+Mivel $a \le b$ pozitív egészek, és $a - 4 \le b - 4$, a 8 lehetséges pozitív szorzatfelbontásai:
+1. $a - 4 = 1$ és $b - 4 = 8 \implies a = 5$, $b = 12$. Ekkor $c = \sqrt{5^2 + 12^2} = 13$.
+   - Kerület: $K = 5 + 12 + 13 = 30$.
+   - Terület: $T = \frac{5 \cdot 12}{2} = 30$.
+2. $a - 4 = 2$ és $b - 4 = 4 \implies a = 6$, $b = 8$. Ekkor $c = \sqrt{6^2 + 8^2} = 10$.
+   - Kerület: $K = 6 + 8 + 10 = 24$.
+   - Terület: $T = \frac{6 \cdot 8}{2} = 24$.
+
+Negatív osztópárok nem adnak megoldást, mert $a, b \ge 1$ miatt $a - 4 \ge -3$, így $a - 4$ nem lehet $-4$ vagy $-8$.
+
+(Megjegyzés: Geometriai úton is célhoz érünk: a beírt kör sugara $r = \frac{T}{s} = \frac{2T}{K} = 2$. Derékszögű háromszögben $r = \frac{a+b-c}{2} = 2$, amiből $c = a + b - 4$. Ezt az $a^2 + b^2 = c^2$ egyenletbe helyettesítve szintén az $(a - 4)(b - 4) = 8$ egyenlet adódik.)
+
+**A megoldások: az $(5, 12, 13)$ és a $(6, 8, 10)$ oldalú háromszögek.**
+
+::: elmelet
+**Elméleti háttér — egész oldalú háromszögek és diofantoszi egyenletek.** A geometriai feltételek ($T = K$ és $a^2 + b^2 = c^2$) diofantoszi egyenletre vezetnek. Az $ab - 4a - 4b + 8 = 0$ alakú bilineáris egyenletek standard megoldása a szorzattá alakítás: $(a - u)(b - v) = uv - C$, amellyel a probléma véges sok osztópár vizsgálatára redukálódik. Geometriai szempontból a feltétel rögzíti a beírt kör sugarát ($r = T/s = 2$).
+:::
+
+## 16. feladat
+
+Igazoljuk, hogy a Nagy Fermat-tétel bizonyításához elegendő belátni, hogy az $x^n + y^n = z^n$ egyenletnek nincs pozitív egész megoldása $n = 4$, valamint $n = p$ esetekben.
+
+**Megoldás.**
+
+A Nagy Fermat-tétel állítása szerint az $x^n + y^n = z^n$ egyenletnek semmilyen $n \ge 3$ egész kitevőre nincsenek $x, y, z \in \mathbb{Z}^+$ megoldásai. (A feladatban $p$ tetszőleges páratlan prímet jelöl, hiszen $p = 2$ esetén végtelen sok pozitív egész megoldás létezik, a pitagoraszi számhármasok.)
+
+Tegyük fel, hogy az állítást már igazoltuk az $n = 4$ esetre, valamint minden $n = p$ páratlan prímre. Legyen $n \ge 3$ egy tetszőleges egész szám. Két eset lehetséges:
+
+1. **$n$-nek van páratlan prímosztója:** Jelölje ezt $p$. Ekkor $n = p \cdot k$ valamely $k \ge 1$ egészre. Ha létezne olyan $(x, y, z)$ pozitív egész számhármas, amelyre $x^n + y^n = z^n$, akkor a hatványozás azonosságai szerint:
+$$(x^k)^p + (y^k)^p = (z^k)^p.$$
+Legyen $X = x^k$, $Y = y^k$, $Z = z^k$. Mivel $x, y, z \ge 1$ és $k \ge 1$, az $X, Y, Z$ számok szintén pozitív egészek, és kielégítik az $X^p + Y^p = Z^p$ egyenletet. Ez azonban ellentmond annak a feltevésnek, hogy páratlan $p$ prím esetén az egyenletnek nincs pozitív egész megoldása.
+
+2. **$n$-nek nincs páratlan prímosztója:** Mivel $n > 1$, ezért $n$ egyetlen lehetséges prímosztója a 2, vagyis $n = 2^m$ alakú 2-hatvány. Mivel $n \ge 3$, ezért $m \ge 2$, amiből következik, hogy $4 \mid n$. Így $n = 4 \cdot k$ valamely $k \ge 1$ egészre. Ekkor:
+$$(x^k)^4 + (y^k)^4 = (z^k)^4,$$
+így $X = x^k, Y = y^k, Z = z^k \in \mathbb{Z}^+$ megoldása lenne az $X^4 + Y^4 = Z^4$ egyenletnek. Ez ellentmond annak a feltevésnek, hogy $n = 4$-re sincs pozitív egész megoldás.
+
+Mivel minden $n \ge 3$ egész szám vagy osztható legalább egy páratlan prímmel, vagy osztható 4-gyel, ezért bármely $n \ge 3$ kitevőjű megoldás maga után vonna egy megoldást valamely páratlan prímre vagy 4-re is. Így valóban elegendő ezeket az eseteket igazolni. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — a Nagy Fermat-tétel redukciója.** Ha az $x^n + y^n = z^n$ egyenletnek van megoldása, akkor minden olyan $d$ kitevőre is van, amely osztja $n$-et, hiszen $(x^{n/d})^d + (y^{n/d})^d = (z^{n/d})^d$. Emiatt a megoldhatatlanság az osztókról öröklődik a többszörösökre: elegendő a minimális kitevőkre bizonyítani. Mivel minden $n \ge 3$ szám osztható vagy egy páratlan prímmel, vagy $4$-gyel, a feladat a páratlan prímekre és a 4-re redukálódik.
+:::
+
+## 17. feladat
+
+Oldjuk meg a következő szimultán kongruenciarendszert a kínai maradéktétel segítségével:
+$$\begin{aligned}
+x &\equiv 1 \pmod 4 \\
+x &\equiv 2 \pmod 5 \\
+x &\equiv 3 \pmod 7
+\end{aligned}$$
+
+**Megoldás.**
+
+A modulusok $m_1 = 4$, $m_2 = 5$, $m_3 = 7$ páronként relatív prímek: $(4, 5) = (4, 7) = (5, 7) = 1$. A kínai maradéktétel szerint létezik megoldás, és az egyértelmű modulo $M = 4 \cdot 5 \cdot 7 = 140$.
+
+Alkalmazzuk a kínai maradéktétel standard konstrukcióját:
+- $M_1 = \frac{M}{m_1} = \frac{140}{4} = 35$,
+- $M_2 = \frac{M}{m_2} = \frac{140}{5} = 28$,
+- $M_3 = \frac{M}{m_3} = \frac{140}{7} = 20$.
+
+Meghatározzuk az $M_i y_i \equiv 1 \pmod{m_i}$ inverzeket:
+1. $35 y_1 \equiv 1 \pmod 4 \iff 3 y_1 \equiv 1 \pmod 4 \iff -y_1 \equiv 1 \implies y_1 \equiv 3 \pmod 4$.
+2. $28 y_2 \equiv 1 \pmod 5 \iff 3 y_2 \equiv 1 \pmod 5 \iff 3 y_2 \equiv 6 \implies y_2 \equiv 2 \pmod 5$.
+3. $20 y_3 \equiv 1 \pmod 7 \iff 6 y_3 \equiv 1 \pmod 7 \iff -y_3 \equiv 1 \implies y_3 \equiv 6 \pmod 7$.
+
+A megoldás:
+$$x_0 = c_1 M_1 y_1 + c_2 M_2 y_2 + c_3 M_3 y_3,$$
+ahol $c_1 = 1$, $c_2 = 2$, $c_3 = 3$.
+Behelyettesítve az értékeket:
+$$x_0 = 1 \cdot 35 \cdot 3 + 2 \cdot 28 \cdot 2 + 3 \cdot 20 \cdot 6 = 105 + 112 + 360 = 577.$$
+Modulo 140 redukálva ($577 = 4 \cdot 140 + 17$):
+$$x_0 \equiv 17 \pmod{140}.$$
+
+(Ellenőrzés: $17 = 4 \cdot 4 + 1 \equiv 1 \pmod 4$, $17 = 3 \cdot 5 + 2 \equiv 2 \pmod 5$, $17 = 2 \cdot 7 + 3 \equiv 3 \pmod 7$.)
+
+**A megoldás: $x \equiv 17 \pmod{140}$.**
+
+::: elmelet
+**Elméleti háttér — kínai maradéktétel.** Ha az $m_1, \dots, m_k$ modulusok páronként relatív prímek, akkor az $x \equiv c_i \pmod{m_i}$ rendszer megoldható, és a megoldás modulo $M = \prod m_i$ egyértelmű. Az $M_i = M/m_i$ számokhoz megkeressük az $M_i y_i \equiv 1 \pmod{m_i}$ inverzeket. Ekkor az $e_i = M_i y_i$ számokra $e_i \equiv 1 \pmod{m_i}$ és $e_i \equiv 0 \pmod{m_j}$ ($j \neq i$), vagyis $x = \sum c_i e_i$ kielégíti a rendszert.
+:::
+
+## 18. feladat
+
+Keresd meg azt a legkisebb pozitív egész számot, amely 3-mal osztva 2-t, 5-tel osztva 3-at, 7-tel osztva pedig 2-t ad maradékul.
+
+**Megoldás.**
+
+A feltételek kongruenciákkal felírva:
+$$\begin{aligned}
+x &\equiv 2 \pmod 3 \\
+x &\equiv 3 \pmod 5 \\
+x &\equiv 2 \pmod 7
+\end{aligned}$$
+A modulusok prímek (így páronként relatív prímek), a szorzatuk $M = 3 \cdot 5 \cdot 7 = 105$.
+
+Mivel az első és a harmadik kongruenciában a maradék megegyezik ($x \equiv 2 \pmod 3$ és $x \equiv 2 \pmod 7$), és $(3, 7) = 1$, ez egyenértékű azzal, hogy
+$$x \equiv 2 \pmod{21}.$$
+Ezért $x = 21k + 2$ valamely $k \in \mathbb{Z}$ egészre. Behelyettesítve a második kongruenciába:
+$$21k + 2 \equiv 3 \pmod 5 \iff 1k + 2 \equiv 3 \pmod 5 \iff k \equiv 1 \pmod 5.$$
+Így $k = 5t + 1$ ($t \in \mathbb{Z}$), amiből
+$$x = 21(5t + 1) + 2 = 105t + 23 \implies x \equiv 23 \pmod{105}.$$
+
+(A standard formulával: $M_1 = 35 \implies y_1 \equiv 2$, $M_2 = 21 \implies y_2 \equiv 1$, $M_3 = 15 \implies y_3 \equiv 1$. Ekkor $x = 2 \cdot 35 \cdot 2 + 3 \cdot 21 \cdot 1 + 2 \cdot 15 \cdot 1 = 140 + 63 + 30 = 233 \equiv 23 \pmod{105}$.)
+
+A legkisebb pozitív egész megoldást a $t = 0$ adja: $x = 23$.
+
+(Ellenőrzés: $23 = 7 \cdot 3 + 2$, $23 = 4 \cdot 5 + 3$, $23 = 3 \cdot 7 + 2$.)
+
+**A legkisebb pozitív egész szám: 23.**
+
+::: elmelet
+**Elméleti háttér — szimultán kongruenciák egyszerűsítése.** Ha egy rendszerben két kongruenciának azonos a maradéka ($x \equiv c \pmod{m_1}$ és $x \equiv c \pmod{m_2}$), akkor azok összevonhatók egyetlen $x \equiv c \pmod{[m_1, m_2]}$ kongruenciává. A kapott $x \equiv x_0 \pmod M$ megoldáshalmaz legkisebb pozitív eleme a $0 < x \le M$ feltételnek eleget tevő reprezentáns.
+:::
+
+## 19. feladat
+
+Egy kalózhajón a legénység aranypénzeket zsákmányolt. Ha 11 egyenlő részre osztják a kincset, akkor 6 érme marad ki. Ha 13 egyenlő részre osztják, akkor 4 érme marad, ha pedig 17-re, akkor 12. Legalább hány aranypénzt zsákmányoltak?
+
+**Megoldás.**
+
+Jelölje $N$ az aranypénzek számát ($N \in \mathbb{Z}^+$). A szöveg alapján az alábbi szimultán kongruenciarendszert kapjuk:
+$$\begin{aligned}
+N &\equiv 6 \pmod{11} \\
+N &\equiv 4 \pmod{13} \\
+N &\equiv 12 \pmod{17}
+\end{aligned}$$
+A modulusok prímszámok, így páronként relatív prímek. A közös modulus:
+$$M = 11 \cdot 13 \cdot 17 = 143 \cdot 17 = 2431.$$
+
+Kiszámítjuk az $M_i = \frac{M}{m_i}$ értékeket és azok inverzeit modulo $m_i$:
+1. $M_1 = 13 \cdot 17 = 221$. Mivel $221 = 20 \cdot 11 + 1 \equiv 1 \pmod{11}$, ezért:
+   $$1 \cdot y_1 \equiv 1 \pmod{11} \implies y_1 \equiv 1 \pmod{11}.$$
+2. $M_2 = 11 \cdot 17 = 187$. Mivel $187 = 14 \cdot 13 + 5 \equiv 5 \pmod{13}$, ezért:
+   $$5 y_2 \equiv 1 \pmod{13} \iff 5 y_2 \equiv 40 \pmod{13} \implies y_2 \equiv 8 \pmod{13}.$$
+3. $M_3 = 11 \cdot 13 = 143$. Mivel $143 = 8 \cdot 17 + 7 \equiv 7 \pmod{17}$, ezért:
+   $$7 y_3 \equiv 1 \pmod{17} \iff 7 y_3 \equiv 35 \pmod{17} \implies y_3 \equiv 5 \pmod{17}.$$
+
+A partikuláris megoldás:
+$$N_0 = c_1 M_1 y_1 + c_2 M_2 y_2 + c_3 M_3 y_3 = 6 \cdot 221 \cdot 1 + 4 \cdot 187 \cdot 8 + 12 \cdot 143 \cdot 5.$$
+A szorzatok értékei:
+$$6 \cdot 221 = 1326,$$
+$$4 \cdot 187 \cdot 8 = 4 \cdot 1496 = 5984,$$
+$$12 \cdot 143 \cdot 5 = 60 \cdot 143 = 8580.$$
+Összegük:
+$$N_0 = 1326 + 5984 + 8580 = 15890.$$
+Modulo 2431 redukálva ($15890 = 6 \cdot 2431 + 1304$):
+$$N \equiv 1304 \pmod{2431}.$$
+
+(Ellenőrzés: $1304 = 118 \cdot 11 + 6$, $1304 = 100 \cdot 13 + 4$, $1304 = 76 \cdot 17 + 12$.)
+
+Mivel pozitív darabszámot keresünk, a legkisebb lehetséges érték az $1304$.
+
+**Legalább 1304 aranypénzt zsákmányoltak.**
+
+::: elmelet
+**Elméleti háttér — szöveges feladatok modellezése kongruenciákkal.** Az osztási maradékokra vonatkozó feltételek szimultán kongruenciarendszerként formalizálhatók. Páronként relatív prím modulusok esetén a kínai maradéktétel garantálja az egyértelmű megoldhatóságot modulo $M = \prod m_i$. A valós problémákban a minimális pozitív megoldás a kongruenciaosztály legkisebb pozitív eleme.
+:::
+
+## 20. feladat
+
+Oldjuk meg az $x^3 + x + 57 \equiv 0 \pmod{27}$ kongruenciát.
+
+**Megoldás.**
+
+A modulus $27 = 3^3$ prímhatvány. A magasabb fokú prímhatvány modulusú kongruenciákat lépésről lépésre, a prím hatványai szerint felemelve (Hensel-felemeléssel) oldjuk meg. Legyen $f(x) = x^3 + x + 57$.
+
+**1. lépés: Megoldás modulo 3.**
+Mivel $57 = 3 \cdot 19 \equiv 0 \pmod 3$, a kongruencia modulo 3:
+$$x^3 + x \equiv 0 \pmod 3.$$
+A kis Fermat-tétel szerint minden egészre $x^3 \equiv x \pmod 3$, így
+$$x^3 + x \equiv x + x = 2x \equiv -x \equiv 0 \pmod 3 \implies x \equiv 0 \pmod 3.$$
+(A maradékokat behelyettesítve is látható: $f(0) \equiv 0$, $f(1) \equiv 2$, $f(2) \equiv 1 \pmod 3$, tehát $x \equiv 0 \pmod 3$ az egyetlen megoldás.)
+
+**2. lépés: Felemelés modulo $3^2 = 9$-re.**
+Az $x \equiv 0 \pmod 3$ feltétel miatt a megoldást $x = 3t$ alakban keressük ($t \in \{0, 1, 2\}$). Helyettesítsük be az $f(x)$ polinomba modulo 9:
+$$f(3t) = (3t)^3 + 3t + 57 = 27t^3 + 3t + 57.$$
+Mivel $27t^3 \equiv 0 \pmod 9$ és $57 = 6 \cdot 9 + 3 \equiv 3 \pmod 9$:
+$$f(3t) \equiv 3t + 3 \equiv 0 \pmod 9 \iff 3t \equiv -3 \equiv 6 \pmod 9.$$
+3-mal osztva a kongruenciát és a modulust is:
+$$t \equiv 2 \pmod 3.$$
+Tehát modulo 9 egyetlen megoldás van: $x = 3 \cdot 2 = 6$, azaz
+$$x \equiv 6 \pmod 9.$$
+(Ellenőrzés: $f(6) = 6^3 + 6 + 57 = 216 + 6 + 57 = 279 = 31 \cdot 9 \equiv 0 \pmod 9$.)
+
+**3. lépés: Felemelés modulo $3^3 = 27$-re.**
+Az $x \equiv 6 \pmod 9$ miatt a megoldás $x = 6 + 9u$ alakba írható ($u \in \{0, 1, 2\}$).
+Kifejtve $f(6 + 9u)$-t modulo 27:
+$$(6 + 9u)^3 = 6^3 + 3 \cdot 6^2 \cdot (9u) + 3 \cdot 6 \cdot (9u)^2 + (9u)^3.$$
+Mivel $3 \cdot 36 \cdot 9u = 27 \cdot 36 u \equiv 0 \pmod{27}$ és a további tagok a $9^2 = 81$ többszörösei, ezért
+$$(6 + 9u)^3 \equiv 6^3 = 216 \equiv 0 \pmod{27} \quad (\text{mivel } 216 = 8 \cdot 27).$$
+Így:
+$$f(6 + 9u) \equiv 6^3 + (6 + 9u) + 57 \equiv 0 + 9u + 63 \pmod{27}.$$
+Mivel $63 = 2 \cdot 27 + 9 \equiv 9 \pmod{27}$:
+$$9u + 9 \equiv 0 \pmod{27} \iff 9u \equiv -9 \equiv 18 \pmod{27}.$$
+9-cel osztva az egyenletet és a modulust is:
+$$u \equiv 2 \pmod 3.$$
+Így modulo 27 a megoldás:
+$$x = 6 + 9 \cdot 2 = 24 \pmod{27}.$$
+
+(Ellenőrzés: $24 \equiv -3 \pmod{27}$. Kiszámítva: $f(-3) = (-3)^3 + (-3) + 57 = -27 - 3 + 57 = 27 \equiv 0 \pmod{27}$.)
+
+**A megoldás: $x \equiv 24 \pmod{27}$.**
+
+::: elmelet
+**Elméleti háttér — kongruenciák megoldása prímhatvány modulusra és a Hensel-lemma.** Egy $f(x) \equiv 0 \pmod{p^k}$ kongruenciát lépésről lépésre oldunk meg: először modulo $p$, majd a kapott gyököket feloldjuk modulo $p^2, p^3, \dots$ hatványokra. Ha $x_0$ megoldás mod $p^j$, akkor a követező lépésben $x = x_0 + t p^j$ alakban keresünk megoldást modulo $p^{j+1}$. A Taylor-fejtés szerint $f(x_0 + t p^j) \equiv f(x_0) + t p^j f'(x_0) \pmod{p^{j+1}}$. Ha $f'(x_0) \not\equiv 0 \pmod p$, a megoldás minden lépésben egyértelműen emelhető fel (Hensel-lemma). Jelen esetben $f'(x) = 3x^2 + 1$, így $f'(0) = 1 \not\equiv 0 \pmod 3$, ami biztosította az egyértelmű felemelést.
+:::
+

@@ -555,6 +555,36 @@ Igazoljuk, hogy ha $N$ nem $m$-edik hatvány, akkor $\sqrt[m]{N}$ irracionális.
 
 Határozzuk meg az összes olyan primitív pitagoraszi számhármast, amelyben az egyik szám 15.
 
+## 15. feladat
+
+Keressük meg az összes olyan derékszögű háromszöget, amelynek oldalhosszai egész számok, és a területének mérőszáma pontosan megegyezik a kerületének mérőszámával.
+
+## 16. feladat
+
+Igazoljuk, hogy a Nagy Fermat-tétel bizonyításához elegendő belátni, hogy az $x^n + y^n = z^n$ egyenletnek nincs pozitív egész megoldása $n = 4$, valamint $n = p$ esetekben.
+
+## 17. feladat
+
+Oldjuk meg a következő szimultán kongruenciarendszert a kínai maradéktétel segítségével:
+$$\begin{aligned}
+x &\equiv 1 \pmod 4 \\
+x &\equiv 2 \pmod 5 \\
+x &\equiv 3 \pmod 7
+\end{aligned}$$
+
+## 18. feladat
+
+Keresd meg azt a legkisebb pozitív egész számot, amely 3-mal osztva 2-t, 5-tel osztva 3-at, 7-tel osztva pedig 2-t ad maradékul.
+
+## 19. feladat
+
+Egy kalózhajón a legénység aranypénzeket zsákmányolt. Ha 11 egyenlő részre osztják a kincset, akkor 6 érme marad ki. Ha 13 egyenlő részre osztják, akkor 4 érme marad, ha pedig 17-re, akkor 12. Legalább hány aranypénzt zsákmányoltak?
+
+## 20. feladat
+
+Oldjuk meg az $x^3 + x + 57 \equiv 0 \pmod{27}$ kongruenciát.
+
+
 # Algebra és számelmélet – 7. feladatsor
 
 ## 1. feladat
