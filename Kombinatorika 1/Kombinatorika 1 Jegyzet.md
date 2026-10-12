@@ -2,6 +2,8 @@
 
 ### Leszámlálás és gráfelmélet lépésről lépésre — az előadás jegyzetei alapján
 
+**Sziklai Péter előadásai alapján**
+
 ---
 
 > *„Számolni nem úgy kell, hogy egyenként végigszámoljuk a dolgokat, hanem úgy, hogy megértjük, hogyan épülnek fel.”*
@@ -10,7 +12,7 @@
 
 ## Előszó
 
-A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv az előadáson készült kézírásos jegyzetekből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet első fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok, Euler-séták és Hamilton-körök). Ahol ismert, a szakasz elején feltüntettük az előadás dátumát is, hogy a könyv és a saját jegyzet könnyen összevethető legyen.
+A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv **Sziklai Péter** (ELTE TTK, Számítógéptudományi Tanszék) előadásainak kézírásos jegyzeteiből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet első fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok, Euler-séták és Hamilton-körök). Az anyag felépítése, a tárgyalás rendje, a tételek és bizonyítások az ő előadásait követik; az érdem az övé, az esetleges hibák a feldolgozásból erednek. Ahol ismert, a szakasz elején feltüntettük az előadás dátumát is, hogy a könyv és a saját jegyzet könnyen összevethető legyen.
 
 A könyv azonban nem csupán a jegyzet letisztázott változata. Az előadáson sok minden szóban hangzik el, vagy csak egy rajz utal rá; itt ezeket a lépéseket kiírtuk. Minden új fogalom előtt igyekeztünk megmutatni, milyen kérdés teszi szükségessé, utána pedig példákon kipróbáltuk.
 
