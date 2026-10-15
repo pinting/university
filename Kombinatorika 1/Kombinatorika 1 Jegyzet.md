@@ -12,7 +12,7 @@
 
 ## Előszó
 
-A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv **Sziklai Péter** (ELTE TTK, Számítógéptudományi Tanszék) előadásainak kézírásos jegyzeteiből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet első fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok, Euler-séták és Hamilton-körök). Az anyag felépítése, a tárgyalás rendje, a tételek és bizonyítások az ő előadásait követik; az érdem az övé, az esetleges hibák a feldolgozásból erednek. Ahol ismert, a szakasz elején feltüntettük az előadás dátumát is, hogy a könyv és a saját jegyzet könnyen összevethető legyen.
+A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv **Sziklai Péter** (ELTE TTK, Számítógéptudományi Tanszék) előadásainak kézírásos jegyzeteiből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok, Euler-séták, Hamilton-körök, csúcs- és élszínezések, valamint a síkbarajzolható gráfok és az Euler-formula). Az anyag felépítése, a tárgyalás rendje, a tételek és bizonyítások az ő előadásait követik; az érdem az övé, az esetleges hibák a feldolgozásból erednek. Ahol ismert, a szakasz elején feltüntettük az előadás dátumát is, hogy a könyv és a saját jegyzet könnyen összevethető legyen.
 
 A könyv azonban nem csupán a jegyzet letisztázott változata. Az előadáson sok minden szóban hangzik el, vagy csak egy rajz utal rá; itt ezeket a lépéseket kiírtuk. Minden új fogalom előtt igyekeztünk megmutatni, milyen kérdés teszi szükségessé, utána pedig példákon kipróbáltuk.
 
@@ -854,7 +854,7 @@ Ezzel a leszámlálás fejezet végére értünk.
 
 # III. RÉSZ: GRÁFELMÉLET
 
-A gráfelmélet a XX. században fejlődött igazán önálló tudományterületté, és mára a matematika egyik legtöbbet alkalmazott ága: hálózatok, útvonaltervezés, ütemezés, kémiai molekulák szerkezete — mind gráfokkal modellezhető. Ebben a részben az alapfogalmaktól a fák elméletén és a fokszámsorozatok vizsgálatán át az Euler-séták és a Hamilton-körök kérdéséig jutunk el.
+A gráfelmélet a XX. században fejlődött igazán önálló tudományterületté, és mára a matematika egyik legtöbbet alkalmazott ága: hálózatok, útvonaltervezés, ütemezés, kémiai molekulák szerkezete — mind gráfokkal modellezhető. Ebben a részben az alapfogalmaktól a fák elméletén és a fokszámsorozatok vizsgálatán át az Euler-séták és a Hamilton-körök kérdésén keresztül a gráfszínezésekig (csúcs- és élszínezés, Vizing-tétel) és a síkbarajzolható gráfok elméletéig (Euler-formula, Kuratowski-tétel) jutunk el.
 
 ## 17. Gráfok, egyszerű gráfok, izomorfia
 
@@ -1521,17 +1521,1037 @@ A Dirac-tétel ennek speciális esete: ha minden fok legalább $\frac{n}{2}$, ak
 *A Dirac-tétel korlátja éles.* Az $\frac{n}{2}$ nem cserélhető kisebbre: ha $n = 2m + 1$ páratlan, vegyünk két $(m+1)$ csúcsú teljes gráfot, amelyeknek egy közös csúcsuk van. Minden fok legalább $m = \frac{n-1}{2}$, de a közös csúcsot törölve a gráf $2$ komponensre esik, így a 31. szakasz szükséges feltétele szerint nincs Hamilton-köre.
 :::
 
+## 33. Gráfszínezések: csúcsszínezés és kromatikus szám
+
+*Előadás: 2026. 10. 13.*
+
+Az előző fejezetekben láttuk, hogy míg az Euler-séták és körséták létezése egyszerűen és gyorsan (polinomiális időben) ellenőrizhető a fokszámok paritásából, addig a Hamilton-út és Hamilton-kör létezésének eldöntése számításelméleti szempontból rendkívül nehéz (NP-teljes feladat). Most a gráfelmélet egy újabb, gazdag és gyakorlati szempontból is alapvető területére lépünk: a **gráfszínezésekhez**.
+
+Színezési feladatokkal a mindennapi életben és a számítástudományban is lépten-nyomon találkozunk:
+- **Vizsgabeosztás és órarendkészítés:** a kurzusok a csúcsok, és két kurzus közé élt húzunk, ha van közös hallgatójuk. Olyan időpontokat (színeket) kell a vizsgákhoz rendelni, hogy ütköző vizsgák ne essenek azonos időpontra.
+- **Frekvenciakiosztás:** a rádióadók vagy mobil adótornyok csúcsok; ha két adó közel van egymáshoz (interferálhatnak), élt húzunk közéjük. Az azonos frekvenciák a színek.
+- **Regiszterallokáció a fordítóprogramokban:** a programban szereplő változók közül melyek férnek el a processzor korlátozott számú hardver-regiszterében úgy, hogy az egyszerre élő változók ne ütközzenek.
+
+Első témakörünk a **csúcsok színezése**.
+
+> **Definíció (jó csúcsszínezés).** Egy $G = (V, E)$ gráf $k$ színnel való **jó csúcsszínezése** (vagy reguláris csúcsszínezése) egy olyan
+> $$c: V \to \{1, 2, \dots, k\}$$
+> leképezés, amelyre bármely $uv \in E$ él esetén
+> $$c(u) \ne c(v).$$
+> Más szavakkal: semelyik két szomszédos (éllel összekötött) csúcs nem kaphatja ugyanazt a színt.
+
+A természetes kérdés: *hány színre van minimálisan szükségünk egy adott gráf jó kiszínezéséhez?*
+
+> **Definíció (kromatikus szám).** A legkisebb olyan $k$ pozitív egész számot, amelyre a $G$ gráfnak létezik $k$ színnel való jó csúcsszínezése, a $G$ gráf **kromatikus számának** nevezzük, és $\chi(G)$-vel jelöljük (a görög khí betűvel: $\chi$). Ha $\chi(G) \le k$, akkor azt mondjuk, hogy a gráf **$k$-színezhető**.
+
+### Mekkora lehet a kromatikus szám?
+
+Bármely $n$ csúcsú egyszerű gráfra nyilvánvalóan teljesül:
+$$1 \le \chi(G) \le n.$$
+
+Nézzük meg a két szélsőértéket:
+- **Alsó szélsőérték:** $\chi(G) = 1$ pontosan akkor áll fenn, ha a gráfnak **egyetlen éle sincs** (üres gráf, $E = \emptyset$). Ha ugyanis akár egyetlen $uv$ él is létezik, akkor $u$ és $v$ nem kaphat azonos színt, így legalább $2$ színre van szükség.
+- **Felső szélsőérték:** $\chi(G) = n$ pontosan akkor áll fenn, ha $G = K_n$, az $n$ csúcsú **teljes gráf**. A teljes gráfban ugyanis bármely két csúcs össze van kötve, így semelyik kettő nem kaphat azonos színt: mind az $n$ csúcsnak külön színt kell kapnia.
+
+Mi történik, ha egy teljes gráfból elhagyunk egy élt?
+Tekintsük például az $5$ csúcsú teljes gráfot, a $K_5$-öt: $n = 5$, és $e = \binom{5}{2} = 10$ éle van. Mint láttuk, $\chi(K_5) = 5$.
+Ha elhagyunk belőle egyetlen élt, mondjuk az $uv$ élt: az $u$ és $v$ csúcs között már nem fut él, így ők ketten megkaphatják ugyanazt a színt! A maradék három csúcs viszont továbbra is páronként össze van kötve egymással és $u$-val, $v$-vel is, így nekik három további, egymástól és az $u, v$ színétől is különböző színre van szükségük. Ezzel $K_5 - e$ már kiszínezhető $4$ színnel:
+$$\chi(K_5 - e) = 4.$$
+Egyetlen él elhagyása tehát $1$-gyel csökkentette a kromatikus számot.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1,
+  v/.style={circle, draw=black, fill=black!10, thick, minimum size=18pt, inner sep=0pt},
+  edge/.style={draw=black!70, thick},
+  missing/.style={draw=black!40, dashed, thick}
+]
+  \node[v] (v1) at (90:1.4) {$1$};
+  \node[v] (v2) at (162:1.4) {$2$};
+  \node[v] (v3) at (234:1.4) {$3$};
+  \node[v] (v4) at (306:1.4) {$4$};
+  \node[v] (v5) at (18:1.4) {$1$};
+
+  \draw[missing] (v1) -- (v5);
+  \draw[edge] (v1) -- (v2);
+  \draw[edge] (v1) -- (v3);
+  \draw[edge] (v1) -- (v4);
+  \draw[edge] (v2) -- (v3);
+  \draw[edge] (v2) -- (v4);
+  \draw[edge] (v2) -- (v5);
+  \draw[edge] (v3) -- (v4);
+  \draw[edge] (v3) -- (v5);
+  \draw[edge] (v4) -- (v5);
+
+  \node[below=0.2cm of v3, xshift=1.2cm] {\footnotesize $K_5 - e$: a szaggatott él hiányzik, így a két végpont azonos színt ($1$) kaphat; $\chi = 4$};
+\end{tikzpicture}
+\end{center}
+
+### Egy példa az előadásról
+
+Vizsgáljuk meg az előadáson felrajzolt példagráfot:
+
+\begin{center}
+\begin{tikzpicture}[scale=1.05,
+  c1/.style={circle, draw=black, fill=white, thick, minimum size=18pt, inner sep=0pt},
+  c2/.style={circle, draw=black, fill=black!15, thick, minimum size=18pt, inner sep=0pt},
+  c3/.style={circle, draw=black, fill=black!35, thick, minimum size=18pt, inner sep=0pt},
+  edge/.style={draw=black!70, thick}
+]
+  \node[c1] (tl) at (-1.3, 1.2) {$1$};
+  \node[c3] (top) at (0.3, 1.8) {$3$};
+  \node[c1] (tr) at (1.9, 1.1) {$1$};
+  \node[c2] (mid) at (0.3, 0.4) {$2$};
+  \node[c2] (fl) at (-2.3, 0.0) {$2$};
+  \node[c1] (in) at (-1.0, -0.3) {$1$};
+  \node[c1] (bl) at (-1.8, -1.3) {$1$};
+  \node[c3] (bot) at (0.3, -1.2) {$3$};
+
+  \draw[edge] (top) -- (tl);
+  \draw[edge] (top) -- (mid);
+  \draw[edge] (top) -- (tr);
+  \draw[edge] (tr) -- (mid);
+  \draw[edge] (tl) -- (mid);
+  \draw[edge] (tl) -- (fl);
+  \draw[edge] (fl) -- (in);
+  \draw[edge] (fl) -- (bl);
+  \draw[edge] (in) -- (mid);
+  \draw[edge] (in) -- (bot);
+  \draw[edge] (bl) -- (bot);
+  \draw[edge] (mid) -- (bot);
+
+  \node[right=0.4cm of tr] {\begin{tabular}{l}
+    $\chi(G) = 3$ \\
+    $\omega(G) = 3$ \\
+    $\Delta(G) = 5$
+  \end{tabular}};
+\end{tikzpicture}
+\end{center}
+
+Ebben a gráfban a csúcsokat sikerült $3$ színnel ($1, 2, 3$) jól kiszínezni: semelyik két szomszédos csúcs nem azonos színű. Mivel a gráf tartalmaz háromszöget (például a felső $3$, a középső $2$ és a jobb oldali $1$ csúcs egy $K_3$-at alkot), $2$ szín nem lehet elegendő, tehát a kromatikus szám pontosan $\chi(G) = 3$. A maximális fokszám $\Delta(G) = 5$ (a középső $2$-es színű csúcsnak $5$ szomszédja van), a legnagyobb teljes részgráf mérete pedig $\omega(G) = 3$.
+
+---
+
+## 34. A kromatikus szám becslései: klikkszám és mohó színezés
+
+*Előadás: 2026. 10. 13.*
+
+Egy tetszőleges gráf kromatikus számának közvetlen kiszámítása nehéz feladat. Szükségünk van olyan könnyen számolható gráftulajdonságokra, amelyek alsó és felső korlátot adnak $\chi(G)$-re.
+
+### Alsó becslés: a klikkszám
+
+> **Definíció (klikk, klikkszám).** Egy $G$ gráf egy részgráfját **klikknek** nevezzük, ha teljes gráf. A $G$-beli legnagyobb klikk csúcsainak számát a gráf **klikkszámának** nevezzük, és $\omega(G)$-vel jelöljük (a görög ómega betűvel: $\omega$).
+
+> **Állítás (alsó korlát a klikkszámmal).** Minden $G$ egyszerű gráfra
+> $$\omega(G) \le \chi(G).$$
+
+**Bizonyítás.** Legyen $K$ egy maximális méretű klikk $G$-ben, azaz $|V(K)| = \omega(G)$. Mivel $K$-ban bármely két csúcs össze van kötve éllel, egyetlen jó színezésben sem kaphat semelyik két csúcsa azonos színt. Így már önmagában a $K$ klikk csúcsainak kiszínezéséhez is legalább $\omega(G)$ különböző színre van szükség. Mivel a teljes gráf jó színezése a részgráfján is jó színezést ad, a teljes $G$ gráfhoz is legalább ennyi szín kell: $\chi(G) \ge \omega(G)$. $\blacksquare$
+
+### Felső becslés: mohó színezés és a maximális fokszám
+
+A felső becsléshez a gráf csúcsainak fokszámait hívjuk segítségül.
+
+> **Definíció (maximális fokszám).** A $G$ gráf csúcsainak legnagyobb fokszámát $\Delta(G)$-vel (vagy röviden $\Delta$-val) jelöljük:
+> $$\Delta(G) = \max_{v \in V} \deg(v).$$
+
+> **Tétel (felső korlát a maximális fokszámmal).** Minden $G$ egyszerű gráfra
+> $$\chi(G) \le \Delta(G) + 1.$$
+
+**Bizonyítás („nem lehet elrontani” — mohó színezés).**
+Vegyünk $\Delta(G) + 1$ darab színt: $\{1, 2, \dots, \Delta(G) + 1\}$.
+Rendezzük a gráf csúcsait tetszőleges sorrendbe:
+$$v_1, v_2, \dots, v_n.$$
+Haladjunk sorra a csúcsokon ebben a rögzített sorrendben, és színezzük őket a **mohó elv** szerint: amikor a $v_i$ csúcsra kerül a sor, adjuk neki a rendelkezésre álló színek közül a **legkisebb sorszámút**, amelyet a már korábban kiszínezett szomszédai még nem használnak.
+
+Elakadhat-e ez az eljárás?
+A $v_i$ csúcsnak az egész gráfban összesen legfeljebb $\deg(v_i) \le \Delta(G)$ szomszédja van. Ennélfogva a korábban már kiszínezett szomszédainak száma sem lehet több $\Delta(G)$-nél. Ezek a szomszédok legfeljebb $\Delta(G)$ különböző színt használhattak el.
+Mivel azonban összesen $\Delta(G) + 1$ szín áll rendelkezésünkre, a szomszédok által „lefoglalt” legfeljebb $\Delta(G)$ szín elkerülése után **legalább egy szín mindig szabadon marad** a $v_i$ csúcs számára!
+
+A mohó algoritmus tehát minden lépésben talál megengedett színt, soha nem akad el, és legfeljebb $\Delta(G) + 1$ szín felhasználásával egy jó csúcsszínezést állít elő. Ebből következik, hogy $\chi(G) \le \Delta(G) + 1$. $\blacksquare$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95,
+  v/.style={circle, draw=black, fill=black!15, thick, minimum size=18pt, inner sep=0pt},
+  cur/.style={circle, draw=black, fill=white, very thick, minimum size=20pt, inner sep=0pt},
+  edge/.style={draw=black!70, thick}
+]
+  \draw[rounded corners=15pt, fill=black!5, draw=black!30, dashed] (-3.4, -1.5) rectangle (3.4, 1.8);
+  \node[cur] (v) at (0, 0.1) {$v$};
+  \node[v] (u1) at (-2.2, 0.9) {$c_1$};
+  \node[v] (u2) at (-1.0, 1.2) {$c_2$};
+  \node[v] (u3) at (0.6, 1.2) {$c_3$};
+  \node[v] (u4) at (2.2, 0.8) {$c_k$};
+  \node[v] (w1) at (-2.0, -0.8) {};
+  \node[v] (w2) at (1.8, -0.8) {};
+
+  \draw[edge] (v) -- (u1);
+  \draw[edge] (v) -- (u2);
+  \draw[edge] (v) -- (u3);
+  \draw[edge] (v) -- (u4);
+  \path (u3) -- (u4) node[midway] {$\dots$};
+
+  \node[below=0.15cm of v] {\footnotesize $k \le \deg(v) \le \Delta(G)$};
+  \node[above=0.05cm of u2] {\footnotesize már kiszínezett szomszédok ($\le \Delta(G)$ tiltott szín)};
+\end{tikzpicture}
+\end{center}
+
+### Mikor éri el a felső korlátot a kromatikus szám?
+
+Feltehetjük a kérdést: léteznek-e olyan gráfok, amelyekre a fenti felső korlát pontos, azaz $\chi(G) = \Delta(G) + 1$?
+Az előadáson két ilyen családot azonosítottunk:
+
+1. **Teljes gráfok ($K_n$):**
+   Minden csúcs foka $n - 1$, így $\Delta(K_n) = n - 1$. Ugyanakkor minden csúcsnak külön szín kell: $\chi(K_n) = n = \Delta(K_n) + 1$.
+   Például $K_3$-ra $\Delta = 2$ és $\chi = 3$.
+
+2. **Páratlan körök ($C_{2k+1}$):**
+   A kör minden csúcsának foka $2$, így $\Delta(C_{2k+1}) = 2$. Két színnel viszont nem színezhető ki: ha a kör mentén felváltva adnánk a két színt, a páratlanadik lépésben a kezdő és az utolsó csúcs azonos színű lenne, ami éllel van összekötve. Ezért szükség van egy harmadik színre is:
+   $$\chi(C_{2k+1}) = 3 = \Delta(C_{2k+1}) + 1.$$
+   Ezzel szemben egy páros kör ($C_{2k}$) mindig kiszínezhető $2$ színnel: $\Delta(C_{2k}) = 2$ és $\chi(C_{2k}) = 2$.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85,
+  v/.style={circle, draw=black, fill=black!10, thick, minimum size=16pt, inner sep=0pt},
+  edge/.style={draw=black!70, thick}
+]
+  % K_3
+  \begin{scope}[xshift=-4.5cm]
+    \node[v] (k1) at (90:1.1) {$1$};
+    \node[v] (k2) at (210:1.1) {$2$};
+    \node[v] (k3) at (330:1.1) {$3$};
+    \draw[edge] (k1) -- (k2) -- (k3) -- (k1);
+    \node[below=1.2cm of k1] {\begin{tabular}{c} $K_3$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
+  \end{scope}
+
+  % C_5
+  \begin{scope}[xshift=0cm]
+    \node[v] (c1) at (90:1.1) {$1$};
+    \node[v] (c2) at (162:1.1) {$2$};
+    \node[v] (c3) at (234:1.1) {$1$};
+    \node[v] (c4) at (306:1.1) {$2$};
+    \node[v] (c5) at (18:1.1) {$3$};
+    \draw[edge] (c1) -- (c2) -- (c3) -- (c4) -- (c5) -- (c1);
+    \node[below=1.2cm of c1] {\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
+  \end{scope}
+
+  % C_4
+  \begin{scope}[xshift=4.5cm]
+    \node[v] (q1) at (45:1.1) {$1$};
+    \node[v] (q2) at (135:1.1) {$2$};
+    \node[v] (q3) at (225:1.1) {$1$};
+    \node[v] (q4) at (315:1.1) {$2$};
+    \draw[edge] (q1) -- (q2) -- (q3) -- (q4) -- (q1);
+    \node[below=1.2cm of q1] {\begin{tabular}{c} $C_4$ \\ $\Delta=2, \, \chi=2$ \end{tabular}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+Meglepő és mély tény, hogy ezen a két triviális eseten kívül **nincs más kivétel**! Ezt mondja ki a gráfelmélet egyik klasszikus eredménye:
+
+> **Tétel (Brooks-tétel, 1941).** Ha $G$ összefüggő egyszerű gráf, és $G$ nem teljes gráf ($G \ne K_n$), valamint nem páratlan kör ($G \ne C_{2k+1}$), akkor:
+> $$\chi(G) \le \Delta(G).$$
+
+::: kiegeszites
+**Kiegészítés — a Brooks-tétel bizonyítási alapötlete.**
+A mohó színezésnél láttuk, hogy ha a csúcsokat tetszőleges sorrendben vizsgáljuk, a legrosszabb esetben $\Delta + 1$ színre lehet szükség. A Brooks-tétel bizonyításának kulcsa (Lovász László elegáns 1975-ös gondolata szerint), hogy a csúcsok sorrendjét **nem tetszőlegesen**, hanem a gráf struktúrájához igazítva választjuk meg:
+1. Ha a gráf nem reguláris, van egy $v_n$ csúcs, amelyre $\deg(v_n) < \Delta$. Egy feszítőfát gyökereztetve $v_n$-ben, a csúcsokat a gyökértől mért távolság szerint csökkenő sorrendbe rendezve ($v_1, v_2, \dots, v_n$) minden korábbi csúcsnak lesz legalább egy nála később következő szomszédja (a szülője a fában), így legfeljebb $\Delta - 1$ korábbi szomszédja van a sorrendben. Ekkor a mohó algoritmus legfeljebb $\Delta$ színt használ.
+2. Ha a gráf $\Delta$-reguláris, de nem teljes és nem páratlan kör, megmutatható, hogy található olyan $v_n$ csúcs és annak két olyan $v_1, v_2$ szomszédja, amelyek egymással nincsenek összekötve ($v_1 v_2 \notin E$), és a gráf $v_1, v_2$ elhagyása után is összefüggő marad. Ekkor $v_1$ és $v_2$ azonos színt kaphat (mondjuk az $1$-est), így az utolsó $v_n$ csúcs $\Delta$ darab szomszédja közül kettő azonos színű — tehát a szomszédai legfeljebb $\Delta - 1$ különböző színt használnak, így $v_n$-nek is jut egy szabad szín a $\{1, \dots, \Delta\}$ halmazból.
+:::
+
+### Színosztályok és független halmazok
+
+Hogyan „kell” elképzelni egy $\chi(G)$ kromatikus számú gráfot?
+Egy jó színezésben az azonos színt kapott csúcsok között nem futhat él.
+
+> **Definíció (független csúcshalmaz).** A $G = (V, E)$ gráf egy $U \subseteq V$ részhalmazát **független csúcshalmaznak** nevezzük, ha semelyik két eleme nincs összekötve éllel, azaz a feszített részgráfban nincsenek élek: $E(G[U]) = \emptyset$.
+
+Ha $c: V \to \{1, 2, \dots, k\}$ egy jó színezés, akkor vezessük be az egyes színekhez tartozó csúcshalmazokat:
+$$V_i = \{v \in V : c(v) = i\} \qquad (i = 1, 2, \dots, k).$$
+Ekkor:
+1. $V = V_1 \cup V_2 \cup \dots \cup V_k$, és az osztályok páronként diszjunktak ($V_i \cap V_j = \emptyset$).
+2. Minden $V_i$ osztály **független halmaz**: az osztályon belül nem megy él!
+3. **Élek kizárólag a különböző színosztályok között futhatnak.**
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  dot/.style={circle, draw=black, fill=black, inner sep=1.2pt},
+  edge/.style={draw=black!70, thick}
+]
+  \draw[thick, fill=black!5] (-2.2, 1.2) ellipse (1.2cm and 0.8cm);
+  \node at (-2.2, 2.2) {\textbf{1. színosztály} ($V_1$)};
+  \node[dot] (a1) at (-2.6, 1.4) {};
+  \node[dot] (a2) at (-1.8, 1.5) {};
+  \node[dot] (a3) at (-2.2, 0.9) {};
+
+  \draw[thick, fill=black!5] (2.2, 1.2) ellipse (1.2cm and 0.8cm);
+  \node at (2.2, 2.2) {\textbf{2. színosztály} ($V_2$)};
+  \node[dot] (b1) at (1.8, 1.4) {};
+  \node[dot] (b2) at (2.6, 1.5) {};
+  \node[dot] (b3) at (2.2, 0.9) {};
+
+  \draw[thick, fill=black!5] (0, -1.4) ellipse (1.2cm and 0.8cm);
+  \node at (0, -2.4) {\textbf{3. színosztály} ($V_3$)};
+  \node[dot] (c1) at (-0.4, -1.2) {};
+  \node[dot] (c2) at (0.4, -1.2) {};
+  \node[dot] (c3) at (0, -1.6) {};
+
+  \draw[edge] (a2) -- (b1);
+  \draw[edge] (a3) -- (b1);
+  \draw[edge] (a3) -- (c1);
+  \draw[edge] (b3) -- (c2);
+  \draw[edge] (b3) -- (c3);
+
+  \node at (0, 0.2) {\footnotesize élek csak az osztályok \emph{között} futnak};
+\end{tikzpicture}
+\end{center}
+
+A gráf $k$ színnel való jó színezése tehát **teljesen ekvivalens azzal**, hogy a csúcshalmazát $k$ darab diszjunkt független halmaz uniójára bontjuk szét.
+
+---
+
+## 35. Páros gráfok és a 2-színezhetőség
+
+*Előadás: 2026. 10. 13.*
+
+A színezések legegyszerűbb nemtriviális esete a $2$ színnel való színezhetőség: mikor elég $2$ szín egy gráf kiszínezéséhez?
+- Ha $\chi(G) = 1$, a gráfnak egyáltalán nincs éle.
+- Ha $\chi(G) = 2$, a csúcsok két független halmazba ($A$ és $B$) oszthatók: $V = A \cup B$, és minden él egy $A$-beli és egy $B$-beli csúcs között fut.
+
+Az ilyen gráfokat már korábban elneveztük:
+
+> **Definíció (páros gráf).** Egy $G = (V, E)$ gráfot **páros gráfnak** (vagy kétosztályú gráfnak, idegen szóval *bipartite graph*) nevezünk, ha a csúcshalmaza felosztható két diszjunkt részre: $V = A \cup B$ ($A \cap B = \emptyset$), úgy, hogy minden $e \in E$ él egyik végpontja $A$-ban, másik végpontja $B$-ben van.
+
+A fenti ekvivalencia alapján:
+> Egy éllel rendelkező gráf pontosan akkor páros, ha $\chi(G) = 2$ (általában: $\chi(G) \le 2$).
+
+Milyen belső szerkezeti tulajdonság dönti el, hogy egy gráf páros-e? Ezt mondja ki a páros gráfok alaptétele:
+
+> **Tétel (a páros gráfok karakterizációja).** Egy $G$ gráf pontosan akkor páros (azaz $\chi(G) \le 2$), ha **minden köre páros hosszúságú** (vagyis $G$-ben nincs páratlan kör).
+
+### A tétel bizonyítása
+
+A tétel kétirányú állítás, mindkét irányt külön kell belátnunk.
+
+**1. Irány ($\implies$): ha a gráf páros, minden köre páros hosszúságú.**
+Tegyük fel, hogy $G$ páros, azaz csúcsai $2$ színnel (mondjuk $A$ és $B$ színekkel) jól színezhetők.
+Tekintsünk egy tetszőleges $C = (v_1, v_2, \dots, v_k, v_1)$ kört a gráfban.
+A kör élei mentén lépkedve a csúcsok színe minden lépésben váltakozik:
+$$v_1 \in A \implies v_2 \in B \implies v_3 \in A \implies v_4 \in B \implies \dots$$
+Ahhoz, hogy a zárt kör végén visszatérjünk a kiindulási $v_1 \in A$ csúcsba, szükségképpen **páros sok lépést** kellett megtennünk. Ha ugyanis $k$ páratlan lenne, akkor $v_k \in A$ lenne, ám $v_k$ össze van kötve $v_1$-gyel, ami azt jelentené, hogy két szomszédos csúcs azonos osztályba ($A$-ba) esik, ellentmondásban azzal, hogy $G$ páros.
+A kör hossza tehát szükségképpen páros.
+
+**2. Irány ($\impliedby$): ha a gráfban nincs páratlan kör, akkor páros.**
+A bizonyítást az előadáson ismertetett konstruktív módszerrel végezzük.
+Mivel a különböző összefüggőségi komponensek között nem fut él, elég a tételt **összefüggő gráfokra** bizonyítani (nem összefüggő esetben komponensenként végezzük el az eljárást).
+
+Tegyük fel tehát, hogy $G$ összefüggő, és nem tartalmaz páratlan kört.
+Válasszunk ki egy tetszőleges $v_0 \in V$ csúcsot kezdőpontnak (gyökérnek).
+Minden $u \in V$ csúcs esetén jelölje $d(v_0, u)$ a $v_0$ és $u$ közötti **legrövidebb út hosszát** (távolságát). Mivel a gráf összefüggő, ez a távolság minden csúcsra egy jól definiált egész szám.
+
+Osszuk a csúcsokat két osztályba a $v_0$-tól mért távolságuk **paritása** szerint:
+$$A = \{u \in V : d(v_0, u) \text{ páros}\}, \qquad B = \{u \in V : d(v_0, u) \text{ páratlan}\}.$$
+Maga a gyökér $d(v_0, v_0) = 0$ miatt $A$-ba kerül.
+Nyilvánvalóan $V = A \cup B$ és $A \cap B = \emptyset$, hiszen minden távolság vagy páros, vagy páratlan, de nem lehet egyszerre mindkettő (*„egyik sem kerül bele mindkettő kategóriába”*).
+
+Azt kell belátnunk, hogy **sem $A$-n belül, sem $B$-n belül nem fut él**.
+Tegyük fel indirekt, hogy mégis van egy ilyen él!
+Tegyük fel először, hogy két $A$-beli csúcs van összekötve: létezik egy $e = uv$ él, ahol $u, v \in A$. (A $u, v \in B$ eset teljesen azonos módon tárgyalható.)
+Mivel $u, v \in A$, mindkét távolság páros: $d(v_0, u) = 2k$ és $d(v_0, v) = 2m$.
+
+Vegyünk egy $P_u$ legrövidebb utat $v_0$-ból $u$-ba, és egy $P_v$ legrövidebb utat $v_0$-ból $v$-be.
+A két út mindegyike $v_0$-ból indul. Haladjunk a két úton párhuzamosan $v_0$-tól kezdve, és jelölje $w$ az **utolsó olyan közös csúcsot**, amelyben a két út találkozik (legrosszabb esetben $w = v_0$).
+Mivel $P_u$ és $P_v$ legrövidebb utak, a $v_0$-tól $w$-ig tartó kezdőszeletük is legrövidebb út, így $d(v_0, w)$ egyértelmű.
+
+A $w$-ből $u$-ba vezető út $P_u$-n, valamint a $w$-ből $v$-be vezető út $P_v$-n a $w$ csúcson kívül már nem tartalmaznak közös pontot, hosszaik pedig:
+$$\ell(w \to u) = d(v_0, u) - d(v_0, w), \qquad \ell(w \to v) = d(v_0, v) - d(v_0, w).$$
+
+Fűzzük össze a $w \to u$ utat, az $uv$ élt, és a $v \to w$ utat visszafelé: ez egy egyszerű kört alkot $G$-ben!
+Számoljuk ki ennek a körnek a hosszát:
+$$\ell(\text{kör}) = \big(d(v_0, u) - d(v_0, w)\big) + \big(d(v_0, v) - d(v_0, w)\big) + 1.$$
+Mivel $d(v_0, u)$ és $d(v_0, v)$ paritása megegyezik (mindkettő páros), a belőlük levont azonos $d(v_0, w)$ után a két különbség paritása is megegyezik!
+Két azonos paritású egész szám összege viszont **mindig páros**:
+$$\big(d(v_0, u) - d(v_0, w)\big) + \big(d(v_0, v) - d(v_0, w)\big) \equiv 0 \pmod 2.$$
+Ehhez hozzáadva az $uv$ élnek megfelelő $+1$-et, a kör teljes hossza:
+$$\ell(\text{kör}) \equiv 0 + 1 = 1 \pmod 2,$$
+vagyis a kör **PÁRATLAN HOSSZÚSÁGÚ**!
+
+Ez azonban éles ellentmondás, hiszen feltettük, hogy a gráfban nincs egyetlen páratlan kör sem!
+Az indirekt feltevésünk tehát hamis volt: nem létezhet olyan él, amelynek mindkét végpontja $A$-ban van (és hasonlóan nem létezhet olyan él sem, amelynek mindkét végpontja $B$-ben van).
+Minden él tehát szükségképpen egy $A$-beli és egy $B$-beli csúcsot köt össze, így $G$ valóban páros gráf, és $\chi(G) \le 2$. $\blacksquare$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  v/.style={circle, draw=black, fill=white, thick, minimum size=16pt, inner sep=0pt},
+  sq/.style={rectangle, draw=black, fill=black!15, thick, minimum size=15pt, inner sep=0pt},
+  tree/.style={draw=black!80, thick},
+  bad/.style={draw=black, very thick, dashed}
+]
+  % Layer 0
+  \node[v] (v0) at (0, 2.5) {$v_0$};
+  \node[left=0.5cm of v0] {\footnotesize $d=0$ ($A$, páros)};
+
+  % Layer 1
+  \node[sq] (u1) at (-2, 1.2) {$u_1$};
+  \node[sq] (u2) at (0, 1.2) {$u_2$};
+  \node[sq] (u3) at (2, 1.2) {$u_3$};
+  \node[left=0.5cm of u1] {\footnotesize $d=1$ ($B$, páratlan)};
+
+  % Layer 2
+  \node[v] (w1) at (-2.5, -0.2) {$w$};
+  \node[v] (x) at (0, -0.2) {};
+  \node[v] (y) at (2, -0.2) {};
+  \node[left=0.5cm of w1] {\footnotesize $d=2$ ($A$, páros)};
+
+  % Layer 3
+  \node[sq] (u) at (-3.2, -1.5) {$u$};
+  \node[sq] (v) at (-1.8, -1.5) {$v$};
+  \node[sq] (z) at (1, -1.5) {};
+  \node[left=0.5cm of u] {\footnotesize $d=3$ ($B$, páratlan)};
+
+  \draw[tree] (v0) -- (u1);
+  \draw[tree] (v0) -- (u2);
+  \draw[tree] (v0) -- (u3);
+  \draw[tree] (u1) -- (w1);
+  \draw[tree] (u2) -- (x);
+  \draw[tree] (u3) -- (y);
+  \draw[tree] (w1) -- (u);
+  \draw[tree] (w1) -- (v);
+  \draw[tree] (x) -- (z);
+
+  % Dashed edge within layer 3
+  \draw[bad] (u) -- (v);
+  \node[below=0.2cm of v] {\footnotesize $uv$ él azonos osztályban: páratlan kör keletkezik! ($w \to u \to v \to w$)};
+\end{tikzpicture}
+\end{center}
+
+> **Következmény (a fák páros gráfok).** Minden fa páros gráf.
+> Mivel a fa körmentes gráf, egyetlen kört sem tartalmaz — így speciálisan $0$ darab páratlan köre van. A tétel értelmében tehát minden fa $2$-színezhető.
+
+---
+
+## 36. Számítási bonyolultság és élszínezés
+
+*Előadás: 2026. 10. 15.*
+
+### Emlékeztető és a becslések pontossága
+
+Az előző előadáson megállapítottuk a kromatikus szám alapvető korlátait:
+$$\omega(G) \le \chi(G) \le \Delta(G) + 1.$$
+A bal oldalon a klikkszám áll, a jobb oldalon a mohó színezéssel kapott felső korlát.
+
+Ahogyan Sziklai Péter az előadáson hangsúlyozta: *„Ez a becslés marha rossz: ez a három szám tud nagyon messze lenni egymástól!”*
+Vajon garantálja-e egy kis klikkszám, hogy a kromatikus szám is kicsi? A válasz meglepő módon: **nem**. Jan Mycielski 1955-ben konstruált olyan háromszögmentes gráfokat (amelyekben $\omega(G) = 2$), amelyek kromatikus száma tetszőlegesen nagy lehet! A klikkszám és a kromatikus szám között tehát szakadék tátonghat.
+
+### Számítási bonyolultság: mi könnyű és mi nehéz?
+
+Gyakorlati szempontból döntő kérdés, hogy algoritmikusan mennyire nehéz eldönteni egy gráf színezhetőségét:
+- **$\chi(G) \le 2$ eldöntése: nagyon könnyű.** A 35. szakaszban látott legrövidebb utak paritásán alapuló szélességi keresés (BFS) a gráf éleinek és csúcsainak számával arányos, lineáris időben ($O(|V| + |E|)$ lépésben) vagy kiszínezi a gráfot $2$ színnel, vagy talál egy páratlan kört.
+- **$\chi(G) \le 3$ eldöntése: NAGYON NEHÉZ (NP-teljes).** Richard Karp híres 1972-es eredménye szerint már annak eldöntése is NP-teljes, hogy egy tetszőleges gráf kiszínezhető-e $3$ színnel! Nincs rá ismert hatékony (polinomiális idejű) algoritmus.
+- **$\chi(G)$ pontos meghatározása: NP-nehéz.** Általános gráfban a kromatikus szám kiszámítása a legnehezebb algoritmikus problémák közé tartozik.
+
+*(Emlékeztető: „NP-teljes: egyet megoldanánk, az összeset megoldanánk.”)*
+
+---
+
+### 2. témakör: Élszínezés
+
+A csúcsok színezése után felmerül a kérdés: mi történik, ha a gráf **éleit** szeretnénk kiszínezni?
+
+> **Definíció (jó élszínezés).** Egy $G = (V, E)$ gráf egy **jó élszínezése** egy olyan
+> $$c: E \to \{1, 2, \dots, k\}$$
+> leképezés, amelyre bármely két szomszédos (közös csúcsban találkozó) él különböző színt kap:
+> $$e_1 \cap e_2 \ne \emptyset \implies c(e_1) \ne c(e_2).$$
+
+> **Definíció (élkromatikus szám).** A legkisebb olyan $k$ pozitív egész számot, amelyre létezik jó $k$-élszínezés, a $G$ gráf **élkromatikus számának** (vagy kromatikus indexének) nevezzük, és $\chi'(G)$-vel vagy $\chi_e(G)$-vel jelöljük.
+
+### Mekkora lehet az élkromatikus szám?
+
+Egy tetszőleges $v \in V$ csúcsból induló élek mindegyike találkozik $v$-ben, tehát páronként szomszédosak. Ennélfogva semelyik kettő nem kaphat azonos színt: mindegyiknek különböző színűnek kell lennie!
+Ez azonnal ad egy triviális alsó korlátot:
+
+> **Állítás (alsó korlát az élkromatikus számra).** Minden $G$ gráfra
+> $$\chi'(G) \ge \Delta(G).$$
+
+**Bizonyítás.** Válasszunk ki egy maximális fokszámú csúcsot: $\deg(v) = \Delta(G)$. A $v$-be befutó $\Delta(G)$ darab él mindegyikének páronként különböző színt kell kapnia, így a jó élszínezéshez legalább $\Delta(G)$ szín szükséges. $\blacksquare$
+
+### Példák az előadásról
+
+1. **Egy 8 csúcsú példagráf:**
+   Az előadáson felrajzolt gráfban (amelyet alább bemutatunk) a maximális fokszám $\Delta = 4$. Sikerült az éleket $4$ színnel jól kiszínezni, így $\chi'(G) = 4 = \Delta(G)$.
+
+2. **Az 5-csúcsú kör ($C_5$):**
+   A kör minden csúcsának foka $2$, így $\Delta(C_5) = 2$.
+   Elég-e $2$ szín az élek színezésére?
+   Egy jó élszínezésben az azonos színű élek **független élhalmazt** (párosítást) alkotnak, azaz nem lehet közös csúcsuk. Egy $5$-csúcsú körben a legnagyobb független élhalmaz mérete $\lfloor 5/2 \rfloor = 2$.
+   Két színnel tehát legfeljebb $2 \times 2 = 4$ élt tudnánk kiszínezni. Ám a $C_5$ körnek $5$ éle van!
+   Ezért $2$ szín semmiképpen sem elegendő: szükség van egy harmadik színre is:
+   $$\chi'(C_5) = 3 = \Delta(C_5) + 1.$$
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0,
+  v/.style={circle, draw=black, fill=black, inner sep=1.5pt},
+  edge/.style={draw=black!70, thick}
+]
+  \begin{scope}[xshift=-3.5cm]
+    \node[v] (n1) at (-1.8, 0) {};
+    \node[v] (n2) at (-1.2, 1.0) {};
+    \node[v] (n3) at (-1.2, -1.0) {};
+    \node[v] (n4) at (0, 1.2) {};
+    \node[v] (n5) at (0, -0.8) {};
+    \node[v] (n6) at (0.8, 0.4) {};
+    \node[v] (n7) at (1.1, 1.4) {};
+    \node[v] (n8) at (1.8, 0.4) {};
+
+    \draw[edge] (n1) -- node[above left, inner sep=1pt]{\footnotesize $1$} (n2);
+    \draw[edge] (n1) -- node[below left, inner sep=1pt]{\footnotesize $2$} (n3);
+    \draw[edge] (n2) -- node[above, inner sep=1pt]{\footnotesize $4$} (n4);
+    \draw[edge] (n2) -- node[right, inner sep=1pt]{\footnotesize $2$} (n5);
+    \draw[edge] (n3) -- node[below, inner sep=1pt]{\footnotesize $1$} (n5);
+    \draw[edge] (n4) -- node[above, inner sep=1pt]{\footnotesize $3$} (n6);
+    \draw[edge] (n5) -- node[left, inner sep=1pt]{\footnotesize $4$} (n6);
+    \draw[edge] (n4) -- node[above, inner sep=1pt]{\footnotesize $4$} (n7);
+    \draw[edge] (n6) -- node[right, inner sep=1pt]{\footnotesize $1$} (n7);
+    \draw[edge] (n6) -- node[below, inner sep=1pt]{\footnotesize $2$} (n8);
+
+    \node[below=1.2cm of n5] {\begin{tabular}{c} $\Delta(G) = 4$ \\ $\chi'(G) = 4$ \end{tabular}};
+  \end{scope}
+
+  \begin{scope}[xshift=3.5cm]
+    \node[v] (c1) at (90:1.3) {};
+    \node[v] (c2) at (162:1.3) {};
+    \node[v] (c3) at (234:1.3) {};
+    \node[v] (c4) at (306:1.3) {};
+    \node[v] (c5) at (18:1.3) {};
+
+    \draw[edge] (c1) -- node[above left, inner sep=1pt]{\footnotesize $1$} (c2);
+    \draw[edge] (c2) -- node[left, inner sep=1pt]{\footnotesize $2$} (c3);
+    \draw[edge] (c3) -- node[below, inner sep=1pt]{\footnotesize $1$} (c4);
+    \draw[edge] (c4) -- node[right, inner sep=1pt]{\footnotesize $2$} (c5);
+    \draw[edge] (c5) -- node[above right, inner sep=1pt]{\footnotesize $3$} (c1);
+
+    \node[below=1.5cm of c1] {\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi'=3$ \end{tabular}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+### Vizing tétele: az élkromatikus szám csodája
+
+Vajon milyen messze eshet $\chi'(G)$ a maximális fokszámtól?
+A válasz a gráfelmélet egyik legszebb és legmeglepőbb tétele:
+
+> **Tétel (Vizing-tétel, 1964).** Minden egyszerű $G$ gráfra:
+> $$\Delta(G) \le \chi'(G) \le \Delta(G) + 1.$$
+
+Ez a tétel azt jelenti, hogy egy egyszerű gráf élkromatikus száma **mindössze kétféle értéket vehet fel**: vagy $\Delta(G)$, vagy $\Delta(G) + 1$!
+Ennek megfelelően a gráfokat két osztályba soroljuk:
+- **1. osztályú gráfok (Class 1):** amelyekre $\chi'(G) = \Delta(G)$. Ide tartoznak például a páros gráfok (Kőnig Dénes tétele szerint minden páros gráf 1. osztályú).
+- **2. osztályú gráfok (Class 2):** amelyekre $\chi'(G) = \Delta(G) + 1$. Ide tartoznak a páratlan körök, és általában azok a gráfok, amelyekben túl sok él van ahhoz, hogy $\Delta$ darab független élhalmazba lehessen őket tömöríteni.
+
+> **Megjegyzés a számítási bonyolultságról.** Bár a Vizing-tétel szerint csak két lehetséges érték van, Ian Holyer (1981) bebizonyította, hogy annak eldöntése, hogy egy adott egyszerű gráf 1. vagy 2. osztályú-e, **NP-teljes feladat**! Még 3-reguláris gráfokra is NP-teljes eldönteni, hogy $\chi' = 3$ vagy $\chi' = 4$.
+
+::: kiegeszites
+**Kiegészítés — többszörös élek és a Shannon-tétel.**
+Ha a gráf nem egyszerű, hanem többszörös éleket is tartalmazhat, a Vizing-tétel ebben a formában már nem érvényes: ha két csúcs között $3$ párhuzamos él fut, akkor $\Delta = 3$, de a három párhuzamos él mind szomszédos, így $3$ szín kell. Ha egy háromszög minden élét megkettőzzük, $\Delta = 4$, de $\chi' = 6$. Általános gráfokra Claude Shannon 1949-es tétele érvényes: $\chi'(G) \le \frac{3}{2}\Delta(G)$.
+A Vizing-tétel bizonyítása az úgynevezett alternáló láncok (Kempe-láncok élszínezési változata) módszerén alapul: ha egy él nem színezhető ki a szomszédai által használt színekkel, a hiányzó színek mentén váltakozó utakon a színek megcserélésével helyet lehet csinálni egy új színnek anélkül, hogy $\Delta + 1$-nél több színt kellene bevezetni.
+:::
+
+---
+
+### 3. témakör: Tartományok színezése
+
+A harmadik természetes kérdés: mi a helyzet a síkbeli térképek, tartományok színezésével?
+Ezt a témát az előadáson egyelőre elhalasztottuk: ahhoz, hogy a tartományok színezéséről beszélni tudjunk, először pontosan meg kell értenünk a **síkbarajzolható gráfok** szerkezetét!
+
+---
+
+## 37. Síkbarajzolható gráfok és tartományaik
+
+*Előadás: 2026. 10. 15.*
+
+A gyakorlatban — például nyomtatott áramköri lapok (PCB) tervezésénél vagy integrált áramkörök huzalozásánál — alapvető követelmény, hogy a vezetőpályák ne keresztezzék egymást a hordozó felületén, mert az rövidzárlatot okozna. Hasonló kérdés merül fel metróhálózatok, vasúti sínek vagy síkbeli térképek ábrázolásakor.
+
+Mikor rajzolható le egy gráf a síkba úgy, hogy az élei ne keresztezzék egymást?
+
+> **Definíció (síkbarajzolható gráf, síkgráf).**
+> - Egy $G = (V, E)$ gráf **síkbarajzolható** (vagy planáris), ha lerajzolható a síkba úgy, hogy:
+>   1. a csúcsai a sík diszjunkt pontjainak felelnek meg;
+>   2. az élei a megfelelő csúcspárokat összekötő folytonos, önmagukat nem metsző síkgörbék (**Jordan-ívek**);
+>   3. két különböző él nem metszi egymást, és egyetlen közös pontjuk legfeljebb a közös végpontjuk lehet.
+> - Egy ilyen konkrét síkbeli lerajzolást a gráf **síkba ágyazásának** vagy **síkgráfnak** nevezünk.
+
+*A különbség:* a síkbarajzolhatóság a gráf elvont tulajdonsága (lerajzolható-e), míg a síkgráf maga a síkba már lerajzolt alakzat.
+
+### Példa: a $K_4$ síkbarajzolható!
+
+Tekintsük a $4$ csúcsú teljes gráfot, a $K_4$-et.
+Ha egy négyzet négy sarkaként rajzoljuk le és behúzzuk az oldalait meg a két átlóját, akkor a két átló a négyzet közepén metszi egymást. Ez a rajz nem síkbeli.
+Azonban ez nem a gráf hibája, hanem a lerajzolásé! $K_4$ ugyanis **síkbarajzolható**:
+- Az egyik átlót megrajzolhatjuk úgy, hogy a négyzetet kívülről megkerülje;
+- vagy lerajzolhatunk egy háromszöget, és a negyedik csúcsot a háromszög belsejébe helyezve összeköthetjük a három sarokcsúccsal.
+Mindkét esetben metszésmentes síkrajzot kapunk.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
+  edge/.style={draw=black!70, thick}
+]
+  % Crossing K_4
+  \begin{scope}[xshift=-5.0cm]
+    \node[v] (a1) at (-0.8, 0.8) {};
+    \node[v] (a2) at (0.8, 0.8) {};
+    \node[v] (a3) at (0.8, -0.8) {};
+    \node[v] (a4) at (-0.8, -0.8) {};
+    \draw[edge] (a1) -- (a2) -- (a3) -- (a4) -- (a1);
+    \draw[edge] (a1) -- (a3);
+    \draw[edge] (a2) -- (a4);
+    \node[below=1.0cm of a4, xshift=0.8cm] {\footnotesize Rossz rajz (metszés)};
+  \end{scope}
+
+  % Curved K_4
+  \begin{scope}[xshift=-1.5cm]
+    \node[v] (b1) at (-0.8, 0.8) {};
+    \node[v] (b2) at (0.8, 0.8) {};
+    \node[v] (b3) at (0.8, -0.8) {};
+    \node[v] (b4) at (-0.8, -0.8) {};
+    \draw[edge] (b1) -- (b2) -- (b3) -- (b4) -- (b1);
+    \draw[edge] (b2) -- (b4);
+    \draw[edge] (b1) to[out=210, in=150, looseness=2.2] (b3);
+    \node[below=1.0cm of b4, xshift=0.8cm] {\footnotesize Jó síkrajz (ív)};
+  \end{scope}
+
+  % Triangle with center
+  \begin{scope}[xshift=2.2cm]
+    \node[v] (c1) at (90:1.1) {};
+    \node[v] (c2) at (210:1.1) {};
+    \node[v] (c3) at (330:1.1) {};
+    \node[v] (c4) at (0, 0) {};
+    \draw[edge] (c1) -- (c2) -- (c3) -- (c1);
+    \draw[edge] (c1) -- (c4);
+    \draw[edge] (c2) -- (c4);
+    \draw[edge] (c3) -- (c4);
+    \node[below=1.0cm of c4] {\footnotesize Jó síkrajz (belső csúcs)};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+### Tartományok (lapok)
+
+Amikor egy gráfot lerajzolunk a síkba metszések nélkül, a gráf élei feldarabolják a síkot.
+
+> **Definíció (tartományok).** Amikor egy gráfot lerajzolunk a síkba, az a síkot geometriailag összefüggő nyílt részekre, úgynevezett **tartományokra** (vagy lapokra, angolul *faces*) bontja. A tartományok számát $t$-vel (vagy $f$-fel) jelöljük.
+
+Fontos szem előtt tartani:
+- A tartományok közül $t - 1$ darab **korlátos** (belső tartomány).
+- Pontosan $1$ darab tartomány **nem korlátos** (ez a gráfot körülvevő, a végtelenbe nyúló **külső tartomány**).
+A külső tartomány ugyanolyan teljes jogú tartománya a síkrajznak, mint a belsők!
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95,
+  v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
+  edge/.style={draw=black!70, thick},
+  face/.style={circle, draw=black!60, fill=black!5, inner sep=1.5pt, font=\small}
+]
+  \node[v] (p1) at (-3.0, 0) {};
+  \node[v] (p2) at (-0.5, 1.4) {};
+  \node[v] (p3) at (-1.2, -0.2) {};
+  \node[v] (p4) at (0.4, 0.6) {};
+  \node[v] (p5) at (1.2, -1.0) {};
+  \node[v] (p6) at (1.8, 0) {};
+
+  \draw[edge] (p1) to[out=50, in=180] (p2);
+  \draw[edge] (p2) to[out=0, in=90] (p6);
+  \draw[edge] (p6) to[out=270, in=0] (p5);
+  \draw[edge] (p5) to[out=190, in=280] (p1);
+
+  \draw[edge] (p1) -- (p3);
+  \draw[edge] (p3) -- (p2);
+  \draw[edge] (p2) -- (p4);
+  \draw[edge] (p3) to[out=320, in=120] (p5);
+  \draw[edge] (p4) -- (p5);
+  \draw[edge] (p4) -- (p6);
+
+  \node[face] at (-1.5, 0.6) {$1$};
+  \node[face] at (0.2, -0.3) {$2$};
+  \node[face] at (1.1, 0.4) {$3$};
+  \node[face] at (-2.6, -1.2) {$4$};
+
+  \node[right=0.8cm of p6] {\begin{tabular}{l}
+    \textbf{4 tartományra bontja:} \\
+    $1, 2, 3$: belső tartományok \\
+    $4$: külső (végtelen) tartomány
+  \end{tabular}};
+\end{tikzpicture}
+\end{center}
+
+---
+
+## 38. Az Euler-formula síkgráfokra
+
+*Előadás: 2026. 10. 15.*
+
+Ha adott egy összefüggő síkbarajzolt gráf, amelynek $n$ csúcsa, $e$ éle és $t$ tartománya van, mi az összefüggés e három mennyiség között?
+Leonhard Euler 1752-ben fedezte fel ezt a csodálatos kapcsolatot a konvex poliéderek csúcsaira, éleire és lapjaira, amely síkgráfokra a következőképpen szól:
+
+> **Tétel (Euler-formula összefüggő síkgráfokra).** Minden összefüggő síkbarajzolt gráfra:
+> $$n - e + t = 2.$$
+
+Ez az érték nem függ a gráf formájától, méretétől vagy a rajzolás módjától: **konstans a síkon**, a sík topológiai jellegzetessége (Euler-karakterisztikája).
+
+### A tétel bizonyítása (invariáns módszer)
+
+A bizonyítás az előadáson bemutatott gyönyörű invariáns gondolatot követi: egymás után elhagyjuk a körök éleit, amíg egy fához nem jutunk.
+
+Tekintsük a gráfban az $I = n - e + t$ mennyiséget.
+Feltehetjük a kérdést: **van-e köre a gráfnak?**
+
+**1. Eset: a gráfnak van köre.**
+Válasszunk ki egy tetszőleges kört, és azon egy tetszőleges $e_0$ élt.
+Mivel $e_0$ egy körön fekszik, a kör belsejét és külsejét választja el egymástól, tehát két különböző tartomány közös határán helyezkedik el.
+Töröljük ki az $e_0$ élt a síkrajzból!
+Mi történik a paraméterekkel?
+- A csúcsok száma nem változik: $n' = n$.
+- Az élek száma $1$-gyel csökken: $e' = e - 1$.
+- Az $e_0$ által elválasztott két tartomány egyetlen közös tartománnyá olvad össze, így a tartományok száma is $1$-gyel csökken: $t' = t - 1$.
+- Mivel $e_0$ egy kör éle volt, elhagyása után a végpontjai között a kör maradék ívén továbbra is vezet út, így a gráf **összefüggő marad**!
+
+Nézzük meg, hogyan változott az $n - e + t$ mennyiség:
+$$n' - e' + t' = n - (e - 1) + (t - 1) = n - e + 1 + t - 1 = n - e + t.$$
+Az $n - e + t$ értéke tehát **egyáltalán nem változott: invariáns maradt**!
+
+**2. Lépés: ismétlés.**
+Isételjük ezt az élbontó lépést mindaddig, amíg a gráfban található kör. Mivel minden lépésben csökken az élek száma, az eljárás véges sok lépésben véget ér.
+
+**3. Befejezés: fához jutottunk.**
+Amikor már nincs több kör a gráfban, a megmaradt gráf:
+- összefüggő (mert minden lépés megőrizte az összefüggőséget),
+- körmentes (mert addig töröltünk, amíg volt kör).
+Ez a 20. szakasz definíciója szerint egy **fa** (az eredeti gráf egy feszítőfája)!
+
+Egy $n$ csúcsú fa paramétereit jól ismerjük:
+- éleinek száma: $e_{\text{fa}} = n - 1$,
+- mivel nincsenek körei, a síkot nem vágja belső részekre, így egyetlen tartománya van: a külső tartomány, azaz $t_{\text{fa}} = 1$.
+
+Számoljuk ki az invariáns értékét a fára:
+$$n - e_{\text{fa}} + t_{\text{fa}} = n - (n - 1) + 1 = n - n + 1 + 1 = 2.$$
+Mivel minden korábbi lépésben az $n - e + t$ érték változatlan maradt, az eredeti gráfra is pontosan $n - e + t = 2$ kellett hogy teljesüljön! $\blacksquare$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95,
+  v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
+  tree/.style={draw=black, very thick},
+  del/.style={draw=black!40, dashed, thick}
+]
+  \node[v] (a) at (-2.0, 0.8) {};
+  \node[v] (b) at (-0.8, 1.6) {};
+  \node[v] (c) at (0.8, 1.0) {};
+  \node[v] (d) at (1.5, 0) {};
+  \node[v] (e) at (0.4, -0.8) {};
+  \node[v] (f) at (-1.0, -0.8) {};
+  \node[v] (g) at (-1.8, -1.4) {};
+  \node[v] (h) at (-0.8, -1.5) {};
+  \node[v] (mid) at (-0.9, 0.0) {};
+
+  % Spanning tree edges (solid)
+  \draw[tree] (a) -- (b);
+  \draw[tree] (a) -- (mid);
+  \draw[tree] (mid) -- (f);
+  \draw[tree] (f) -- (g);
+  \draw[tree] (g) -- (h);
+  \draw[tree] (f) -- (h);
+  \draw[tree] (mid) -- (e);
+  \draw[tree] (e) -- (d);
+  \draw[tree] (d) -- (c);
+
+  % Deleted cycle edges (dashed with strikeout)
+  \draw[del] (b) -- node[sloped]{\footnotesize $|/|$} (c);
+  \draw[del] (a) -- node[sloped]{\footnotesize $|/|$} (f);
+  \draw[del] (mid) -- node[sloped]{\footnotesize $|/|$} (d);
+
+  \node[right=0.5cm of d] {\begin{tabular}{l}
+    \textbf{Invariáns:} $n - e + t$ állandó \\
+    Él törlése körből: \\
+    $e \to e - 1, \; t \to t - 1$ \\
+    Feszítőfánál: \\
+    $n - (n-1) + 1 = 2$
+  \end{tabular}};
+\end{tikzpicture}
+\end{center}
+
+### Mi van, ha a gráf nem összefüggő?
+
+Mi történik az Euler-formulával, ha a gráf több összefüggőségi komponensből áll?
+
+> **Tétel (Euler-formula általános síkgráfokra).** Ha a $G$ síkgráf $c$ darab összefüggőségi komponensből áll, akkor:
+> $$n - e + t = c + 1.$$
+
+**Bizonyítás.**
+Jelölje az egyes komponensek csúcsainak, éleinek és tartományainak számát $n_i, e_i, t_i$ ($i = 1, 2, \dots, c$).
+Minden komponens önmagában összefüggő síkgráf, így rájuk külön-külön érvényes az Euler-formula:
+$$n_i - e_i + t_i = 2 \qquad (i = 1, 2, \dots, c).$$
+A teljes gráf csúcsszáma és élszáma egyszerűen a komponensek összege: $n = \sum n_i$ és $e = \sum e_i$.
+A tartományoknál azonban figyelembe kell venni: mindegyik komponens belső tartományai függetlenek egymástól ($t_i - 1$ darab belső tartomány komponensenként), de a **külső tartomány közös** az összes komponens számára!
+A teljes síkrajz tartományainak száma tehát:
+$$t = 1 + \sum_{i=1}^c (t_i - 1) = \sum_{i=1}^c t_i - c + 1.$$
+Ebből $\sum t_i = t + c - 1$.
+Összegezve az egyes komponensek Euler-formuláit:
+$$\sum_{i=1}^c (n_i - e_i + t_i) = n - e + (t + c - 1) = 2c.$$
+Átrendezve:
+$$n - e + t = 2c - c + 1 = c + 1. \quad \blacksquare$$
+
+Például $c = 2$ komponens esetén:
+$$n - e + t = 2 + 1 = 3.$$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  v/.style={circle, draw=black, fill=black, inner sep=1.6pt},
+  edge/.style={draw=black!70, thick}
+]
+  % Component 1
+  \begin{scope}[xshift=-3.0cm]
+    \draw[rounded corners=10pt, fill=black!4, draw=black!25] (-1.6, -1.6) rectangle (1.6, 1.6);
+    \node[v] (p1) at (-0.8, 0) {};
+    \node[v] (p2) at (-0.3, 0.9) {};
+    \node[v] (p3) at (0.8, 0.4) {};
+    \node[v] (p4) at (0.2, -0.8) {};
+    \node[v] (p5) at (-0.7, -1.1) {};
+    \draw[edge] (p1) -- (p2) -- (p3) -- (p4) -- (p1);
+    \draw[edge] (p2) -- (p4);
+    \draw[edge] (p1) -- (p5);
+    \node at (0, -1.9) {\footnotesize $1$. komponens ($n_1, e_1, t_1$)};
+  \end{scope}
+
+  % Component 2
+  \begin{scope}[xshift=3.0cm]
+    \draw[rounded corners=10pt, fill=black!4, draw=black!25] (-1.4, -1.6) rectangle (1.4, 1.6);
+    \node[v] (q1) at (-0.6, 0.6) {};
+    \node[v] (q2) at (0.6, 0.4) {};
+    \node[v] (q3) at (0.2, -0.7) {};
+    \node[v] (q4) at (-0.6, -0.5) {};
+    \draw[edge] (q1) -- (q2) -- (q3) -- (q4) -- (q1);
+    \draw[edge] (q1) -- (q3);
+    \node at (0, -1.9) {\footnotesize $2$. komponens ($n_2, e_2, t_2$)};
+  \end{scope}
+
+  \node at (0, 0) {\begin{tabular}{c}
+    \textbf{Közös külső tartomány} \\
+    $t = t_1 + t_2 - 1$ \\
+    $n - e + t = c + 1 = 3$
+  \end{tabular}};
+\end{tikzpicture}
+\end{center}
+
+---
+
+## 39. Élszám-korlátok síkbarajzolható gráfokban
+
+*Előadás: 2026. 10. 15.*
+
+Hány éle lehet legfeljebb egy síkbarajzolható gráfnak?
+
+Egy tetszőleges $n$ csúcsú egyszerű gráfban akár $\binom{n}{2} \approx \frac{n^2}{2}$ él is lehet. Például $n = 1000$ csúcs esetén ez majdnem **félmillió él**!
+Vajon egy síkbarajzolható gráfban is lehet ennyi él?
+A válasz meglepő: **nem!** Síkbarajzolható gráfban csak nagyon kevés él lehet: $n = 1000$-re legfeljebb körülbelül **3000 él** fér el a síkban metszések nélkül!
+
+*(Fontos megjegyzés: mindvégig egyszerű gráfokról beszélünk. Hurokélekből vagy többszörös élekből tetszőlegesen sokat be lehetne rajzolni a síkba, de ezeket az egyszerű gráf definíciója tiltja.)*
+
+### A kettős leszámlálás és az élek-tartományok kapcsolata
+
+Ha egy síkgráf le van rajzolva a síkba, számoljuk meg az illeszkedő **$(e, T)$ él-tartomány párok** számát (ahol az $e$ él a $T$ tartomány határán fut).
+
+1. **A tartományok felől számolva:**
+   Minden $T$ tartomány határát egy zárt vonal (séta) alkotja. Mivel nincsenek hurokélek és kétszögek (többszörös élek), és feltesszük, hogy $n \ge 3$, minden tartományt **legalább 3 él** határol.
+   Így az illeszkedő párok száma:
+   $$\text{párok száma} = \sum_{T} \text{határoló élek száma} \ge 3t.$$
+
+2. **Az élek felől számolva:**
+   Minden él mentén **legfeljebb 2 tartomány** fekszik: az él jobb és bal oldalán lévő tartomány (ha az él egy híd, akkor mindkét oldalról ugyanaz a tartomány határolja, vagyis az adott tartományban $2$-szer számolódik).
+   Így az illeszkedő párok száma:
+   $$\text{párok száma} \le 2e.$$
+
+A két becslést összevetve kapjuk az alapvető egyenlőtlenséget:
+$$3t \le 2e \iff t \le \frac{2}{3}e.$$
+
+### A síkgráfok maximális élszáma
+
+> **Tétel (élszám-korlát egyszerű síkgráfokra).** Minden $n \ge 3$ csúcsú egyszerű síkbarajzolható gráfra:
+> $$e \le 3n - 6.$$
+
+**Bizonyítás.**
+Elég a tételt összefüggő gráfokra bizonyítani (ha nem összefüggő, új élek behúzásával összefüggővé tehető anélkül, hogy a síkbarajzolhatóság sérülne, és az élszám csak nő).
+Az összefüggő síkgráfokra érvényes Euler-formulából fejezzük ki a tartományok számát:
+$$n - e + t = 2 \implies t = 2 - n + e.$$
+Helyettesítsük ezt be a most igazolt $3t \le 2e$ egyenlőtlenségbe:
+$$3(2 - n + e) \le 2e.$$
+Bontsuk fel a zárójelet és rendezzük az egyenlőtlenséget:
+$$6 - 3n + 3e \le 2e \iff 3e - 2e \le 3n - 6 \iff e \le 3n - 6. \quad \blacksquare$$
+
+> **Következmény (triangulációk).** Egy $n \ge 3$ csúcsú egyszerű síkgráfban pontosan akkor áll fenn az $e = 3n - 6$ egyenlőség, ha a gráf minden tartománya háromszög ($3t = 2e$). Az ilyen gráfokat **maximális síkgráfoknak** vagy **triangulációknak** nevezzük.
+
+> **Következmény (kis fokú csúcs létezése).** Minden egyszerű síkbarajzolható gráfban létezik olyan csúcs, amelynek foka legfeljebb $5$:
+> $$\delta(G) \le 5.$$
+> **Bizonyítás.** A kézfogási lemma szerint a fokszámok összege $2e$. Felhasználva az élszám-korlátot:
+> $$\sum_{v \in V} \deg(v) = 2e \le 2(3n - 6) = 6n - 12 < 6n.$$
+> Ha minden csúcs foka legalább $6$ lenne, akkor a fokszámösszeg legalább $6n$ lenne, ami ellentmond a fenti szigorú egyenlőtlenségnek! Legalább egy csúcsnak tehát legfeljebb $5$ fokúnak kell lennie. $\blacksquare$
+
+### Általánosítás: adott bőségű (körhosszúságú) síkgráfok
+
+Mi történik, ha a gráfban nincsenek háromszögek, vagy általában nincsenek rövid körök?
+
+Tegyük fel, hogy a gráfban **minden kör legalább $p$ élből áll** ($p \ge 3$). Ezt a $p$ számot a gráf **bőségének** (girth) nevezzük.
+Ekkor semelyik tartomány határa sem lehet rövidebb $p$-nél, így minden tartományt legalább $p$ él határol:
+$$p \cdot t \le 2e.$$
+Fejezzük ki ismét $t$-t az Euler-formulából ($t = 2 - n + e$):
+$$p(2 - n + e) \le 2e \iff 2p - pn + pe \le 2e.$$
+Rendezzük az $e$-s tagokat az egyik oldalra:
+$$(p - 2)e \le p(n - 2) \iff e \le \frac{p}{p - 2}(n - 2).$$
+
+### Speciális eset: háromszögmentes és páros síkgráfok ($p = 4$)
+
+Ha egy síkgráf **háromszögmentes**, vagy **páros** (ahol a 35. szakasz szerint minden kör páros, így a legrövidebb kör hossza legalább $4$), akkor a fenti képletbe $p = 4$-et helyettesíthetünk:
+$$e \le \frac{4}{4 - 2}(n - 2) = 2(n - 2) = 2n - 4.$$
+
+> **Tétel (páros és háromszögmentes síkgráfok élszáma).** Minden $n \ge 3$ csúcsú egyszerű háromszögmentes (speciálisan minden páros) síkbarajzolható gráfra:
+> $$e \le 2n - 4.$$
+
+---
+
+## 40. Nem síkbarajzolható gráfok és a Kuratowski-tétel
+
+*Előadás: 2026. 10. 15.*
+
+Az előző szakaszban levezetett élszám-korlátok rendkívül erős eszközt adnak a kezünkbe: segítségükkel bebizonyíthatjuk bizonyos gráfokról, hogy **lehetetlen őket síkba rajzolni**!
+
+### 1. Példa: az 5-csúcsú teljes gráf ($K_5$)
+
+Tekintsük a $K_5$ teljes gráfot:
+- csúcsok száma: $n = 5$,
+- élek száma: $e = \binom{5}{2} = 10$.
+
+Tegyük fel indirekt, hogy $K_5$ síkbarajzolható! Ekkor teljesülnie kellene az egyszerű síkgráfokra vonatkozó $e \le 3n - 6$ egyenlőtlenségnek:
+$$10 \le 3 \cdot 5 - 6 = 15 - 6 = 9.$$
+Ez azonban nyilvánvaló képtelenség: $10 \le 9$ nem igaz!
+> **Állítás.** A $K_5$ teljes gráf **nem síkbarajzolható**.
+
+### 2. Példa: a „három ház – három kút” gráf ($K_{3,3}$)
+
+Egy klasszikus fejtörő így szól: három háznak és három kútnak szeretnénk gáz-, víz- és villanyvezetéket építeni úgy, hogy minden háztól mindhárom kúthoz fusson vezeték, de a vezetékek sehol se keresztezzék egymást. Lehetséges ez a síkban?
+Ez a feladat a $K_{3,3}$ teljes páros gráf síkbarajzolhatóságát kérdezi:
+- csúcsok száma: $n = 3 + 3 = 6$,
+- élek száma: $e = 3 \times 3 = 9$.
+
+Próbáljuk meg először az általános korlátot:
+$$e \le 3n - 6 = 3 \cdot 6 - 6 = 12.$$
+Itt $9 \le 12$ teljesül!
+**Vigyázat:** attól még, hogy a $3n - 6 \ge e$ feltétel teljesül, a gráf **még nem feltétlenül síkbarajzolható**! (Ez a feltétel csak *szükséges*, de nem elégséges.)
+
+Vegyük észre azonban, hogy $K_{3,3}$ **páros gráf**! A 35. szakasz szerint páros gráfban nincs páratlan kör, így nincs $3$ hosszú kör sem: minden köre legalább $4$ élből áll ($p = 4$).
+Alkalmazzuk a páros síkgráfokra érvényes szigorúbb korlátot:
+$$e \le 2n - 4.$$
+Számoljunk:
+$$9 \le 2 \cdot 6 - 4 = 12 - 4 = 8.$$
+Ez ellentmondás, hiszen $9 \le 8$ hamis!
+> **Állítás.** A $K_{3,3}$ gráf **nem síkbarajzolható** (a három ház – három kút feladat síkban nem oldható meg).
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
+  edge/.style={draw=black!70, thick}
+]
+  % K_5
+  \begin{scope}[xshift=-4.6cm]
+    \foreach \i in {1,...,5} {
+      \node[v] (k\i) at ({90 + (\i-1)*72}:1.2) {};
+    }
+    \foreach \i in {1,...,5} {
+      \foreach \j in {\i,...,5} {
+        \draw[edge] (k\i) -- (k\j);
+      }
+    }
+    \node[below=1.4cm of k1] {\begin{tabular}{c} \textbf{$K_5$} \\ $n=5, \, e=10$ \\ $10 \le 3(5)-6 = 9 \text{ \ding{55}}$ \end{tabular}};
+  \end{scope}
+
+  % K_{3,3}
+  \begin{scope}[xshift=0cm]
+    \node[v] (h1) at (-1.0, 1.0) {};
+    \node[v] (h2) at (0, 1.0) {};
+    \node[v] (h3) at (1.0, 1.0) {};
+    \node[v] (w1) at (-1.0, -0.6) {};
+    \node[v] (w2) at (0, -0.6) {};
+    \node[v] (w3) at (1.0, -0.6) {};
+    \foreach \i in {1,2,3} {
+      \foreach \j in {1,2,3} {
+        \draw[edge] (h\i) -- (w\j);
+      }
+    }
+    \node[above=0.05cm of h2] {\footnotesize 3 ház};
+    \node[below=0.05cm of w2] {\footnotesize 3 kút};
+    \node[below=0.8cm of w2] {\begin{tabular}{c} \textbf{$K_{3,3}$} \\ $n=6, \, e=9$ \\ $9 \le 2(6)-4 = 8 \text{ \ding{55}}$ \end{tabular}};
+  \end{scope}
+
+  % Subdivision
+  \begin{scope}[xshift=4.6cm]
+    \node[v, label=left:{$u$}] (s1) at (-1.2, 0.7) {};
+    \node[v, label=right:{$v$}] (s2) at (1.2, 0.7) {};
+    \draw[edge] (s1) -- (s2);
+    \node[below=0.1cm of s1, xshift=1.2cm] {\footnotesize él: $uv$};
+
+    \node at (0, -0.1) {$\Downarrow$ \footnotesize élfelosztás};
+
+    \node[v, label=left:{$u$}] (t1) at (-1.2, -0.9) {};
+    \node[circle, draw=black, fill=white, inner sep=1.8pt, label=above:{$w$}] (t2) at (0, -0.9) {};
+    \node[v, label=right:{$v$}] (t3) at (1.2, -0.9) {};
+    \draw[edge] (t1) -- (t2) -- (t3);
+    \node[below=0.1cm of t2] {\footnotesize soros bővítés ($u-w-v$)};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+### Soros bővítés és topológikus izomorfia
+
+Mi történik, ha egy nem síkbarajzolható gráfban egy élt felosztunk egy új $2$-fokú csúcs beszúrásával?
+
+> **Definíció (élfelosztás, soros bővítés).** Egy $G$ gráf egy $uv$ élének **felosztásán** (vagy soros bővítésén) azt értjük, hogy az $uv$ élt töröljük, bevezetünk egy új $w$ csúcsot, és behúzzuk az $uw$ és $wv$ éleket (azaz az élt egy $2$ hosszú úttal helyettesítjük).
+> Két gráf **topologikusan izomorf** (vagy egymással homeomorf), ha mindkettő megkapható egyazon gráfból élek véges sokszori felosztásával.
+
+Nyilvánvaló, hogy egy él megtörése (új $2$-fokú csúcsok elhelyezése az él mentén) nem változtat azon, hogy a gráf lerajzolható-e metszések nélkül: ha az eredeti gráf nem fért el a síkban, a felosztott változat sem fog!
+
+### A Kuratowski-tétel
+
+*„$K_5$ és $K_{3,3}$ a főbűnösök: ha egy gráf nem síkbarajzolható, miattuk van.”*
+Kazimierz Kuratowski lengyel matematikus 1930-ban bebizonyította, hogy e két gráfon és felosztásaikon kívül nincs más akadálya a síkbarajzolhatóságnak:
+
+> **Tétel (Kuratowski-tétel, 1930).** Egy tetszőleges $G$ gráf pontosan akkor síkbarajzolható, ha **nem tartalmaz olyan részgráfot**, amely $K_5$-tel vagy $K_{3,3}$-mal topologikusan izomorf (azaz nem tartalmaz felosztott $K_5$-öt vagy felosztott $K_{3,3}$-at).
+
+A tétel két iránya közötti különbség alapvető:
+- **$\implies$ (a könnyű irány):** Ha $G$ tartalmaz felosztott $K_5$-öt vagy $K_{3,3}$-at, akkor $G$ nem lehet síkbarajzolható. Ha ugyanis $G$ lerajzolható lenne metszések nélkül, akkor a részgráfja is síkban lenne, és a $2$-fokú osztópontokat „kiegyenesítve” $K_5$ vagy $K_{3,3}$ metszésmentes síkrajzát kapnánk, amiről már beláttuk, hogy lehetetlen!
+- **$\impliedby$ (a nehéz irány):** Ha egy gráf nem síkbarajzolható, akkor **szükségképpen tartalmaz** egy felosztott $K_5$ vagy $K_{3,3}$ részgráfot. Ennek bizonyítása jóval mélyebb gráfelméleti és topológiai eszközöket igényel.
+
+::: kiegeszites
+**Kiegészítés — Wagner tétele és a Négyszín-tétel.**
+Klaus Wagner 1937-ben a Kuratowski-tétel egy rokon megfogalmazását adta: egy gráf pontosan akkor síkbarajzolható, ha nem tartalmaz $K_5$ vagy $K_{3,3}$ **minort** (ahol az élfelosztások helyett élek összehúzása is megengedett).
+A síkgráfok elméletének leghíresebb eredménye a **Négyszín-tétel** (Appel és Haken, 1976): minden síkbarajzolható egyszerű gráf csúcsai kiszínezhetők legfeljebb $4$ színnel (azaz $\chi(G) \le 4$). Ezzel a tartományok színezésének kérdése is lezárul: a dualitás elve szerint egy síkrajz tartományainak jó színezése megfelel a duális síkgráf csúcsszínezésének, így bármely síkbeli térkép kiszínezhető legfeljebb $4$ színnel úgy, hogy a közös határvonallal rendelkező országok különböző színt kapjanak.
+:::
+
+---
+
 ## A III. rész összefoglalása
 
 - **Gráf:** $G = (V, E)$; hurokél, többszörös él, **egyszerű gráf**. Izomorfia: éltartó bijekció a csúcshalmazok között. Egyszerű gráfban $|E| \le \binom{n}{2}$.
-- **Kézfogási lemma:** $\sum_v \deg(v) = 2|E|$.
-- **Séta** (bármi ismétlődhet), **vonal** (az élek különbözők), **út** (a csúcsok különbözők), **kör** (zárt út). Ha van séta, van út is.
-- **Összefüggőség:** a „van köztük séta” reláció ekvivalenciareláció; az osztályai a komponensek.
-- **Fa:** összefüggő, körmentes. Legalább $2$ csúcs esetén van legalább $2$ levele; $n$ csúcsú fának $n - 1$ éle van. Ekvivalens jellemzések: minimális összefüggő; maximális körmentes; összefüggő és $n - 1$ élű; körmentes és $n - 1$ élű; bármely két csúcs között pontosan egy út.
-- **Feszítőfa:** minden összefüggő gráfnak van (körök éleinek törlésével). **Minimális összsúlyú feszítőfa:** az optimista (Kruskal) és a pesszimista algoritmus is optimális.
+- **Kézfogási lemma:** $\sum_v \deg(v) = 2|E|$; a páratlan fokú csúcsok száma páros.
+- **Séta** (bármi ismétlődhet), **vonal** (az élek különbözők), **út** (a csúcsok különbözők), **kör** (zárt út). Ha van séta két csúcs között, akkor út is van.
+- **Összefüggőség:** a „van köztük séta” reláció ekvivalenciareláció; az ekvivalenciaosztályok a gráf komponensei.
+- **Fa:** összefüggő, körmentes gráf. Legalább $2$ csúcs esetén van legalább $2$ levele; $n$ csúcsú fának $n - 1$ éle van. Ekvivalens jellemzések: minimális összefüggő; maximális körmentes; összefüggő és $n - 1$ élű; körmentes és $n - 1$ élű; bármely két csúcs között pontosan egy út vezet.
+- **Feszítőfa:** minden összefüggő gráfnak van (körök éleinek törlésével). **Minimális összsúlyú feszítőfa:** az optimista (Kruskal) és a pesszimista algoritmus is optimális feszítőfát ad.
 - **Cayley-tétel:** az $n$ csúcsú címkézett fák száma $n^{n-2}$. **Prüfer-kód:** legkisebb levél letépése, a szomszéd feljegyzése; az $i$ csúcs $\deg(i) - 1$-szer szerepel; bijekció a fák és $[n]^{n-2}$ között.
 - **Fokszámsorozatok:** hurokélekkel: $\sum d_k$ páros; hurokél nélkül: még $d_n \le \sum_{k<n} d_k$; egyszerű gráf: **Erdős–Gallai-feltétel**, illetve a **Havel–Hakimi-algoritmus**, amely pont akkor akad el, amikor nincs megfelelő gráf. Fa ($d_i \ge 1$): pontosan akkor, ha $\sum d_i = 2(n-1)$ (Prüfer-kóddal); ilyen címkézett fából $\frac{(n-2)!}{\prod_i (d_i - 1)!}$ van.
 - **Reguláris gráf:** minden fok ugyanaz az $r$. A $2$-reguláris gráfok diszjunkt körök uniói; $3$-reguláris gráfnak páros sok csúcsa van.
-- **Euler-séta** (minden élen pontosan egyszer) és **Euler-körséta:** körséta pontosan akkor van, ha a gráf összefüggő és minden fok páros; séta pontosan akkor, ha összefüggő és $0$ vagy $2$ páratlan fokú csúcs van.
-- **Hamilton-út, Hamilton-kör** (minden csúcson pontosan egyszer): eldöntése NP-teljes. Szükséges feltétel: $k$ csúcsot törölve legfeljebb $k$ (útnál $k + 1$) komponens. Elégséges feltétel: **Dirac** (minden fok $\ge \frac{n}{2}$), illetve **Ore** (összekötetlen $x, y$-ra $\deg(x) + \deg(y) \ge n$), $n \ge 3$.
-
+- **Euler-séta** (minden élen pontosan egyszer) és **Euler-körséta:** körséta pontosan akkor van, ha a gráf összefüggő és minden fok páros; nyílt séta pontosan akkor, ha összefüggő és pontosan $2$ páratlan fokú csúcs van.
+- **Hamilton-út, Hamilton-kör** (minden csúcson pontosan egyszer): eldöntése NP-teljes. Szükséges feltétel: $k$ csúcsot törölve legfeljebb $k$ (útnál $k + 1$) komponens maradhat. Elégséges feltétel: **Dirac** (minden fok $\ge \frac{n}{2}$), illetve **Ore** (összekötetlen $x, y$-ra $\deg(x) + \deg(y) \ge n$), $n \ge 3$.
+- **Csúcsszínezés és kromatikus szám:** szomszédos csúcsok különböző színűek; legkisebb színszám a $\chi(G)$. Alapkorlátok: $\omega(G) \le \chi(G) \le \Delta(G) + 1$. Alsó korlát a klikkszám, felső korlát a **mohó színezés** („nem lehet elrontani”). $\chi = \Delta + 1$ csak teljes gráfokra ($K_n$) és páratlan körökre ($C_{2k+1}$) áll fenn; minden más összefüggő egyszerű gráfra $\chi(G) \le \Delta(G)$ (**Brooks-tétel**). A színezés ekvivalens a csúcshalmaz független halmazokra bontásával.
+- **Páros gráfok és 2-színezhetőség:** $\chi(G) \le 2 \iff$ $G$ kétosztályú. **Karakterizációs tétel:** $G$ pontosan akkor páros, ha **minden köre páros hosszúságú** (nincs páratlan kör). Konstruktív bizonyítás: távolságok paritása szerinti osztályozás egy tetszőleges gyökércsúcstól. A fák mindig párosak.
+- **Számítási bonyolultság:** $2$-színezhetőség eldöntése könnyű (lineáris idejű, BFS-sel); $3$-színezhetőség eldöntése **NP-teljes** (Karp); $\chi(G)$ meghatározása NP-nehéz.
+- **Élszínezés és élkromatikus szám:** közös csúcsú élek különböző színűek; legkisebb színszám a $\chi'(G)$ vagy $\chi_e(G)$. Alsó korlát: $\chi'(G) \ge \Delta(G)$. **Vizing-tétel:** egyszerű gráfra $\Delta(G) \le \chi'(G) \le \Delta(G) + 1$. 1. osztály: $\chi' = \Delta$ (pl. páros gráfok); 2. osztály: $\chi' = \Delta + 1$ (pl. $C_{2k+1}$). Annak eldöntése, hogy 1. vagy 2. osztályú-e egy gráf, NP-teljes (Holyer).
+- **Síkbarajzolható gráfok:** Jordan-ívekkel metszésmentesen lerajzolható a síkba. $K_4$ síkba rajzolható. A síkrajz a síkot $t$ tartományra bontja ($t - 1$ belső, $1$ külső tartomány).
+- **Euler-formula:** összefüggő síkgráfra $n - e + t = 2$ (invariáns bizonyítás körök éleinek törlésével feszítőfáig: $e \to e-1, t \to t-1$). Nem összefüggő síkgráfra ($c$ komponens): $n - e + t = c + 1$ (közös külső tartomány).
+- **Élszám-korlátok síkgráfokban:** kettős leszámlálással ($3t \le 2e$) minden $n \ge 3$ csúcsú egyszerű síkgráfra $e \le 3n - 6$. Triangulációban $e = 3n - 6$. Következmény: minden síkgráfnak van legfeljebb 5 fokú csúcsa ($\delta \le 5$). Ha minden kör legalább $p$ élű, akkor $e \le \frac{p}{p-2}(n - 2)$; háromszögmentes és páros síkgráfokra ($p = 4$): $e \le 2n - 4$.
+- **Nem síkbarajzolható gráfok:** $K_5$ nem síkgráf ($10 \le 9$ hamis); $K_{3,3}$ nem síkgráf (páros, $9 \le 8$ hamis).
+- **Kuratowski-tétel:** $G$ pontosan akkor síkbarajzolható, ha nem tartalmaz $K_5$-tel vagy $K_{3,3}$-mal topologikusan izomorf (élfelosztással kapott) részgráfot.
