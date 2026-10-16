@@ -1,6 +1,6 @@
 # ELTE Matematika BSc 2026 university materials
 
-## Setup & Build
+## Build
 
 Install the required dependencies then build the project.
 
