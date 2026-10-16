@@ -1,96 +1,5 @@
 <!-- Generált fájl, ne szerkeszd! Forrás: Algebra és számelmélet/Gyakorlat/Feladatsorok/, újragenerálás: make concat -->
 
-# Algebra és számelmélet – 1. ZH
-
-## 1. feladat
-
-a) (5 pont) Invertáljuk a következő mátrixot:
-$$\begin{pmatrix} \frac{2}{3} & \frac{1}{3} & -\frac{1}{3} \\ \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} \\ -\frac{1}{3} & \frac{1}{3} & \frac{1}{6} \end{pmatrix}$$
-
-b) (5 pont) Oldjuk meg az alábbi egyenletrendszert:
-$$\begin{aligned}
-x + y &= -3 \\
-x + 2z &= 9 \\
-2y + 2z &= 6
-\end{aligned}$$
-
-## 2. feladat
-
-Határozzuk meg a 95 és 26 legnagyobb közös osztóját és írjuk fel $95x + 26y$ alakban valamely $x, y$ egész számokra.
-
-## 3. feladat
-
-Adjuk meg az $f(x) = 4x^4 + 12x^3 + 17x^2 + 10x + 2$ polinom racionális, majd összes komplex gyökét. Írjuk fel gyöktényezős alakban.
-
-## 4. feladat
-
-Igazoljuk, hogy minden $n \ge 2$ természetes számra
-$$\prod_{k=2}^n \left(1 - \frac{1}{k^2}\right) = \frac{n + 1}{2n}.$$
-
-## 5. feladat
-
-a) (4 pont) Milyen maradékot ad $11^{20262026}$ 45-tel osztva?
-
-b) (6 pont) Mi a megoldása a $12x \equiv 5 \pmod{17}$ kongruenciának?
-
-## 6. feladat
-
-Mik a $z = -50\sqrt{3} - 50i$ komplex szám ötödik gyökei? A gyököket trigonometrikus alakban adjuk meg és ábrázoljuk őket vázlatosan a komplex számsíkon.
-
-## 7. feladat
-
-Egy $A \in \mathbb{C}^{3 \times 3}$ mátrix transzponált konjugáltja $A^* = \overline{A^T}$, ahol a konjugálás mátrixelemenkénti konjugálást jelent. Igazoljuk, hogy tetszőleges $A, B \in \mathbb{C}^{3 \times 3}$ mátrixokra:
-
-a) (1 pont) $(A + B)^* = A^* + B^*$,
-
-b) (1 pont) tetszőleges $c \in \mathbb{C}$ komplex számra $(cA)^* = \overline{c}A^*$,
-
-c) (1 pont) $(A^*)^* = A$,
-
-d) (3 pont) $(AB)^* = B^* A^*$,
-
-e) (2 pont) ha $A$ invertálható, akkor $A^*$ is invertálható és $(A^*)^{-1} = (A^{-1})^*$,
-
-f) (2 pont) $\det(A^*) = \overline{\det(A)}$.
-
-# Algebra és számelmélet – 1. ZH (2023)
-
-### Bsc algebra és számelmélet normál gyakorlat · Első zárthelyi (2023. október 20.)
-
-Mindegyik feladatban indoklás szükséges (a számolás részletei), a puszta eredményért nem jár pont. A feladatok 6 pontosak. A dolgozatban 12 pontot el kell érni az elégségeshez, ha ez megvan, akkor a ZH jegye az összpontszám hatoda. Használni semmilyen segédeszközt nem szabad, kalkulátort, mobiltelefont sem. Minden feladat új oldalon kezdődjön. A név és a NEPTUN-kód minden lapon szerepeljen.
-
-## 1. feladat
-
-a) (3 pont) Adjuk meg a $19x + 35y = 149$ egyenlet összes megoldását, majd azokat, ahol $x$ és $y$ is pozitív egész.
-
-b) (3 pont) Számítsuk ki $16^{123456789123}$ osztási maradékát 36-tal osztva.
-
-## 2. feladat
-
-a) (2 pont) Számítsuk ki (trigonometrikus alakban) és ábrázoljuk a $-32$ komplex szám összes ötödik gyökét.
-
-b) (4 pont) Ábrázoljuk azoknak a $z$ komplex számoknak a halmazát a síkon, melyekre $|z + 1| \le |\overline{z} - 1 - i|$.
-
-## 3. feladat
-
-a) (3 pont) Ha $a$ és $b$ relatív prímek, akkor mik $7a + 5b$ és $5a + 3b$ legnagyobb közös osztójának lehetséges (pozitív) értékei? Mindegyikhez adjunk is meg egy-egy konkrét $a$ és $b$ egész számot, ami megvalósítja.
-
-b) (3 pont) Mely $n \ge 0$ egészekre lesz $(n^7 - n + 5)^6 + 6$ prímszám?
-
-## 4. feladat
-
-Adjuk meg Gauss-eliminációval az
-$$\begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix} \begin{pmatrix} x & y \\ u & v \end{pmatrix} = \begin{pmatrix} x & y \\ u & v \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 1 & 2 \end{pmatrix}$$
-lineáris egyenletrendszer általános megoldását. Jelezzük is, melyek a szabad változók.
-
-## 5. feladat
-
-Határozzuk meg $9x^4 + 15x^3 + 16x^2 + 7x + 1$ racionális, majd az összes komplex gyökeit is, és ezek multiplicitását.
-
-## 6. feladat
-
-Oldjuk meg az $x^2 + 5xy + 6y^2 = 3$ diofantikus egyenletet.
-
 # Algebra és számelmélet – 1. feladatsor
 
 ## 1. feladat
@@ -734,3 +643,94 @@ Mutassuk meg, hogy $f \circ (x_1 \dots x_k) \circ f^{-1} = (f(x_1) \dots f(x_k))
 ## 13. feladat
 
 Adott a $\pi = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 1 & 3 \end{pmatrix}$ permutáció. Írjuk fel a hozzá tartozó $P_\pi$ permutációs mátrixot (amelynek az $i$-edik sorában a $\pi(i)$-edik oszlopban áll 1-es, máshol 0), majd számítsuk ki a determinánsát. Hogyan kapcsolódik a kapott determináns a permutáció inverziószámához?
+
+# Algebra és számelmélet – 1. ZH (2023)
+
+### Bsc algebra és számelmélet normál gyakorlat · Első zárthelyi (2023. október 20.)
+
+Mindegyik feladatban indoklás szükséges (a számolás részletei), a puszta eredményért nem jár pont. A feladatok 6 pontosak. A dolgozatban 12 pontot el kell érni az elégségeshez, ha ez megvan, akkor a ZH jegye az összpontszám hatoda. Használni semmilyen segédeszközt nem szabad, kalkulátort, mobiltelefont sem. Minden feladat új oldalon kezdődjön. A név és a NEPTUN-kód minden lapon szerepeljen.
+
+## 1. feladat
+
+a) (3 pont) Adjuk meg a $19x + 35y = 149$ egyenlet összes megoldását, majd azokat, ahol $x$ és $y$ is pozitív egész.
+
+b) (3 pont) Számítsuk ki $16^{123456789123}$ osztási maradékát 36-tal osztva.
+
+## 2. feladat
+
+a) (2 pont) Számítsuk ki (trigonometrikus alakban) és ábrázoljuk a $-32$ komplex szám összes ötödik gyökét.
+
+b) (4 pont) Ábrázoljuk azoknak a $z$ komplex számoknak a halmazát a síkon, melyekre $|z + 1| \le |\overline{z} - 1 - i|$.
+
+## 3. feladat
+
+a) (3 pont) Ha $a$ és $b$ relatív prímek, akkor mik $7a + 5b$ és $5a + 3b$ legnagyobb közös osztójának lehetséges (pozitív) értékei? Mindegyikhez adjunk is meg egy-egy konkrét $a$ és $b$ egész számot, ami megvalósítja.
+
+b) (3 pont) Mely $n \ge 0$ egészekre lesz $(n^7 - n + 5)^6 + 6$ prímszám?
+
+## 4. feladat
+
+Adjuk meg Gauss-eliminációval az
+$$\begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix} \begin{pmatrix} x & y \\ u & v \end{pmatrix} = \begin{pmatrix} x & y \\ u & v \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 1 & 2 \end{pmatrix}$$
+lineáris egyenletrendszer általános megoldását. Jelezzük is, melyek a szabad változók.
+
+## 5. feladat
+
+Határozzuk meg $9x^4 + 15x^3 + 16x^2 + 7x + 1$ racionális, majd az összes komplex gyökeit is, és ezek multiplicitását.
+
+## 6. feladat
+
+Oldjuk meg az $x^2 + 5xy + 6y^2 = 3$ diofantikus egyenletet.
+
+# Algebra és számelmélet – 1. ZH (2026)
+
+## 1. feladat
+
+a) (5 pont) Invertáljuk a következő mátrixot:
+$$\begin{pmatrix} \frac{2}{3} & \frac{1}{3} & -\frac{1}{3} \\ \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} \\ -\frac{1}{3} & \frac{1}{3} & \frac{1}{6} \end{pmatrix}$$
+
+b) (5 pont) Oldjuk meg az alábbi egyenletrendszert:
+$$\begin{aligned}
+x + y &= -3 \\
+x + 2z &= 9 \\
+2y + 2z &= 6
+\end{aligned}$$
+
+## 2. feladat
+
+Határozzuk meg a 95 és 26 legnagyobb közös osztóját és írjuk fel $95x + 26y$ alakban valamely $x, y$ egész számokra.
+
+## 3. feladat
+
+Adjuk meg az $f(x) = 4x^4 + 12x^3 + 17x^2 + 10x + 2$ polinom racionális, majd összes komplex gyökét. Írjuk fel gyöktényezős alakban.
+
+## 4. feladat
+
+Igazoljuk, hogy minden $n \ge 2$ természetes számra
+$$\prod_{k=2}^n \left(1 - \frac{1}{k^2}\right) = \frac{n + 1}{2n}.$$
+
+## 5. feladat
+
+a) (4 pont) Milyen maradékot ad $11^{20262026}$ 45-tel osztva?
+
+b) (6 pont) Mi a megoldása a $12x \equiv 5 \pmod{17}$ kongruenciának?
+
+## 6. feladat
+
+Mik a $z = -50\sqrt{3} - 50i$ komplex szám ötödik gyökei? A gyököket trigonometrikus alakban adjuk meg és ábrázoljuk őket vázlatosan a komplex számsíkon.
+
+## 7. feladat
+
+Egy $A \in \mathbb{C}^{3 \times 3}$ mátrix transzponált konjugáltja $A^* = \overline{A^T}$, ahol a konjugálás mátrixelemenkénti konjugálást jelent. Igazoljuk, hogy tetszőleges $A, B \in \mathbb{C}^{3 \times 3}$ mátrixokra:
+
+a) (1 pont) $(A + B)^* = A^* + B^*$,
+
+b) (1 pont) tetszőleges $c \in \mathbb{C}$ komplex számra $(cA)^* = \overline{c}A^*$,
+
+c) (1 pont) $(A^*)^* = A$,
+
+d) (3 pont) $(AB)^* = B^* A^*$,
+
+e) (2 pont) ha $A$ invertálható, akkor $A^*$ is invertálható és $(A^*)^{-1} = (A^{-1})^*$,
+
+f) (2 pont) $\det(A^*) = \overline{\det(A)}$.

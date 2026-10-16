@@ -4,7 +4,7 @@
 
 Teljes pontszámot csak részletesen indokolt megoldással lehet szerezni! Bizonyítás nélkül alkalmazható minden, a gyakorlaton vagy az előadáson bizonyított állítás, amennyiben azt pontosan kimondjátok (illetve az alkalmazhatóságát az adott helyen megindokoljátok). A jegyszerzéshez összesen legalább 20 pontot el kell érni.
 
-A feladatok megoldása során törekedjünk arra, hogy konkrét végeredményt kapjunk. Nem kell kiszámolni, ha egy számológéppel gyorsan számolható képletet kapunk, az már teljesen jó, de egy sok tagú szumma például ne maradjon a válaszban, az akkor még nincs teljesen kész. Ez alól kivételt képez, ha egy feladatot a logikai szita formulával kell megoldani, abban az esetben elképzelhető, hogy a felírt számmannak nincs könnyen megtalálható zárt alakja, szóval az elfogadható végeredménynek. (Természetesen – szokás szerint – alapos indoklás ahhoz is kell!)
+A feladatok megoldása során törekedjünk arra, hogy konkrét végeredményt kapjunk. Nem kell kiszámolni, ha egy számológéppel gyorsan számolható képletet kapunk, az már teljesen jó, de egy sok tagú szumma például ne maradjon a válaszban, az akkor még nincs teljesen kész. Ez alól kivételt képez, ha egy feladatot a logikai szita formulával kell megoldani, abban az esetben elképzelhető, hogy a felírt szummának nincs könnyen megtalálható zárt alakja, szóval az elfogadható végeredménynek. (Természetesen – szokás szerint – alapos indoklás ahhoz is kell!)
 
 Emlékeztetőül, a Fibonacci-sorozat definíciója: $F_0 = 0$, $F_1 = 1$, $n \ge 2$ esetén $F_n = F_{n-1} + F_{n-2}$.
 
@@ -20,7 +20,7 @@ Egy polcon lévő $n$ könyv közül hányféleképpen vehetünk le néhányat, 
 
 ## 3. feladat
 
-Egy $2025 \times 2025$-ös táblázat mezőibe tetszőlegesen beírjuk az 1, 2, 3 számok valamelyikét és kiszámítjuk a 2025 darab sorban, a 2025 darab oszlopban és a főátlóban (mely a bal felső saroktól a jobb alsó sarokig húzódik) az ott lévő számok összegét. Tudjuk, hogy a főátlóban páros sok 2-es szerepel, igaz-e, hogy a kapott összegek közötti lesz két azonos?
+Egy $2025 \times 2025$-ös táblázat mezőibe tetszőlegesen beírjuk az 1, 2, 3 számok valamelyikét és kiszámítjuk a 2025 darab sorban, a 2025 darab oszlopban és a főátlóban (mely a bal felső saroktól a jobb alsó sarokig húzódik) az ott lévő számok összegét. Tudjuk, hogy a főátlóban páros sok 2-es szerepel, igaz-e, hogy a kapott összegek között lesz két azonos?
 
 ## 4. feladat
 

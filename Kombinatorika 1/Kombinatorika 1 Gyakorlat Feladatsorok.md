@@ -1,97 +1,5 @@
 <!-- Generált fájl, ne szerkeszd! Forrás: Kombinatorika 1/Gyakorlat/Feladatsorok/, újragenerálás: make concat -->
 
-# Kombinatorika 1 – 1. javító ZH (régi)
-
-### Kombinatorika 1 normál · 2023. november 25.
-
-Teljes pontszámot csak részletesen indokolt megoldással lehet szerezni! Bizonyítás nélkül alkalmazható minden, a gyakorlaton vagy az előadáson bizonyított állítás, amennyiben azt pontosan kimondjátok (illetve az alkalmazhatóságát az adott helyen megindokoljátok). A jegyszerzéshez összesen legalább 20 pontot el kell érni.
-
-A feladatok megoldása során törekedjünk arra, hogy konkrét végeredményt kapjunk. Nem kell kiszámolni, ha egy számológéppel gyorsan számolható képletet kapunk, az már teljesen jó, de egy sok tagú szumma például ne maradjon a válaszban, az akkor még nincs teljesen kész. Ez alól kivételt képez, ha egy feladatot a logikai szita formulával kell megoldani, abban az esetben elképzelhető, hogy a felírt számmannak nincs könnyen megtalálható zárt alakja, szóval az elfogadható végeredménynek. (Természetesen – szokás szerint – alapos indoklás ahhoz is kell!)
-
-Emlékeztetőül, a Fibonacci-sorozat definíciója: $F_0 = 0$, $F_1 = 1$, $n \ge 2$ esetén $F_n = F_{n-1} + F_{n-2}$.
-
-## 1. feladat
-
-a) Hányféleképpen írhatjuk fel a 25-öt pontosan 5 darab pozitív egész szám összegeként, ha figyelembe vesszük az összeadandók sorrendjét is? (Tehát az $1+1+1+1+21$ és az $1+1+21+1+1$ felírásokat különbözőnek tekintjük.)
-
-b) Hányféleképpen írhatjuk fel a 25-öt legalább két darab pozitív egész szám összegeként, ha figyelembe vesszük az összeadandók sorrendjét is?
-
-## 2. feladat
-
-Egy polcon lévő $n$ könyv közül hányféleképpen vehetünk le néhányat, ha nem szeretnénk szomszédos könyveket levenni?
-
-## 3. feladat
-
-Egy $2025 \times 2025$-ös táblázat mezőibe tetszőlegesen beírjuk az 1, 2, 3 számok valamelyikét és kiszámítjuk a 2025 darab sorban, a 2025 darab oszlopban és a főátlóban (mely a bal felső saroktól a jobb alsó sarokig húzódik) az ott lévő számok összegét. Tudjuk, hogy a főátlóban páros sok 2-es szerepel, igaz-e, hogy a kapott összegek közötti lesz két azonos?
-
-## 4. feladat
-
-Adott 6 levél és minden levélhez egy megcímkézett boríték. Hányféleképpen helyezhetjük el a leveleket a megcímkézett borítékokba úgy, hogy semelyik levél se kerüljön a hozzá tartozó borítékba, ha
-
-a) minden borítékba pontosan egy levél kerül?
-
-b) egy borítékba több levél is kerülhet?
-
-## 5. feladat
-
-Keressünk zárt formulát az alábbi kifejezésre és igazoljuk az egyenlőséget a kettős leszámlálás módszerével!
-$$\sum_{k=0}^n k^2 \binom{n}{k}$$
-
-[2 pontért megmondjuk, mi a zárt alak]
-
-## 6. feladat
-
-Mutasd meg, hogy ha egy egyszerű gráfban minden pont foka legalább három, akkor a gráfban van páros hosszúságú kör!
-
-## 7. feladat
-
-Mutasd meg, hogy ha 51 db pozitív egész összege 100, akkor két csoportba oszthatóak úgy, hogy a számok összege mindkét csoportban 50.
-
-# Kombinatorika 1 – 1. ZH (régi)
-
-### Kombinatorika 1 normál · 2023. október 21.
-
-Teljes pontszámot csak részletesen indokolt megoldással lehet szerezni! Bizonyítás nélkül alkalmazható minden, a gyakorlaton vagy az előadáson bizonyított állítás, amennyiben azt pontosan kimondjátok (illetve az alkalmazhatóságát az adott helyen megindokoljátok). A jegyszerzéshez összesen legalább 20 pontot el kell érni.
-
-A feladatok megoldása során törekedjünk arra, hogy konkrét végeredményt kapjunk. Nem kell kiszámolni, ha egy számológéppel gyorsan számolható képletet kapunk, az már teljesen jó, de egy sok tagú szumma például ne maradjon a válaszban, az akkor még nincs teljesen kész. Ez alól kivételt képez, ha egy feladatot a logikai szita formulával kell megoldani, abban az esetben elképzelhető, hogy a felírt számmannak nincs könnyen megtalálható zárt alakja, szóval az elfogadható végeredménynek. (Természetesen – szokás szerint – alapos indoklás ahhoz is kell!)
-
-Emlékeztetőül, a Fibonacci-sorozat definíciója: $F_0 = 0$, $F_1 = 1$, $n \ge 2$ esetén $F_n = F_{n-1} + F_{n-2}$.
-
-## 1. feladat
-
-Bizonyítsd be, hogy minden pozitív egész szám felírható különböző Fibonacci számok összegeként.
-
-## 2. feladat
-
-Hány anagrammája van a KRASZNAHORKAI szónak, amelyben
-
-a) nem követi egymást közvetlenül három A betű?
-
-b) semelyik két A nincs egymás mellett?
-
-## 3. feladat
-
-Hány olyan egymilliónál kisebb pozitív egész szám van, melyben a számjegyek összege 25?
-
-## 4. feladat
-
-Az első 100 pozitív egész számot felírtuk egy-egy cédulára, és beletettük egy kalapba. Bekötött szemmel, visszatevés nélkül kihúzunk 55 számot. Igaz-e, hogy a kihúzott számok között biztosan van két olyan szám, melyek különbsége éppen 10?
-
-## 5. feladat
-
-Hozd zárt alakra a következő kifejezést és igazold az egyenlőséget a kettős leszámlálás módszerével:
-$$\sum_{k=m}^n \binom{n}{k} \binom{k}{m}$$
-
-[2 pontért megmondjuk, mi a zárt alak]
-
-## 6. feladat
-
-Egy paintball meccsen mindenki hat másik embert talált el és a meccs után nincs két olyan ember, akit ugyanannyi találat ért. Hány fős társaság paintballozott egymással?
-
-## 7. feladat
-
-Adott $n \ge 5$ valós szám. Minden lehetséges módon számpárokat képeztünk belőlük, és vettük minden számpárban a számok összegét. Az így kapott $\binom{n}{2}$ összeg közül legalább $(n^2 - 3n + 4)/2$ racionális. Bizonyítsuk be, hogy akkor az összes összeg racionális. Következik-e a feltételből az is, hogy minden megadott szám racionális?
-
 # Kombinatorika 1 – 1. feladatsor
 
 ### Kombinatorika 1 normál · 2026.
@@ -530,3 +438,95 @@ b) semelyik két A nincs egymás mellett?
 ## 84. feladat
 
 Egy trafikban $k$ fajta képeslap kapható. Hányféleképpen küldhetünk belőlük $n$ barátunknak 2–2 különbözőt úgy, hogy egy fajta képeslapot több barátunknak is elküldhetünk, de azt szeretnénk, hogy ne legyen olyan, amit mindegyiküknek elküldtünk?
+
+# Kombinatorika 1 – 1. ZH (régi)
+
+### Kombinatorika 1 normál · 2023. október 21.
+
+Teljes pontszámot csak részletesen indokolt megoldással lehet szerezni! Bizonyítás nélkül alkalmazható minden, a gyakorlaton vagy az előadáson bizonyított állítás, amennyiben azt pontosan kimondjátok (illetve az alkalmazhatóságát az adott helyen megindokoljátok). A jegyszerzéshez összesen legalább 20 pontot el kell érni.
+
+A feladatok megoldása során törekedjünk arra, hogy konkrét végeredményt kapjunk. Nem kell kiszámolni, ha egy számológéppel gyorsan számolható képletet kapunk, az már teljesen jó, de egy sok tagú szumma például ne maradjon a válaszban, az akkor még nincs teljesen kész. Ez alól kivételt képez, ha egy feladatot a logikai szita formulával kell megoldani, abban az esetben elképzelhető, hogy a felírt szummának nincs könnyen megtalálható zárt alakja, szóval az elfogadható végeredménynek. (Természetesen – szokás szerint – alapos indoklás ahhoz is kell!)
+
+Emlékeztetőül, a Fibonacci-sorozat definíciója: $F_0 = 0$, $F_1 = 1$, $n \ge 2$ esetén $F_n = F_{n-1} + F_{n-2}$.
+
+## 1. feladat
+
+Bizonyítsd be, hogy minden pozitív egész szám felírható különböző Fibonacci számok összegeként.
+
+## 2. feladat
+
+Hány anagrammája van a KRASZNAHORKAI szónak, amelyben
+
+a) nem követi egymást közvetlenül három A betű?
+
+b) semelyik két A nincs egymás mellett?
+
+## 3. feladat
+
+Hány olyan egymilliónál kisebb pozitív egész szám van, melyben a számjegyek összege 25?
+
+## 4. feladat
+
+Az első 100 pozitív egész számot felírtuk egy-egy cédulára, és beletettük egy kalapba. Bekötött szemmel, visszatevés nélkül kihúzunk 55 számot. Igaz-e, hogy a kihúzott számok között biztosan van két olyan szám, melyek különbsége éppen 10?
+
+## 5. feladat
+
+Hozd zárt alakra a következő kifejezést és igazold az egyenlőséget a kettős leszámlálás módszerével:
+$$\sum_{k=m}^n \binom{n}{k} \binom{k}{m}$$
+
+[2 pontért megmondjuk, mi a zárt alak]
+
+## 6. feladat
+
+Egy paintball meccsen mindenki hat másik embert talált el és a meccs után nincs két olyan ember, akit ugyanannyi találat ért. Hány fős társaság paintballozott egymással?
+
+## 7. feladat
+
+Adott $n \ge 5$ valós szám. Minden lehetséges módon számpárokat képeztünk belőlük, és vettük minden számpárban a számok összegét. Az így kapott $\binom{n}{2}$ összeg közül legalább $(n^2 - 3n + 4)/2$ racionális. Bizonyítsuk be, hogy akkor az összes összeg racionális. Következik-e a feltételből az is, hogy minden megadott szám racionális?
+
+# Kombinatorika 1 – 1. javító ZH (régi)
+
+### Kombinatorika 1 normál · 2023. november 25.
+
+Teljes pontszámot csak részletesen indokolt megoldással lehet szerezni! Bizonyítás nélkül alkalmazható minden, a gyakorlaton vagy az előadáson bizonyított állítás, amennyiben azt pontosan kimondjátok (illetve az alkalmazhatóságát az adott helyen megindokoljátok). A jegyszerzéshez összesen legalább 20 pontot el kell érni.
+
+A feladatok megoldása során törekedjünk arra, hogy konkrét végeredményt kapjunk. Nem kell kiszámolni, ha egy számológéppel gyorsan számolható képletet kapunk, az már teljesen jó, de egy sok tagú szumma például ne maradjon a válaszban, az akkor még nincs teljesen kész. Ez alól kivételt képez, ha egy feladatot a logikai szita formulával kell megoldani, abban az esetben elképzelhető, hogy a felírt szummának nincs könnyen megtalálható zárt alakja, szóval az elfogadható végeredménynek. (Természetesen – szokás szerint – alapos indoklás ahhoz is kell!)
+
+Emlékeztetőül, a Fibonacci-sorozat definíciója: $F_0 = 0$, $F_1 = 1$, $n \ge 2$ esetén $F_n = F_{n-1} + F_{n-2}$.
+
+## 1. feladat
+
+a) Hányféleképpen írhatjuk fel a 25-öt pontosan 5 darab pozitív egész szám összegeként, ha figyelembe vesszük az összeadandók sorrendjét is? (Tehát az $1+1+1+1+21$ és az $1+1+21+1+1$ felírásokat különbözőnek tekintjük.)
+
+b) Hányféleképpen írhatjuk fel a 25-öt legalább két darab pozitív egész szám összegeként, ha figyelembe vesszük az összeadandók sorrendjét is?
+
+## 2. feladat
+
+Egy polcon lévő $n$ könyv közül hányféleképpen vehetünk le néhányat, ha nem szeretnénk szomszédos könyveket levenni?
+
+## 3. feladat
+
+Egy $2025 \times 2025$-ös táblázat mezőibe tetszőlegesen beírjuk az 1, 2, 3 számok valamelyikét és kiszámítjuk a 2025 darab sorban, a 2025 darab oszlopban és a főátlóban (mely a bal felső saroktól a jobb alsó sarokig húzódik) az ott lévő számok összegét. Tudjuk, hogy a főátlóban páros sok 2-es szerepel, igaz-e, hogy a kapott összegek között lesz két azonos?
+
+## 4. feladat
+
+Adott 6 levél és minden levélhez egy megcímkézett boríték. Hányféleképpen helyezhetjük el a leveleket a megcímkézett borítékokba úgy, hogy semelyik levél se kerüljön a hozzá tartozó borítékba, ha
+
+a) minden borítékba pontosan egy levél kerül?
+
+b) egy borítékba több levél is kerülhet?
+
+## 5. feladat
+
+Keressünk zárt formulát az alábbi kifejezésre és igazoljuk az egyenlőséget a kettős leszámlálás módszerével!
+$$\sum_{k=0}^n k^2 \binom{n}{k}$$
+
+[2 pontért megmondjuk, mi a zárt alak]
+
+## 6. feladat
+
+Mutasd meg, hogy ha egy egyszerű gráfban minden pont foka legalább három, akkor a gráfban van páros hosszúságú kör!
+
+## 7. feladat
+
+Mutasd meg, hogy ha 51 db pozitív egész összege 100, akkor két csoportba oszthatóak úgy, hogy a számok összege mindkét csoportban 50.
