@@ -66,7 +66,7 @@ Látható, hogy $a_n = F_{n+2}$.
 
 ## 3. feladat
 
-Egy $2025 \times 2025$-ös táblázat mezőibe tetszőlegesen beírjuk az 1, 2, 3 számok valamelyikét és kiszámítjuk a 2025 darab sorban, a 2025 darab oszlopban és a főátlóban (mely a bal felső saroktól a jobb alsó sarokig húzódik) az ott lévő számok összegét. Tudjuk, hogy a főátlóban páros sok 2-es szerepel, igaz-e, hogy a kapott összegek közötti lesz két azonos?
+Egy $2025 \times 2025$-ös táblázat mezőibe tetszőlegesen beírjuk az 1, 2, 3 számok valamelyikét és kiszámítjuk a 2025 darab sorban, a 2025 darab oszlopban és a főátlóban (mely a bal felső saroktól a jobb alsó sarokig húzódik) az ott lévő számok összegét. Tudjuk, hogy a főátlóban páros sok 2-es szerepel, igaz-e, hogy a kapott összegek között lesz két azonos?
 
 **Megoldás.**
 
@@ -210,27 +210,37 @@ Mutasd meg, hogy ha egy egyszerű gráfban minden pont foka legalább három, ak
 
 **Megoldás.**
 
-Tegyük fel indirekt, hogy a gráfban nincs páros hosszúságú kör, azaz **minden kör páratlan hosszúságú**.
+Tekintsük a gráf egy **leghosszabb egyszerű útját**:
+$$P = v_1 v_2 \dots v_m.$$
 
-Mivel minden pont foka legalább $3 \ge 2$, van kör a gráfban. Legyen $C$ egy **leghosszabb kör** a gráfban, hossza legyen $2k + 1$ ($k \ge 1$):
-$$C = v_1 v_2 \dots v_{2k+1} v_1.$$
+1. **A kezdőpont szomszédai mind a pályára illeszkednek:**
+   Mivel $P$ maximális hosszúságú egyszerű út a gráfban, a $v_1$ végpont nem köthető össze egyetlen olyan csúccsal sem, amely nem szerepel a $P$ úton (ellenkező esetben a sétát az új csúccsal meghosszabbítva egy $m+1$ csúcsú egyszerű utat kapnánk, ami ellentmondana $P$ maximalitásának).
+   Ezért $v_1$ minden szomszédja szükségképpen a $P$ út csúcsai közül kerül ki:
+   $$N(v_1) \subseteq \{v_2, v_3, \dots, v_m\}.$$
 
-1. **A körnek nem lehet húrja:**
-   Ha $C$-nek volna két nem szomszédos csúcsát összekötő $v_i v_j$ éle (húrja), az a $C$ kört két kisebb körre osztaná: $C_1$-re és $C_2$-re.
-   A két kör hosszának összege $|C_1| + |C_2| = (2k + 1) + 2 = 2k + 3$ páratlan szám, így $|C_1|$ és $|C_2|$ közül pontosan az egyik **páros** lenne. Ez ellentmondás, így $C$-nek nem lehet húrja.
+2. **Legalább három szomszéd az úton:**
+   Mivel $G$ egyszerű gráf és minden pont foka legalább $3$, a $v_1$ csúcsnak legalább 3 szomszédja van $P$-n. A közvetlen szomszédja $v_2$, így létezik még legalább két további szomszédja a $P$ úton.
+   Jelölje e két szomszédot $v_i$ és $v_j$, ahol indexeikre:
+   $$2 < i < j \le m.$$
 
-2. **Körön kívüli út a kör két pontja között:**
-   Mivel $C$-nek nincs húrja, a kör minden csúcsának foka a körön belül 2. Mivel $G$-ben minden fok legalább 3, a kör minden csúcsából indul legalább egy él a körön kívüli pontokba.
-   A gráf végessége és a minimális fokszám miatt a körön kívül induló út meghosszabbítható, amíg vissza nem ér a $C$ kör egy másik pontjába. Vegyünk egy olyan egyszerű $P$ utat a körön kívüli csúcsokon, amely a kör két különböző $u$ és $w$ pontját köti össze.
+3. **Három egyszerű kör képzése:**
+   A $v_1 v_i$ és $v_1 v_j$ élek a $P$ út szakaszaival három egyszerű kört határoznak meg:
+   - $C_1 = v_1 v_2 \dots v_i v_1$, melynek hossza $i$;
+   - $C_2 = v_1 v_2 \dots v_j v_1$, melynek hossza $j$;
+   - $C_3 = v_1 v_i v_{i+1} \dots v_j v_1$, amely a $v_1 v_i$ élből, a $P$ út $v_i$-től $v_j$-ig tartó szakaszából ($j - i$ darab él) és a $v_j v_1$ élből áll. Ennek hossza:
+     $$|C_3| = 1 + (j - i) + 1 = j - i + 2.$$
 
-3. **Páros kör előállítása:**
-   Az $u$ és $w$ csúcsok a páratlan hosszú $C$ kört két útra bontják ($P_1$ és $P_2$). Mivel $|P_1| + |P_2| = 2k + 1$ páratlan, a két út hossza különböző paritású: az egyik páros, a másik páratlan.
-   A $P$ utat hozzáillesztve a $P \cup P_1$ és $P \cup P_2$ körök keletkeznek, melyek hossza $|P| + |P_1|$ és $|P| + |P_2|$. Mivel $|P_1|$ és $|P_2|$ paritása ellentétes, a két kör közül az egyik hossza **biztosan páros**.
+4. **Paritásvizsgálat:**
+   - Ha $i$ páros, akkor $C_1$ egy **páros hosszúságú kör**.
+   - Ha $j$ páros, akkor $C_2$ egy **páros hosszúságú kör**.
+   - Ha mind $i$, mind $j$ páratlan szám, akkor a különbségük $j - i$ páros szám (két páratlan szám különbsége páros). Ekkor
+     $$|C_3| = j - i + 2$$
+     szintén **páros szám**, tehát $C_3$ egy **páros hosszúságú kör**.
 
-Ez ellentmond annak, hogy nincs páros kör, tehát a gráfban **biztosan van páros hosszúságú kör**. $\blacksquare$
+Mivel minden esetben találunk páros hosszúságú kört, a gráfban **biztosan van páros hosszúságú kör**. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — alternatív utak és körparitás.** Egy páratlan kör két pontja közötti bármilyen harmadik út a kört két kisebb körre bontja, amelyek közül az egyik szükségszerűen páros, a másik páratlan paritású.
+**Elméleti háttér — leghosszabb út technika és körparitás.** Az extremális gráfelmélet egyik legerősebb módszere a leghosszabb út vizsgálata: ha egy $P$ egyszerű út maximális hosszúságú, akkor végpontjaiból nem indulhat él a $P$-n kívüli csúcsokba, így minden szomszédjuk magán a $P$ úton helyezkedik el. Ha a minimális fokszám $\delta(G) \ge 3$, akkor a kezdőpontnak a közvetlen szomszédján kívül még legalább két éle (húrja) vezet az út későbbi pontjaiba, melyek három különböző kört határoznak meg. A három kör hosszai ($i$, $j$ és $j - i + 2$) közül a paritási összefüggések miatt legalább az egyik szükségszerűen páros.
 :::
 
 ## 7. feladat
@@ -241,42 +251,34 @@ Mutasd meg, hogy ha 51 db pozitív egész összege 100, akkor két csoportba osz
 
 Jelölje a megadott számokat $a_1, a_2, \dots, a_{51} \in \mathbb{Z}^+$, összegük $\sum_{i=1}^{51} a_i = 100$.
 
-Rendezzük a számokat tetszőleges rögzített sorrendbe, és tekintsük az egymást követő részletösszegeket (prefixösszegeket):
-$$s_0 = 0, \quad s_1 = a_1, \quad s_2 = a_1 + a_2, \quad \dots, \quad s_m = \sum_{k=1}^m a_k, \quad \dots, \quad s_{51} = 100.$$
-Mivel mindegyik $a_i$ pozitív egész ($a_i \ge 1$), a sorozat szigorúan monoton növekvő:
-$$0 = s_0 < s_1 < s_2 < \dots < s_{50} < s_{51} = 100.$$
-Ez összesen **52 darab különböző egész szám** a $\{0, 1, \dots, 100\}$ halmazban.
+Rendezzük a számokat tetszőleges rögzített sorrendbe, és tekintsük az első 51 darab részletösszeget (prefixösszeget):
+$$s_0 = 0, \quad s_1 = a_1, \quad s_2 = a_1 + a_2, \quad \dots, \quad s_m = \sum_{k=1}^m a_k, \quad \dots, \quad s_{50} = \sum_{k=1}^{50} a_k.$$
 
-Tekintsük ezen 52 szám **modulo 50 vett maradékait**:
-$$r_m = s_m \bmod 50 \in \{0, 1, 2, \dots, 49\} \quad (m = 0, 1, \dots, 51).$$
-A lehetséges maradékok száma pontosan **50**.
+Mivel mindegyik $a_i$ pozitív egész ($a_i \ge 1$), a részletösszegek sorozata szigorúan monoton növekvő:
+$$0 = s_0 < s_1 < s_2 < \dots < s_{50}.$$
+Mivel az összes 51 szám összege 100, és az utolsó szám $a_{51} \ge 1$, az $s_{50}$ összegre:
+$$s_{50} = 100 - a_{51} \le 100 - 1 = 99 < 100.$$
+Ez a sorozat tehát összesen **51 darab különböző egész számot** tartalmaz, melyek mind a $[0, 99]$ tartományba esnek ($0 \le s_m < 100$).
 
-Mivel 52 darab számunk van, de csak 50 lehetséges maradékosztály, a **skatulya-elv** szerint létezik legalább két olyan index, $0 \le i < j \le 51$, amelyekre a maradék megegyezik:
+Tekintsük ezen 51 szám **modulo 50 vett maradékait**:
+$$r_m = s_m \bmod 50 \in \{0, 1, 2, \dots, 49\} \quad (m = 0, 1, \dots, 50).$$
+A lehetséges maradékosztályok száma pontosan **50**.
+
+Mivel 51 darab számunk van, de csak 50 lehetséges maradékosztály létezik, a **skatulya-elv** szerint van legalább két olyan index, $0 \le i < j \le 50$, amelyekhez azonos maradék tartozik:
 $$s_j \equiv s_i \pmod{50} \implies 50 \mid (s_j - s_i).$$
 
-Mivel $s_j > s_i$, az $s_j - s_i$ különbség pozitív egész, és
-$$1 \le s_j - s_i \le 100.$$
-Az 1 és 100 közötti egészek közül csak két szám osztható 50-nel: az **50** és a **100**.
+Mivel $s_j > s_i$, a különbségük pozitív, továbbá $s_j < 100$ és $s_i \ge 0$ miatt:
+$$0 < s_j - s_i \le s_{50} < 100.$$
 
-- **Lehet-e $s_j - s_i = 100$?**
-  Mivel $0 \le s_i < s_j \le 100$, a különbség csak akkor lehetne 100, ha $s_i = 0$ és $s_j = 100$ (azaz $i = 0$ és $j = 51$).
-  Ekkor azonban az $s_0 = 0$ és $s_{51} = 100$ a $0$ maradékú osztályba tartozik.
-  Használjuk ki a skatulya-elv erősebb alakját:
-  52 darab elemet osztunk szét 50 skatulyába.
-  - Ha a $0$ maradékú osztályban van egy harmadik elem is (valamelyik $1 \le m \le 50$-re $s_m \equiv 0 \pmod{50}$), akkor mivel $0 < s_m < 100$, szükségszerűen $s_m = 50$. Ekkor $s_m - s_0 = 50$, és készen vagyunk!
-  - Ha a $0$ maradékú osztályban csak a $\{0, 100\}$ két elem van, akkor a maradék $52 - 2 = 50$ darab $s_m$ elem a maradék $50 - 1 = 49$ darab nem-nulla maradékosztályba ($1, 2, \dots, 49$) esik.
-    A skatulya-elv szerint ekkor létezik két olyan index $i < j$, amelyre
-    $$s_j \equiv s_i \not\equiv 0 \pmod{50}.$$
-    Mivel a közös maradék nem nulla, sem $s_i$, sem $s_j$ nem lehet 0 vagy 100, így a különbségük szigorúan kisebb 100-nál:
-    $$s_j - s_i < 100.$$
-    Mivel $50 \mid (s_j - s_i)$ és $0 < s_j - s_i < 100$, szükségképpen:
-    $$s_j - s_i = 50.$$
+A 0 és 100 nyílt intervallumba eső egészek között egyetlenegy 50-nel osztható szám létezik: maga az **50**. Szükségképpen tehát:
+$$s_j - s_i = 50.$$
 
 Mivel $s_j - s_i = \sum_{k=i+1}^j a_k = 50$, az $\{a_{i+1}, a_{i+2}, \dots, a_j\}$ számok összege **pontosan 50**.
-A kimaradó számok összege szintén $100 - 50 = \mathbf{50}$.
+A megmaradt számok összege szintén:
+$$\sum_{k=1}^{51} a_k - 50 = 100 - 50 = \mathbf{50}.$$
 
-Ez a két részhalmaz pontosan két 50 összegű csoportra osztja az 51 darab számot. $\blacksquare$
+Ez a kiválasztás a megadott 51 darab számot pontosan két olyan csoportra osztja, amelyekben az elemek összege 50. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — prefixösszegek és skatulyaelv részösszegekre.** A prefixösszegek módszere a részösszegek keresésének leghatékonyabb eszköze: az egymást követő tagok összege két prefixösszeg különbségeként ($s_j - s_i = \sum_{k=i+1}^j a_k$) fejezhető ki. Ha a prefixösszegek száma meghaladja az osztó maradékosztályainak számát, a skatulyaelv garantálja a kívánt oszthatóságot.
+**Elméleti háttér — prefixösszegek és skatulyaelv részösszegekre.** A prefixösszegek módszere a részösszegek keresésének leghatékonyabb eszköze: egymást követő tagok összege két prefixösszeg különbségeként ($s_j - s_i = \sum_{k=i+1}^j a_k$) fejezhető ki. Ha csupán az első 51 prefixösszeget vizsgáljuk ($s_0, s_1, \dots, s_{50}$), akkor a skatulyaelv miatt azonnal kapunk két mod 50 kongruens összeget, miközben $s_{50} < 100$ miatt a különbségük szigorúan 0 és 100 közé esik — így a 100-as határeset vizsgálata nélkül, közvetlenül az 50 adódik.
 :::

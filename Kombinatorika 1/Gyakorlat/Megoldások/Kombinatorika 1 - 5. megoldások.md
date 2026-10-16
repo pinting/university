@@ -61,32 +61,37 @@ Mutasd meg, hogy ha egy egyszerű gráfban minden pont foka legalább három, ak
 
 **Megoldás.**
 
-Tegyük fel indirekt, hogy a gráfban nincs páros hosszúságú kör, azaz **minden kör páratlan hosszúságú**.
+Tekintsük a gráf egy **leghosszabb egyszerű útját**:
+$$P = v_1 v_2 \dots v_m.$$
 
-Mivel minden pont foka legalább $3 \ge 2$, a 64. feladat szerint a gráfban biztosan van kör. Legyen $C$ egy **legbővebb (leghosszabb)** kör a gráfban, hossza legyen $2k + 1$ ($k \ge 1$):
-$$C = v_1 v_2 \dots v_{2k+1} v_1.$$
+1. **A kezdőpont szomszédai mind a pályára illeszkednek:**
+   Mivel $P$ maximális hosszúságú egyszerű út a gráfban, a $v_1$ végpont nem köthető össze egyetlen olyan csúccsal sem, amely nem szerepel a $P$ úton (ellenkező esetben a sétát az új csúccsal meghosszabbítva egy $m+1$ csúcsú egyszerű utat kapnánk, ami ellentmondana $P$ maximalitásának).
+   Ezért $v_1$ minden szomszédja szükségképpen a $P$ út csúcsai közül kerül ki:
+   $$N(v_1) \subseteq \{v_2, v_3, \dots, v_m\}.$$
 
-1. **A $C$ körnek nem lehet húrja (átlója):**
-   Ha volna olyan $v_i v_j$ él, amely a kör két nem szomszédos pontját köti össze, az a $C$ kört két kisebb körre osztaná: $C_1$-re és $C_2$-re. Ha a két kör hossza $\ell_1$ és $\ell_2$, akkor az élek uniójában $v_i v_j$ kétszer szerepel, a $C$ élei pedig egyszer:
-   $$\ell_1 + \ell_2 = (2k + 1) + 2 = 2k + 3.$$
-   Mivel $2k + 3$ páratlan szám, a két egész szám összege páratlan, így $\ell_1$ és $\ell_2$ közül pontosan az egyik **páros**. Ez ellentmond annak, hogy a gráfban minden kör páratlan hosszú. Tehát $C$-nek nincs húrja, azaz a $C$ feszített kör.
+2. **Legalább három szomszéd az úton:**
+   Mivel $G$ egyszerű gráf és minden pont foka legalább $3$, a $v_1$ csúcsnak legalább 3 szomszédja van $P$-n. A közvetlen szomszédja $v_2$, így létezik még legalább két további szomszédja a $P$ úton.
+   Jelölje e két szomszédot $v_i$ és $v_j$, ahol indexeikre:
+   $$2 < i < j \le m.$$
 
-2. **A körből kifelé induló utak:**
-   Mivel $C$-nek nincs húrja, minden $v \in V(C)$ csúcsnak a körön belül pontosan 2 szomszédja van. Mivel viszont $G$-ben $\deg(v) \ge 3$, minden $v \in V(C)$ csúcsból indul legalább egy olyan él, amely a körön kívüli csúcsba vezet.
-   Induljunk el $C$ egy csúcsából a körön kívülre. Mivel a gráf véges és minden csúcs foka legalább 3, a sétát addig folytathatjuk egyszerű útként a körön kívüli pontokon, amíg vissza nem érünk a $C$ kör egy másik csúcsába.
-   Vegyünk egy olyan $P = u_0 u_1 \dots u_m$ utat ($m \ge 1$), melynek két végpontja $u_0, u_m \in V(C)$ különböző körbeli csúcsok, de minden belső csúcsa ($u_1, \dots, u_{m-1}$) a körön kívül fekszik.
+3. **Három egyszerű kör képzése:**
+   A $v_1 v_i$ és $v_1 v_j$ élek a $P$ út szakaszaival három egyszerű kört határoznak meg:
+   - $C_1 = v_1 v_2 \dots v_i v_1$, melynek hossza $i$;
+   - $C_2 = v_1 v_2 \dots v_j v_1$, melynek hossza $j$;
+   - $C_3 = v_1 v_i v_{i+1} \dots v_j v_1$, amely a $v_1 v_i$ élből, a $P$ út $v_i$-től $v_j$-ig tartó szakaszából ($j - i$ darab él) és a $v_j v_1$ élből áll. Ennek hossza:
+     $$|C_3| = 1 + (j - i) + 1 = j - i + 2.$$
 
-3. **Ellentmondás paritásból:**
-   Az $u_0$ és $u_m$ csúcsok a $C$ kört két diszjunkt belső csúcsú útra bontják, legyenek ezek $P_1$ és $P_2$. Mivel a kör hossza $|P_1| + |P_2| = 2k + 1$ páratlan, a két út hossza különböző paritású: az egyik páros, a másik páratlan.
-   Tekintsük most a $P \cup P_1$ és $P \cup P_2$ köröket! Hosszúságuk rendre:
-   $$|P| + |P_1| \quad \text{és} \quad |P| + |P_2|.$$
-   Mivel $|P_1|$ és $|P_2|$ közül az egyik páros, a másik páratlan, a hozzájuk $|P|$-t hozzáadva a kapott két körhossz közül az egyik **biztosan páros**!
-   Ez ellentmond annak a feltevésnek, hogy nincs páros kör a gráfban.
+4. **Paritásvizsgálat:**
+   - Ha $i$ páros, akkor $C_1$ egy **páros hosszúságú kör**.
+   - Ha $j$ páros, akkor $C_2$ egy **páros hosszúságú kör**.
+   - Ha mind $i$, mind $j$ páratlan szám, akkor a különbségük $j - i$ páros szám (két páratlan szám különbsége páros). Ekkor
+     $$|C_3| = j - i + 2$$
+     szintén **páros szám**, tehát $C_3$ egy **páros hosszúságú kör**.
 
-Tehát a gráfban mindenképpen van páros hosszúságú kör. $\blacksquare$
+Mivel minden esetben találunk páros hosszúságú kört, a gráfban **biztosan van páros hosszúságú kör**. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — körök és paritás.** A páratlan körök összege paritási szempontból merev: két pont közötti két különböző út kört alkot. Ha a kör páratlan, a két pont a kört egy páros és egy páratlan szakaszra vágja. Bármilyen harmadik, a két pontot összekötő út az egyik szakasszal együtt páros, a másikkal páratlan hosszúságú kört alkot. Így ha egy páratlan kör két pontja között van egy alternatív út, elkerülhetetlenül megjelenik egy páros kör.
+**Elméleti háttér — leghosszabb út technika és körparitás.** Az extremális gráfelmélet egyik legerősebb módszere a leghosszabb út vizsgálata: ha egy $P$ egyszerű út maximális hosszúságú, akkor végpontjaiból nem indulhat él a $P$-n kívüli csúcsokba, így minden szomszédjuk magán a $P$ úton helyezkedik el. Ha a minimális fokszám $\delta(G) \ge 3$, akkor a kezdőpontnak a közvetlen szomszédján kívül még legalább két éle (húrja) vezet az út későbbi pontjaiba, melyek három különböző kört határoznak meg. A három kör hosszai ($i$, $j$ és $j - i + 2$) közül a paritási összefüggések miatt legalább az egyik szükségszerűen páros.
 :::
 
 ## 78. feladat

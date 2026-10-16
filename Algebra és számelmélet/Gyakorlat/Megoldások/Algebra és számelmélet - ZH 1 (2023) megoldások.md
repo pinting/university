@@ -218,7 +218,7 @@ $$\left(\begin{array}{cccc|c}
 \end{array}\right)$$
 
 Gauss-elimináció lépései:
-1. $S_3 \leftarrow S_3 + S_2$: a 3. sor csupa 0 lesz: $(0, 0, 0, 0 \mid 0)$.
+1. $S_3 \leftarrow S_3 + S_2$: a 3. sor csupa 0 lesz: $(0, 0, 0, 0 \mid 0)$, majd cseréljük fel a 3. és a 4. sort ($S_3 \leftrightarrow S_4$), hogy a zérussor alulra kerüljön.
 2. $S_2 \leftarrow S_2 + 2S_1$:
    $$\left(\begin{array}{cccc|c}
    1 & -1 & 1 & 0 & 0 \\

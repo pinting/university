@@ -1,4 +1,4 @@
-# Algebra és számelmélet – 1. ZH
+# Algebra és számelmélet – 1. ZH (2026)
 
 ## 1. feladat
 

@@ -2237,20 +2237,20 @@ Nyilvánvalóan $V = A \cup B$ és $A \cap B = \emptyset$, hiszen minden távols
 
 Azt kell belátnunk, hogy **sem $A$-n belül, sem $B$-n belül nem fut él**.
 Tegyük fel indirekt, hogy mégis van egy ilyen él!
-Tegyük fel először, hogy két $A$-beli csúcs van összekötve: létezik egy $e = uv$ él, ahol $u, v \in A$. (A $u, v \in B$ eset teljesen azonos módon tárgyalható.)
-Mivel $u, v \in A$, mindkét távolság páros: $d(v_0, u) = 2k$ és $d(v_0, v) = 2m$.
+Tegyük fel, hogy két azonos osztálybeli csúcs van összekötve: létezik egy $e = uv$ él, mondjuk ahol $u, v \in B$ páratlan távolságú csúcsok (az alábbi ábrának megfelelően; az $u, v \in A$ eset teljesen azonos módon tárgyalható).
+Mivel $u, v \in B$, mindkét távolság páratlan: $d(v_0, u) = 2k + 1$ és $d(v_0, v) = 2m + 1$. Mivel $u$ és $v$ szomszédosak, távolságaik legfeljebb $1$-gyel térhetnek el egymástól, az azonos paritás miatt pedig szükségképpen $d(v_0, u) = d(v_0, v)$.
 
 Vegyünk egy $P_u$ legrövidebb utat $v_0$-ból $u$-ba, és egy $P_v$ legrövidebb utat $v_0$-ból $v$-be.
-A két út mindegyike $v_0$-ból indul. Haladjunk a két úton párhuzamosan $v_0$-tól kezdve, és jelölje $w$ az **utolsó olyan közös csúcsot**, amelyben a két út találkozik (legrosszabb esetben $w = v_0$).
-Mivel $P_u$ és $P_v$ legrövidebb utak, a $v_0$-tól $w$-ig tartó kezdőszeletük is legrövidebb út, így $d(v_0, w)$ egyértelmű.
+Jelölje $w$ a két út **utolsó közös csúcsát** (amely után a két út a végpontokig már nem találkozik; legrosszabb esetben $w = v_0$). Vegyük észre, hogy $w \neq u$ és $w \neq v$, hiszen $d(v_0, u) = d(v_0, v)$ miatt egyik végpont sem előzheti meg a másikat egy legrövidebb úton.
+Mivel $P_u$ és $P_v$ legrövidebb utak, a $v_0$-tól $w$-ig tartó részútjuk is legrövidebb út, így $d(v_0, w)$ egyértelmű.
 
-A $w$-ből $u$-ba vezető út $P_u$-n, valamint a $w$-ből $v$-be vezető út $P_v$-n a $w$ csúcson kívül már nem tartalmaznak közös pontot, hosszaik pedig:
+A $w$-ből $u$-ba vezető $P_u$-beli részút, valamint a $w$-ből $v$-be vezető $P_v$-beli részút a $w$ csúcson kívül már diszjunktak (nincs további közös pontjuk), hosszaik pedig:
 $$\ell(w \to u) = d(v_0, u) - d(v_0, w), \qquad \ell(w \to v) = d(v_0, v) - d(v_0, w).$$
 
 Fűzzük össze a $w \to u$ utat, az $uv$ élt, és a $v \to w$ utat visszafelé: ez egy egyszerű kört alkot $G$-ben!
 Számoljuk ki ennek a körnek a hosszát:
 $$\ell(\text{kör}) = \big(d(v_0, u) - d(v_0, w)\big) + \big(d(v_0, v) - d(v_0, w)\big) + 1.$$
-Mivel $d(v_0, u)$ és $d(v_0, v)$ paritása megegyezik (mindkettő páros), a belőlük levont azonos $d(v_0, w)$ után a két különbség paritása is megegyezik!
+Mivel $d(v_0, u)$ és $d(v_0, v)$ paritása megegyezik (mindkettő páratlan, illetve az $A$-beli esetben mindkettő páros), a belőlük levont azonos $d(v_0, w)$ után a két különbség paritása is megegyezik!
 Két azonos paritású egész szám összege viszont **mindig páros**:
 $$\big(d(v_0, u) - d(v_0, w)\big) + \big(d(v_0, v) - d(v_0, w)\big) \equiv 0 \pmod 2.$$
 Ehhez hozzáadva az $uv$ élnek megfelelő $+1$-et, a kör teljes hossza:
@@ -2258,7 +2258,7 @@ $$\ell(\text{kör}) \equiv 0 + 1 = 1 \pmod 2,$$
 vagyis a kör **PÁRATLAN HOSSZÚSÁGÚ**!
 
 Ez azonban éles ellentmondás, hiszen feltettük, hogy a gráfban nincs egyetlen páratlan kör sem!
-Az indirekt feltevésünk tehát hamis volt: nem létezhet olyan él, amelynek mindkét végpontja $A$-ban van (és hasonlóan nem létezhet olyan él sem, amelynek mindkét végpontja $B$-ben van).
+Az indirekt feltevésünk tehát hamis volt: nem létezhet olyan él, amelynek mindkét végpontja $B$-ben van (és hasonlóan nem létezhet olyan él sem, amelynek mindkét végpontja $A$-ban van).
 Minden él tehát szükségképpen egy $A$-beli és egy $B$-beli csúcsot köt össze, így $G$ valóban páros gráf, és $\chi(G) \le 2$. $\blacksquare$
 
 \begin{center}
@@ -2391,7 +2391,7 @@ Ez azonnal ad egy triviális alsó korlátot:
     \draw[edge] (n3) -- node[below, inner sep=1pt]{\footnotesize $1$} (n5);
     \draw[edge] (n4) -- node[above, inner sep=1pt]{\footnotesize $3$} (n6);
     \draw[edge] (n5) -- node[left, inner sep=1pt]{\footnotesize $4$} (n6);
-    \draw[edge] (n4) -- node[above, inner sep=1pt]{\footnotesize $4$} (n7);
+    \draw[edge] (n4) -- node[above, inner sep=1pt]{\footnotesize $2$} (n7);
     \draw[edge] (n6) -- node[right, inner sep=1pt]{\footnotesize $1$} (n7);
     \draw[edge] (n6) -- node[below, inner sep=1pt]{\footnotesize $2$} (n8);
 
@@ -2545,16 +2545,14 @@ A külső tartomány ugyanolyan teljes jogú tartománya a síkrajznak, mint a b
   \draw[edge] (p6) to[out=270, in=0] (p5);
   \draw[edge] (p5) to[out=190, in=280] (p1);
 
-  \draw[edge] (p1) -- (p3);
   \draw[edge] (p3) -- (p2);
-  \draw[edge] (p2) -- (p4);
   \draw[edge] (p3) to[out=320, in=120] (p5);
   \draw[edge] (p4) -- (p5);
   \draw[edge] (p4) -- (p6);
 
   \node[face] at (-1.5, 0.6) {$1$};
   \node[face] at (0.2, -0.3) {$2$};
-  \node[face] at (1.1, 0.4) {$3$};
+  \node[face] at (1.15, -0.15) {$3$};
   \node[face] at (-2.6, -1.2) {$4$};
 
   \node[right=0.8cm of p6] {\begin{tabular}{l}
@@ -2638,7 +2636,6 @@ Mivel minden korábbi lépésben az $n - e + t$ érték változatlan maradt, az 
   \draw[tree] (a) -- (mid);
   \draw[tree] (mid) -- (f);
   \draw[tree] (f) -- (g);
-  \draw[tree] (g) -- (h);
   \draw[tree] (f) -- (h);
   \draw[tree] (mid) -- (e);
   \draw[tree] (e) -- (d);
@@ -2647,6 +2644,7 @@ Mivel minden korábbi lépésben az $n - e + t$ érték változatlan maradt, az 
   % Deleted cycle edges (dashed with strikeout)
   \draw[del] (b) -- node[sloped]{\footnotesize $|/|$} (c);
   \draw[del] (a) -- node[sloped]{\footnotesize $|/|$} (f);
+  \draw[del] (g) -- node[sloped]{\footnotesize $|/|$} (h);
   \draw[del] (mid) -- node[sloped]{\footnotesize $|/|$} (d);
 
   \node[right=0.5cm of d] {\begin{tabular}{l}
@@ -2741,9 +2739,10 @@ A válasz meglepő: **nem!** Síkbarajzolható gráfban csak nagyon kevés él l
 Ha egy síkgráf le van rajzolva a síkba, számoljuk meg az illeszkedő **$(e, T)$ él-tartomány párok** számát (ahol az $e$ él a $T$ tartomány határán fut).
 
 1. **A tartományok felől számolva:**
-   Minden $T$ tartomány határát egy zárt vonal (séta) alkotja. Mivel nincsenek hurokélek és kétszögek (többszörös élek), és feltesszük, hogy $n \ge 3$, minden tartományt **legalább 3 él** határol.
+   Minden $T$ tartomány határát egy zárt vonal (séta) alkotja. Mivel nincsenek hurokélek és kétszögek (többszörös élek), egy kört tartalmazó gráfban minden tartományt **legalább 3 él** határol.
    Így az illeszkedő párok száma:
    $$\text{párok száma} = \sum_{T} \text{határoló élek száma} \ge 3t.$$
+   *(Ha a gráf nem tartalmaz kört, azaz erdő vagy $e < 3$, a tétel állítása az alábbiak szerint közvetlenül is adódik.)*
 
 2. **Az élek felől számolva:**
    Minden él mentén **legfeljebb 2 tartomány** fekszik: az él jobb és bal oldalán lévő tartomány (ha az él egy híd, akkor mindkét oldalról ugyanaz a tartomány határolja, vagyis az adott tartományban $2$-szer számolódik).
@@ -2760,6 +2759,10 @@ $$3t \le 2e \iff t \le \frac{2}{3}e.$$
 
 **Bizonyítás.**
 Elég a tételt összefüggő gráfokra bizonyítani (ha nem összefüggő, új élek behúzásával összefüggővé tehető anélkül, hogy a síkbarajzolhatóság sérülne, és az élszám csak nő).
+
+Ha a gráf körmentes (tehát fa), akkor $e = n - 1$. Ekkor $n \ge 3$ esetén az $e = n - 1 \le 3n - 6$ egyenlőtlenség triviálisan teljesül (hiszen $2n \ge 5$). Hasonlóképpen, ha $e < 3$, $n \ge 3$ mellett $e < 3 \le 3n - 6$ azonnal igaz.
+
+Feltehetjük tehát, hogy a gráf tartalmaz kört (így $e \ge 3$ és legalább két tartománya van).
 Az összefüggő síkgráfokra érvényes Euler-formulából fejezzük ki a tartományok számát:
 $$n - e + t = 2 \implies t = 2 - n + e.$$
 Helyettesítsük ezt be a most igazolt $3t \le 2e$ egyenlőtlenségbe:
@@ -2849,7 +2852,7 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
         \draw[edge] (k\i) -- (k\j);
       }
     }
-    \node[below=1.4cm of k1] {\begin{tabular}{c} \textbf{$K_5$} \\ $n=5, \, e=10$ \\ $10 \le 3(5)-6 = 9 \text{ \ding{55}}$ \end{tabular}};
+    \node[below=1.4cm of k1] {\begin{tabular}{c} \textbf{$K_5$} \\ $n=5, \, e=10$ \\ $10 \le 3(5)-6 = 9 \text{ (ellentmondás)}$ \end{tabular}};
   \end{scope}
 
   % K_{3,3}
@@ -2867,7 +2870,7 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
     }
     \node[above=0.05cm of h2] {\footnotesize 3 ház};
     \node[below=0.05cm of w2] {\footnotesize 3 kút};
-    \node[below=0.8cm of w2] {\begin{tabular}{c} \textbf{$K_{3,3}$} \\ $n=6, \, e=9$ \\ $9 \le 2(6)-4 = 8 \text{ \ding{55}}$ \end{tabular}};
+    \node[below=0.8cm of w2] {\begin{tabular}{c} \textbf{$K_{3,3}$} \\ $n=6, \, e=9$ \\ $9 \le 2(6)-4 = 8 \text{ (ellentmondás)}$ \end{tabular}};
   \end{scope}
 
   % Subdivision
