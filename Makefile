@@ -7,7 +7,7 @@
 #                   Analízis 1/Analízis 1 Gyakorlat Megoldások.md
 #   make pdf      build a reMarkable-sized PDF next to every Markdown file in
 #                 the root of a subject directory (X.md -> X.pdf)
-#   make tankonyv build only the textbooks (every "* Tankönyv.md"), e.g.
+#   make textbook build only the textbooks (every "* Tankönyv.md"), e.g.
 #                   Analízis 1/Analízis 1 Tankönyv.md
 #                   Algebra és számelmélet/Algebra Tankönyv.md
 #                   Algebra és számelmélet/Számelmélet Tankönyv.md
@@ -53,13 +53,13 @@ CONCAT := $(foreach g,$(GROUPS),$(call concat_of,$g))
 SOURCES := $(sort $(CONCAT) \
   $(call find_enc,-mindepth 2 -maxdepth 2 -name '*.md' -not -path './.*'))
 PDFS := $(SOURCES:.md=.pdf)
-TANKONYV := $(filter %|Tankönyv.pdf,$(PDFS))
+TEXTBOOK := $(filter %|Tankönyv.pdf,$(PDFS))
 
-.PHONY: all concat pdf tankonyv clean
+.PHONY: all concat pdf textbook clean
 all: concat pdf
 concat: $(call esc,$(CONCAT))
 pdf: $(call esc,$(PDFS))
-tankonyv: $(call esc,$(TANKONYV))
+textbook: $(call esc,$(TEXTBOOK))
 
 # $1: sheet folder. The sheets are joined in version order (2 before 10),
 # separated by a blank line.

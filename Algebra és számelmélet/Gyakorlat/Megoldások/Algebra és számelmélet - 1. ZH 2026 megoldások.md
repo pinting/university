@@ -88,7 +88,7 @@ Határozzuk meg a 95 és 26 legnagyobb közös osztóját és írjuk fel $95x + 
 
 **Megoldás.**
 
-**$\mathbf{\lnko(95, 26) = 1}$, és felírása: $\mathbf{1 = 95 \cdot (-3) + 26 \cdot 11}$ (azaz $x = -3, y = 11$).**
+**$\lnko(95, 26) = 1$, és felírása: $1 = 95 \cdot (-3) + 26 \cdot 11$ (azaz $x = -3, y = 11$).**
 
 *1. Euklideszi algoritmus a legnagyobb közös osztó meghatározására:*
 $$\begin{aligned}
@@ -272,11 +272,11 @@ A komplex gyökvonás képlete szerint az ötödik gyökök ($k = 0, 1, 2, 3, 4$
 $$w_k = \sqrt[5]{100} \left(\cos \frac{\frac{7\pi}{6} + 2k\pi}{5} + i \sin \frac{\frac{7\pi}{6} + 2k\pi}{5}\right) = \sqrt[5]{100} \left(\cos \frac{7\pi + 12k\pi}{30} + i \sin \frac{7\pi + 12k\pi}{30}\right).$$
 
 A gyökök kifejtve:
-- $\mathbf{k = 0: \quad w_1 = \sqrt[5]{100} \left(\cos \frac{7\pi}{30} + i \sin \frac{7\pi}{30}\right)} = \sqrt[5]{100} (\cos 42^\circ + i \sin 42^\circ)$
-- $\mathbf{k = 1: \quad w_2 = \sqrt[5]{100} \left(\cos \frac{19\pi}{30} + i \sin \frac{19\pi}{30}\right)} = \sqrt[5]{100} (\cos 114^\circ + i \sin 114^\circ)$
-- $\mathbf{k = 2: \quad w_3 = \sqrt[5]{100} \left(\cos \frac{31\pi}{30} + i \sin \frac{31\pi}{30}\right)} = \sqrt[5]{100} (\cos 186^\circ + i \sin 186^\circ)$
-- $\mathbf{k = 3: \quad w_4 = \sqrt[5]{100} \left(\cos \frac{43\pi}{30} + i \sin \frac{43\pi}{30}\right)} = \sqrt[5]{100} (\cos 258^\circ + i \sin 258^\circ)$
-- $\mathbf{k = 4: \quad w_5 = \sqrt[5]{100} \left(\cos \frac{55\pi}{30} + i \sin \frac{55\pi}{30}\right)} = \sqrt[5]{100} \left(\cos \frac{11\pi}{6} + i \sin \frac{11\pi}{6}\right) = \sqrt[5]{100} (\cos 330^\circ + i \sin 330^\circ)$
+- **$k = 0$:** $w_1 = \sqrt[5]{100} \left(\cos \frac{7\pi}{30} + i \sin \frac{7\pi}{30}\right) = \sqrt[5]{100} (\cos 42^\circ + i \sin 42^\circ)$
+- **$k = 1$:** $w_2 = \sqrt[5]{100} \left(\cos \frac{19\pi}{30} + i \sin \frac{19\pi}{30}\right) = \sqrt[5]{100} (\cos 114^\circ + i \sin 114^\circ)$
+- **$k = 2$:** $w_3 = \sqrt[5]{100} \left(\cos \frac{31\pi}{30} + i \sin \frac{31\pi}{30}\right) = \sqrt[5]{100} (\cos 186^\circ + i \sin 186^\circ)$
+- **$k = 3$:** $w_4 = \sqrt[5]{100} \left(\cos \frac{43\pi}{30} + i \sin \frac{43\pi}{30}\right) = \sqrt[5]{100} (\cos 258^\circ + i \sin 258^\circ)$
+- **$k = 4$:** $w_5 = \sqrt[5]{100} \left(\cos \frac{55\pi}{30} + i \sin \frac{55\pi}{30}\right) = \sqrt[5]{100} \left(\cos \frac{11\pi}{6} + i \sin \frac{11\pi}{6}\right) = \sqrt[5]{100} (\cos 330^\circ + i \sin 330^\circ)$
 
 **Geometriai ábrázolás a komplex számsíkon:**
 A gyökök egy origó középpontú, $R = \sqrt[5]{100} \approx 2{,}512$ sugarú körön helyezkednek el, és egy **szabályos ötszög** csúcsait alkotják. A szomszédos gyökök szögtávolsága $\frac{2\pi}{5} = 72^\circ$. Az első gyök a pozitív valós tengelyhez képest $42^\circ$-os szögben áll az 1. síknegyedben.

@@ -6,6 +6,8 @@
             top=11mm,bottom=13mm,left=11mm,right=11mm]{geometry}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\DeclareMathOperator{\lnko}{lnko}
+\DeclareMathOperator{\lkkt}{lkkt}
 \usepackage{etoolbox}
 \usepackage{fvextra}
 \usepackage{newunicodechar}
@@ -24,6 +26,10 @@
 \newunicodechar{⟺}{\ensuremath{\Longleftrightarrow}}
 \newunicodechar{✓}{\ding{51}}
 \newunicodechar{✗}{\ding{55}}
+\newunicodechar{𝜋}{\ensuremath{\pi}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{Ö}{\ifmmode\text{Ö}\else Ö\fi}
+\newunicodechar{ö}{\ifmmode\text{ö}\else ö\fi}
 
 % unicode-math maps \setminus to U+29F5, which Latin Modern Math lacks.
 \AtBeginDocument{\renewcommand{\setminus}{\mathbin{\backslash}}}

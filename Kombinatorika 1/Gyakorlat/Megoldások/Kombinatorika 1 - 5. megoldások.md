@@ -295,7 +295,7 @@ Számoljuk meg a KRASZNAHORKAI szó betűit:
 
 Összesen: $2 + 2 + 3 + 1 + 1 + 1 + 1 + 1 + 1 = 13$ betű.
 Az összes lehetséges anagramma száma (ismétléses permutáció):
-$$Ö = \frac{13!}{2! \, 2! \, 3! \, 1! \, 1! \, 1! \, 1! \, 1! \, 1!} = \frac{13!}{24} = 259\,459\,200.$$
+$$N_{\text{összes}} = \frac{13!}{2! \, 2! \, 3! \, 1! \, 1! \, 1! \, 1! \, 1! \, 1!} = \frac{13!}{24} = 259\,459\,200.$$
 
 ---
 
@@ -311,7 +311,7 @@ Ezek sorrendjeinek száma:
 $$\frac{11!}{2! \, 2!} = \frac{11!}{4} = 9\,979\,200.$$
 
 A keresett anagrammák száma tehát az összes esetből a komplementer levonásával:
-$$Ö - \frac{11!}{4} = \frac{13!}{24} - \frac{11!}{4} = \frac{11!}{4} \left(\frac{13 \cdot 12}{6} - 1\right) = \frac{11!}{4} (26 - 1) = 25 \cdot 9\,979\,200 = \mathbf{249\,480\,000}.$$
+$$N_{\text{összes}} - \frac{11!}{4} = \frac{13!}{24} - \frac{11!}{4} = \frac{11!}{4} \left(\frac{13 \cdot 12}{6} - 1\right) = \frac{11!}{4} (26 - 1) = 25 \cdot 9\,979\,200 = \mathbf{249\,480\,000}.$$
 
 ---
 

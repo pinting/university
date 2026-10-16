@@ -330,14 +330,14 @@ b) semelyik két A nincs egymás mellett?
 
 A betűk száma: K: 2, R: 2, A: 3, S: 1, Z: 1, N: 1, H: 1, O: 1, I: 1; összesen 13 betű.
 Az összes anagramma száma:
-$$Ö = \frac{13!}{2! \, 2! \, 3!} = \frac{13!}{24} = 259\,459\,200.$$
+$$N_{\text{összes}} = \frac{13!}{2! \, 2! \, 3!} = \frac{13!}{24} = 259\,459\,200.$$
 
 **a) Nem követi egymást közvetlenül 3 db A:**
 A komplementer eset: a 3 db A egymás mellett áll ($[AAA]$ blokk).
 Ekkor 11 szimbólum van ($[AAA]$, 2 db K, 2 db R és az 5 egyszeri betű), ezek száma:
 $$\frac{11!}{2! \, 2!} = \frac{11!}{4} = 9\,979\,200.$$
 A jó esetek száma:
-$$Ö - \frac{11!}{4} = \frac{13!}{24} - \frac{11!}{4} = \frac{11!}{4}(26 - 1) = 25 \cdot 9\,979\,200 = \mathbf{249\,480\,000}.$$
+$$N_{\text{összes}} - \frac{11!}{4} = \frac{13!}{24} - \frac{11!}{4} = \frac{11!}{4}(26 - 1) = 25 \cdot 9\,979\,200 = \mathbf{249\,480\,000}.$$
 
 **b) Semelyik két A nincs egymás mellett:**
 A 10 egyéb betűt elrendezzük: $\frac{10!}{2! \, 2!} = 907\,200$ módon.
@@ -2138,7 +2138,7 @@ Számoljuk meg a KRASZNAHORKAI szó betűit:
 
 Összesen: $2 + 2 + 3 + 1 + 1 + 1 + 1 + 1 + 1 = 13$ betű.
 Az összes lehetséges anagramma száma (ismétléses permutáció):
-$$Ö = \frac{13!}{2! \, 2! \, 3! \, 1! \, 1! \, 1! \, 1! \, 1! \, 1!} = \frac{13!}{24} = 259\,459\,200.$$
+$$N_{\text{összes}} = \frac{13!}{2! \, 2! \, 3! \, 1! \, 1! \, 1! \, 1! \, 1! \, 1!} = \frac{13!}{24} = 259\,459\,200.$$
 
 ---
 
@@ -2154,7 +2154,7 @@ Ezek sorrendjeinek száma:
 $$\frac{11!}{2! \, 2!} = \frac{11!}{4} = 9\,979\,200.$$
 
 A keresett anagrammák száma tehát az összes esetből a komplementer levonásával:
-$$Ö - \frac{11!}{4} = \frac{13!}{24} - \frac{11!}{4} = \frac{11!}{4} \left(\frac{13 \cdot 12}{6} - 1\right) = \frac{11!}{4} (26 - 1) = 25 \cdot 9\,979\,200 = \mathbf{249\,480\,000}.$$
+$$N_{\text{összes}} - \frac{11!}{4} = \frac{13!}{24} - \frac{11!}{4} = \frac{11!}{4} \left(\frac{13 \cdot 12}{6} - 1\right) = \frac{11!}{4} (26 - 1) = 25 \cdot 9\,979\,200 = \mathbf{249\,480\,000}.$$
 
 ---
 
