@@ -707,6 +707,39 @@ A Catalan-számok előkészítéseként két, első ránézésre egymástól tá
 **Kiegészítés — bizonyítás.** Minden útvonal pontosan $a$ jobbra és $b$ felfelé lépésből áll, összesen $a + b$ lépésből. Az útvonalat egyértelműen meghatározza, hogy az $a + b$ lépés közül melyik $a$ a jobbra lépés; és minden ilyen kiválasztás pontosan egy útvonalat ad. (Ez bijekció az útvonalak és az $[a+b]$ halmaz $a$ elemű részhalmazai között.) Az útvonalak száma tehát $\binom{a+b}{a}$. Másképp: ez a $J\dots J\,F\dots F$ szó ($a$ darab $J$, $b$ darab $F$) ismétléses permutációinak száma, $\frac{(a+b)!}{a!\,b!}$. $\blacksquare$
 :::
 
+\begin{center}
+\begin{tikzpicture}[scale=0.85,
+  gridline/.style={draw=black!25, thin},
+  axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
+  pathstep/.style={draw=black, very thick, -{Stealth[scale=0.8]}},
+  pt/.style={circle, draw=black, fill=black, inner sep=1.8pt}
+]
+  \draw[gridline] (0, 0) grid (4, 3);
+  \draw[axis] (-0.4, 0) -- (4.7, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -0.4) -- (0, 3.7) node[above] {\footnotesize $y$};
+
+  \foreach \x in {1, 2, 3, 4} {
+    \draw (\x, 0.08) -- (\x, -0.08) node[below] {\scriptsize \x};
+  }
+  \foreach \y in {1, 2, 3} {
+    \draw (0.08, \y) -- (-0.08, \y) node[left] {\scriptsize \y};
+  }
+
+  \draw[pathstep] (0,0) -- (1,0) node[midway, below=1pt] {\scriptsize $J$};
+  \draw[pathstep] (1,0) -- (2,0) node[midway, below=1pt] {\scriptsize $J$};
+  \draw[pathstep] (2,0) -- (2,1) node[midway, right=1pt] {\scriptsize $F$};
+  \draw[pathstep] (2,1) -- (3,1) node[midway, below=1pt] {\scriptsize $J$};
+  \draw[pathstep] (3,1) -- (3,2) node[midway, right=1pt] {\scriptsize $F$};
+  \draw[pathstep] (3,2) -- (3,3) node[midway, right=1pt] {\scriptsize $F$};
+  \draw[pathstep] (3,3) -- (4,3) node[midway, above=1pt] {\scriptsize $J$};
+
+  \node[pt, label=below left:{\footnotesize $S(0,0)$}] at (0,0) {};
+  \node[pt, label=above right:{\footnotesize $E(4,3)$}] at (4,3) {};
+
+  \node at (2, -1.0) {\footnotesize Egy rácsút $(0,0)$-ból $(4,3)$-ba: $4$ darab $J$ és $3$ darab $F$ lépés; összesen $\binom{4+3}{4} = 35$ ilyen út van.};
+\end{tikzpicture}
+\end{center}
+
 ### A folyó-probléma
 
 > **Feladat.** Egy egyenes folyó ugyanazon partján áll a $B$ pont és az $M$ pont. A $B$-ből az $M$-be kell eljutnunk úgy, hogy közben **érintjük a folyót** (például vizet merítünk belőle). Melyik a legrövidebb útvonal?
@@ -716,6 +749,34 @@ $$|BP| + |PM| = |BP| + |PM'| \ge |BM'|$$
 a háromszög-egyenlőtlenség szerint, egyenlőséggel pontosan akkor, ha $P$ a $BM'$ szakaszon van. A legrövidebb útvonal tehát az, amelyik a folyót a $BM'$ szakasz és a folyó metszéspontjában érinti.
 
 Valójában többet is kaptunk: egy **kölcsönösen egyértelmű megfeleltetést** a folyót érintő $B \to M$ útvonalak és a $B \to M'$ útvonalak között. Egy folyót érintő útvonalnak az **első** érintési pont *utáni* részét tükrözzük a folyóra, így egy $B$-ből $M'$-be vezető útvonalat kapunk; megfordítva, minden $B \to M'$ útvonal keresztezi a folyót (hiszen $B$ és $M'$ a két ellentétes parton van), és ha az első közös pont utáni részét visszatükrözzük, a folyót érintő $B \to M$ útvonalat kapunk. Ez a két művelet egymás inverze. Ez a **tükrözési elv**, és a következő szakaszban rácsutakra alkalmazzuk.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  river/.style={draw=black!70, very thick},
+  bank/.style={draw=none, fill=black!6},
+  pathopt/.style={draw=black, very thick},
+  pathsub/.style={draw=black!50, dashed, thick},
+  pathalt/.style={draw=black!40, thick},
+  pt/.style={circle, draw=black, fill=black, inner sep=1.8pt}
+]
+  \fill[bank] (-0.5, -0.15) rectangle (6.5, 0.15);
+  \draw[river] (-0.5, 0) -- (6.5, 0) node[right] {\footnotesize folyó ($y=0$)};
+
+  \node[pt, label=above left:{\small $B$}] (B) at (0.8, 2.0) {};
+  \node[pt, label=above right:{\small $M$}] (M) at (5.2, 1.6) {};
+  \node[pt, label=below right:{\small $M'$ \footnotesize (tükörkép)}] (Mp) at (5.2, -1.6) {};
+  \node[pt, label=above:{\footnotesize $P^*$}] (Pstar) at (3.24, 0) {};
+  \node[pt, label=above:{\footnotesize $P$}] (Palt) at (1.8, 0) {};
+
+  \draw[draw=black!30, dashed] (M) -- (Mp);
+  \draw[pathopt] (B) -- (Pstar) -- (M);
+  \draw[pathsub] (Pstar) -- (Mp);
+  \draw[pathalt] (B) -- (Palt) -- (M);
+  \draw[draw=black!30, dashed] (Palt) -- (Mp);
+
+  \node at (3.0, -2.4) {\footnotesize A tükrözési elv: $|BP| + |PM| = |BP| + |PM'| \ge |BM'|$, egyenlőség a $P^*$ metszéspontban áll fenn.};
+\end{tikzpicture}
+\end{center}
 
 ## 15. A Catalan-számok
 
@@ -743,6 +804,37 @@ Feleltessük meg minden sorrendnek egy rácsutat (töröttvonalat): az $1$ euró
 
 **Mikor rossz egy sorrend?** Pontosan akkor, ha valamikor egy $2$ eurós fizető üres pénztárhoz érkezik, vagyis ha az út valamikor az $y = x$ átló **fölé** lép. Mivel az út rácspontokon halad, ez azt jelenti, hogy az út **rálép az $y = x + 1$ egyenesre**. Ez a **tiltott egyenes**: ha rálépünk, baj van.
 
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  gridline/.style={draw=black!25, thin},
+  axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
+  diag/.style={draw=black!75, thick},
+  forbidden/.style={draw=black!60, dashed, thick},
+  goodpath/.style={draw=black, very thick},
+  pt/.style={circle, draw=black, fill=black, inner sep=1.8pt}
+]
+  \fill[black!4] (0,0) -- (4,0) -- (4,4) -- cycle;
+  \draw[gridline] (0,0) grid (4,4);
+  \draw[axis] (-0.3, 0) -- (4.8, 0) node[right] {\footnotesize $x$ \scriptsize ($1$ eurósok)};
+  \draw[axis] (0, -0.3) -- (0, 4.8) node[above] {\footnotesize $y$ \scriptsize ($2$ eurósok)};
+
+  \foreach \i in {1, 2, 3, 4} {
+    \draw (\i, 0.08) -- (\i, -0.08) node[below] {\scriptsize \i};
+    \draw (0.08, \i) -- (-0.08, \i) node[left] {\scriptsize \i};
+  }
+
+  \draw[diag] (-0.2, -0.2) -- (4.5, 4.5) node[right] {\footnotesize $y = x$ \scriptsize (egyenleg $\ge 0$)};
+  \draw[forbidden] (-0.2, 0.8) -- (3.5, 4.5) node[above left] {\footnotesize $y = x + 1$ \scriptsize (tiltott egyenes)};
+
+  \draw[goodpath] (0,0) -- (1,0) -- (2,0) -- (2,1) -- (3,1) -- (3,2) -- (3,3) -- (4,3) -- (4,4);
+
+  \node[pt, label=below left:{\footnotesize $(0,0)$}] at (0,0) {};
+  \node[pt, label=above right:{\footnotesize $(4,4)$}] at (4,4) {};
+
+  \node at (2.2, -1.1) {\footnotesize Jó sorrend (Dyck-út): az út végig az $y = x$ átlón vagy alatta halad ($x \ge y$), így elkerüli a tiltott egyenest.};
+\end{tikzpicture}
+\end{center}
+
 ### Dobjuk ki a rosszat!
 
 Az összes út száma $\binom{2n}{n}$ (14. szakasz). A jó utak számához meg kell számolnunk a rossz utakat, vagyis azokat, amelyek érintik a tiltott egyenest. Ehhez a tükrözési elvet használjuk.
@@ -756,6 +848,50 @@ Legyen $P$ egy rossz út, és $T$ az a pont, ahol $P$ **először** érinti a ti
 Megfordítva: minden $(0,0) \to (n-1, n+1)$ út érinti a tiltott egyenest. Az $y - x$ különbség ugyanis a $(0,0)$ pontban $0$, a végpontban $2$, és minden lépés $\pm 1$-gyel változtatja, tehát valahol $1$ — ott az út a tiltott egyenesen van. Az első ilyen pont utáni részt visszatükrözve egy $(0,0) \to (n, n)$ rossz utat kapunk.
 
 A két eljárás egymás inverze, mert a tükrözés nem változtat az első érintési ponton és az azt megelőző szakaszon. $\blacksquare$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85,
+  gridline/.style={draw=black!25, thin},
+  axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
+  diag/.style={draw=black!40, thin},
+  forbidden/.style={draw=black!70, dashed, thick},
+  commonpath/.style={draw=black, very thick},
+  origtail/.style={draw=black!45, line width=1.4pt},
+  refltail/.style={draw=black, very thick, dashed},
+  pt/.style={circle, draw=black, fill=black, inner sep=1.8pt},
+  hitpt/.style={circle, draw=black, fill=white, very thick, inner sep=2.2pt}
+]
+  \draw[gridline] (0,0) grid (4,5);
+  \draw[axis] (-0.3, 0) -- (4.8, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -0.3) -- (0, 5.6) node[above] {\footnotesize $y$};
+
+  \foreach \x in {1, 2, 3, 4} {
+    \draw (\x, 0.08) -- (\x, -0.08) node[below] {\scriptsize \x};
+  }
+  \foreach \y in {1, 2, 3, 4, 5} {
+    \draw (0.08, \y) -- (-0.08, \y) node[left] {\scriptsize \y};
+  }
+
+  \draw[diag] (-0.2, -0.2) -- (4.4, 4.4) node[right] {\scriptsize $y = x$};
+  \draw[forbidden] (-0.3, 0.7) -- (4.2, 5.2) node[above] {\footnotesize $y = x + 1$ \scriptsize (tiltott egyenes)};
+
+  \draw[commonpath] (0,0) -- (1,0) -- (1,1) -- (1,2);
+  \draw[origtail] (1,2) -- (2,2) -- (3,2) -- (3,3) -- (4,3) -- (4,4);
+  \draw[refltail] (1,2) -- (1,3) -- (1,4) -- (2,4) -- (2,5) -- (3,5);
+  \draw[draw=black!30, dotted, thick] (4,4) -- (3,5);
+
+  \node[pt, label=below left:{\footnotesize $(0,0)$}] at (0,0) {};
+  \node[hitpt, label=above left:{\small $T(1,2)$}] at (1,2) {};
+  \node[pt, label=right:{\small $(4,4) = (n,n)$}] at (4,4) {};
+  \node[pt, label=above:{\small $(3,5) = (n-1, n+1)$}] at (3,5) {};
+
+  \node at (2.0, -1.4) {\footnotesize\begin{tabular}{c}
+    André tükrözése: az első érintési pont ($T$) utáni szakaszt tükrözve \\
+    a végpont az $(n,n)$ célpontból az $(n-1,n+1)$ tükörképbe jut. \\
+    \scriptsize (Szürke: eredeti folytatás, fekete szaggatott: tükrözött folytatás)
+  \end{tabular}};
+\end{tikzpicture}
+\end{center}
 
 A 14. szakasz szerint a $(0, 0) \to (n-1, n+1)$ utak száma $\binom{(n-1)+(n+1)}{n-1} = \binom{2n}{n-1}$. Így a jó utak száma $\binom{2n}{n} - \binom{2n}{n-1}$.
 
@@ -795,6 +931,44 @@ Rögzített $k$ mellett:
 
 A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$ jó sorrend van, és ezeket $k = 1, \dots, n$-re összeadva kapjuk az állítást. $\blacksquare$
 
+\begin{center}
+\begin{tikzpicture}[scale=0.85,
+  gridline/.style={draw=black!25, thin},
+  axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
+  diag/.style={draw=black!75, thick},
+  pathp/.style={draw=black, very thick},
+  pt/.style={circle, draw=black, fill=black, inner sep=1.8pt},
+  retpt/.style={circle, draw=black, fill=white, very thick, inner sep=2.2pt}
+]
+  \fill[black!5] (1,0) rectangle (3,2);
+  \fill[black!8] (3,3) rectangle (5,5);
+
+  \draw[gridline] (0,0) grid (5,5);
+  \draw[axis] (-0.3, 0) -- (5.8, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -0.3) -- (0, 5.8) node[above] {\footnotesize $y$};
+
+  \draw[diag] (-0.2, -0.2) -- (5.5, 5.5) node[right] {\footnotesize $y = x$};
+
+  \draw[pathp] (0,0) -- (1,0) node[midway, below=1pt] {\scriptsize $J$};
+  \draw[pathp] (1,0) -- (2,0) -- (2,1) -- (3,1) -- (3,2);
+  \draw[pathp] (3,2) -- (3,3) node[midway, right=1pt] {\scriptsize $F$};
+  \draw[pathp] (3,3) -- (4,3) -- (4,4) -- (5,4) -- (5,5);
+
+  \node[pt, label=below left:{\footnotesize $(0,0)$}] at (0,0) {};
+  \node[retpt, label=above left:{\footnotesize $(k,k)=(3,3)$}] at (3,3) {};
+  \node[pt, label=above right:{\footnotesize $(n,n)=(5,5)$}] at (5,5) {};
+
+  \node at (2.0, 0.7) {\footnotesize $C_{k-1}$};
+  \node at (4.0, 3.7) {\footnotesize $C_{n-k}$};
+
+  \node at (2.5, -1.4) {\footnotesize\begin{tabular}{c}
+    A Catalan-rekurzió: az első visszatérés az átlóra a $(k,k)$ pontban történik. \\
+    A $(1,0)$ és $(k,k-1)$ közötti szakasz egy $k-1$ méretű Dyck-út ($C_{k-1}$ lehetőség), \\
+    a $(k,k)$-tól induló hátralévő rész pedig egy $n-k$ méretű Dyck-út ($C_{n-k}$ lehetőség).
+  \end{tabular}};
+\end{tikzpicture}
+\end{center}
+
 *Ellenőrzés:* $C_3 = C_0C_2 + C_1C_1 + C_2C_0 = 2 + 1 + 2 = 5$, és $C_4 = 5 + 2 + 2 + 5 = 14$.
 
 **Megjegyzés.** Ez a rekurzió nem lineáris, és nem is véges rendű: $C_n$ kiszámolásához az **összes** korábbi tagra szükség van. A 12. szakasz módszere tehát nem alkalmazható rá — a zárt képlethez itt a bijektív (tükrözéses) gondolatmenet vezetett el. A rekurzió viszont arra kiválóan alkalmas, hogy más feladatokról megmutassuk, hogy ugyancsak a Catalan-számokra vezetnek.
@@ -815,6 +989,76 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
 
 (A háromszöget nem kell felbontani; a négyszöget a két átló bármelyike felbontja; az ötszögnél bármelyik csúcsból húzott két átló jó.) Az $1, 2, 5, 14$ sorozat ismerős! A **sejtés**: $T_n = C_{n-2}$. Az előadáson elhangzott, hogy ez rekurzióval bizonyítható.
 
+\begin{center}
+\begin{tikzpicture}[scale=0.75,
+  polyedge/.style={draw=black!70, thick},
+  diag/.style={draw=black, very thick},
+  pt/.style={circle, draw=black, fill=black, inner sep=1.3pt}
+]
+  \begin{scope}[xshift=-5.0cm]
+    \node[pt] (a1) at (90:1.0) {};
+    \node[pt] (a2) at (162:1.0) {};
+    \node[pt] (a3) at (234:1.0) {};
+    \node[pt] (a4) at (306:1.0) {};
+    \node[pt] (a5) at (18:1.0) {};
+    \draw[polyedge] (a1) -- (a2) -- (a3) -- (a4) -- (a5) -- (a1);
+    \draw[diag] (a1) -- (a3);
+    \draw[diag] (a1) -- (a4);
+    \node at (0, -1.3) {\scriptsize $1$-es csúcsból};
+  \end{scope}
+
+  \begin{scope}[xshift=-2.5cm]
+    \node[pt] (b1) at (90:1.0) {};
+    \node[pt] (b2) at (162:1.0) {};
+    \node[pt] (b3) at (234:1.0) {};
+    \node[pt] (b4) at (306:1.0) {};
+    \node[pt] (b5) at (18:1.0) {};
+    \draw[polyedge] (b1) -- (b2) -- (b3) -- (b4) -- (b5) -- (b1);
+    \draw[diag] (b2) -- (b4);
+    \draw[diag] (b2) -- (b5);
+    \node at (0, -1.3) {\scriptsize $2$-es csúcsból};
+  \end{scope}
+
+  \begin{scope}[xshift=0cm]
+    \node[pt] (c1) at (90:1.0) {};
+    \node[pt] (c2) at (162:1.0) {};
+    \node[pt] (c3) at (234:1.0) {};
+    \node[pt] (c4) at (306:1.0) {};
+    \node[pt] (c5) at (18:1.0) {};
+    \draw[polyedge] (c1) -- (c2) -- (c3) -- (c4) -- (c5) -- (c1);
+    \draw[diag] (c3) -- (c5);
+    \draw[diag] (c3) -- (c1);
+    \node at (0, -1.3) {\scriptsize $3$-as csúcsból};
+  \end{scope}
+
+  \begin{scope}[xshift=2.5cm]
+    \node[pt] (d1) at (90:1.0) {};
+    \node[pt] (d2) at (162:1.0) {};
+    \node[pt] (d3) at (234:1.0) {};
+    \node[pt] (d4) at (306:1.0) {};
+    \node[pt] (d5) at (18:1.0) {};
+    \draw[polyedge] (d1) -- (d2) -- (d3) -- (d4) -- (d5) -- (d1);
+    \draw[diag] (d4) -- (d1);
+    \draw[diag] (d4) -- (d2);
+    \node at (0, -1.3) {\scriptsize $4$-es csúcsból};
+  \end{scope}
+
+  \begin{scope}[xshift=5.0cm]
+    \node[pt] (e1) at (90:1.0) {};
+    \node[pt] (e2) at (162:1.0) {};
+    \node[pt] (e3) at (234:1.0) {};
+    \node[pt] (e4) at (306:1.0) {};
+    \node[pt] (e5) at (18:1.0) {};
+    \draw[polyedge] (e1) -- (e2) -- (e3) -- (e4) -- (e5) -- (e1);
+    \draw[diag] (e5) -- (e2);
+    \draw[diag] (e5) -- (e3);
+    \node at (0, -1.3) {\scriptsize $5$-ös csúcsból};
+  \end{scope}
+
+  \node at (0, -1.8) {\footnotesize $T_5 = C_3 = 5$: egy konvex ötszög mind az $5$ lehetséges háromszögelése (mindegyik $n-3 = 2$ átlót tartalmaz).};
+\end{tikzpicture}
+\end{center}
+
 ::: kiegeszites
 **Kiegészítés — a háromszögelések és a Catalan-számok.**
 
@@ -827,9 +1071,148 @@ $$t_n = T_{n+2} = \sum_{i=0}^{n-1} T_{i+2}\,T_{n-i+1} = \sum_{i=0}^{n-1} t_i\,t_
 Ez éppen a Catalan-rekurzió, tehát a lemma szerint $t_n = C_n$, vagyis $T_n = C_{n-2}$. $\blacksquare$
 :::
 
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  poly/.style={draw=black!70, thick},
+  base/.style={draw=black, line width=2pt},
+  triang/.style={draw=black, very thick, fill=black!10},
+  pt/.style={circle, draw=black, fill=black, inner sep=1.8pt}
+]
+  \coordinate (v1) at (-2.6, -1.0);
+  \coordinate (v2) at (-3.2, 0.0);
+  \coordinate (vk) at (-0.4, 1.8);
+  \coordinate (vm1) at (2.8, 0.2);
+  \coordinate (vm) at (2.2, -1.0);
+
+  \draw[triang] (v1) -- (vk) -- (vm) -- cycle;
+  \draw[poly] (v1) -- (v2) -- (-2.2, 1.2) -- (vk);
+  \path (v2) -- (-2.2, 1.2) node[midway, left=2pt] {\scriptsize $\dots$};
+  \draw[poly] (vk) -- (1.5, 1.5) -- (vm1) -- (vm);
+  \path (1.5, 1.5) -- (vm1) node[midway, right=2pt] {\scriptsize $\dots$};
+  \draw[base] (v1) -- (vm);
+
+  \node[pt, label=below left:{\small $1$}] at (v1) {};
+  \node[pt, label=left:{\small $2$}] at (v2) {};
+  \node[pt, label=above:{\small $k$}] at (vk) {};
+  \node[pt, label=right:{\small $m-1$}] at (vm1) {};
+  \node[pt, label=below right:{\small $m$}] at (vm) {};
+
+  \node at (-1.8, 0.2) {\footnotesize $k$-szög};
+  \node at (-1.8, -0.2) {\scriptsize ($T_k$ mód)};
+  \node at (1.3, 0.2) {\footnotesize $(m-k+1)$-szög};
+  \node at (1.3, -0.2) {\scriptsize ($T_{m-k+1}$ mód)};
+  \node at (-0.2, -1.3) {\footnotesize kitüntetett $\{1, m\}$ alapél};
+
+  \node at (0, -2.1) {\footnotesize\begin{tabular}{c}
+    Rekurzió háromszögelésekre: a rögzített $\{1, m\}$ alapélhez a $k$ csúcsot választva \\
+    a sokszög két kisebb sokszögre bomlik: $T_m = \sum_{k=2}^{m-1} T_k T_{m-k+1}$.
+  \end{tabular}};
+\end{tikzpicture}
+\end{center}
+
 **(B) Szorzatok zárójelezése.** Hányféleképpen zárójelezhető egy $n$ tényezős szorzat, ha a tényezők sorrendje rögzített, és minden lépésben két tényezőt szorzunk össze? Négy tényezőre például
 $$((a\cdot b)\cdot c)\cdot d,\quad (a\cdot(b\cdot c))\cdot d,\quad (a\cdot b)\cdot(c\cdot d),\quad a\cdot((b\cdot c)\cdot d),\quad a\cdot(b\cdot(c\cdot d)),$$
 ez $5 = C_3$ lehetőség.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.72,
+  edge/.style={draw=black!70, thick},
+  leaf/.style={inner sep=1pt, font=\scriptsize},
+  treenode/.style={circle, draw=black, fill=black, inner sep=1.2pt}
+]
+  % 1: ((ab)c)d
+  \begin{scope}[xshift=-5.2cm]
+    \node[treenode] (r) at (0.38, 1.8) {};
+    \node[treenode] (n1) at (-0.15, 1.2) {};
+    \node[treenode] (n2) at (-0.6, 0.6) {};
+    \node[leaf] (a) at (-0.9, 0) {$a$};
+    \node[leaf] (b) at (-0.3, 0) {$b$};
+    \node[leaf] (c) at (0.3, 0) {$c$};
+    \node[leaf] (d) at (0.9, 0) {$d$};
+    \draw[edge] (r) -- (n1);
+    \draw[edge] (r) -- (d);
+    \draw[edge] (n1) -- (n2);
+    \draw[edge] (n1) -- (c);
+    \draw[edge] (n2) -- (a);
+    \draw[edge] (n2) -- (b);
+    \node at (0, -0.4) {\scriptsize $((ab)c)d$};
+  \end{scope}
+
+  % 2: (a(bc))d
+  \begin{scope}[xshift=-2.6cm]
+    \node[treenode] (r) at (0.22, 1.8) {};
+    \node[treenode] (n1) at (-0.45, 1.2) {};
+    \node[treenode] (n2) at (0.0, 0.6) {};
+    \node[leaf] (a) at (-0.9, 0) {$a$};
+    \node[leaf] (b) at (-0.3, 0) {$b$};
+    \node[leaf] (c) at (0.3, 0) {$c$};
+    \node[leaf] (d) at (0.9, 0) {$d$};
+    \draw[edge] (r) -- (n1);
+    \draw[edge] (r) -- (d);
+    \draw[edge] (n1) -- (a);
+    \draw[edge] (n1) -- (n2);
+    \draw[edge] (n2) -- (b);
+    \draw[edge] (n2) -- (c);
+    \node at (0, -0.4) {\scriptsize $(a(bc))d$};
+  \end{scope}
+
+  % 3: (ab)(cd)
+  \begin{scope}[xshift=0cm]
+    \node[treenode] (r) at (0.0, 1.8) {};
+    \node[treenode] (n1) at (-0.6, 1.0) {};
+    \node[treenode] (n2) at (0.6, 1.0) {};
+    \node[leaf] (a) at (-0.9, 0) {$a$};
+    \node[leaf] (b) at (-0.3, 0) {$b$};
+    \node[leaf] (c) at (0.3, 0) {$c$};
+    \node[leaf] (d) at (0.9, 0) {$d$};
+    \draw[edge] (r) -- (n1);
+    \draw[edge] (r) -- (n2);
+    \draw[edge] (n1) -- (a);
+    \draw[edge] (n1) -- (b);
+    \draw[edge] (n2) -- (c);
+    \draw[edge] (n2) -- (d);
+    \node at (0, -0.4) {\scriptsize $(ab)(cd)$};
+  \end{scope}
+
+  % 4: a((bc)d)
+  \begin{scope}[xshift=2.6cm]
+    \node[treenode] (r) at (-0.22, 1.8) {};
+    \node[treenode] (n1) at (0.45, 1.2) {};
+    \node[treenode] (n2) at (0.0, 0.6) {};
+    \node[leaf] (a) at (-0.9, 0) {$a$};
+    \node[leaf] (b) at (-0.3, 0) {$b$};
+    \node[leaf] (c) at (0.3, 0) {$c$};
+    \node[leaf] (d) at (0.9, 0) {$d$};
+    \draw[edge] (r) -- (a);
+    \draw[edge] (r) -- (n1);
+    \draw[edge] (n1) -- (n2);
+    \draw[edge] (n1) -- (d);
+    \draw[edge] (n2) -- (b);
+    \draw[edge] (n2) -- (c);
+    \node at (0, -0.4) {\scriptsize $a((bc)d)$};
+  \end{scope}
+
+  % 5: a(b(cd))
+  \begin{scope}[xshift=5.2cm]
+    \node[treenode] (r) at (-0.38, 1.8) {};
+    \node[treenode] (n1) at (0.15, 1.2) {};
+    \node[treenode] (n2) at (0.6, 0.6) {};
+    \node[leaf] (a) at (-0.9, 0) {$a$};
+    \node[leaf] (b) at (-0.3, 0) {$b$};
+    \node[leaf] (c) at (0.3, 0) {$c$};
+    \node[leaf] (d) at (0.9, 0) {$d$};
+    \draw[edge] (r) -- (a);
+    \draw[edge] (r) -- (n1);
+    \draw[edge] (n1) -- (b);
+    \draw[edge] (n1) -- (n2);
+    \draw[edge] (n2) -- (c);
+    \draw[edge] (n2) -- (d);
+    \node at (0, -0.4) {\scriptsize $a(b(cd))$};
+  \end{scope}
+
+  \node at (0, -0.9) {\footnotesize Egy $4$ tényezős szorzat $C_3 = 5$ különböző zárójelezése és a nekik megfelelő bináris fák.};
+\end{tikzpicture}
+\end{center}
 
 ::: kiegeszites
 **Kiegészítés — bizonyítás.** Jelölje $b_n$ egy $n + 1$ tényezős szorzat zárójelezéseinek számát; $b_0 = 1$ (egyetlen tényezőn nincs mit zárójelezni). Egy zárójelezésben az **utolsó** szorzás két részre bontja a szorzatot: az első $i + 1$ és az utolsó $n - i$ tényező szorzatára, ahol $0 \le i \le n - 1$. A két részt egymástól függetlenül kell zárójelezni, így
