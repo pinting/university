@@ -1,5 +1,487 @@
 <!-- Generált fájl, ne szerkeszd! Forrás: Kombinatorika 1/Gyakorlat/Megoldások/, újragenerálás: make concat -->
 
+# Kombinatorika 1 – 1. javító ZH (régi) – megoldások
+
+### Kombinatorika 1 normál · 2023. november 25.
+
+Emlékeztetőül, a Fibonacci-sorozat definíciója: $F_0 = 0$, $F_1 = 1$, $n \ge 2$ esetén $F_n = F_{n-1} + F_{n-2}$.
+
+## 1. feladat
+
+a) Hányféleképpen írhatjuk fel a 25-öt pontosan 5 darab pozitív egész szám összegeként, ha figyelembe vesszük az összeadandók sorrendjét is? (Tehát az $1+1+1+1+21$ és az $1+1+21+1+1$ felírásokat különbözőnek tekintjük.)
+
+b) Hányféleképpen írhatjuk fel a 25-öt legalább két darab pozitív egész szám összegeként, ha figyelembe vesszük az összeadandók sorrendjét is?
+
+**Megoldás.**
+
+**a) $\mathbf{\binom{24}{4} = 10\,626}$ féleképpen.**
+
+A feladat az $x_1 + x_2 + x_3 + x_4 + x_5 = 25$ egyenlet pozitív egész ($x_i \ge 1$) megoldásainak száma.
+Képzeljünk el 25 darab 1-est egy sorban. Közöttük $25 - 1 = 24$ lehetséges hely van. Ezen 24 hely közül $5 - 1 = 4$ helyre teszünk elválasztójelet:
+$$\binom{25 - 1}{5 - 1} = \binom{24}{4} = \frac{24 \cdot 23 \cdot 22 \cdot 21}{24} = 23 \cdot 22 \cdot 21 = \mathbf{10\,626}.$$
+
+*(Vagy új változókkal: $y_i = x_i - 1 \ge 0$, ekkor $y_1 + \dots + y_5 = 20$, megoldásszám $\binom{20 + 5 - 1}{5 - 1} = \binom{24}{4}$.)*
+
+**b) $\mathbf{2^{24} - 1 = 16\,777\,215}$ féleképpen.**
+
+A 25 szám összes lehetséges rendezett felbontásában (kompozíciójában) a 25 darab 1-es közötti 24 hely mindegyikén vagy teszünk vágást, vagy nem. Mivel mind a 24 helyen egymástól függetlenül dönthetünk (2 lehetőség helyenként), az összes kompozíciók száma:
+$$2^{24} = 16\,777\,216.$$
+Ezek közül pontosan egyetlen olyan felírás van, amelyben a tagok száma nem legalább 2: az 1 tagú felírás, azaz maga a $25$ (ahol egyetlen helyre sem tettünk vágást).
+Tehát a legalább két tagú felírások száma:
+$$2^{24} - 1 = 16\,777\,216 - 1 = \mathbf{16\,777\,215}.$$
+
+::: elmelet
+**Elméleti háttér — kompozíciók és pálcika-golyó módszer.** Egy $n$ szám $k$ darab pozitív egész tag összegére való felbontásainak száma a sorrend figyelembevételével $\binom{n-1}{k-1}$. Az összes pozitív tagú kompozíciók száma tetszőleges tagszám mellett $\sum_{k=1}^n \binom{n-1}{k-1} = 2^{n-1}$.
+:::
+
+## 2. feladat
+
+Egy polcon lévő $n$ könyv közül hányféleképpen vehetünk le néhányat, ha nem szeretnénk szomszédos könyveket levenni?
+
+**Megoldás.**
+
+**$\mathbf{F_{n+2}}$ féleképpen (ha a 0 könyv levétele is megengedett), illetve $\mathbf{F_{n+2} - 1}$ féleképpen (ha legalább 1 könyvet le kell venni).**
+
+Jelölje $a_n$ az $\{1, 2, \dots, n\}$ sorozat olyan részhalmazainak számát, amelyek nem tartalmaznak két szomszédos számot.
+
+Bontsuk az eseteket az $n$-edik könyv állapota szerint:
+- **Ha az $n$-edik könyvet NEM vesszük le:** ekkor az első $n - 1$ könyv közül kell szomszédmentes részhalmazt választanunk, erre a definíció szerint $a_{n-1}$ lehetőség van.
+- **Ha az $n$-edik könyvet LEVESSZÜK:** ekkor az $(n-1)$-edik könyvet a feltétel miatt nem vehetjük le, a maradék első $n - 2$ könyv közül választhatunk szomszédmentesen, erre $a_{n-2}$ lehetőség van.
+
+Ez a két eset egymást kizárja és lefedi az összes esetet, így:
+$$a_n = a_{n-1} + a_{n-2}.$$
+
+Nézzük a kezdőértékeket:
+- $n = 0$: $a_0 = 1$ (az üres választás: 0 könyv levétele),
+- $n = 1$: $a_1 = 2$ (nem veszünk le semmit, vagy levesszük az 1-es könyvet),
+- $n = 2$: $a_2 = 3$ ($\emptyset, \{1\}, \{2\}$),
+- $n = 3$: $a_3 = 5$ ($\emptyset, \{1\}, \{2\}, \{3\}, \{1, 3\}$).
+
+A Fibonacci-sorozat definíciója szerint $F_0 = 0, F_1 = 1, F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, \dots$
+Látható, hogy $a_n = F_{n+2}$.
+- Ha a „néhány” könyv megengedi a 0 könyv levételét is (üres halmaz), akkor az eredmény: **$F_{n+2}$**.
+- Ha legalább egy könyvet le kell venni (nem üres halmaz), akkor az eredmény: **$F_{n+2} - 1$**.
+
+::: elmelet
+**Elméleti háttér — szomszédmentes részhalmazok és Fibonacci-rekurzió.** Az utolsó elem szerinti esetszétválasztás közvetlenül a Fibonacci-rekurzióra ($a_n = a_{n-1} + a_{n-2}$) vezet. Ismert összefüggés a binomiális együtthatókkal is: $a_n = \sum_{k \ge 0} \binom{n - k + 1}{k} = F_{n+2}$.
+:::
+
+## 3. feladat
+
+Egy $2025 \times 2025$-ös táblázat mezőibe tetszőlegesen beírjuk az 1, 2, 3 számok valamelyikét és kiszámítjuk a 2025 darab sorban, a 2025 darab oszlopban és a főátlóban (mely a bal felső saroktól a jobb alsó sarokig húzódik) az ott lévő számok összegét. Tudjuk, hogy a főátlóban páros sok 2-es szerepel, igaz-e, hogy a kapott összegek közötti lesz két azonos?
+
+**Megoldás.**
+
+**Igaz, biztosan lesz két azonos összeg.**
+
+A kiszámított összegek száma:
+$$2025 \text{ (sorösszeg)} + 2025 \text{ (oszlopösszeg)} + 1 \text{ (főátló összege)} = 4051 \text{ darab összeg}.$$
+
+1. **A lehetséges összegek tartománya:**
+   Minden sorban, oszlopban és a főátlóban pontosan 2025 darab szám van, és mindegyik szám az $\{1, 2, 3\}$ halmazból való.
+   - A legkisebb lehetséges összeg: $2025 \cdot 1 = 2025$ (ha csupa 1-es van).
+   - A legnagyobb lehetséges összeg: $2025 \cdot 3 = 6075$ (ha csupa 3-as van).
+   A lehetséges összegek száma:
+   $$6075 - 2025 + 1 = 4051 \text{ darab lehetséges egész érték}.$$
+
+2. **Indirekt feltevés:**
+   Tegyük fel indirekt, hogy a 4051 összeg **mind különböző**.
+   Mivel pontosan 4051 összegünk van és pontosan 4051 lehetséges érték a $[2025, 6075]$ intervallumban, a kapott összegeknek a $\{2025, 2026, \dots, 6075\}$ halmaz **minden egyes elemét pontosan egyszer** fel kell venniük!
+
+3. **Paritásvizsgálat:**
+   - **A 4051 összeg teljes összege a táblázat mezői alapján:**
+     Legyen $S = \sum_{i,j} a_{i,j}$ a táblázat összes mezőjében lévő számok összege.
+     Minden mező pontosan egy sorban és egy oszlopban szerepel. Így a 2025 sorösszeg összege $S$, a 2025 oszlopösszeg összege szintén $S$.
+     A 4051 összeg összege tehát:
+     $$\Sigma_{\text{összes}} = \sum_{i=1}^{2025} (\text{sor}_i) + \sum_{j=1}^{2025} (\text{oszlop}_j) + (\text{főátló}) = S + S + (\text{főátló}) = 2S + (\text{főátló}).$$
+     Mivel $2S$ páros egész szám, a teljes összeg paritása **megegyezik a főátló összegének paritásával**:
+     $$\Sigma_{\text{összes}} \equiv (\text{főátló}) \pmod 2.$$
+
+   - **A főátló összegének paritása:**
+     A főátlóban 2025 darab szám áll az $\{1, 2, 3\}$ halmazból. Modulo 2 vizsgálva:
+     $$1 \equiv 1, \quad 3 \equiv 1, \quad 2 \equiv 0 \pmod 2.$$
+     Tehát a főátló összege páros $\iff$ páros sok páratlan szám (1-es és 3-as) van benne.
+     A feltétel szerint a főátlóban **páros sok 2-es** szerepel.
+     Mivel a főátlóban a számok teljes száma 2025 (páratlan), az 1-esek és 3-asok száma:
+     $$2025 - (\text{páros}) = \text{PÁRATLAN}.$$
+     Mivel páratlan sok páratlan szám van a főátlóban, **a főátló összege PÁRATLAN**:
+     $$(\text{főátló}) \equiv 1 \pmod 2 \implies \Sigma_{\text{összes}} \equiv 1 \pmod 2.$$
+
+   - **A $\{2025, \dots, 6075\}$ halmaz elemeinek összege:**
+     Ha mind a 4051 szám megjelenne egyszer, az összegük:
+     $$\sum_{k=2025}^{6075} k = \frac{2025 + 6075}{2} \cdot 4051 = 4100 \cdot 4051 = 16\,609\,100,$$
+     ami **PÁROS** szám (hiszen a 4100 páros)!
+     *(Vagy paritással: az intervallum első száma 2025 (páratlan), utolsó száma 6075 (páratlan). A páratlan számok száma $\frac{6075 - 2025}{2} + 1 = 2026$, ami páros, így a páratlan számok összege páros, a párosaké páros, a teljes összeg páros.)*
+
+4. **Ellentmondás:**
+   A táblázat mezőinek összeadásából $\Sigma_{\text{összes}}$ páratlan, míg a feltételezett 4051 különböző érték összege páros.
+   Ez lehetetlen, tehát az indirekt feltevés hamis: **nem lehet mind a 4051 összeg különböző**, vagyis biztosan van legalább két azonos összeg. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — kettős összegzés és paritási invariáns.** Amikor az értékek elméleti tartománya méretében megegyezik a minták számával, az injektivitás (különbözőség) szürjektivitást kényszerít ki: minden lehetséges értéknek pontosan egyszer kell előfordulnia. Ezt gyakran paritási ellentmondással cáfoljuk: a rendszert leíró összesített invariáns (itt $2S + \text{átló}$) paritása összevethető a teljes értékkészlet összegének paritásával.
+:::
+
+## 4. feladat
+
+Adott 6 levél és minden levélhez egy megcímkézett boríték. Hányféleképpen helyezhetjük el a leveleket a megcímkézett borítékokba úgy, hogy semelyik levél se kerüljön a hozzá tartozó borítékba, ha
+
+a) minden borítékba pontosan egy levél kerül?
+
+b) egy borítékba több levél is kerülhet?
+
+**Megoldás.**
+
+**a) Minden borítékba pontosan egy levél kerül:**
+
+**265 féleképpen.**
+
+Ez a klasszikus derangement (fixpontmentes permutáció) feladat 6 elemre ($D_6$).
+Jelölje $A_i$ ($i = 1, \dots, 6$) azon bijekciókat, ahol az $i$-edik levél a saját borítékjába kerül.
+A logikai szita formula szerint:
+$$D_6 = 6! \sum_{k=0}^6 \frac{(-1)^k}{k!} = 720 \left(1 - 1 + \frac{1}{2!} - \frac{1}{3!} + \frac{1}{4!} - \frac{1}{5!} + \frac{1}{6!}\right)$$
+$$D_6 = 720 \left(\frac{1}{2} - \frac{1}{6} + \frac{1}{24} - \frac{1}{120} + \frac{1}{720}\right) = 360 - 120 + 30 - 6 + 1 = \mathbf{265}.$$
+
+---
+
+**b) Egy borítékba több levél is kerülhet:**
+
+**$\mathbf{5^6 = 15\,625}$ féleképpen.**
+
+Mivel egy borítékba tetszőlegesen több levél is kerülhet (és boríték üresen is maradhat), a levelek elhelyezése egymástól teljesen független.
+Az $i$-edik levél tetszőleges borítékba tehető, kivéve az $i$-edik borítékot.
+Mivel 6 boríték van, minden levél számára pontosan $6 - 1 = 5$ megengedett boríték áll rendelkezésre.
+A 6 levélre a független döntések száma a szorzási szabály szerint:
+$$5^6 = \mathbf{15\,625}.$$
+
+::: elmelet
+**Elméleti háttér — derangement és független függvények.** (a) Bijekciók esetén (minden dobozba 1 golyó) a feltételek erősen csatoltak, a megoldást a szitaformula általános derangement-képlete ($n! \sum \frac{(-1)^k}{k!} = [\frac{n!}{e}]$) adja. (b) Általános leképezéseknél a kapacitáskorlát nélkül a komponensek szétesnek független választások szorzatára: minden elem a sajátján kívüli $n - 1$ dobozba mehet, így a válasz $(n - 1)^n$.
+:::
+
+## 5. feladat
+
+Keressünk zárt formulát az alábbi kifejezésre és igazoljuk az egyenlőséget a kettős leszámlálás módszerével!
+$$\sum_{k=0}^n k^2 \binom{n}{k}$$
+
+[2 pontért megmondjuk, mi a zárt alak]
+
+**Megoldás.**
+
+**A zárt alak: $\mathbf{n(n+1) 2^{n-2}}$ (vagy $n 2^{n-1} + n(n-1)2^{n-2}$).**
+
+**Bizonyítás kettős leszámlálással:**
+
+Tekintsünk egy $n$ fős társaságot. Azt számoljuk meg kétféleképpen, hogy hányféleképpen választhatunk ki a társaságból egy tetszőleges méretű bizottságot, és a bizottság tagjai közül egy **elnököt** és egy **titkárt**, ha az elnök és a titkár **lehet ugyanaz a személy is**.
+
+- **1. számlálás (előbb a bizottság, majd a tisztviselők):**
+  Rögzítsük a bizottság létszámát: legyen ez $k$ ($1 \le k \le n$).
+  1. A $k$ fős bizottságot $\binom{n}{k}$ módon választhatjuk ki.
+  2. A kiválasztott $k$ ember közül az elnököt $k$ módon választhatjuk ki.
+  3. A titkárt szintén a bizottság tagjai közül $k$ módon választhatjuk ki (mivel megengedett, hogy ugyanaz a személy töltse be mindkét posztot).
+  Ez a bizottság kijelölése után $k \cdot k = k^2$ lehetőség.
+  Összegezve az összes $k = 0, 1, \dots, n$ értékre (a $k = 0$ eset 0-t ad):
+  $$\sum_{k=0}^n k^2 \binom{n}{k}.$$
+
+- **2. számlálás (előbb a tisztviselők, majd a többi bizottsági tag):**
+  Bontsuk a lehetőségeket két diszjunkt esetre:
+  1. **Az elnök és a titkár ugyanaz a személy:**
+     Ezt a közös tisztséget viselő embert $n$ féleképpen választhatjuk ki az $n$ főből.
+     A megmaradt $n - 1$ ember mindegyikéről függetlenül eldöntjük, hogy tagja legyen-e a bizottságnak vagy sem: erre $2^{n-1}$ lehetőség van.
+     Ebben az esetben a lehetőségek száma:
+     $$n 2^{n-1}.$$
+  2. **Az elnök és a titkár két különböző személy:**
+     Az elnököt $n$ féleképpen, a titkárt tőle különbözően $n - 1$ féleképpen választhatjuk ki: ez $n(n - 1)$ lehetőség.
+     A maradék $n - 2$ ember mindegyikéről függetlenül döntünk a bizottsági tagságról: erre $2^{n-2}$ lehetőség van.
+     Ebben az esetben a lehetőségek száma:
+     $$n(n - 1) 2^{n-2}.$$
+
+  A két diszjunkt eset összege:
+  $$n 2^{n-1} + n(n - 1) 2^{n-2} = n 2^{n-2} \cdot 2 + n(n - 1) 2^{n-2} = n 2^{n-2} (2 + n - 1) = \mathbf{n(n+1) 2^{n-2}}.$$
+
+Mivel mindkét számolás ugyanannak a struktúrának a száma:
+$$\sum_{k=0}^n k^2 \binom{n}{k} = n(n+1) 2^{n-2}. \quad \blacksquare$$
+
+*(Algebrai levezetés deriválással: $(1 + x)^n = \sum \binom{n}{k} x^k$. Deriválva: $n(1+x)^{n-1} = \sum k \binom{n}{k} x^{k-1}$. Megszorozva $x$-szel: $nx(1+x)^{n-1} = \sum k \binom{n}{k} x^k$. Újra deriválva: $n(1+x)^{n-1} + n(n-1)x(1+x)^{n-2} = \sum k^2 \binom{n}{k} x^{k-1}$. Behelyettesítve $x = 1$-et: $n 2^{n-1} + n(n-1)2^{n-2} = n(n+1)2^{n-2}$.)*
+
+::: elmelet
+**Elméleti háttér — tisztviselő-választás modell és generátorfüggvények.** A $k^2$ szorzó kombinatorikusan egy rendezett pár kiválasztását jelenti a $k$ elemű halmazból. Mivel a pár két eleme lehet azonos vagy különböző, az esetbontás a $k^2 = k(k-1) + k$ azonosság kombinatorikus megfelelője (ahol $\binom{k}{2} = \frac{k(k-1)}{2}$ két különböző elem kiválasztása).
+:::
+
+## 6. feladat
+
+Mutasd meg, hogy ha egy egyszerű gráfban minden pont foka legalább három, akkor a gráfban van páros hosszúságú kör!
+
+**Megoldás.**
+
+Tegyük fel indirekt, hogy a gráfban nincs páros hosszúságú kör, azaz **minden kör páratlan hosszúságú**.
+
+Mivel minden pont foka legalább $3 \ge 2$, van kör a gráfban. Legyen $C$ egy **leghosszabb kör** a gráfban, hossza legyen $2k + 1$ ($k \ge 1$):
+$$C = v_1 v_2 \dots v_{2k+1} v_1.$$
+
+1. **A körnek nem lehet húrja:**
+   Ha $C$-nek volna két nem szomszédos csúcsát összekötő $v_i v_j$ éle (húrja), az a $C$ kört két kisebb körre osztaná: $C_1$-re és $C_2$-re.
+   A két kör hosszának összege $|C_1| + |C_2| = (2k + 1) + 2 = 2k + 3$ páratlan szám, így $|C_1|$ és $|C_2|$ közül pontosan az egyik **páros** lenne. Ez ellentmondás, így $C$-nek nem lehet húrja.
+
+2. **Körön kívüli út a kör két pontja között:**
+   Mivel $C$-nek nincs húrja, a kör minden csúcsának foka a körön belül 2. Mivel $G$-ben minden fok legalább 3, a kör minden csúcsából indul legalább egy él a körön kívüli pontokba.
+   A gráf végessége és a minimális fokszám miatt a körön kívül induló út meghosszabbítható, amíg vissza nem ér a $C$ kör egy másik pontjába. Vegyünk egy olyan egyszerű $P$ utat a körön kívüli csúcsokon, amely a kör két különböző $u$ és $w$ pontját köti össze.
+
+3. **Páros kör előállítása:**
+   Az $u$ és $w$ csúcsok a páratlan hosszú $C$ kört két útra bontják ($P_1$ és $P_2$). Mivel $|P_1| + |P_2| = 2k + 1$ páratlan, a két út hossza különböző paritású: az egyik páros, a másik páratlan.
+   A $P$ utat hozzáillesztve a $P \cup P_1$ és $P \cup P_2$ körök keletkeznek, melyek hossza $|P| + |P_1|$ és $|P| + |P_2|$. Mivel $|P_1|$ és $|P_2|$ paritása ellentétes, a két kör közül az egyik hossza **biztosan páros**.
+
+Ez ellentmond annak, hogy nincs páros kör, tehát a gráfban **biztosan van páros hosszúságú kör**. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — alternatív utak és körparitás.** Egy páratlan kör két pontja közötti bármilyen harmadik út a kört két kisebb körre bontja, amelyek közül az egyik szükségszerűen páros, a másik páratlan paritású.
+:::
+
+## 7. feladat
+
+Mutasd meg, hogy ha 51 db pozitív egész összege 100, akkor két csoportba oszthatóak úgy, hogy a számok összege mindkét csoportban 50.
+
+**Megoldás.**
+
+Jelölje a megadott számokat $a_1, a_2, \dots, a_{51} \in \mathbb{Z}^+$, összegük $\sum_{i=1}^{51} a_i = 100$.
+
+Rendezzük a számokat tetszőleges rögzített sorrendbe, és tekintsük az egymást követő részletösszegeket (prefixösszegeket):
+$$s_0 = 0, \quad s_1 = a_1, \quad s_2 = a_1 + a_2, \quad \dots, \quad s_m = \sum_{k=1}^m a_k, \quad \dots, \quad s_{51} = 100.$$
+Mivel mindegyik $a_i$ pozitív egész ($a_i \ge 1$), a sorozat szigorúan monoton növekvő:
+$$0 = s_0 < s_1 < s_2 < \dots < s_{50} < s_{51} = 100.$$
+Ez összesen **52 darab különböző egész szám** a $\{0, 1, \dots, 100\}$ halmazban.
+
+Tekintsük ezen 52 szám **modulo 50 vett maradékait**:
+$$r_m = s_m \bmod 50 \in \{0, 1, 2, \dots, 49\} \quad (m = 0, 1, \dots, 51).$$
+A lehetséges maradékok száma pontosan **50**.
+
+Mivel 52 darab számunk van, de csak 50 lehetséges maradékosztály, a **skatulya-elv** szerint létezik legalább két olyan index, $0 \le i < j \le 51$, amelyekre a maradék megegyezik:
+$$s_j \equiv s_i \pmod{50} \implies 50 \mid (s_j - s_i).$$
+
+Mivel $s_j > s_i$, az $s_j - s_i$ különbség pozitív egész, és
+$$1 \le s_j - s_i \le 100.$$
+Az 1 és 100 közötti egészek közül csak két szám osztható 50-nel: az **50** és a **100**.
+
+- **Lehet-e $s_j - s_i = 100$?**
+  Mivel $0 \le s_i < s_j \le 100$, a különbség csak akkor lehetne 100, ha $s_i = 0$ és $s_j = 100$ (azaz $i = 0$ és $j = 51$).
+  Ekkor azonban az $s_0 = 0$ és $s_{51} = 100$ a $0$ maradékú osztályba tartozik.
+  Használjuk ki a skatulya-elv erősebb alakját:
+  52 darab elemet osztunk szét 50 skatulyába.
+  - Ha a $0$ maradékú osztályban van egy harmadik elem is (valamelyik $1 \le m \le 50$-re $s_m \equiv 0 \pmod{50}$), akkor mivel $0 < s_m < 100$, szükségszerűen $s_m = 50$. Ekkor $s_m - s_0 = 50$, és készen vagyunk!
+  - Ha a $0$ maradékú osztályban csak a $\{0, 100\}$ két elem van, akkor a maradék $52 - 2 = 50$ darab $s_m$ elem a maradék $50 - 1 = 49$ darab nem-nulla maradékosztályba ($1, 2, \dots, 49$) esik.
+    A skatulya-elv szerint ekkor létezik két olyan index $i < j$, amelyre
+    $$s_j \equiv s_i \not\equiv 0 \pmod{50}.$$
+    Mivel a közös maradék nem nulla, sem $s_i$, sem $s_j$ nem lehet 0 vagy 100, így a különbségük szigorúan kisebb 100-nál:
+    $$s_j - s_i < 100.$$
+    Mivel $50 \mid (s_j - s_i)$ és $0 < s_j - s_i < 100$, szükségképpen:
+    $$s_j - s_i = 50.$$
+
+Mivel $s_j - s_i = \sum_{k=i+1}^j a_k = 50$, az $\{a_{i+1}, a_{i+2}, \dots, a_j\}$ számok összege **pontosan 50**.
+A kimaradó számok összege szintén $100 - 50 = \mathbf{50}$.
+
+Ez a két részhalmaz pontosan két 50 összegű csoportra osztja az 51 darab számot. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — prefixösszegek és skatulyaelv részösszegekre.** A prefixösszegek módszere a részösszegek keresésének leghatékonyabb eszköze: az egymást követő tagok összege két prefixösszeg különbségeként ($s_j - s_i = \sum_{k=i+1}^j a_k$) fejezhető ki. Ha a prefixösszegek száma meghaladja az osztó maradékosztályainak számát, a skatulyaelv garantálja a kívánt oszthatóságot.
+:::
+
+# Kombinatorika 1 – 1. ZH (régi) – megoldások
+
+### Kombinatorika 1 normál · 2023. október 21.
+
+Emlékeztetőül, a Fibonacci-sorozat definíciója: $F_0 = 0$, $F_1 = 1$, $n \ge 2$ esetén $F_n = F_{n-1} + F_{n-2}$.
+
+## 1. feladat
+
+Bizonyítsd be, hogy minden pozitív egész szám felírható különböző Fibonacci számok összegeként.
+
+**Megoldás.**
+
+A Fibonacci-sorozat: $F_1 = 1, F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, F_6 = 8, F_7 = 13, \dots$
+A szigorúan növekvő tagokat $F_2 = 1$-től kezdve indexeljük, hogy ne használjunk két azonos értékű 1-est:
+$$f_1 = F_2 = 1, \quad f_2 = F_3 = 2, \quad f_3 = F_4 = 3, \quad f_4 = F_5 = 5, \quad \dots$$
+
+Az állítást $N$ szerinti teljes indukcióval igazoljuk:
+- **Bázis:** $N = 1 = F_2$, kész.
+- **Indukciós lépés:** Tegyük fel, hogy minden $k < N$ pozitív egész szám felírható különböző Fibonacci-számok összegeként.
+  Válasszuk ki a legnagyobb olyan $F_m$ Fibonacci-számot, amelyre $F_m \le N$.
+  - Ha $N = F_m$, akkor $N$ maga egy Fibonacci-szám.
+  - Ha $N > F_m$, képezzük az $N' = N - F_m$ maradékot ($1 \le N' < N$).
+    Az indukciós feltevés szerint $N'$ felírható különböző Fibonacci-számok összegeként:
+    $$N' = F_{i_1} + F_{i_2} + \dots + F_{i_r}, \quad \text{ahol } i_1 < i_2 < \dots < i_r.$$
+    Mivel $F_m$ a maximális Fibonacci-szám $\le N$, a rákövetkező $F_{m+1} > N$. A Fibonacci-rekurzió miatt:
+    $$N' = N - F_m < F_{m+1} - F_m = F_{m-1}.$$
+    Mivel $N' < F_{m-1}$, a felbontásában szereplő minden tagra $F_{i_j} \le N' < F_{m-1} < F_m$.
+    Ezért $i_r \le m - 2 < m$, tehát $F_m$ nem szerepelhet $N'$ felírásában.
+
+Ezzel $N = F_m + F_{i_1} + \dots + F_{i_r}$ csupa különböző Fibonacci-szám összege. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Zeckendorf-tétel és mohó felbontás.** A Fibonacci-sorozat rekurziója ($F_{m+1} - F_m = F_{m-1}$) biztosítja, hogy a mohó algoritmussal levont legnagyobb tag után maradó rész szigorúan kisebb, mint az azt megelőző Fibonacci-szám. Ez garantálja, hogy a felhasznált számok mind különbözők, sőt nem szomszédosak a Fibonacci-sorozatban (Zeckendorf-tétel).
+:::
+
+## 2. feladat
+
+Hány anagrammája van a KRASZNAHORKAI szónak, amelyben
+
+a) nem követi egymást közvetlenül három A betű?
+
+b) semelyik két A nincs egymás mellett?
+
+**Megoldás.**
+
+A betűk száma: K: 2, R: 2, A: 3, S: 1, Z: 1, N: 1, H: 1, O: 1, I: 1; összesen 13 betű.
+Az összes anagramma száma:
+$$Ö = \frac{13!}{2! \, 2! \, 3!} = \frac{13!}{24} = 259\,459\,200.$$
+
+**a) Nem követi egymást közvetlenül 3 db A:**
+A komplementer eset: a 3 db A egymás mellett áll ($[AAA]$ blokk).
+Ekkor 11 szimbólum van ($[AAA]$, 2 db K, 2 db R és az 5 egyszeri betű), ezek száma:
+$$\frac{11!}{2! \, 2!} = \frac{11!}{4} = 9\,979\,200.$$
+A jó esetek száma:
+$$Ö - \frac{11!}{4} = \frac{13!}{24} - \frac{11!}{4} = \frac{11!}{4}(26 - 1) = 25 \cdot 9\,979\,200 = \mathbf{249\,480\,000}.$$
+
+**b) Semelyik két A nincs egymás mellett:**
+A 10 egyéb betűt elrendezzük: $\frac{10!}{2! \, 2!} = 907\,200$ módon.
+A betűk között és a széleken keletkező 11 helyre tesszük a 3 db A betűt: $\binom{11}{3} = 165$ módon.
+A kedvező anagrammák száma:
+$$\frac{10!}{4} \cdot \binom{11}{3} = 907\,200 \cdot 165 = \mathbf{149\,688\,000}.$$
+
+::: elmelet
+**Elméleti háttér — szomszédsági feltételek permutációkban.** Tiltott szomszédságoknál a közvetlen egymás mellettiséget blokk-képzéssel (szuperbetű) és komplementer leszámlálással számoljuk. Ha semelyik két elem nem lehet szomszédos, a többi elemet helyezzük le előbb, és a köztük lévő résekbe választunk helyet kombinációval.
+:::
+
+## 3. feladat
+
+Hány olyan egymilliónál kisebb pozitív egész szám van, melyben a számjegyek összege 25?
+
+**Megoldás.**
+
+**53 262 ilyen szám van.**
+
+A számokat 6 jegyű formában írjuk fel: $d_1 d_2 d_3 d_4 d_5 d_6$, ahol $0 \le d_i \le 9$ és $\sum_{i=1}^6 d_i = 25$.
+Logikai szita formulával:
+- Korlátozás nélküli nemnegatív egész megoldások: $|S| = \binom{25 + 6 - 1}{5} = \binom{30}{5} = 142\,506$.
+- Legalább egy számjegy $\ge 10$ ($A_i$): $25 - 10 = 15$ marad az összegre, $|A_i| = \binom{15 + 6 - 1}{5} = \binom{20}{5} = 15\,504$.
+- Legalább két számjegy $\ge 10$ ($A_i \cap A_j$): $25 - 20 = 5$ marad, $|A_i \cap A_j| = \binom{5 + 6 - 1}{5} = \binom{10}{5} = 252$.
+- Három számjegy $\ge 10$ összege legalább $30 > 25$, így a háromszoros metszet üres.
+
+A megoldásszám:
+$$N = \binom{30}{5} - \binom{6}{1}\binom{20}{5} + \binom{6}{2}\binom{10}{5} = 142\,506 - 6 \cdot 15\,504 + 15 \cdot 252 = \mathbf{53\,262}.$$
+
+::: elmelet
+**Elméleti háttér — korlátozott diofantikus egyenletek szitával.** Ha $x_1 + \dots + x_n = K$ egyenletet oldunk meg $0 \le x_i \le 9$ feltétellel, az $x_i \ge 10$ tulajdonságok szitálásával kapjuk meg a megoldást.
+:::
+
+## 4. feladat
+
+Az első 100 pozitív egész számot felírtuk egy-egy cédulára, és beletettük egy kalapba. Bekötött szemmel, visszatevés nélkül kihúzunk 55 számot. Igaz-e, hogy a kihúzott számok között biztosan van két olyan szám, melyek különbsége éppen 10?
+
+**Megoldás.**
+
+**Igaz.**
+
+Bontsuk az $\{1, 2, \dots, 100\}$ halmazt 10 darab, modulo 10 maradékosztály szerinti láncra:
+$$C_r = \{r, r + 10, r + 20, \dots, r + 90\}, \quad \text{ahol } r \in \{1, 2, \dots, 10\}.$$
+Minden $C_r$ halmaz pontosan 10 darab számot tartalmaz:
+$$C_r = \{a_0, a_1, \dots, a_9\}, \quad \text{ahol } a_t = r + 10t \ (0 \le t \le 9).$$
+
+Két szám különbsége egy $C_r$ osztályon belül pontosan akkor 10, ha szomszédosak a láncban ($|t_1 - t_2| = 1$).
+Párosítsuk össze a $C_r$-beli számokat diszjunkt párokba:
+$$\{a_0, a_1\}, \ \{a_2, a_3\}, \ \{a_4, a_5\}, \ \{a_6, a_7\}, \ \{a_8, a_9\}.$$
+Ez $C_r$-enként 5 pár. A 10 darab osztályban összesen
+$$10 \cdot 5 = 50 \text{ darab diszjunkt pár}$$
+keletkezik, és ezek a párok együttesen lefedik mind a 100 számot.
+
+Minden ilyen párban a két szám különbsége pontosan 10:
+$$(r + 10(2k + 1)) - (r + 10(2k)) = 10.$$
+
+Tekintsük ezt az 50 párt mint 50 „skatulyát”.
+Amikor kihúzunk 55 számot a kalapból, a **skatulya-elv** szerint az 50 skatulya közül legalább egybe legalább $\lceil 55/50 \rceil = 2$ szám fog esni.
+Mivel minden skatulya egyetlen 10 különbségű számpárból áll, ez a két szám pontosan a skatulya mindkét elemét jelenti.
+
+Így a kihúzott 55 szám között **biztosan van két olyan szám, amelyek különbsége pontosan 10**. $\blacksquare$
+
+*(Megjegyzés: legfeljebb 50 számot lehetne úgy kihúzni, hogy ne legyen köztük 10 különbségű pár: például minden láncból a páros indexűeket választva: $\{r, r + 20, r + 40, r + 60, r + 80\}$, ami $10 \cdot 5 = 50$ szám. 55 számnál ez már lehetetlen.)*
+
+::: elmelet
+**Elméleti háttér — skatulyaelv particionálással.** Ha azt akarjuk igazolni, hogy egy részhalmazban biztosan van egy tiltott relációt (itt $|x - y| = 10$) teljesítő pár, az alaphalmazt olyan diszjunkt párokra bontjuk, melyek mindegyike teljesíti a relációt. Ha a kiválasztott elemek száma meghaladja a párok számát, a skatulyaelv miatt legalább egy teljes pár bekerül a kiválasztottak közé.
+:::
+
+## 5. feladat
+
+Hozd zárt alakra a következő kifejezést és igazold az egyenlőséget a kettős leszámlálás módszerével:
+$$\sum_{k=m}^n \binom{n}{k} \binom{k}{m}$$
+
+[2 pontért megmondjuk, mi a zárt alak]
+
+**Megoldás.**
+
+**A zárt alak: $\mathbf{\binom{n}{m} 2^{n-m}}$.**
+
+**Bizonyítás kettős leszámlálással:**
+
+Tekintsünk egy $n$ elemű társaságot. Azt számoljuk meg kétféleképpen, hogy hányféleképpen választhatunk ki egy tetszőleges méretű $k$ fős bizottságot és azon belül egy $m$ fős elnökséget ($m \le k \le n$).
+
+- **1. számlálás:** Először a $k$ fős bizottságot választjuk ki az $n$ emberből $\binom{n}{k}$ módon, majd a bizottság $k$ tagja közül az $m$ fős elnökséget $\binom{k}{m}$ módon. Összegezve a lehetséges $k = m, \dots, n$ értékekre:
+  $$\sum_{k=m}^n \binom{n}{k} \binom{k}{m}.$$
+- **2. számlálás:** Először közvetlenül az $n$ ember közül választjuk ki az $m$ fős elnökséget $\binom{n}{m}$ módon. Ezután a megmaradt $n - m$ ember mindegyikéről függetlenül eldöntjük, hogy a bizottság sima tagja legyen-e vagy sem ($2^{n-m}$ lehetőség). Így a lehetőségek száma:
+  $$\binom{n}{m} 2^{n-m}.$$
+
+Mivel mindkét módszer ugyanazt a halmazt számlálja meg:
+$$\sum_{k=m}^n \binom{n}{k} \binom{k}{m} = \binom{n}{m} 2^{n-m}. \quad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — beágyazott részhalmazok kettős leszámlálása.** A kettős leszámlálás lényege a kiválasztási lépések sorrendjének felcserélése: az elnökség kijelölése a bizottság előtt lényegesen egyszerűbb, közvetlen szorzatalakot ad.
+:::
+
+## 6. feladat
+
+Egy paintball meccsen mindenki hat másik embert talált el és a meccs után nincs két olyan ember, akit ugyanannyi találat ért. Hány fős társaság paintballozott egymással?
+
+**Megoldás.**
+
+**A társaság 13 fős volt.**
+
+Legyen a résztvevők száma $n$. Tekintsük a játékot irányított gráfként ($u \to v$ él jelzi, ha $u$ eltalálta $v$-t).
+- Mindenki kimenő foka $d^+(v) = 6$, így az élek száma $|E| = 6n$.
+- A bejövő fokok $d^-(v)$ adják a kapott találatokat. Mivel mindenkit más számú találat ért, a bejövő fokok különböző nemnegatív egészek.
+- Senkit sem érhetett több találat, mint ahány másik ember van a pályán, így $0 \le d^-(v) \le n - 1$.
+- $n$ darab csúcsra $n$ darab különböző érték jut $\{0, 1, \dots, n - 1\}$-ből, tehát a bejövő fokok pontosan a $0, 1, \dots, n - 1$ számok.
+
+A bejövő fokok összege:
+$$\sum_{v \in V} d^-(v) = \frac{(n-1)n}{2}.$$
+Mivel $\sum d^+(v) = \sum d^-(v)$:
+$$6n = \frac{n(n-1)}{2} \implies 12 = n - 1 \implies n = 13.$$
+
+::: elmelet
+**Elméleti háttér — fokszámösszeg irányított gráfban.** Irányított gráfban az élek száma a kimenő fokok és a bejövő fokok összegeként is megkapható. A skatulyaelv miatt $n$ darab különböző, legfeljebb $n-1$ értékű nemnegatív egész összege szükségszerűen $\binom{n}{2}$.
+:::
+
+## 7. feladat
+
+Adott $n \ge 5$ valós szám. Minden lehetséges módon számpárokat képeztünk belőlük, és vettük minden számpárban a számok összegét. Az így kapott $\binom{n}{2}$ összeg közül legalább $(n^2 - 3n + 4)/2$ racionális. Bizonyítsuk be, hogy akkor az összes összeg racionális. Következik-e a feltételből az is, hogy minden megadott szám racionális?
+
+**Megoldás.**
+
+Jelölje a számokat $x_1, \dots, x_n$. Legyen $G$ az a gráf, melyben $\{i, j\}$ él, ha $x_i + x_j \in \mathbb{Q}$.
+A komplementer élhalmaza:
+$$|E(\overline{G})| = \binom{n}{2} - |E(G)| \le \frac{n(n-1)}{2} - \frac{n^2 - 3n + 4}{2} = n - 2.$$
+
+1. **$G$ összefüggő:** Ha $G$-nek legalább 2 komponense volna ($k$ és $n - k$ méretűek), akkor $|E(\overline{G})| \ge k(n - k) \ge n - 1$ volna, ami ellentmondás.
+2. **$G$-ben van háromszög ($K_3$):** Mantel tétele szerint egy háromszögmentes gráf élszáma legfeljebb $\lfloor n^2/4 \rfloor$. Mivel $n \ge 5$-re
+   $$|E(G)| - \frac{n^2}{4} \ge \frac{(n-2)(n-4)}{4} > 0,$$
+   $G$-ben biztosan van háromszög, csúcsai legyenek $a, b, c$.
+3. **Minden szám racionális:** A háromszög éleiből $x_a + x_b = q_1, x_b + x_c = q_2, x_c + x_a = q_3 \in \mathbb{Q}$, amiből
+   $$x_a = \frac{q_1 - q_2 + q_3}{2} \in \mathbb{Q}.$$
+   Mivel $G$ összefüggő, bármely más csúcsra $x_j \in \mathbb{Q}$, mert az élek mentén $x_j = (x_i + x_j) - x_i$.
+
+Mivel **mind az $n$ megadott szám racionális**, bármely két szám összege $x_i + x_j$ is racionális, tehát **az összes összeg racionális**.
+
+**Válasz:** Igen, következik, hogy mindegyik megadott szám racionális. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Mantel-tétel és gráf-összefüggőség.** Az élek nagy száma ($> n^2/4$) kikényszeríti a háromszöget. A háromszög három egyenletéből a három ismeretlen egyértelműen kiszámolható és racionálisnak adódik. Az összefüggőség ezután a racionális tulajdonságot az egész gráfra kiterjeszti.
+:::
+
 # Kombinatorika 1 – 1. feladatsor – megoldások
 
 ### Kombinatorika 1 normál · 2026.
@@ -1357,4 +1839,377 @@ $C$-ben $u$ foka $\deg_G u - 1$, ami páratlan, minden más csúcs foka változa
 
 ::: elmelet
 **Elméleti háttér — paritás komponensenként.** A kézfogási lemma *minden* gráfra, így egy komponensre (mint önálló gráfra) is érvényes: minden komponensben páros sok páratlan fokú csúcs van. Egy él törlése pontosan két csúcs fokát változtatja meg $1$-gyel; ha a két végpont különböző komponensbe kerülne, mindkét komponensben egy-egy páratlan fokú csúcs lenne — ellentmondás.
+:::
+
+# Kombinatorika 1 – 5. feladatsor – megoldások
+
+### Kombinatorika 1 normál · 2024.
+
+Emlékeztetőül, a Fibonacci-sorozat definíciója: $F_0 = 0$, $F_1 = 1$, $n \ge 2$ esetén $F_n = F_{n-1} + F_{n-2}$.
+
+## 75. feladat
+
+Egy 13 csúcsú fában van két 6 fokú csúcs. Mutassuk meg, hogy a fában nincs 3 fokú csúcs!
+
+**Megoldás.**
+
+Egy $n = 13$ csúcsú fának $n - 1 = 12$ éle van, így a kézfogási lemma szerint a csúcsok fokszámának összege
+$$\sum_{v \in V} \deg(v) = 2|E| = 2 \cdot 12 = 24.$$
+Mivel a fa összefüggő és $n \ge 2$, nincsenek benne izolált pontok, azaz minden csúcs foka legalább 1: $\deg(v) \ge 1$.
+
+Jelölje a két 6 fokú csúcsot $u$ és $v$, a maradék 11 csúcs fokszámait pedig $d_1, d_2, \dots, d_{11}$. Ekkor:
+$$\deg(u) + \deg(v) + \sum_{i=1}^{11} d_i = 6 + 6 + \sum_{i=1}^{11} d_i = 24 \implies \sum_{i=1}^{11} d_i = 12.$$
+Mivel mind a 11 darab $d_i$ szám pozitív egész ($d_i \ge 1$), összegük csak úgy lehet 12, ha közülük 10 darab értéke 1, és 1 darab értéke 2:
+$$10 \cdot 1 + 1 \cdot 2 = 12.$$
+Ha ugyanis létezne olyan csúcs, amelynek foka legalább 3 (azaz valamelyik $d_i \ge 3$), akkor a maradék 10 csúcs foka legalább 1 lévén a fokszámösszeg legalább
+$$3 + 10 \cdot 1 = 13 > 12$$
+volna, ami ellentmondás.
+
+Tehát a fa fokszámsorozata szükségképpen $6, 6, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1$. Így a fában **nem lehet 3 fokú csúcs**. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — fokszámösszeg fákban.** Egy $n$ csúcsú fa élszáma mindig $|E| = n - 1$, és a fokszámok összege $2(n - 1)$. Mivel minden összefüggő, $n \ge 2$ csúcsú gráfban a minimális fokszám $\delta(G) \ge 1$, a nagy fokú csúcsok erősen korlátozzák a többi csúcs lehetséges fokait: az átlagos fokszám $\frac{2n-2}{n} < 2$, ezért minél nagyobb fokú csúcsok vannak a fában, annál több 1-edfokú csúcsnak (levélnek) kell lennie.
+:::
+
+## 76. feladat
+
+Egy paintball meccsen mindenki hat másik embert talált el és a meccs után nincs két olyan ember, akit ugyanannyi találat ért. Hány fős társaság paintballozott egymással?
+
+**Megoldás.**
+
+**A társaság 13 fős volt.**
+
+Tekintsük a játékot egy olyan irányított gráfként, ahol a csúcsok a résztvevők ($n$ ember), és egy $u \to v$ irányított él pontosan akkor fut, ha $u$ eltalálta $v$-t.
+
+- Mivel mindenki pontosan 6 másik embert talált el, minden csúcs kimenő foka $d^+(v) = 6$. Így az élek (összes leadott érvényes találat) száma:
+  $$|E| = \sum_{v \in V} d^+(v) = 6n.$$
+- Egy $v$ csúcs bejövő foka $d^-(v)$ azt adja meg, hogy $v$-t hány találat érte. Mivel nincs két ember, akit ugyanannyi találat ért volna, a $\{d^-(v) : v \in V\}$ bejövő fokok mind különböző nemnegatív egész számok.
+- Mindenki legfeljebb a többi $n - 1$ másik embertől kaphatott találatot, így minden csúcsra $0 \le d^-(v) \le n - 1$.
+- Mivel $n$ darab csúcs van, a lehetséges értékek száma szintén $n$ (a $\{0, 1, 2, \dots, n - 1\}$ halmaz), és ezek mind különbözők, így a bejövő fokok pontosan a $0, 1, 2, \dots, n - 1$ számok valamilyen sorrendben.
+
+A bejövő fokok összege:
+$$\sum_{v \in V} d^-(v) = 0 + 1 + 2 + \dots + (n - 1) = \frac{(n - 1)n}{2}.$$
+Mivel minden élnek van egy kezdőpontja és egy végpontja, az összes kimenő fok összege megegyezik az összes bejövő fok összegével:
+$$6n = \frac{(n - 1)n}{2}.$$
+Mivel mindenki 6 embert talált el, $n \ge 7 > 0$, így oszthatunk $n$-nel:
+$$6 = \frac{n - 1}{2} \implies n - 1 = 12 \implies n = 13.$$
+
+::: elmelet
+**Elméleti háttér — irányított gráfok fokszámösszege és a skatulyaelv.** Bármely irányított gráfban az összes kimenő fok összege megegyezik az összes bejövő fok összegével és az élek számával: $\sum d^+(v) = \sum d^-(v) = |E|$. Ha $n$ csúcson $n$ darab különböző fokszám szerepel a $\{0, 1, \dots, n-1\}$ tartományból, akkor azok szükségképpen a $0, 1, \dots, n-1$ számok teljes permutációját alkotják, így összegük determinisztikusan $\binom{n}{2}$.
+:::
+
+## 77. feladat
+
+Mutasd meg, hogy ha egy egyszerű gráfban minden pont foka legalább három, akkor a gráfban van páros hosszúságú kör!
+
+**Megoldás.**
+
+Tegyük fel indirekt, hogy a gráfban nincs páros hosszúságú kör, azaz **minden kör páratlan hosszúságú**.
+
+Mivel minden pont foka legalább $3 \ge 2$, a 64. feladat szerint a gráfban biztosan van kör. Legyen $C$ egy **legbővebb (leghosszabb)** kör a gráfban, hossza legyen $2k + 1$ ($k \ge 1$):
+$$C = v_1 v_2 \dots v_{2k+1} v_1.$$
+
+1. **A $C$ körnek nem lehet húrja (átlója):**
+   Ha volna olyan $v_i v_j$ él, amely a kör két nem szomszédos pontját köti össze, az a $C$ kört két kisebb körre osztaná: $C_1$-re és $C_2$-re. Ha a két kör hossza $\ell_1$ és $\ell_2$, akkor az élek uniójában $v_i v_j$ kétszer szerepel, a $C$ élei pedig egyszer:
+   $$\ell_1 + \ell_2 = (2k + 1) + 2 = 2k + 3.$$
+   Mivel $2k + 3$ páratlan szám, a két egész szám összege páratlan, így $\ell_1$ és $\ell_2$ közül pontosan az egyik **páros**. Ez ellentmond annak, hogy a gráfban minden kör páratlan hosszú. Tehát $C$-nek nincs húrja, azaz a $C$ feszített kör.
+
+2. **A körből kifelé induló utak:**
+   Mivel $C$-nek nincs húrja, minden $v \in V(C)$ csúcsnak a körön belül pontosan 2 szomszédja van. Mivel viszont $G$-ben $\deg(v) \ge 3$, minden $v \in V(C)$ csúcsból indul legalább egy olyan él, amely a körön kívüli csúcsba vezet.
+   Induljunk el $C$ egy csúcsából a körön kívülre. Mivel a gráf véges és minden csúcs foka legalább 3, a sétát addig folytathatjuk egyszerű útként a körön kívüli pontokon, amíg vissza nem érünk a $C$ kör egy másik csúcsába.
+   Vegyünk egy olyan $P = u_0 u_1 \dots u_m$ utat ($m \ge 1$), melynek két végpontja $u_0, u_m \in V(C)$ különböző körbeli csúcsok, de minden belső csúcsa ($u_1, \dots, u_{m-1}$) a körön kívül fekszik.
+
+3. **Ellentmondás paritásból:**
+   Az $u_0$ és $u_m$ csúcsok a $C$ kört két diszjunkt belső csúcsú útra bontják, legyenek ezek $P_1$ és $P_2$. Mivel a kör hossza $|P_1| + |P_2| = 2k + 1$ páratlan, a két út hossza különböző paritású: az egyik páros, a másik páratlan.
+   Tekintsük most a $P \cup P_1$ és $P \cup P_2$ köröket! Hosszúságuk rendre:
+   $$|P| + |P_1| \quad \text{és} \quad |P| + |P_2|.$$
+   Mivel $|P_1|$ és $|P_2|$ közül az egyik páros, a másik páratlan, a hozzájuk $|P|$-t hozzáadva a kapott két körhossz közül az egyik **biztosan páros**!
+   Ez ellentmond annak a feltevésnek, hogy nincs páros kör a gráfban.
+
+Tehát a gráfban mindenképpen van páros hosszúságú kör. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — körök és paritás.** A páratlan körök összege paritási szempontból merev: két pont közötti két különböző út kört alkot. Ha a kör páratlan, a két pont a kört egy páros és egy páratlan szakaszra vágja. Bármilyen harmadik, a két pontot összekötő út az egyik szakasszal együtt páros, a másikkal páratlan hosszúságú kört alkot. Így ha egy páratlan kör két pontja között van egy alternatív út, elkerülhetetlenül megjelenik egy páros kör.
+:::
+
+## 78. feladat
+
+Adott $n \ge 5$ valós szám. Minden lehetséges módon számpárokat képeztünk belőlük, és vettük minden számpárban a számok összegét. Az így kapott $\binom{n}{2}$ összeg közül legalább $(n^2 - 3n + 4)/2$ racionális. Bizonyítsuk be, hogy akkor az összes összeg racionális. Következik-e a feltételből az is, hogy minden megadott szám racionális?
+
+**Megoldás.**
+
+Jelölje a megadott valós számokat $x_1, x_2, \dots, x_n$. Tekintsük azt az $n$ csúcsú $G$ egyszerű gráfot, amelynek csúcsai az indexek, és az $\{i, j\}$ él pontosan akkor van behúzva, ha az $x_i + x_j$ összeg racionális ($x_i + x_j \in \mathbb{Q}$).
+
+A komplementer gráf, $\overline{G}$ élei a nem racionális (irracionális) összegeknek felelnek meg.
+A racionális összegek száma legalább:
+$$|E(G)| \ge \frac{n^2 - 3n + 4}{2} = \binom{n-1}{2} + 1.$$
+Így a komplementer gráf élszáma legfeljebb:
+$$|E(\overline{G})| = \binom{n}{2} - |E(G)| \le \frac{n(n-1)}{2} - \frac{n^2 - 3n + 4}{2} = \frac{2n - 4}{2} = n - 2.$$
+
+1. **A $G$ gráf összefüggő:**
+   Ha $G$ nem volna összefüggő, akkor legalább 2 komponensre esne. Ha ezen komponensek csúcsszáma $k$ és $n - k$ ($1 \le k \le n - 1$), akkor $\overline{G}$-ban az összes komponensek közötti élnek szerepelnie kellene. Így
+   $$|E(\overline{G})| \ge k(n - k) \ge 1 \cdot (n - 1) = n - 1.$$
+   Ez ellentmond annak, hogy $|E(\overline{G})| \le n - 2$. Tehát $G$ összefüggő.
+
+2. **$G$-ben van háromszög (páratlan kör):**
+   Mantel tétele (illetve Turán tétele) szerint egy $n$ csúcsú háromszögmentes (speciálisan páros) egyszerű gráfban legfeljebb $\lfloor n^2/4 \rfloor$ él lehet. Hasonlítsuk össze $|E(G)|$ minimális értékét $\frac{n^2}{4}$-gyel $n \ge 5$ esetén:
+   $$|E(G)| - \frac{n^2}{4} \ge \frac{n^2 - 3n + 4}{2} - \frac{n^2}{4} = \frac{n^2 - 6n + 8}{4} = \frac{(n-2)(n-4)}{4}.$$
+   Mivel $n \ge 5$, $n - 2 \ge 3$ és $n - 4 \ge 1$, tehát $\frac{(n-2)(n-4)}{4} \ge \frac{3}{4} > 0$.
+   Mivel $|E(G)| > \lfloor n^2/4 \rfloor$, a $G$ gráf nem lehet páros, azaz **$G$-ben biztosan van háromszög** (páratlan kör).
+
+3. **A háromszög csúcsai racionálisak:**
+   Legyen a háromszög három csúcsa $a, b, c$. Ekkor:
+   $$x_a + x_b = q_1 \in \mathbb{Q}, \quad x_b + x_c = q_2 \in \mathbb{Q}, \quad x_c + x_a = q_3 \in \mathbb{Q}.$$
+   Összeadva és kivonva:
+   $$2x_a = (x_a + x_b) - (x_b + x_c) + (x_c + x_a) = q_1 - q_2 + q_3 \in \mathbb{Q} \implies x_a \in \mathbb{Q}.$$
+   Hasonlóan $x_b = \frac{q_1 + q_2 - q_3}{2} \in \mathbb{Q}$ és $x_c = \frac{-q_1 + q_2 + q_3}{2} \in \mathbb{Q}$.
+
+4. **Minden szám és minden összeg racionális:**
+   Mivel $x_a \in \mathbb{Q}$, és $G$ összefüggő, bármely $i$ csúcshoz vezet út $a$-ból $G$-ben: $a = v_0, v_1, \dots, v_m = i$.
+   Ha $x_{v_k} \in \mathbb{Q}$, és $v_k v_{k+1} \in E(G)$ (azaz $x_{v_k} + x_{v_{k+1}} \in \mathbb{Q}$), akkor
+   $$x_{v_{k+1}} = (x_{v_k} + x_{v_{k+1}}) - x_{v_k} \in \mathbb{Q}.$$
+   Indukcióval a komponens minden csúcsára, vagyis **minden $x_i$ szám racionális** ($x_i \in \mathbb{Q}$ minden $i = 1, \dots, n$-re).
+
+Mivel minden megadott szám racionális, bármely két szám összege $x_i + x_j$ is két racionális szám összege, tehát **az összes összeg racionális**.
+
+**Válasz a kérdésre:** Igen, a feltételből az is következik, hogy **mind az $n$ megadott szám racionális**. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Mantel-tétel és algebrai összefüggőség.** Ha egy gráf éleinek száma meghaladja a $\lfloor n^2/4 \rfloor$ Turán-korlátot, a gráfban garantáltan van háromszög ($K_3$). Egy háromszög három élének összegeiből a csúcsok értékei lineárisan kifejezhetők (egy páratlan körön a váltakozó összeg a csúcs kétszeresét adja). Ha egy csúcs racionális, az összefüggőség révén az egész komponens összes csúcsa racionálissá válik.
+:::
+
+## 79. feladat
+
+Bizonyítsd be, hogy minden pozitív egész szám felírható különböző Fibonacci számok összegeként.
+
+**Megoldás.**
+
+A Fibonacci-sorozat elemei: $F_1 = 1, F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, F_6 = 8, F_7 = 13, \dots$
+A kétértelműség elkerülése végett tekintsük a szigorúan növekvő sorozatot a 2. tagtól:
+$$f_1 = F_2 = 1, \quad f_2 = F_3 = 2, \quad f_3 = F_4 = 3, \quad f_4 = F_5 = 5, \quad f_5 = F_6 = 8, \quad \dots$$
+ahol $f_k = F_{k+1}$ ($k \ge 1$).
+
+Az állítást $N$ szerinti teljes indukcióval bizonyítjuk a **mohó algoritmus** segítségével:
+- **Bázis:** $N = 1 = f_1 = F_2$ (vagy $F_1$), az állítás igaz.
+- **Indukciós feltevés:** Tegyük fel, hogy minden $1 \le k < N$ egész szám felírható különböző Fibonacci-számok összegeként.
+- **Indukciós lépés:** Tekintsük az $N$ számot. Válasszuk ki a legnagyobb olyan $F_m$ Fibonacci-számot ($m \ge 2$), amely még nem haladja meg $N$-et:
+  $$F_m \le N < F_{m+1}.$$
+  - Ha $N = F_m$, akkor $N$ maga egy Fibonacci-szám, a felírás készen van.
+  - Ha $N > F_m$, képezzük az $N' = N - F_m$ maradékot.
+    Mivel $F_m \ge 1$, világos, hogy $1 \le N' < N$.
+    Az indukciós feltevés szerint $N'$ felírható különböző Fibonacci-számok összegeként:
+    $$N' = F_{i_1} + F_{i_2} + \dots + F_{i_r}, \quad \text{ahol } i_1 < i_2 < \dots < i_r.$$
+    Megmutatjuk, hogy a legnagyobb felhasznált indexre $i_r < m$, azaz $F_m$ biztosan nem szerepel $N'$ felbontásában.
+    Mivel $F_{m+1} = F_m + F_{m-1}$, a definícióból:
+    $$N' = N - F_m < F_{m+1} - F_m = F_{m-1}.$$
+    Mivel $N' < F_{m-1}$, a felbontásban szereplő minden tagra $F_{i_j} \le N' < F_{m-1} < F_m$.
+    Ezért $i_r \le m - 2 < m$.
+
+Így $N = F_m + N' = F_m + F_{i_1} + \dots + F_{i_r}$ csupa különböző Fibonacci-szám összege. $\blacksquare$
+
+*(Megjegyzés: ez a bizonyítás azt is mutatja, hogy $N$ felírható olyan különböző Fibonacci-számok összegeként, amelyek között nincsenek szomszédosak — ez a híres Zeckendorf-tétel.)*
+
+::: elmelet
+**Elméleti háttér — Zeckendorf-tétel és mohó felbontás.** A Fibonacci-számok rekurziójából ($F_{m+1} - F_m = F_{m-1}$) következik, hogy a legnagyobb $\le N$ Fibonacci-szám levonása után maradó rész szigorúan kisebb, mint az azt megelőző $F_{m-1}$. Emiatt a mohó algoritmus nemcsak különböző, hanem nem szomszédos Fibonacci-számok összegére bontja fel a számot, és ez az előállítás egyértelmű (Zeckendorf-tétel).
+:::
+
+## 80. feladat
+
+Hozd zárt alakra a következő kifejezést és igazold az egyenlőséget a kettős leszámlálás módszerével:
+$$\sum_{k=m}^n \binom{n}{k} \binom{k}{m}$$
+
+**Megoldás.**
+
+**A zárt alak: $\mathbf{\binom{n}{m} 2^{n-m}}$.**
+
+**Bizonyítás kettős leszámlálással:**
+
+Tekintsünk egy $n$ fős társaságot. A célunk megszámolni, hogy hányféleképpen lehet kiválasztani a társaságból egy tetszőleges $k$ fős bizottságot, és a bizottság tagjai közül egy $m$ fős elnökséget ($m \le k \le n$).
+
+- **1. számlálás (előbb a bizottság, majd az elnökség):**
+  Rögzítsük a bizottság létszámát: legyen ez $k$ ($m \le k \le n$).
+  1. Az $n$ emberből a $k$ fős bizottságot $\binom{n}{k}$ módon választhatjuk ki.
+  2. A kiválasztott $k$ tag közül az $m$ fős elnökséget $\binom{k}{m}$ módon jelölhetjük ki.
+  Mivel a bizottság mérete $k = m, m+1, \dots, n$ lehet, az összes lehetőség száma az esetek összege:
+  $$\sum_{k=m}^n \binom{n}{k} \binom{k}{m}.$$
+
+- **2. számlálás (előbb az elnökség, majd a többi bizottsági tag):**
+  1. Először közvetlenül az egész $n$ fős társaságból válasszuk ki az $m$ fős elnökséget: erre $\binom{n}{m}$ lehetőség van.
+  2. A maradék $n - m$ ember mindegyikéről függetlenül döntsük el, hogy tagja legyen-e a bizottságnak (mint sima bizottsági tag) vagy sem. Mivel minden személyre 2 lehetőség van (bekerül / nem kerül be), a maradék emberekből a bizottságot $2^{n-m}$ féleképpen egészíthetjük ki.
+  Így a lehetőségek száma:
+  $$\binom{n}{m} 2^{n-m}.$$
+
+Mivel mindkét eljárás ugyanazokat a struktúrákat (elnökség $\subseteq$ bizottság $\subseteq$ társaság) számolja meg, a két kifejezés egyenlő:
+$$\sum_{k=m}^n \binom{n}{k} \binom{k}{m} = \binom{n}{m} 2^{n-m}. \quad \blacksquare$$
+
+*(Algebrai ellenőrzés: $\binom{n}{k}\binom{k}{m} = \frac{n!}{k!(n-k)!}\frac{k!}{m!(k-m)!} = \frac{n!}{m!(n-m)!}\frac{(n-m)!}{(k-m)!(n-k)!} = \binom{n}{m}\binom{n-m}{k-m}$. Összegezve $j = k - m$-re: $\binom{n}{m} \sum_{j=0}^{n-m}\binom{n-m}{j} = \binom{n}{m}2^{n-m}$.)*
+
+::: elmelet
+**Elméleti háttér — kettős leszámlálás részhalmazpárokra.** Részhalmazpárok $\{(A, B) : B \subseteq A \subseteq S, |B| = m\}$ megszámlálásakor a sorrend felcserélhető: $A$ választása után $B$ kijelölése a $\sum \binom{n}{k}\binom{k}{m}$ összeget adja, míg $B$ azonnali rögzítése után $A \setminus B$ az $S \setminus B$ tetszőleges részhalmaza lehet, ami $\binom{n}{m}2^{n-m}$ lehetőséget ad.
+:::
+
+## 81. feladat
+
+17 doboz mindegyikében piros, kék, sárga és zöld golyók vannak. Bizonyítsuk be, hogy található két olyan doboz, amelyekben együttvéve mind a négyféle golyóból páros sok van!
+
+**Megoldás.**
+
+Jellemezzünk minden dobozt a benne található négyféle golyó számának paritásával! Rendeljünk a dobozhoz egy $(p_1, p_2, p_3, p_4) \in \{0, 1\}^4$ paritásvektort, ahol a koordináták értéke $0$, ha a megfelelő színű golyóból páros sok van a dobozban, és $1$, ha páratlan sok:
+- $p_1$: piros golyók paritása,
+- $p_2$: kék golyók paritása,
+- $p_3$: sárga golyók paritása,
+- $p_4$: zöld golyók paritása.
+
+Két dobozban egy adott színű golyók összege pontosan akkor páros, ha a két dobozban az adott szín paritása megegyezik:
+- páros + páros = páros ($0 + 0 \equiv 0 \pmod 2$),
+- páratlan + páratlan = páros ($1 + 1 \equiv 0 \pmod 2$),
+- páros + páratlan = páratlan ($0 + 1 \equiv 1 \pmod 2$).
+
+Tehát két dobozban együttvéve **mind a négyféle golyóból pontosan akkor van páros sok**, ha a hozzájuk tartozó paritásvektor mind a 4 koordinátában megegyezik, azaz **a két dobozhoz pontosan ugyanaz a paritásvektor tartozik**.
+
+Hány különböző paritásvektor létezik?
+Mivel mind a 4 koordináta 2 lehetséges értéket vehet fel ($0$ vagy $1$), a lehetséges paritásvektorok száma:
+$$2^4 = 16.$$
+Mivel 17 dobozunk van, de csak 16 különböző paritásvektor, a **skatulya-elv** szerint létezik legalább két olyan doboz, amelyhez ugyanaz a paritásvektor tartozik.
+
+Ebben a két dobozban mind a négyféle golyó összege páros. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — skatulyaelv $\mathbb{Z}_2^d$ felett.** Ha $d$ darab független paritási feltételt vizsgálunk, az állapotok a $d$ dimenziós bináris tér elemei, melynek mérete $2^d$. Ha több mint $2^d$ objektumunk van, a skatulyaelv miatt legalább kettő azonos állapotú lesz. Mivel modulo $2$ a különbség megegyezik az összeggel ($x + y \equiv 0 \iff x \equiv y$), az azonos állapotú párok összege minden koordinátában páros.
+:::
+
+## 82. feladat
+
+Hány olyan egymilliónál kisebb pozitív egész szám van, melyben a számjegyek összege 25?
+
+**Megoldás.**
+
+**53 262 ilyen szám van.**
+
+Egy egymilliónál kisebb pozitív egész szám legfeljebb 6 számjegyből áll. Írjuk fel a számokat 6 jegyű formában, szükség esetén balról vezető nullákkal kiegészítve:
+$$d_1 d_2 d_3 d_4 d_5 d_6, \quad \text{ahol } 0 \le d_i \le 9 \text{ minden } i \in \{1, \dots, 6\}\text{-ra}.$$
+A feladat feltétele:
+$$d_1 + d_2 + d_3 + d_4 + d_5 + d_6 = 25.$$
+*(Mivel a számjegyek összege $25 > 0$, a csupa 0 számjegyű $0$ nem adódhat, így minden megoldás automatikusan egy pozitív egész számnak felel meg.)*
+
+Ez egy diofantikus egyenlet nemnegatív egész megoldásainak száma a $d_i \le 9$ felső korláttal. Használjuk a **logikai szita formulát**!
+
+1. **Alaphalmaz korlát nélkül:**
+   A $d_1 + \dots + d_6 = 25$ egyenlet nemnegatív egész ($d_i \ge 0$) megoldásainak száma (25 golyó szétosztása 6 dobozba):
+   $$|S| = \binom{25 + 6 - 1}{6 - 1} = \binom{30}{5} = \frac{30 \cdot 29 \cdot 28 \cdot 27 \cdot 26}{120} = 142\,506.$$
+
+2. **Rossz tulajdonságok ($A_i$: $d_i \ge 10$):**
+   - **Egy feltétel sérül:** Ha $d_i \ge 10$, legyen $d_i' = d_i - 10 \ge 0$. Ekkor az új változók összege $25 - 10 = 15$:
+     $$|A_i| = \binom{15 + 6 - 1}{5} = \binom{20}{5} = \frac{20 \cdot 19 \cdot 18 \cdot 17 \cdot 16}{120} = 15\,504.$$
+     Mivel 6 számjegy van, $\binom{6}{1} = 6$ ilyen eset van.
+   - **Két feltétel sérül:** Ha $d_i \ge 10$ és $d_j \ge 10$ ($i \ne j$), akkor az összegből $20$-at levonva az új változók összege $25 - 20 = 5$:
+     $$|A_i \cap A_j| = \binom{5 + 6 - 1}{5} = \binom{10}{5} = \frac{10 \cdot 9 \cdot 8 \cdot 7 \cdot 6}{120} = 252.$$
+     Ilyen párból $\binom{6}{2} = 15$ van.
+   - **Három vagy több feltétel sérül:** Három számjegy összege már legalább $3 \cdot 10 = 30 > 25$ lenne, így nem sérülhet 3 vagy több feltétel: $|A_i \cap A_j \cap A_k| = 0$.
+
+A szitaformula szerint a jó megoldások száma:
+$$N = |S| - \binom{6}{1}|A_1| + \binom{6}{2}|A_1 \cap A_2| = \binom{30}{5} - 6 \binom{20}{5} + 15 \binom{10}{5}$$
+$$N = 142\,506 - 6 \cdot 15\,504 + 15 \cdot 252 = 142\,506 - 93\,024 + 3\,780 = \mathbf{53\,262}.$$
+
+::: elmelet
+**Elméleti háttér — szitaformula számjegyösszegre.** Felső korláttal terhelt összegek számlálásánál ($x_1 + \dots + x_n = K$, $0 \le x_i \le M$) a standard módszer a logikai szita: a komplementer feltételek ($x_i \ge M + 1$) változócserével ($x_i' = x_i - (M+1)$) sima nemnegatív diofantikus egyenletekre vezetnek, melyek megoldásszáma az $\binom{K' + n - 1}{n - 1}$ képlettel adódik.
+:::
+
+## 83. feladat
+
+Hány anagrammája van a KRASZNAHORKAI szónak, amelyben
+
+a) nem követi egymást közvetlenül három A betű?
+
+b) semelyik két A nincs egymás mellett?
+
+**Megoldás.**
+
+Számoljuk meg a KRASZNAHORKAI szó betűit:
+- K: 2 db,
+- R: 2 db,
+- A: 3 db,
+- S: 1 db,
+- Z: 1 db,
+- N: 1 db,
+- H: 1 db,
+- O: 1 db,
+- I: 1 db.
+
+Összesen: $2 + 2 + 3 + 1 + 1 + 1 + 1 + 1 + 1 = 13$ betű.
+Az összes lehetséges anagramma száma (ismétléses permutáció):
+$$Ö = \frac{13!}{2! \, 2! \, 3! \, 1! \, 1! \, 1! \, 1! \, 1! \, 1!} = \frac{13!}{24} = 259\,459\,200.$$
+
+---
+
+**a) Nem követi egymást közvetlenül három A betű:**
+
+Számoljuk ki a komplementer esetet: hány olyan anagramma van, ahol a három A egymás mellett áll, vagyis tartalmazza az „AAA” blokkot.
+
+Kössük össze a három A betűt egyetlen szimbólummá: $[AAA]$.
+Ekkor a felhasznált elemek:
+$$\{[AAA], K, K, R, R, S, Z, N, H, O, I\},$$
+ez összesen $13 - 3 + 1 = 11$ elem, melyek között 2 darab K és 2 darab R van.
+Ezek sorrendjeinek száma:
+$$\frac{11!}{2! \, 2!} = \frac{11!}{4} = 9\,979\,200.$$
+
+A keresett anagrammák száma tehát az összes esetből a komplementer levonásával:
+$$Ö - \frac{11!}{4} = \frac{13!}{24} - \frac{11!}{4} = \frac{11!}{4} \left(\frac{13 \cdot 12}{6} - 1\right) = \frac{11!}{4} (26 - 1) = 25 \cdot 9\,979\,200 = \mathbf{249\,480\,000}.$$
+
+---
+
+**b) Semelyik két A nincs egymás mellett:**
+
+Először helyezzük el a többi $13 - 3 = 10$ darab betűt: $\{K, K, R, R, S, Z, N, H, O, I\}$.
+Ezek száma:
+$$\frac{10!}{2! \, 2!} = \frac{10!}{4} = 907\,200.$$
+
+A 10 lehelyezett betű között és a két végén összesen $10 + 1 = 11$ lehetséges hely van:
+$$\_ \, B_1 \, \_ \, B_2 \, \_ \, B_3 \, \_ \, \dots \, \_ \, B_{10} \, \_$$
+Ahhoz, hogy semelyik két A ne kerüljön egymás mellé, ezen 11 hely közül kell kiválasztanunk 3-at, mindegyikbe pontosan egy A betűt téve. Erre $\binom{11}{3}$ lehetőség van:
+$$\binom{11}{3} = \frac{11 \cdot 10 \cdot 9}{6} = 165.$$
+
+A kedvező anagrammák száma a szorzási szabály szerint:
+$$\frac{10!}{4} \cdot \binom{11}{3} = 907\,200 \cdot 165 = \mathbf{149\,688\,000}.$$
+
+::: elmelet
+**Elméleti háttér — anagrammák és tiltott szomszédságok.** Ismétléses permutációnál az azonos betűk megkülönböztethetetlenek. (a) Egymás melletti betűknél a betűcsoportot egyetlen új szimbólumként kezeljük („összeragasztás”), majd a komplementer elvvel vonjuk le az összesből. (b) Ha semelyik két azonos betű nem lehet szomszédos, a többi betűt rendezzük el először, és a köztük keletkező résekbe skatulyázzuk be az azonos betűket kombinációval ($\binom{m+1}{k}$).
+:::
+
+## 84. feladat
+
+Egy trafikban $k$ fajta képeslap kapható. Hányféleképpen küldhetünk belőlük $n$ barátunknak 2–2 különbözőt úgy, hogy egy fajta képeslapot több barátunknak is elküldhetünk, de azt szeretnénk, hogy ne legyen olyan, amit mindegyiküknek elküldtünk?
+
+**Megoldás.**
+
+**$\mathbf{\binom{k}{2}^n - k(k - 1)^n + \binom{k}{2}}$ féleképpen.**
+
+Egy barátnak a $k$ fajta képeslapból 2 különbözőt küldünk, erre $\binom{k}{2}$ lehetőség van.
+Ha semmilyen megkötés nincs, az $n$ barátnak összesen
+$$\binom{k}{2}^n$$
+féleképpen küldhetünk képeslapokat.
+
+Azt szeretnénk kizárni, hogy legyen olyan képeslapfajta, amelyet **mind az $n$ barát megkap**.
+Használjuk a **logikai szita formulát**!
+Jelölje $A_i$ ($i = 1, \dots, k$) azon választások halmazát, ahol az $i$-edik fajta képeslapot mind az $n$ barát megkapta.
+
+- **Egy rögzített képeslapot ($i$) mindenki megkapott ($|A_i|$):**
+  Ekkor az $i$-edik képeslapot minden barát megkapta, így minden barát számára a második képeslapot a maradék $k - 1$ képeslap közül kell kiválasztani: erre barátonként $k - 1$ lehetőség van.
+  Az $n$ barátra függetlenül: $(k - 1)^n$.
+  Ilyen képeslapból $\binom{k}{1} = k$ darab van.
+
+- **Két rögzített képeslapot ($i$ és $j$) mindenki megkapott ($|A_i \cap A_j|$):**
+  Mivel minden barát pontosan 2 képeslapot kap, ha az $i$-ediket és a $j$-ediket is mindenki megkapta, akkor minden barát pontosan ezt a $\{i, j\}$ párt kapta meg! Erre barátonként csak 1 lehetőség van, így $n$ barátra: $1^n = 1$.
+  Ilyen párból $\binom{k}{2}$ darab van.
+
+- **Három vagy több rögzített képeslapot mindenki megkapott:**
+  Mivel minden barát legfeljebb 2 képeslapot kap, lehetetlen, hogy 3 vagy több különböző képeslapot mindenki megkapjon:
+  $$|A_{i_1} \cap A_{i_2} \cap A_{i_3}| = 0.$$
+
+A szitaformula szerint a jó elrendezések száma:
+$$N = \binom{k}{2}^n - \sum_{i=1}^k |A_i| + \sum_{1 \le i < j \le k} |A_i \cap A_j|$$
+$$N = \binom{k}{2}^n - k(k - 1)^n + \binom{k}{2}.$$
+
+::: elmelet
+**Elméleti háttér — szitaformula és metszetek leállása.** A szitaformula alkalmazásakor a magasabb rendű metszetek gyakran strukturális okokból üressé válnak: mivel egy személy kapacitása $2$ képeslap, semelyik személy nem kaphat $3$ közös képeslapot, így a háromszoros és magasabb metszetek mind $0$-k. A formula emiatt mindössze három tagból áll.
 :::
