@@ -1,354 +1,401 @@
 # Algebra és számelmélet – 1. ZH (2026) – megoldások
 
+### Bsc algebra és számelmélet normál gyakorlat · Első zárthelyi (2026. október 21.)
+
 ## 1. feladat
 
-a) Invertáljuk a következő mátrixot:
-$$A = \begin{pmatrix} \frac{2}{3} & \frac{1}{3} & -\frac{1}{3} \\ \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} \\ -\frac{1}{3} & \frac{1}{3} & \frac{1}{6} \end{pmatrix}$$
+a) Adjuk meg a $15x + 21y = 360$ diofantikus egyenlet általános megoldását, valamint az összes olyan megoldását, ahol $x$ és $y$ is pozitív egész.
 
-b) Oldjuk meg az alábbi egyenletrendszert:
-$$\begin{aligned}
-x + y &= -3 \\
-x + 2z &= 9 \\
-2y + 2z &= 6
-\end{aligned}$$
+b) Számítsuk ki $78^{123456783}$ utolsó két számjegyét a tízes számrendszerben.
 
 **Megoldás.**
 
-**a) A mátrix inverze:**
-$$A^{-1} = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 2 \end{pmatrix}.$$
+**a) Az összes egész megoldás:**
+$$\mathbf{x = 3 + 7t, \quad y = 15 - 5t \quad (t \in \mathbb{Z})}$$
+*(vagy ekvivalensen például $x = 10 + 7k, y = 10 - 5k$, $k \in \mathbb{Z}$).*
 
-*Levezetés Gauss–Jordan-eliminációval ($[A \mid I] \to [I \mid A^{-1}]$):*
-$$\left(\begin{array}{ccc|ccc}
-\frac{2}{3} & \frac{1}{3} & -\frac{1}{3} & 1 & 0 & 0 \\
-\frac{1}{3} & -\frac{1}{3} & \frac{1}{3} & 0 & 1 & 0 \\
--\frac{1}{3} & \frac{1}{3} & \frac{1}{6} & 0 & 0 & 1
-\end{array}\right)$$
+**Az összes pozitív egész megoldás:**
+$$\mathbf{(x, y) \in \{(3, 15), (10, 10), (17, 5)\}}.$$
 
-1. Adjuk hozzá a második sort az elsőhöz ($S_1 \leftarrow S_1 + S_2$), valamint a harmadikhoz ($S_3 \leftarrow S_3 + S_2$):
-   $$\left(\begin{array}{ccc|ccc}
-   1 & 0 & 0 & 1 & 1 & 0 \\
-   \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} & 0 & 1 & 0 \\
-   0 & 0 & \frac{1}{2} & 0 & 1 & 1
-   \end{array}\right)$$
-2. Az első sor segítségével kinullázzuk a második sor első elemét: $S_2 \leftarrow S_2 - \frac{1}{3}S_1$:
-   $$\left(\begin{array}{ccc|ccc}
-   1 & 0 & 0 & 1 & 1 & 0 \\
-   0 & -\frac{1}{3} & \frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & 0 \\
-   0 & 0 & \frac{1}{2} & 0 & 1 & 1
-   \end{array}\right)$$
-3. Szorozzuk a harmadik sort 2-vel: $S_3 \leftarrow 2S_3$:
-   $$\left(\begin{array}{ccc|ccc}
-   1 & 0 & 0 & 1 & 1 & 0 \\
-   0 & -\frac{1}{3} & \frac{1}{3} & -\frac{1}{3} & \frac{2}{3} & 0 \\
-   0 & 0 & 1 & 0 & 2 & 2
-   \end{array}\right)$$
-4. Vonjuk ki a harmadik sor $\frac{1}{3}$-szorosát a második sorból: $S_2 \leftarrow S_2 - \frac{1}{3}S_3$:
-   $$\left(\begin{array}{ccc|ccc}
-   1 & 0 & 0 & 1 & 1 & 0 \\
-   0 & -\frac{1}{3} & 0 & -\frac{1}{3} & 0 & -\frac{2}{3} \\
-   0 & 0 & 1 & 0 & 2 & 2
-   \end{array}\right)$$
-5. Végül szorozzuk a második sort $(-3)$-mal: $S_2 \leftarrow -3S_2$:
-   $$\left(\begin{array}{ccc|ccc}
-   1 & 0 & 0 & 1 & 1 & 0 \\
-   0 & 1 & 0 & 1 & 0 & 2 \\
-   0 & 0 & 1 & 0 & 2 & 2
-   \end{array}\right)$$
-
-*Ellenőrzés szorzással:*
-$$A \cdot A^{-1} = \begin{pmatrix} \frac{2}{3} & \frac{1}{3} & -\frac{1}{3} \\ \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} \\ -\frac{1}{3} & \frac{1}{3} & \frac{1}{6} \end{pmatrix} \begin{pmatrix} 1 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 2 \end{pmatrix} = \begin{pmatrix} \frac{2+1}{3} & \frac{2-2}{3} & \frac{2-2}{3} \\ \frac{1-1}{3} & \frac{1+0}{3} + \frac{2}{3} & \frac{-2+2}{3} \\ \frac{-1+1}{3} & \frac{-1}{3} + \frac{2}{6} & \frac{2}{3} + \frac{2}{6} \end{pmatrix} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}.$$
+*Levezetés:*
+1. **Egyszerűsítés:** A bal oldali együtthatók legnagyobb közös osztója $\lnko(15, 21) = 3$. Mivel $3 \mid 360$, az egyenlet mindkét oldala osztható 3-mal:
+   $$5x + 7y = 120.$$
+   Mivel $\lnko(5, 7) = 1$, az egyenlet megoldható az egész számok körében.
+2. **Partikuláris megoldás keresése:**
+   Tekintsük az egyenletet modulo 7:
+   $$5x \equiv 120 \equiv 1 \pmod 7.$$
+   Mivel $3 \cdot 5 = 15 \equiv 1 \pmod 7$, szorozzuk be a kongruencia mindkét oldalát 3-mal:
+   $$x \equiv 3 \pmod 7.$$
+   Választhatjuk az $x_0 = 3$ értéket partikuláris megoldásnak. Ekkor:
+   $$5 \cdot 3 + 7y = 120 \implies 15 + 7y = 120 \implies 7y = 105 \implies y_0 = 15.$$
+   *(Közvetlenül is észrevehető az $x_0 = 10, y_0 = 10$ partikuláris megoldás, hiszen $5 \cdot 10 + 7 \cdot 10 = 120$.)*
+3. **Általános megoldás:**
+   Mivel $\lnko(5, 7) = 1$, a diofantikus egyenlet általános megoldása:
+   $$x = 3 + 7t, \quad y = 15 - 5t \quad (t \in \mathbb{Z}).$$
+4. **Pozitív egész megoldások ($x > 0, y > 0$):**
+   $$\begin{aligned}
+   x > 0 &\iff 3 + 7t \ge 1 \iff 7t \ge -2 \iff t \ge 0, \\
+   y > 0 &\iff 15 - 5t \ge 1 \iff 5t \le 14 \iff t \le 2.
+   \end{aligned}$$
+   Az egész $t$ paraméter lehetséges értékei tehát $t \in \{0, 1, 2\}$.
+   - $t = 0 \implies x = 3, \quad y = 15$;
+   - $t = 1 \implies x = 10, \quad y = 10$;
+   - $t = 2 \implies x = 17, \quad y = 5$.
 
 ---
 
-**b) Az egyenletrendszer megoldása:**
-$$\mathbf{x = -1, \quad y = -2, \quad z = 5}.$$
+**b) Az utolsó két számjegy: $\mathbf{52}$.**
 
 *Levezetés:*
-Írjuk fel az egyenletrendszert mátrixos alakban:
-$$\begin{pmatrix} 1 & 1 & 0 \\ 1 & 0 & 2 \\ 0 & 2 & 2 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} -3 \\ 9 \\ 6 \end{pmatrix}.$$
-Vegyük észre, hogy az együtthatómátrix pontosan az előző részfeladatban meghatározott $A^{-1}$ mátrix!
-Az egyenlet tehát $A^{-1}\mathbf{v} = \mathbf{b}$ alakú, ahol $\mathbf{v} = (x, y, z)^T$ és $\mathbf{b} = (-3, 9, 6)^T$.
+Egy szám utolsó két számjegye a tízes számrendszerben a $100$-zal való osztási maradékával egyezik meg. Mivel $100 = 4 \cdot 25$ és $\lnko(4, 25) = 1$, a kínai maradéktételt használjuk: meghatározzuk a hatvány maradékát modulo 4 és modulo 25.
 
-Mivel $(A^{-1})^{-1} = A$, mindkét oldalt balról megszorozva $A$-val:
-$$\mathbf{v} = A \mathbf{b} = \begin{pmatrix} \frac{2}{3} & \frac{1}{3} & -\frac{1}{3} \\ \frac{1}{3} & -\frac{1}{3} & \frac{1}{3} \\ -\frac{1}{3} & \frac{1}{3} & \frac{1}{6} \end{pmatrix} \begin{pmatrix} -3 \\ 9 \\ 6 \end{pmatrix}.$$
-Kiszámítva a szorzatot:
-$$\begin{aligned}
-x &= \frac{2}{3}(-3) + \frac{1}{3}(9) - \frac{1}{3}(6) = -2 + 3 - 2 = -1, \\
-y &= \frac{1}{3}(-3) - \frac{1}{3}(9) + \frac{1}{3}(6) = -1 - 3 + 2 = -2, \\
-z &= -\frac{1}{3}(-3) + \frac{1}{3}(9) + \frac{1}{6}(6) = 1 + 3 + 1 = 5.
-\end{aligned}$$
+1. **Modulo 4:**
+   $$78 \equiv 2 \equiv -2 \pmod 4.$$
+   Mivel a kitevő $N = 123456783 \ge 2$, ezért:
+   $$78^N = 78^2 \cdot 78^{N-2} \equiv 2^2 \cdot 78^{N-2} = 4 \cdot 78^{N-2} \equiv 0 \pmod 4.$$
+2. **Modulo 25:**
+   $$78 \equiv 3 \pmod{25}.$$
+   Mivel $\lnko(3, 25) = 1$, alkalmazható az Euler–Fermat-tétel. Az Euler-féle $\varphi$-függvény értéke:
+   $$\varphi(25) = 25 \left(1 - \frac{1}{5}\right) = 20,$$
+   így $3^{20} \equiv 1 \pmod{25}$.
+   A kitevőt modulo 20 vizsgálva:
+   $$123456783 = 123456780 + 3 \equiv 3 \pmod{20}.$$
+   Ennek megfelelően:
+   $$78^{123456783} \equiv 3^{123456783} \equiv 3^3 = 27 \equiv 2 \pmod{25}.$$
+3. **Egyesítés a kínai maradéktétellel:**
+   Olyan $X \in \{0, 1, \dots, 99\}$ számot keresünk, amelyre:
+   $$\begin{cases} X \equiv 0 \pmod 4 \\ X \equiv 2 \pmod{25} \end{cases}$$
+   A modulo 25-ben 2 maradékot adó nemnegatív, 100 alatti számok:
+   $$2, \quad 27, \quad 52, \quad 77.$$
+   Ezek közül megvizsgálva a modulo 4 maradékokat:
+   - $2 \equiv 2 \pmod 4 \ne 0$,
+   - $27 \equiv 3 \pmod 4 \ne 0$,
+   - $52 = 4 \cdot 13 \equiv 0 \pmod 4$,
+   - $77 \equiv 1 \pmod 4 \ne 0$.
+   Egyedül az $X = 52$ teljesíti mindkét feltételt.
+   Tehát $78^{123456783} \equiv 52 \pmod{100}$, így az utolsó két számjegy **52**.
 
 ::: elmelet
-**Elméleti háttér — mátrixinverz és lineáris egyenletrendszerek.** Egy négyzetes $M$ mátrix invertálható, ha $\det M \ne 0$. A Gauss–Jordan-elimináció lépései elemi mátrixokkal való szorzásoknak felelnek meg, így az egységmátrixra ugyanazon műveleteket végezve $M^{-1}$-et kapjuk. Ha az $M\mathbf{x} = \mathbf{b}$ rendszerben $M = A^{-1}$, akkor közvetlenül $\mathbf{x} = A\mathbf{b}$.
+**Elméleti háttér — lineáris diofantikus egyenletek és utolsó számjegyek.**
+- Az $ax + by = c$ kétismeretlenes lineáris diofantikus egyenlet pontosan akkor oldható meg egész számokban, ha $d = \lnko(a, b) \mid c$. Ha $x_0, y_0$ egy partikuláris megoldás, akkor a teljes megoldáshalmaz $x = x_0 + \frac{b}{d}t$, $y = y_0 - \frac{a}{d}t$ ($t \in \mathbb{Z}$).
+- Egy szám tízes számrendszerbeli utolsó két számjegye a modulo 100 maradéka. Ha a modulus összetett ($100 = 4 \cdot 25$), a maradékot prímhatvány-tényezőnként érdemes számolni (Euler–Fermat-tétellel: $a^{\varphi(m)} \equiv 1 \pmod m$, ha $\lnko(a, m) = 1$), majd a kínai maradéktétellel egyesíteni.
 :::
 
 ## 2. feladat
 
-Határozzuk meg a 95 és 26 legnagyobb közös osztóját és írjuk fel $95x + 26y$ alakban valamely $x, y$ egész számokra.
+a) Számítsuk ki és ábrázoljuk $\sqrt{3} - \sqrt{3}i$ három köbgyökét.
+
+b) Ábrázoljuk azoknak a $z$ komplex számoknak a halmazát a síkon, melyekre $|4\overline{z} - 4 + i| = \operatorname{Im}(4z + i)$.
 
 **Megoldás.**
 
-**$\lnko(95, 26) = 1$, és felírása: $1 = 95 \cdot (-3) + 26 \cdot 11$ (azaz $x = -3, y = 11$).**
+**a) A három köbgyök trigonometrikus alakja:**
+$$z_0 = \sqrt[6]{6} \left(\cos 105^\circ + i \sin 105^\circ\right) = \sqrt[6]{6} \left(\cos \frac{7\pi}{12} + i \sin \frac{7\pi}{12}\right),$$
+$$z_1 = \sqrt[6]{6} \left(\cos 225^\circ + i \sin 225^\circ\right) = \sqrt[6]{6} \left(\cos \frac{5\pi}{4} + i \sin \frac{5\pi}{4}\right),$$
+$$z_2 = \sqrt[6]{6} \left(\cos 345^\circ + i \sin 345^\circ\right) = \sqrt[6]{6} \left(\cos \frac{23\pi}{12} + i \sin \frac{23\pi}{12}\right).$$
 
-*1. Euklideszi algoritmus a legnagyobb közös osztó meghatározására:*
-$$\begin{aligned}
-95 &= 3 \cdot 26 + 17 \\
-26 &= 1 \cdot 17 + 9 \\
-17 &= 1 \cdot 9 + 8 \\
-9 &= 1 \cdot 8 + 1 \\
-8 &= 8 \cdot 1 + 0
-\end{aligned}$$
-Az utolsó nem nulla maradék $1$, tehát $\lnko(95, 26) = 1$ (a két szám relatív prím).
+*(Algebrai alakban például $z_1 = -\sqrt[6]{6}\frac{\sqrt{2}}{2}(1 + i) = -\frac{\sqrt[3]{6}}{2}(1 + i)$, míg $z_0, z_2 = \sqrt[6]{6}\left(\frac{\pm(\sqrt{2}-\sqrt{6})}{4} + i\frac{\sqrt{6}+\sqrt{2}}{4}\right)$.)*
 
-*2. Kiterjesztett euklideszi algoritmus (visszahelyettesítés):*
-Kifejezzük a maradékokat:
-$$\begin{aligned}
-17 &= 95 - 3 \cdot 26 \\
-9 &= 26 - 17 = 26 - (95 - 3 \cdot 26) = -95 + 4 \cdot 26 \\
-8 &= 17 - 9 = (95 - 3 \cdot 26) - (-95 + 4 \cdot 26) = 2 \cdot 95 - 7 \cdot 26 \\
-1 &= 9 - 8 = (-95 + 4 \cdot 26) - (2 \cdot 95 - 7 \cdot 26) = -3 \cdot 95 + 11 \cdot 26
-\end{aligned}$$
+*Levezetés:*
+1. Írjuk fel a $w = \sqrt{3} - \sqrt{3}i$ komplex számot trigonometrikus alakban:
+   - Abszolút érték:
+     $$|w| = \sqrt{(\sqrt{3})^2 + (-\sqrt{3})^2} = \sqrt{3 + 3} = \sqrt{6}.$$
+   - Irányszög: Mivel $\operatorname{Re}(w) = \sqrt{3} > 0$ és $\operatorname{Im}(w) = -\sqrt{3} < 0$, a szám a IV. síknegyedben helyezkedik el.
+     $$\tan \varphi = \frac{-\sqrt{3}}{\sqrt{3}} = -1 \implies \varphi = -\frac{\pi}{4} = \frac{7\pi}{4} = 315^\circ.$$
+   Tehát:
+   $$w = \sqrt{6}\left(\cos 315^\circ + i \sin 315^\circ\right) = \sqrt{6}\left(\cos \frac{7\pi}{4} + i \sin \frac{7\pi}{4}\right).$$
+2. A komplex köbgyökvonás képlete:
+   $$z_k = \sqrt[3]{\sqrt{6}} \left(\cos \frac{315^\circ + 360^\circ k}{3} + i \sin \frac{315^\circ + 360^\circ k}{3}\right), \quad k \in \{0, 1, 2\}.$$
+   A gyökök abszolút értéke:
+   $$R = \sqrt[3]{\sqrt{6}} = (6^{1/2})^{1/3} = 6^{1/6} = \sqrt[6]{6} \approx 1{,}348.$$
+   Az irányszögek:
+   - $k = 0$: $\theta_0 = \frac{315^\circ}{3} = 105^\circ = \frac{7\pi}{12}$,
+   - $k = 1$: $\theta_1 = 105^\circ + 120^\circ = 225^\circ = \frac{5\pi}{4}$,
+   - $k = 2$: $\theta_2 = 225^\circ + 120^\circ = 345^\circ = \frac{23\pi}{12}$ *(vagy $-15^\circ$)*.
 
-Tehát $x = -3$ és $y = 11$.
+*Ábrázolás a komplex síkon:*
+A három köbgyök az origó középpontú, $R = \sqrt[6]{6} \approx 1{,}348$ sugarú körre esik, és egy olyan origó középpontú szabályos háromszög csúcsait alkotják, melynek csúcsai a $105^\circ$ (II. síknegyed), $225^\circ$ (III. síknegyed, a harmadik síknegyed szögfelezőjén), valamint $345^\circ$ (IV. síknegyed) polárszögeknél találhatók.
 
-*Ellenőrzés:*
-$$95 \cdot (-3) + 26 \cdot 11 = -285 + 286 = 1.$$
+---
+
+**b) A ponthalmaz:**
+$$\mathbf{y = (x - 1)^2}$$
+**egy felfelé nyíló parabola a komplex síkon, melynek tengelypontja (csúcsa) az $(1, 0)$, azaz az $1 + 0i$ valós pont, szimmetriatengelye az $x = 1$ függőleges egyenes, fókusza az $F\left(1, \frac{1}{4}\right) = 1 + \frac{1}{4}i$, vezéregyenese pedig a $d: y = -\frac{1}{4}$ egyenes.**
+
+*Levezetés (algebrai koordinátákkal):*
+Legyen $z = x + iy$, ahol $x, y \in \mathbb{R}$. Ekkor $\overline{z} = x - iy$.
+1. A bal oldal kifejtése:
+   $$4\overline{z} - 4 + i = 4(x - iy) - 4 + i = (4x - 4) + i(1 - 4y).$$
+   Ennek abszolút értéke:
+   $$|4\overline{z} - 4 + i| = \sqrt{(4x - 4)^2 + (1 - 4y)^2} = \sqrt{16(x - 1)^2 + (1 - 4y)^2}.$$
+2. A jobb oldal kifejtése:
+   $$4z + i = 4(x + iy) + i = 4x + i(4y + 1) \implies \operatorname{Im}(4z + i) = 4y + 1.$$
+3. Egyenlet és ekvivalens átalakítások:
+   $$\sqrt{16(x - 1)^2 + (1 - 4y)^2} = 4y + 1.$$
+   Mivel a bal oldal abszolút érték, értéke nemnegatív, ezért a megoldáshoz szükséges feltétel:
+   $$4y + 1 \ge 0 \iff y \ge -\frac{1}{4}.$$
+   E feltétel mellett mindkét oldalt négyzetre emelhetjük:
+   $$16(x - 1)^2 + (1 - 4y)^2 = (4y + 1)^2.$$
+   Kifejtve a négyzeteket:
+   $$(1 - 4y)^2 = 1 - 8y + 16y^2, \qquad (4y + 1)^2 = 1 + 8y + 16y^2.$$
+   Behelyettesítve:
+   $$16(x - 1)^2 + 1 - 8y + 16y^2 = 1 + 8y + 16y^2.$$
+   Mindkét oldalból kivonva az $1 + 16y^2$-et:
+   $$16(x - 1)^2 - 8y = 8y \implies 16(x - 1)^2 = 16y \implies y = (x - 1)^2.$$
+4. A feltétel ellenőrzése:
+   Mivel minden valós $x$-re $(x - 1)^2 \ge 0 > -\frac{1}{4}$, a feltétel automatikusan teljesül minden valós $x$-re.
+   A keresett ponthalmaz tehát a teljes $y = (x - 1)^2$ parabola.
+
+*Geometriai meggondolás (fókusz-vezéregyenes értelmezés):*
+Osszuk el az eredeti egyenlet mindkét oldalát 4-gyel, és használjuk fel, hogy $|\overline{w}| = |w|$:
+$$\left|\overline{z - \left(1 + \frac{i}{4}\right)}\right| = \left|z - \left(1 + \frac{i}{4}\right)\right| = y + \frac{1}{4} = y - \left(-\frac{1}{4}\right).$$
+A bal oldal a $z$ pont távolsága a sík $F\left(1, \frac{1}{4}\right)$ rögzített pontjától, a jobb oldal pedig (ha $y \ge -\frac{1}{4}$) a $z$ pont távolsága a $d: y = -\frac{1}{4}$ vízszintes vezéregyenestől. Azon pontok mértani helye, amelyek egy ponttól és egy egyenestől egyenlő távolságra vannak, a definíció szerint parabola.
 
 ::: elmelet
-**Elméleti háttér — Bézout-lemma és a kiterjesztett euklideszi algoritmus.** Bármely $a, b \in \mathbb{Z}$ egészekre léteznek olyan $x, y \in \mathbb{Z}$ egész számok, amelyekre $ax + by = \lnko(a, b)$. Ezen $x, y$ együtthatók az euklideszi algoritmus osztási lépéseinek visszafelé történő helyettesítésével szisztematikusan megkaphatók.
+**Elméleti háttér — komplex gyökvonás és másodrendű görbék.**
+- A $w = r(\cos \varphi + i \sin \varphi)$ szám $n$-edik gyökei egy origó középpontú, $\sqrt[n]{r}$ sugarú körbe írt szabályos $n$-szög csúcsait alkotják a síkon.
+- A komplex síkon távolságokat abszolút értékkel fejezünk ki: $|z - z_0|$ a $z$ és $z_0$ távolsága. Ha egy pont távolsága egy fókuszponttól megegyezik egy egyenestől mért távolságával, a mértani hely parabola.
 :::
 
 ## 3. feladat
 
-Adjuk meg az $f(x) = 4x^4 + 12x^3 + 17x^2 + 10x + 2$ polinom racionális, majd összes komplex gyökét. Írjuk fel gyöktényezős alakban.
+a) Mik $m^2 + m + 4$ és $m^2 + 2$ legnagyobb közös osztójának lehetséges (pozitív) értékei? Mindegyikhez adjunk is meg egy-egy konkrét $m$ egész számot, ami megvalósítja.
+
+b) Mely $n \ge 0$ egészekre lesz $n^3 - 8$ pozitív vagy negatív prímszám?
 
 **Megoldás.**
 
-- **Racionális gyök:** $\mathbf{x = -\frac{1}{2}}$ (multiplicitása 2).
-- **Összes komplex gyök:** $\mathbf{-\frac{1}{2}}$ (kétszeres), $\mathbf{-1 + i}$ (egyszeres), $\mathbf{-1 - i}$ (egyszeres).
-- **Gyöktényezős alak:**
-  $$f(x) = 4\left(x + \frac{1}{2}\right)^2 (x + 1 - i)(x + 1 + i) = (2x + 1)^2 (x + 1 - i)(x + 1 + i).$$
+**a) A legnagyobb közös osztó lehetséges értékei:**
+$$\mathbf{d \in \{1, 2, 3, 6\}}.$$
+
+**Megvalósító konkrét $m$ egész számok:**
+- $\mathbf{d = 1}$-re például $\mathbf{m = 3}$: ekkor $3^2 + 3 + 4 = 16$ és $3^2 + 2 = 11$, $\lnko(16, 11) = 1$.
+- $\mathbf{d = 2}$-re például $\mathbf{m = 0}$: ekkor $0^2 + 0 + 4 = 4$ és $0^2 + 2 = 2$, $\lnko(4, 2) = 2$.
+- $\mathbf{d = 3}$-re például $\mathbf{m = 1}$: ekkor $1^2 + 1 + 4 = 6$ és $1^2 + 2 = 3$, $\lnko(6, 3) = 3$.
+- $\mathbf{d = 6}$-ra például $\mathbf{m = 4}$: ekkor $4^2 + 4 + 4 = 24$ és $4^2 + 2 = 18$, $\lnko(24, 18) = 6$.
 
 *Levezetés:*
+1. Legyen $d = \lnko(m^2 + m + 4, m^2 + 2)$.
+   Mivel $d$ mindkét kifejezést osztja, osztja azok különbségét is:
+   $$d \mid (m^2 + m + 4) - (m^2 + 2) = m + 2.$$
+2. Mivel $d \mid (m + 2)$, ezért $d$ osztja az $(m + 2)$ bármely egész együtthatós többszörösét is. Vonjuk ki az $(m - 2)(m + 2) = m^2 - 4$ szorzatot az $m^2 + 2$ kifejezésből:
+   $$d \mid (m^2 + 2) - (m - 2)(m + 2) = m^2 + 2 - (m^2 - 4) = 6.$$
+   *(Kongruenciával fogalmazva: $d \mid (m + 2) \implies m \equiv -2 \pmod d$, így $m^2 + 2 \equiv (-2)^2 + 2 = 6 \equiv 0 \pmod d$, azaz $d \mid 6$.)*
+3. Mivel a legnagyobb közös osztó definíció szerint pozitív egész és $d \mid 6$, $d$ lehetséges értékei kizárólag a 6 pozitív osztói lehetnek:
+   $$d \in \{1, 2, 3, 6\}.$$
+4. A fenti példák mutatják, hogy mind a 4 lehetséges érték valóban realizálható egész $m$ értékekkel.
 
-1. **Racionális gyökteszt:**
-   Ha $\frac{p}{q}$ redukált tört gyöke $f(x)$-nek, akkor $p \mid 2$ és $q \mid 4$:
-   $$p \in \{\pm 1, \pm 2\}, \quad q \in \{1, 2, 4\}.$$
-   Mivel $f(x)$ minden együtthatója szigorúan pozitív, pozitív gyök nem létezhet ($x \ge 0 \implies f(x) \ge 2 > 0$).
-   A lehetséges racionális gyökök tehát:
-   $$-1, \quad -2, \quad -\frac{1}{2}, \quad -\frac{1}{4}.$$
+---
 
-2. **Horner-elrendezés $x = -\frac{1}{2}$-re:**
-   $$\begin{array}{c|ccccc}
-   & 4 & 12 & 17 & 10 & 2 \\
-   -\frac{1}{2} & 4 & 10 & 12 & 4 & 0
-   \end{array}$$
-   A maradék $0$, tehát $x = -\frac{1}{2}$ gyök, és a hányadospolinom:
-   $$g(x) = 4x^3 + 10x^2 + 12x + 4.$$
+**b) A keresett nemnegatív egészek:**
+$$\mathbf{n = 1 \quad \text{és} \quad n = 3}.$$
+*(Az $n = 1$ esetben $n^3 - 8 = -7$, ami negatív prím; az $n = 3$ esetben $n^3 - 8 = 19$, ami pozitív prím.)*
 
-3. **Újabb Horner-lépés $x = -\frac{1}{2}$-re a hányadosra:**
-   $$\begin{array}{c|cccc}
-   & 4 & 10 & 12 & 4 \\
-   -\frac{1}{2} & 4 & 8 & 8 & 0
-   \end{array}$$
-   A maradék ismét $0$, így $x = -\frac{1}{2}$ legalább kétszeres gyök, és a maradék másodfokú polinom:
-   $$h(x) = 4x^2 + 8x + 8 = 4(x^2 + 2x + 2).$$
-
-4. **A másodfokú tényező gyökei:**
-   $$x^2 + 2x + 2 = 0 \implies x_{3,4} = \frac{-2 \pm \sqrt{4 - 8}}{2} = \frac{-2 \pm 2i}{2} = -1 \pm i.$$
-   Mivel $-1 \pm i \notin \mathbb{R}$, ezek egyszeres komplex gyökök, és $-\frac{1}{2}$ pontosan kétszeres gyök.
+*Levezetés:*
+1. Bontsuk szorzattá a kifejezést a köbök különbségének azonosságával ($a^3 - b^3 = (a - b)(a^2 + ab + b^2)$):
+   $$n^3 - 8 = n^3 - 2^3 = (n - 2)(n^2 + 2n + 4).$$
+2. Az egész számok gyűrűjében egy szám akkor (pozitív vagy negatív) prímszám (azaz felbonthatatlan elem), ha pontosan négy osztója van: $\pm 1$ és $\pm p$ (ahol $|p| > 1$).
+   Ha két egész szám szorzata prím, akkor az egyik tényezőnek feltétlenül $\pm 1$-nek kell lennie.
+3. Vizsgáljuk a második tényezőt tetszőleges $n \ge 0$ egész esetén:
+   $$n^2 + 2n + 4 = (n + 1)^2 + 3.$$
+   Mivel $n \ge 0$, ezért $n + 1 \ge 1 \implies (n + 1)^2 \ge 1$, amiből:
+   $$n^2 + 2n + 4 \ge 1 + 3 = 4.$$
+   A második tényező tehát minden $n \ge 0$-ra legalább 4, így soha nem lehet sem $1$, sem $-1$.
+4. A szorzat tehát kizárólag akkor lehet prím, ha az első tényező értéke $\pm 1$:
+   - **1. eset: $n - 2 = 1 \implies n = 3$.**
+     Ekkor $n^3 - 8 = 3^3 - 8 = 27 - 8 = 19$.
+     Mivel a 19 pozitív prímszám, az $n = 3$ megoldás.
+   - **2. eset: $n - 2 = -1 \implies n = 1$.**
+     Ekkor $n^3 - 8 = 1^3 - 8 = 1 - 8 = -7$.
+     Mivel $|-7| = 7$ prím, a $-7$ negatív prímszám, így az $n = 1$ is megoldás.
+5. Egyéb $n \ge 0$ egészek vizsgálata:
+   - $n = 0$: $n^3 - 8 = -8 = (-2) \cdot 4$, összetett szám (nem prím).
+   - $n = 2$: $n^3 - 8 = 0$, nem prím.
+   - $n \ge 4$: ekkor $n - 2 \ge 2$ és $n^2 + 2n + 4 \ge 28$, azaz két 1-nél szigorúan nagyobb egész szorzata, így összetett szám.
+   Tehát csak az $n = 1$ és $n = 3$ felel meg a feltételeknek.
 
 ::: elmelet
-**Elméleti háttér — racionális gyökteszt és gyöktényezős alak.** Egész együtthatós $a_n x^n + \dots + a_0$ polinom racionális $p/q$ gyökeire $p \mid a_0$ és $q \mid a_n$. A gyökök megtalálása után a Horner-elrendezéssel faktoriálunk. A polinom gyöktényezős alakja $a_n \prod (x - \alpha_i)^{m_i}$, ahol $\alpha_i$ a komplex gyökök és $m_i$ a multiplicitásaik.
+**Elméleti háttér — euklideszi algoritmus polinomokra és felbonthatatlanság.**
+- Polinomok egész helyettesítési értékeinek legnagyobb közös osztójánál az euklideszi lépésekkel a fokszám redukálható: $\lnko(A, B) = \lnko(B, A - qB)$. Ha eljutunk egy konstans $C$ egészhez, a lehetséges $\lnko$-k a $C$ osztói.
+- Az egész számok gyűrűjében a felbonthatatlan (irreducibilis) és a prím elemek fogalma egybeesik. Ha egy egész szorzat prím, az egyik szorzótényező egység ($\pm 1$) kell legyen.
 :::
 
 ## 4. feladat
 
-Igazoljuk, hogy minden $n \ge 2$ természetes számra
-$$\prod_{k=2}^n \left(1 - \frac{1}{k^2}\right) = \frac{n + 1}{2n}.$$
+Adjuk meg Gauss-eliminációval az
+$$\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} x & y \\ u & v \end{pmatrix} = \begin{pmatrix} x & y \\ u & v \end{pmatrix} \begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}$$
+lineáris egyenletrendszer általános megoldását.
 
 **Megoldás.**
 
-**1. módszer: Teljes indukcióval $n$ szerint.**
+**Az egyenletrendszer általános megoldása:**
+$$\mathbf{\begin{pmatrix} x & y \\ u & v \end{pmatrix} = \begin{pmatrix} t - s & s \\ 0 & t \end{pmatrix} \quad (s, t \in \mathbb{R})}$$
+*(vagy az $r = t - s \in \mathbb{R}$ paraméterezéssel:*
+$$\mathbf{\begin{pmatrix} x & y \\ u & v \end{pmatrix} = \begin{pmatrix} r & s \\ 0 & r + s \end{pmatrix} \quad (r, s \in \mathbb{R})}).$$
 
-- **Bázis ($n = 2$):**
-  A bal oldal: $1 - \frac{1}{2^2} = 1 - \frac{1}{4} = \frac{3}{4}$.
-  A jobb oldal: $\frac{2 + 1}{2 \cdot 2} = \frac{3}{4}$.
-  Az egyenlőség teljesül.
-- **Indukciós feltevés:** Tegyük fel, hogy valamely $n \ge 2$-re igaz az állítás:
-  $$\prod_{k=2}^n \left(1 - \frac{1}{k^2}\right) = \frac{n + 1}{2n}.$$
-- **Indukciós lépés ($n + 1$-re):**
-  Számítsuk ki a szorzatot $n + 1$-ig:
-  $$\prod_{k=2}^{n+1} \left(1 - \frac{1}{k^2}\right) = \left[\prod_{k=2}^n \left(1 - \frac{1}{k^2}\right)\right] \cdot \left(1 - \frac{1}{(n+1)^2}\right).$$
-  Az indukciós feltevést behelyettesítve:
-  $$= \frac{n+1}{2n} \cdot \frac{(n+1)^2 - 1}{(n+1)^2} = \frac{n+1}{2n} \cdot \frac{n^2 + 2n}{(n+1)^2} = \frac{n+1}{2n} \cdot \frac{n(n+2)}{(n+1)^2}.$$
-  Egyszerűsítve $(n+1)$-gyel és $n$-nel:
-  $$= \frac{n+2}{2(n+1)} = \frac{(n+1) + 1}{2(n+1)}.$$
-  Ez éppen a bizonyítandó formula $n + 1$-re. Ezzel az indukció kész. $\blacksquare$
-
----
-
-**2. módszer: Teleszkopikus szorzatként közvetlenül.**
-Alakítsuk szorzattá a tényezőket a számlálóban:
-$$1 - \frac{1}{k^2} = \frac{k^2 - 1}{k^2} = \frac{(k - 1)(k + 1)}{k \cdot k} = \frac{k - 1}{k} \cdot \frac{k + 1}{k}.$$
-A teljes szorzat két szorzatra esik szét:
-$$\prod_{k=2}^n \left(1 - \frac{1}{k^2}\right) = \left(\prod_{k=2}^n \frac{k-1}{k}\right) \cdot \left(\prod_{k=2}^n \frac{k+1}{k}\right).$$
-- Az első szorzat: $\frac{1}{2} \cdot \frac{2}{3} \cdot \frac{3}{4} \cdots \frac{n-1}{n} = \frac{1}{n}$.
-- A második szorzat: $\frac{3}{2} \cdot \frac{4}{3} \cdot \frac{5}{4} \cdots \frac{n+1}{n} = \frac{n+1}{2}$.
-A kettő szorzata:
-$$\frac{1}{n} \cdot \frac{n+1}{2} = \frac{n+1}{2n}. \quad \blacksquare$$
+*Levezetés Gauss-eliminációval:*
+1. Végezzük el a mátrixszorzásokat mindkét oldalon:
+   - Bal oldal:
+     $$\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} x & y \\ u & v \end{pmatrix} = \begin{pmatrix} 2x + u & 2y + v \\ 3u & 3v \end{pmatrix}.$$
+   - Jobb oldal:
+     $$\begin{pmatrix} x & y \\ u & v \end{pmatrix} \begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} = \begin{pmatrix} 2x & x + 3y \\ 2u & u + 3v \end{pmatrix}.$$
+2. A két mátrix egyenlőségéből pozíciónként felírjuk az egyenleteket:
+   $$\begin{aligned}
+   (1, 1): \quad 2x + u &= 2x \implies u = 0 \\
+   (1, 2): \quad 2y + v &= x + 3y \implies -x - y + v = 0 \\
+   (2, 1): \quad 3u &= 2u \implies u = 0 \\
+   (2, 2): \quad 3v &= u + 3v \implies u = 0
+   \end{aligned}$$
+3. Írjuk fel a homogén lineáris egyenletrendszer kibővített mátrixát az $(x, y, u, v)$ oszloprendben:
+   $$\left(\begin{array}{cccc|c}
+   0 & 0 & 1 & 0 & 0 \\
+   -1 & -1 & 0 & 1 & 0 \\
+   0 & 0 & 1 & 0 & 0 \\
+   0 & 0 & -1 & 0 & 0
+   \end{array}\right)$$
+4. Gauss-elimináció lépései:
+   - Cseréljük meg az 1. és 2. sort ($S_1 \leftrightarrow S_2$), majd szorozzuk meg az új 1. sort $(-1)$-gyel ($S_1 \leftarrow -S_1$):
+     $$\left(\begin{array}{cccc|c}
+     1 & 1 & 0 & -1 & 0 \\
+     0 & 0 & 1 & 0 & 0 \\
+     0 & 0 & 1 & 0 & 0 \\
+     0 & 0 & -1 & 0 & 0
+     \end{array}\right)$$
+   - Vonjuk ki a 2. sort a 3. sorból ($S_3 \leftarrow S_3 - S_2$), és adjuk hozzá a 4. sorhoz ($S_4 \leftarrow S_4 + S_2$):
+     $$\left(\begin{array}{cccc|c}
+     1 & 1 & 0 & -1 & 0 \\
+     0 & 0 & 1 & 0 & 0 \\
+     0 & 0 & 0 & 0 & 0 \\
+     0 & 0 & 0 & 0 & 0
+     \end{array}\right)$$
+5. **A lépcsős alak elemzése:**
+   - A vezéregyesek az 1. és a 3. oszlopban állnak, így a **kötött változók**: $x$ és $u$.
+   - A 2. és a 4. oszlop nem tartalmaz vezérelemet, így a **szabad változók**: $y$ és $v$.
+6. A megoldás kifejezése:
+   - A 2. sor szerint:
+     $$u = 0.$$
+   - Az 1. sor szerint:
+     $$x + y - v = 0 \implies x = v - y.$$
+   Legyen a két szabad paraméter $y = s \in \mathbb{R}$ és $v = t \in \mathbb{R}$. Ekkor:
+   $$x = t - s, \quad y = s, \quad u = 0, \quad v = t.$$
+   Mátrix alakban felírva:
+   $$\begin{pmatrix} x & y \\ u & v \end{pmatrix} = \begin{pmatrix} t - s & s \\ 0 & t \end{pmatrix} = t \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + s \begin{pmatrix} -1 & 1 \\ 0 & 0 \end{pmatrix} \quad (s, t \in \mathbb{R}).$$
 
 ::: elmelet
-**Elméleti háttér — teleszkopikus szorzatok és teljes indukció.** Egy szorzat akkor teleszkopikus, ha a szomszédos tényezők kiejtik egymást. A másodfokú algebrai azonosság ($k^2 - 1 = (k-1)(k+1)$) lineáris faktorokra bontja a tagokat, melyek számlálói és nevezői átlósan egyszerűsíthetők, csak a szélső tagokat hagyva meg.
+**Elméleti háttér — mátrixok kommutátora és Gauss-elimináció.**
+- Azon mátrixok halmaza, amelyek kommutálnak egy rögzített $A$ mátrixszal ($AX = XA$), alteret alkotnak $\mathbb{R}^{n \times n}$-ben (az $A$ kommutánsa).
+- A Gauss-elimináció során az elemi sorműveletekkel (sorcsere, számmal szorzás, sor hozzáadása másikhoz) lépcsős alakra hozzuk a kibővített mátrixot. A vezérelemek oszlopaihoz tartoznak a kötött változók, a többihez a szabad változók.
 :::
 
 ## 5. feladat
 
-a) Milyen maradékot ad $11^{20262026}$ 45-tel osztva?
-
-b) Mi a megoldása a $12x \equiv 5 \pmod{17}$ kongruenciának?
+Határozzuk meg $4x^4 + 12x^3 + 17x^2 + 10x + 2$ racionális, majd az összes komplex gyökeit is, és ezek multiplicitását.
 
 **Megoldás.**
 
-**a) A keresett osztási maradék: $\mathbf{31}$.**
+**Racionális gyökök:**
+$$\mathbf{x_1 = -\frac{1}{2} \quad \text{(multiplicitása 2)}}.$$
 
-Mivel $45 = 9 \cdot 5$, és $\lnko(11, 45) = 1$, alkalmazhatjuk az **Euler–Fermat-tételt**:
-$$\varphi(45) = \varphi(9 \cdot 5) = \varphi(3^2) \cdot \varphi(5) = (9 - 3)(5 - 1) = 6 \cdot 4 = 24.$$
-Az Euler–Fermat-tétel szerint:
-$$11^{24} \equiv 1 \pmod{45}.$$
-Vizsgáljuk a kitevőt modulo 24:
-$$20262026 = 24 \cdot 844251 + 2 \implies 20262026 \equiv 2 \pmod{24}.$$
-Ezért:
-$$11^{20262026} \equiv 11^2 = 121 \pmod{45}.$$
-Mivel $121 = 2 \cdot 45 + 31$:
-$$121 \equiv 31 \pmod{45}.$$
-A maradék tehát **31**.
+**Összes komplex gyök és multiplicitásuk:**
+$$\mathbf{x_1 = -\frac{1}{2} \quad \text{(multiplicitása 2)}},$$
+$$\mathbf{x_2 = -1 + i \quad \text{(multiplicitása 1)}},$$
+$$\mathbf{x_3 = -1 - i \quad \text{(multiplicitása 1)}}.$$
 
----
+**Gyöktényezős felbontás:**
+$$4x^4 + 12x^3 + 17x^2 + 10x + 2 = 4\left(x + \frac{1}{2}\right)^2 (x + 1 - i)(x + 1 + i) = (2x + 1)^2 (x^2 + 2x + 2).$$
 
-**b) A kongruencia megoldása: $\mathbf{x \equiv 16 \equiv -1 \pmod{17}}$.**
-
-*1. módszer (elemi kongruencia-átalakítás):*
-Mivel $12 \equiv -5 \pmod{17}$:
-$$12x \equiv 5 \pmod{17} \iff -5x \equiv 5 \pmod{17}.$$
-Mivel $\lnko(-5, 17) = 1$, oszthatunk $(-5)$-tel:
-$$x \equiv -1 \equiv 16 \pmod{17}.$$
-
-*2. módszer (inverz keresése a kis Fermat-tétellel):*
-Mivel 17 prím és $\lnko(12, 17) = 1$, a kis Fermat-tétel szerint $12^{16} \equiv 1 \pmod{17}$.
-Így $12^{-1} \equiv 12^{15} \pmod{17}$, és a megoldás:
-$$x \equiv 12^{15} \cdot 5 \pmod{17}.$$
-Gyors hatványozással modulo 17 ($12 \equiv -5$):
-$$\begin{aligned}
-12^2 &= 144 \equiv 8 \pmod{17}, \\
-12^4 &\equiv 8^2 = 64 \equiv 13 \pmod{17}, \\
-12^8 &\equiv 13^2 = 169 \equiv 16 \equiv -1 \pmod{17}.
-\end{aligned}$$
-Ekkor:
-$$12^{15} = 12^8 \cdot 12^4 \cdot 12^2 \cdot 12^1 \equiv (-1) \cdot 13 \cdot 8 \cdot 12 \equiv (-1) \cdot 13 \cdot 96 \equiv (-1) \cdot 13 \cdot 11 = -143 \equiv 10 \pmod{17}.$$
-Tehát:
-$$x \equiv 10 \cdot 5 = 50 \equiv 16 \equiv -1 \pmod{17}.$$
+*Levezetés:*
+1. **Racionális gyökteszt:**
+   Legyen $f(x) = 4x^4 + 12x^3 + 17x^2 + 10x + 2$.
+   Ha $\frac{p}{q}$ egy egyszerűsített alakú racionális gyök ($\lnko(p, q) = 1$):
+   - $p \mid a_0 = 2 \implies p \in \{\pm 1, \pm 2\}$,
+   - $q \mid a_4 = 4 \implies q \in \{1, 2, 4\}$.
+   A lehetséges racionális gyökök jelöltjei:
+   $$\pm 1, \quad \pm 2, \quad \pm \frac{1}{2}, \quad \pm \frac{1}{4}.$$
+   Mivel $f(x)$ minden együtthatója szigorúan pozitív ($4, 12, 17, 10, 2 > 0$), ha $x \ge 0$, akkor $f(x) \ge 2 > 0$. Így $f(x)$-nek nem létezhet nemnegatív valós gyöke, elegendő csak a negatív számokat ellenőrizni:
+   $$-1, \quad -2, \quad -\frac{1}{2}, \quad -\frac{1}{4}.$$
+2. **Gyökkeresés és Horner-elrendezés:**
+   - $x = -1$: $f(-1) = 4(-1)^4 + 12(-1)^3 + 17(-1)^2 + 10(-1) + 2 = 4 - 12 + 17 - 10 + 2 = 1 \ne 0$.
+   - $x = -2$: $f(-2) = 4(16) + 12(-8) + 17(4) + 10(-2) + 2 = 64 - 96 + 68 - 20 + 2 = 18 \ne 0$.
+   - $x = -\frac{1}{2}$:
+     Készítsük el a Horner-táblázatot az $f(x)$ együtthatóira a $-\frac{1}{2}$ helyen:
+     $$\begin{array}{c|ccccc}
+     & 4 & 12 & 17 & 10 & 2 \\
+     -\frac{1}{2} & 4 & 10 & 12 & 4 & \mathbf{0}
+     \end{array}$$
+     A maradék 0, tehát $x = -\frac{1}{2}$ valóban gyök!
+     A kapott hányadospolinom:
+     $$g(x) = 4x^3 + 10x^2 + 12x + 4 = 2(2x^3 + 5x^2 + 6x + 2).$$
+3. **Multiplicitás vizsgálata:**
+   Nézzük meg, hogy $x = -\frac{1}{2}$ többszörös gyök-e. Alkalmazzuk újra a Horner-elrendezést a $2x^3 + 5x^2 + 6x + 2$ polinomra a $-\frac{1}{2}$ helyen:
+   $$\begin{array}{c|cccc}
+   & 2 & 5 & 6 & 2 \\
+   -\frac{1}{2} & 2 & 4 & 4 & \mathbf{0}
+   \end{array}$$
+   A maradék ismét 0, így $x = -\frac{1}{2}$ legalább kétszeres gyök!
+   A megmaradt másodfokú hányadospolinom:
+   $$2x^2 + 4x + 4 = 2(x^2 + 2x + 2).$$
+   Helyettesítsük be $x = -\frac{1}{2}$-et a megmaradt $x^2 + 2x + 2$ kifejezésbe:
+   $$\left(-\frac{1}{2}\right)^2 + 2\left(-\frac{1}{2}\right) + 2 = \frac{1}{4} - 1 + 2 = \frac{5}{4} \ne 0.$$
+   Tehát $x = -\frac{1}{2}$ **pontosan 2 multiplicitású** racionális gyök.
+4. **A további komplex gyökök meghatározása:**
+   A hiányzó két gyök a megmaradt $x^2 + 2x + 2 = 0$ másodfokú egyenletből adódik:
+   $$(x + 1)^2 + 1 = 0 \iff (x + 1)^2 = -1 \iff x + 1 = \pm i \iff x = -1 \pm i.$$
+   Mivel ezek a számok nem valósak és különböznek egymástól (valamint a $-\frac{1}{2}$-től is), mindkettő multiplicitása 1.
 
 ::: elmelet
-**Elméleti háttér — Euler–Fermat-tétel és lineáris kongruenciák.** Ha $\lnko(a, m) = 1$, akkor $a^{\varphi(m)} \equiv 1 \pmod m$, így a kitevő modulo $\varphi(m)$ redukálható. Az $ax \equiv b \pmod m$ lineáris kongruencia pontosan akkor oldható meg, ha $d = \lnko(a, m) \mid b$; ekkor $d$ darab megoldás van modulo $m$. Ha $m$ prím és $p \nmid a$, a megoldás egyértelmű modulo $p$.
+**Elméleti háttér — polinomok gyökei és multiplicitása.**
+- *Racionális gyökteszt:* egész együtthatós $a_n x^n + \dots + a_0$ polinom tetszőleges $\frac{p}{q}$ racionális gyökére $p \mid a_0$ és $q \mid a_n$.
+- *Horner-elrendezés:* gyors algoritmus a behelyettesítési érték kiszámítására és az $(x - c)$ gyöktényezővel való maradékos osztásra.
+- *Multiplicitás:* a $c$ gyök multiplicitása $k$, ha $(x - c)^k \mid f(x)$, de $(x - c)^{k+1} \nmid f(x)$.
+- Valós együtthatós polinom nemvalós komplex gyökei mindig konjugált párokban lépnek fel azonos multiplicitással.
 :::
 
 ## 6. feladat
 
-Mik a $z = -50\sqrt{3} - 50i$ komplex szám ötödik gyökei? A gyököket trigonometrikus alakban adjuk meg és ábrázoljuk őket vázlatosan a komplex számsíkon.
+Adjuk meg az $x^2 - y^2 = 32$ diofantikus egyenlet összes pozitív egész megoldását.
 
 **Megoldás.**
 
-Írjuk fel $z$-t trigonometrikus alakban:
-- Abszolút érték:
-  $$r = |z| = \sqrt{(-50\sqrt{3})^2 + (-50)^2} = \sqrt{7500 + 2500} = \sqrt{10000} = 100.$$
-- Főérték (szög):
-  $$\cos \varphi = \frac{-50\sqrt{3}}{100} = -\frac{\sqrt{3}}{2}, \quad \sin \varphi = \frac{-50}{100} = -\frac{1}{2}.$$
-  Mivel mind a valós, mind a képzetes rész negatív, $z$ a 3. síknegyedbe esik:
-  $$\varphi = \pi + \frac{\pi}{6} = \frac{7\pi}{6} = 210^\circ.$$
-Így $z = 100 \left(\cos \frac{7\pi}{6} + i \sin \frac{7\pi}{6}\right)$.
+**Az összes pozitív egész megoldáspár:**
+$$\mathbf{(x, y) \in \{(6, 2), (9, 7)\}}.$$
 
-A komplex gyökvonás képlete szerint az ötödik gyökök ($k = 0, 1, 2, 3, 4$):
-$$w_k = \sqrt[5]{100} \left(\cos \frac{\frac{7\pi}{6} + 2k\pi}{5} + i \sin \frac{\frac{7\pi}{6} + 2k\pi}{5}\right) = \sqrt[5]{100} \left(\cos \frac{7\pi + 12k\pi}{30} + i \sin \frac{7\pi + 12k\pi}{30}\right).$$
-
-A gyökök kifejtve:
-- **$k = 0$:** $w_0 = \sqrt[5]{100} \left(\cos \frac{7\pi}{30} + i \sin \frac{7\pi}{30}\right) = \sqrt[5]{100} (\cos 42^\circ + i \sin 42^\circ)$
-- **$k = 1$:** $w_1 = \sqrt[5]{100} \left(\cos \frac{19\pi}{30} + i \sin \frac{19\pi}{30}\right) = \sqrt[5]{100} (\cos 114^\circ + i \sin 114^\circ)$
-- **$k = 2$:** $w_2 = \sqrt[5]{100} \left(\cos \frac{31\pi}{30} + i \sin \frac{31\pi}{30}\right) = \sqrt[5]{100} (\cos 186^\circ + i \sin 186^\circ)$
-- **$k = 3$:** $w_3 = \sqrt[5]{100} \left(\cos \frac{43\pi}{30} + i \sin \frac{43\pi}{30}\right) = \sqrt[5]{100} (\cos 258^\circ + i \sin 258^\circ)$
-- **$k = 4$:** $w_4 = \sqrt[5]{100} \left(\cos \frac{55\pi}{30} + i \sin \frac{55\pi}{30}\right) = \sqrt[5]{100} \left(\cos \frac{11\pi}{6} + i \sin \frac{11\pi}{6}\right) = \sqrt[5]{100} (\cos 330^\circ + i \sin 330^\circ)$
-
-**Geometriai ábrázolás a komplex számsíkon:**
-A gyökök egy origó középpontú, $R = \sqrt[5]{100} \approx 2{,}512$ sugarú körön helyezkednek el, és egy **szabályos ötszög** csúcsait alkotják. A szomszédos gyökök szögtávolsága $\frac{2\pi}{5} = 72^\circ$. Az első gyök a pozitív valós tengelyhez képest $42^\circ$-os szögben áll az 1. síknegyedben.
-
-::: elmelet
-**Elméleti háttér — komplex gyökvonás geometriája.** Ha $z = r(\cos\varphi + i\sin\varphi)$, akkor $\sqrt[n]{z}$ értékei $\sqrt[n]{r}\left(\cos\frac{\varphi + 2k\pi}{n} + i\sin\frac{\varphi + 2k\pi}{n}\right)$ ($k = 0, \dots, n-1$). Geometriailag ezek egy $\sqrt[n]{r}$ sugarú körbe írt szabályos $n$-szög csúcsai, melyek $2\pi/n$ szöggel vannak elforgatva egymáshoz képest.
-:::
-
-## 7. feladat
-
-Egy $A \in \mathbb{C}^{3 \times 3}$ mátrix transzponált konjugáltja $A^* = \overline{A^T}$, ahol a konjugálás mátrixelemenkénti konjugálást jelent. Igazoljuk, hogy tetszőleges $A, B \in \mathbb{C}^{3 \times 3}$ mátrixokra:
-
-a) $(A + B)^* = A^* + B^*$,
-
-b) tetszőleges $c \in \mathbb{C}$ komplex számra $(cA)^* = \overline{c}A^*$,
-
-c) $(A^*)^* = A$,
-
-d) $(AB)^* = B^* A^*$,
-
-e) ha $A$ invertálható, akkor $A^*$ is invertálható és $(A^*)^{-1} = (A^{-1})^*$,
-
-f) $\det(A^*) = \overline{\det(A)}$.
-
-**Megoldás.**
-
-Jelölje $A$ elemeit $a_{ij}$, $B$ elemeit $b_{ij}$. Ekkor a definíció szerint $(A^*)_{ij} = \overline{a_{ji}}$.
-
-**a) $(A + B)^* = A^* + B^*$:**
-Az $(i, j)$-edik elemre a transzponálás és a konjugálás linearitása miatt:
-$$((A + B)^*)_{ij} = \overline{(A + B)^T_{ij}} = \overline{(A + B)_{ji}} = \overline{a_{ji} + b_{ji}} = \overline{a_{ji}} + \overline{b_{ji}} = (A^*)_{ij} + (B^*)_{ij}.$$
-Mivel ez minden $(i, j)$ párra teljesül, $(A + B)^* = A^* + B^*$. $\blacksquare$
-
-**b) $(cA)^* = \overline{c}A^*$:**
-A definíció szerint:
-$$((cA)^*)_{ij} = \overline{(cA)^T_{ij}} = \overline{(cA)_{ji}} = \overline{c \cdot a_{ji}} = \overline{c} \cdot \overline{a_{ji}} = \overline{c} \cdot (A^*)_{ij} = (\overline{c}A^*)_{ij}.$$
-Tehát $(cA)^* = \overline{c}A^*$. $\blacksquare$
-
-**c) $(A^*)^* = A$:**
-A kettős transzponálás és kettős konjugálás tulajdonságaiból:
-$$((A^*)^*)_{ij} = \overline{(A^*)_{ji}} = \overline{\overline{a_{ij}}} = a_{ij} = (A)_{ij}.$$
-Tehát $(A^*)^* = A$. $\blacksquare$
-
-**d) $(AB)^* = B^* A^*$:**
-A mátrixszorzás definíciója szerint $(AB)_{ji} = \sum_{k=1}^3 a_{jk} b_{ki}$.
-Ekkor az $(i, j)$-edik elem:
-$$((AB)^*)_{ij} = \overline{(AB)^T_{ij}} = \overline{(AB)_{ji}} = \overline{\sum_{k=1}^3 a_{jk} b_{ki}} = \sum_{k=1}^3 \overline{a_{jk} b_{ki}} = \sum_{k=1}^3 \overline{b_{ki}} \cdot \overline{a_{jk}}.$$
-Mivel $\overline{b_{ki}} = (B^*)_{ik}$ és $\overline{a_{jk}} = (A^*)_{kj}$:
-$$((AB)^*)_{ij} = \sum_{k=1}^3 (B^*)_{ik} (A^*)_{kj} = (B^* A^*)_{ij}.$$
-Ez minden koordinátára igaz, így $(AB)^* = B^* A^*$. $\blacksquare$
-
-**e) Ha $A$ invertálható, akkor $A^*$ is invertálható és $(A^*)^{-1} = (A^{-1})^*$:**
-Mivel $A$ invertálható, létezik $A^{-1}$, amelyre $A A^{-1} = A^{-1} A = I$, ahol $I$ a $3 \times 3$-as egységmátrix.
-Alkalmazzuk mindkét egyenlőségre a d) pontban igazolt szorzási szabályt:
-$$(A A^{-1})^* = (A^{-1})^* A^* \quad \text{és} \quad I^* = \overline{I^T} = \overline{I} = I.$$
-Így:
-$$(A^{-1})^* A^* = I.$$
-Hasonlóan a másik sorrendre:
-$$(A^{-1} A)^* = A^* (A^{-1})^* = I^* = I.$$
-Mivel $(A^{-1})^*$ mindkét oldalról megszorozva $A^*$-ot az egységmátrixot adja, az invertálhatóság definíciója szerint $A^*$ invertálható, és inverze
-$$(A^*)^{-1} = (A^{-1})^*. \quad \blacksquare$$
-
-**f) $\det(A^*) = \overline{\det(A)}$:**
-A transzponált mátrix determinánsa megegyezik az eredeti mátrix determinánsával: $\det(M^T) = \det(M)$.
-Ezért:
-$$\det(A^*) = \det(\overline{A^T}) = \det(\overline{A}^T) = \det(\overline{A}).$$
-A determináns Leibniz-féle permutációs definíciója szerint:
-$$\det(\overline{A}) = \sum_{\sigma \in S_3} \operatorname{sgn}(\sigma) \prod_{i=1}^3 \overline{a_{i,\sigma(i)}}.$$
-Mivel az összeg és szorzat konjugáltja megegyezik a konjugáltak összegével és szorzatával, valamint $\operatorname{sgn}(\sigma) \in \{+1, -1\} \subset \mathbb{R}$:
-$$\det(\overline{A}) = \overline{\sum_{\sigma \in S_3} \operatorname{sgn}(\sigma) \prod_{i=1}^3 a_{i,\sigma(i)}} = \overline{\det(A)}.$$
-Tehát $\det(A^*) = \overline{\det(A)}$. $\blacksquare$
+*Levezetés:*
+1. **Szorzattá alakítás:**
+   Alkalmazzuk a négyzetek különbségének azonosságát a bal oldalon:
+   $$(x - y)(x + y) = 32.$$
+2. **A szorzótényezők tulajdonságai:**
+   Vezessük be az $u = x - y$ és $v = x + y$ jelöléseket.
+   Mivel a feladat feltétele szerint $x, y \in \mathbb{Z}^+$ (azaz $x \ge 1, y \ge 1$ egész számok):
+   - $v = x + y \ge 1 + 1 = 2 > 0$, így $v$ pozitív egész.
+   - Mivel $u \cdot v = 32 > 0$ és $v > 0$, ebből következik, hogy $u = x - y > 0$ is szigorúan pozitív egész.
+   - Mivel $y > 0$, ezért $x - y < x + y$, vagyis $u < v$.
+   - **Paritásvizsgálat:**
+     $$v - u = (x + y) - (x - y) = 2y.$$
+     Mivel $2y$ páros egész szám, $u$ és $v$ különbsége páros, ami azt jelenti, hogy $u$ és $v$ **azonos paritásúak** (vagy mindkettő páros, vagy mindkettő páratlan).
+     Mivel szorzatuk $u \cdot v = 32 = 2^5$ páros szám, nem lehet mindkettő páratlan, így $u$-nak és $v$-nek **mindkettőnek párosnak kell lennie**.
+3. **Lehetséges osztópárok vizsgálata:**
+   A 32 pozitív osztói: $1, 2, 4, 8, 16, 32$.
+   A lehetséges $(u, v)$ párok, amelyekre $u < v$, $u \cdot v = 32$, és mindkét tag páros:
+   - **1. eset: $u = 2, v = 16$.**
+     $$\begin{cases} x - y = 2 \\ x + y = 16 \end{cases}$$
+     A két egyenletet összeadva: $2x = 18 \implies x = 9$.
+     Kivonva a másodikat az elsőből: $2y = 14 \implies y = 7$.
+     Mindkettő pozitív egész.
+     *Ellenőrzés:* $9^2 - 7^2 = 81 - 49 = 32$. Helyes!
+   - **2. eset: $u = 4, v = 8$.**
+     $$\begin{cases} x - y = 4 \\ x + y = 8 \end{cases}$$
+     A két egyenletet összeadva: $2x = 12 \implies x = 6$.
+     Kivonva: $2y = 4 \implies y = 2$.
+     Mindkettő pozitív egész.
+     *Ellenőrzés:* $6^2 - 2^2 = 36 - 4 = 32$. Helyes!
+4. **Teljesség:**
+   Mivel $u < v$ és $u \cdot v = 32$, szükségképpen $u < \sqrt{32} \approx 5{,}65$. Az $5{,}65$-nél kisebb páros pozitív egészek kizárólag a 2 és a 4, így más eset nem létezik.
+   *(Az egyetlen további pozitív osztópár az $u = 1, v = 32$ volna, de itt $u$ páratlan és $v$ páros, a paritásuk különbözik, ami $2x = 33 \implies x = \frac{33}{2} \notin \mathbb{Z}$ nem egész megoldásra vezetne.)*
+   Az egyenletnek tehát pontosan két pozitív egész megoldáspárja van: $(6, 2)$ és $(9, 7)$.
 
 ::: elmelet
-**Elméleti háttér — adjungált (Hermite-féle transzponált) tulajdonságai.** A komplex vektorterekben a transzponálás természetes megfelelője a transzponált konjugált (más néven Hermite-féle adjungált, $A^* = A^H$). A művelet anti-lineáris és anti-multiplikatív ($(AB)^* = B^*A^*$), a determinánst pedig komplex konjugálja. Azok a mátrixok, amelyekre $A^* = A$, az önadjungált (vagy Hermite-féle) mátrixok, amelyek a valós szimmetrikus mátrixok komplex megfelelői.
+**Elméleti háttér — szorzattá alakítható diofantikus egyenletek.**
+- Az $x^2 - y^2 = c$ típusú egyenletek az $(x - y)(x + y) = c$ faktorizációval a $c$ egész szám osztópárjainak felbontására vezethetők vissza.
+- A paritáskulcs: $x + y$ és $x - y$ paritása mindig megegyezik, mert összegük és különbségük ($2x$, illetve $2y$) páros. Emiatt $c \equiv 2 \pmod 4$ esetén az egyenletnek egyáltalán nincs egész megoldása, páros $c$ esetén pedig mindkét tényezőnek párosnak kell lennie.
 :::
