@@ -27,7 +27,17 @@ A sűrűsödési értékek $\{-2, 0, 2, 4\}$, így **$\liminf b_n = -2$, $\limsu
 c) A sorozat a $\frac{k}{m}$ ($m \ge 2$, $1 \le k \le m - 1$) törtek felsorolása. Minden tag $(0, 1)$-ben van, $\frac1m \to 0$ és $\frac{m-1}{m} \to 1$ részsorozatok. Sőt minden $x \in [0, 1]$ sűrűsödési érték (minden $(0,1)$-beli racionális szám végtelen sokszor szerepel bővített alakokban, és ezek sűrűek). Így **$\liminf = 0$, $\limsup = 1$**.
 
 ::: elmelet
-**Elméleti háttér — sűrűsödési értékek, $\limsup$, $\liminf$.** $x$ **sűrűsödési értéke** $(a_n)$-nek, ha van hozzá tartó részsorozat (ekvivalensen: minden környezete végtelen sok tagot tartalmaz). Korlátos sorozatra $\limsup a_n$ a legnagyobb, $\liminf a_n$ a legkisebb sűrűsödési érték. Ha a sorozat véges sok konvergens részsorozatra bomlik (páros/páratlan indexek, periodikus mintázat), a sűrűsödési értékek pontosan ezek határértékei.
+**Elméleti háttér — sűrűsödési értékek, $\limsup$ és $\liminf$.**
+
+*Részsorozat.* Ha $n_1 < n_2 < \dots$ szigorúan növő indexsorozat, az $(a_{n_k})$ sorozat az $(a_n)$ **részsorozata**. Konvergens sorozat minden részsorozata ugyanahhoz tart; a fordítottja nem igaz, de ha a sorozat véges sok olyan részsorozatra bomlik (az indexhalmazok lefedik $\mathbb{N}$-et), amelyek mind ugyanahhoz tartanak, akkor az egész is.
+
+*Sűrűsödési érték.* $s \in \overline{\mathbb R}$ az $(a_n)$ **sűrűsödési értéke**, ha van hozzá tartó részsorozat; ekvivalensen (véges $s$-re) $s$ minden környezete végtelen sok tagot tartalmaz. Jelölje $S$ a sűrűsödési értékek halmazát. A **Bolzano–Weierstrass-tétel** szerint korlátos sorozatra $S \ne \emptyset$; tágabb értelemben ($\pm\infty$-t is megengedve) mindig $S \ne \emptyset$.
+
+*$\limsup$ és $\liminf$.* $\limsup a_n = \max S$ és $\liminf a_n = \min S$ — a 65. feladat szerint a maximum és a minimum létezik (az $S$ halmaz zárt). Ekvivalens definíció: $\limsup a_n = \lim_{n\to\infty}\sup_{k \ge n}a_k$, $\liminf a_n = \lim_{n\to\infty}\inf_{k \ge n}a_k$.
+
+*Gyakorlati számolás.* Ha a sorozat véges sok konvergens részsorozatra bontható (páros/páratlan indexek, maradékosztályok modulo $m$), akkor $S$ pontosan ezek határértékeinek halmaza — más sűrűsödési érték nem lehet, mert minden részsorozatnak végtelen sok tagja esik valamelyik osztályba. A b) részben a $4$-es periódus miatt négy állandó részsorozat van.
+
+*Végtelen sok sűrűsödési érték.* A c) sorozatban minden $\frac pq \in (0, 1)$ végtelen sokszor szerepel ($\frac{p}{q} = \frac{2p}{2q} = \dots$), és a racionálisok sűrűek, ezért $S = [0, 1]$: egy sorozat sűrűsödési értékeinek halmaza lehet egy egész intervallum is. (Általában: $S$ mindig zárt halmaz, és minden nem üres zárt halmaz előáll egy sorozat sűrűsödési értékeinek halmazaként.)
 :::
 
 ## 64. feladat
@@ -45,7 +55,17 @@ Használjuk a $\limsup a_n = \lim_{n\to\infty} M_n$, $\liminf a_n = \lim_{n\to\i
 (Ha a $\limsup$-ot a legnagyobb sűrűsödési értékként definiáltuk, a 65. feladat mutatja, hogy a két definíció megegyezik.)
 
 ::: elmelet
-**Elméleti háttér — a $\limsup$ mint a „farkak” szuprémumainak határértéke.** $M_n = \sup_{k \ge n} a_k$ monoton fogyó, $m_n = \inf_{k \ge n} a_k$ monoton növő, így mindkettőnek van határértéke (a bővített számegyenesen): ezek a $\limsup$ és a $\liminf$. Mivel $m_n \le a_n \le M_n$, a **rendőrelv** adja az egyik irányt; a másik irányban a konvergencia definíciója a farkakat egy $2\varepsilon$ széles sávba szorítja.
+**Elméleti háttér — a „farkak” és a konvergencia jellemzése $\limsup$-pal, $\liminf$-fel.**
+
+*A farkak szuprémuma és infimuma.* Az $n$-edik farok $\{a_k : k \ge n\}$; legyen $M_n = \sup_{k \ge n} a_k$ és $m_n = \inf_{k \ge n} a_k$. Ha $n$ nő, a farok szűkül, ezért $M_n$ **monoton fogyó**, $m_n$ **monoton növő** (a szuprémum monotonitása, 1. feladatlap). Monoton sorozatnak a bővített számegyenesen mindig van határértéke, így
+$$\limsup a_n = \lim M_n = \inf_n M_n, \qquad \liminf a_n = \lim m_n = \sup_n m_n$$
+mindig létezik $\overline{\mathbb{R}}$-ben. Mindig $m_n \le a_n \le M_n$, így $\liminf a_n \le \limsup a_n$.
+
+*A tétel.* $a_n \to a \in \mathbb{R} \iff \liminf a_n = \limsup a_n = a$. A „$\Leftarrow$” irány a rendőrelv ($m_n \le a_n \le M_n$), a „$\Rightarrow$” irány abból jön, hogy ha egy indextől minden tag az $(a - \varepsilon, a + \varepsilon)$-ban van, a farok szuprémuma és infimuma is az $[a - \varepsilon, a + \varepsilon]$-ban van. Végtelen határértékre ugyanez: $a_n \to +\infty \iff \liminf a_n = +\infty$.
+
+*Mire jó?* A $\limsup$ és $\liminf$ **mindig létezik**, a határérték nem. Ezért becslésekben kényelmes: ha egy sorozatról csak egyenlőtlenségeket tudunk (például $a_n \le b_n + \frac1n$), $\limsup$-okra áttérve ($\limsup a_n \le \limsup b_n$) nem kell előre tudni, hogy a határértékek léteznek. A végén a konvergenciát a két érték egyezése adja.
+
+*A gyökkritérium előzetes.* A $\sum a_n$ sor konvergenciáját a $\limsup \sqrt[n]{|a_n|}$ értéke dönti el ($< 1$: konvergens, $> 1$: divergens) — itt a $\limsup$ azért kell, mert $\sqrt[n]{|a_n|}$-nek gyakran nincs határértéke.
 :::
 
 ## 65. feladat
@@ -63,7 +83,18 @@ Legyen $a = \limsup a_n = \lim M_n$, ahol $M_n = \sup_{k \ge n} a_k \downarrow a
 Tehát $a = \max\{x : x \text{ sűrűsödési érték}\} = \sup\{\dots\}$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — a két $\limsup$-definíció egyezése.** A „$\lim M_n$” és a „legnagyobb sűrűsödési érték” definíció ugyanazt adja. Két lépés: (1) $a$ maga sűrűsödési érték (minden környezetébe végtelen sok tag esik, mert a farkak szuprémuma közel van $a$-hoz, és a szuprémum-jellemzés szerint van is tag a közelében); (2) minden részsorozat-határérték legfeljebb $a$, mert a részsorozat tagjai a megfelelő farok szuprémuma alatt vannak, és **egyenlőtlenség határátmenetben megmarad**.
+**Elméleti háttér — a két $\limsup$-definíció egyezése.**
+
+*A két definíció.* (1) $\limsup a_n = \lim_n \sup_{k \ge n} a_k$ (a farkak szuprémumainak határértéke); (2) $\limsup a_n = \sup S$, ahol $S$ a sűrűsödési értékek halmaza. A feladat az ekvivalenciát mutatja meg véges értékre, sőt azt is, hogy $\sup S$ maximum.
+
+*A bizonyítás két lépése.*
+
+1. **$a$ sűrűsödési érték.** A farkak szuprémumai felülről közelítenek $a$-hoz, és mindegyik farokban van az $a$-hoz közeli tag (a szuprémum $\varepsilon$-os jellemzése). Mivel ez *minden* farokra igaz, tetszőlegesen nagy indexű, $a$-hoz közeli tag van — vagyis végtelen sok.
+2. **Minden sűrűsödési érték $\le a$.** Egy részsorozat tagjai a megfelelő farok szuprémuma alatt maradnak ($a_{n_j} \le M_{n_j}$), és mivel **egyenlőtlenség határátmenetben megmarad** (ha $x_n \le y_n$ és mindkettő konvergens, akkor $\lim x_n \le \lim y_n$), a határértékük is $\le a$.
+
+*Egy részsorozat explicit kiválasztása.* Az 1. lépésből közvetlenül is készíthető $a$-hoz tartó részsorozat: $n_1$ legyen olyan, hogy $|a_{n_1} - a| < 1$; ha $n_j$ megvan, $n_{j+1} > n_j$ legyen olyan, hogy $|a_{n_{j+1}} - a| < \frac{1}{j+1}$. Ilyen mindig van, mert végtelen sok tag esik minden környezetbe. Ez az „indexek rekurzív kiválasztása” a részsorozatos bizonyítások standard lépése.
+
+*Az egyenlőtlenség határátmenetben.* Ha $x_n \le y_n$ (egy indextől), $x_n \to x$, $y_n \to y$, akkor $x \le y$. *Bizonyítás:* ha $x > y$ volna, $\varepsilon = \frac{x - y}{2}$-vel egy indextől $x_n > x - \varepsilon = y + \varepsilon > y_n$, ellentmondás. Figyelem: **szigorú** egyenlőtlenség nem marad meg ($\frac1n > 0$, de a határérték $0$).
 :::
 
 ## 66. feladat
@@ -79,7 +110,25 @@ Ismét $M_n = \sup_{k \ge n} a_k$, és $\limsup a_n = \lim M_n$.
 ($\Leftarrow$) Legyen $\varepsilon > 0$. Mivel csak véges sok $n$-re $a_n > a + \varepsilon$, van $N$, hogy $n \ge N$ esetén $a_n \le a + \varepsilon$, így $M_n \le a + \varepsilon$ (a sorozat felülről korlátos, $M_n$ véges). Mivel végtelen sok $n$-re $a_n > a - \varepsilon$, minden $n$-re van $k \ge n$ ilyen, tehát $M_n > a - \varepsilon$. Így $n \ge N$-re $|M_n - a| \le \varepsilon$, vagyis $M_n \to a$, $\limsup a_n = a$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — a $\limsup$ $\varepsilon$-os jellemzése.** $\limsup a_n = a$ pontosan akkor, ha minden $\varepsilon > 0$-ra (1) $a + \varepsilon$ fölött csak véges sok tag van (az $a$ „aszimptotikus felső korlát”), és (2) $a - \varepsilon$ fölött végtelen sok tag van ($a$-nál kisebb szám már nem ilyen). Ez a szuprémum $\varepsilon$-os jellemzésének „végtelenbeli” megfelelője: a „minden elem” helyére „véges sok kivétellel minden elem”, a „van elem” helyére „végtelen sok elem” kerül.
+**Elméleti háttér — a $\limsup$ $\varepsilon$-os jellemzése és a „végtelen sok / véges sok” nyelv.**
+
+*A jellemzés.* Véges $a$-ra $\limsup a_n = a$ pontosan akkor, ha minden $\varepsilon > 0$-ra
+
+1. $a_n > a + \varepsilon$ csak **véges sok** $n$-re (azaz majdnem minden tag $\le a + \varepsilon$), és
+2. $a_n > a - \varepsilon$ **végtelen sok** $n$-re.
+
+A $\liminf$-re ugyanez megfordított egyenlőtlenségekkel.
+
+*Párhuzam a szuprémummal.* A szuprémum jellemzése: (1') minden elem $\le s$, (2') van elem $> s - \varepsilon$. A $\limsup$-nál a „minden” helyett „majdnem minden” (véges sok kivétellel), a „van” helyett „végtelen sok” áll. A $\limsup$ tehát a sorozat „aszimptotikus szuprémuma”: véges sok tag megváltoztatása nem befolyásolja, és a „kiugró” korai tagok nem számítanak.
+
+*Végtelen értékek.* $\limsup a_n = +\infty \iff$ a sorozat felülről nem korlátos; $\limsup a_n = -\infty \iff a_n \to -\infty$.
+
+*Hogyan használjuk a gyakorlatban?*
+
+- **Felső becslés** $\limsup a_n \le c$-re: elég megmutatni, hogy minden $\varepsilon$-ra egy indextől $a_n \le c + \varepsilon$.
+- **Alsó becslés** $\limsup a_n \ge c$-re: elég egy részsorozat, amely $c$-hez (vagy annál nagyobbhoz) tart.
+
+*Példa.* $a_n = \sin n$: minden $\varepsilon$-ra végtelen sok $n$-re $\sin n > 1 - \varepsilon$ (mert az $n \bmod 2\pi$ maradékok sűrűek a $[0, 2\pi]$-ben, $\pi$ irracionalitása miatt), és soha $\sin n > 1$. Így $\limsup \sin n = 1$, és hasonlóan $\liminf \sin n = -1$; sőt a sűrűsödési értékek halmaza az egész $[-1, 1]$.
 :::
 
 ## 67. feladat
@@ -98,7 +147,19 @@ $$S_N = \frac13\left[\left(1 - \frac14\right) + \left(\frac14 - \frac17\right) +
 A sor összege $\dfrac13$.
 
 ::: elmelet
-**Elméleti háttér — mértani és teleszkopikus sorok.** $\sum_{n=0}^\infty q^n = \frac{1}{1-q}$, ha $|q| < 1$; eltolt kezdőindexnél $\sum_{n=k}^\infty q^n = \frac{q^k}{1 - q}$ (első tag per $(1 - q)$). Egy sor összege a **részletösszegek** sorozatának határértéke; ha a tagok parciális törtekre bonthatók, $\frac{1}{(an+b)(an+b+a)} = \frac1a\left(\frac{1}{an+b} - \frac{1}{an+b+a}\right)$, a részletösszeg teleszkopikus, és a határérték közvetlenül számolható.
+**Elméleti háttér — végtelen sorok: részletösszeg, mértani sor, teleszkopikus sor.**
+
+*Definíció.* A $\sum_{n=1}^\infty a_n$ sor **konvergens**, ha az $S_N = a_1 + \dots + a_N$ **részletösszegek** sorozata konvergens; ekkor a sor **összege** $\lim S_N$. A sor tehát nem „végtelen sok szám összeadása”, hanem egy sorozat határértéke.
+
+*Mértani sor.* $\sum_{n=0}^{N-1} q^n = \frac{1 - q^N}{1 - q}$ ($q \ne 1$), így $|q| < 1$ esetén $q^N \to 0$ miatt
+$$\sum_{n=0}^\infty q^n = \frac{1}{1 - q}, \qquad \sum_{n=k}^\infty cq^n = \frac{cq^k}{1 - q} = \frac{\text{első tag}}{1 - \text{hányados}}.$$
+$|q| \ge 1$ esetén a sor divergens (a tagok nem tartanak $0$-hoz). Az a) részben ügyelni kell az **első tagra**: $n = 2$-nél $21 \cdot \frac49 = \frac{28}{3}$, és ezt osztjuk $1 - \frac23$-dal.
+
+*Teleszkopikus sor.* Ha $a_n = b_n - b_{n+1}$, akkor $S_N = b_1 - b_{N+1}$, és a sor pontosan akkor konvergens, ha $(b_n)$ az, összege $b_1 - \lim b_n$. A parciális törtekre bontás: $\frac{1}{(3n-2)(3n+1)} = \frac{A}{3n - 2} + \frac{B}{3n + 1}$, ahol $1 = A(3n + 1) + B(3n - 2)$; $n = \frac23$-ot helyettesítve $A = \frac13$, $n = -\frac13$-ot $B = -\frac13$. Általában $\frac{1}{(an + b)(an + b + d)} = \frac1d\left(\frac{1}{an + b} - \frac{1}{an + b + d}\right)$.
+
+*Szükséges feltétel.* Ha $\sum a_n$ konvergens, akkor $a_n = S_n - S_{n-1} \to 0$. Nem elégséges: $\sum\frac1n$ divergens. A konvergencia eldöntésére a Cauchy-kritérium ($\sum_{k=n}^m a_k$ kicsi minden elég nagy $n \le m$-re), pozitív tagú soroknál az összehasonlító-, hányados- és gyökkritérium szolgál.
+
+*Nevezetes összegek.* $\sum_{n=1}^\infty \frac{1}{n(n+1)} = 1$ (teleszkopikus), $\sum_{n=0}^\infty \frac{1}{n!} = e$, $\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}$ (Euler; a konvergencia az előzőből és $\frac{1}{n^2} < \frac{1}{n(n-1)}$-ből látszik, az érték kiszámítása mélyebb).
 :::
 
 ## 68. feladat
@@ -121,7 +182,19 @@ Feltesszük, hogy a sorozatok korlátosak (különben a $\pm\infty$-re vonatkoz�
 - $x_n = y_n = (-1)^n$: $\liminf(x_n + y_n) = -2 < 0 = 1 + (-1) = \limsup x_n + \liminf y_n$.
 
 ::: elmelet
-**Elméleti háttér — $\liminf$ szuperadditivitása.** Az infimum „szuperadditív”: $\inf(x + y) \ge \inf x + \inf y$ (ugyanazon indexhalmazon), mert minden tagra $x_k + y_k \ge \inf x + \inf y$. A farkakra alkalmazva és határt véve kapjuk az első egyenlőtlenséget; a másodikhoz az egyik sorozatot a farka szuprémumával becsüljük. Egyenlőség általában nincs, mert a két sorozat „rossz” tagjai különböző indexeken lehetnek.
+**Elméleti háttér — $\liminf$, $\limsup$ és az összeadás.**
+
+*Az infimum szuperadditív.* Ugyanazon indexhalmazon $\inf_k(x_k + y_k) \ge \inf_k x_k + \inf_k y_k$, mert minden $k$-ra $x_k + y_k \ge \inf x + \inf y$ (egy alsó korlát). Egyenlőség általában nincs: a két infimum különböző indexeken „valósulhat meg”. Hasonlóan a szuprémum szubadditív: $\sup(x + y) \le \sup x + \sup y$.
+
+*A teljes egyenlőtlenséglánc* (korlátos sorozatokra):
+$$\liminf x_n + \liminf y_n \le \liminf(x_n + y_n) \le \liminf x_n + \limsup y_n \le \limsup(x_n + y_n) \le \limsup x_n + \limsup y_n.$$
+(A feladat második egyenlőtlensége a $x$ és $y$ szerepcseréjével ugyanez.) A középső tagok mutatják: ha az egyik sorozat konvergens, például $y_n \to y$, akkor $\liminf(x_n + y_n) = \liminf x_n + y$ és $\limsup(x_n + y_n) = \limsup x_n + y$ — konvergens sorozat hozzáadása „eltolja” a sűrűsödési értékeket.
+
+*Szorzatra* (nemnegatív, korlátos sorozatokra) hasonlóan $\liminf x_n \cdot \liminf y_n \le \liminf x_ny_n \le \liminf x_n \cdot \limsup y_n$.
+
+*Mi a tanulság a példákból?* Ha a két sorozat „ellenütemben” oszcillál ($(-1)^n$ és $(-1)^{n+1}$), az összeg kisimul, és a $\liminf$ nagyobb lesz a $\liminf$-ek összegénél. Ha „egyszerre” oszcillálnak, az oszcilláció felerősödik. A $\liminf$ és a $\limsup$ tehát nem lineáris — csak egyenlőtlenségeket tudunk mondani, és ezeket a sorozatok összehangoltsága dönti el.
+
+*Végtelen értékek.* Ha valamelyik $\pm\infty$, az egyenlőtlenségek a bővített számegyenesen is érvényesek, feltéve, hogy nem lép fel $\infty - \infty$ (például $x_n = n$, $y_n = -n$ esetén a bal oldal értelmetlen).
 :::
 
 ## 69. feladat
@@ -139,7 +212,15 @@ Feltesszük, hogy a sorozatok korlátosak (különben a $\pm\infty$-re vonatkoz�
 **$x \cdot [1/x]$**: mivel $[1/x] = \frac1x - \{1/x\}$, ezért $x[1/x] = 1 - x\{1/x\}$. Ha $\frac{1}{k+1} < x \le \frac1k$, akkor $x[1/x] = kx$: egy $\frac{k}{k+1}$-től $1$-ig emelkedő szakasz. $x > 1$-re az érték $0$, $x \le -1$-re $-x$ (pontosan $x = -1$-ben $1$). Mivel $0 \le \{1/x\} < 1$, a grafikon $x > 0$-ra az $y = 1 - x$ és $y = 1$, $x < 0$-ra az $y = 1$ és $y = 1 - x$ egyenesek között halad, így $\lim_{x \to 0} x[1/x] = 1$ (ld. 83. f).
 
 ::: elmelet
-**Elméleti háttér — egészrész és törtrész.** $[x]$ a legnagyobb $x$-nél nem nagyobb egész, $\{x\} = x - [x] \in [0, 1)$. Összetett függvénynél ($\{1/x\}$) azokat az intervallumokat keressük, ahol a belső függvény értéke egy $[k, k+1)$ intervallumba esik — ott a külső függvény képlete egyszerű. Határértékhez a $0 \le \{t\} < 1$ becslés és a **rendőrelv** elég.
+**Elméleti háttér — egészrész, törtrész és a szakaszonkénti vizsgálat.**
+
+*Definíciók.* $[x]$ (egészrész) a legnagyobb $x$-nél nem nagyobb egész: $[x] \le x < [x] + 1$. $\{x\} = x - [x] \in [0, 1)$ a törtrész. Tulajdonságok: $[x + n] = [x] + n$ és $\{x + n\} = \{x\}$ minden egész $n$-re ($\{x\}$ $1$ szerint periodikus); $[-x] = -[x] - 1$, ha $x \notin \mathbb{Z}$. Negatív számoknál figyelem: $[-2{,}3] = -3$, $\{-2{,}3\} = 0{,}7$.
+
+*Összetett függvények vizsgálata.* Az $f(g(x))$ alakú függvényeknél, ahol $f$ szakaszonként adott (itt $[\cdot]$ vagy $\{\cdot\}$), azokat az $x$-intervallumokat keressük, amelyeken $g(x)$ egyetlen szakaszban marad. Itt $g(x) = \frac1x$, és $k \le \frac1x < k + 1 \iff \frac{1}{k+1} < x \le \frac1k$ ($x > 0$). Ezeken az intervallumokon a függvény képlete egyszerű ($\frac1x - k$, illetve $kx$), és a grafikon „darabokból” rakható össze. Ahogy $x \to 0^+$, a darabok egyre rövidebbek ($\frac1k - \frac{1}{k+1} = \frac{1}{k(k+1)}$).
+
+*Határérték rendőrelvvel.* $x \cdot [1/x] = 1 - x\{1/x\}$, és $0 \le x\{1/x\} < |x|$ (pozitív $x$-re), így $|x[1/x] - 1| < |x| \to 0$. A függvény a $0$-ban nincs értelmezve, mégis van határértéke ($1$): a határérték nem függ a pontbeli értéktől.
+
+*Határérték hiánya.* $\{1/x\}$-nek a $0$-ban nincs határértéke: az átviteli elv szerint elég két, $0$-hoz tartó sorozat, amelyeken a függvényértékek különböző határértékhez tartanak. Például $x_n = \frac1n$-re $\{1/x_n\} = 0$, $x_n = \frac{2}{2n + 1}$-re $\{1/x_n\} = \frac12$. Sőt minden $c \in [0, 1)$ elérhető így: a függvény a $0$ körül „minden értéket végtelen sokszor felvesz”.
 :::
 
 ## 70. feladat
@@ -153,7 +234,21 @@ $$f(x) = \begin{cases} x, & 0 \le x < 1, \\ 0, & x = 1. \end{cases}$$
 $f$ korlátos ($0 \le f < 1$), értékkészlete $[0, 1)$, amelynek szuprémuma $1$, de ezt $f$ sehol sem veszi fel – nincs legnagyobb értéke. (Folytonos függvénnyel ez Weierstrass tétele miatt lehetetlen volna.)
 
 ::: elmelet
-**Elméleti háttér — korlátos kontra maximumot felvevő függvény.** Korlátos függvény értékkészletének van szuprémuma (teljességi axióma), de azt nem feltétlenül veszi fel. **Weierstrass tétele** szerint *folytonos* függvény korlátos és zárt intervallumon felveszi a maximumát — ezért az ellenpéldának szakadásosnak kell lennie (itt az $x = 1$ pontban).
+**Elméleti háttér — korlátosság, szuprémum és a Weierstrass-tétel.**
+
+*Függvény korlátossága.* $f : D \to \mathbb{R}$ felülről korlátos, ha az $R(f) = f(D)$ értékkészlet az. Ekkor a teljességi axióma szerint létezik $\sup f = \sup R(f)$, de $f$ nem feltétlenül veszi fel (nincs **abszolút maximuma**). Az abszolút maximumhely olyan $x_0$, amelyre $f(x) \le f(x_0)$ minden $x \in D$-re.
+
+*Weierstrass tétele.* Ha $f$ **folytonos** egy **korlátos és zárt** $[a, b]$ intervallumon, akkor korlátos, és felveszi a maximumát és a minimumát. *Bizonyítás vázlata:* legyen $M = \sup f$ (először azt is meg kell mutatni, hogy véges), és $x_n \in [a, b]$ olyan, hogy $f(x_n) \to M$. A Bolzano–Weierstrass-tétel szerint van konvergens részsorozat, $x_{n_k} \to x_0 \in [a, b]$ (a zártság miatt a határ is az intervallumban van). A folytonosság miatt $f(x_{n_k}) \to f(x_0)$, így $f(x_0) = M$.
+
+*A feltételek szükségessége.* Mindhárom feltétel kell:
+
+- **folytonosság** nélkül: a feladat példája ($x \mapsto x$ az $[0, 1)$-en, $f(1) = 0$);
+- **zártság** nélkül: $f(x) = x$ a $(0, 1)$-en — nincs maximuma, sem minimuma;
+- **korlátosság** nélkül: $f(x) = x$ a $[0, \infty)$-en — felülről sem korlátos.
+
+Sőt folytonosság nélkül a korlátosság is elveszhet: $f(x) = \frac1x$, $f(0) = 0$ a $[0, 1]$-en nem korlátos.
+
+*Lokális szélsőérték.* $x_0$ **lokális maximumhely**, ha van környezete, amelyben $f(x) \le f(x_0)$. Abszolút maximumhely mindig lokális is, fordítva nem. Differenciálható függvény belső lokális szélsőértékhelyén a derivált $0$ (Fermat) — ez a szélsőérték-keresés fő eszköze lesz.
 :::
 
 ## 71. feladat
@@ -169,7 +264,19 @@ $$f^{-1}(x) = \frac{2x - 3}{3x - 2} = f(x),$$
 vagyis **$f$ önmaga inverze** ($f \circ f = \mathrm{id}$).
 
 ::: elmelet
-**Elméleti háttér — inverz függvény.** $f$ invertálható, ha injektív; az inverz az $y = f(x)$ egyenlet $x$-re való megoldása. Az értelmezési tartomány és az értékkészlet pontos megadása része a feladatnak (itt $\frac23$ kimarad mindkettőből). A **Möbius-típusú** $\frac{ax + b}{cx + d}$ függvények inverze is ilyen alakú; itt $a = -d$, ami éppen az **involúció** ($f \circ f = \mathrm{id}$) feltétele.
+**Elméleti háttér — injektivitás, inverz függvény, törtlineáris függvények.**
+
+*Inverz.* Ha $f : A \to B$ bijekció, az $f^{-1} : B \to A$ inverz az az egyetlen függvény, amelyre $f^{-1}(f(x)) = x$ ($x \in A$) és $f(f^{-1}(y)) = y$ ($y \in B$). Injektív $f$ esetén $f : A \to f(A)$ bijekció, így az értékkészleten mindig invertálható. A grafikon: $f^{-1}$ grafikonja $f$ grafikonjának tükörképe az $y = x$ egyenesre.
+
+*Kiszámítás.* Az $y = f(x)$ egyenletet $x$-re oldjuk meg; ha minden $y \in B$-re pontosan egy megoldás van, az adja $f^{-1}(y)$-t. A megoldhatóság vizsgálata egyúttal az **értékkészletet** is megadja (itt $y = \frac23$-ra nincs megoldás).
+
+*Törtlineáris (Möbius-) függvények.* $f(x) = \frac{ax + b}{cx + d}$, $ad - bc \ne 0$, $c \ne 0$. Az értelmezési tartomány $\mathbb{R} \setminus \{-\frac dc\}$, az értékkészlet $\mathbb{R} \setminus \{\frac ac\}$ (a vízszintes aszimptota), és az inverz
+$$f^{-1}(y) = \frac{dy - b}{-cy + a},$$
+ami ismét törtlineáris. A mátrixos szemlélet: $f \leftrightarrow \begin{pmatrix} a & b \\ c & d\end{pmatrix}$, a kompozíciónak a mátrixok szorzata, az inverznek az inverz mátrix (konstans szorzó erejéig) felel meg. **Involúció** ($f^{-1} = f$) pontosan akkor, ha $a = -d$ (vagy $f$ az identitás).
+
+*A feladatban.* $a = 2$, $b = -3$, $c = 3$, $d = -2$: $ad - bc = -4 + 9 = 5 \ne 0$, és $a = -d$, ezért $f \circ f = \mathrm{id}$. Ellenőrzés: $f(f(x)) = \frac{2\frac{2x-3}{3x-2} - 3}{3\frac{2x-3}{3x-2} - 2} = \frac{4x - 6 - 9x + 6}{6x - 9 - 6x + 4} = \frac{-5x}{-5} = x$.
+
+*A grafikon szimmetriája.* Involúció grafikonja szimmetrikus az $y = x$ egyenesre (önmaga tükörképe).
 :::
 
 ## 72. feladat
@@ -200,7 +307,17 @@ $$f(x) = \begin{cases} 2x, & 0 \le x < \frac12, \\ 2x + 1, & \frac12 \le x \le 1
 d) **Nem létezik.** Ha $f$ növő, a $[0, 1)$ ősképe $0$-t tartalmazó intervallum, $(2, 3]$ ősképe $1$-et tartalmazó intervallum. Ha az első $[0, a]$ alakú, akkor $f(a) = \max f([0, a]) = \max [0, 1)$ – nincs ilyen. Ha az első $[0, a)$, akkor a második $[a, 1]$, és $f(a) = \min (2, 3]$ – nincs ilyen. Csökkenő $f$-re ugyanígy (a szerepek felcserélődnek).
 
 ::: elmelet
-**Elméleti háttér — monoton függvény értékkészlete.** Ha $f$ monoton nő $[a, b]$-n, akkor $f(a) = \min R(f)$ és $f(b) = \max R(f)$ — tehát az értékkészletnek van minimuma és maximuma. Monoton függvény ugrásai „hézagokat” hagynak az értékkészletben; konstans szakasz (nem szigorú monotonitás) segít, ha egy értéket egy intervallumon is fel kell venni. Nemlétezést úgy bizonyítunk, hogy az ősképek intervallumok, és a határpontjukban felvett érték valamelyik halmaz nem létező minimuma/maximuma volna.
+**Elméleti háttér — monoton függvények értékkészlete és ugrásai.**
+
+*Szélsőértékek.* Ha $f$ monoton nő $[a, b]$-n, akkor $f(a) \le f(x) \le f(b)$ minden $x$-re, így $R(f)$-nek van minimuma ($f(a)$) és maximuma ($f(b)$). Ezért a nyílt $(0, 1)$ értékkészlet lehetetlen.
+
+*Féloldali határértékek.* Monoton függvénynek minden pontban léteznek a féloldali határértékei: növő $f$-re $f(x_0 - 0) = \sup_{x < x_0} f(x)$ és $f(x_0 + 0) = \inf_{x > x_0} f(x)$, és $f(x_0 - 0) \le f(x_0) \le f(x_0 + 0)$. Monoton függvény szakadásai tehát csak **ugrások** lehetnek. Az ugrás az értékkészletben egy „hézagot” hagy: a $(f(x_0 - 0), f(x_0 + 0))$ intervallumból legfeljebb az $f(x_0)$ érték vehető fel.
+
+*Az értékkészlet szerkezete.* Növő $f$ esetén minden $y \in R(f)$ ősképe egy intervallum (esetleg egy pont), és az ősképek „sorban” következnek. Ezért ha $R(f) = A \cup B$, ahol $A$ minden eleme kisebb $B$ minden eleménél, akkor $f^{-1}(A)$ egy kezdőszelet, $f^{-1}(B)$ a maradék; a kettő határpontja vagy az egyikhez tartozik, és ott $f$ értéke $A$ maximuma vagy $B$ minimuma. Ha egyik sem létezik (mint a d) részben), ellentmondásra jutunk.
+
+*Megszámlálhatóság.* Monoton függvénynek legfeljebb megszámlálhatóan sok szakadási pontja van: minden ugráshoz rendeljünk egy racionális számot a $(f(x_0 - 0), f(x_0 + 0))$ hézagból; a hézagok diszjunktak, így a hozzárendelés injektív.
+
+*Szigorú monotonitás.* Szigorúan monoton függvény injektív, így minden értéket legfeljebb egyszer vesz fel — konstans szakasza nincs. Ezért a b) részben (ahol egy értéket, a $2$-t „ki kell tölteni” egy egész szakaszon a hézag áthidalásához, vagy egy határpontban két értéket kellene felvenni) csak nem szigorúan monoton függvény jó. Szigorúan monoton és **folytonos** függvény értékkészlete egy intervallum (Bolzano-tétel), és ilyenkor az inverz is folytonos.
 :::
 
 ## 73. feladat
@@ -230,7 +347,17 @@ $f$ páros: $f(-x) = f(x)$; $g$ páratlan: $g(-x) = -g(x)$.
 **c) $f$, $g$ páratlan:** $f \pm g$ **páratlan**, $f \cdot g$ **páros** ($(-f)(-g) = fg$), $f \circ g$ **páratlan**: $f(g(-x)) = f(-g(x)) = -f(g(x))$.
 
 ::: elmelet
-**Elméleti háttér — paritás és műveletek.** A paritás a $-x$ behelyettesítésére adott válasz: páros $f(-x) = f(x)$, páratlan $f(-x) = -f(x)$. Szorzatnál a paritások úgy viselkednek, mint az előjelek szorzása (páros $\cdot$ páratlan = páratlan); kompozíciónál, ha a belső függvény páratlan, a külső „dönt” ($f(g(-x)) = f(-g(x))$), ha páros, az eredmény mindig páros. Összegnél vegyes paritás esetén csak triviális esetben marad paritás.
+**Elméleti háttér — paritás, és a műveletek „előjelszabályai”.**
+
+*Definíciók.* Legyen $D(f)$ szimmetrikus a $0$-ra. $f$ **páros**, ha $f(-x) = f(x)$ (a grafikon szimmetrikus az $y$ tengelyre), **páratlan**, ha $f(-x) = -f(x)$ (a grafikon középpontosan szimmetrikus az origóra; ha $0 \in D(f)$, akkor $f(0) = 0$). Példák: $x^{2k}$, $|x|$, $\cos x$ párosak; $x^{2k+1}$, $\sin x$, $\operatorname{sgn} x$ páratlanok; az $[x]$ egészrész se nem páros, se nem páratlan.
+
+*Szorzat: előjelszabály.* Ha a páros függvényt $+1$-gyel, a páratlant $-1$-gyel jelöljük, a szorzat paritása a jelek szorzata: páros $\cdot$ páros = páros, páros $\cdot$ páratlan = páratlan, páratlan $\cdot$ páratlan = páros (mint $x \cdot x = x^2$). Ugyanez a hányadosra.
+
+*Kompozíció.* $f \circ g$-ben a belső függvény paritása dönt először: ha $g$ páros, $f \circ g$ mindig páros ($f(g(-x)) = f(g(x))$, $f$-től függetlenül!); ha $g$ páratlan, $f \circ g$ paritása $f$-é. Páratlan $\circ$ páratlan = páratlan (mint $\sin(x^3)$), páros $\circ$ páratlan = páros (mint $\cos(x^3)$).
+
+*Összeg.* Azonos paritású függvények összege megtartja a paritást (a páros és a páratlan függvények is egy-egy **alteret** alkotnak); vegyes paritásnál az összeg csak akkor páros vagy páratlan, ha az egyik tag azonosan nulla (74. b).
+
+*Mire jó a paritás?* Integráloknál: páratlan függvény integrálja szimmetrikus intervallumon $0$, párosé a fél intervallum kétszerese. Hatványsoroknál: páros függvény Taylor-sorában csak páros kitevők szerepelnek. Grafikonrajzolásnál: elég a $[0, \infty)$ részt megrajzolni.
 :::
 
 ## 74. feladat
@@ -252,7 +379,17 @@ $$p(x) = \frac{f(x) + f(-x)}{2}, \qquad q(x) = \frac{f(x) - f(-x)}{2}.$$
 Ekkor $p(-x) = p(x)$, $q(-x) = -q(x)$, és $p + q = f$. (A felbontás egyértelmű: ha $f = p + q = p' + q'$, akkor $p - p' = q' - q$ páros és páratlan, tehát a b) szerint $0$.)
 
 ::: elmelet
-**Elméleti háttér — páros–páratlan felbontás.** Minden függvény egyértelműen felbomlik páros és páratlan részre: $f(x) = \frac{f(x) + f(-x)}{2} + \frac{f(x) - f(-x)}{2}$. Az egyértelműség abból jön, hogy az egyetlen egyszerre páros és páratlan függvény az azonosan nulla. (Lineáris algebrai nyelven: a függvénytér a páros és a páratlan függvények alterének **direkt összege**.)
+**Elméleti háttér — a páros–páratlan felbontás és a direkt összeg.**
+
+*Egyértelmű felbontás.* Minden $f : \mathbb{R} \to \mathbb{R}$ függvény egyértelműen
+$$f = f_{\text{ps}} + f_{\text{ptl}}, \qquad f_{\text{ps}}(x) = \frac{f(x) + f(-x)}{2}, \quad f_{\text{ptl}}(x) = \frac{f(x) - f(-x)}{2}.$$
+*Hogyan lehet erre rájönni?* Ha $f = p + q$ ($p$ páros, $q$ páratlan), akkor $f(-x) = p(x) - q(x)$; a két egyenletet összeadva és kivonva $p$ és $q$ kifejezhető. Ez az „analízis-szintézis” módszer: feltesszük, hogy van megoldás, kiszámoljuk, minek kell lennie, majd ellenőrizzük, hogy az tényleg megoldás.
+
+*Példák.* $e^x = \cosh x + \sinh x$, ahol $\cosh x = \frac{e^x + e^{-x}}{2}$ (páros) és $\sinh x = \frac{e^x - e^{-x}}{2}$ (páratlan); polinomnál a páros és a páratlan fokú tagok összege; $\frac{1}{1 - x} = \frac{1}{1 - x^2} + \frac{x}{1 - x^2}$.
+
+*Lineáris algebrai szemlélet.* A valós függvények $V$ vektorterében a páros függvények $V_+$ és a páratlanok $V_-$ altere; $V_+ \cap V_- = \{0\}$ (b) rész) és $V_+ + V_- = V$ (c) rész), így $V = V_+ \oplus V_-$ **direkt összeg**. A felbontás a $T f(x) = f(-x)$ lineáris leképezés **sajátaltereire** bontás: $T^2 = I$, a sajátértékek $\pm 1$, és $\frac{I + T}{2}$, $\frac{I - T}{2}$ a két sajátaltérre vetítő projekciók.
+
+*Általánosítás.* Ugyanígy minden mátrix egyértelműen felbomlik szimmetrikus és ferdén szimmetrikus részre: $A = \frac{A + A^T}{2} + \frac{A - A^T}{2}$ (itt $T$ a transzponálás).
 :::
 
 ## 75*. feladat
@@ -278,7 +415,20 @@ c) **Igen.** Tekintsük az $x \sim y \iff x - y \in \mathbb{Q}$ ekvivalenciarel�
 (Kiválasztási axióma nélkül is konstruálható ilyen függvény, pl. Conway 13-as számrendszerre épülő függvénye.)
 
 ::: elmelet
-**Elméleti háttér — „mindenütt sűrűn” felvett értékek.** A konstrukció kulcsa egy olyan **sűrű** halmazrendszer, amelynek tagjai minden intervallumba belenyúlnak, és megszámlálható (a), b)) vagy kontinuum sok (c)) van belőlük. a)–b): a pontosan $q$ nevezőjű törtek elég nagy prím $q$-ra minden intervallumban előfordulnak, és egy minden értéket végtelen sokszor felsoroló sorozat osztja ki az értékeket. c): az $x - y \in \mathbb Q$ reláció osztályai ($x + \mathbb Q$) mind sűrűek, és kontinuum sok van belőlük; egy bijekció az osztályok és $\mathbb R$ között (kiválasztási axióma) adja a függvényt.
+**Elméleti háttér — patologikus függvények: sűrűség és számosság.**
+
+*Mit jelent a feltétel?* „$f$ minden $(a, b)$ intervallumon felvesz minden egész (racionális, valós) értéket” — vagyis minden $c$ értékre az $f^{-1}(c)$ szinthalmaz **sűrű**. A szinthalmazok páronként diszjunktak, tehát egy ilyen $f$-hez sok diszjunkt, sűrű halmaz kell: a)-ban megszámlálhatóan sok, c)-ben kontinuum sok.
+
+*A konstrukciós eszközök.*
+
+- **Megszámlálható sok diszjunkt sűrű halmaz:** a „pontosan $q$ nevezőjű” törtek halmazai ($q$ prím) diszjunktak, és bármely intervallumba belenyúlnak, ha $q$ elég nagy. Egy olyan sorozattal, amely minden értéket végtelen sokszor felvesz, minden értékhez végtelen sok ilyen halmaz jut — így minden intervallumban felbukkan. (Ugyanezt a 42. feladat $\mathbb Q + k\sqrt2$ halmazai is megtennék.)
+- **Kontinuum sok diszjunkt sűrű halmaz:** a $\mathbb{Q}$ szerinti mellékosztályok $x + \mathbb{Q}$. Minden osztály megszámlálható, és $\mathbb{R}$ az uniójuk, ezért az osztályok száma kontinuum (megszámlálható sok osztály uniója megszámlálható volna). Egy bijekció az osztályok és $\mathbb{R}$ között a **kiválasztási axiómát** igényli.
+
+*Darboux-tulajdonság.* Egy függvény **Darboux-tulajdonságú** (közbülsőérték-tulajdonságú), ha minden intervallumon minden két felvett érték közötti értéket is felvesz. A c) rész függvénye ilyen, mégis **sehol sem folytonos** — vagyis a közbülsőérték-tulajdonság nem jellemzi a folytonosságot. (A derivált függvények viszont mindig Darboux-tulajdonságúak, Darboux tétele szerint.)
+
+*Conway függvénye.* A kiválasztási axióma nélkül is adható konkrét c)-beli függvény: J. H. Conway „13-as alapú” függvénye a szám 13-as számrendszerbeli alakjának végéből olvas ki egy tetszőleges valós számot, és minden intervallumban minden ilyen „vég” előfordul. Ez mutatja, hogy a patológia nem a kiválasztási axióma terméke, csak a konstrukció egyszerűsödik vele.
+
+*Tanulság.* Az analízis „furcsa” függvényei (Dirichlet-függvény, Riemann-függvény, Conway-függvény) a fogalmak határait jelölik ki: megmutatják, mely tulajdonságok függetlenek egymástól, és miért kell a tételekben a feltételeket pontosan kimondani.
 :::
 
 ## Röpzhra
