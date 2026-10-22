@@ -3514,7 +3514,7 @@ Legyen $u = 4\left(\cos\frac{\pi}{3} + i\sin\frac{\pi}{3}\right)$ és $v = 2\lef
 $$|u \cdot v| = 4 \cdot 2 = 8,$$
 $$\arg(u \cdot v) = \frac{\pi}{3} + \frac{\pi}{6} = \frac{\pi}{2}.$$
 Trigonometrikus alak:
-$$u \cdot v = \mathbf{8\left(\cos\frac{\pi}{2} + i\sin\frac{\pi}{2}\right)}.$$
+$$u \cdot v = 8\left(\cos\frac{\pi}{2} + i\sin\frac{\pi}{2}\right).$$
 Mivel $\cos\frac{\pi}{2} = 0$ és $\sin\frac{\pi}{2} = 1$, az algebrai alak:
 $$u \cdot v = \mathbf{8i}.$$
 
@@ -3522,7 +3522,7 @@ $$u \cdot v = \mathbf{8i}.$$
 $$\left|\frac{u}{v}\right| = \frac{4}{2} = 2,$$
 $$\arg\left(\frac{u}{v}\right) = \frac{\pi}{3} - \frac{\pi}{6} = \frac{\pi}{6}.$$
 Trigonometrikus alak:
-$$\frac{u}{v} = \mathbf{2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right)}.$$
+$$\frac{u}{v} = 2\left(\cos\frac{\pi}{6} + i\sin\frac{\pi}{6}\right).$$
 Mivel $\cos\frac{\pi}{6} = \frac{\sqrt{3}}{2}$ és $\sin\frac{\pi}{6} = \frac{1}{2}$, az algebrai alak:
 $$\frac{u}{v} = 2\left(\frac{\sqrt{3}}{2} + \frac{1}{2}i\right) = \mathbf{\sqrt{3} + i}.$$
 
@@ -3540,14 +3540,14 @@ Legyen $u = \sqrt{2}\left(\cos\frac{3\pi}{4} + i\sin\frac{3\pi}{4}\right)$ és $
 $$|u \cdot v| = \sqrt{2} \cdot 2\sqrt{2} = 4,$$
 $$\arg(u \cdot v) = \frac{3\pi}{4} + \frac{\pi}{2} = \frac{5\pi}{4}.$$
 Trigonometrikus alak:
-$$u \cdot v = \mathbf{4\left(\cos\frac{5\pi}{4} + i\sin\frac{5\pi}{4}\right)}.$$
+$$u \cdot v = 4\left(\cos\frac{5\pi}{4} + i\sin\frac{5\pi}{4}\right).$$
 (Algebrai alakban: $4\left(-\frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}\right) = -2\sqrt{2} - 2\sqrt{2}i$.)
 
 2. Osztás:
 $$\left|\frac{u}{v}\right| = \frac{\sqrt{2}}{2\sqrt{2}} = \frac{1}{2},$$
 $$\arg\left(\frac{u}{v}\right) = \frac{3\pi}{4} - \frac{\pi}{2} = \frac{\pi}{4}.$$
 Trigonometrikus alak:
-$$\frac{u}{v} = \mathbf{\frac{1}{2}\left(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4}\right)}.$$
+$$\frac{u}{v} = \frac{1}{2}\left(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4}\right).$$
 (Algebrai alakban: $\frac{\sqrt{2}}{4} + \frac{\sqrt{2}}{4}i$.)
 
 ::: elmelet
@@ -3890,7 +3890,7 @@ $$1 - w = 2\sin\frac{x}{2}\left(\cos\left(\frac{x - \pi}{2}\right) + i\sin\left(
 Emeljük $n$-edik hatványra:
 $$(1 - w)^n = 2^n \sin^n\frac{x}{2}\left(\cos\frac{n(x - \pi)}{2} + i\sin\frac{n(x - \pi)}{2}\right).$$
 Ennek valós része adja $U_n$-et:
-$$U_n = \mathbf{2^n \sin^n\frac{x}{2} \cos\left(\frac{n(x - \pi)}{2}\right)}.$$
+$$U_n = 2^n \sin^n\frac{x}{2} \cos\left(\frac{n(x - \pi)}{2}\right).$$
 
 ::: elmelet
 **Elméleti háttér — Váltakozó előjelű binomiális trigonometrikus összegek.**

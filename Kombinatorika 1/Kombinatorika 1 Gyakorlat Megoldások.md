@@ -1,4 +1,4 @@
-<!-- Generált fájl, ne szerkeszd! Forrás: Kombinatorika 1/Gyakorlat/Megoldások/, újragenerálás: make concat -->
+<!-- Generated file, do not edit! Source: Kombinatorika 1/Gyakorlat/Megoldások/, regenerate with: make concat -->
 
 # Kombinatorika 1 – 1. feladatsor – megoldások
 

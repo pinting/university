@@ -817,7 +817,7 @@ b) Igazoljuk, hogy a $\eta = \sqrt[3]{2} + \sqrt{2}$ szám algebrai!
 
 a) Bizonyítsuk be Cantor tételét tetszőleges $A$ halmazra: nincsen olyan $f : A \to \mathcal{P}(A)$ leképezés, amely szürjektív lenne, így $|A| < |\mathcal{P}(A)|$!
 
-b) Igazoljuk, hogy a természetes számok hatványhalmaza, $\mathcal{P}(\mathbb{N})$ kölcsönösen egyértelműen megfeleltethető a végtelen $0$–$1$ sorozatok $\{0, 1\}^\mathbb{N}$ halmazával!
+b) Igazoljuk, hogy a természetes számok hatványhalmaza, $\mathcal{P}(\mathbb{N})$ kölcsönösen egyértelműen megfeleltethető a végtelen $0$–$1$ sorozatok $\{0, 1\}^{\mathbb{N}}$ halmazával!
 
 ## Gy62.2. feladat
 

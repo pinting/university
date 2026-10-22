@@ -25,6 +25,8 @@
 #                 build practice solutions (every "* Gyakorlófeladatok Megoldások.md")
 #   make supplementary
 #                 build all example and practice collections
+#   make html     build interactive HTML presentations & simulations for
+#                 calculus worked examples (Példafeladatok)
 #   make clean    remove the concatenated Markdown files and the PDFs
 #
 # The page layout lives in header.tex; extension.lua turns `::: kiegeszites`
@@ -73,7 +75,7 @@ PRACTICE := $(filter %Gyakorlófeladatok.pdf,$(PDFS))
 PRACTICE_SOL := $(filter %Gyakorlófeladatok|Megoldások.pdf,$(PDFS))
 SUPPLEMENTARY := $(EXAMPLES) $(PRACTICE) $(PRACTICE_SOL)
 
-.PHONY: all concat pdf textbook examples practice practice-solutions supplementary peldafeladatok gyakorlofeladatok gyakorlofeladatok-megoldasok clean
+.PHONY: all concat pdf textbook examples practice practice-solutions supplementary peldafeladatok gyakorlofeladatok gyakorlofeladatok-megoldasok html clean
 all: concat pdf
 concat: $(call esc,$(CONCAT))
 pdf: $(call esc,$(PDFS))
@@ -85,6 +87,13 @@ peldafeladatok: examples
 gyakorlofeladatok: practice
 gyakorlofeladatok-megoldasok: practice-solutions
 supplementary: $(call esc,$(SUPPLEMENTARY))
+
+HTML_TARGETS := Analízis\ 1/Analízis\ 1\ Példafeladatok.html Analízis\ 1/index.html
+html: $(HTML_TARGETS)
+
+Analízis\ 1/Analízis\ 1\ Példafeladatok.html Analízis\ 1/index.html: Analízis\ 1/Analízis\ 1\ Példafeladatok.md scripts/build_calculus_html.py
+	@echo "==> HTML presentation & simulations: $@"
+	@python3 scripts/build_calculus_html.py
 
 # $1: sheet folder. The sheets are joined in version order (2 before 10),
 # separated by a blank line.

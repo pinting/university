@@ -1,4 +1,4 @@
-<!-- Generált fájl, ne szerkeszd! Forrás: Kombinatorika 1/Gyakorlat/Feladatsorok/, újragenerálás: make concat -->
+<!-- Generated file, do not edit! Source: Kombinatorika 1/Gyakorlat/Feladatsorok/, regenerate with: make concat -->
 
 # Kombinatorika 1 – 1. feladatsor
 

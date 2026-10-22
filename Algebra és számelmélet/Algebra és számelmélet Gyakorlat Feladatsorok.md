@@ -1,4 +1,4 @@
-<!-- Generált fájl, ne szerkeszd! Forrás: Algebra és számelmélet/Gyakorlat/Feladatsorok/, újragenerálás: make concat -->
+<!-- Generated file, do not edit! Source: Algebra és számelmélet/Gyakorlat/Feladatsorok/, regenerate with: make concat -->
 
 # Algebra és számelmélet – 1. feladatsor
 

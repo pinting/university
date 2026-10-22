@@ -1,4 +1,4 @@
-<!-- Generált fájl, ne szerkeszd! Forrás: Analízis 1/Gyakorlat/Megoldások/, újragenerálás: make concat -->
+<!-- Generated file, do not edit! Source: Analízis 1/Gyakorlat/Megoldások/, regenerate with: make concat -->
 
 # Analízis 1 – 1. feladatlap – megoldások
 

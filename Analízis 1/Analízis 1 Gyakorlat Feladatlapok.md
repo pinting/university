@@ -1,4 +1,4 @@
-<!-- Generált fájl, ne szerkeszd! Forrás: Analízis 1/Gyakorlat/Feladatlapok/, újragenerálás: make concat -->
+<!-- Generated file, do not edit! Source: Analízis 1/Gyakorlat/Feladatlapok/, regenerate with: make concat -->
 
 # Analízis 1 – 1. feladatlap
 

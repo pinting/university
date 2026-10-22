@@ -2489,7 +2489,7 @@ $$\lim_{n\to\infty} (b_{n+1} - b_n) = 0.$$
 ::: elmelet
 **Elméleti háttér — A szomszédos tagok távolsága és a konvergencia kapcsolata.**
 
-- **Végzetes tévedés:** $|a_{n+1} - a_n| \to 0 \not\implies (a_n)$ konvergens!
+- **Végzetes tévedés:** $|a_{n+1} - a_n| \to 0 \nRightarrow (a_n)$ konvergens!
   A Cauchy-feltétel azt követeli meg, hogy $|a_n - a_m| < \varepsilon$ MINDEN $n, m > N_0$-ra, nemcsak a szomszédosakra! Végtelen sok pici lépés összege lehet végtelen (lásd harmonikus sor).
 - **Mikor elég a lépésközök csökkenése?** Ha a lépésközök egy konvergens mértani sor szerint csökkennek, pl. $|a_{n+1} - a_n| \le q^n$ ($q < 1$), akkor a sorozat Cauchy, tehát konvergens.
 :::
@@ -3710,7 +3710,7 @@ Ez ismét megszámlálható sok megszámlálható halmaz egyesítése, így $\ma
 - **Alaptételek a megszámlálhatóságról:**
   1. Megszámlálható sok megszámlálható halmaz uniója megszámlálható: $|\bigcup_{n=1}^\infty A_n| \le \aleph_0$.
   2. Véges sok megszámlálható halmaz Descartes-szorzata megszámlálható: $|A_1 \times \dots \times A_k| \le \aleph_0$.
-- **Véges sorozatok vs. végtelen sorozatok:** Véges sorozatok halmaza megszámlálható, de a VÉGTELEN sorozatok halmaza ($\mathbb{Z}^\mathbb{N}$ vagy $\{0, 1\}^\mathbb{N}$) már kontinuum számosságú (nem megszámlálható)!
+- **Véges sorozatok vs. végtelen sorozatok:** Véges sorozatok halmaza megszámlálható, de a VÉGTELEN sorozatok halmaza ($\mathbb{Z}^{\mathbb{N}}$ vagy $\{0, 1\}^{\mathbb{N}}$) már kontinuum számosságú (nem megszámlálható)!
 :::
 
 ## Gy55.2. feladat
@@ -4201,11 +4201,11 @@ b) Igazoljuk, hogy a $\eta = \sqrt[3]{2} + \sqrt{2}$ szám algebrai!
 
 **Megoldás.**
 
-a) A valós számok halmaza diszjunkt uniója az algebrai valós számoknak ($\mathbb{A}_\mathbb{R}$) és a transzcendens valós számoknak ($\mathbb{T}$):
-$$\mathbb{R} = \mathbb{A}_\mathbb{R} \cup \mathbb{T}, \quad \mathbb{A}_\mathbb{R} \cap \mathbb{T} = \emptyset.$$
-1. A Gy61.1 feladat szerint az algebrai számok halmaza megszámlálható: $|\mathbb{A}_\mathbb{R}| = \aleph_0$.
+a) A valós számok halmaza diszjunkt uniója az algebrai valós számoknak ($\mathbb{A}_{\mathbb{R}}$) és a transzcendens valós számoknak ($\mathbb{T}$):
+$$\mathbb{R} = \mathbb{A}_{\mathbb{R}} \cup \mathbb{T}, \quad \mathbb{A}_{\mathbb{R}} \cap \mathbb{T} = \emptyset.$$
+1. A Gy61.1 feladat szerint az algebrai számok halmaza megszámlálható: $|\mathbb{A}_{\mathbb{R}}| = \aleph_0$.
 2. Cantor tétele szerint a valós számok halmaza kontinuum számosságú, tehát NEM megszámlálható: $|\mathbb{R}| = \mathfrak{c} > \aleph_0$.
-Ha a transzcendens számok $\mathbb{T}$ halmaza megszámlálható lenne (vagy üres), akkor $\mathbb{R} = \mathbb{A}_\mathbb{R} \cup \mathbb{T}$ két megszámlálható halmaz uniójaként megszámlálható lenne, ami ellentmondás!
+Ha a transzcendens számok $\mathbb{T}$ halmaza megszámlálható lenne (vagy üres), akkor $\mathbb{R} = \mathbb{A}_{\mathbb{R}} \cup \mathbb{T}$ két megszámlálható halmaz uniójaként megszámlálható lenne, ami ellentmondás!
 Ez a tiszta egzisztenciális bizonyítás (Cantor, 1874) nemcsak megmutatja, hogy léteznek transzcendens számok, hanem azt is, hogy:
 $$|\mathbb{T}| = \mathfrak{c}.$$
 A valós számok „túlnyomó többsége” transzcendens!
@@ -4240,7 +4240,7 @@ Ezért $\sqrt[3]{2} + \sqrt{2}$ valóban algebrai szám. $\blacksquare$
 
 a) Bizonyítsuk be Cantor tételét tetszőleges $A$ halmazra: nincsen olyan $f : A \to \mathcal{P}(A)$ leképezés, amely szürjektív lenne, így $|A| < |\mathcal{P}(A)|$!
 
-b) Igazoljuk, hogy a természetes számok hatványhalmaza, $\mathcal{P}(\mathbb{N})$ kölcsönösen egyértelműen megfeleltethető a végtelen $0$–$1$ sorozatok $\{0, 1\}^\mathbb{N}$ halmazával!
+b) Igazoljuk, hogy a természetes számok hatványhalmaza, $\mathcal{P}(\mathbb{N})$ kölcsönösen egyértelműen megfeleltethető a végtelen $0$–$1$ sorozatok $\{0, 1\}^{\mathbb{N}}$ halmazával!
 
 **Megoldás.**
 
@@ -4261,9 +4261,9 @@ $$|A| < |\mathcal{P}(A)|. \quad \blacksquare$$
 b) Tetszőleges $H \subseteq \mathbb{N}$ részhalmazhoz rendeljük hozzá annak $\chi_H$ karakterisztikus (indikátor) sorozatát:
 $$\chi_H = (c_1, c_2, c_3, \dots), \quad \text{ahol } c_n = \begin{cases} 1, & \text{ha } n \in H, \\ 0, & \text{ha } n \notin H. \end{cases}$$
 1. *Injektív:* Ha $H_1 \ne H_2$, akkor létezik olyan $n \in \mathbb{N}$, amely az egyikben benne van, a másikban nincs. Ekkor a két indikátor sorozat $n$-edik tagja eltér ($1$ vs. $0$), így $\chi_{H_1} \ne \chi_{H_2}$.
-2. *Szürjektív:* Tetszőleges $c = (c_1, c_2, \dots) \in \{0, 1\}^\mathbb{N}$ végtelen $0$–$1$ sorozat esetén képezzük a $H = \{n \in \mathbb{N} : c_n = 1\}$ halmazt. Nyilvánvalóan $\chi_H = c$.
-A hozzárendelés tehát bijekció $\mathcal{P}(\mathbb{N})$ és $\{0, 1\}^\mathbb{N}$ között, így:
-$$|\mathcal{P}(\mathbb{N})| = |\{0, 1\}^\mathbb{N}| = 2^{\aleph_0}. \quad \blacksquare$$
+2. *Szürjektív:* Tetszőleges $c = (c_1, c_2, \dots) \in \{0, 1\}^{\mathbb{N}}$ végtelen $0$–$1$ sorozat esetén képezzük a $H = \{n \in \mathbb{N} : c_n = 1\}$ halmazt. Nyilvánvalóan $\chi_H = c$.
+A hozzárendelés tehát bijekció $\mathcal{P}(\mathbb{N})$ és $\{0, 1\}^{\mathbb{N}}$ között, így:
+$$|\mathcal{P}(\mathbb{N})| = |\{0, 1\}^{\mathbb{N}}| = 2^{\aleph_0}. \quad \blacksquare$$
 
 ::: elmelet
 **Elméleti háttér — Cantor tétele és a Russell-paradoxon gyökere.**
@@ -4298,12 +4298,12 @@ $$y \ne x_k \quad \text{minden } k \in \mathbb{N} \text{ esetén}.$$
 Ez azt jelenti, hogy az $y \in (0, 1)$ szám nem szerepel a felsorolásban, ami ellentmond annak, hogy a lista a teljes $(0, 1)$ intervallumot tartalmazta!
 Ez az ellentmondás bizonyítja, hogy $(0, 1)$ nem megszámlálható. $\blacksquare$
 
-b) A Gy62.1 feladat szerint $|\mathcal{P}(\mathbb{N})| = |\{0, 1\}^\mathbb{N}|$.
-Minden $c = (c_1, c_2, \dots) \in \{0, 1\}^\mathbb{N}$ sorozathoz rendeljük hozzá a kettes számrendszerbeli valós számot:
+b) A Gy62.1 feladat szerint $|\mathcal{P}(\mathbb{N})| = |\{0, 1\}^{\mathbb{N}}|$.
+Minden $c = (c_1, c_2, \dots) \in \{0, 1\}^{\mathbb{N}}$ sorozathoz rendeljük hozzá a kettes számrendszerbeli valós számot:
 $$\Phi(c) = \sum_{n=1}^\infty \frac{c_n}{2^n} \in [0, 1].$$
 Ez a leképezés szürjektív $[0, 1]$-re, és csak a diadikus törteknél nem injektív (ahol $1000\dots = 0111\dots$, megszámlálható sok pont).
 A Bernstein–Cantor–Schröder-tétel alapján:
-$$|\{0, 1\}^\mathbb{N}| \le |[0, 1]| \le |\{0, 1\}^\mathbb{N}| \implies |[0, 1]| = |\{0, 1\}^\mathbb{N}| = 2^{\aleph_0}.$$
+$$|\{0, 1\}^{\mathbb{N}}| \le |[0, 1]| \le |\{0, 1\}^{\mathbb{N}}| \implies |[0, 1]| = |\{0, 1\}^{\mathbb{N}}| = 2^{\aleph_0}.$$
 Mivel a Gy59 feladat szerint $|[0, 1]| = |(0, 1)| = |\mathbb{R}|$, kapjuk:
 $$|\mathcal{P}(\mathbb{N})| = 2^{\aleph_0} = |\mathbb{R}| = \mathfrak{c}. \quad \blacksquare$$
 
@@ -6024,7 +6024,7 @@ $$|f(x) - 10| < 8 \cdot \frac{\varepsilon}{8} = \varepsilon.$$
 A definíció alapján tehát valóban $\lim_{x\to 2} (x^2 + 3x) = 10$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — A Cauchy-féle $arepsilon$-$\delta$ technika lépései.**
+**Elméleti háttér — A Cauchy-féle $\varepsilon$-$\delta$ technika lépései.**
 
 - **Definíció:** $\lim_{x\to a} f(x) = b \iff \forall \varepsilon > 0 \, \exists \delta > 0 \, \forall x \in D(f): (0 < |x - a| < \delta \implies |f(x) - b| < \varepsilon)$.
 - **Szorzattá bontás és korlátozás:** Magasabb fokú polinomoknál az $|f(x) - b| = |x - a| \cdot |Q(x)|$ felbontást alkalmazzuk. Egy rögzített (pl. $\delta_0 = 1$) környezetben felső becslést adunk $|Q(x)| \le M$-re, majd $\delta = \min\{1, \varepsilon/M\}$-et választunk.
@@ -6065,7 +6065,7 @@ Válasszuk a $\delta(\varepsilon) = 2\varepsilon > 0$ értéket.
 Ekkor minden $0 < |x - 4| < \delta$ esetén $|\sqrt{x} - 2| < \varepsilon$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Törtek és gyökök $arepsilon$-$\delta$ becslése.**
+**Elméleti háttér — Törtek és gyökök $\varepsilon$-$\delta$ becslése.**
 
 - **Nevező alsó becslése:** Törtfüggvény határértékénél a nevezőt mindig egy POZITÍV konstanssal kell alulról becsülni egy előzetes környezetben (itt $|x+2| > 2$).
 - **Gyökfüggvény trükkje:** A konjugálttal való szorzás a gyökök különbségét $|x - a|$-vá alakítja, ahol a nevező $(\sqrt{x} + \sqrt{a} \ge \sqrt{a})$ azonnal konstans alsó korlátot kap.
