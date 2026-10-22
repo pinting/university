@@ -11,10 +11,20 @@
 #                   Analízis 1/Analízis 1 Tankönyv.md
 #                   Algebra és számelmélet/Algebra Tankönyv.md
 #                   Algebra és számelmélet/Számelmélet Tankönyv.md
+#   make examples (or make peldafeladatok)
+#                 build worked example collections (every "* Példafeladatok.md"), e.g.
+#                   Analízis 1/Analízis 1 Példafeladatok.md
+#                   Kombinatorika 1/Kombinatorika 1 Példafeladatok.md
+#                   Algebra és számelmélet/Algebra és számelmélet Példafeladatok.md
+#   make practice (or make gyakorlofeladatok)
+#                 build practice exercise sheets (every "* Gyakorlófeladatok.md"), e.g.
+#                   Analízis 1/Analízis 1 Gyakorlófeladatok.md
+#                   Kombinatorika 1/Kombinatorika 1 Gyakorlófeladatok.md
+#                   Algebra és számelmélet/Algebra és számelmélet Gyakorlófeladatok.md
+#   make practice-solutions (or make gyakorlofeladatok-megoldasok)
+#                 build practice solutions (every "* Gyakorlófeladatok Megoldások.md")
 #   make supplementary
-#                 build only the supplementary exercise collections
-#                 (every "Kiegészítő Feladatok.md"), e.g.
-#                   Analízis 1/Kiegészítő Feladatok.md
+#                 build all example and practice collections
 #   make clean    remove the concatenated Markdown files and the PDFs
 #
 # The page layout lives in header.tex; extension.lua turns `::: kiegeszites`
@@ -58,13 +68,22 @@ SOURCES := $(sort $(CONCAT) \
   $(call find_enc,-mindepth 2 -maxdepth 2 -name '*.md' -not -path './.*'))
 PDFS := $(SOURCES:.md=.pdf)
 TEXTBOOK := $(filter %|Tankönyv.pdf,$(PDFS))
-SUPPLEMENTARY := $(filter %Kiegészítő|Feladatok.pdf,$(PDFS))
+EXAMPLES := $(filter %Példafeladatok.pdf,$(PDFS))
+PRACTICE := $(filter %Gyakorlófeladatok.pdf,$(PDFS))
+PRACTICE_SOL := $(filter %Gyakorlófeladatok|Megoldások.pdf,$(PDFS))
+SUPPLEMENTARY := $(EXAMPLES) $(PRACTICE) $(PRACTICE_SOL)
 
-.PHONY: all concat pdf textbook supplementary clean
+.PHONY: all concat pdf textbook examples practice practice-solutions supplementary peldafeladatok gyakorlofeladatok gyakorlofeladatok-megoldasok clean
 all: concat pdf
 concat: $(call esc,$(CONCAT))
 pdf: $(call esc,$(PDFS))
 textbook: $(call esc,$(TEXTBOOK))
+examples: $(call esc,$(EXAMPLES))
+practice: $(call esc,$(PRACTICE))
+practice-solutions: $(call esc,$(PRACTICE_SOL))
+peldafeladatok: examples
+gyakorlofeladatok: practice
+gyakorlofeladatok-megoldasok: practice-solutions
 supplementary: $(call esc,$(SUPPLEMENTARY))
 
 # $1: sheet folder. The sheets are joined in version order (2 before 10),
@@ -72,7 +91,7 @@ supplementary: $(call esc,$(SUPPLEMENTARY))
 define concat_rule
 $(call esc,$(call concat_of,$1)): $(call esc,$(call find_enc,-mindepth 4 -maxdepth 4 -path './$(call dec,$1)/*.md'))
 	@echo "==> $(call dec,$(call concat_of,$1))"
-	@{ printf '<!-- Generált fájl, ne szerkeszd! Forrás: %s/, újragenerálás: make concat -->\n\n' "$(call dec,$1)"; \
+	@{ printf '<!-- Generated file, do not edit! Source: %s/, regenerate with: make concat -->\n\n' "$(call dec,$1)"; \
 	   find "$(call dec,$1)" -maxdepth 1 -name '*.md' -print0 | LC_ALL=C sort -zV \
 	   | xargs -0 awk 'FNR == 1 && NR != 1 { print "" } { print }'; \
 	 } > "$(call dec,$(call concat_of,$1))"

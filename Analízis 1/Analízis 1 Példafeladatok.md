@@ -1,8 +1,8 @@
-# Analízis 1 – Kiegészítő feladatok
+# Analízis 1 – Példafeladatok
 
-### I. Mat. BSc Analízis 1 · 2026/27 első félév · gyakorló feladatok megoldással és elméleti háttérrel
+### I. Mat. BSc Analízis 1 · 2026/27 első félév · kidolgozott példafeladatok részletes megoldással és elméleti háttérrel
 
-Ez a gyűjtemény a gyakorlati feladatlapok (1., 2., 4–10. feladatlap) minden feladatához egy-egy **új, hasonló feladatot** ad. A **K$n$.** feladat az eredeti $n$. feladat „párja”: ugyanazt a módszert vagy elméleti eszközt gyakoroltatja, de más adatokkal vagy más irányból. A feladatok sorrendje és csoportosítása a feladatlapokét követi (a 3. feladatlap hiányzik, ezért a K23–K33 számok kimaradnak), így összesen $99$ feladat van.
+Ez a gyűjtemény a gyakorlati feladatlapok (1., 2., 4–10. feladatlap) minden feladatához egy-egy **kidolgozott példafeladatot** ad. A **P$n$.** feladat az eredeti $n$. feladat mintapárja: ugyanazt a módszert vagy elméleti eszközt mutatja be részletesen kidolgozva, más adatokkal vagy más irányból. A feladatok sorrendje és csoportosítása a feladatlapokét követi (a 3. feladatlap hiányzik, ezért a P23–P33 számok kimaradnak), így összesen $99$ feladat van.
 
 Minden feladat után részletes **megoldás** következik, majd szürke dobozban az **elméleti háttér**: a felhasznált definíciók és tételek, sokszor bizonyítással, továbbá a tipikus hibák és a kapcsolódó fogalmak. Javasolt használat: először önállóan megoldani a feladatot, és csak utána elolvasni a megoldást és a dobozt.
 
@@ -10,7 +10,7 @@ Jelölések: $\mathbb{N} = \{1, 2, 3, \dots\}$; $[x]$ az egészrész, $\{x\} = x
 
 # Az 1. feladatlaphoz
 
-## K1. feladat
+## P1. feladat
 
 Az abszolút érték definíciója és a rendezési axiómák alapján mutassuk meg, hogy minden $x, y \in \mathbb{R}$ esetén
 
@@ -43,7 +43,7 @@ c) $x + y - 2 = (x - 3) + (y + 1)$, így a háromszög-egyenlőtlenség szerint 
 *Négyzetre emelés.* Nemnegatív számok között $u = v \iff u^2 = v^2$ és $u \le v \iff u^2 \le v^2$ — ezért abszolút értékes egyenlőségeknél és egyenlőtlenségeknél gyakran kényelmes négyzetre emelni (b) rész). Előjeles számoknál ez hibás következtetésekhez vezet ($-3 < 2$, de $9 > 4$).
 :::
 
-## K2. feladat
+## P2. feladat
 
 Legyen $a \ne 0$ racionális, $c$ irracionális. Mit mondhatunk az $\frac{a}{c}$, $\frac{c}{a}$, $c^2$, $c + c^2$ és (ha $c > 0$) $\sqrt{c}$ számokról? Bizonyítsuk be továbbá, hogy $\sqrt{2} + \sqrt{3}$ irracionális.
 
@@ -69,7 +69,7 @@ Legyen $a \ne 0$ racionális, $c$ irracionális. Mit mondhatunk az $\frac{a}{c}$
 *Általános tétel.* $\sqrt{m}$ ($m \in \mathbb N$) pontosan akkor racionális, ha $m$ négyzetszám; $\sqrt[k]{m}$ pontosan akkor, ha $m$ teljes $k$-adik hatvány. (A számelmélet alaptételéből: egy racionális szám $k$-adik hatványában minden prím kitevője osztható $k$-val.)
 :::
 
-## K3. feladat
+## P3. feladat
 
 Mutassuk meg, hogy $3^n > n^3$, ha $n \ge N_0$. Adjuk meg a lehető legkisebb $N_0$-t!
 
@@ -98,7 +98,7 @@ ahol az utolsó lépés $n \ge 3$-ra igaz: $\left(\frac{n+1}{n}\right)^3 = \left
 *Általánosan.* Minden $a > 1$ és $k$ esetén $a^n > n^k$ egy indextől: $\frac{(n+1)^k}{n^k} \to 1 < a$. Vagyis **az exponenciális függvény minden hatványfüggvénynél gyorsabban nő**, amit a sorozatok fejezetében így fogalmazunk meg: $\frac{n^k}{a^n} \to 0$. (Itt $3^n$ és $n^3$ — a két függvény grafikonja az $n = 3$ helyen éppen „érinti” egymást az egész pontokon.)
 :::
 
-## K4. feladat
+## P4. feladat
 
 A binomiális tétel segítségével bizonyítsuk be, hogy minden $n \ge 1$-re
 
@@ -129,7 +129,7 @@ $$\sum_{k=1}^n k\binom nk = n\sum_{k=1}^n\binom{n-1}{k-1} = n\sum_{j=0}^{n-1}\bi
 *Az analízisben.* A binomiális tétel a nevezetes határértékek bizonyításának egyik fő eszköze: $(1 + h)^n \ge 1 + nh$ (Bernoulli), $(1 + h)^n \ge \binom n2h^2$ (ebből $\sqrt[n]n \to 1$), és az $\left(1 + \frac1n\right)^n$ sorozat vizsgálata.
 :::
 
-## K5. feladat
+## P5. feladat
 
 Döntsük el az alábbi halmazokról, hogy alulról, illetve felülről korlátosak-e, korlátosak-e, és van-e legkisebb, illetve legnagyobb elemük:
 
@@ -169,7 +169,7 @@ h) Alulról korlátos ($\sqrt3$), felülről nem; **minimum nincs**: $\sqrt3 \no
 *A $\mathbb{Q}$ hiányossága.* A $\{x \in \mathbb Q : x^2 < 5\}$ halmaznak a racionális számok körében nincs legkisebb felső korlátja. Ez mutatja, hogy a racionális számokra nem teljesül a teljességi axióma — a valós számok ezt a hiányt pótolják.
 :::
 
-## K6. feladat
+## P6. feladat
 
 Legyen $H \subseteq \mathbb{R}$ nem üres halmaz. A $H$ milyen tulajdonságait fejezik ki az alábbi állítások?
 
@@ -204,7 +204,7 @@ A minimum és az alsó korlát között csak annyi a különbség, hogy az $x$-e
 *Az infimum $\varepsilon$-os jellemzésének egy fele.* A d) állítás az „$\inf H \le 0$” tulajdonság: az infimum jellemzésének második feltétele $c = 0$-val. Ha hozzávesszük, hogy $0$ alsó korlát ($\forall y \in H: y \ge 0$), akkor együtt $\inf H = 0$-t kapjuk. Így bizonyítjuk például, hogy $\inf\{\frac1n\} = 0$: minden elem pozitív, és (arkhimédészi tulajdonság) minden $\varepsilon$-nál van kisebb elem.
 :::
 
-## K7. feladat
+## P7. feladat
 
 Határozzuk meg — ha léteznek — az alábbi halmazok szuprémumát, infimumát, maximumát és minimumát:
 $$A = [-1, 3), \quad B = \left\{1 - \frac1n : n \in \mathbb N\right\}, \quad C = \left\{\frac{n}{n+1} + (-1)^n : n \in \mathbb N\right\},$$
@@ -236,7 +236,7 @@ $$D = \left\{\frac1n - \frac1m : n, m \in \mathbb N\right\}, \quad E = \{x \in \
 *Szuprémum és maximum.* A szuprémum mindig létezik nem üres, felülről korlátos halmazra (teljességi axióma), a maximum nem. A szuprémum pontosan akkor maximum, ha eleme a halmaznak.
 :::
 
-## K8. feladat
+## P8. feladat
 
 Legyenek $A, B \subseteq (0, \infty)$ nem üres, felülről korlátos halmazok, és $A \cdot B = \{ab : a \in A,\ b \in B\}$. Mutassuk meg, hogy $\sup(A \cdot B) = \sup A \cdot \sup B$. Igaz-e ez tetszőleges (nem csak pozitív elemű) korlátos halmazokra?
 
@@ -262,7 +262,7 @@ $$\sup(A \cdot B) = \max\{\sup A\sup B,\ \sup A\inf B,\ \inf A\sup B,\ \inf A\in
 *Rokon szabályok.* $\sup(A + B) = \sup A + \sup B$; $\sup(cA) = c\sup A$ ($c > 0$); $\sup(-A) = -\inf A$; pozitív elemű $A$-ra $\sup\{\frac1a\} = \frac{1}{\inf A}$ (ha $\inf A > 0$). Mindegyik ugyanazzal a kétlépéses módszerrel bizonyítható.
 :::
 
-## K9. feladat
+## P9. feladat
 
 Az egész számokon egy bolha ugrál: egy ismeretlen $p \in \mathbb Z$ pontból indul, és minden másodpercben ugyanazzal az ismeretlen $v \in \mathbb{Z}$ lépéssel ugrik (a $k$-adik másodpercben tehát a $p + kv$ pontban van). Minden másodpercben rácsaphatunk egy egész számra. Van-e olyan stratégia, amellyel biztosan eltaláljuk a bolhát?
 
@@ -284,7 +284,7 @@ A bolha valódi paraméterei szerepelnek a felsorolásban, mondjuk $(p, v) = (p_
 *Hol a határ?* Ha a bolha valós helyről, valós lépésközzel ugrálna (és valós pontokra csaphatnánk), a hipotézisek halmaza $\mathbb{R}^2$ volna, amely nem megszámlálható, és ilyen biztos stratégia nem létezik: bármely stratégia megszámlálhatóan sok csapása csak megszámlálhatóan sok pályát „fed le”.
 :::
 
-## K10. feladat
+## P10. feladat
 
 Legyen $G$ egy végtelen sok csúcsú, összefüggő gráf, amelyben minden csúcs foka véges. Mutassuk meg, hogy $G$ bármely $v$ csúcsából indul egy végtelen út (König-lemma).
 
@@ -310,7 +310,7 @@ Jelölje $L_k$ a $v$-től (legrövidebb úton) pontosan $k$ távolságra levő c
 
 # A 2. feladatlaphoz
 
-## K11. feladat
+## P11. feladat
 
 a) Mutassuk meg, hogy ha $[a_1, b_1] \supseteq [a_2, b_2] \supseteq \dots$ korlátos, zárt intervallumok, és $b_n - a_n \to 0$, akkor a metszetük pontosan egy pontból áll.
 
@@ -336,7 +336,7 @@ c) $\bigcap_n \left(-\frac1n, \frac1n\right) = \{0\}$ nem üres; $\bigcap_n\left
 *Nyílt intervallumok.* Nyílt intervallumoknál a metszet lehet üres (ha a közös határpontot mind kihagyják), de lehet nem üres is; a zártság garantálja, hogy a határpont benne legyen. A b) részben a metszet egy zárt intervallum — **zárt halmazok tetszőleges metszete zárt**, míg nyílt halmazok végtelen metszete nem feltétlenül nyílt (a c) első példája: $\{0\}$).
 :::
 
-## K12. feladat
+## P12. feladat
 
 Bizonyítsuk be, hogy a) $\log_2 3$ irracionális; b) $\log_4 8$ racionális; c) $\lg 5$ irracionális.
 
@@ -360,7 +360,7 @@ c) $\lg 5 > 0$. Ha $\lg 5 = \frac pq$, akkor $10^p = 5^q$, azaz $2^p5^p = 5^q$. 
 *Kitekintés.* A Gelfond–Schneider-tétel szerint az irracionális algebrai logaritmusok, mint $\log_2 3$, sőt transzcendensek — ennek bizonyítása azonban messze túlmutat az alapkurzuson.
 :::
 
-## K13. feladat
+## P13. feladat
 
 Legyen $f : X \times Y \to \mathbb{R}$ korlátos függvény. Mutassuk meg, hogy
 $$\sup_{y \in Y}\inf_{x \in X} f(x, y) \le \inf_{x \in X}\sup_{y \in Y} f(x, y),$$
@@ -391,7 +391,7 @@ Tehát $0 < \frac14$: szigorú egyenlőtlenség.
 *Az analízisben.* A $\liminf a_n = \sup_N\inf_{n\ge N}a_n$ és a $\limsup a_n = \inf_N\sup_{n \ge N}a_n$ is ilyen szerkezetű; a $\liminf \le \limsup$ egyenlőtlenség ugyanezzel az érveléssel látható.
 :::
 
-## K14. feladat
+## P14. feladat
 
 a) Mutassuk meg, hogy ha $H \neq \emptyset$ alulról korlátos, akkor $\inf H = -\sup(-H)$, ahol $-H = \{-x : x \in H\}$.
 
@@ -415,7 +415,7 @@ ellentmondás. Tehát $A = B$. $\blacksquare$
 *Miért fontos?* Csak egyértelmű objektumnak adhatunk nevet: a $\lim a_n$, $\sup H$ jelölések azért értelmesek, mert legfeljebb egy ilyen szám van.
 :::
 
-## K15. feladat
+## P15. feladat
 
 Bizonyítsuk be, hogy
 
@@ -441,7 +441,7 @@ b) $x > 0$-ra $x + \frac4x - 4 = \frac{x^2 - 4x + 4}{x} = \frac{(x - 2)^2}{x} \g
 *Szélsőérték-keresés.* A b) rész egy szélsőérték-feladat: az $f(x) = x + \frac4x$ függvény minimuma $(0, \infty)$-en $4$, az $x = 2$ helyen. Ugyanezt később a deriválással is megkapjuk ($f'(x) = 1 - \frac{4}{x^2} = 0$), de a közepes módszer elemi és rögtön globális minimumot ad.
 :::
 
-## K16. feladat
+## P16. feladat
 
 Bizonyítsuk be, hogy minden $n \in \mathbb{N}$-re a) $(n!)^2 \ge n^n$; b) $n! \ge 2^{n-1}$.
 
@@ -465,7 +465,7 @@ A felső becslés a számtani–mértani közép egyenlőtlenségből jön, az a
 *Stirling-formula.* $n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n$. Ehhez képest $n^{n/2}$ nagyon gyenge alsó becslés, de már elég ahhoz, hogy a faktoriális minden exponenciálisnál gyorsabban nőjön: $\frac{a^n}{n!} \le \frac{a^n}{n^{n/2}} = \left(\frac{a}{\sqrt n}\right)^n \to 0$.
 :::
 
-## K17. feladat
+## P17. feladat
 
 Legyenek $A, B \subseteq \mathbb{R}$ nem üres, korlátos halmazok. Mutassuk meg, hogy a) $\inf(A + B) = \inf A + \inf B$; b) $\sup(A - B) = \sup A - \inf B$, ahol $A - B = \{a - b : a \in A,\ b \in B\}$.
 
@@ -488,7 +488,7 @@ $$\sup(A - B) = \sup A + \sup(-B) = \sup A - \inf B. \qquad \blacksquare$$
 *Átmérő.* A $\sup(A - A) = \sup A - \inf A$ a halmaz **átmérője** — a legnagyobb távolság két eleme között.
 :::
 
-## K18. feladat
+## P18. feladat
 
 a) Bizonyítsuk be, hogy ha $x \ge 0$ és $n \ge 2$ egész, akkor $(1 + x)^n \ge 1 + nx + \frac{n(n-1)}{2}x^2$.
 
@@ -520,7 +520,7 @@ A „$k$-adik tag” becslése $n^k$ nagyságrendű, ezért ezzel minden $n^{k-1
 *Negatív $x$.* $-1 \le x < 0$-ra a binomiális kifejtés tagjai váltakozó előjelűek, így a csonkítás nem ad automatikusan becslést; a Bernoulli-egyenlőtlenség ($x \ge -1$) ott is igaz, de a háromtagú nem (például $x = -1$, $n = 3$: bal oldal $0$, jobb oldal $1 - 3 + 3 = 1$).
 :::
 
-## K19. feladat
+## P19. feladat
 
 Vezessük le a teljességi (szuprémum-) axiómából a) az arkhimédészi tulajdonságot, b) a Cantor-tulajdonságot.
 
@@ -549,7 +549,7 @@ A 2. feladatlap 19. feladata a megfordítást mutatja: az 1. és 2. együtt a te
 *Valódi különbség.* Léteznek nem arkhimédészi rendezett testek (végtelen kicsi elemekkel), ezek nem teljesek. A teljességi axióma tehát nem „magától értetődő”: ez különbözteti meg a valós számokat minden más rendezett testtől (a valós számok az egyetlen teljes rendezett test, izomorfia erejéig).
 :::
 
-## K20. feladat
+## P20. feladat
 
 a) Adott kerületű téglalapok közül melyiknek a legnagyobb a területe?
 
@@ -580,7 +580,7 @@ Mindkét esetben az egyenlőség (az összes $u_i$ egyenlő) adja a szélsőért
 *Izoperimetrikus jelenség.* Adott kerületű síkidomok közül a kör, adott felszínű testek közül a gömb zárja be a legnagyobb területet/térfogatot. A téglalapok (téglatestek) körében ugyanez a szimmetrikus alakzat (négyzet, kocka) — a „szimmetria optimalizál” elv egy elemi esete.
 :::
 
-## K21. feladat
+## P21. feladat
 
 Mutassuk meg, hogy $n^{10} < 2^n$, ha $n$ elegendően nagy, és adjunk meg egy konkrét küszöböt.
 
@@ -606,7 +606,7 @@ ha $\left(1 + \frac1n\right)^{10} \le 2$. Ez $n \ge 15$-re igaz: $\left(1 + \fra
 *Növekedési rendek.* Bármely $k$-ra és $a > 1$-re $n^k < a^n$ egy indextől, de a küszöb nagyon nagy lehet ($n^{10}$ és $2^n$ esetén $59$, $n^{100}$ esetén már $997$). Az aszimptotikus állítás ($\frac{n^k}{a^n} \to 0$) nem mond semmit a küszöb nagyságáról.
 :::
 
-## K22. feladat
+## P22. feladat
 
 Keressünk olyan $N_0$-t, hogy minden $n > N_0$-ra a) $\sqrt[n]{3} < 1{,}01$; b) $\sqrt[n]{n} < 1{,}1$.
 
@@ -632,7 +632,7 @@ ami legalább $n$, ha $n - 1 \ge 200$. **$N_0 = 200$ megfelel.** (A pontos küsz
 
 # A 4. feladatlaphoz
 
-## K34. feladat
+## P34. feladat
 
 Legyen $a_1 = 1$ és $a_{n+1} = \sqrt{6 + a_n}$. Bizonyítsuk be, hogy a sorozat monoton nő és korlátos, és határozzuk meg a határértékét.
 
@@ -658,7 +658,7 @@ Legyen $a_1 = 1$ és $a_{n+1} = \sqrt{6 + a_n}$. Bizonyítsuk be, hogy a sorozat
 *Általánosítás.* Az $a_{n+1} = \sqrt{c + a_n}$ ($c > 0$) sorozat határértéke $\frac{1 + \sqrt{1 + 4c}}{2}$; a „végtelen gyökkifejezés” $\sqrt{6 + \sqrt{6 + \sqrt{6 + \dots}}} = 3$.
 :::
 
-## K35. feladat
+## P35. feladat
 
 Keressünk olyan $N_0$-t, hogy minden $n > N_0$-ra a) $\sqrt{n + 4} - \sqrt n < 0{,}01$; b) $\left|\sqrt{n^2 + 3n} - n - \frac32\right| < 0{,}01$.
 
@@ -684,7 +684,7 @@ Mivel $s + n > 2n$, ennek abszolút értéke kisebb, mint $\frac{9n}{8n^2} = \fr
 *Küszöb és becslés.* Mindkét esetben egy egyszerűbb felső becslést oldottunk meg; az így kapott $N_0$ megfelelő, de nem feltétlenül a legkisebb. A konvergencia bizonyításához ez elég.
 :::
 
-## K36. feladat
+## P36. feladat
 
 Mutassuk meg a definíció alapján, hogy $\lim\limits_{n \to \infty}\dfrac{3n - 1}{n + 2} = 3$; adjunk meg $\varepsilon = 0{,}01$-hoz, illetve általában $\varepsilon > 0$-hoz $n_\varepsilon$-t.
 
@@ -705,7 +705,7 @@ $$\left|\frac{3n - 1}{n + 2} - 3\right| = \left|\frac{3n - 1 - 3n - 6}{n + 2}\ri
 *Az egészrész.* Az $n > c$ feltételt kielégítő legkisebb természetes szám $\lfloor c \rfloor + 1$ (ha $c \ge 0$). Az arkhimédészi tulajdonság garantálja a létezését. A küszöb nem egyértelmű — bármely nagyobb is jó —, ezért a „legjobb” küszöbre nincs szükség.
 :::
 
-## K37. feladat
+## P37. feladat
 
 Írjuk fel kvantorokkal a következő állításokat: a) $(a_n)$ nem korlátos; b) $(a_n)$ nem Cauchy-sorozat; c) $a_n \not\to +\infty$.
 
@@ -735,7 +735,7 @@ azaz van olyan $K$, amelynél nem nagyobb tag végtelen sok van (van felülről 
 *Figyelem.* „Nem korlátos” nem jelenti, hogy „$\to +\infty$ vagy $\to -\infty$”: az $a_n = (-1)^nn$ vagy a $0, 1, 0, 2, 0, 3, \dots$ sorozat nem korlátos, mégsincs (tágabb értelemben sem) határértéke.
 :::
 
-## K38. feladat
+## P38. feladat
 
 Határozzuk meg a következő sorozatok határértékét, és adjunk meg adott $\varepsilon > 0$-hoz $n_\varepsilon$-t:
 
@@ -781,7 +781,7 @@ j) $\to 1$: $\sqrt[n]{2n} = 1 + h_n$; a binomiális tétel szerint $2n = (1 + h_
 *Riemann-összeg előzetes.* A d) rész $\frac1n\sum_{k=1}^n\left(\frac kn\right)^2$, ami az $\int_0^1 x^2\,dx = \frac13$ integrál közelítő összege — a határérték nem véletlenül $\frac13$.
 :::
 
-## K39. feladat
+## P39. feladat
 
 a) Mutassuk meg, hogy ha $a_n \to a$, akkor $a_n^2 \to a^2$.
 
@@ -812,7 +812,7 @@ $$|\sqrt{a_n} - \sqrt a| = \frac{|a_n - a|}{\sqrt{a_n} + \sqrt a} \le \frac{|a_n
 *Megfordítás.* $f(a_n) \to f(a)$-ból $a_n \to a$ csak akkor következik, ha $f$ injektív és inverze folytonos (például $f(x) = x^3$ vagy $\sqrt x$ a $[0, \infty)$-en). Az $x^2$ a $\mathbb{R}$-en nem injektív, innen az ellenpélda.
 :::
 
-## K40. feladat
+## P40. feladat
 
 a) Adjunk meg olyan divergens sorozatot, amelyre $a_{2n} - a_n \to 0$.
 
@@ -842,7 +842,7 @@ Az első tag $0$-hoz tart, tehát egy indextől $< \varepsilon$, és ott $\left|
 *A Cauchy-kritériummal szemben.* A konvergenciához **minden** távoli tagpár közelsége kell ($|a_m - a_n| < \varepsilon$, ha $m, n \ge N$); a szomszédos, vagy akár a $2n$-edik és $n$-edik tag közelsége kevés.
 :::
 
-## K41. feladat
+## P41. feladat
 
 Hogyan viszonyulnak az $a_n \to a$ állításhoz a következők?
 
@@ -893,7 +893,7 @@ g) **Erősebb**: az $N$ nem függ $\varepsilon$-tól, így $n \ge N$-re $|a_n - 
 *Konvergenciasebesség.* Az a) állítás $|a_n - a| = o(\frac1n)$; általában a numerikus analízisben a sebességet $|a_n - a| \le Cq^n$ (lineáris konvergencia) vagy $|a_{n+1} - a| \le C|a_n - a|^2$ (kvadratikus, mint a Newton-módszernél) típusú becslésekkel mérik.
 :::
 
-## K42. feladat
+## P42. feladat
 
 Mutassuk meg, hogy a $\{m + n\sqrt2 : m, n \in \mathbb{Z}\}$ halmaz sűrű $\mathbb{R}$-ben.
 
@@ -919,7 +919,7 @@ ahol $g \ne 0$, mert $\sqrt2$ irracionális ($k \ne l$). $|g|$ vagy $-|g|$ is el
 *Alkalmazások.* A $\sin n$ sorozat sűrűsödési értékeinek halmaza a $[-1, 1]$, mert $\{n \bmod 2\pi\}$ sűrű a $[0, 2\pi]$-ben ($\pi$ irracionális). Egy periodikus folytonos függvény két összemérhetetlen periódussal konstans.
 :::
 
-## K43. feladat
+## P43. feladat
 
 Adjunk meg olyan sorozatot, amelynek sűrűsödési értékei pontosan a $[0, 1]$ intervallum pontjai.
 
@@ -945,7 +945,7 @@ $$0, 1;\ 0, \tfrac12, 1;\ 0, \tfrac13, \tfrac23, 1;\ 0, \tfrac14, \tfrac24, \tfr
 
 # Az 5. feladatlaphoz
 
-## K44. feladat
+## P44. feladat
 
 Mondjuk ki a $\lim\limits_{n\to\infty}a_n = +\infty$ definícióját és tagadását. Mutassunk példát felülről nem korlátos sorozatra, amely nem tart $+\infty$-hez.
 
@@ -972,7 +972,7 @@ Az utóbbiból következik az előbbi, fordítva nem. A „végtelen sok tag nag
 *Részsorozatok.* Ha egy sorozat felülről nem korlátos, van $+\infty$-hez tartó részsorozata (indukcióval választunk $a_{n_k} > k$, $n_k > n_{k-1}$ tagokat). Ez a Bolzano–Weierstrass-tétel „végtelen” kiegészítése: **minden sorozatnak van tágabb értelemben konvergens részsorozata**.
 :::
 
-## K45. feladat
+## P45. feladat
 
 Mutassuk meg, hogy $\lim\limits_{n\to\infty}a_n = -\infty$ pontosan akkor, ha minden $K \in \mathbb{R}$-re a sorozatnak csak véges sok tagja nagyobb vagy egyenlő $K$-nál.
 
@@ -992,7 +992,7 @@ Mutassuk meg, hogy $\lim\limits_{n\to\infty}a_n = -\infty$ pontosan akkor, ha mi
 *Szigorú és nem szigorú egyenlőtlenség.* Itt a feltétel ($a_n \ge K$ véges sokszor) és a definíció ($a_n < K$ egy indextől) pontosan illeszkednek. Ha a feltétel $a_n > K$-val szólna, a $K - 1$-re alkalmazva kapnánk a szigorú egyenlőtlenséget — a korlát kis eltolása mindig megoldja a $<$ és $\le$ közti különbséget.
 :::
 
-## K46. feladat
+## P46. feladat
 
 Adjunk meg adott $K > 0$-hoz $n_K$-t, amelytől kezdve a sorozat tagjai nagyobbak $K$-nál:
 
@@ -1028,7 +1028,7 @@ e) $n \ge 4$-re $\frac{n!}{2^n} = \frac{1 \cdot 2 \cdot 3}{2^3}\prod_{k=4}^n\fra
 *Növekedési sorrend.* $\sqrt n \ll n \ll n^2 \ll 3^n \ll n!$; a d) és e) rész a skála „magasabb fokain” mutatja ugyanezt a technikát.
 :::
 
-## K47. feladat
+## P47. feladat
 
 Bizonyítsuk be, hogy ha $a_n \to +\infty$, akkor a sorozatnak van legkisebb tagja. Igaz-e, hogy van legnagyobb tagja?
 
@@ -1057,7 +1057,7 @@ Legnagyobb tag **nincs**: a sorozat felülről nem korlátos, így minden tagná
 *Függvényekre.* Ha $f$ folytonos $[a, \infty)$-en és $\lim_{x\to\infty}f(x) = +\infty$, akkor $f$-nek van minimuma: a „farok” egy $[K, \infty)$ félegyenesen $f(a)$ fölött van, a „fejen” ($[a, K]$) pedig a Weierstrass-tétel ad minimumot. Ez a sorozatos érvelés folytonos megfelelője.
 :::
 
-## K48. feladat
+## P48. feladat
 
 a) Legyen $A \ne \emptyset$ alulról korlátos, és $\alpha = \inf A \notin A$. Mutassuk meg, hogy van olyan szigorúan fogyó $(a_n)$ sorozat $A$-ban, amelyre $a_n \to \alpha$.
 
@@ -1079,7 +1079,7 @@ b) Legyen $a_1 \in A$. Ha $a_n$ adott, a $\max\{a_n, n\}$ nem felső korlát, te
 *Torlódási pontok.* Az a) rész szerint ha $\inf A \notin A$, akkor $\inf A$ az $A$ torlódási pontja. Általában a szuprémum és az infimum vagy eleme a halmaznak, vagy torlódási pontja — ezért egy **zárt** halmaz (amely tartalmazza torlódási pontjait) korlátos esetben mindig tartalmazza a szuprémumát és infimumát, vagyis van maximuma és minimuma.
 :::
 
-## K49. feladat
+## P49. feladat
 
 Határozzuk meg a határértékeket: a) $\sqrt[n]{5^n + 4^n + n^{10}}$; b) $\dfrac{1 + 2 + \dots + n}{n^2 + 1}$; c) $\sqrt[n]{1 + \frac{1}{\sqrt2} + \dots + \frac{1}{\sqrt n}}$.
 
@@ -1101,7 +1101,7 @@ c) $1 \le 1 + \frac{1}{\sqrt2} + \dots + \frac{1}{\sqrt n} \le n$, így $1 \le \
 *Számtani összeg.* $1 + 2 + \dots + n = \frac{n(n+1)}{2}$ (Gauss); ezután racionális törtről van szó, ahol a főtagok aránya ($\frac{n^2/2}{n^2}$) adja a határértéket.
 :::
 
-## K50. feladat
+## P50. feladat
 
 Példák konstruálásával mutassuk meg, hogy ha $a_n \to +\infty$ és $b_n \to +\infty$, akkor $a_n - b_n$ és $\frac{a_n}{b_n}$ is „kritikus”.
 
@@ -1139,7 +1139,7 @@ A tényezők határértékéből tehát semmilyen következtetés nem vonható l
 *A $1^\infty$ típus.* $\left(1 + \frac1n\right)^n \to e$, $\left(1 + \frac1n\right)^{n^2} \to \infty$, $\left(1 + \frac{1}{n^2}\right)^n \to 1$ — ugyanaz a „$1^\infty$” alak, különböző eredmény.
 :::
 
-## K51. feladat
+## P51. feladat
 
 a) Mutassuk meg, hogy ha $a_n \to +\infty$, akkor $\frac{1}{a_n} \to 0$.
 
@@ -1165,7 +1165,7 @@ c) $a_n = \frac{(-1)^n}{n}$: $\frac{1}{a_n} = (-1)^nn$, amely sem $+\infty$-hez,
 *Függvényekre* (átviteli elv): $\lim_{x\to 0+}\frac1x = +\infty$, $\lim_{x \to 0-}\frac1x = -\infty$, és $\lim_{x\to0}\frac1x$ nem létezik — de $\lim_{x\to0}\frac{1}{|x|} = +\infty$.
 :::
 
-## K52. feladat
+## P52. feladat
 
 Adjunk meg olyan korlátos sorozatot, amelynek nincs se legnagyobb, se legkisebb tagja, és pontosan három sűrűsödési értéke van.
 
@@ -1188,7 +1188,7 @@ $$a_{3k} = 1 - \frac{1}{3k}, \qquad a_{3k+1} = -1 + \frac{1}{3k+1}, \qquad a_{3k
 *Általános tény.* Korlátos sorozatra $\inf a_n \le \liminf a_n \le \limsup a_n \le \sup a_n$; ha a sorozatnak nincs maximuma, akkor $\sup a_n = \limsup a_n$, ha nincs minimuma, akkor $\inf a_n = \liminf a_n$. A középső sűrűsödési érték ($0$) a szélsőértékek szempontjából közömbös.
 :::
 
-## K53. feladat
+## P53. feladat
 
 Határozzuk meg a határértékeket:
 
@@ -1234,7 +1234,7 @@ l) $\frac{n^2 + (-1)^n}{3n} \ge \frac{n^2 - 1}{3n} \ge \frac{n}{6}$ ($n \ge 2$-r
 *Stratégia.* Előbb azonosítsuk a típust (racionális? gyökös? exponenciális? oszcilláló?), aztán a megfelelő eszközt. A műveleti tételeket csak akkor alkalmazzuk, ha a tényezők határértéke létezik, és nem kritikus a típus.
 :::
 
-## K54. feladat
+## P54. feladat
 
 a) Bizonyítsuk be, hogy ha $|a_{n+1} - a_n| \le \frac{1}{n^2}$ minden $n$-re, akkor $(a_n)$ konvergens.
 
@@ -1262,7 +1262,7 @@ b) **Nem**: $a_n = 1 + \frac12 + \dots + \frac{1}{n-1}$ (harmonikus részletöss
 
 # A 6. feladatlaphoz
 
-## K55. feladat
+## P55. feladat
 
 Bizonyítsuk be, hogy a) $\mathbb{N}$ véges részhalmazainak halmaza megszámlálható; b) a racionális együtthatós polinomok halmaza megszámlálható.
 
@@ -1282,7 +1282,7 @@ b) Egy $d$-edfokú (vagy alacsonyabb fokú) racionális együtthatós polinomot 
 *Alkalmazás.* A racionális együtthatós polinomok gyökei az algebrai számok, így ezek is megszámlálhatók (61. feladat).
 :::
 
-## K56. feladat
+## P56. feladat
 
 Határozzuk meg a határértékeket:
 
@@ -1334,7 +1334,7 @@ Határozzuk meg a határértékeket:
 *6. Gyöktelenítés* a „$\infty - \infty$” és „$\infty \cdot 0$” alakoknál ((l), (q)), majd a domináns tagok összevetése.
 :::
 
-## K57. feladat
+## P57. feladat
 
 Jelölje $a_n \sim b_n$, hogy $\frac{a_n}{b_n} \to 1$ (aszimptotikus egyenlőség). Igazak-e a következők?
 
@@ -1364,7 +1364,7 @@ c) **Igaz:** $\frac{a_n^2}{b_n^2} = \left(\frac{a_n}{b_n}\right)^2 \to 1$.
 *Gyakorlati haszon.* Hányadosok és szorzatok határértékénél a tényezőket aszimptotikus megfelelőikre cserélhetjük ($\sqrt{n^2 + 1} \sim n$, $\sin\frac1n \sim \frac1n$), különbségeknél nem.
 :::
 
-## K58. feladat
+## P58. feladat
 
 Vizsgáljuk monotonitás és konvergencia szempontjából a sorozatokat, és határozzuk meg a határértéküket:
 
@@ -1395,7 +1395,7 @@ b) *Sejtés és bizonyítás:* $b_1 = 0$, $b_2 = \frac12$, $b_3 = \frac23$, $b_4
 *Vonzás sebessége és a derivált.* Egyszeres fixpontnál, ahol $|g'(A)| < 1$, a konvergencia mértani ($|x_n - A| \approx C|g'(A)|^n$); ha $g'(A) = 0$ (Newton), kvadratikus; ha $g'(A) = 1$ (a b) rész: $g'(1) = \frac{1}{(2-1)^2} = 1$), csak lassú, $\frac1n$-es. A fixpont „minősége” határozza meg a konvergencia sebességét.
 :::
 
-## K59. feladat
+## P59. feladat
 
 a) Adjunk meg bijekciót a $[0, 1]$ és a $(0, 1)$ intervallum között. b) Mutassuk meg, hogy $(0, 1) \sim \mathbb{R}$.
 
@@ -1419,7 +1419,7 @@ b) $g : (0, 1) \to \mathbb{R}$, $g(x) = \frac{2x - 1}{x(1 - x)}$ szigorúan mono
 *Folytonos bijekció?* $[0, 1]$ és $(0, 1)$ között nincs *folytonos* bijekció (a folytonos kép kompakt volna, így lenne maximuma); a bijekció tehát szükségképpen szakadásos — a számosság a „puszta halmaz” tulajdonsága, a topológiát nem veszi figyelembe.
 :::
 
-## K60. feladat
+## P60. feladat
 
 a) Legfeljebb hány páronként diszjunkt, nem degenerált (pozitív hosszúságú) intervallum lehet $\mathbb{R}$-ben?
 
@@ -1445,7 +1445,7 @@ b) **Körlapokból nem**: minden nyílt körlap tartalmaz racionális koordinát
 *Finomabb esetek.* A T-betűk (6. feladatlap) és a „nyolcasok” (két érintkező kör) is „félig vastagok”; ezeknél a végtelen skatulyaelv kell: egy nem megszámlálható családban van nem megszámlálható sok „legalább $\frac1n$ méretű” elem, és ezek közül kettő túl közel kerül egymáshoz.
 :::
 
-## K61. feladat
+## P61. feladat
 
 a) Mutassuk meg, hogy $\sqrt2 + \sqrt3$ algebrai szám. b) Mutassuk meg, hogy a legfeljebb másodfokú, egész együtthatós polinomok valós gyökeinek halmaza megszámlálható, és ebből következtessünk arra, hogy van olyan valós szám, amely egyetlen ilyen polinomnak sem gyöke.
 
@@ -1469,7 +1469,7 @@ b) A legfeljebb másodfokú, nem nulla egész együtthatós polinomok az $(a, b,
 *A számlálás finomítása.* Egy polinom „magassága” $h = \deg P + \sum|a_i|$; adott $h$-hoz véges sok polinom tartozik, így a $h = 1, 2, \dots$ szerinti felsorolás közvetlenül megadja az algebrai számok egy sorozatba rendezését.
 :::
 
-## K62. feladat
+## P62. feladat
 
 a) Bizonyítsuk be Cantor átlós módszerével, hogy a végtelen $0$–$1$ sorozatok halmaza nem megszámlálható.
 
@@ -1493,7 +1493,7 @@ b) Egy szigorúan növő $n_1 < n_2 < \dots$ sorozat egyértelműen megfelel az 
 
 # A 7. feladatlaphoz
 
-## K63. feladat
+## P63. feladat
 
 Határozzuk meg a $\liminf$-et és a $\limsup$-ot:
 
@@ -1519,7 +1519,7 @@ c) A páratlan indexű tagok $1, 2, 3, \dots \to +\infty$, a páros indexűek $\
 *Kapcsolat a határértékkel.* $\lim a_n$ létezik (tágabb értelemben) $\iff \liminf = \limsup$. Mindhárom példa divergens, mert $\liminf < \limsup$.
 :::
 
-## K64. feladat
+## P64. feladat
 
 Bizonyítsuk be, hogy $\lim\limits_{n\to\infty}a_n = +\infty$ pontosan akkor, ha $\liminf\limits_{n\to\infty}a_n = +\infty$.
 
@@ -1541,7 +1541,7 @@ Legyen $m_n = \inf_{k \ge n}a_k$ (monoton növő), $\liminf a_n = \lim m_n$.
 *A $+1$ trükk.* A ($\Rightarrow$) irányban $a_k > K + 1$-ből az infimumra csak $m_n \ge K + 1$ (nem szigorú) adódik — az infimum „elveszítheti” a szigorú egyenlőtlenséget. A korlát eltolása ezt kezeli.
 :::
 
-## K65. feladat
+## P65. feladat
 
 Bizonyítsuk be, hogy ha $\liminf\limits_{n\to\infty}a_n = a \in \mathbb{R}$, akkor $a$ a sorozat legkisebb sűrűsödési értéke.
 
@@ -1565,7 +1565,7 @@ Tehát $a$ a sűrűsödési értékek minimuma. $\blacksquare$
 *Következmény.* Korlátos sorozat sűrűsödési értékeinek $S$ halmaza mindig tartalmazza a minimumát és a maximumát ($\liminf$, $\limsup$) — ez $S$ zártságának egy speciális esete.
 :::
 
-## K66. feladat
+## P66. feladat
 
 Mutassuk meg, hogy $\liminf\limits_{n\to\infty}a_n = a \in \mathbb{R}$ pontosan akkor, ha minden $\varepsilon > 0$-ra $a_n < a - \varepsilon$ csak véges sok $n$-re, és $a_n < a + \varepsilon$ végtelen sok $n$-re teljesül.
 
@@ -1593,7 +1593,7 @@ $m_n = \inf_{k\ge n}a_k$, $\liminf a_n = \lim m_n$.
 | $\limsup a_n = a$ | — (de $a - \varepsilon$ fölött végtelen sok) | véges sok tag |
 :::
 
-## K67. feladat
+## P67. feladat
 
 Számítsuk ki a sorok összegét: a) $\displaystyle\sum_{n=1}^{\infty}\frac{3 \cdot (-1)^n}{4^n}$; b) $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n + 2)}$; c) $\displaystyle\sum_{n=1}^{\infty}\frac{1}{4n^2 - 1}$.
 
@@ -1620,7 +1620,7 @@ $$S_N = \frac12\left(1 - \frac{1}{2N + 1}\right) \to \frac12.$$
 *Összegezhetőség és kiejtés.* Egy végtelen sor tagjait nem szabad tetszőlegesen átrendezni vagy zárójelezni — a teleszkopikus kiejtést mindig a **véges** részletösszegeken végezzük el, és csak utána veszünk határértéket. (A $\sum(-1)^n$ sor „zárójelezésével” $0$-t vagy $1$-et is kaphatnánk, pedig divergens.)
 :::
 
-## K68. feladat
+## P68. feladat
 
 Bizonyítsuk be, hogy (korlátos sorozatokra) $\limsup(x_n + y_n) \le \limsup x_n + \limsup y_n$, és adjunk példát szigorú egyenlőtlenségre. Mutassuk meg, hogy ha $y_n \to y$, akkor $\limsup(x_n + y_n) = \limsup x_n + y$.
 
@@ -1644,7 +1644,7 @@ $$\liminf x + \liminf y \le \liminf(x + y) \le \liminf x + \limsup y \le \limsup
 Ezek mindegyike lehet szigorú, és mindegyik egyenlőséggé válik, ha valamelyik sorozat konvergens.
 :::
 
-## K69. feladat
+## P69. feladat
 
 Ábrázoljuk és írjuk le az alábbi függvényeket: a) $f(x) = [x] + [-x]$; b) $g(x) = \{2x\} - 2\{x\}$.
 
@@ -1666,7 +1666,7 @@ b) $\{2x\} - 2\{x\} = (2x - [2x]) - 2(x - [x]) = 2[x] - [2x]$. Ha $\{x\} < \frac
 *Kapcsolat a sorozatokkal.* A $[nx]$, $\{nx\}$ sorozatok fontos szerepet játszanak a diofantikus approximációban (K42) és az egyenletes eloszlás elméletében.
 :::
 
-## K70. feladat
+## P70. feladat
 
 a) Adjunk meg $[0, 1]$-en értelmezett, felülről nem korlátos függvényt. b) Adjunk meg $[0, 1]$-en értelmezett korlátos függvényt, amelynek sem legnagyobb, sem legkisebb értéke nincs.
 
@@ -1686,7 +1686,7 @@ b) $g(x) = x$, ha $0 < x < 1$, és $g(0) = g(1) = \frac12$. Értékkészlete $(0
 *A bizonyítás kulcsa.* A Weierstrass-tétel bizonyításában egy maximalizáló sorozat ($f(x_n) \to \sup f$) Bolzano–Weierstrass szerint konvergens részsorozatot tartalmaz, a zártság miatt a határ az intervallumban van, a folytonosság miatt ott $f$ felveszi a $\sup$-ot. A példák pontosan a „folytonosság” lépésnél buknak el: a határpontban a függvényérték „rossz”.
 :::
 
-## K71. feladat
+## P71. feladat
 
 a) Keressük meg az $f(x) = \frac{3x + 1}{x - 2}$ függvény inverzét az $\mathbb{R} \setminus \{2\}$ halmazon. b) Keressük meg a $g(x) = x^2 + 2x$ függvény inverzét a $[-1, \infty)$ intervallumon.
 
@@ -1710,7 +1710,7 @@ $$g^{-1}(x) = -1 + \sqrt{x + 1}, \qquad D(g^{-1}) = [-1, \infty).$$
 *Grafikon.* Az inverz grafikonja az eredeti tükörképe az $y = x$ egyenesre; folytonos, szigorúan monoton függvény inverze is az.
 :::
 
-## K72. feladat
+## P72. feladat
 
 Létezik-e olyan monoton $f : [0, 1] \to \mathbb{R}$ függvény, amelynek értékkészlete
 
@@ -1738,7 +1738,7 @@ d) **Nem:** monoton függvény $[0, 1]$-en korlátos ($f(0)$ és $f(1)$ közé e
 *Konstrukció.* Ha egy értéket (itt az $1$-et) egy hézag határán *el kell érni*, a függvényt egy darabon konstansnak választjuk — ezért kell a nem szigorú monotonitás. Egy izolált értéket (a $0$ vagy a $2$) egyetlen pontban, ugrással veszünk fel.
 :::
 
-## K73. feladat
+## P73. feladat
 
 Döntsük el, párosak vagy páratlanok-e (vagy egyik sem) az alábbi függvények:
 
@@ -1770,7 +1770,7 @@ f) **Páratlan**: $\ln\frac{1 + x}{1 - x} = -\ln\frac{1 - x}{1 + x}$.
 *Az értelmezési tartomány.* Paritásról csak $0$-ra szimmetrikus értelmezési tartomány esetén beszélhetünk — ezért kell az f) részben a $|x| < 1$ kikötés (a $(-1, 1)$ szimmetrikus).
 :::
 
-## K74. feladat
+## P74. feladat
 
 Bontsuk fel páros és páratlan függvény összegére: a) $f(x) = x^3 + 2x^2 - x + 5$; b) $g(x) = \frac{1}{x^2 + x + 1}$; c) $h(x) = e^x$.
 
@@ -1797,7 +1797,7 @@ c) $p(x) = \frac{e^x + e^{-x}}{2} = \cosh x$, $q(x) = \frac{e^x - e^{-x}}{2} = \
 *Lineáris algebra.* A $T: f(x) \mapsto f(-x)$ lineáris leképezés, $T^2 = I$; sajátértékei $\pm1$, sajátalterei a páros, illetve páratlan függvények, és a felbontás a sajátalterekre való vetítés.
 :::
 
-## K75. feladat
+## P75. feladat
 
 a) Adjunk meg olyan $f : \mathbb{R} \to \mathbb{R}$ függvényt, amely minden $(a, b)$ intervallumon végtelen sok különböző értéket vesz fel, de az értékkészlete megszámlálható.
 
@@ -1821,7 +1821,7 @@ b) Ugyanez az érvelés: minden $N$-hez van az intervallumban $N$-nél nagyobb n
 
 # A 8. feladatlaphoz
 
-## K76. feladat
+## P76. feladat
 
 a) Mutassuk meg, hogy az $f(x) = \{x\} + \{2x\}$ függvény periodikus, és határozzuk meg a legkisebb pozitív periódusát.
 
@@ -1845,7 +1845,7 @@ b) A periódusok halmaza (a $0$-val együtt) additív részcsoport: $mp + nr$ ($
 *A legkisebb periódus meghatározása.* Egy jelölt ($1$) periódus voltát közvetlenül ellenőrizzük; minimalitásához elég megmutatni, hogy kisebb pozitív $p$-re valamely pontban (itt a $0$-ban) $f(x + p) \ne f(x)$.
 :::
 
-## K77. feladat
+## P77. feladat
 
 a) Bizonyítsuk be, hogy bármely $f : \mathbb{R} \to \mathbb{R}$ függvény szigorú lokális minimumhelyeinek halmaza megszámlálható.
 
@@ -1867,7 +1867,7 @@ b) **Igen**, a Riemann-függvény: $R(\frac pq) = \frac1q$, irracionálisra $0$.
 *Hasonló tételek.* Megszámlálható: monoton függvény szakadási helyei; egy függvény azon pontjai, ahol a két egyoldali határérték létezik, de különbözik; a sík diszjunkt nyílt körlapjainak bármely családja. A közös gondolat: minden ilyen objektumhoz egy racionális „tanú” rendelhető injektíven.
 :::
 
-## K78. feladat
+## P78. feladat
 
 Bizonyítsuk be a különbségi hányados módszerével, hogy
 
@@ -1899,7 +1899,7 @@ c) $|x|$ konvex: $|\lambda x + (1 - \lambda)y| \le \lambda|x| + (1 - \lambda)|y|
 *Differenciálható esetben* (későbbi eszköz): $f$ konvex $\iff f'$ monoton nő $\iff f'' \ge 0$. Például $\left(\frac1x\right)'' = \frac{2}{x^3} > 0$ a $(0, \infty)$-en, $(x^3)'' = 6x$ előjele a $0$-ban vált.
 :::
 
-## K79. feladat
+## P79. feladat
 
 Legyen $f$ konvex az $I$ intervallumon. Bizonyítsuk be a Jensen-egyenlőtlenség egyenlő súlyú változatát,
 $$f\left(\frac{x_1 + \dots + x_n}{n}\right) \le \frac{f(x_1) + \dots + f(x_n)}{n} \qquad (x_i \in I),$$
@@ -1926,7 +1926,7 @@ Mivel minden $n$-hez van nála nagyobb $2^k$, és onnan lépésenként visszafel
 *Alkalmazás.* $f(x) = -\ln x$ (konvex) választással a számtani–mértani közép egyenlőtlenséget kapjuk: $\ln\frac{\sum x_i}{n} \ge \frac{\sum\ln x_i}{n} = \ln\sqrt[n]{x_1\cdots x_n}$.
 :::
 
-## K80. feladat
+## P80. feladat
 
 Bizonyítsuk be a Jensen-egyenlőtlenség segítségével, hogy pozitív $a_1, \dots, a_n$ számokra
 $$\frac{n}{\frac{1}{a_1} + \dots + \frac{1}{a_n}} \le \frac{a_1 + \dots + a_n}{n},$$
@@ -1952,7 +1952,7 @@ ahol $G$ a mértani, $A$ a számtani, $Q$ a négyzetes közép; mindegyik egyenl
 *Cauchy–Schwarz.* A második egyenlőtlenség a Cauchy–Schwarz-egyenlőtlenség, $\left(\sum u_iv_i\right)^2 \le \sum u_i^2\sum v_i^2$, speciális esete $u_i = \sqrt{a_i}$, $v_i = \frac{1}{\sqrt{a_i}}$ választással.
 :::
 
-## K81. feladat
+## P81. feladat
 
 Legyen $f$ konvex az $(a, b)$ intervallumon, és $c \in (a, b)$ lokális maximumhelye $f$-nek. Mutassuk meg, hogy $f$ konstans $c$ egy környezetében. Lehet-e $c$ szigorú lokális maximumhely?
 
@@ -1976,7 +1976,7 @@ Szigorú lokális maximumhely tehát **nem lehet** (konvex függvénynek egy bel
 *A felezőponti egyenlőtlenség ereje.* A bizonyítás csak a $\lambda = \frac12$ esetet használta: $f(c) \le \frac{f(c - h) + f(c + h)}{2}$. Ez a „középponti konvexitás” a második differenciahányadosra vonatkozó $f(c - h) - 2f(c) + f(c + h) \ge 0$ feltétel, amelynek határértéke (ha létezik) $h^2f''(c)$ — innen a $f'' \ge 0$ jellemzés.
 :::
 
-## K82. feladat
+## P82. feladat
 
 Bizonyítsuk be a különbségi hányados módszerével, hogy a) $x\sqrt{x}$ szigorúan konvex $[0, \infty)$-en; b) $\frac{1}{\sqrt x}$ szigorúan konvex $(0, \infty)$-en.
 
@@ -2002,7 +2002,7 @@ ahol a nevező $x$-ben szigorúan nő, így a negatív előjelű tört szigorúa
 *Alkalmazás: hatványközepek.* Az $x^\alpha$ konvexitásából a Jensen-egyenlőtlenség adja a hatványközepek közötti egyenlőtlenséget: $M_r \le M_s$, ha $r < s$. A $\frac{1}{\sqrt x}$ konvexitása például azt adja, hogy $\frac{1}{\sqrt{\text{átlag}}} \le \text{átlag}\left(\frac{1}{\sqrt{\cdot}}\right)$.
 :::
 
-## K83. feladat
+## P83. feladat
 
 Adott $\varepsilon > 0$-hoz alkalmas $\delta$-t keresve határozzuk meg a határértékeket:
 
@@ -2034,7 +2034,7 @@ f) Határérték $0$. $|x\sin\frac1x| \le |x|$. **$\delta = \varepsilon$.**
 *Egyszerűsítés.* A d) részben a $\frac00$ alakot a közös $(x - 2)$ tényezővel egyszerűsítve oldjuk fel; ez megengedett, mert a határérték csak a pont *környezetétől* függ, és ott $x \ne 2$.
 :::
 
-## K84. feladat
+## P84. feladat
 
 Mutassuk meg, hogy a) $\lim\limits_{x\to a}f(x) = b \iff \lim\limits_{h\to0}f(a + h) = b$; b) $\lim\limits_{x \to a}f(x) = b \iff \lim\limits_{x \to a}|f(x) - b| = 0$.
 
@@ -2054,7 +2054,7 @@ b) $\lim_{x\to a}|f(x) - b| = 0$ definíciója: $\forall\varepsilon\ \exists\del
 *Kompozíció.* Az a) rész a kompozíció határértékéről szóló tétel speciális esete: ha $\varphi(h) = a + h$, akkor $\varphi(h) \to a$ és $\varphi(h) \ne a$ ($h \ne 0$), így $\lim_{h\to0}f(\varphi(h)) = \lim_{x\to a}f(x)$.
 :::
 
-## K85. feladat
+## P85. feladat
 
 Határozzuk meg a következő halmazok torlódási pontjait: a) $\mathbb{Z}$; b) $\{\frac1n + \frac1m : n, m \in \mathbb{N}\}$; c) $\{(-1)^n + \frac1n : n \in \mathbb{N}\}$; d) $\mathbb{Q} \cap [0, 1]$; e) $(0, 1) \cup \{2\}$.
 
@@ -2082,7 +2082,7 @@ e) $[0, 1]$; a $2$ izolált pont.
 *Zárt halmazok.* A halmaz és torlódási pontjainak uniója a **lezárt**; a halmaz zárt, ha tartalmazza torlódási pontjait. A d)–e) példák nem zártak (a lezártjuk $[0, 1]$, illetve $[0, 1] \cup \{2\}$).
 :::
 
-## K86. feladat
+## P86. feladat
 
 a) Mutassuk meg, hogy ha $\lim\limits_{x\to a}f(x) = b > 0$, akkor $a$-nak van olyan pontozott környezete, amelyben $f(x) > \frac b2$.
 
@@ -2106,7 +2106,7 @@ Szigorú egyenlőtlenség nem öröklődik: $f(x) = 0 < g(x) = x^2$ ($x \ne 0$),
 *Rendőrelv.* Ha egy pontozott környezetben $f \le h \le g$, és $\lim f = \lim g = b$, akkor $\lim h = b$. A b) rész ennek „fél” változata, és a rendőrelv ebből a $h$ határértékének létezésével együtt következik.
 :::
 
-## K87. feladat
+## P87. feladat
 
 Legyen $f(x) = x$, ha $x \in \mathbb{Q}$, és $f(x) = -x$, ha $x \notin \mathbb{Q}$. Hol folytonos $f$? Hol van határértéke? Van-e lokális szélsőértéke? Mi az $f \circ f$ függvény?
 
@@ -2130,7 +2130,7 @@ Legyen $f(x) = x$, ha $x \in \mathbb{Q}$, és $f(x) = -x$, ha $x \notin \mathbb{
 
 # A 9. feladatlaphoz
 
-## K88. feladat
+## P88. feladat
 
 Definiáljuk a következő határértékeket, és adjunk mindegyikre példát: a) $\lim\limits_{x\to a+0}f(x) = +\infty$; b) $\lim\limits_{x\to+\infty}f(x) = -\infty$; c) $\lim\limits_{x\to-\infty}f(x) = -\infty$.
 
@@ -2154,7 +2154,7 @@ c) $D(f)$ alulról nem korlátos, és $\forall P\ \exists K\ \forall x \in D(f),
 *Aszimptoták.* A függőleges aszimptota ($x = a$) egy egyoldali végtelen határértéket jelent (a) rész), a vízszintes ($y = b$) a végtelenbeli véges határértéket.
 :::
 
-## K89. feladat
+## P89. feladat
 
 Mondjuk ki a) $\lim\limits_{x\to+\infty}f(x) = b$ és b) $\lim\limits_{x \to a+0}f(x) = -\infty$ tagadását, valamint sorozatos átfogalmazásukat.
 
@@ -2174,7 +2174,7 @@ b) Tagadás: $\exists P\ \forall\delta > 0\ \exists x \in D(f),\ a < x < a + \de
 *Példa.* $\sin x$-nek nincs határértéke $+\infty$-ben: $x_n = 2n\pi$ mentén $0$, $y_n = 2n\pi + \frac\pi2$ mentén $1$. Bármely $b$-re legalább az egyik sorozat legalább $\frac12$ távolságra marad $b$-től.
 :::
 
-## K90. feladat
+## P90. feladat
 
 Határozzuk meg: a) $\lim\limits_{x\to0}\frac{(1 + x)^4 - (1 + 4x)}{x^2 - x^3}$; b) $\lim\limits_{x\to\infty}\frac{2x^5 - x + 1}{3x^5 + x^2}$; c) $\lim\limits_{x\to-\infty}\frac{x}{\sqrt{x^2 + 1}}$; d) $\lim\limits_{x\to2}\frac{x^3 - 8}{x^2 - 4}$.
 
@@ -2200,7 +2200,7 @@ d) $\frac{(x - 2)(x^2 + 2x + 4)}{(x - 2)(x + 2)} = \frac{x^2 + 2x + 4}{x + 2} \t
 *Derivált-szemlélet.* $\lim_{x\to2}\frac{x^3 - 8}{x^2 - 4} = \frac{(x^3)'|_{x=2}}{(x^2)'|_{x=2}} = \frac{12}{4}$ — a L'Hospital-szabály előfutára; az a) részben a $x^2$ együtthatója a $(1 + x)^4$ második deriváltjának fele a $0$-ban.
 :::
 
-## K91. feladat
+## P91. feladat
 
 Bizonyítsuk be, hogy ha egy $H \subseteq \mathbb R$ halmaz minden pontja izolált pontja $H$-nak, akkor $H$ megszámlálható. Adjunk példát végtelen ilyen halmazra.
 
@@ -2220,7 +2220,7 @@ Minden $h \in H$-hoz van olyan $\delta_h > 0$, hogy $(h - \delta_h, h + \delta_h
 *Nem megszámlálható halmazok.* A tétel kontrapozíciója: minden nem megszámlálható $H \subseteq \mathbb R$ halmaznak van olyan eleme, amely $H$ torlódási pontja — sőt, „szinte minden” eleme ilyen (a kondenzációs pontok tétele).
 :::
 
-## K92. feladat
+## P92. feladat
 
 a) Bizonyítsuk be, hogy ha $f : \mathbb{R} \to \mathbb{R}$ periodikus, és létezik a $\lim_{x\to\infty}f(x) = b$ véges határérték, akkor $f \equiv b$.
 
@@ -2244,7 +2244,7 @@ b) Legyen $x > 0$ tetszőleges. Indukcióval $f\left(\frac{x}{2^n}\right) = f(x)
 *Kapcsolat.* A Cauchy-egyenlet ($f(x + y) = f(x) + f(y)$) folytonos megoldásainak meghatározása (K101) ugyanígy működik: a racionális pontokon az egyenletből, máshol a folytonosságból (sorozatokkal) kapjuk az értéket.
 :::
 
-## K93. feladat
+## P93. feladat
 
 Határozzuk meg: a) $\lim\limits_{x\to1}\frac{\sqrt[3]{x} - 1}{\sqrt[4]{x} - 1}$; b) $\lim\limits_{x\to0}\frac{\sqrt{1 + x} - 1}{x}$.
 
@@ -2265,7 +2265,7 @@ b) Gyöktelenítve: $\frac{\sqrt{1 + x} - 1}{x} = \frac{(1 + x) - 1}{x(\sqrt{1 +
 *Derivált-szemlélet.* A b) rész a $\sqrt x$ függvény deriváltja az $1$-ben: $\lim_{h\to0}\frac{\sqrt{1 + h} - 1}{h} = \frac{1}{2\sqrt1} = \frac12$. A differenciálhányadosok éppen ilyen „$\frac00$ típusú” határértékek, és a gyöktelenítés az elemi kiszámításuk eszköze.
 :::
 
-## K94. feladat
+## P94. feladat
 
 Hol folytonosak? a) a Dirichlet-függvény; b) $f(x) = x^2$, ha $x \in \mathbb{Q}$, és $f(x) = 2x - 1$, ha $x \notin \mathbb{Q}$; c) $g(x) = x[x]$.
 
@@ -2287,7 +2287,7 @@ c) **A nem nulla egész helyeken nem folytonos, máshol igen.** Nem egész $x_0$
 *Folytonossági pontok halmaza.* Bármely függvény folytonossági pontjainak halmaza $G_\delta$ (megszámlálható sok nyílt halmaz metszete); így lehet $\emptyset$ (Dirichlet), egyetlen pont (b), megszámlálható sok pont elhagyásával kapott halmaz (c), vagy az irracionálisak halmaza (Riemann-függvény) — de nem lehet pontosan $\mathbb Q$.
 :::
 
-## K95. feladat
+## P95. feladat
 
 Létezik-e a) $\lim\limits_{x\to0}\frac{R(x)}{\sqrt{|x|}}$, b) $\lim\limits_{x\to0}\frac{R(x)}{x^2}$? ($R$ a Riemann-függvény.)
 
@@ -2311,7 +2311,7 @@ b) **Nem létezik.** Az $x_n = \frac1n$ sorozat mentén $\frac{R(x_n)}{x_n^2} = 
 *Kapcsolat a differenciálhatósággal.* Egy függvény a $0$-ban differenciálható $0$ deriválttal, ha $\frac{f(x) - f(0)}{x} \to 0$; az ilyen „hányados-határértékek” azt mérik, milyen „rendben” tart a függvény az értékéhez.
 :::
 
-## K96. feladat
+## P96. feladat
 
 A folytonosság definíciója alapján adjunk meg $\varepsilon > 0$-hoz alkalmas $\delta$-t: a) $\frac{2x - 1}{x + 1}$, $a = 1$; b) $\sqrt{x + 3}$, $a = 1$.
 
@@ -2335,7 +2335,7 @@ $$|\sqrt{x + 3} - 2| = \frac{|x - 1|}{\sqrt{x + 3} + 2} \le \frac{|x - 1|}{2}.$$
 *Folytonos függvények algebrája.* Mindkét függvény folytonossága a műveleti szabályokból is következik (racionális függvény a nevező zérushelyén kívül, illetve folytonos függvények kompozíciója). A $\delta$ kiszámítása a definíció „kvantitatív” megértését szolgálja.
 :::
 
-## K97. feladat
+## P97. feladat
 
 a) Legyen $f$ folytonos, $g$ nem folytonos az $a$ pontban. Mit mondhatunk $f \circ g$-ről és $g \circ f$-ről?
 
@@ -2357,7 +2357,7 @@ b) **$f^2$-ből nem:** $f = 2D - 1$ ($1$ a racionálisokon, $-1$ az irracionáli
 *Folytonos inverz.* Intervallumon folytonos, szigorúan monoton függvény inverze folytonos — ezért folytonosak a gyökfüggvények, a logaritmus, az $\arcsin$, $\arctan$. Ezek teszik lehetővé a „visszafelé” következtetéseket a fenti módon.
 :::
 
-## K98. feladat
+## P98. feladat
 
 Mutassuk meg, hogy az $f(x) = x^3 + x$ függvény szigorúan monoton nő $\mathbb{R}$-en, értékkészlete $\mathbb{R}$, és inverze folytonos. Számítsuk ki $f^{-1}(2)$-t és $f^{-1}(10)$-et.
 
@@ -2385,7 +2385,7 @@ Mutassuk meg, hogy az $f(x) = x^3 + x$ függvény szigorúan monoton nő $\mathb
 
 # A 10. feladatlaphoz
 
-## K99. feladat
+## P99. feladat
 
 a) Mutassuk meg, hogy ha $f$ folytonos $a$-ban, akkor $f^2$ és $\sqrt{|f|}$ is folytonos ott.
 
@@ -2407,7 +2407,7 @@ b) **Nem**: $f(x) = 1$, ha $x \ge 0$, és $-1$, ha $x < 0$; $f^2 \equiv 1$ folyt
 *Gyökfüggvény folytonossága.* $|\sqrt u - \sqrt v| \le \sqrt{|u - v|}$ ($u, v \ge 0$), így a négyzetgyök egyenletesen folytonos a $[0, \infty)$-en (de nem Lipschitz a $0$-ban).
 :::
 
-## K100. feladat
+## P100. feladat
 
 Legyenek $f, g, h$ folytonosak $a$-ban. Mutassuk meg, hogy $\max\{f, g, h\}$ és $f^+ = \max\{f, 0\}$ is folytonos $a$-ban, és fejezzük ki $|f|$-et $f^+$ és $f^- = \max\{-f, 0\}$ segítségével.
 
@@ -2427,7 +2427,7 @@ mert ahol $f \ge 0$, ott $f^+ = f$, $f^- = 0$; ahol $f < 0$, ott $f^+ = 0$, $f^-
 *Véges sok függvény maximuma* indukcióval folytonos; végtelen sok folytonos függvény szuprémuma viszont már nem feltétlenül (csak alulról félig folytonos).
 :::
 
-## K101. feladat
+## P101. feladat
 
 Legyen $f : \mathbb{R} \to \mathbb{R}$ folytonos, és $f(x + y) = f(x) + f(y)$ minden $x, y$-ra (Cauchy-egyenlet). Mutassuk meg, hogy $f(x) = cx$, ahol $c = f(1)$.
 
@@ -2449,7 +2449,7 @@ Legyen $f : \mathbb{R} \to \mathbb{R}$ folytonos, és $f(x + y) = f(x) + f(y)$ m
 *Rokon egyenletek* (folytonos megoldásokkal): $f(x + y) = f(x)f(y) \Rightarrow f(x) = a^x$ (vagy $0$); $f(xy) = f(x) + f(y)$ ($x, y > 0$) $\Rightarrow f(x) = c\ln x$; $f(xy) = f(x)f(y) \Rightarrow f(x) = x^\alpha$. Mind visszavezethetők a Cauchy-egyenletre.
 :::
 
-## K102. feladat
+## P102. feladat
 
 a) Bizonyítsuk be, hogy egy monoton $f : [a, b] \to \mathbb{R}$ függvénynek legfeljebb megszámlálhatóan sok szakadási pontja van.
 
@@ -2473,7 +2473,7 @@ b) Legyen $f(x) = \sum_{n \ge 2,\ 1/n \le x}2^{-n}$ (az üres összeg $0$). Ez m
 *Lebesgue tétele.* Monoton függvény majdnem mindenütt differenciálható — a szakadások „ritkák” (megszámlálhatók), a nem differenciálható pontok halmaza nullmértékű.
 :::
 
-## K103. feladat
+## P103. feladat
 
 Van-e olyan $(0, \infty)$-en folytonos $f$ függvény, amelyre $\lim_{x\to\infty}f(x) = +\infty$, de $f$ egyetlen $(K, \infty)$ félegyenesen sem monoton?
 
@@ -2497,7 +2497,7 @@ $$f(x_k) = 2k\pi + \tfrac\pi2 + 2 \approx 2k\pi + 3{,}57, \qquad f(y_k) = 2k\pi 
 *Tanulság.* $\lim_{x\to\infty}f(x) = +\infty$ nem jelenti, hogy $f$ „végül” monoton. Hasonlóan $\lim a_n = +\infty$ esetén sem kell a sorozatnak monotonnak lennie (például $n + 2(-1)^n$).
 :::
 
-## K104. feladat
+## P104. feladat
 
 a) Bizonyítsuk be, hogy ha $f$ konvex $\mathbb{R}$-en és felülről korlátos, akkor konstans.
 
@@ -2521,7 +2521,7 @@ b) Ha valahol $x < y$ és $f(x) < f(y)$, akkor az a) rész első esete szerint $
 *Konvex függvény a végtelenben.* Egy $(0, \infty)$-en konvex függvényre a $\lim_{x\to\infty}\frac{f(x)}{x}$ mindig létezik ($\overline{\mathbb R}$-ben), és $\lim_{x\to\infty}f(x)$ is létezik. Ha a határérték véges, a függvény végül monoton fogyó — a b) rész ennek egy esete. (Példa: $\frac1x$, $e^{-x}$.)
 :::
 
-## K105. feladat
+## P105. feladat
 
 a) Mutassuk meg, hogy az $x^5 + 3x - 1 = 0$ egyenletnek pontosan egy valós gyöke van, és ez a $(0, 1)$ intervallumba esik.
 
@@ -2545,7 +2545,7 @@ b) $h(x) = \cos x - x$ folytonos, $h(0) = 1 > 0$, $h(\frac\pi2) = -\frac\pi2 < 0
 *Numerikus közelítés.* Intervallumfelezéssel a gyök tetszőleges pontossággal közelíthető: $p(0{,}5) = 0{,}53 > 0$, így a gyök $(0;\ 0{,}5)$-ben; $p(0{,}25) \approx -0{,}249 < 0$, így $(0{,}25;\ 0{,}5)$-ben; stb. (A gyök $\approx 0{,}332$.)
 :::
 
-## K106. feladat
+## P106. feladat
 
 a) Legyen $f \in C[a, b]$, $x_1, \dots, x_n \in [a, b]$, és $p_1, \dots, p_n \ge 0$, $\sum p_i = 1$. Mutassuk meg, hogy van $c \in [a, b]$, amelyre $f(c) = \sum p_if(x_i)$.
 
@@ -2567,7 +2567,7 @@ b) Legyen $g(x) = f(x + \frac12) - f(x)$ a $[0, \frac12]$-en; folytonos. $g(0) +
 *Szemléletes jelentés.* Ha egy kiránduló egy kör alakú túrát tesz (ugyanoda tér vissza), van két, fél távnyira levő pont, ahol ugyanolyan magasan volt.
 :::
 
-## K107. feladat
+## P107. feladat
 
 a) Legyen $f \in C[0, 1]$ és $0 \le f \le 1$. Mutassuk meg, hogy van $c \in [0, 1]$, amelyre $f(c) = c^2$.
 
@@ -2589,7 +2589,7 @@ b) $h(x) = 2^x - 3x$ folytonos; $h(0) = 1 > 0$, $h(1) = 2 - 3 = -1 < 0$. A Bolza
 *Transzcendens egyenletek.* A $2^x = 3x$ egyenlet nem oldható meg zárt alakban elemi függvényekkel; a Bolzano-tétel a létezést, az intervallumfelezés a numerikus közelítést adja. (Két megoldása van: egy a $(0, 1)$-ben, $\approx 0{,}458$, és egy a $(3, 4)$-ben, $\approx 3{,}313$.)
 :::
 
-## K108. feladat
+## P108. feladat
 
 a) Legyen $f \in C[a, b]$ nem konstans, és $f(a) = f(b)$. Mutassuk meg, hogy van olyan érték, amelyet $f$ legalább kétszer felvesz, sőt végtelen sok ilyen érték van.
 
@@ -2615,7 +2615,7 @@ b) Elég megmutatni, hogy minden $[c, d]$ intervallumon szigorúan monoton, és 
 *Topológiai szemlélet.* Az $\mathbb R$-ből egy pontot elhagyva két darab marad; a folytonos injekció ezt a tulajdonságot megőrzi, és ez kényszeríti ki a monotonitást. Magasabb dimenzióban (a síkon) nincs ilyen megszorítás: vannak nem „monoton” folytonos injekciók (például forgatások).
 :::
 
-## K109. feladat
+## P109. feladat
 
 a) Legyen $f : [0, 1] \to [0, 1]$ folytonos. Mutassuk meg, hogy van $c$, amelyre $f(c) = 1 - c$.
 
@@ -2637,7 +2637,7 @@ b) Jelölje $u(t)$ és $d(t)$ a turista helyét (az úton mért távolságot a h
 *A turista-feladat szépsége.* Egy egyszerű „trükk” (a két napot egyszerre képzeljük el: egy turista felfelé, egy lefelé indul egyszerre — valahol találkozniuk kell) egy matematikailag precíz Bolzano-érvelés. A sebességekről semmit nem kellett feltennünk.
 :::
 
-## K110. feladat
+## P110. feladat
 
 a) Legyen $g(x) = \sin\frac1x$, ha $x \ne 0$, és $g(0) = c$. Mutassuk meg, hogy $g$ pontosan akkor Darboux-tulajdonságú $\mathbb{R}$-en, ha $c \in [-1, 1]$.
 
