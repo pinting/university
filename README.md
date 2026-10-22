@@ -18,18 +18,8 @@ sudo pacman -S --needed \
   texlive-fontsextra \
   texlive-mathscience \
   gnu-free-fonts
-```
 
-```bash
-make          # Build concatenated notes and all PDFs
-make pdf      # Build all PDFs only
-make textbook # Build only the textbooks
-make examples # Build worked examples (Példafeladatok)
-make practice # Build practice problems (Gyakorlófeladatok)
-make practice-solutions # Build practice problem solutions (Gyakorlófeladatok Megoldások)
-make supplementary # Build all example and practice collections
-make html     # Build interactive HTML presentation & simulations (Analízis 1)
-make clean    # Remove generated files
+make
 ```
 
 ## Contributions
