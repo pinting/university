@@ -3369,3 +3369,805 @@ $$\frac{d_1 + \dots + d_{m+n}}{m + n} = \frac{(d_1 + \dots + d_m) + (e_1 + \dots
 **Definíciók:** folytonosság, féloldali folytonosság, $f \in C[a, b]$.
 
 **Tételek:** határérték és alapműveletek, határérték és kompozíció, egyenlőtlenségek és határérték (két tétel), átviteli elv folytonos függvényekre.
+
+# Analízis 1 – 1. ZH (2022 normál) – megoldások
+
+### B. Sc. I. Mat. Haladó analízis · Első ZH · Normál verzió (2022/23-I. félév)
+
+*(az intenzív gyakorlatra járó hallgatók NEM ezt írják)*
+
+## 1. feladat
+
+a) $\lim_{n \to +\infty} \left(\sqrt{n^2 + 2} - \sqrt{n^2 - 2}\right) = ?$
+
+b) $\lim_{n \to +\infty} \sqrt[n^2]{n^{3n} + n^{2022}} = ?$
+
+c) $\limsup_{n \to +\infty} \left\{ \frac{2n^2}{5} \right\} = ?$
+
+*(A c) kérdésben $\{\cdot\}$ törtrészt jelöl.)*
+
+**Megoldás.**
+
+**a) $\mathbf{0}$.**
+
+*Levezetés:*
+A kifejezés $\infty - \infty$ típusú határozatlan alak. Szorozzunk és osszunk a konjugálttal (gyöktelenítés):
+$$\sqrt{n^2 + 2} - \sqrt{n^2 - 2} = \frac{\left(\sqrt{n^2 + 2} - \sqrt{n^2 - 2}\right)\left(\sqrt{n^2 + 2} + \sqrt{n^2 - 2}\right)}{\sqrt{n^2 + 2} + \sqrt{n^2 - 2}} = \frac{(n^2 + 2) - (n^2 - 2)}{\sqrt{n^2 + 2} + \sqrt{n^2 - 2}} = \frac{4}{\sqrt{n^2 + 2} + \sqrt{n^2 - 2}}.$$
+Mivel a számláló konstans $4$, a nevező pedig tart $+\infty$-hez ($n \to +\infty$ esetén $\sqrt{n^2 \pm 2} \to +\infty$), a hányados határértéke:
+$$\lim_{n \to +\infty} \left(\sqrt{n^2 + 2} - \sqrt{n^2 - 2}\right) = \lim_{n \to +\infty} \frac{4}{\sqrt{n^2 + 2} + \sqrt{n^2 - 2}} = 0.$$
+
+---
+
+**b) $\mathbf{1}$.**
+
+*Levezetés:*
+A gyökjel alatti kifejezés két tagjának nagyságrendjét vizsgálva észrevehetjük, hogy elég nagy $n$-re $n^{3n} \gg n^{2022}$ (például $3n > 2022 \iff n > 674$ esetén már biztosan $n^{3n} \ge n^{2022}$).
+Alkalmazzuk a rendőrelvet (csendőrelvet)!
+Alsó becslés: Mivel minden $n \ge 1$-re $n^{2022} > 0$:
+$$n^{3n} < n^{3n} + n^{2022}.$$
+Felső becslés: Legyen $n \ge 674$. Ekkor $n^{2022} \le n^{3n}$, így:
+$$n^{3n} + n^{2022} \le 2 n^{3n}.$$
+Vonjunk $n^2$-edik gyököt mindkét oldalból ($x \mapsto x^{1/n^2}$ szigorúan monoton növekvő):
+$$\left(n^{3n}\right)^{1/n^2} < \sqrt[n^2]{n^{3n} + n^{2022}} \le \left(2 n^{3n}\right)^{1/n^2} = 2^{1/n^2} \cdot \left(n^{3n}\right)^{1/n^2}.$$
+Számítsuk ki a határértékeket:
+$$\left(n^{3n}\right)^{1/n^2} = n^{\frac{3n}{n^2}} = n^{\frac{3}{n}} = \left(n^{1/n}\right)^3 = \left(\sqrt[n]{n}\right)^3.$$
+Ismert nevezetes határérték, hogy $\lim_{n \to +\infty} \sqrt[n]{n} = 1$. Ezért a határértékek szorzási szabálya alapján:
+$$\lim_{n \to +\infty} \left(n^{3n}\right)^{1/n^2} = \lim_{n \to +\infty} \left(\sqrt[n]{n}\right)^3 = 1^3 = 1.$$
+A felső korlátnál:
+$$\lim_{n \to +\infty} 2^{1/n^2} = 2^0 = 1 \implies \lim_{n \to +\infty} \left(2^{1/n^2} \cdot n^{3/n}\right) = 1 \cdot 1 = 1.$$
+Mivel az alsó és a felső korlát is $1$-hez tart, a rendőrelv szerint:
+$$\lim_{n \to +\infty} \sqrt[n^2]{n^{3n} + n^{2022}} = 1.$$
+
+---
+
+**c) $\mathbf{\dfrac{3}{5}} = \mathbf{0{,}6}$.**
+
+*Levezetés:*
+A $\{x\} = x - \lfloor x \rfloor$ jelölés a valós szám törtrészét jelöli.
+Vizsgáljuk a sorozat tagjait $n$ modulo $5$ vett maradéka szerint:
+- Ha $n \equiv 0 \pmod 5$, akkor $n = 5k$, így $\frac{2n^2}{5} = \frac{2 \cdot 25k^2}{5} = 10k^2 \in \mathbb{Z}$, tehát $\left\{\frac{2n^2}{5}\right\} = 0$.
+- Ha $n \equiv 1 \pmod 5$, akkor $n = 5k + 1$, így $n^2 = 25k^2 + 10k + 1 \equiv 1 \pmod 5$, és $2n^2 \equiv 2 \pmod 5$, azaz $\frac{2n^2}{5} = \text{egész} + \frac{2}{5}$, tehát $\left\{\frac{2n^2}{5}\right\} = \frac{2}{5} = 0{,}4$.
+- Ha $n \equiv 2 \pmod 5$, akkor $n = 5k + 2$, így $n^2 = 25k^2 + 20k + 4 \equiv 4 \pmod 5$, és $2n^2 \equiv 8 \equiv 3 \pmod 5$, tehát $\left\{\frac{2n^2}{5}\right\} = \frac{3}{5} = 0{,}6$.
+- Ha $n \equiv 3 \pmod 5$, akkor $n = 5k + 3$, így $n^2 \equiv 9 \equiv 4 \pmod 5$, és $2n^2 \equiv 8 \equiv 3 \pmod 5$, tehát $\left\{\frac{2n^2}{5}\right\} = \frac{3}{5} = 0{,}6$.
+- Ha $n \equiv 4 \pmod 5$, akkor $n = 5k + 4$, így $n^2 \equiv 16 \equiv 1 \pmod 5$, és $2n^2 \equiv 2 \pmod 5$, tehát $\left\{\frac{2n^2}{5}\right\} = \frac{2}{5} = 0{,}4$.
+
+A sorozat tehát tisztán periodikus, és csak a $0$, a $\frac{2}{5}$ és a $\frac{3}{5}$ értékeket veszi fel végtelen sokszor. A torlódási értékek halmaza:
+$$E = \left\{0, \frac{2}{5}, \frac{3}{5}\right\}.$$
+A limesz szuperior a torlódási értékek szuprémuma (itt maximuma):
+$$\limsup_{n \to +\infty} \left\{ \frac{2n^2}{5} \right\} = \max E = \frac{3}{5}.$$
+
+::: elmelet
+**Elméleti háttér — határértékszámítás és limesz szuperior:**
+- *Gyöktelenítés:* $A - B = \frac{A^2 - B^2}{A + B}$ azonossággal a határozatlan $\infty - \infty$ különbség tört alakra hozható, amelyben a számláló konstans vagy kisebb fokszámú, míg a nevező $+\infty$-hez tart.
+- *Rendőrelv:* Ha $u_n \le x_n \le v_n$ egy küszöbindextől kezdve, és $\lim u_n = \lim v_n = L$, akkor $\lim x_n = L$.
+- *Hatványkitevős gyökök:* $\lim_{n \to \infty} \sqrt[n]{n} = 1$, valamint ha $c > 0$, akkor $\lim_{n \to \infty} \sqrt[n]{c} = 1$. Itt a gyökkitevő $n^2$, a hatvány pedig $n^{3n}$, így a kitevő $\frac{3n}{n^2} = \frac{3}{n} \to 0$.
+- *Limesz szuperior:* Egy $(x_n)$ korlátos sorozat esetén $\limsup x_n$ a részsorozat-határértékek (torlódási értékek) maximuma, ekvivalensen $\lim_{n \to \infty} \sup_{k \ge n} x_k$. Periodikus sorozatnál a periódus elemei közül a legnagyobb.
+:::
+
+## 2. feladat
+
+Adjuk meg a következő sorozat határértékét és a definíció alapján adott $\varepsilon > 0$-hoz keressünk $n_\varepsilon$-t:
+$$a_n = \frac{3n^3 - 2n^2}{4n^3 - 613}.$$
+
+**Megoldás.**
+
+**A határérték: $\mathbf{A = \dfrac{3}{4}}$.**
+**Küszöbindex tetszőleges $\varepsilon > 0$-hoz: $\mathbf{n_\varepsilon = \max\left(16, \left\lfloor \frac{1}{\varepsilon} \right\rfloor \right)}$** *(vagy $\max\left(7, \left\lfloor \frac{1}{\varepsilon} \right\rfloor\right)$).*
+
+*Levezetés:*
+1. **A határérték meghatározása:**
+   Osszuk el a számlálót és a nevezőt a legmagasabb fokú taggal ($n^3$-nal):
+   $$a_n = \frac{3 - \frac{2}{n}}{4 - \frac{613}{n^3}}.$$
+   Mivel $\frac{2}{n} \to 0$ és $\frac{613}{n^3} \to 0$, a hányados határértéke:
+   $$A = \lim_{n \to \infty} a_n = \frac{3 - 0}{4 - 0} = \frac{3}{4}.$$
+
+2. **A definíció szerinti igazolás:**
+   A határérték definíciója szerint azt kell igazolnunk, hogy tetszőleges $\varepsilon > 0$ valós számhoz létezik olyan $n_\varepsilon \in \mathbb{N}$ küszöbindex, amelyre minden $n > n_\varepsilon$ esetén:
+   $$\left| a_n - \frac{3}{4} \right| < \varepsilon.$$
+
+   Számítsuk ki az eltérést:
+   $$a_n - \frac{3}{4} = \frac{3n^3 - 2n^2}{4n^3 - 613} - \frac{3}{4} = \frac{4(3n^3 - 2n^2) - 3(4n^3 - 613)}{4(4n^3 - 613)} = \frac{12n^3 - 8n^2 - 12n^3 + 1839}{4(4n^3 - 613)} = \frac{1839 - 8n^2}{4(4n^3 - 613)}.$$
+   Ennek abszolút értéke:
+   $$\left| a_n - \frac{3}{4} \right| = \frac{|1839 - 8n^2|}{4(4n^3 - 613)}.$$
+
+3. **Felülbecslés egyszerű $C/n$ alakú kifejezéssel:**
+   - **A számláló becslése:**
+     Ha $8n^2 \ge 1839 \iff n^2 \ge \frac{1839}{8} = 229{,}875$, ami $n \ge 16$ esetén teljesül ($16^2 = 256 > 230$), akkor
+     $$|1839 - 8n^2| = 8n^2 - 1839 < 8n^2.$$
+     *(Sőt, a háromszög-egyenlőtlenséggel tetszőleges $n$-re $|1839 - 8n^2| \le 8n^2 + 1839$ is írható).*
+   - **A nevező alulbecslése:**
+     Azt szeretnénk, hogy $4n^3 - 613$ pozitív és kellően nagy legyen. Ha $n \ge 7$, akkor $4n^3 = 4 \cdot 343 = 1372 > 2 \cdot 613 = 1226$, így
+     $$4n^3 - 613 \ge 4n^3 - \frac{1}{2}(4n^3) = 2n^3.$$
+     Tehát a nevező: $4(4n^3 - 613) \ge 4 \cdot 2n^3 = 8n^3 > 0$.
+
+   Egyesítve a két feltételt: ha $n \ge 16$, akkor
+   $$\left| a_n - \frac{3}{4} \right| = \frac{8n^2 - 1839}{4(4n^3 - 613)} < \frac{8n^2}{4 \cdot 2n^3} = \frac{8n^2}{8n^3} = \frac{1}{n}.$$
+
+4. **A küszöbindex megválasztása:**
+   Azt szeretnénk, hogy $\frac{1}{n} < \varepsilon$ teljesüljön, ami $n > \frac{1}{\varepsilon}$ esetén áll fenn.
+   Ezért ha $n_\varepsilon = \max\left(16, \left\lfloor \frac{1}{\varepsilon} \right\rfloor \right)$, akkor minden $n > n_\varepsilon$ egészre:
+   - $n \ge 16$, így a becslés érvényes: $\left| a_n - \frac{3}{4} \right| < \frac{1}{n}$;
+   - $n > \frac{1}{\varepsilon}$, így $\frac{1}{n} < \varepsilon$.
+   Tehát:
+   $$\left| a_n - \frac{3}{4} \right| < \frac{1}{n} < \varepsilon.$$
+   Ezzel a definíció alapján igazoltuk a határértéket.
+
+::: elmelet
+**Elméleti háttér — küszöbindex keresése:**
+- A definíció szerinti bizonyításban nem szükséges az optimális (legkisebb) küszöbindexet megadni; elegendő bármilyen explicit, jól megindokolt $n_\varepsilon$-t mutatni.
+- Racionális törtfüggvényeknél az $|a_n - A|$ eltérés $O(1/n)$ nagyságrendű. A számlálót felülről becsüljük a vezető tag konstansszorosával ($8n^2$), a nevezőt pedig alulról a vezető tag felével ($2n^3$), így az eltérés $\frac{C}{n}$ alakúvá egyszerűsödik, amiből a feltétel $n > C/\varepsilon$.
+:::
+
+## 3. feladat
+
+Mutassuk meg, hogy minden $n$-re $n^n \ge (n + 2)^{n - 2}$.
+
+**Megoldás.**
+
+Az állítás minden $n \in \mathbb{N}$ ($n \ge 1$) egész számra igaz, sőt $n > 2$-re szigorú egyenlőtlenség áll fenn: $n^n > (n + 2)^{n - 2}$.
+
+*1. Bizonyítás (Számtani és mértani közép közötti egyenlőtlenséggel — AM-GM):*
+Alkalmazzuk a számtani és mértani közép közötti egyenlőtlenséget $n$ darab pozitív számra.
+- Ha $n = 1$: a bal oldal $1^1 = 1$, a jobb oldal $(1 + 2)^{1 - 2} = 3^{-1} = \frac{1}{3}$. Mivel $1 \ge \frac{1}{3}$, az állítás igaz.
+- Ha $n = 2$: a bal oldal $2^2 = 4$, a jobb oldal $(2 + 2)^{2 - 2} = 4^0 = 1$. Mivel $4 \ge 1$, az állítás igaz.
+- Legyen most $n \ge 3$. Válasszunk ki $n$ darab pozitív valós számot az alábbiak szerint:
+  - $(n - 2)$ darab szám értéke legyen $n + 2$;
+  - $2$ darab szám értéke legyen $1$.
+
+  Ezen $n$ darab szám mértani közepe:
+  $$G = \sqrt[n]{(n + 2)^{n - 2} \cdot 1 \cdot 1} = \left((n + 2)^{n - 2}\right)^{1/n}.$$
+  A számtani közepük:
+  $$A = \frac{(n - 2)(n + 2) + 1 + 1}{n} = \frac{(n^2 - 4) + 2}{n} = \frac{n^2 - 2}{n} = n - \frac{2}{n}.$$
+  A számtani és mértani közép közötti egyenlőtlenség szerint $G \le A$. Mivel a számok nem mind egyenlők ($n + 2 > 1$, hiszen $n \ge 3$), szigorú egyenlőtlenség érvényes:
+  $$G < A.$$
+  Behelyettesítve:
+  $$\left((n + 2)^{n - 2}\right)^{1/n} < n - \frac{2}{n} < n.$$
+  Mindkét oldalt $n$-edik hatványra emelve (mivel mindkét oldal pozitív, a hatványozás szigorúan monoton):
+  $$(n + 2)^{n - 2} < n^n.$$
+  Ezzel az egyenlőtlenséget minden $n \ge 3$-ra bebizonyítottuk.
+
+---
+
+*2. Bizonyítás (Átrendezéssel és Bernoulli-egyenlőtlenséggel):*
+$n \ge 1$-re osszuk el mindkét oldalt $n^{n-2} > 0$-val:
+$$n^n \ge (n + 2)^{n - 2} \iff n^2 \cdot n^{n-2} \ge (n + 2)^{n - 2} \iff n^2 \ge \left(\frac{n + 2}{n}\right)^{n - 2} = \left(1 + \frac{2}{n}\right)^{n - 2}.$$
+Továbbá:
+$$\left(1 + \frac{2}{n}\right)^{n - 2} < \left(1 + \frac{2}{n}\right)^n < e^2 < 8.$$
+Mivel $n \ge 3$ esetén $n^2 \ge 9 > 8 > e^2 > \left(1 + \frac{2}{n}\right)^{n-2}$, az egyenlőtlenség $n \ge 3$-ra azonnal adódik, az $n = 1, 2$ eseteket pedig közvetlen behelyettesítéssel ellenőriztük.
+
+::: elmelet
+**Elméleti háttér — az AM-GM módszer hatványegyenlőtlenségekre:**
+- Ha $a^k$ és $b^m$ alakú hatványokat kell összehasonlítani, a számtani és mértani közép közötti egyenlőtlenség az egyik leghatékonyabb eszköz: a tagok alkalmas megválasztásával a szorzat éppen a kívánt hatványt adja, míg az összegben a másodfokú tagok kiejtik egymást ($(n-2)(n+2) = n^2 - 4$).
+- Egyenlőség az AM-GM-ben csak akkor áll fenn, ha minden kiválasztott elem egyenlő. Itt $n+2 = 1 \iff n = -1$, így természetes $n$-ekre soha nem egyenlők a tagok, ezért $n \ge 3$-ra szigorú egyenlőtlenség teljesül.
+:::
+
+## 4. feladat
+
+Legyen $a_0 = 4$ és $\forall n \in \mathbb{N}$-re $a_n = 1 + \sqrt{a_{n-1}}$. Vizsgáljuk meg az $(a_n)$ sorozatot korlátosság, monotonitás és konvergencia szempontjából. (Ha konvergens, akkor adjuk meg a határértékét is.)
+
+**Megoldás.**
+
+**A sorozat szigorúan monoton csökkenő, alulról és felülről is korlátos, konvergens, határértéke:**
+$$\mathbf{\lim_{n \to \infty} a_n = \frac{3 + \sqrt{5}}{2}} \approx 2{,}618.$$
+
+*Levezetés:*
+1. **Fixpont (lehetséges határérték) megkeresése:**
+   Ha a sorozat konvergens és határértéke $L$, akkor az $x \mapsto 1 + \sqrt{x}$ függvény folytonossága miatt:
+   $$L = 1 + \sqrt{L} \implies L - 1 = \sqrt{L}.$$
+   Mivel $\sqrt{L} \ge 0$, feltétel $L \ge 1$. Négyzetre emelve:
+   $$(L - 1)^2 = L \implies L^2 - 2L + 1 = L \implies L^2 - 3L + 1 = 0.$$
+   A másodfokú egyenlet gyökei:
+   $$L_{1, 2} = \frac{3 \pm \sqrt{9 - 4}}{2} = \frac{3 \pm \sqrt{5}}{2}.$$
+   Mivel $\sqrt{5} \approx 2{,}236$, a kisebbik gyök $L_2 = \frac{3 - \sqrt{5}}{2} \approx 0{,}382 < 1$, ami nem elégíti ki az $L - 1 = \sqrt{L} \ge 0$ feltételt (itt $L_2 - 1 < 0$).
+   Ezért az egyetlen lehetséges határérték:
+   $$L = \frac{3 + \sqrt{5}}{2} \approx 2{,}618.$$
+
+2. **Korlátosság és monotonitás vizsgálata teljes indukcióval:**
+   Számítsuk ki a sorozat első néhány tagját:
+   $$a_0 = 4,$$
+   $$a_1 = 1 + \sqrt{4} = 3,$$
+   $$a_2 = 1 + \sqrt{3} \approx 2{,}732.$$
+   Látható, hogy $4 > 3 > 2{,}732 > L \approx 2{,}618$.
+   Bizonyítsuk be teljes indukcióval, hogy minden $n \ge 0$ esetén:
+   $$L < a_{n+1} < a_n \le 4.$$
+   - **Bázislépés ($n = 0$):**
+     $a_0 = 4$.
+     $a_1 = 3 < a_0 = 4$.
+     Továbbá $a_1 = 3 > \frac{3 + \sqrt{5}}{2} \approx 2{,}618$, hiszen $3 > \frac{3 + \sqrt{5}}{2} \iff 6 > 3 + \sqrt{5} \iff 3 > \sqrt{5} \iff 9 > 5$.
+     Tehát $L < a_1 < a_0 \le 4$ teljesül.
+   - **Indukciós lépés:**
+     Tegyük fel, hogy valamely $k \ge 0$ indexre $L < a_{k+1} < a_k$.
+     Az $f(x) = 1 + \sqrt{x}$ függvény a $[0, +\infty)$ félegyenesen szigorúan monoton növekvő. Ezért:
+     $$L < a_{k+1} < a_k \implies f(L) < f(a_{k+1}) < f(a_k).$$
+     Mivel $f(L) = L$, $f(a_{k+1}) = a_{k+2}$, és $f(a_k) = a_{k+1}$, ebből adódik:
+     $$L < a_{k+2} < a_{k+1}.$$
+   Ezáltal az állítás minden $n \in \mathbb{N}_0$-ra igaz.
+
+3. **Összegzés:**
+   - **Monotonitás:** $a_{n+1} < a_n$ minden $n$-re, tehát a sorozat **szigorúan monoton csökkenő**.
+   - **Korlátosság:** Minden $n \ge 0$-ra $L < a_n \le 4$, tehát a sorozat alulról is korlátos (alsó korlát például $L$ vagy $0$) és felülről is korlátos (felső korlát $a_0 = 4$), azaz **korlátos**.
+   - **Konvergencia és határérték:** Mivel a sorozat monoton csökkenő és alulról korlátos, a valós számok teljessége miatt **konvergens**. A határérték kielégíti az $A = 1 + \sqrt{A}$ egyenletet, és mivel $a_n > L$, a határértékre $A \ge L > 1$ teljesül, így:
+     $$\lim_{n \to \infty} a_n = \frac{3 + \sqrt{5}}{2}.$$
+
+::: elmelet
+**Elméleti háttér — rekurzív sorozatok konvergenciája:**
+- *Monotonitási tétel (Weierstrass):* Minden felülről korlátos monoton növekvő, illetve minden alulról korlátos monoton csökkenő valós sorozat konvergens.
+- *Folytonos rekurzió határértéke:* Ha $a_{n} = f(a_{n-1})$ és $f$ folytonos, akkor a határérték szükségképpen az $f$ függvény fixpontja: $f(A) = A$.
+- *Monoton leképezések:* Ha az $f$ átmenetfüggvény monoton növekvő, akkor a rekurzív sorozat monotonitása az első lépés ($a_1$ és $a_0$ viszonya) alapján eldől: ha $a_1 < a_0$, akkor a sorozat végig csökken; ha $a_1 > a_0$, végig nő.
+:::
+
+## 5. feladat
+
+Tegyük föl, hogy $\lim_{n \to +\infty} a_n = a < 0$ és $0 < \liminf_{n \to +\infty} b_n \le \limsup_{n \to +\infty} b_n < +\infty$. Mutassuk meg, hogy
+$$\liminf_{n \to +\infty} (a_n \cdot b_n) = a \cdot \limsup_{n \to +\infty} b_n.$$
+
+**Megoldás.**
+
+Jelölje $B = \limsup_{n \to \infty} b_n$. A feltétel szerint $0 < B < +\infty$.
+Azt kell bizonyítanunk, hogy $\liminf_{n \to \infty} (a_n b_n) = a B$.
+Mivel $a < 0$, a negatív számmal való szorzás megfordítja az egyenlőtlenségek irányát, így a felső határérték alsó határértékbe fordul át.
+
+A bizonyítást a torlódási értékek jellemzésével végezzük el két egyenlőtlenség igazolásával:
+
+1. **Első irány: $\mathbf{\liminf_{n \to \infty} (a_n b_n) \le a B}$.**
+   A limesz szuperior definíciója szerint létezik olyan $(b_{n_k})$ részsorozata $(b_n)$-nek, amelyre:
+   $$\lim_{k \to \infty} b_{n_k} = B.$$
+   Mivel az $(a_n)$ sorozat konvergens és határértéke $a$, minden részsorozata is $a$-hoz tart, így:
+   $$\lim_{k \to \infty} a_{n_k} = a.$$
+   A konvergens sorozatok szorzatára vonatkozó határértéktétel alapján:
+   $$\lim_{k \to \infty} (a_{n_k} b_{n_k}) = \left(\lim_{k \to \infty} a_{n_k}\right) \cdot \left(\lim_{k \to \infty} b_{n_k}\right) = a \cdot B.$$
+   Tehát az $a B$ valós szám az $(a_n b_n)$ szorzatsorozat egy torlódási értéke (egy konvergens részsorozatának határértéke).
+   Mivel a sorozat limesz inferiorja a torlódási értékek halmazának infimuma (legkisebb eleme), ezért:
+   $$\liminf_{n \to \infty} (a_n b_n) \le a B.$$
+
+2. **Második irány: $\mathbf{\liminf_{n \to \infty} (a_n b_n) \ge a B}$.**
+   Legyen $c$ az $(a_n b_n)$ sorozat tetszőleges torlódási értéke. Ekkor létezik olyan $(n_m)$ indexsorozat, amelyre:
+   $$\lim_{m \to \infty} (a_{n_m} b_{n_m}) = c.$$
+   Mivel $a_n \to a$ és a feltétel szerint $a \ne 0$ ($a < 0$), az $(a_{n_m})$ részsorozat is $a$-hoz tart, és egy indextől kezdve tagjai nem nullák. Így felírható:
+   $$b_{n_m} = \frac{a_{n_m} b_{n_m}}{a_{n_m}}.$$
+   A hányados határértékére vonatkozó tétel szerint:
+   $$\lim_{m \to \infty} b_{n_m} = \frac{\lim_{m \to \infty} (a_{n_m} b_{n_m})}{\lim_{m \to \infty} a_{n_m}} = \frac{c}{a}.$$
+   Ez azt jelenti, hogy a $\frac{c}{a}$ szám a $(b_n)$ sorozat egy torlódási értéke.
+   A limesz szuperior definíciója szerint azonban $(b_n)$ bármely torlódási értéke legfeljebb $B$:
+   $$\frac{c}{a} \le B.$$
+   Szorozzuk be az egyenlőtlenség mindkét oldalát az $a$ számmal! Mivel $a < 0$, az egyenlőtlenség iránya megfordul:
+   $$c \ge a B.$$
+   Mivel az $(a_n b_n)$ sorozat **minden** torlódási értéke $c \ge a B$, ezért ezen torlódási értékek infimumára (a limesz inferiorra) is fennáll:
+   $$\liminf_{n \to \infty} (a_n b_n) \ge a B.$$
+
+3. **Következtetés:**
+   A két egyenlőtlenségből adódik:
+   $$\liminf_{n \to +\infty} (a_n \cdot b_n) = a \cdot \limsup_{n \to +\infty} b_n.$$
+
+::: elmelet
+**Elméleti háttér — limesz inferior és limesz szuperior tulajdonságai:**
+- Ha $a_n \to a > 0$, akkor $\liminf (a_n b_n) = a \liminf b_n$ és $\limsup (a_n b_n) = a \limsup b_n$.
+- Ha azonban $a_n \to a < 0$, akkor a szorzás megfordítja a rendezést: $\liminf (a_n b_n) = a \limsup b_n$ és $\limsup (a_n b_n) = a \liminf b_n$.
+- A torlódási értékek módszere: egy $L$ szám pontosan akkor a limesz inferior, ha egyrészt megvalósítható részsorozat-határértékként ($L \ge \liminf$), másrészt minden torlódási érték legalább akkora, mint $L$ ($L \le \liminf$).
+:::
+
+## 6. feladat
+
+Mutassuk meg, hogy az $f(x) = x^3 - x^2$ függvény szigorúan konvex az $[1, +\infty)$ intervallumon. Tudunk-e olyan intervallumot megadni, ahol a függvény szigorúan konkáv?
+
+*(Csak az ebben a félévben eddig tanult anyagot szabad használni, differenciálszámítást nem.)*
+
+**Megoldás.**
+
+**1. Szigorú konvexás az $[1, +\infty)$ intervallumon:**
+A függvény konvexitása differenciálszámítás nélkül a szelők meredekségének szigorú monotonitásával igazolható.
+Tetszőleges $u \ne v$ valós számokra a differenciahányados (a húr meredeksége):
+$$\frac{f(v) - f(u)}{v - u} = \frac{(v^3 - u^3) - (v^2 - u^2)}{v - u} = \frac{(v - u)(v^2 + vu + u^2) - (v - u)(v + u)}{v - u} = v^2 + vu + u^2 - (v + u).$$
+Jelölje ezt a kétváltozós függvényt $S(u, v) = u^2 + uv + v^2 - u - v$.
+
+Az $f$ függvény pontosan akkor szigorúan konvex egy $I$ intervallumon, ha tetszőleges $x_1 < x_2 < x_3$ ($x_i \in I$) pontokra a húrmeredekségek szigorúan növekednek:
+$$S(x_1, x_2) < S(x_2, x_3).$$
+Számítsuk ki a két szelőmeredekség különbségét:
+$$S(x_2, x_3) - S(x_1, x_2) = \left(x_3^2 + x_2 x_3 + x_2^2 - x_3 - x_2\right) - \left(x_1^2 + x_1 x_2 + x_2^2 - x_1 - x_2\right)$$
+$$= \left(x_3^2 - x_1^2\right) + x_2(x_3 - x_1) - (x_3 - x_1)$$
+$$= (x_3 - x_1)(x_3 + x_1) + (x_3 - x_1) x_2 - (x_3 - x_1)$$
+$$= (x_3 - x_1) \left(x_1 + x_2 + x_3 - 1\right).$$
+
+Vizsgáljuk meg a tényezők előjelét, ha $1 \le x_1 < x_2 < x_3$:
+- Mivel $x_1 < x_3$, az első tényező szigorúan pozitív: $x_3 - x_1 > 0$.
+- Mivel $x_1 \ge 1$ és $x_1 < x_2 < x_3$, ezért $x_2 > 1$ és $x_3 > 1$, így:
+  $$x_1 + x_2 + x_3 - 1 > 1 + 1 + 1 - 1 = 2 > 0.$$
+Tehát két szigorúan pozitív szám szorzataként:
+$$S(x_2, x_3) - S(x_1, x_2) = (x_3 - x_1)(x_1 + x_2 + x_3 - 1) > 0 \implies S(x_1, x_2) < S(x_2, x_3).$$
+Ez pontosan azt jelenti, hogy az $f(x) = x^3 - x^2$ függvény szigorúan konvex az $[1, +\infty)$ intervallumon.
+
+---
+
+**2. Szigorúan konkáv intervallum megadása:**
+**Igen, tudunk ilyen intervallumot megadni: például a $\mathbf{\left(-\infty, \frac{1}{3}\right]}$, illetve a $\mathbf{(-\infty, 0]}$ intervallumot.**
+
+*Indoklás:*
+A függvény szigorúan konkáv egy $J$ intervallumon, ha tetszőleges $x_1 < x_2 < x_3$ ($x_i \in J$) pontokra a húrmeredekségek szigorúan csökkennek:
+$$S(x_2, x_3) - S(x_1, x_2) = (x_3 - x_1)(x_1 + x_2 + x_3 - 1) < 0.$$
+Mivel $x_3 - x_1 > 0$, a különbség pontosan akkor szigorúan negatív, ha
+$$x_1 + x_2 + x_3 - 1 < 0 \iff x_1 + x_2 + x_3 < 1.$$
+- Ha a $J = \left(-\infty, \frac{1}{3}\right]$ intervallumot választjuk, akkor bármely $x_1 < x_2 < x_3 \le \frac{1}{3}$ esetén:
+  $$x_1 + x_2 + x_3 < \frac{1}{3} + \frac{1}{3} + \frac{1}{3} = 1 \implies x_1 + x_2 + x_3 - 1 < 0.$$
+- Hasonlóan, a még egyszerűbb $J = (-\infty, 0]$ intervallumon minden $x_1 < x_2 < x_3 \le 0$ esetén $x_1 + x_2 + x_3 < 0 < 1$, így $x_1 + x_2 + x_3 - 1 < -1 < 0$ nyilvánvalóan teljesül.
+Ezért $f$ szigorúan konkáv a $\left(-\infty, \frac{1}{3}\right]$ intervallumon (és annak bármely részintervallumán, pl. $(-\infty, 0]$-n is).
+
+::: elmelet
+**Elméleti háttér — konvexitás differenciálszámítás nélkül:**
+- *Definíció:* Egy $f: I \to \mathbb{R}$ függvény konvex, ha bármely $x_1 < x_2$ pontra és $t \in (0, 1)$-re $f(t x_1 + (1-t) x_2) \le t f(x_1) + (1-t) f(x_2)$.
+- *Húrmeredekségek (hárompontos kritérium):* $f$ pontosan akkor (szigorúan) konvex, ha tetszőleges $x_1 < x_2 < x_3$ pontokra:
+  $$\frac{f(x_2) - f(x_1)}{x_2 - x_1} < \frac{f(x_3) - f(x_2)}{x_3 - x_2} < \frac{f(x_3) - f(x_1)}{x_3 - x_1}.$$
+- Polinomok esetén a differenciahányados expliciten felírható szimmetrikus kifejezésként, így a különbség közvetlen szorzattá alakítással elemezhető anélkül, hogy deriváltat ($f''(x) = 6x - 2$) használnánk.
+:::
+
+## 7. feladat
+
+Tegyük föl, hogy $a_n > 0$ és $a_n \to 2022$. Konvergens-e $\sqrt[n]{a_1 \cdots a_n}$? Ha az, akkor mi a határértéke?
+
+**Megoldás.**
+
+**A sorozat konvergens, határértéke: $\mathbf{2022}$.**
+
+*1. Bizonyítás (Cauchy-féle mértani közép határértéktétel — közvetlen $\varepsilon$-os igazolás):*
+Legyen $A = 2022 > 0$.
+A feltétel szerint $a_n \to A$, azaz tetszőleges rögzített $0 < \varepsilon < A$ számhoz létezik olyan $N \in \mathbb{N}$ küszöbindex, hogy minden $k > N$ esetén:
+$$A - \varepsilon < a_k < A + \varepsilon.$$
+Legyen $n > N$. Bontsuk fel az első $n$ tag szorzatát az első $N$ tagra és a maradék $n - N$ tagra:
+$$a_1 a_2 \cdots a_n = (a_1 \cdots a_N) \cdot (a_{N+1} \cdots a_n).$$
+Jelölje $C = a_1 a_2 \cdots a_N > 0$ az első $N$ tag konstans szorzatát. Mivel minden $k = N+1, \dots, n$ indexre $A - \varepsilon < a_k < A + \varepsilon$, ezért:
+$$C \cdot (A - \varepsilon)^{n - N} < a_1 a_2 \cdots a_n < C \cdot (A + \varepsilon)^{n - N}.$$
+Vonjunk $n$-edik gyököt mindegyik oldalból:
+$$C^{1/n} \cdot (A - \varepsilon)^{\frac{n - N}{n}} < \sqrt[n]{a_1 a_2 \cdots a_n} < C^{1/n} \cdot (A + \varepsilon)^{\frac{n - N}{n}}.$$
+Alakítsuk át a kitevőket: $\frac{n - N}{n} = 1 - \frac{N}{n}$.
+Mivel $C > 0$ rögzített konstans, $\lim_{n \to \infty} C^{1/n} = 1$.
+Továbbá $\frac{N}{n} \to 0$ miatt:
+$$\lim_{n \to \infty} (A \pm \varepsilon)^{1 - N/n} = (A \pm \varepsilon)^1 = A \pm \varepsilon.$$
+Tehát a határértékek szorzási szabálya alapján:
+$$\lim_{n \to \infty} \left( C^{1/n} (A - \varepsilon)^{1 - N/n} \right) = 1 \cdot (A - \varepsilon) = A - \varepsilon,$$
+$$\lim_{n \to \infty} \left( C^{1/n} (A + \varepsilon)^{1 - N/n} \right) = 1 \cdot (A + \varepsilon) = A + \varepsilon.$$
+A határérték monotonitása miatt a limesz inferiorra és limesz szuperiorra adódik:
+$$A - \varepsilon \le \liminf_{n \to \infty} \sqrt[n]{a_1 \cdots a_n} \le \limsup_{n \to \infty} \sqrt[n]{a_1 \cdots a_n} \le A + \varepsilon.$$
+Mivel ez az egyenlőtlenségsorozat minden tetszőlegesen kicsi $\varepsilon > 0$-ra fennáll, szükségképpen:
+$$\liminf_{n \to \infty} \sqrt[n]{a_1 \cdots a_n} = \limsup_{n \to \infty} \sqrt[n]{a_1 \cdots a_n} = A = 2022.$$
+Ez bizonyítja, hogy a sorozat konvergens, és határértéke $2022$.
+
+---
+
+*2. Bizonyítás (Logaritmálással és Cesàro–Stolz-tétellel):*
+Mivel $a_n > 0$ és $a_n \to 2022 > 0$, a természetes logaritmus függvény folytonossága miatt:
+$$\lim_{n \to \infty} \ln a_n = \ln 2022.$$
+Tekintsük a mértani közép logaritmusát:
+$$\ln \left(\sqrt[n]{a_1 a_2 \cdots a_n}\right) = \frac{\ln a_1 + \ln a_2 + \dots + \ln a_n}{n}.$$
+Ez éppen a konvergens $(\ln a_n)$ sorozat tagjainak számtani közepe.
+Cauchy tétele (a számtani közepek konvergenciájáról) szerint, ha egy sorozat konvergál, akkor a számtani közepeinek sorozata is konvergens, és a határértékük megegyezik:
+$$\lim_{n \to \infty} \frac{\ln a_1 + \dots + \ln a_n}{n} = \lim_{n \to \infty} \ln a_n = \ln 2022.$$
+Mivel az exponenciális függvény folytonos:
+$$\lim_{n \to \infty} \sqrt[n]{a_1 a_2 \cdots a_n} = \lim_{n \to \infty} \exp\left(\ln \left(\sqrt[n]{a_1 \cdots a_n}\right)\right) = \exp(\ln 2022) = 2022.$$
+
+::: elmelet
+**Elméleti háttér — közepek határértékei (Cauchy–d'Alembert-tétel):**
+- *Mértani közepek tétele:* Ha $a_n > 0$ és $\lim_{n \to \infty} a_n = A > 0$, akkor a mértani közepek sorozatára is $\lim_{n \to \infty} \sqrt[n]{a_1 a_2 \cdots a_n} = A$.
+- *Hányados-gyök tétel:* Ha $x_n > 0$ és $\lim_{n \to \infty} \frac{x_{n+1}}{x_n} = L$, akkor $\lim_{n \to \infty} \sqrt[n]{x_n} = L$ is teljesül (ez közvetlenül következik a mértani közepek tételéből az $a_1 = x_1$, $a_k = \frac{x_k}{x_{k-1}}$ választással).
+:::
+
+# Analízis 1 – 1. ZH (2024 intenzív B) – megoldások
+
+### B. Sc. I. Mat. Analízis 1 · Első ZH · Intenzív B verzió (2024/25-I. félév)
+
+*(a normál gyakorlatra járó hallgatók NEM ezt írják)*
+
+## 1. feladat
+
+a) $\lim_{n \to +\infty} \frac{5n^2 + 8n + 2}{\sqrt[3]{n^6 + 2024n^2}} = ?$
+
+b) $\lim_{n \to \infty} \sqrt[n]{3n^2 + 5^n} = ?$
+
+c) $\lim_{x \to 3} \frac{x^2 - x - 6}{(x - 3)(x^2 + 5)} = ?$
+
+**Megoldás.**
+
+**a) $\mathbf{5}$.**
+
+*Levezetés:*
+A számláló és a nevező aszimptotikus nagyságrendje egyaránt $n^2$, hiszen $\sqrt[3]{n^6} = n^2$.
+Osszuk el a számlálót és a nevezőt $n^2$-tel (a nevezőben a köbgyök alá $n^6$-ként visszük be):
+$$\frac{5n^2 + 8n + 2}{\sqrt[3]{n^6 + 2024n^2}} = \frac{5 + \frac{8}{n} + \frac{2}{n^2}}{\sqrt[3]{\frac{n^6 + 2024n^2}{n^6}}} = \frac{5 + \frac{8}{n} + \frac{2}{n^2}}{\sqrt[3]{1 + \frac{2024}{n^4}}}.$$
+Mivel $\lim_{n \to \infty} \frac{1}{n} = 0$, $\lim_{n \to \infty} \frac{1}{n^2} = 0$, és $\lim_{n \to \infty} \frac{2024}{n^4} = 0$, továbbá a köbgyökfüggvény folytonos:
+$$\lim_{n \to +\infty} \frac{5n^2 + 8n + 2}{\sqrt[3]{n^6 + 2024n^2}} = \frac{5 + 0 + 0}{\sqrt[3]{1 + 0}} = \frac{5}{1} = 5.$$
+
+---
+
+**b) $\mathbf{5}$.**
+
+*Levezetés:*
+A gyökjel alatt a domináns tag az exponenciális $5^n$, amely gyorsabban növekszik a polinomiális $3n^2$ tagnál.
+Alkalmazzuk a rendőrelvet!
+Mivel minden $n \ge 1$ esetén $3n^2 > 0$:
+$$5^n < 3n^2 + 5^n.$$
+Másfelől $n \ge 1$-re $3n^2 \le 5^n$ (hiszen $n=1$-re $3 \le 5$, $n=2$-re $12 \le 25$, $n=3$-ra $27 \le 125$, és indukcióval könnyen látható, hogy $\frac{3(n+1)^2}{3n^2} = (1 + 1/n)^2 \le 4 < 5$).
+Így:
+$$3n^2 + 5^n \le 5^n + 5^n = 2 \cdot 5^n.$$
+Vonjunk $n$-edik gyököt:
+$$5 < \sqrt[n]{3n^2 + 5^n} \le \sqrt[n]{2 \cdot 5^n} = 5 \cdot \sqrt[n]{2}.$$
+Mivel $\lim_{n \to \infty} \sqrt[n]{2} = 1$, a felső korlát határértéke:
+$$\lim_{n \to \infty} \left(5 \cdot \sqrt[n]{2}\right) = 5 \cdot 1 = 5.$$
+Mivel az alsó és felső korlát határértéke megegyezik, a rendőrelv szerint:
+$$\lim_{n \to \infty} \sqrt[n]{3n^2 + 5^n} = 5.$$
+
+---
+
+**c) $\mathbf{\dfrac{5}{14}}$.**
+
+*Levezetés:*
+A számláló határértéke $x \to 3$ esetén: $3^2 - 3 - 6 = 0$.
+A nevező határértéke: $(3 - 3)(3^2 + 5) = 0 \cdot 14 = 0$.
+Ez egy $\frac{0}{0}$ alakú határozatlanság, amely a közös $(x - 3)$ gyöktényező kiemelésével és egyszerűsítésével azonnal megszűnik.
+Bontsuk tényezőkre a számlálót:
+$$x^2 - x - 6 = (x - 3)(x + 2).$$
+Ha $x \ne 3$, a tört egyszerűsíthető:
+$$\frac{x^2 - x - 6}{(x - 3)(x^2 + 5)} = \frac{(x - 3)(x + 2)}{(x - 3)(x^2 + 5)} = \frac{x + 2}{x^2 + 5}.$$
+Mivel az $x \mapsto \frac{x + 2}{x^2 + 5}$ racionális törtfüggvény értelmezve van és folytonos az $x = 3$ pontban (a nevezője $3^2 + 5 = 14 \ne 0$):
+$$\lim_{x \to 3} \frac{x^2 - x - 6}{(x - 3)(x^2 + 5)} = \lim_{x \to 3} \frac{x + 2}{x^2 + 5} = \frac{3 + 2}{3^2 + 5} = \frac{5}{14}.$$
+
+::: elmelet
+**Elméleti háttér — határértékszámítás alapmódszerei:**
+- *Vezető tag kiemelése:* Polinomiális és gyökös kifejezéseknél a végtelenben a leggyorsabban növő hatványt emeljük ki, így a maradék tagok $0$-hoz tartanak.
+- *Rendőrelv összeg $n$-edik gyökére:* Ha $0 < a_n \le b_n$, akkor $b_n \le a_n + b_n \le 2b_n \implies b_n^{1/n} \le (a_n + b_n)^{1/n} \le 2^{1/n} b_n^{1/n}$. Mivel $\sqrt[n]{2} \to 1$, a határértéket a domináns tag $n$-edik gyöke határozza meg.
+- *Függvényhatárérték $0/0$ alaknál:* Ha egy algebrai tört számlálója és nevezője is $0$ az $x = x_0$ helyen, a gyöktényezős felbontás segítségével az $(x - x_0)$ tényező egyszerűsíthető.
+:::
+
+## 2. feladat
+
+Legyen $A \stackrel{\text{def}}{=} \{\sqrt{n^2 + \sqrt[3]{n}} - n : n \in \mathbb{N}\}$. Igazoljuk, hogy $A$ alulról korlátos és határozzuk meg $\inf A$-t. Létezik-e $\min A$?
+
+**Megoldás.**
+
+**A halmaz alulról korlátos, infimuma $\mathbf{\inf A = 0}$, de minimuma nem létezik ($\mathbf{\min A}$ nem létezik).**
+
+*Levezetés:*
+Legyen $x_n = \sqrt{n^2 + \sqrt[3]{n}} - n$ minden $n \in \mathbb{N}$ ($n \ge 1$) esetén.
+1. **Alulról korlátosság és pozitív értékek:**
+   Mivel $n \ge 1$, ezért $\sqrt[3]{n} > 0$, amiből következik:
+   $$\sqrt{n^2 + \sqrt[3]{n}} > \sqrt{n^2} = n \implies x_n = \sqrt{n^2 + \sqrt[3]{n}} - n > 0.$$
+   Tehát az $A$ halmaz minden eleme szigorúan pozitív valós szám ($x_n > 0$).
+   Ez azt jelenti, hogy a $0$ egy alsó korlátja $A$-nak (sőt minden $c \le 0$ valós szám is alsó korlát), így **$A$ alulról korlátos**.
+
+2. **A sorozat határértéke és az infimum:**
+   Alakítsuk át az $x_n$ kifejezést a számláló gyöktelenítésével:
+   $$x_n = \frac{\left(\sqrt{n^2 + \sqrt[3]{n}} - n\right)\left(\sqrt{n^2 + \sqrt[3]{n}} + n\right)}{\sqrt{n^2 + \sqrt[3]{n}} + n} = \frac{n^2 + \sqrt[3]{n} - n^2}{\sqrt{n^2 + \sqrt[3]{n}} + n} = \frac{n^{1/3}}{\sqrt{n^2 + n^{1/3}} + n}.$$
+   Osszuk el a számlálót és a nevezőt $n$-nel:
+   $$x_n = \frac{n^{1/3 - 1}}{\sqrt{1 + n^{1/3 - 2}} + 1} = \frac{n^{-2/3}}{\sqrt{1 + n^{-5/3}} + 1} = \frac{1}{n^{2/3}\left(\sqrt{1 + n^{-5/3}} + 1\right)}.$$
+   Mivel $n \to \infty$ esetén $n^{2/3} \to +\infty$ és a zárójeles nevező tart $2$-höz:
+   $$\lim_{n \to \infty} x_n = 0.$$
+
+   Az infimum definíciója szerint:
+   - A $0$ alsó korlát, mert $x_n > 0$ minden $n \in \mathbb{N}$-re.
+   - Tetszőleges $\varepsilon > 0$-hoz, mivel $\lim_{n \to \infty} x_n = 0$, létezik olyan $n \in \mathbb{N}$, amelyre $x_n < \varepsilon$.
+   Ezért a legnagyobb alsó korlát:
+   $$\inf A = 0.$$
+
+3. **Létezik-e $\min A$?**
+   Egy halmaz minimuma olyan alsó korlát, amely **eleme** a halmaznak.
+   Ha létezne minimum, annak szükségképpen meg kellene egyeznie az infimummal: $\min A = \inf A = 0$.
+   Azonban minden $n \in \mathbb{N}$ esetén:
+   $$x_n > 0,$$
+   tehát $0 \notin A$.
+   Mivel a halmaz nem tartalmazza az infimumát, **$\min A$ nem létezik**.
+
+::: elmelet
+**Elméleti háttér — szuprémum, infimum és szélsőértékek:**
+- Egy $H \subset \mathbb{R}$ felülről (alulról) korlátos, nemüres halmaznak a Dedekind-axióma (teljességi tétel) szerint mindig létezik legkisebb felső korlátja $\sup H$ (legnagyobb alsó korlátja $\inf H$).
+- A maximum (minimum) akkor és csak akkor létezik, ha a szuprémum (infimum) eleme magának a halmaznak: $\min H$ létezik $\iff \inf H \in H$.
+- Ha egy szigorúan pozitív sorozat tagjaiból álló halmaz infimuma $0$, akkor a halmaznak nem lehet minimuma.
+:::
+
+## 3. feladat
+
+Igazoljuk, hogy $a, b, c \ge 0$-ra $4abc \le a^2 + 2ab + b^2 c^4$.
+
+**Megoldás.**
+
+Az egyenlőtlenség minden $a, b, c \ge 0$ valós számra teljesül.
+
+*Bizonyítás:*
+1. **Ha a változók valamelyike nulla:**
+   - Ha $a = 0$, akkor a bal oldal $4abc = 0$, a jobb oldal pedig $b^2 c^4 \ge 0$.
+   - Ha $b = 0$, akkor a bal oldal $0$, a jobb oldal $a^2 \ge 0$.
+   - Ha $c = 0$, akkor a bal oldal $0$, a jobb oldal $a^2 + 2ab \ge 0$.
+   Minden ilyen esetben a bal oldal $0$, a jobb oldal nemnegatív, így az egyenlőtlenség triviálisan fennáll.
+
+2. **Ha $a, b, c > 0$:**
+   Csoportosítsuk a jobb oldali tagokat:
+   $$a^2 + 2ab + b^2 c^4 = \left(a^2 + b^2 c^4\right) + 2ab.$$
+   Alkalmazzuk a számtani és mértani közép közötti egyenlőtlenséget (AM-GM) az $a^2$ és $b^2 c^4$ pozitív tagokra:
+   $$a^2 + b^2 c^4 \ge 2\sqrt{a^2 \cdot b^2 c^4} = 2ab c^2.$$
+   *(Egyenlőség pontosan akkor áll fenn, ha $a^2 = b^2 c^4$, azaz $a = b c^2$.)*
+
+   Ezt behelyettesítve a jobb oldalra:
+   $$a^2 + 2ab + b^2 c^4 \ge 2ab c^2 + 2ab = 2ab\left(c^2 + 1\right).$$
+
+   Most vizsgáljuk a $c^2 + 1$ kifejezést. Mivel $(c - 1)^2 \ge 0$, kifejtve:
+   $$c^2 - 2c + 1 \ge 0 \implies c^2 + 1 \ge 2c.$$
+   *(Egyenlőség pontosan akkor áll fenn, ha $c = 1$.)*
+
+   Mivel $a > 0$ és $b > 0$, a $2ab > 0$ pozitív tényezővel szorozva az egyenlőtlenség iránya nem változik:
+   $$2ab\left(c^2 + 1\right) \ge 2ab(2c) = 4abc.$$
+
+   Összekapcsolva a két lépést:
+   $$a^2 + 2ab + b^2 c^4 \ge 2ab\left(c^2 + 1\right) \ge 4abc.$$
+   Ezzel az egyenlőtlenséget igazoltuk minden $a, b, c \ge 0$ esetén.
+
+*Egyenlőségvizsgálat:*
+Az egyenlőség pontosan akkor teljesül, ha mindkét alkalmazott becslésben egyenlőség áll fenn:
+1. $c = 1$, és
+2. $a = b c^2 = b \cdot 1^2 = b$.
+Tehát pozitív számokra egyenlőség pontosan akkor van, ha $a = b$ és $c = 1$.
+*(Ezen kívül ha $a = 0$ és $bc = 0$, vagy $b = 0$ és $a = 0$.)*
+
+::: elmelet
+**Elméleti háttér — számtani és mértani közép egyenlőtlenség alkalmazása:**
+- Két nemnegatív számra: $x + y \ge 2\sqrt{xy}$, egyenlőség acsa $x = y$.
+- Gyakori stratégia, hogy az összetett többváltozós egyenlőtlenségeket két lépésben vezetjük vissza az AM-GM-re: először kiküszöbölünk egy változót vagy csökkentjük a fokszámot ($a^2 + b^2 c^4 \ge 2abc^2$), majd a megmaradt egyváltozós tagot becsüljük ($c^2 + 1 \ge 2c$).
+:::
+
+## 4. feladat
+
+Bizonyítsuk be, hogy az $x_1 = 1$, $x_{n+1} = 3 \cdot \sqrt{x_n} + 4$ rekurzióval definiált sorozat monoton növekedő és felülről korlátos. Konvergens-e a sorozat? Ha az, adjuk meg a határértékét.
+
+**Megoldás.**
+
+**A sorozat szigorúan monoton növekvő, felülről korlátos (felső korlátja $16$), ezáltal konvergens, határértéke:**
+$$\mathbf{\lim_{n \to \infty} x_n = 16}.$$
+
+*Levezetés:*
+1. **Fixpont (lehetséges határérték) megkeresése:**
+   Tekintsük az átmenetfüggvényt: $f(x) = 3\sqrt{x} + 4$ az $x \ge 0$ értékekre.
+   Ha a sorozat konvergens és határértéke $A$, akkor a gyökfüggvény folytonossága miatt $A$-nak kielégítenie kell az $f(A) = A$ egyenletet:
+   $$A = 3\sqrt{A} + 4 \implies A - 4 = 3\sqrt{A}.$$
+   Mivel $3\sqrt{A} \ge 0$, szükséges, hogy $A \ge 4$ legyen. Mindkét oldalt négyzetre emelve:
+   $$(A - 4)^2 = 9A \implies A^2 - 8A + 16 = 9A \implies A^2 - 17A + 16 = 0.$$
+   Szorzattá alakítva:
+   $$(A - 16)(A - 1) = 0.$$
+   - $A = 1$ esetén $A - 4 = -3 \ne 3\sqrt{1} = 3$, így ez hamis gyök (a négyzetre emelés hozta be).
+   - $A = 16$ esetén $16 - 4 = 12 = 3\sqrt{16} = 3 \cdot 4 = 12$, amely valóban megoldás.
+   Tehát az egyetlen fixpont $L = 16$.
+
+2. **Monotonitás és korlátosság bizonyítása teljes indukcióval:**
+   Állítás: Minden $n \ge 1$ egész számra
+   $$1 \le x_n < x_{n+1} < 16.$$
+   - **Bázislépés ($n = 1$):**
+     $x_1 = 1$.
+     $x_2 = 3\sqrt{1} + 4 = 7$.
+     Nyilvánvalóan $1 \le 1 < 7 < 16$, azaz $1 \le x_1 < x_2 < 16$ teljesül.
+   - **Indukciós feltevés:**
+     Tegyük fel, hogy valamely $k \ge 1$-re $x_k < x_{k+1} < 16$.
+   - **Indukciós lépés:**
+     Mivel a négyzetgyökfüggvény szigorúan monoton növekvő a $[0, +\infty)$ intervallumon, az $f(x) = 3\sqrt{x} + 4$ függvény is szigorúan monoton növekvő. Ezért a függvényt alkalmazva az indukciós feltevés egyenlőtlenségeire:
+     $$x_k < x_{k+1} < 16 \implies f(x_k) < f(x_{k+1}) < f(16).$$
+     Mivel $f(x_k) = x_{k+1}$, $f(x_{k+1}) = x_{k+2}$, és $f(16) = 3\sqrt{16} + 4 = 16$:
+     $$x_{k+1} < x_{k+2} < 16.$$
+   A matematikai indukció elve alapján az állítás minden $n \ge 1$-re igaz.
+
+3. **Konvergencia és határérték:**
+   - A sorozat **szigorúan monoton növekvő**, mert $x_n < x_{n+1}$ minden $n \ge 1$-re.
+   - A sorozat **felülről korlátos**, mert $x_n < 16$ minden $n \ge 1$-re (a $16$ felső korlát).
+   - A valós számok alaptétele (monotonitási tétel) szerint minden felülről korlátos monoton növekvő sorozat **konvergens**.
+   - Mivel a határértéknek az $f(x) = x$ egyenlet gyökének kell lennie, és $x_n \ge x_2 = 7 > 1$, a határérték csak a $16$ lehet:
+     $$\lim_{n \to \infty} x_n = 16.$$
+
+::: elmelet
+**Elméleti háttér — rekurziók fixponttételének alkalmazása:**
+- Egy $x_{n+1} = f(x_n)$ rekurziónál, ha $f$ folytonos és monoton növekvő egy $[a, b]$ intervallumon úgy, hogy $f(b) = b$ és $x > f(x)$ az $x > b$ helyeken, illetve $f(x) > x$ az $a \le x < b$ helyeken, akkor a $b$ pont **vonzó fixpont**: bármely $x_1 \in [a, b)$ kezdőértékből indulva a sorozat szigorúan monoton növekedve konvergál $b$-hez.
+:::
+
+## 5. feladat
+
+Legyen $a_n$ és $b_n$ pozitív tagú sorozat. Igaz-e, hogy ha $\frac{a_n}{b_n}$ monoton, akkor $\frac{a_1 + \dots + a_n}{b_1 + \dots + b_n}$ is monoton?
+
+**Megoldás.**
+
+**Az állítás IGAZ.**
+
+Ha $\frac{a_n}{b_n}$ monoton növekvő (csökkenő), akkor a részletösszegek hányadosa, $\frac{a_1 + \dots + a_n}{b_1 + \dots + b_n}$ is monoton növekvő (csökkenő).
+
+*Bizonyítás:*
+Vezessük be a következő jelöléseket:
+$$c_n = \frac{a_n}{b_n}, \qquad A_n = \sum_{k=1}^n a_k, \qquad B_n = \sum_{k=1}^n b_k, \qquad S_n = \frac{A_n}{B_n} = \frac{a_1 + \dots + a_n}{b_1 + \dots + b_n}.$$
+Mivel a feltétel szerint $a_k, b_k > 0$ minden $k$-ra, $A_n > 0$, $B_n > 0$ és $c_n > 0$.
+
+1. **A differencia átalakítása:**
+   Számítsuk ki a két szomszédos tag, $S_{n+1}$ és $S_n$ különbségét:
+   $$S_{n+1} - S_n = \frac{A_{n+1}}{B_{n+1}} - \frac{A_n}{B_n} = \frac{A_n + a_{n+1}}{B_n + b_{n+1}} - \frac{A_n}{B_n}$$
+   $$= \frac{B_n(A_n + a_{n+1}) - A_n(B_n + b_{n+1})}{B_n(B_n + b_{n+1})} = \frac{B_n A_n + B_n a_{n+1} - A_n B_n - A_n b_{n+1}}{B_n B_{n+1}}$$
+   $$= \frac{B_n a_{n+1} - A_n b_{n+1}}{B_n B_{n+1}} = \frac{b_{n+1} B_n \left(\frac{a_{n+1}}{b_{n+1}} - \frac{A_n}{B_n}\right)}{B_n B_{n+1}} = \frac{b_{n+1}}{B_{n+1}} \left(c_{n+1} - S_n\right).$$
+   Mivel $b_{n+1} > 0$ és $B_{n+1} > 0$, a tört előjele pozitív: $\frac{b_{n+1}}{B_{n+1}} > 0$.
+   Ezért a különbség előjele kizárólag a $\left(c_{n+1} - S_n\right)$ tényező előjelétől függ:
+   $$S_{n+1} \ge S_n \iff c_{n+1} \ge S_n.$$
+
+2. **$S_n$ mint súlyozott számtani közép:**
+   Írjuk fel az $S_n$ összeget a $c_k = \frac{a_k}{b_k}$ tagok segítségével ($a_k = b_k c_k$):
+   $$S_n = \frac{a_1 + a_2 + \dots + a_n}{b_1 + b_2 + \dots + b_n} = \frac{b_1 c_1 + b_2 c_2 + \dots + b_n c_n}{b_1 + b_2 + \dots + b_n}.$$
+   Ez a kifejezés a $c_1, c_2, \dots, c_n$ pozitív számok **súlyozott számtani közepe** a pozitív $b_1, \dots, b_n$ súlyokkal.
+   Bármely súlyozott számtani közép a legkisebb és a legnagyobb tag közé esik:
+   $$\min(c_1, \dots, c_n) \le S_n \le \max(c_1, \dots, c_n).$$
+
+3. **A monotonitás levezetése a két esetben:**
+   - **1. eset: ha $\frac{a_n}{b_n}$ monoton növekvő:**
+     Ekkor $c_1 \le c_2 \le \dots \le c_n \le c_{n+1}$.
+     A maximum tehát $\max(c_1, \dots, c_n) = c_n$, amiből következik:
+     $$S_n \le c_n \le c_{n+1} \implies c_{n+1} - S_n \ge 0.$$
+     Ezért:
+     $$S_{n+1} - S_n = \frac{b_{n+1}}{B_{n+1}} (c_{n+1} - S_n) \ge 0 \implies S_{n+1} \ge S_n.$$
+     Tehát az $(S_n)$ sorozat is **monoton növekvő**.
+     *(Sőt, ha $c_n$ szigorúan monoton növekvő, akkor $S_n < c_n < c_{n+1}$, így $S_n$ szigorúan monoton növekvő).*
+
+   - **2. eset: ha $\frac{a_n}{b_n}$ monoton csökkenő:**
+     Ekkor $c_1 \ge c_2 \ge \dots \ge c_n \ge c_{n+1}$.
+     A minimum tehát $\min(c_1, \dots, c_n) = c_n$, így:
+     $$S_n \ge c_n \ge c_{n+1} \implies c_{n+1} - S_n \le 0.$$
+     Ezért:
+     $$S_{n+1} - S_n = \frac{b_{n+1}}{B_{n+1}} (c_{n+1} - S_n) \le 0 \implies S_{n+1} \le S_n.$$
+     Tehát az $(S_n)$ sorozat is **monoton csökkenő**.
+
+Mivel mindkét esetben megmarad a monotonitás, az állítás igaz.
+
+::: elmelet
+**Elméleti háttér — mediáns egyenlőtlenség és Stolz–Cesàro-tétel:**
+- Két pozitív tört mediánsa (mediant) mindig a két tört közé esik: ha $\frac{a}{b} \le \frac{c}{d}$ ($b, d > 0$), akkor $\frac{a}{b} \le \frac{a+c}{b+d} \le \frac{c}{d}$.
+- Ennek diszkrét integrális megfelelője a Cesàro–Stolz-tétel alapja: ha az „érintőmeredekség” $\frac{a_n}{b_n} = \frac{A_n - A_{n-1}}{B_n - B_{n-1}}$ monoton, akkor a „húrmeredekség” $\frac{A_n}{B_n}$ is monoton, és a határértékük (ha létezik) megegyezik.
+:::
+
+## 6. feladat
+
+Tegyük föl, hogy $1 < a_n < 10$ minden $n$-re. Mutassuk meg, hogy $\liminf (a_n \cdot b_n) = (\liminf a_n) \cdot (\liminf b_n)$ akkor és csak akkor teljesül minden $1 < b_n < 10$ sorozatra, ha $a_n$ konvergens.
+
+**Megoldás.**
+
+A tételt két irányban bizonyítjuk:
+1. Ha $a_n$ konvergens, akkor minden megadott $b_n$ sorozatra teljesül az egyenlőség ($\Leftarrow$).
+2. Ha $a_n$ nem konvergens, akkor konstruálható olyan $1 < b_n < 10$ sorozat, amelyre az egyenlőség sérül ($\Rightarrow$).
+
+---
+
+### 1. Irány ($\Leftarrow$): Ha $a_n$ konvergens, az egyenlőség teljesül
+
+Tegyük fel, hogy $a_n$ konvergens, és legyen $\lim_{n \to \infty} a_n = A$.
+Mivel minden $n$-re $1 < a_n < 10$, a határértékre $1 \le A \le 10$ teljesül, különösen $A > 0$.
+Ekkor $\liminf_{n \to \infty} a_n = A$.
+Legyen $b_n$ tetszőleges sorozat, amelyre $1 < b_n < 10$. Ekkor $b_n$ korlátos, így létezik véges limesz inferiorja: jelölje $B = \liminf_{n \to \infty} b_n$. Mivel $1 \le b_n \le 10$, ezért $1 \le B \le 10$.
+
+Azt kell megmutatnunk, hogy $\liminf_{n \to \infty} (a_n b_n) = A \cdot B$.
+- **Létezik $AB$-hez tartó részsorozat:**
+  A limesz inferior definíciója szerint létezik olyan $(b_{n_k})$ részsorozat, amelyre $\lim_{k \to \infty} b_{n_k} = B$.
+  Mivel $a_n \to A$, a megfelelő $(a_{n_k})$ részsorozat is $A$-hoz tart. A határértékek szorzási szabálya szerint:
+  $$\lim_{k \to \infty} (a_{n_k} b_{n_k}) = A \cdot B.$$
+  Ezért $A \cdot B$ az $(a_n b_n)$ sorozat egy torlódási értéke, így az infimumukra:
+  $$\liminf_{n \to \infty} (a_n b_n) \le A \cdot B.$$
+
+- **Minden torlódási érték legalább $AB$:**
+  Legyen $c$ az $(a_n b_n)$ sorozat tetszőleges torlódási értéke. Ekkor létezik olyan $(n_m)$ részsorozat, amelyre $\lim_{m \to \infty} (a_{n_m} b_{n_m}) = c$.
+  Mivel $a_{n_m} \to A > 0$:
+  $$b_{n_m} = \frac{a_{n_m} b_{n_m}}{a_{n_m}} \to \frac{c}{A}.$$
+  Tehát $\frac{c}{A}$ a $(b_n)$ sorozat egy torlódási értéke, így definíció szerint $\frac{c}{A} \ge \liminf b_n = B$.
+  Mivel $A > 0$, beszorozva $A$-val kapjuk:
+  $$c \ge A \cdot B.$$
+  Mivel minden torlódási érték legalább $AB$, a limesz inferiorra is:
+  $$\liminf_{n \to \infty} (a_n b_n) \ge A \cdot B.$$
+
+A két egyenlőtlenségből adódik, hogy $\liminf(a_n b_n) = A \cdot B = (\liminf a_n)(\liminf b_n)$.
+
+---
+
+### 2. Irány ($\Rightarrow$): Ha az egyenlőség minden $1 < b_n < 10$ sorozatra teljesül, akkor $a_n$ szükségképpen konvergens
+
+Bizonyítsunk indirekt módon: tegyük fel, hogy $a_n$ nem konvergens.
+Mivel minden $n$-re $1 < a_n < 10$, az $(a_n)$ sorozat korlátos. Egy korlátos sorozat pontosan akkor nem konvergens, ha a limesz inferiorja szigorúan kisebb a limesz szuperiorjánál:
+$$\alpha = \liminf_{n \to \infty} a_n < \beta = \limsup_{n \to \infty} a_n.$$
+Mivel $1 < a_n < 10$, ezért $1 \le \alpha < \beta \le 10$.
+Válasszuk a két érték számtani közepét választóvonalnak:
+$$M = \frac{\alpha + \beta}{2}.$$
+Ekkor $\alpha < M < \beta$.
+Mivel $\alpha$ és $\beta$ torlódási értékek, az $a_n < M$ egyenlőtlenség is, és az $a_n \ge M$ egyenlőtlenség is végtelen sok $n$ indexre teljesül.
+
+Konstruáljunk egy $(b_n)$ sorozatot úgy, hogy kompenzálja $a_n$ ingadozását: legyen $b_n$ nagy ott, ahol $a_n$ kicsi, és kicsi ott, ahol $a_n$ nagy!
+Definiáljuk $b_n$-et a következőképpen:
+$$b_n = \begin{cases} 8, & \text{ha } a_n < M, \\ 2, & \text{ha } a_n \ge M. \end{cases}$$
+Ellenőrizzük a feltételeket:
+- Mivel $b_n \in \{2, 8\}$, minden $n$-re $1 < 2 \le b_n \le 8 < 10$ teljesül.
+- Mivel mindkét eset végtelen sokszor fordul elő, a $(b_n)$ sorozat torlódási értékei pontosan a $\{2, 8\}$ halmaz, így:
+  $$\liminf_{n \to \infty} b_n = 2.$$
+
+Számítsuk ki a feltételezett egyenlőség jobb oldalát:
+$$(\liminf a_n) \cdot (\liminf b_n) = \alpha \cdot 2 = 2\alpha.$$
+
+Most becsüljük alulról az $(a_n b_n)$ szorzatsorozat limesz inferiorját:
+- Ha $a_n < M$, akkor $b_n = 8$, így $a_n b_n = 8 a_n$.
+  Mivel minden elég nagy $n$-re $a_n > \alpha - \varepsilon$ (tetszőleges $\varepsilon > 0$-ra), ezért $8 a_n > 8\alpha - 8\varepsilon$.
+- Ha $a_n \ge M$, akkor $b_n = 2$, így:
+  $$a_n b_n = 2 a_n \ge 2 M = 2 \left(\frac{\alpha + \beta}{2}\right) = \alpha + \beta.$$
+
+Ezért tetszőleges elég nagy $n$ indexre:
+$$a_n b_n \ge \min(8(\alpha - \varepsilon), \alpha + \beta).$$
+Határértéket véve $\varepsilon \to 0$ esetén:
+$$\liminf_{n \to \infty} (a_n b_n) \ge \min(8\alpha, \alpha + \beta).$$
+
+Hasonlítsuk össze ezt az értéket $2\alpha$-val:
+- Mivel $\alpha \ge 1$, ezért $8\alpha > 2\alpha$.
+- Mivel $\beta > \alpha$, ezért $\alpha + \beta > \alpha + \alpha = 2\alpha$.
+Mindkét ágon szigorúan nagyobb értéket kapunk, mint $2\alpha$, tehát:
+$$\liminf_{n \to \infty} (a_n b_n) \ge \min(8\alpha, \alpha + \beta) > 2\alpha = (\liminf a_n) \cdot (\liminf b_n).$$
+Ez ellentmond annak, hogy $\liminf (a_n b_n) = (\liminf a_n) \cdot (\liminf b_n)$ teljesül minden megengedett $(b_n)$ sorozatra!
+
+Az ellentmondás abból a feltevésből származott, hogy $a_n$ nem konvergens.
+Következésképpen $a_n$-nek konvergensnek kell lennie.
+
+::: elmelet
+**Elméleti háttér — szorzatsorozat limesz inferiorja:**
+- Általában pozitív sorozatokra csak az alábbi egyenlőtlenség garantált:
+  $$\liminf (a_n b_n) \ge (\liminf a_n)(\liminf b_n).$$
+- Egyenlőség nem mindig áll fenn: a két sorozat fáziseltolódásával (amikor az egyik kicsi, a másik nagy) a szorzat alsó burkolója megemelhető.
+- Az egyenlőség univerzális érvényessége (minden korlátos pozitív tesztsorozatra) pontosan akkor teljesül, ha az egyik sorozat egyetlen pont köré sűrűsödik, azaz konvergens.
+:::
+
+## 7. feladat
+
+Legyen $(b_n)$ pozitív számokból álló sorozat. Legyen továbbá $a_1 = 1$, és $a_{n+1} = a_n + \frac{b_n}{a_n}$ minden $n \ge 1$ esetén. Mutassuk meg, hogy $a_n$ pontosan akkor konvergál, ha a $\sum_{i=1}^{\infty} b_i$ sor konvergál.
+
+**Megoldás.**
+
+A feltétel szerint $b_n > 0$ minden $n \ge 1$-re, $a_1 = 1 > 0$, és a rekurzió:
+$$a_{n+1} = a_n + \frac{b_n}{a_n} \quad (n \ge 1).$$
+
+1. **A sorozat alapvető tulajdonságai:**
+   - Mivel $a_1 = 1 > 0$ és $b_n > 0$, teljes indukcióval azonnal adódik, hogy $a_n > 0$ minden $n \ge 1$-re.
+   - A differencia:
+     $$a_{n+1} - a_n = \frac{b_n}{a_n} > 0.$$
+     Tehát az $(a_n)$ sorozat **szigorúan monoton növekvő**.
+   - Mivel monoton növekvő, két eset lehetséges: vagy felülről korlátos és konvergens egy véges $L \ge 1$ határértékhez, vagy felülről nem korlátos és $\lim_{n \to \infty} a_n = +\infty$.
+
+---
+
+2. **1. Irány ($\implies$): Ha $a_n$ konvergens, akkor $\sum_{i=1}^\infty b_i$ konvergens**
+   Emeljük négyzetre a rekurziós összefüggést:
+   $$a_{k+1}^2 = \left(a_k + \frac{b_k}{a_k}\right)^2 = a_k^2 + 2b_k + \frac{b_k^2}{a_k^2}.$$
+   Mivel $\frac{b_k^2}{a_k^2} > 0$, ebből kapjuk:
+   $$a_{k+1}^2 - a_k^2 = 2b_k + \frac{b_k^2}{a_k^2} > 2b_k.$$
+   Összegezzük ezt az egyenlőtlenséget $k = 1$-től $n-1$-ig:
+   $$\sum_{k=1}^{n-1} \left(a_{k+1}^2 - a_k^2\right) > 2 \sum_{k=1}^{n-1} b_k.$$
+   A bal oldalon teleszkopikus összeg áll:
+   $$a_n^2 - a_1^2 > 2 \sum_{k=1}^{n-1} b_k.$$
+   Mivel $a_1 = 1$:
+   $$\sum_{k=1}^{n-1} b_k < \frac{a_n^2 - 1}{2}.$$
+   Tegyük fel, hogy $(a_n)$ konvergens, azaz létezik véges határértéke: $\lim_{n \to \infty} a_n = L < +\infty$.
+   Mivel $a_n$ monoton növekvő, minden $n$-re $a_n \le L$. Ezért:
+   $$\sum_{k=1}^{n-1} b_k < \frac{L^2 - 1}{2}.$$
+   A pozitív tagú $\sum_{i=1}^\infty b_i$ sor részletösszegei monoton növekednek és felülről korlátosak a $\frac{L^2 - 1}{2}$ konstanssal.
+   A monotonitási tétel miatt a részletösszegek sorozata konvergens, azaz:
+   $$\sum_{i=1}^{\infty} b_i < +\infty \quad \text{konvergens}.$$
+
+---
+
+3. **2. Irány ($\Longleftarrow$): Ha $\sum_{i=1}^\infty b_i$ konvergens, akkor $a_n$ konvergens**
+   Tegyük fel, hogy $\sum_{i=1}^\infty b_i = S < +\infty$ konvergens.
+   Mivel $a_n$ szigorúan monoton növekvő és $a_1 = 1$, minden $k \ge 1$ indexre:
+   $$a_k \ge a_1 = 1.$$
+   Ezért a rekurzióból:
+   $$a_{k+1} - a_k = \frac{b_k}{a_k} \le \frac{b_k}{a_1} = b_k.$$
+   Összegezzük ezt az egyenlőtlenséget $k = 1$-től $n-1$-ig:
+   $$\sum_{k=1}^{n-1} (a_{k+1} - a_k) \le \sum_{k=1}^{n-1} b_k.$$
+   A bal oldalon ismét teleszkopikus összeg van:
+   $$a_n - a_1 \le \sum_{k=1}^{n-1} b_k.$$
+   Mivel $a_1 = 1$ és $\sum_{k=1}^{n-1} b_k < \sum_{k=1}^{\infty} b_k = S$:
+   $$a_n \le 1 + S.$$
+   Ez azt jelenti, hogy az $(a_n)$ sorozat felülről korlátos (felső korlátja $1 + S$).
+   Mivel korábban láttuk, hogy $(a_n)$ monoton növekvő, és most beláttuk, hogy felülről korlátos, a monoton konvergencia tétel alapján az $(a_n)$ sorozat **konvergens**.
+
+---
+
+4. **Következtetés:**
+   A két irány egybevetésével igazoltuk, hogy $a_n$ pontosan akkor konvergens, ha a $\sum_{i=1}^\infty b_i$ numerikus sor konvergens.
+
+::: elmelet
+**Elméleti háttér — nemlineáris rekurziók és sorok kapcsolata:**
+- Teleszkopikus összegezés négyzetre emeléssel: Ha egy sorozat $a_{n+1} - a_n \approx \frac{b_n}{a_n}$ alakban növekszik, a négyzetének növekménye $a_{n+1}^2 - a_n^2 \approx 2b_n$, ami linearizálja a kapcsolatot a sorozat és a sor részletösszegei között.
+- Ez az analízisben gyakran alkalmazott módszer az Euler-féle rekurziók aszimptotikájának vizsgálatára (pl. $a_{n+1} = a_n + 1/a_n$ esetén $a_n \sim \sqrt{2n}$).
+:::
