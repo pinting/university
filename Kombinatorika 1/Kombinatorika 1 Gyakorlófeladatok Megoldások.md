@@ -460,10 +460,10 @@ Hányféleképpen juthatunk el a $(0,0)$ pontból a $(6,6)$ pontba jobbra és fe
 **Megoldás.**
 
 Összes út $(0,0) 	o (6,6)$:
-$$inom{6+6}{6} = inom{12}{6} = rac{12 \cdot 11 \cdot 10 \cdot 9 \cdot 8 \cdot 7}{720} = \mathbf{924}.$$
+$$\binom{6+6}{6} = \binom{12}{6} = \frac{12 \cdot 11 \cdot 10 \cdot 9 \cdot 8 \cdot 7}{720} = \mathbf{924}.$$
 Áthalad a $(2,3)$ ponton:
-$(0,0) 	o (2,3)$: $inom{2+3}{3} = inom{5}{3} = 10$.
-$(2,3) 	o (6,6)$: $6 - 2 = 4$ jobbra, $6 - 3 = 3$ fel lépés: $inom{4+3}{3} = inom{7}{3} = 35$.
+$(0,0) 	o (2,3)$: $\binom{2+3}{3} = \binom{5}{3} = 10$.
+$(2,3) 	o (6,6)$: $6 - 2 = 4$ jobbra, $6 - 3 = 3$ fel lépés: $\binom{4+3}{3} = \binom{7}{3} = 35$.
 Összesen:
 $$10 \cdot 35 = \mathbf{350}.$$
 
@@ -577,7 +577,7 @@ Egy konvex 15-szög átlói általános helyzetben vannak (semelyik három nem m
 **Megoldás.**
 
 A belső átlómetszéspontok száma:
-$$inom{15}{4} = rac{15 \cdot 14 \cdot 13 \cdot 12}{24} = 15 \cdot 7 \cdot 13 = \mathbf{1365}.$$
+$$\binom{15}{4} = \frac{15 \cdot 14 \cdot 13 \cdot 12}{24} = 15 \cdot 7 \cdot 13 = \mathbf{1365}.$$
 
 ::: elmelet
 **Elméleti háttér — belső metszéspontok száma konvex sokszögben.**
@@ -591,7 +591,7 @@ Hány belső metszéspontja van egy konvex 8-szög átlóinak, ha semelyik 3 át
 
 **Megoldás.**
 
-$$inom{8}{4} = rac{8 \cdot 7 \cdot 6 \cdot 5}{24} = 7 \cdot 2 \cdot 5 = \mathbf{70}.$$
+$$\binom{8}{4} = \frac{8 \cdot 7 \cdot 6 \cdot 5}{24} = 7 \cdot 2 \cdot 5 = \mathbf{70}.$$
 
 ::: elmelet
 **Elméleti háttér — kombinációk alkalmazása síkgeometriában.**
@@ -606,7 +606,7 @@ A hatoslottón 45 számból 6-ot húznak ki. Hány olyan kihúzás lehetséges, 
 **Megoldás.**
 
 A Kaplansky-képlet alapján $n = 45, k = 6$:
-$$inom{45 - 6 + 1}{6} = inom{40}{6} = rac{40 \cdot 39 \cdot 38 \cdot 37 \cdot 36 \cdot 35}{720} = \mathbf{3\,838\,380}.$$
+$$\binom{45 - 6 + 1}{6} = \binom{40}{6} = \frac{40 \cdot 39 \cdot 38 \cdot 37 \cdot 36 \cdot 35}{720} = \mathbf{3\,838\,380}.$$
 
 ::: elmelet
 **Elméleti háttér — hatoslottó szomszédmentes húzásai.**
@@ -644,9 +644,9 @@ Hány tartományra osztja a síkot 10 általános helyzetű egyenes? Hány korl�
 **Megoldás.**
 
 Összes tartomány:
-$$R_{10} = 1 + rac{10 \cdot 11}{2} = 1 + 55 = \mathbf{56}.$$
+$$R_{10} = 1 + \frac{10 \cdot 11}{2} = 1 + 55 = \mathbf{56}.$$
 Korlátos tartományok száma:
-$$B_{10} = inom{10 - 1}{2} = inom{9}{2} = rac{9 \cdot 8}{2} = \mathbf{36}.$$
+$$B_{10} = \binom{10 - 1}{2} = \binom{9}{2} = \frac{9 \cdot 8}{2} = \mathbf{36}.$$
 (Ellenőrzés: nemkorlátos tartományok száma $2 \cdot 10 = 20$, és $36 + 20 = 56$.)
 
 ::: elmelet
@@ -718,7 +718,7 @@ Egy fagylaltozóban 5 íz van. Hányféleképpen vásárolhatunk legfeljebb 10 g
 
 A hiányváltozó módszerével: $x_1 + \dots + x_5 + x_6 = 10$, ahol $x_i \ge 0$.
 A lehetőségek száma:
-$$inom{10 + 6 - 1}{10} = inom{15}{10} = inom{15}{5} = rac{15 \cdot 14 \cdot 13 \cdot 12 \cdot 11}{120} = 3003.$$
+$$\binom{10 + 6 - 1}{10} = \binom{15}{10} = \binom{15}{5} = \frac{15 \cdot 14 \cdot 13 \cdot 12 \cdot 11}{120} = 3003.$$
 
 ::: elmelet
 **Elméleti háttér — legfeljebb $k$ tárgy kiválasztása.**
@@ -1781,7 +1781,7 @@ Hányféleképpen bontható fel egy konvex 7-szög nem metsző átlókkal három
 **Megoldás.**
 
 A képlet szerint $n = 7$-re:
-$$t_7 = C_{7-2} = C_5 = rac{1}{6}inom{10}{5} = rac{252}{6} = \mathbf{42}.$$
+$$t_7 = C_{7-2} = C_5 = \frac{1}{6}\binom{10}{5} = \frac{252}{6} = \mathbf{42}.$$
 
 ::: elmelet
 **Elméleti háttér — 7-szög triangulációi.**
@@ -1796,7 +1796,7 @@ Hányféleképpen vágható fel egy konvex 8-szög nem metsző átlókkal három
 **Megoldás.**
 
 $n = 8$-ra:
-$$t_8 = C_{8-2} = C_6 = rac{1}{7}inom{12}{6} = rac{924}{7} = \mathbf{132}.$$
+$$t_8 = C_{8-2} = C_6 = \frac{1}{7}\binom{12}{6} = \frac{924}{7} = \mathbf{132}.$$
 
 ::: elmelet
 **Elméleti háttér — 8-szög triangulációi.**
@@ -1811,7 +1811,7 @@ Hányféleképpen zárójelezhető meg egy 5 tényezős szorzat ($x_1 x_2 x_3 x_
 **Megoldás.**
 
 A képlet szerint $n = 5$-re a zárójelezések száma:
-$$z_5 = C_{5-1} = C_4 = rac{1}{5}inom{8}{4} = rac{70}{5} = \mathbf{14}.$$
+$$z_5 = C_{5-1} = C_4 = \frac{1}{5}\binom{8}{4} = \frac{70}{5} = \mathbf{14}.$$
 
 ::: elmelet
 **Elméleti háttér — 5 tényező zárójelezése.**

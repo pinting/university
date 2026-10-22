@@ -4218,13 +4218,13 @@ $|u| = 2$, $\arg u = \frac{\pi}{6}$; $|v| = 3$, $\arg v = \frac{\pi}{4}$.
 $$|u \cdot v| = 2 \cdot 3 = 6,$$
 $$\arg(u \cdot v) = \frac{\pi}{6} + \frac{\pi}{4} = \frac{2\pi + 3\pi}{12} = \frac{5\pi}{12}.$$
 Tehát:
-$$u \cdot v = \mathbf{6\left(\cos\frac{5\pi}{12} + i\sin\frac{5\pi}{12}\right)}.$$
+$$u \cdot v = 6\left(\cos\frac{5\pi}{12} + i\sin\frac{5\pi}{12}\right).$$
 
 2. **Hányados:**
 $$\left|\frac{u}{v}\right| = \frac{2}{3},$$
 $$\arg\left(\frac{u}{v}\right) = \frac{\pi}{6} - \frac{\pi}{4} = -\frac{\pi}{12}.$$
 A trigonometrikus alakban a szöget szokás a $[0, 2\pi)$ főintervallumban megadni ($-\frac{\pi}{12} \equiv \frac{23\pi}{12} \pmod{2\pi}$):
-$$\frac{u}{v} = \mathbf{\frac{2}{3}\left(\cos\left(-\frac{\pi}{12}\right) + i\sin\left(-\frac{\pi}{12}\right)\right)} = \mathbf{\frac{2}{3}\left(\cos\frac{23\pi}{12} + i\sin\frac{23\pi}{12}\right)}.$$
+$$\frac{u}{v} = \frac{2}{3}\left(\cos\left(-\frac{\pi}{12}\right) + i\sin\left(-\frac{\pi}{12}\right)\right) = \frac{2}{3}\left(\cos\frac{23\pi}{12} + i\sin\frac{23\pi}{12}\right).$$
 
 ::: elmelet
 **Elméleti háttér — Szorzás és osztás trigonometrikus alakban.**
@@ -4431,7 +4431,7 @@ A jobb oldal: $i = 1\left(\cos\frac{\pi}{2} + i\sin\frac{\pi}{2}\right)$.
 A gyökök abszolút értéke $\sqrt[n]{1} = 1$, szögeik:
 $$\theta_k = \frac{\frac{\pi}{2} + 2k\pi}{n} = \frac{(4k + 1)\pi}{2n}, \qquad k = 0, 1, \dots, n-1.$$
 Tehát az $n$ darab megoldás:
-$$\mathbf{x_k = \cos\frac{(4k + 1)\pi}{2n} + i\sin\frac{(4k + 1)\pi}{2n}, \qquad k = 0, 1, \dots, n-1}.$$
+$$x_k = \cos\frac{(4k + 1)\pi}{2n} + i\sin\frac{(4k + 1)\pi}{2n}, \qquad k = 0, 1, \dots, n-1.$$
 
 ::: elmelet
 **Elméleti háttér — Komplex $n$-edik gyökvonás geometriája és formulája.**
@@ -6293,7 +6293,7 @@ A megadott $\pi$ permutáció értékei:
 - 3. sor ($i = 3$): $\pi(3) = 1 \implies$ az 1. oszlopban áll 1-es: $(1, 0, 0, 0)$,
 - 4. sor ($i = 4$): $\pi(4) = 3 \implies$ a 3. oszlopban áll 1-es: $(0, 0, 1, 0)$.
 A permutációs mátrix tehát:
-$$\mathbf{P_\pi = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \end{pmatrix}}.$$
+$$P_\pi = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \end{pmatrix}.$$
 
 **(b) A determináns kiszámítása:**
 Alkalmazzunk elemi sorcseréket a mátrix egységmátrixszá alakításához:
@@ -6315,7 +6315,7 @@ A permutáció előjele (paritása):
 $$\operatorname{sgn}(\pi) = (-1)^{I(\pi)} = (-1)^3 = -1.$$
 
 Látható, hogy a determináns értéke és a permutáció előjele pontosan megegyezik:
-$$\mathbf{\det P_\pi = \operatorname{sgn}(\pi) = (-1)^{I(\pi)}}.$$
+$$\det P_\pi = \operatorname{sgn}(\pi) = (-1)^{I(\pi)}.$$
 Általánosan is igaz: minden $\pi \in S_n$ permutáció esetén a hozzá tartozó $P_\pi$ permutációs mátrix determinánsa pontosan a permutáció előjelével egyenlő:
 $$\det P_\pi = \operatorname{sgn}(\pi).$$
 Ez a determináns Leibniz-féle permutációs definíciójának közvetlen következménye: a $\det A = \sum_{\sigma \in S_n} \operatorname{sgn}(\sigma) \prod_{i=1}^n a_{i\sigma(i)}$ összegben a $P_\pi$ mátrixra kizárólag a $\sigma = \pi$ tag nem nulla, és annak értéke pontosan $\operatorname{sgn}(\pi) \cdot 1$.
