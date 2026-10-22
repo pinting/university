@@ -24,6 +24,7 @@ sudo pacman -S --needed \
 make          # Build concatenated notes and all PDFs
 make pdf      # Build all PDFs only
 make textbook # Build only the textbooks
+make supplementary # Build only the supplementary exercises (Kiegészítő Feladatok)
 make clean    # Remove generated files
 ```
 

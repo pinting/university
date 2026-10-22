@@ -15,7 +15,23 @@ természetes számot (az üres sorozathoz az $1$-et). A számelmélet alaptétel
 (Másik út: a $k$ hosszú sorozatok halmaza $\mathbb{Z}^k$, ami megszámlálható, és megszámlálható sok megszámlálható halmaz uniója megszámlálható.)
 
 ::: elmelet
-**Elméleti háttér — megszámlálhatóság injekcióval.** Egy halmaz pontosan akkor legfeljebb megszámlálható, ha van injekciója $\mathbb N$-be. Véges sorozatok kódolására a **számelmélet alaptétele** ad injekciót: a prímtényezős felbontás egyértelmű, így a kitevőkből minden adat visszaolvasható (a $\varphi(z) \ge 1$ eltolás biztosítja, hogy a hossz is látszódjon). Alternatíva: **megszámlálható sok megszámlálható halmaz uniója megszámlálható** ($\bigcup_k \mathbb Z^k$).
+**Elméleti háttér — megszámlálhatóság: injekciók, kódolás, uniók.**
+
+*Alapfogalmak.* Két halmaz **ekvivalens** (egyenlő számosságú, $A \sim B$), ha van köztük bijekció. $A$ **megszámlálhatóan végtelen**, ha $A \sim \mathbb{N}$; **legfeljebb megszámlálható**, ha véges vagy megszámlálhatóan végtelen.
+
+*Három kényelmes kritérium.* Egy nem üres $A$ halmazra ekvivalensek:
+
+1. $A$ legfeljebb megszámlálható;
+2. van $A \to \mathbb{N}$ **injekció**;
+3. van $\mathbb{N} \to A$ **szürjekció** (az elemei felsorolhatók, ismétlésekkel is).
+
+Ezért megszámlálhatóság bizonyításához elég egy injektív „kódolást” vagy egy (nem feltétlenül ismétlésmentes) felsorolást adni. Végtelen részhalmaza révén pedig a halmaz legalább megszámlálható.
+
+*A prímhatvány-kódolás (Gödel-számozás).* A $(z_1, \dots, z_k) \mapsto 2^{\varphi(z_1)}3^{\varphi(z_2)}\cdots p_k^{\varphi(z_k)}$ kódolás a **számelmélet alaptételén** (a prímfelbontás egyértelműségén) alapul: a kódból a kitevők, így a tagok visszaolvashatók. A $\varphi(z) \ge 1$ feltétel biztosítja, hogy a hossz is látszódjon (a $k$-adik prím szerepel, a $(k+1)$-edik nem). Ugyanezt a kódolást használta Gödel a nemteljességi tételében formulák számokkal való azonosítására.
+
+*Uniók.* Megszámlálható sok, legfeljebb megszámlálható halmaz uniója legfeljebb megszámlálható. Bizonyítás: ha $A_k = \{a_{k1}, a_{k2}, \dots\}$, akkor $\bigcup_k A_k$ az $(k, j) \mapsto a_{kj}$ szürjekció képe $\mathbb{N} \times \mathbb{N}$-ről, és $\mathbb{N} \times \mathbb{N}$ megszámlálható (átlós felsorolás). (A felsorolások kiválasztása a megszámlálható kiválasztási axiómát használja, ami az analízisben szokásosan megengedett.)
+
+*Következmények.* $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{Z}^k$, a véges sorozatok, a véges részhalmazok, a polinomok (egész vagy racionális együtthatóval), a véges szövegek (egy véges ábécé fölött) halmaza mind megszámlálható. Ezzel szemben a **végtelen** $0$–$1$ sorozatok halmaza (azaz $\mathcal{P}(\mathbb{N})$) már nem (Cantor átlós érvelése, 62. feladat).
 :::
 
 ## 56. feladat
@@ -67,7 +83,19 @@ $$i_n = \frac{(2 + 3/n)^5 (18 + 17/n)^{15}}{(6 + 5/n)^{20}} \to \frac{2^5 \cdot 
 $$q_n = \frac{n \cdot 2n}{\sqrt{n^2+n} + \sqrt{n^2-n}} = \frac{2n}{\sqrt{1 + 1/n} + \sqrt{1 - 1/n}} \ge \frac{2n}{2\sqrt2} \to +\infty.$$
 
 ::: elmelet
-**Elméleti háttér — határérték és műveletek, nagyságrendek.** Ha $a_n \to a$ és $b_n \to b$ (véges), akkor $a_n \pm b_n$, $a_nb_n$, $\frac{a_n}{b_n}$ ($b \ne 0$) a megfelelő határértékhez tart, és folytonos függvényekkel (gyök, hatvány) is felcserélhető a határérték. Kritikus típusoknál ($\frac\infty\infty$, $\infty - \infty$) először átalakítunk: **a domináns taggal osztunk**, illetve **gyöktelenítünk**, utána alkalmazzuk a műveleti tételeket. $n$-edik gyöknél a domináns tag és a rendőrelv dönt ($\sqrt[n]{c} \to 1$, $\sqrt[n]n \to 1$).
+**Elméleti háttér — határérték-számítás: műveletek, folytonos függvények, domináns tag.**
+
+*Műveleti tételek.* Ha $a_n \to a$, $b_n \to b$ ($a, b \in \mathbb{R}$), akkor $a_n + b_n \to a + b$, $a_nb_n \to ab$, $\frac{a_n}{b_n} \to \frac ab$ ($b \ne 0$). Ezek a bővített számegyenesre is kiterjeszthetők, kivéve a kritikus eseteket.
+
+*Hatványok és gyökök.* Ha $a_n \to a$, akkor $a_n^k \to a^k$ (szorzatszabály), és $a_n \ge 0$, $a \ge 0$ esetén $\sqrt[k]{a_n} \to \sqrt[k]{a}$. Az utóbbi $a > 0$-ra az $x^k - y^k = (x - y)(x^{k-1} + \dots + y^{k-1})$ azonosságból: $|\sqrt[k]{a_n} - \sqrt[k]{a}| \le \frac{|a_n - a|}{\sqrt[k]{a}^{\,k-1}}$; $a = 0$-ra közvetlenül a definícióból. Általános elv (a függvények folytonosságánál): **folytonos függvény felcserélhető a határértékkel**.
+
+*A domináns tag módszere törtekre.* Ha a számlálóban és a nevezőben különböző (akár tört kitevős) hatványok összegei állnak, osszunk a nevező legnagyobb hatványával. A legnagyobb kitevők különbsége dönt: $n^{a}/n^{b} = n^{a - b}$, ami $a > b$-re $\infty$, $a = b$-re $1$, $a < b$-re $0$. A k) részben $\frac34 - \frac23 = \frac1{12} > 0$, ezért a határérték $+\infty$ — bár „nagyon lassan”: $n^{1/12}$ még $n = 10^{12}$-re is csak $10$.
+
+*Szorzat és hatvány domináns tagja.* Az i) rész mutatja: egy polinomszorzat domináns tagja a tényezők domináns tagjainak szorzata, így $(2n + 3)^5(18n + 17)^{15} \sim 2^5 18^{15} n^{20}$. Mivel a nevező is huszadfokú, a határérték a főegyütthatók hányadosa.
+
+*Exponenciálisok.* $a^n$, $b^n$ összegeiben a legnagyobb alap dominál: $\frac{2^n + 5^n}{3^n + 1} \sim \left(\frac53\right)^n \to \infty$, $\frac{7^n - 7^{-n}}{7^n + 7^{-n}} \to 1$. (Az utóbbi a $\tanh(n\ln 7)$ — hiperbolikus tangens —, amely $1$-hez tart.)
+
+*Gyökös különbségek.* Az l), q) részekben gyöktelenítés után a számláló és a nevező nagyságrendje: $l_n \sim \frac{\sqrt n}{2}$, $q_n \sim n$. Itt a gyöktelenítés nélküli „$\infty \cdot 0$” alakból semmi sem olvasható le.
 :::
 
 ## 57. feladat
@@ -80,7 +108,19 @@ Adjunk példákat arra, hogy $a_n - b_n \to 0$, de $a_n/b_n$ nem tart 1-hez, ill
 - $a_n/b_n \to 1$, de $a_n - b_n \not\to 0$: $a_n = n + 1$, $b_n = n$. Ekkor $\frac{a_n}{b_n} = 1 + \frac1n \to 1$, de $a_n - b_n = 1$. (Vagy $a_n = n^2 + n$, $b_n = n^2$: a különbség $n \to \infty$.)
 
 ::: elmelet
-**Elméleti háttér — abszolút és relatív közelség.** Az $a_n - b_n \to 0$ (a különbség kicsi) és az $\frac{a_n}{b_n} \to 1$ (az arány közel $1$, „aszimptotikus egyenlőség”, $a_n \sim b_n$) két különböző fogalom. Nullsorozatoknál a különbség mindig kicsi, az arány mégis bármi lehet; végtelenbe tartó sorozatoknál az arány lehet $1$, a különbség mégis nagy. Ellenpéldával cáfolunk.
+**Elméleti háttér — aszimptotikus egyenlőség és a különbség.**
+
+*Definíció.* $a_n \sim b_n$ (**aszimptotikusan egyenlők**), ha $\frac{a_n}{b_n} \to 1$. Ez a „relatív hiba” kicsinysége: $\frac{a_n - b_n}{b_n} \to 0$. Ezzel szemben $a_n - b_n \to 0$ az „abszolút hiba” kicsinysége.
+
+*Kapcsolatuk.*
+
+- Ha $b_n$ korlátos *és* $|b_n| \ge c > 0$ (a $0$-tól elválasztott), akkor a kettő ekvivalens: $\frac{a_n}{b_n} - 1 = \frac{a_n - b_n}{b_n}$, és $\frac{1}{|b_n|} \le \frac1c$.
+- Nullsorozatoknál az abszolút hiba mindig kicsi, a relatív hiba bármi lehet (az első példa).
+- Végtelenbe tartó sorozatoknál a relatív hiba lehet kicsi, miközben az abszolút hiba nagy (a második példa).
+
+*Nevezetes aszimptotikák.* $\sqrt{n+1} - \sqrt n \sim \frac{1}{2\sqrt n}$; $\binom{n}{2} \sim \frac{n^2}{2}$; $1 + 2 + \dots + n \sim \frac{n^2}{2}$; $H_n = 1 + \frac12 + \dots + \frac1n \sim \ln n$; **Stirling-formula:** $n! \sim \sqrt{2\pi n}\left(\frac ne\right)^n$ — itt a két oldal *különbsége* a végtelenbe tart, csak a hányados tart $1$-hez.
+
+*Miért fontos a megkülönböztetés?* Az $\sim$ reláció szorzásra és osztásra „jól viselkedik” ($a_n \sim b_n$, $c_n \sim d_n \Rightarrow a_nc_n \sim b_nd_n$), összeadásra és kivonásra **nem**: $n + 1 \sim n$ és $-n \sim -n$, de $(n + 1) + (-n) = 1 \not\sim 0$. Ezért határozatlan különbségeknél ($\infty - \infty$) nem szabad a tagokat aszimptotikus megfelelőikkel helyettesíteni — ez a határérték-számítás egyik leggyakoribb hibaforrása.
 :::
 
 ## 58. feladat
@@ -108,7 +148,20 @@ b) A fixpontok: $x = \frac{1}{3 - x} \iff x^2 - 3x + 1 = 0 \iff x = \frac{3 \pm 
 Így konvergens; ha $b_n \to B \in [0, \alpha]$, akkor $B = \frac{1}{3 - B}$, tehát $B$ fixpont, és $B \le \alpha$ miatt **$B = \alpha = \frac{3 - \sqrt5}{2}$**.
 
 ::: elmelet
-**Elméleti háttér — rekurzív sorozat: korlát, monotonitás, fixpont.** $a_{n+1} = g(a_n)$ esetén: (1) **invariáns intervallum** (indukcióval: ha $a_n \in I$, akkor $g(a_n) \in I$) ad korlátot; (2) ha $g$ monoton nő, a monotonitás az első két tagból öröklődik, vagy közvetlenül az $a_{n+1} - a_n$ előjeléből látszik; (3) **monoton + korlátos $\Rightarrow$ konvergens**; (4) a határérték a $g$ **fixpontja** ($A = g(A)$, ha $g$ folytonos), és a korlátok döntik el, melyik fixpontról van szó.
+**Elméleti háttér — rekurzív sorozatok és fixpontok részletesen.**
+
+*Az eljárás lépései* ($a_{n+1} = g(a_n)$):
+
+1. **Fixpontok** meghatározása: $x = g(x)$. Ezek a lehetséges határértékek (ha $g$ folytonos).
+2. **Invariáns intervallum** keresése, amely tartalmazza a kezdőértéket, és amelyet $g$ önmagába visz; ebből indukcióval korlát.
+3. **Monotonitás:** vagy az $a_{n+1} - a_n = g(a_n) - a_n$ előjeléből (a $g(x) - x$ függvény előjele az invariáns intervallumon), vagy — ha $g$ monoton nő — az első két tag összehasonlításából indukcióval.
+4. **Konvergencia** a monoton konvergencia tételéből, és a **határérték** a fixpontegyenletből, a korlátok alapján kiválasztva.
+
+*A $g(x) - x$ előjele mint térkép.* Az a) részben $g(x) - x = \sqrt{2x} - x > 0$ a $(0, 2)$ intervallumon: ott a sorozat nő, és a következő fixpont, a $2$ felé halad. A b) részben $g(x) - x = \frac{1 - 3x + x^2}{3 - x}$, ami a $[0, \alpha)$ intervallumon pozitív: a sorozat $\alpha$ felé nő. Általában a fixpontok közötti intervallumokon a sorozat a $g(x) - x$ előjele szerint halad, és — ha a fixpontot nem lépheti át (ezt adja a $g$ monotonitása) — a legközelebbi fixponthoz tart.
+
+*Vonzó és taszító fixpontok.* Ha $g$ differenciálható, és $|g'(A)| < 1$, a fixpont **vonzó** (a közeli kezdőértékekről a sorozat hozzá tart); ha $|g'(A)| > 1$, **taszító**. A b) részben $g'(x) = \frac{1}{(3 - x)^2}$, így $g'(\alpha) = \alpha^2 \approx 0{,}146 < 1$ (vonzó), $g'(\beta) = \beta^2 \approx 6{,}85 > 1$ (taszító), ahol $\beta = \frac{3 + \sqrt5}{2}$. Ez magyarázza, miért nem a $\beta$ a határérték.
+
+*Explicit alak.* Az a) részben $\log_2 a_{n+1} = \frac{1 + \log_2 a_n}{2}$, vagyis $c_n = 1 - \log_2 a_n$-re $c_{n+1} = \frac{c_n}{2}$, $c_1 = 1$, így $c_n = 2^{1-n}$ és $a_n = 2^{1 - 2^{1-n}} \to 2$. Explicit képlet ritkán van; a monoton-korlátos módszer akkor is működik, ha nincs.
 :::
 
 ## 59. feladat
@@ -124,7 +177,15 @@ $$f(q_n) = s_{2n}, \qquad f(s_n) = s_{2n-1}, \qquad f(x) = x \text{ egyébként}
 $f$ a $\mathbb{Q} \cup S$ halmazt bijektíven képezi $S$-re (a racionálisok a páros, $S$ elemei a páratlan indexű helyekre kerülnek), a maradék $(\mathbb{R}\setminus\mathbb{Q}) \setminus S$ halmazon pedig az identitás. Tehát $f$ bijekció $\mathbb{R}$ és $\mathbb{R} \setminus \mathbb{Q}$ között. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — számosságok.** Két megszámlálható halmaz uniója megszámlálható, $\mathbb R$ viszont nem (Cantor átlós eljárása) — így az irracionálisak nem lehetnek megszámlálhatók. Az egyenlő számossághoz bijekció kell: a „**Hilbert-szálloda**” ötlete, hogy egy végtelen halmazból kiválasztott megszámlálható részhalmazba (itt $S$) „helyet csinálunk” egy további megszámlálható halmaznak ($\mathbb Q$) a páros/páratlan indexek szétválasztásával, a többi elemet pedig helyben hagyjuk.
+**Elméleti háttér — számosságok: $\mathbb{R}$ nem megszámlálható, és a „Hilbert-szálloda”.**
+
+*Cantor tétele.* $\mathbb{R}$ nem megszámlálható. *Bizonyítás a Cantor-tulajdonsággal:* tegyük fel, hogy $\mathbb{R} = \{x_1, x_2, \dots\}$. Válasszunk $I_1$ zárt intervallumot, amely nem tartalmazza $x_1$-et; $I_1$-ben egy $I_2$ zárt intervallumot, amely nem tartalmazza $x_2$-t; és így tovább. A Cantor-tulajdonság szerint van $\xi \in \bigcap I_n$, de $\xi \ne x_n$ minden $n$-re, mert $x_n \notin I_n$. Ellentmondás. (Alternatíva: Cantor átlós eljárása tizedes törtekkel.)
+
+*Irracionálisak.* Ha $\mathbb{R} \setminus \mathbb{Q}$ megszámlálható volna, $\mathbb{R}$ két megszámlálható halmaz uniójaként az lenne. Tehát „sokkal több” irracionális szám van, mint racionális — pedig mindkettő sűrű.
+
+*Megszámlálható halmaz elnyelése.* Ha $X$ végtelen, és $C$ megszámlálható, akkor $X \cup C \sim X$. A bizonyítás ötlete (Hilbert-szálloda): $X$-ben kiválasztunk egy megszámlálható $S = \{s_1, s_2, \dots\}$ részhalmazt, és a $C \cup S$ elemeit „összetoljuk” $S$-be: a $C$ elemei a páros, az $S$ elemei a páratlan sorszámú helyekre kerülnek; $X \setminus S$ elemei helyben maradnak. (A szálloda-hasonlat: egy teli, végtelen szállodában minden vendéget a szobaszáma kétszeresébe költöztetünk, és a felszabaduló páratlan szobákba végtelen sok új vendég fér.)
+
+*Számosság-aritmetika.* Ugyanezzel a gondolattal: $\mathbb{R} \sim (0, 1) \sim [0, 1] \sim \mathbb{R} \setminus \mathbb{Q} \sim$ az irracionálisak bármely nyílt intervallumban. A végtelen halmazok számossága nem változik, ha megszámlálható sok elemet hozzáveszünk vagy elhagyunk (feltéve, hogy nem megszámlálható marad a halmaz). A **kontinuumhipotézis** (hogy nincs számosság $\mathbb{N}$ és $\mathbb{R}$ között) a szokásos axiómákból sem nem bizonyítható, sem nem cáfolható (Gödel, Cohen).
 :::
 
 ## 60*. feladat
@@ -148,7 +209,15 @@ $$\mathbb{R} \setminus \mathbb{Q} = \bigcup_{n=1}^{\infty} \left\{x \notin \math
 és a bal oldal nem megszámlálható, valamelyik $H_n = \{x : w_x \ge \frac1n\}$ nem megszámlálható. Osszuk a számegyenest $\frac1n$ hosszú $[\frac{k}{n}, \frac{k+1}{n})$ intervallumokra (megszámlálható sok); valamelyikbe $H_n$ legalább két pontja esik: $x < y$, $y - x < \frac1n$. Ha $h_x \ge h_y$, akkor $y$ kalapja ($w_y \ge \frac1n > y - x$) eléri az $x$ szárát a $h_y \le h_x$ magasságban; ha $h_y > h_x$, akkor szimmetrikusan $x$ kalapja metszi $y$ szárát. Ellentmondás.
 
 ::: elmelet
-**Elméleti háttér — megszámlálható kontra nem megszámlálható.** Megszámlálható halmazon **sorban egyesével** tudunk dönteni (a $q_n$-hez tartozó T méretét csak a korábbi, véges sok T-hez kell igazítani), ezért a konstrukció működik. Nem megszámlálható halmaznál a **skatulyaelv végtelen változata** dolgozik: ha egy nem megszámlálható halmazt megszámlálható sok részre bontunk, valamelyik rész nem megszámlálható (sőt végtelen); és egy ilyen részből két pont közel kerül egymáshoz, ami a T-k ütközését okozza.
+**Elméleti háttér — a végtelen skatulyaelv és a megszámlálható konstrukciók.**
+
+*Végtelen skatulyaelv.* Ha egy nem megszámlálható halmazt megszámlálható sok részre bontunk, valamelyik rész nem megszámlálható. (Különben a halmaz megszámlálható sok megszámlálható halmaz uniója, tehát megszámlálható volna.) Hasonlóan: ha végtelen halmazt véges sok részre bontunk, valamelyik rész végtelen.
+
+*A b) rész szerkezete.* A T-k „vastagságát” a $w_x$ félszélesség méri. A nem megszámlálható irracionálishalmazt a $\{w_x \ge \frac1n\}$ részekre bontva a végtelen skatulyaelv ad egy nem megszámlálható $H_n$-t, amelyben minden T legalább $\frac1n$ széles. Egy második skatulyázás (a $\frac1n$ hosszú intervallumok megszámlálhatók) két, egymáshoz $\frac1n$-nél közelebbi pontot ad $H_n$-ben, és ezek T-i ütköznek.
+
+*Az a) rész szerkezete.* Megszámlálható halmazon **egyszerű rekurzióval** dolgozhatunk: a $q_n$-re állított T méreteit csak a korábbi, véges sok T-hez kell igazítani (a minimum pozitív, mert véges sok pozitív szám minimuma). Ugyanez a technika ad például olyan függvényt, amely minden racionális pontban szakad, de az irracionálisakban folytonos (Riemann-függvény), és **nincs** olyan, amely fordítva viselkedik — ennek bizonyítása is egy számossági (Baire-féle) érvelés.
+
+*Hasonló jelenségek.* Bármely diszjunkt, nem degenerált intervallumokból álló halmazrendszer megszámlálható (mindegyik tartalmaz egy racionális számot, és ezek különbözők). A síkban diszjunkt „nyolcasok” rendszere is legfeljebb megszámlálható lehet, míg diszjunkt körvonalakból kontinuum sok van (koncentrikus körök). Az ilyen feladatok közös kulcsa: egy „vastag” objektum mindig tartalmaz egy racionális (megszámlálható halmazból vett) „tanút”.
 :::
 
 ## 61. feladat
@@ -164,7 +233,17 @@ megszámlálható sok véges halmaz uniója, így megszámlálható. Végtelen, 
 (Következmény: létezik transzcendens szám, sőt a valós számok „majdnem mind" transzcendensek.)
 
 ::: elmelet
-**Elméleti háttér — algebrai számok.** Az egész együtthatós polinomok egy megszámlálható halmazt alkotnak (együtthatóik véges sorozatai), és egy nem nulla, $d$-edfokú polinomnak legfeljebb $d$ gyöke van. Megszámlálható sok véges halmaz uniója megszámlálható. Mivel $\mathbb R$ nem megszámlálható, **létezik transzcendens szám** — ez Cantor nem konstruktív bizonyítása.
+**Elméleti háttér — algebrai és transzcendens számok.**
+
+*Definíció.* Egy (valós vagy komplex) szám **algebrai**, ha gyöke egy nem azonosan nulla, egész (ekvivalensen: racionális) együtthatós polinomnak; különben **transzcendens**. Minden racionális szám algebrai ($qx - p$), a $\sqrt2$ is ($x^2 - 2$), a $\sqrt[3]{2} + \sqrt3$ is (az algebrai számok testet alkotnak).
+
+*A gyökök száma.* Egy $d$-edfokú, nem nulla polinomnak legfeljebb $d$ gyöke van: ha $\alpha$ gyök, a polinom osztható $(x - \alpha)$-val (gyöktényező-leválasztás), és a hányados $(d-1)$-edfokú, így indukcióval.
+
+*Cantor érvelése.* Az egész együtthatós polinomok megszámlálhatók (55. feladat), mindegyiknek véges sok gyöke van, így az algebrai számok halmaza megszámlálható. Mivel $\mathbb{R}$ nem megszámlálható, **léteznek transzcendens számok**, sőt a valós számok „szinte mind” transzcendensek (az algebrai számok halmazának Lebesgue-mértéke $0$).
+
+*Konkrét transzcendens számok.* Cantor érve nem mutat meg egyetlen konkrét transzcendens számot sem. Konkrét példák: Liouville száma $\sum_{k=1}^\infty 10^{-k!}$ (1844, az első ismert), $e$ (Hermite, 1873), $\pi$ (Lindemann, 1882 — ebből következik, hogy a kör négyszögesítése körzővel és vonalzóval lehetetlen), $2^{\sqrt2}$ (Gelfond–Schneider). Hogy $e + \pi$ vagy $e\pi$ transzcendens-e, máig nyitott kérdés.
+
+*Egy finomabb számlálás.* A polinomokat a **magasságuk** szerint is felsorolhatjuk: $h(P) = \deg P + \sum |a_i|$. Adott $h$-hoz csak véges sok polinom tartozik, így a $h = 1, 2, 3, \dots$ szerinti felsorolás közvetlenül is megszámlálja a polinomokat — ez a Cantor által használt eredeti módszer.
 :::
 
 ## 62. feladat
@@ -181,7 +260,18 @@ A Schröder–Bernstein-tétel szerint elég kölcsönösen injektív leképezé
 Tehát $\mathcal{P}(\mathbb{N}) \sim \mathbb{R}$, azaz $\mathcal{P}(\mathbb{N})$ kontinuum számosságú. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Schröder–Bernstein-tétel.** Ha van injekció $A \to B$ és $B \to A$, akkor $A \sim B$ (van bijekció). Így két injekció megadása elég a számosságok egyenlőségéhez. A $\mathcal P(\mathbb N) \to \mathbb R$ irányban a tizedes tört egyértelműsége (csak $0$, $1$ jegyek, nincs $\dots 999$ vég) adja az injektivitást, az $\mathbb R \to \mathcal P(\mathbb Q)$ irányban a **Dedekind-szelet** ötlete ($x \mapsto \{q < x\}$) és $\mathbb Q$ sűrűsége.
+**Elméleti háttér — kontinuum számosság, Cantor-tétel és Schröder–Bernstein.**
+
+*Schröder–Bernstein-tétel.* Ha van $f : A \to B$ és $g : B \to A$ injekció, akkor van $A \to B$ bijekció. (Bizonyítás vázlata: az $A$ elemeit aszerint osztályozzuk, hogy az $f$ és $g^{-1}$ felváltott visszakövetése $A$-ban, $B$-ben vagy sehol nem akad el; az első és harmadik osztályon $f$-et, a másodikon $g^{-1}$-et használjuk.) Ezzel a számosságok összehasonlítása „$\le$” értelemben antiszimmetrikus.
+
+*A két injekció.*
+
+- $\mathcal{P}(\mathbb{N}) \hookrightarrow \mathbb{R}$: a karakterisztikus sorozat ($0$–$1$ sorozat) tizedes törtként olvasva. A $10$-es alap és a csak $0$, $1$ jegyek miatt két különböző sorozat különböző számot ad (a $\dots0999\dots = \dots1000\dots$ kétértelműség itt nem fordulhat elő). Kettes alappal ez nem volna injektív ($0{,}0111\ldots_2 = 0{,}1_2$).
+- $\mathbb{R} \hookrightarrow \mathcal{P}(\mathbb{Q})$: $x \mapsto \{q \in \mathbb{Q} : q < x\}$, a **Dedekind-szelet**. Injektív a racionálisok sűrűsége miatt. (Dedekind éppen így *konstruálta* a valós számokat a racionálisokból: a valós számok a racionálisok „alsó szeletei”.)
+
+*Cantor tétele.* Semmilyen $A$ halmazra nincs $A \to \mathcal{P}(A)$ szürjekció; így $|\mathcal{P}(A)| > |A|$. *Bizonyítás:* ha $f : A \to \mathcal{P}(A)$, legyen $D = \{a \in A : a \notin f(a)\}$. Ha $D = f(d)$ volna, akkor $d \in D \iff d \notin f(d) = D$ — ellentmondás. Speciálisan $|\mathbb{R}| = |\mathcal{P}(\mathbb{N})| > |\mathbb{N}|$, és $|\mathcal{P}(\mathbb{R})| > |\mathbb{R}|$: a végtelen számosságok sora nem ér véget.
+
+*Kontinuum számosságú halmazok.* $\mathbb{R}$, bármely nem degenerált intervallum, $\mathbb{R}^n$, $\mathbb{C}$, a végtelen $0$–$1$ sorozatok, a valós sorozatok ($\mathbb{R}^{\mathbb{N}}$), a folytonos $\mathbb{R} \to \mathbb{R}$ függvények (ezeket a racionális pontokon felvett értékük meghatározza). Ezzel szemben az összes $\mathbb{R} \to \mathbb{R}$ függvény halmaza már nagyobb számosságú.
 :::
 
 ## Röpzhra

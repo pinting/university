@@ -12,7 +12,7 @@
 
 ## Előszó
 
-A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv **Sziklai Péter** (ELTE TTK, Számítógéptudományi Tanszék) előadásainak kézírásos jegyzeteiből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok, Euler-séták, Hamilton-körök, csúcs- és élszínezések, valamint a síkbarajzolható gráfok és az Euler-formula). Az anyag felépítése, a tárgyalás rendje, a tételek és bizonyítások az ő előadásait követik; az érdem az övé, az esetleges hibák a feldolgozásból erednek. Ahol ismert, a szakasz elején feltüntettük az előadás dátumát is, hogy a könyv és a saját jegyzet könnyen összevethető legyen.
+A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv **Sziklai Péter** (ELTE TTK, Számítógéptudományi Tanszék) előadásainak kézírásos jegyzeteiből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok, Euler-séták, Hamilton-körök, csúcs- és élszínezések, a síkbarajzolható gráfok és az Euler-formula, a gömbre és tóruszra rajzolt gráfok, a szabályos testek, a tartományok színezése és a duális gráf, végül a független és lefogó csúcs- és élhalmazok). Az anyag felépítése, a tárgyalás rendje, a tételek és bizonyítások az ő előadásait követik; az érdem az övé, az esetleges hibák a feldolgozásból erednek. Ahol ismert, a szakasz elején feltüntettük az előadás dátumát is, hogy a könyv és a saját jegyzet könnyen összevethető legyen.
 
 A könyv azonban nem csupán a jegyzet letisztázott változata. Az előadáson sok minden szóban hangzik el, vagy csak egy rajz utal rá; itt ezeket a lépéseket kiírtuk. Minden új fogalom előtt igyekeztünk megmutatni, milyen kérdés teszi szükségessé, utána pedig példákon kipróbáltuk.
 
@@ -1237,7 +1237,7 @@ Ezzel a leszámlálás fejezet végére értünk.
 
 # III. RÉSZ: GRÁFELMÉLET
 
-A gráfelmélet a XX. században fejlődött igazán önálló tudományterületté, és mára a matematika egyik legtöbbet alkalmazott ága: hálózatok, útvonaltervezés, ütemezés, kémiai molekulák szerkezete — mind gráfokkal modellezhető. Ebben a részben az alapfogalmaktól a fák elméletén és a fokszámsorozatok vizsgálatán át az Euler-séták és a Hamilton-körök kérdésén keresztül a gráfszínezésekig (csúcs- és élszínezés, Vizing-tétel) és a síkbarajzolható gráfok elméletéig (Euler-formula, Kuratowski-tétel) jutunk el.
+A gráfelmélet a XX. században fejlődött igazán önálló tudományterületté, és mára a matematika egyik legtöbbet alkalmazott ága: hálózatok, útvonaltervezés, ütemezés, kémiai molekulák szerkezete — mind gráfokkal modellezhető. Ebben a részben az alapfogalmaktól a fák elméletén és a fokszámsorozatok vizsgálatán át az Euler-séták és a Hamilton-körök kérdésén keresztül a gráfszínezésekig (csúcs- és élszínezés, Vizing-tétel) és a síkbarajzolható gráfok elméletéig (Euler-formula, Kuratowski-tétel, gömb és tórusz, szabályos testek, duális gráf, öt- és hatszín-tétel) jutunk el, végül a független és lefogó csúcs- és élhalmazokkal (Gallai-tétel) zárunk.
 
 ## 17. Gráfok, egyszerű gráfok, izomorfia
 
@@ -1861,6 +1861,11 @@ A Hamilton-út egy (nem zárt) **lánc**: ha $k$ szemet kiszedünk belőle, legf
 *A feltétel kizárhat Hamilton-kört.* Vegyünk két háromszöget, amelyeknek egy közös csúcsuk van (ez a „pillangó”, $5$ csúcs). A közös csúcsot törölve ($k = 1$) a gráf $2$ komponensre esik, tehát nincs Hamilton-köre. Hamilton-útja viszont van (az egyik háromszög két csúcsán át a közös csúcsba, onnan a másik háromszög két csúcsán át), összhangban azzal, hogy egy csúcs törlésével legfeljebb $1 + 1 = 2$ komponens keletkezik.
 
 *A feltétel nem elégséges.* Ismert, hogy a **Petersen-gráf** ($10$ csúcsú, $3$-reguláris gráf: egy ötszög, egy ötágú csillag, és a megfelelő csúcsaik összekötve) teljesíti a fenti szükséges feltételt, Hamilton-köre mégsincs. A szükséges feltétel teljesülése tehát még nem garantálja a Hamilton-kört.
+
+*Miért nincs a Petersen-gráfban Hamilton-kör?* Legyenek a külső ötszög csúcsai $o_1, \dots, o_5$ (körbe), a belső csillag csúcsai $i_1, \dots, i_5$ (az $i_k$ az $i_{k+2}$-vel és az $i_{k-2}$-vel szomszédos, indexek modulo $5$), és a „küllők” az $o_ki_k$ élek. Tegyük fel, hogy $H$ egy Hamilton-kör. $H$ minden csúcsnál $2$ élt használ a $3$-ból. Egy kör páros sokszor lép át a külső és a belső csúcsok között, és legalább kétszer, így $H$ vagy $2$, vagy $4$ küllőt tartalmaz.
+
+- *$2$ küllő.* A külső ötszögön a két küllős csúcs $1$-$1$, a többi három $2$-$2$ ötszögélt használ $H$-ból, összesen $\frac{2 + 6}{2} = 4$ élt: $H$ külső része egy $5$ csúcsú út, amelynek két végpontja a két küllős csúcs, és ezek az ötszögön **szomszédosak** (a kimaradó él köti össze őket): $o_a, o_{a+1}$. Ugyanígy a belső részen a két küllős csúcs, $i_a$ és $i_{a+1}$ a csillagban szomszédos volna — de $i_a$ szomszédai $i_{a \pm 2}$. Ellentmondás.
+- *$4$ küllő.* Legyen $o_1i_1$ a kimaradó küllő (a szimmetria miatt feltehető). A külső részen $o_1$ két, a többi egy-egy ötszögélt használ: $\frac{2 + 4}{2} = 3$ él, köztük $o_5o_1$ és $o_1o_2$; a két kimaradó él nem szomszédos és nem illeszkedik $o_1$-re, tehát $o_2o_3$ és $o_4o_5$, így a harmadik használt él $o_3o_4$. Ugyanígy a belső részen ($i_1$ szomszédai $i_3$ és $i_4$) $H$ az $i_1i_3$, $i_1i_4$ és $i_2i_5$ éleket használja. Ekkor azonban $o_1, o_2, i_2, i_5, o_5, o_1$ egy $5$ hosszú kör $H$-ban — egy Hamilton-kör nem tartalmazhat rövidebb kört. Ellentmondás. $\blacksquare$
 :::
 
 ## 32. Elégséges feltétel: a Dirac- és az Ore-tétel
@@ -2134,10 +2139,29 @@ Meglepő és mély tény, hogy ezen a két triviális eseten kívül **nincs má
 > $$\chi(G) \le \Delta(G).$$
 
 ::: kiegeszites
-**Kiegészítés — a Brooks-tétel bizonyítási alapötlete.**
-A mohó színezésnél láttuk, hogy ha a csúcsokat tetszőleges sorrendben vizsgáljuk, a legrosszabb esetben $\Delta + 1$ színre lehet szükség. A Brooks-tétel bizonyításának kulcsa (Lovász László elegáns 1975-ös gondolata szerint), hogy a csúcsok sorrendjét **nem tetszőlegesen**, hanem a gráf struktúrájához igazítva választjuk meg:
-1. Ha a gráf nem reguláris, van egy $v_n$ csúcs, amelyre $\deg(v_n) < \Delta$. Egy feszítőfát gyökereztetve $v_n$-ben, a csúcsokat a gyökértől mért távolság szerint csökkenő sorrendbe rendezve ($v_1, v_2, \dots, v_n$) minden korábbi csúcsnak lesz legalább egy nála később következő szomszédja (a szülője a fában), így legfeljebb $\Delta - 1$ korábbi szomszédja van a sorrendben. Ekkor a mohó algoritmus legfeljebb $\Delta$ színt használ.
-2. Ha a gráf $\Delta$-reguláris, de nem teljes és nem páratlan kör, megmutatható, hogy található olyan $v_n$ csúcs és annak két olyan $v_1, v_2$ szomszédja, amelyek egymással nincsenek összekötve ($v_1 v_2 \notin E$), és a gráf $v_1, v_2$ elhagyása után is összefüggő marad. Ekkor $v_1$ és $v_2$ azonos színt kaphat (mondjuk az $1$-est), így az utolsó $v_n$ csúcs $\Delta$ darab szomszédja közül kettő azonos színű — tehát a szomszédai legfeljebb $\Delta - 1$ különböző színt használnak, így $v_n$-nek is jut egy szabad szín a $\{1, \dots, \Delta\}$ halmazból.
+**Kiegészítés — a Brooks-tétel bizonyítása** (Lovász László 1975-ös gondolatmenete). A mohó színezésnél a csúcsok sorrendje tetszőleges volt, és a legrosszabb esetben $\Delta + 1$ szín kellett. A bizonyítás kulcsa, hogy a sorrendet **a gráf szerkezetéhez igazítva** választjuk meg úgy, hogy egyik csúcs se lássa „maga előtt” mind a $\Delta$ szomszédját kiszínezve. Legyen $\Delta = \Delta(G)$.
+
+*A kis esetek.* Ha $\Delta \le 2$, akkor az összefüggő $G$ egy út vagy egy kör (a $2$-reguláris gráfokról a 29. szakaszban mondottak szerint). $\Delta = 0$ esetén $G = K_1$, $\Delta = 1$ esetén $G = K_2$ — mindkettő teljes gráf, ezeket kizártuk. $\Delta = 2$ esetén $G$ egy legalább $3$ csúcsú út vagy páros kör (a páratlan kört kizártuk), ezek $2 = \Delta$ színnel színezhetők. A továbbiakban $\Delta \ge 3$.
+
+**Segédállítás (fa-sorrend).** *Legyen $H$ összefüggő gráf, amelyben minden fok legfeljebb $\Delta$, és $r$ egy csúcsa. Rendezzük $H$ csúcsait egy $r$ gyökerű feszítőfa szerint a gyökértől mért (fabeli) távolság csökkenő sorrendjében; $r$ kerüljön utoljára. Ekkor a mohó színezés minden $r$-től különböző csúcsot a $\{1, \dots, \Delta\}$ színek valamelyikével színez.*
+
+*Bizonyítás.* Egy $w \ne r$ csúcs szülője a fában közelebb van a gyökérhez, tehát a sorrendben $w$ után jön. Így $w$-nek legfeljebb $\deg(w) - 1 \le \Delta - 1$ szomszédja van kiszínezve, amikor rá kerül a sor, és a $\Delta$ szín közül legalább egy szabad. $\blacksquare$
+
+**1. eset: $G$ nem $\Delta$-reguláris.** Van olyan $r$ csúcs, amelyre $\deg(r) \le \Delta - 1$. A segédállítás szerinti sorrendben a mohó színezés minden $r$-től különböző csúcsnak talál színt $\{1, \dots, \Delta\}$-ből, és $r$-nek is, hiszen neki összesen is legfeljebb $\Delta - 1$ szomszédja van. Tehát $\chi(G) \le \Delta$.
+
+**2. eset: $G$ $\Delta$-reguláris, és van elvágó csúcsa** (olyan $x$ csúcs, amelynek törlésével a gráf szétesik). Legyen $C$ a $G - x$ egyik komponense, $G_1$ a $C \cup \{x\}$ által feszített részgráf, $G_2$ pedig a $G - C$ gráf. Mindkettő összefüggő, a fokok legfeljebb $\Delta$-k, és $x$ foka mindkettőben kisebb $\Delta$-nál, hiszen $x$-nek mindkét oldalon van szomszédja. Az 1. eset gondolatmenete (amely csak ennyit használt) szerint $G_1$ és $G_2$ is színezhető $\Delta$ színnel. A $G_2$ színezésében a színeket átnevezve elérhetjük, hogy $x$ ugyanazt a színt kapja, mint $G_1$-ben; a két színezés együtt $G$ jó színezése, mert $G_1 - x$ és $G_2 - x$ között nem fut él.
+
+**3. eset: $G$ $\Delta$-reguláris ($\Delta \ge 3$), és nincs elvágó csúcsa (2-szeresen összefüggő).** Megmutatjuk, hogy van olyan $v$ csúcs és annak két **nem szomszédos** $x, y$ szomszédja, hogy $G - \{x, y\}$ összefüggő. Ebből a tétel így következik: a sorrend legyen $v_1 = x$, $v_2 = y$, utánuk a $G - \{x, y\}$ csúcsai egy $v$ gyökerű feszítőfa szerint, a segédállításban leírt módon, $v_n = v$-vel a végén. Az $x$ és az $y$ is az $1$-es színt kapja (nem szomszédosak). A közbülső csúcsoknak a segédállítás szerint jut szín. Végül $v$-nek $\Delta$ szomszédja van, de közülük $x$ és $y$ azonos színű, így a szomszédai legfeljebb $\Delta - 1$ színt foglalnak, és $v$ is kap színt a $\{1, \dots, \Delta\}$ halmazból.
+
+*A megfelelő $v, x, y$ létezése.* Két esetet különböztetünk meg.
+
+- *Ha $G$ 3-szorosan összefüggő* (két csúcs törlésével sem esik szét): mivel $G$ nem teljes gráf, van két nem szomszédos csúcsa; tekintsük közöttük egy legrövidebb utat, és legyen $x, v, y$ az út első három csúcsa. Az $x$ és az $y$ nem szomszédos (különben rövidebb út volna), és $G - \{x, y\}$ összefüggő.
+- *Ha $G$ nem 3-szorosan összefüggő*, van két csúcs, $v$ és $w$, amelyek együttes törlésével a gráf szétesik; ekkor $G - v$ összefüggő, de $w$ elvágó csúcsa. Használjuk a **blokkok** fogalmát: egy összefüggő gráf blokkjai a maximális elvágó csúcs nélküli részgráfjai; két blokk legfeljebb egy (elvágó) csúcsban metszi egymást, és a blokkok az elvágó csúcsokon keresztül fa-szerkezetben kapcsolódnak. Mivel $G - v$-nek van elvágó csúcsa, legalább két blokkja van, így legalább két **levélblokkja** is ($B_1$ és $B_2$), amelyek csak egy-egy elvágó csúcsot tartalmaznak, $c_1$-et, illetve $c_2$-t.
+  - A $v$-nek van szomszédja $B_1 - c_1$-ben: különben $c_1$ a $G$-ben is elválasztaná $B_1 - c_1$-et a többi csúcstól, de $G$-nek nincs elvágó csúcsa. Legyen $x$ egy ilyen szomszéd, és ugyanígy $y$ egy szomszédja $B_2 - c_2$-ben.
+  - Az $x$ és az $y$ nem szomszédos: egy él egyetlen blokkban fekszik, $x$ viszont csak $B_1$-hez, $y$ csak $B_2$-höz tartozik.
+  - $G - \{x, y\}$ összefüggő. A $B_1$ blokk legalább $3$ csúcsú: ha csak a $c_1x$ élből állna, $x$-nek $c_1$-en és esetleg $v$-n kívül nem volna szomszédja, de $\deg x = \Delta \ge 3$. Egy legalább $3$ csúcsú, elvágó csúcs nélküli gráfból egy csúcsot törölve összefüggő gráf marad, így $B_1 - x$ összefüggő és tartalmazza $c_1$-et; ugyanígy $B_2 - y$. A többi blokk érintetlen, ezért a blokkok fa-szerkezete miatt $G - \{v, x, y\}$ összefüggő. Végül $v$-nek $\Delta \ge 3$ szomszédja van, köztük $x$-en és $y$-on kívül is legalább egy, így $v$ is kapcsolódik a többihez.
+
+Ezzel mindhárom esetben $\chi(G) \le \Delta$. $\blacksquare$
 :::
 
 ### Színosztályok és független halmazok
@@ -2324,6 +2348,20 @@ A bal oldalon a klikkszám áll, a jobb oldalon a mohó színezéssel kapott fel
 Ahogyan Sziklai Péter az előadáson hangsúlyozta: *„Ez a becslés marha rossz: ez a három szám tud nagyon messze lenni egymástól!”*
 Vajon garantálja-e egy kis klikkszám, hogy a kromatikus szám is kicsi? A válasz meglepő módon: **nem**. Jan Mycielski 1955-ben konstruált olyan háromszögmentes gráfokat (amelyekben $\omega(G) = 2$), amelyek kromatikus száma tetszőlegesen nagy lehet! A klikkszám és a kromatikus szám között tehát szakadék tátonghat.
 
+::: kiegeszites
+**Kiegészítés — Mycielski konstrukciója.** Legyen $G$ egy háromszögmentes gráf a $v_1, \dots, v_n$ csúcsokon, $\chi(G) = k$. Készítsük el az $M(G)$ gráfot: a $v_i$ csúcsok mellé vegyünk fel minden $v_i$-hez egy $u_i$ „árnyékcsúcsot”, és még egy $w$ csúcsot. Az élek:
+
+- $G$ összes éle;
+- ha $v_iv_j \in E(G)$, akkor $u_iv_j$ és $u_jv_i$ is él (az árnyék ugyanazokkal a $v$-kkel szomszédos, mint az eredeti);
+- $w$ össze van kötve az összes $u_i$-vel.
+
+*$M(G)$ háromszögmentes.* Az $u_i$ csúcsok egymással nem szomszédosak, és $w$-nek csak $u$-szomszédai vannak, így $w$ nincs háromszögben. Egy háromszög tehát legfeljebb egy $u$-csúcsot tartalmaz; ha egyet sem, $G$-beli háromszög volna. Ha pontosan egyet, az $u_iv_jv_l$ alakú, ahol $v_jv_l \in E(G)$ és $v_iv_j, v_iv_l \in E(G)$ — de akkor $v_iv_jv_l$ háromszög volna $G$-ben. Ellentmondás.
+
+*$\chi(M(G)) = k + 1$.* Felső becslés: $G$ egy jó $k$-színezését terjesszük ki úgy, hogy $u_i$ megkapja $v_i$ színét (ez jó, mert $u_i$ szomszédai $v_i$ szomszédai közül kerülnek ki), $w$ pedig egy új, $(k+1)$-edik színt. Alsó becslés: tegyük fel, hogy $M(G)$-nek van jó színezése $k$ színnel, és $w$ színe a $k$-adik szín. Ekkor egyik $u_i$ sem $k$-adik színű. Színezzük át $G$ minden olyan $v_i$ csúcsát, amely $k$-adik színű, az $u_i$ színére. Ez $G$ jó színezése $k - 1$ színnel: egy átszínezett $v_i$ és egy szomszédja, $v_j$ nem lehet azonos színű, mert ha $v_j$-t nem színeztük át, akkor $v_j$ az $u_i$-nek is szomszédja; ha pedig $v_j$-t is átszíneztük, akkor $v_i$ és $v_j$ eredetileg is azonos ($k$-adik) színű szomszédok lettek volna. Ez ellentmond $\chi(G) = k$-nak.
+
+A $K_2$-ből indulva $M(K_2)$ az ötszög ($C_5$, $\chi = 3$), $M(C_5)$ a $11$ csúcsú Grötzsch-gráf ($\chi = 4$), és így tovább: minden $k$-ra van $\chi = k$ kromatikus számú háromszögmentes gráf, miközben $\omega = 2$.
+:::
+
 ### Számítási bonyolultság: mi könnyű és mi nehéz?
 
 Gyakorlati szempontból döntő kérdés, hogy algoritmikusan mennyire nehéz eldönteni egy gráf színezhetőségét:
@@ -2429,12 +2467,40 @@ Ennek megfelelően a gráfokat két osztályba soroljuk:
 - **1. osztályú gráfok (Class 1):** amelyekre $\chi'(G) = \Delta(G)$. Ide tartoznak például a páros gráfok (Kőnig Dénes tétele szerint minden páros gráf 1. osztályú).
 - **2. osztályú gráfok (Class 2):** amelyekre $\chi'(G) = \Delta(G) + 1$. Ide tartoznak a páratlan körök, és általában azok a gráfok, amelyekben túl sok él van ahhoz, hogy $\Delta$ darab független élhalmazba lehessen őket tömöríteni.
 
+::: kiegeszites
+**Kiegészítés — Kőnig élszínezési tétele: páros gráfra $\chi'(G) = \Delta(G)$.** Az alsó korlátot már láttuk; azt mutatjuk meg, hogy $\Delta$ szín elég. Az éleket egyenként színezzük, és azt bizonyítjuk, hogy ha egy páros gráfban egy $uv$ él kivételével minden él jól ki van színezve $\Delta$ színnel, akkor (esetleg néhány él átszínezésével) az $uv$ él is kiszínezhető.
+
+Az $u$-nál legfeljebb $\Delta - 1$ színezett él van, így van egy $\alpha$ szín, amely **hiányzik** $u$-nál (nincs ilyen színű él $u$-nál); hasonlóan van egy $v$-nél hiányzó $\beta$ szín. Ha $\alpha$ $v$-nél is hiányzik, az $uv$ élt színezzük $\alpha$-ra. Különben $\alpha \ne \beta$, és $v$-ből indul egy $\alpha$ színű él. Tekintsük azt a $P$ utat, amely $v$-ből indul, és felváltva $\alpha$ és $\beta$ színű éleken halad, ameddig csak lehet. (Mivel minden csúcsnál legfeljebb egy $\alpha$ és egy $\beta$ színű él van, ez az út egyértelmű, és nem tér vissza önmagába: $v$-nél nincs $\beta$-él, amelyen visszaérhetne.)
+
+*Az út nem jut el $u$-hoz.* Legyen $u \in A$, $v \in B$ a két osztály. Az út csúcsai felváltva vannak $B$-ben és $A$-ban: $v \in B$, a második csúcs $A$-ban, a harmadik $B$-ben, … — és minden $A$-beli csúcsba $\alpha$ színű élen érkezünk (a páratlanadik élek $\alpha$ színűek). Az $u$-nál viszont $\alpha$ hiányzik, így $u$-ba nem érkezhetünk.
+
+Cseréljük fel $P$ mentén az $\alpha$ és $\beta$ színeket. A színezés jó marad: $P$ belső csúcsainál a két szín helyet cserél, a végpontjainál pedig az új szín éppen ott hiányzott (különben az út folytatódna). Most $\alpha$ hiányzik $v$-nél, és továbbra is hiányzik $u$-nál (az $u$-t nem érintettük), így az $uv$ élt $\alpha$-ra színezhetjük. $\blacksquare$
+:::
+
 > **Megjegyzés a számítási bonyolultságról.** Bár a Vizing-tétel szerint csak két lehetséges érték van, Ian Holyer (1981) bebizonyította, hogy annak eldöntése, hogy egy adott egyszerű gráf 1. vagy 2. osztályú-e, **NP-teljes feladat**! Még 3-reguláris gráfokra is NP-teljes eldönteni, hogy $\chi' = 3$ vagy $\chi' = 4$.
 
 ::: kiegeszites
 **Kiegészítés — többszörös élek és a Shannon-tétel.**
 Ha a gráf nem egyszerű, hanem többszörös éleket is tartalmazhat, a Vizing-tétel ebben a formában már nem érvényes: ha két csúcs között $3$ párhuzamos él fut, akkor $\Delta = 3$, de a három párhuzamos él mind szomszédos, így $3$ szín kell. Ha egy háromszög minden élét megkettőzzük, $\Delta = 4$, de $\chi' = 6$. Általános gráfokra Claude Shannon 1949-es tétele érvényes: $\chi'(G) \le \frac{3}{2}\Delta(G)$.
-A Vizing-tétel bizonyítása az úgynevezett alternáló láncok (Kempe-láncok élszínezési változata) módszerén alapul: ha egy él nem színezhető ki a szomszédai által használt színekkel, a hiányzó színek mentén váltakozó utakon a színek megcserélésével helyet lehet csinálni egy új színnek anélkül, hogy $\Delta + 1$-nél több színt kellene bevezetni.
+:::
+
+::: kiegeszites
+**Kiegészítés — a Vizing-tétel bizonyítása** (Misra és Gries változata). Legyen $k = \Delta + 1$, és színezzük az éleket egyenként $k$ színnel. Elég megmutatni: ha egy $uv$ él kivételével minden él jól ki van színezve, akkor néhány él átszínezésével $uv$ is kiszínezhető. Mivel minden csúcs foka legfeljebb $\Delta < k$, **minden csúcsnál hiányzik legalább egy szín** (van olyan szín, amilyen színű él nem indul belőle).
+
+*Legyező.* Az $u$ csúcs különböző szomszédainak egy $y_0 = v, y_1, \dots, y_\ell$ sorozatát **legyezőnek** nevezzük, ha minden $1 \le i \le \ell$-re az $uy_i$ él színe hiányzik $y_{i-1}$-nél. Vegyünk egy olyan legyezőt, amely nem hosszabbítható meg.
+
+*Forgatás.* Ha egy $y_0, \dots, y_j$ legyező végén, $y_j$-nél, és $u$-nál is hiányzik ugyanaz a $d$ szín, akkor a legyezőt „elforgathatjuk”: minden $1 \le i \le j$-re az $uy_{i-1}$ él megkapja az $uy_i$ régi színét, az $uy_j$ él pedig a $d$ színt. A színezés jó marad: $y_{i-1}$-nél az új szín a legyező definíciója szerint hiányzott; $u$-nál a színek halmaza csak a $d$-vel bővült, ami ott hiányzott; $y_j$-nél $d$ hiányzott. Így az $uv = uy_0$ él is színt kapott.
+
+*A forgatás előkészítése.* Legyen $c$ egy $u$-nál, $d$ egy $y_\ell$-nél hiányzó szín. Ha $d$ $u$-nál is hiányzik, forgassuk el a teljes legyezőt. Különben van egy $d$ színű $uz$ él. Ha $z$ nem volna a legyezőben, $y_{\ell+1} = z$-vel meghosszabbíthatnánk — tehát $z = y_j$ valamilyen $1 \le j < \ell$-re (ha $j = \ell$ volna, a $d$ nem hiányozna $y_\ell$-nél), és $d$ hiányzik $y_{j-1}$-nél.
+
+A $c$ és $d$ színű élek gráfjában minden csúcs foka legfeljebb $2$, így komponensei utak és körök. Legyen $P$ az $u$-t tartalmazó komponens: mivel $c$ hiányzik $u$-nál, ez egy út, amely $u$-ból az $uy_j$ éllel indul. Cseréljük fel $P$-n a $c$ és $d$ színeket; a színezés jó marad, és ezután $d$ hiányzik $u$-nál. A legyező többi éle ($uy_i$, $i \ne j$) színe nem $c$ (az hiányzik $u$-nál) és nem $d$ (az csak $uy_j$-é volt), és a csere nem változtat azon, hogy egy $c$-től és $d$-től különböző szín hiányzik-e egy csúcsnál. Két eset van.
+
+- *$y_{j-1}$ nincs rajta $P$-n.* Ekkor $y_{j-1}$-nél továbbra is hiányzik $d$, és az $y_0, \dots, y_{j-1}$ legyező érintetlen maradt. Forgassuk el ezt a legyezőt $d$-vel.
+- *$y_{j-1}$ rajta van $P$-n.* Mivel $y_{j-1}$-nél hiányzik $d$, ő $P$ végpontja, és $P$ utolsó éle nála $c$ színű volt; a csere után $c$ hiányzik $y_{j-1}$-nél, tehát az $uy_j$ él új színe, $c$, megfelel a legyező feltételének. Az $y_\ell$ nincs $P$-n: ő is egy $c$–$d$ út végpontja (nála $d$ hiányzik), $P$ két végpontja pedig $u$ és $y_{j-1} \ne y_\ell$. Így $d$ továbbra is hiányzik $y_\ell$-nél, és a teljes $y_0, \dots, y_\ell$ legyező forgatható $d$-vel.
+
+Mindkét esetben az $uv$ él színt kapott, és $k = \Delta + 1$ színnél többet nem használtunk. $\blacksquare$
+
+Az egyszerűség lényeges: a legyező csúcsai az $u$ **különböző** szomszédai, és egy $uy_i$ élhez egyértelműen tartozik a végpontja — többszörös éleknél ez nem igaz, és ott a korlát valóban nem érvényes.
 :::
 
 ---
@@ -2442,7 +2508,7 @@ A Vizing-tétel bizonyítása az úgynevezett alternáló láncok (Kempe-láncok
 ### 3. témakör: Tartományok színezése
 
 A harmadik természetes kérdés: mi a helyzet a síkbeli térképek, tartományok színezésével?
-Ezt a témát az előadáson egyelőre elhalasztottuk: ahhoz, hogy a tartományok színezéséről beszélni tudjunk, először pontosan meg kell értenünk a **síkbarajzolható gráfok** szerkezetét!
+Ezt a témát az előadáson egyelőre elhalasztottuk: ahhoz, hogy a tartományok színezéséről beszélni tudjunk, először pontosan meg kell értenünk a **síkbarajzolható gráfok** szerkezetét! A kérdésre a 43–44. szakaszban térünk vissza.
 
 ---
 
@@ -2599,13 +2665,13 @@ $$n' - e' + t' = n - (e - 1) + (t - 1) = n - e + 1 + t - 1 = n - e + t.$$
 Az $n - e + t$ értéke tehát **egyáltalán nem változott: invariáns maradt**!
 
 **2. Lépés: ismétlés.**
-Isételjük ezt az élbontó lépést mindaddig, amíg a gráfban található kör. Mivel minden lépésben csökken az élek száma, az eljárás véges sok lépésben véget ér.
+Ismételjük ezt az élbontó lépést mindaddig, amíg a gráfban található kör. Mivel minden lépésben csökken az élek száma, az eljárás véges sok lépésben véget ér.
 
 **3. Befejezés: fához jutottunk.**
 Amikor már nincs több kör a gráfban, a megmaradt gráf:
 - összefüggő (mert minden lépés megőrizte az összefüggőséget),
 - körmentes (mert addig töröltünk, amíg volt kör).
-Ez a 20. szakasz definíciója szerint egy **fa** (az eredeti gráf egy feszítőfája)!
+Ez a 21. szakasz definíciója szerint egy **fa** (az eredeti gráf egy feszítőfája)!
 
 Egy $n$ csúcsú fa paramétereit jól ismerjük:
 - éleinek száma: $e_{\text{fa}} = n - 1$,
@@ -2657,6 +2723,15 @@ Mivel minden korábbi lépésben az $n - e + t$ érték változatlan maradt, az 
 \end{tikzpicture}
 \end{center}
 
+::: kiegeszites
+**Kiegészítés — a bizonyítás két topológiai lépése.** A fenti bizonyítás két helyen használja a síkgörbék egy szemléletesen nyilvánvaló, de mélyen fekvő tulajdonságát, a **Jordan-féle görbetételt**: *a sík minden zárt, önmagát nem metsző görbéje a síkot pontosan két tartományra, egy korlátos belsőre és egy nem korlátos külsőre bontja, és maga a görbe mindkettőnek a határa.*
+
+- *Körél törlése két tartományt egyesít.* A $C$ kör egy Jordan-görbe; az $e_0$ él egyik oldalán a $C$ belsejébe, másik oldalán a külsejébe eső tartomány fekszik, így ezek különbözők. Az $e_0$ törlésével a két tartomány az él mentén egybenyílik, a többi tartomány nem változik.
+- *Egy fának egyetlen tartománya van.* Egy fa síkrajzának komplementere összefüggő: egy fa egyetlen levelét (és élét) a rajzból kivéve a tartományok száma nem változik (az él két oldala ugyanabba a tartományba esik, mert az él nem része körnek, így a levél körül „megkerülhető”), és ezt ismételve egyetlen pontig jutunk, amelynek a komplementere nyilván összefüggő.
+
+A Jordan-tétel bizonyítása (különösen tetszőleges folytonos görbékre) a topológia tárgykörébe tartozik; töröttvonalakból álló görbékre elemi úton is bizonyítható. A gráfelméletben feltehetjük, hogy az élek töröttvonalak: minden síkbarajzolt gráf rajza „kiegyenesíthető” töröttvonalasra a topológia megváltoztatása nélkül (sőt a Fáry-tétel szerint egyenes szakaszokra is, lásd a 44. szakaszt).
+:::
+
 ### Mi van, ha a gráf nem összefüggő?
 
 Mi történik az Euler-formulával, ha a gráf több összefüggőségi komponensből áll?
@@ -2680,6 +2755,10 @@ $$n - e + t = 2c - c + 1 = c + 1. \quad \blacksquare$$
 
 Például $c = 2$ komponens esetén:
 $$n - e + t = 2 + 1 = 3.$$
+
+::: kiegeszites
+**Kiegészítés — egy másik bizonyítás.** A fenti érvelés a „belső tartományok függetlenek” lépésnél kissé elnagyolt: egy komponens akár egy másik komponens valamelyik belső tartományába is rajzolható. Ezt a nehézséget így kerülhetjük meg. Ha $c \ge 2$, akkor van olyan tartomány, amelynek határán két különböző komponens is fekszik (kössük össze a $K_1$ komponens egy pontját egy másik komponens egy pontjával egy egyenes szakasszal; legyen $a$ a szakasz utolsó $K_1$-beli pontja, és $b$ az $a$ utáni első pont, amely a rajzhoz tartozik — ez már egy másik komponensé; az $a$ és $b$ közötti nyílt szakasz nem metszi a rajzot, így egyetlen tartományban halad, amelynek határán $a$ és $b$ is rajta van). Ebben a tartományban egy új éllel kössük össze a két komponenst. Az új él egy tartományon belül halad, két különböző komponenst köt össze, tehát nem zár be kört, és nem vágja ketté a tartományt: $t$ nem változik, $e$ eggyel nő, $c$ eggyel csökken. $c - 1$ ilyen lépés után összefüggő síkgráfot kapunk, amelyre $n - (e + c - 1) + t = 2$, vagyis $n - e + t = c + 1$. $\blacksquare$
+:::
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9,
@@ -2912,9 +2991,412 @@ A tétel két iránya közötti különbség alapvető:
 - **$\impliedby$ (a nehéz irány):** Ha egy gráf nem síkbarajzolható, akkor **szükségképpen tartalmaz** egy felosztott $K_5$ vagy $K_{3,3}$ részgráfot. Ennek bizonyítása jóval mélyebb gráfelméleti és topológiai eszközöket igényel.
 
 ::: kiegeszites
+**Kiegészítés — a Kuratowski-tétel nehéz irányának bizonyítása** (Thomassen gondolatmenete, Diestel tankönyvének felépítésében). A felosztott $K_5$-öt és $K_{3,3}$-at röviden **Kuratowski-részgráfnak** nevezzük. Azt kell belátnunk, hogy *ha $G$-ben nincs Kuratowski-részgráf, akkor $G$ síkbarajzolható*. Egy topológiai tényt bizonyítás nélkül használunk: *egy 2-szeresen összefüggő síkgráf minden tartományát egy kör határolja* (ez a Jordan-féle görbetétel következménye).
+
+**Fogalmak.** Egy gráf **$k$-szorosan összefüggő**, ha legalább $k + 1$ csúcsa van, és bármely $k - 1$ csúcsát törölve összefüggő marad. A $H$ gráf a $G$ **minorja**, ha $G$-ben vannak olyan páronként diszjunkt, összefüggő részgráfot feszítő $V_h$ csúcshalmazok ($h \in V(H)$, ezek az **ágak**), hogy $H$ minden $hh'$ élére fut él $V_h$ és $V_{h'}$ között. (Szemléletesen: $H$ megkapható $G$-ből élek és csúcsok törlésével és élek összehúzásával.) A $G/xy$ jelöli azt a gráfot, amelyet az $xy$ él összehúzásával kapunk: $x$ és $y$ helyére egyetlen új csúcs kerül, amely $x$ és $y$ minden szomszédjával szomszédos (a többszörös éleket egyszeresnek vesszük).
+
+**1. lemma.** *Ha $G$-nek minorja a $K_5$ vagy a $K_{3,3}$, akkor $G$-ben van Kuratowski-részgráf.*
+
+*Bizonyítás.* Legyen $G_0 \subseteq G$ egy minimális részgráf, amelynek még minorja $K_5$ vagy $K_{3,3}$, a $V_h$ ágakkal. A minimalitás miatt minden $V_h$ egy $T_h$ fát feszít, az ágak között a minorhoz szükséges éleken kívül nincs él (mindegyikből pontosan egy), és $T_h$ minden levele ilyen „kifutó” él végpontja. Ha $H = K_{3,3}$, minden ágból $3$ él fut ki; a $T_h$ fában a három kifutási pontot összekötő utak egy közös pontban találkoznak (egy fában bármely három csúcsnak van „mediánja”), így $T_h$-ban van egy csúcs, amelyből három diszjunkt út vezet a kifutási pontokhoz. Ezeket a csúcsokat választva elágazási pontnak felosztott $K_{3,3}$-at kapunk. Ha $H = K_5$, minden ágból $4$ él fut ki. A négy kifutási pontot összekötő minimális $T_h$ fa vagy egy „csillag” (van egy csúcs, amelyből négy diszjunkt út vezet a kifutási pontokhoz), vagy két különböző, $3$ fokú elágazási pontja van, $a$ és $b$, úgy, hogy két kifutási pont az $a$-hoz, kettő a $b$-hez „tartozik”. Ha mind az öt ág csillag, a középpontjaik egy felosztott $K_5$ elágazási pontjai. Ha például $T_1$ nem csillag, és az $a$-hoz a $V_2$, $V_3$, a $b$-hez a $V_4$, $V_5$ felé kifutó él tartozik, akkor felosztott $K_{3,3}$-at kapunk az $\{a, V_4, V_5\}$ és $\{b, V_2, V_3\}$ osztályokkal: $a$–$b$ ($T_1$-ben), $a$–$V_2$, $a$–$V_3$, $b$–$V_4$, $b$–$V_5$ (a kifutó élek mentén) és $V_i$–$V_j$ ($i \in \{4, 5\}$, $j \in \{2, 3\}$, az ágak közti élek). Itt minden $V_j$ ágban a három felhasznált kifutási pont mediánja lesz az elágazási pont, mint előbb. $\blacksquare$
+
+**2. lemma.** *Minden legalább $5$ csúcsú, 3-szorosan összefüggő $G$ gráfnak van olyan $xy$ éle, hogy $G/xy$ is 3-szorosan összefüggő.*
+
+*Bizonyítás.* Tegyük fel, hogy nincs ilyen él. Ekkor minden $xy$ élre $G/xy$-ban van legfeljebb két csúcsból álló elvágó halmaz. Ez tartalmazza az összehúzással kapott csúcsot (különben $G$-ben is elvágó volna), így van olyan $z$ csúcs, hogy $\{x, y, z\}$ elvágja $G$-t. Válasszuk az $xy$ élt és a $z$ csúcsot úgy, hogy $G - \{x, y, z\}$ legkisebb komponense, $C$, a lehető legkisebb legyen. A 3-szoros összefüggőség miatt $x$, $y$, $z$ mindegyikének van szomszédja $G - \{x,y,z\}$ minden komponensében (különben két csúcs is elvágna). Legyen $v$ a $z$ egy szomszédja $C$-ben. A $zv$ élhez is van egy $w$, hogy $\{z, v, w\}$ elvágja $G$-t. Mivel $xy$ él, az $\{x, y\} \setminus \{w\}$ csúcsok $G - \{z,v,w\}$ ugyanazon komponensébe esnek; legyen $D$ egy másik komponens. $D$ nem tartalmazza sem $x$-et, sem $y$-t, sem $z$-t. A $v$-nek van szomszédja $D$-ben, és $v$ szomszédai $C \cup \{x, y, z\}$-ben vannak, így $D$ metszi $C$-t; mivel $D$ összefüggő és elkerüli $x$-et, $y$-t, $z$-t, ezért $D \subseteq C$, sőt $v \notin D$ miatt $D \subsetneq C$. Ez ellentmond $C$ minimalitásának. $\blacksquare$
+
+**3. lemma.** *Minden 3-szorosan összefüggő gráf, amelynek sem a $K_5$, sem a $K_{3,3}$ nem minorja, síkbarajzolható.*
+
+*Bizonyítás.* Indukció a csúcsszám szerint. A legkisebb ilyen gráf a $K_4$, amely síkbarajzolható. Legyen $|V(G)| \ge 5$, és a 2. lemma szerint $xy$ egy olyan él, hogy $G/xy$ 3-szorosan összefüggő. $G/xy$ minorjai $G$-nek is minorjai, így az indukciós feltevés szerint $G/xy$ síkbarajzolható; vegyünk egy síkrajzát, és legyen $v$ az összehúzással kapott csúcs. $G/xy - v$ 2-szeresen összefüggő, így a $v$-t tartalmazó tartományát egy $C$ kör határolja, és $v$ minden szomszédja $C$-n van. Legyenek $x_1, \dots, x_k$ az $x$-nek $C$-n fekvő szomszédai (az $y$-on kívüli szomszédai) körüljárási sorrendben, és $P_i$ a $C$ íve $x_i$-től $x_{i+1}$-ig (indexek modulo $k$).
+
+- *Ha $y$ minden ($x$-től különböző) szomszédja ugyanazon a $P_i$ íven van* (a végpontokat is beleértve), akkor $G$ síkbarajzolható: $v$ helyére $x$-et rajzolva, az $x$–$x_j$ éleket megtartva, $y$-t az $xx_i$, $xx_{i+1}$ élek és a $P_i$ ív által határolt területre téve, $y$ összeköthető $x$-szel és a szomszédaival metszés nélkül.
+- *Különben* két eset lehetséges. Ha $y$-nak van szomszédja egy $P_i$ ív belsejében és egy azon kívül, akkor ezek, valamint $x_i$ és $x_{i+1}$ váltakozva követik egymást a $C$ körön: $x', y', x'', y''$ (ahol $x', x''$ az $x$, $y', y''$ az $y$ szomszédai). Ha $y$ minden szomszédja $x$-szomszéd, akkor vagy legalább három közös szomszéd van, vagy két nem szomszédos $x_a$, $x_b$, és ekkor a két $C$-ív mindegyikén van további $x$-szomszéd — megint váltakozó négyest kapunk. Három közös szomszéd ($a, b, c$) esetén $x, y, a, b, c$ egy felosztott $K_5$ elágazási pontjai (az $a, b, c$ közti utak a $C$ ívei). Váltakozó $x', y', x'', y''$ esetén $\{x, y', y''\}$ és $\{y, x', x''\}$ egy felosztott $K_{3,3}$ két osztálya (az $y'$–$x'$, $x'$–$y''$, $y''$–$x''$, $x''$–$y'$ utak a $C$ négy íve). Mindkettő ellentmond a feltevésnek (az 1. lemma megfordítása: egy Kuratowski-részgráf minort is ad). $\blacksquare$
+
+**4. lemma.** *Legyen $G$ olyan gráf, amelyben nincs Kuratowski-részgráf, de bármely új él behúzásával keletkezne („élmaximális”), és legalább $5$ csúcsa van. Ha $G$ nem 3-szorosan összefüggő, akkor van két olyan valódi feszített részgráfja, $G_1$ és $G_2$, hogy $G = G_1 \cup G_2$, $G_1 \cap G_2$ egyetlen él (két szomszédos csúcs), és $G_1$, $G_2$ is élmaximális Kuratowski-részgráf nélküli gráf.*
+
+*Bizonyítás.* $G$ nem teljes (a $K_5$ maga Kuratowski-részgráf), így van egy legfeljebb $2$ elemű $S$ elvágó halmaza; válasszunk minimálisat, és legyen $G_1$, $G_2$ két olyan feszített részgráf, amelyek uniója $G$, közös részük $S$, és $S$ minden csúcsának van szomszédja $G_i - S$ minden komponensében (különben $S$ egy valódi része is elvágna). Egy új $e$ élt behúzva keletkezik egy $K$ Kuratowski-részgráf $G + e$-ben. A $K_5$ és a $K_{3,3}$ 3-szorosan összefüggő, ezért $K$ elágazási pontjait nem választhatja el $S$: mind ugyanabban a $G_i$-ben vannak, mondjuk $G_1$-ben. Így $K$ a $G_2 - S$ részt legfeljebb egyetlen, $S$ két csúcsa közötti útszakasszal érinti.
+
+- Ha $S = \emptyset$, egy $G_1$ és $G_2$ közé húzott él egyetlen körnek sem lehetne része — ellentmondás.
+- Ha $S = \{s\}$, kössük össze $s$ egy $G_1$-beli $v_1$ és egy $G_2$-beli $v_2$ szomszédját. A keletkező $K$ a $G_2$ oldalon csak az $s \dots v_2v_1$ szakaszt használhatja; ezt az $sv_1$ élre cserélve $G$-ben is Kuratowski-részgráfot kapnánk — ellentmondás.
+- Tehát $S = \{x, y\}$. Ha $xy$ nem volna él, behúzva a keletkező $K$-ban az $xy$ élt egy $G_2$-n átmenő $x$–$y$ útra cserélhetnénk (ilyen van, mert $x$-nek és $y$-nak is van szomszédja $G_2 - S$ ugyanazon komponensében) — ellentmondás. Tehát $xy \in E(G)$.
+
+Végül ha $G_1$-be húzunk egy új élt, a keletkező $K \subseteq G + e$-ben a $G_2$-n átmenő esetleges szakaszt az $xy$ élre cserélve Kuratowski-részgráfot kapunk $G_1 + e$-ben; tehát $G_1$ élmaximális, és ugyanígy $G_2$ is. $\blacksquare$
+
+**A tétel bizonyítása.** Legyen $G$ Kuratowski-részgráf nélküli; húzzunk be új éleket, amíg ez lehetséges anélkül, hogy Kuratowski-részgráf keletkezne. Elég belátni, hogy a kapott élmaximális $G'$ síkbarajzolható; ezt a csúcsszám szerinti indukcióval tesszük. Ha $|V(G')| \le 4$, $G'$ a $K_4$ részgráfja, tehát síkbarajzolható. Ha $G'$ 3-szorosan összefüggő, az 1. lemma szerint nincs $K_5$ vagy $K_{3,3}$ minorja, így a 3. lemma szerint síkbarajzolható. Különben a 4. lemma szerint $G' = G_1 \cup G_2$, ahol $G_1 \cap G_2$ az $xy$ él, és $G_1$, $G_2$ kisebb élmaximális gráfok, tehát az indukciós feltevés szerint síkbarajzolhatók. Rajzoljuk le mindkettőt úgy, hogy az $xy$ él a külső tartomány határán legyen (ez mindig elérhető, lásd a 41. szakaszt), és illesszük a két rajzot össze az $xy$ él mentén: $G'$ síkrajzát kapjuk. $\blacksquare$
+:::
+
+::: kiegeszites
 **Kiegészítés — Wagner tétele és a Négyszín-tétel.**
 Klaus Wagner 1937-ben a Kuratowski-tétel egy rokon megfogalmazását adta: egy gráf pontosan akkor síkbarajzolható, ha nem tartalmaz $K_5$ vagy $K_{3,3}$ **minort** (ahol az élfelosztások helyett élek összehúzása is megengedett).
-A síkgráfok elméletének leghíresebb eredménye a **Négyszín-tétel** (Appel és Haken, 1976): minden síkbarajzolható egyszerű gráf csúcsai kiszínezhetők legfeljebb $4$ színnel (azaz $\chi(G) \le 4$). Ezzel a tartományok színezésének kérdése is lezárul: a dualitás elve szerint egy síkrajz tartományainak jó színezése megfelel a duális síkgráf csúcsszínezésének, így bármely síkbeli térkép kiszínezhető legfeljebb $4$ színnel úgy, hogy a közös határvonallal rendelkező országok különböző színt kapjanak.
+A síkgráfok elméletének leghíresebb eredménye a **Négyszín-tétel** (Appel és Haken, 1976): minden síkbarajzolható egyszerű gráf csúcsai kiszínezhetők legfeljebb $4$ színnel (azaz $\chi(G) \le 4$). Ezzel a tartományok színezésének kérdése is lezárul: a dualitás elve szerint (43. szakasz) egy síkrajz tartományainak jó színezése megfelel a duális síkgráf csúcsszínezésének, így bármely síkbeli térkép kiszínezhető legfeljebb $4$ színnel úgy, hogy a közös határvonallal rendelkező országok különböző színt kapjanak.
+:::
+
+---
+
+## 41. Gráfok a gömbön és a tóruszon
+
+*Előadás: 2026. 10. 20.*
+
+Foglaljuk össze, amit a síkbarajzolható gráfokról eddig tudunk. Összefüggő síkgráfra $n - e + t = 2$ (Euler-formula); ebből egyszerű gráfra, $n \ge 3$ esetén $e \le 3n - 6$; végül a Kuratowski-tétel szerint egy gráf pontosan akkor **nem** síkbarajzolható, ha van benne $K_5$ vagy $K_{3,3}$, vagy ezek valamelyikének soros bővítése (felosztása).
+
+**Mi a helyzet más felületekkel?** Ugyanúgy kérdezhetjük, hogy egy gráf lerajzolható-e metszés nélkül egy gömb vagy egy úszógumi (tórusz) felületére.
+
+### A gömb
+
+> **Tétel.** Egy $G$ gráf pontosan akkor síkbarajzolható, ha a gömbre is lerajzolható (metszés nélkül).
+
+*Bizonyítás.* **$\Rightarrow$ („matrica”).** Egy síkrajz egy korlátos körlapon belül fekszik; ezt a körlapot — mint egy matricát — rásimíthatjuk a gömbre úgy, hogy a rajz semelyik két pontja ne kerüljön egymásra. (Pontosan: az alábbi sztereografikus vetítés megfordításával.)
+
+**$\Leftarrow$ (sztereografikus vetítés).** Tegyük a gömböt a síkra úgy, hogy a **déli pólusában** ($D$) érintse a síkot, és legyen $\text{É}$ az **északi pólus**. A gömb minden $P \ne \text{É}$ pontjához rendeljük hozzá az $\text{É}P$ egyenes és a sík $P'$ metszéspontját.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.4pt}
+]
+  \draw[thick] (-3.2, 0) -- (3.2, 0) node[right] {\footnotesize sík};
+  \draw[thick] (0, 1) circle (1);
+  \draw[draw=black!50, dashed] (0, 2) -- (-1, 0);
+  \draw[draw=black!50, dashed] (0, 2) -- (2, 0);
+  \node[pt, label=above:{\small $\text{É}$}] at (0, 2) {};
+  \node[pt, label=below:{\small $D$}] at (0, 0) {};
+  \node[pt, label=left:{\small $P$}] at (-0.8, 0.4) {};
+  \node[pt, label=below:{\small $P'$}] at (-1, 0) {};
+  \node[pt, label=right:{\small $Q$}] at (1, 1) {};
+  \node[pt, label=below:{\small $Q'$}] at (2, 0) {};
+  \node at (0, -0.9) {\footnotesize Sztereografikus vetítés: a gömb $P$ pontjának képe az $\text{É}P$ egyenes és a sík metszéspontja.};
+\end{tikzpicture}
+\end{center}
+
+Ez a hozzárendelés **kölcsönösen egyértelmű** a gömbfelület $\text{É}$-tól különböző pontjai és a sík pontjai között: minden $P \ne \text{É}$ pontra az $\text{É}P$ egyenes nem párhuzamos a síkkal, tehát metszi, és megfordítva, minden $P'$ síkbeli pontra az $\text{É}P'$ egyenes $\text{É}$-n kívül pontosan egy pontban metszi a gömböt. A leképezés mindkét irányban folytonos, így folytonos görbéket folytonos görbékbe, egymást nem metsző görbéket egymást nem metsző görbékbe visz. Az $\text{É}$ pontnak nincs képe — a sík „végtelen távoli pontjának” felel meg: ha $P \to \text{É}$, akkor $P'$ a végtelenbe tart.
+
+Ha tehát $G$ a gömbre van rajzolva, forgassuk el a gömböt úgy, hogy $\text{É}$ ne essen a rajzra (se csúcsra, se élre); ez lehetséges, mert a rajz nem fedi le a gömböt. A sztereografikus vetítés ekkor $G$ egy síkrajzát adja. $\blacksquare$
+
+Közben a gömbre rajzolt gráfok és a síkba rajzolt gráfok tartományai is megfelelnek egymásnak, egyetlen különbséggel: **az $\text{É}$-t tartalmazó tartományból lesz a végtelen (külső) tartomány.** Ebből egy hasznos következmény adódik.
+
+> **Következmény.** Egy síkgráf bármelyik tartománya „kifordítható” külső tartománnyá: van olyan síkrajz, amelyben éppen ez a tartomány a külső.
+
+*Bizonyítás.* Vetítsük fel a síkrajzot a gömbre, forgassuk el a gömböt úgy, hogy $\text{É}$ a kiszemelt tartomány belsejébe kerüljön, majd vetítsük vissza a síkra. $\blacksquare$
+
+Speciálisan bármelyik él (vagy csúcs) a külső tartomány határára vihető — ezt a Kuratowski-tétel bizonyításában használtuk.
+
+### A tórusz
+
+A tórusz (úszógumi) felületén több hely van: az élek a „fül” körül is megkerülhetik egymást.
+
+> **Állítás.** A $K_5$ lerajzolható a tóruszra, sőt a $K_6$ is (és még a $K_7$ is).
+
+A $K_5$-re ez könnyen látható: a $K_5$-ből egy élt elhagyva síkbarajzolható gráfot kapunk (próbáljuk ki!), ezt a tórusz egy darabjára rajzolva a hiányzó élt a „fül” körül vezethetjük át.
+
+**Házi feladat (az előadásról).** Síkban és gömbön $n - e + t = 2$, ebből jött ki, hogy $e \le 3n - 6$. Mennyi lesz a tóruszon $n - e + t$, és mit kapunk ebből $e$-re? Ez a szám a **felületre jellemző**: nem függ attól, milyen gráfot rajzoltunk a felületre.
+
+::: kiegeszites
+**Kiegészítés — a házi feladat megoldása.** Képzeljük el a tóruszt egy négyzetként, amelynek szemközti oldalait (az irányítást megtartva) összeragasztottuk. Rajzoljuk fel a négyzet négy csúcsát (ez a ragasztás után egyetlen pont) és két oldalát (a ragasztás után két kör, egy „hosszanti” és egy „keresztirányú”): $n = 1$, $e = 2$, és a négyzet belseje az egyetlen tartomány, $t = 1$. Tehát
+$$n - e + t = 1 - 2 + 1 = 0.$$
+Általában is igaz, hogy minden olyan tóruszra rajzolt összefüggő gráfra, amelynek minden tartománya egy körlappal egyenértékű (nem „kerüli meg” a fület), $n - e + t = 0$, a többire pedig $n - e + t \ge 0$; ezt az Euler-formula bizonyításához hasonló invariáns-érveléssel lehet igazolni. A $g$ fülű („$g$ lyukú”) felületen a megfelelő szám $2 - 2g$ — ez a felület **Euler-karakterisztikája** (a gömbre $g = 0$, a tóruszra $g = 1$).
+
+*Élszám-korlát.* Egyszerű gráf tóruszra rajzolt képében minden tartományt legalább $3$ él határol, így a 39. szakasz kettős leszámlálása szerint $3t \le 2e$. Az $n - e + t \ge 0$ egyenlőtlenségbe $t \le \frac{2e}{3}$-ot írva $n - e + \frac{2e}{3} \ge 0$, azaz
+$$e \le 3n.$$
+A $K_7$-nek $n = 7$ csúcsa és $e = 21 = 3 \cdot 7$ éle van: éppen a korlátot éri el (a tóruszra rajzolva $14$ háromszög tartománya van, $7 - 21 + 14 = 0$). A $K_8$-nak viszont $28 > 24$ éle van, tehát **a $K_8$ már nem rajzolható a tóruszra.** (A tóruszra rajzolt gráfok kromatikus száma legfeljebb $7$, és a $K_7$ mutatja, hogy ez éles — Heawood tétele.)
+:::
+
+## 42. Az Euler-féle poliédertétel és a szabályos testek
+
+*Előadás: 2026. 10. 20.*
+
+Euler eredetileg nem síkgráfokra, hanem **testekre** fogalmazta meg a formuláját.
+
+> **Tétel (Euler-féle poliédertétel).** Ha egy konvex, síklapokkal határolt test (konvex poliéder) csúcsainak száma $c$, éleinek száma $\text{é}$, lapjainak száma $l$, akkor
+> $$c - \text{é} + l = 2.$$
+
+*Bizonyítás.* Válasszunk egy $O$ pontot a test belsejében, és tegyük a testet egy $O$ középpontú, őt tartalmazó gömbbe. Az $O$-ból kiinduló félegyenesekkel vetítsük ki a test felszínét a gömbre: mivel a test konvex, minden $O$-ból induló félegyenes pontosan egy pontban metszi a felszínét, így ez a vetítés kölcsönösen egyértelmű és folytonos. A test csúcsainak és éleinek képe egy **gömbre rajzolt gráf**, amelynek tartományai a lapok képei. A 41. szakasz szerint ezt (sztereografikus vetítéssel) levetíthetjük a síkra: egy összefüggő síkgráfot kapunk $n = c$ csúccsal, $e = \text{é}$ éllel és $t = l$ tartománnyal. Az Euler-formula szerint $c - \text{é} + l = 2$. $\blacksquare$
+
+A tétel így is olvasható: *a $0$ dimenziós lapok (csúcsok), az $1$ dimenziós lapok (élek) és a $2$ dimenziós lapok száma váltakozó előjellel összeadva $2$.* Itt egy $k$ dimenziós **lap** a test határának egy olyan része, amely egy $k$ dimenziós síkban fekszik: a csúcs egyetlen pont, az él egy szakasz, a lap egy sokszög.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9,
+  v/.style={circle, draw=black, fill=black, inner sep=1.5pt},
+  edge/.style={draw=black!70, thick}
+]
+  \begin{scope}[xshift=-3cm]
+    \node[v] (a) at (90:1.4) {};
+    \node[v] (b) at (210:1.4) {};
+    \node[v] (c) at (330:1.4) {};
+    \node[v] (d) at (0, 0) {};
+    \draw[edge] (a) -- (b) -- (c) -- (a);
+    \draw[edge] (a) -- (d);
+    \draw[edge] (b) -- (d);
+    \draw[edge] (c) -- (d);
+    \node at (0, -1.5) {\footnotesize tetraéder: $4 - 6 + 4 = 2$};
+  \end{scope}
+  \begin{scope}[xshift=3cm]
+    \node[v] (p1) at (-1.2, -1.2) {};
+    \node[v] (p2) at (1.2, -1.2) {};
+    \node[v] (p3) at (1.2, 1.2) {};
+    \node[v] (p4) at (-1.2, 1.2) {};
+    \node[v] (q1) at (-0.5, -0.5) {};
+    \node[v] (q2) at (0.5, -0.5) {};
+    \node[v] (q3) at (0.5, 0.5) {};
+    \node[v] (q4) at (-0.5, 0.5) {};
+    \draw[edge] (p1) -- (p2) -- (p3) -- (p4) -- (p1);
+    \draw[edge] (q1) -- (q2) -- (q3) -- (q4) -- (q1);
+    \draw[edge] (p1) -- (q1);
+    \draw[edge] (p2) -- (q2);
+    \draw[edge] (p3) -- (q3);
+    \draw[edge] (p4) -- (q4);
+    \node at (0, -1.7) {\footnotesize kocka (hexaéder): $8 - 12 + 6 = 2$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+### Hány szabályos test van?
+
+> **Definíció.** Egy konvex poliéder **szabályos**, ha minden lapja ugyanolyan (egybevágó) szabályos $p$-szög, és minden csúcsában ugyanannyi, $q$ lap (és él) találkozik.
+
+Itt $p \ge 3$ (egy sokszögnek legalább három oldala van) és $q \ge 3$ (egy test csúcsában legalább három lap találkozik).
+
+> **Tétel.** Pontosan öt szabályos test van: a tetraéder, a kocka (hexaéder), az oktaéder, a dodekaéder és az ikozaéder.
+
+*Bizonyítás.* Számoljuk meg kétféleképpen a (lap, él) illeszkedéseket: minden lapnak $p$ éle van, minden él két laphoz tartozik, így $pl = 2\text{é}$. Ugyanígy a (csúcs, él) illeszkedésekből $qc = 2\text{é}$. Ezeket az Euler-féle poliédertételbe helyettesítve:
+$$\frac{2\text{é}}{q} - \text{é} + \frac{2\text{é}}{p} = 2 \quad\Longrightarrow\quad \frac{1}{p} + \frac{1}{q} = \frac{1}{2} + \frac{1}{\text{é}} > \frac{1}{2}.$$
+Ha $p, q \ge 3$, és mindkettő legalább $4$ volna, akkor $\frac1p + \frac1q \le \frac12$ — tehát valamelyik $3$. Ha $p = 3$, akkor $\frac1q > \frac16$, így $q \in \{3, 4, 5\}$; ha $q = 3$, ugyanígy $p \in \{3, 4, 5\}$. Az öt lehetséges $(p, q)$ pár, és a belőlük számolt $\text{é} = \big(\frac1p + \frac1q - \frac12\big)^{-1}$, $c = \frac{2\text{é}}{q}$, $l = \frac{2\text{é}}{p}$ értékek:
+
+| $(p, q)$ | test | $c$ | $\text{é}$ | $l$ |
+|:-:|:--|:-:|:-:|:-:|
+| $(3, 3)$ | tetraéder | 4 | 6 | 4 |
+| $(4, 3)$ | kocka (hexaéder) | 8 | 12 | 6 |
+| $(3, 4)$ | oktaéder | 6 | 12 | 8 |
+| $(5, 3)$ | dodekaéder | 20 | 30 | 12 |
+| $(3, 5)$ | ikozaéder | 12 | 30 | 20 |
+
+Mind az öt test valóban létezik (megszerkeszthető). $\blacksquare$
+
+Figyeljük meg a táblázat szimmetriáját: a $(p, q)$ és a $(q, p)$ pár szerepet cserél, a csúcsok és a lapok száma helyet cserél. A kocka és az oktaéder, illetve a dodekaéder és az ikozaéder egymás **duálisai**, a tetraéder önmaga duálisa — erről a 43. szakaszban a duális gráf kapcsán még lesz szó.
+
+### Magasabb dimenzióban
+
+Az Euler-féle poliédertétel $n$ dimenzióban is érvényes. Az $n$ dimenziós **poliédereket** (politópokat) véges sok, $(n-1)$ dimenziós „sík” (hipersík) által határolt féltér korlátos metszeteként definiálhatjuk; ezeknek $0, 1, \dots, n-1$ dimenziós lapjai vannak. Jelölje $f_k$ a $k$ dimenziós lapok számát.
+
+**Példa: a kockák.** Egy $1$ dimenziós „kocka” egy szakasz. Ha egy egységnyi szakasz a rá merőleges irányban egy egységnyit mozdul, végigsöpör egy négyzetet; ha a négyzet a rá merőleges irányban mozdul el egy egységnyit, egy kockát söpör végig; a kocka egy negyedik, mindháromra merőleges irányban elmozdulva a $4$ dimenziós kockát (tesszeraktot) söpri végig. Egy söprésnél az $n$ dimenziós kocka minden $k$ dimenziós lapja kétszer jelenik meg (a kiinduló és a végső helyzetben), a $(k-1)$ dimenziós lapjai pedig egy-egy új $k$ dimenziós lapot söpörnek végig:
+$$f_k(Q_{n+1}) = 2f_k(Q_n) + f_{k-1}(Q_n).$$
+Így például a $3$ dimenziós kocka éleinek száma $2 \cdot 4 + 4 = 12$.
+
+| | csúcs | él | lap | $3$D lap | váltakozó összeg |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| $1$D (szakasz) | 2 | | | | $2$ |
+| $2$D (négyzet) | 4 | 4 | | | $4 - 4 = 0$ |
+| $3$D (kocka) | 8 | 12 | 6 | | $8 - 12 + 6 = 2$ |
+| $4$D (tesszerakt) | 16 | 32 | 24 | 8 | $16 - 32 + 24 - 8 = 0$ |
+
+A váltakozó összeg tehát minden dimenzióra jellemző szám: páratlan dimenzióban $2$, páros dimenzióban $0$.
+
+::: kiegeszites
+**Kiegészítés — a kockák lapjai és az Euler–Poincaré-tétel.** Az $n$ dimenziós egységkocka $Q_n = [0, 1]^n$. Egy $k$ dimenziós lapját úgy kapjuk, hogy kiválasztjuk, melyik $k$ koordináta „mozoghat szabadon” ($\binom{n}{k}$ lehetőség), a többi $n - k$ koordinátát pedig rögzítjük $0$-ra vagy $1$-re ($2^{n-k}$ lehetőség):
+$$f_k(Q_n) = \binom{n}{k}2^{n-k}.$$
+(Ez kielégíti a söprési rekurziót a Pascal-szabály szerint.) A váltakozó összeg a binomiális tétellel:
+$$\sum_{k=0}^{n-1}(-1)^k\binom{n}{k}2^{n-k} = \sum_{k=0}^{n}(-1)^k\binom{n}{k}2^{n-k} - (-1)^n = (2 - 1)^n - (-1)^n = 1 - (-1)^n.$$
+
+Ugyanezt kapjuk az $n$ dimenziós **szimplexre** (szakasz, háromszög, tetraéder, …), amelynek $n + 1$ csúcsa van, és bármely $k + 1$ csúcsa egy $k$ dimenziós lapot feszít: $f_k = \binom{n+1}{k+1}$, és
+$$\sum_{k=0}^{n-1}(-1)^k\binom{n+1}{k+1} = -\sum_{j=1}^{n}(-1)^{j}\binom{n+1}{j} = -\Big[(1 - 1)^{n+1} - 1 - (-1)^{n+1}\Big] = 1 - (-1)^n.$$
+
+Ez nem véletlen: az **Euler–Poincaré-tétel** szerint *minden $n$ dimenziós konvex poliéderre*
+$$f_0 - f_1 + f_2 - \dots + (-1)^{n-1}f_{n-1} = 1 - (-1)^n.$$
+($n = 3$-ra ez az Euler-féle poliédertétel.) A tételt Schläfli mondta ki 1852-ben, a teljes bizonyítás Poincaré nevéhez fűződik; a bizonyítás az algebrai topológia eszközeit igényli, ezért itt nem tárgyaljuk.
+:::
+
+## 43. Tartományok színezése és a duális gráf
+
+*Előadás: 2026. 10. 20.*
+
+Most visszatérünk a 36. szakasz végén elhalasztott kérdéshez. Egy síkba rajzolt gráf a síkot tartományokra bontja — gondoljunk egy térképre, ahol a tartományok az országok. Szeretnénk az országokat úgy kiszínezni, hogy a szomszédos országok különböző színűek legyenek.
+
+> **A tartományszínezés feltétele.** A **közös élben** szomszédos tartományok színe különböző.
+
+Csak a közös *élben* való szomszédosság számít: ha két tartománynak csak egy közös *csúcsa* van, kaphatják ugyanazt a színt. Ha ezt is megtiltanánk, egy csúcs körül összefutó $k$ tartománynak (mint egy $k$ szeletre vágott torta szeleteinek) páronként különböző színt kellene kapnia, és így tetszőlegesen sok szín kellhetne.
+
+(Feltesszük, hogy a gráfban nincs **híd**, vagyis olyan él, amelynek mindkét oldalán ugyanaz a tartomány fekszik — egy ilyen tartomány önmagával volna „szomszédos”, és semmilyen színezés nem volna jó.)
+
+> **Tétel (Négyszín-tétel, Appel és Haken, 1976).** Minden síkba rajzolt (hídmentes) gráf tartományai kiszínezhetők legfeljebb $4$ színnel.
+
+A tétel bizonyításának alapgondolata: megmutatták, hogy minden síkgráf visszavezethető véges sok (az eredeti bizonyításban közel kétezer, ma ismert változatában $633$) „elkerülhetetlen konfiguráció” valamelyikére, és ezek mindegyikét **számítógéppel** ellenőrizték. Ez volt az első jelentős matematikai tétel, amelynek bizonyítása számítógépes ellenőrzést igényelt; emberi erővel végigkövethető bizonyítása ma sem ismert. A kérdést Francis Guthrie vetette fel 1852-ben; Alfred Kempe 1879-es „bizonyításáról” Percy Heawood 1890-ben kimutatta, hogy hibás — de Kempe ötletéből Heawood bebizonyította a gyengébb **ötszín-tételt**: $5$ szín mindig elég. A még gyengébb, $6$ színre vonatkozó állítás könnyű. Mindkettőt bebizonyítjuk a 44. szakaszban.
+
+### A duális gráf
+
+A tartományok színezését a csúcsszínezésre vezetjük vissza.
+
+> **Definíció (duális gráf).** Legyen $G$ egy síkba rajzolt gráf. A **duális gráfját**, $G^*$-ot így készítjük el:
+>
+> - $G$ minden tartományába egy-egy pontot teszünk: ezek $G^*$ **csúcsai**;
+> - $G$ minden $e$ élén keresztül behúzunk egy $e^*$ élt, amely az $e$ két oldalán levő tartományok pontjait köti össze, $e$-t pontosan egyszer metszi, $G$ többi élét pedig nem metszi.
+>
+> Tehát $G$ csúcsai $\leftrightarrow$ $G^*$ tartományai, $G$ élei $\leftrightarrow$ $G^*$ élei, $G$ tartományai $\leftrightarrow$ $G^*$ csúcsai.
+
+Két tartomány között **annyi** élt húzunk, ahány közös élük van (minden közös élen keresztül egyet), így $G^*$-ban többszörös élek is lehetnek; egy hídon keresztül húzott él hurokél. Az élek behúzhatók úgy, hogy ne messék egymást, ezért **$G^*$ is síkbarajzolható** — sőt a konstrukció rögtön egy síkrajzát adja.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0,
+  v/.style={circle, draw=black, fill=black, inner sep=1.6pt},
+  dv/.style={circle, draw=black, fill=white, thick, inner sep=1.8pt},
+  edge/.style={draw=black, thick},
+  dual/.style={draw=black!55, thick, dashed}
+]
+  \node[v] (A) at (-1.5, 0) {};
+  \node[v] (B) at (1.5, 0) {};
+  \node[v] (C) at (0, 2.2) {};
+  \draw[edge] (A) -- (B) -- (C) -- (A);
+  \node[dv, label=above:{\footnotesize belső}] (I) at (0, 0.75) {};
+  \node[dv, label=below:{\footnotesize külső}] (O) at (0, -1.3) {};
+  \draw[dual] (I) -- (O);
+  \draw[dual] (I) .. controls (-1.6, 1.6) and (-2.9, 0.2) .. (O);
+  \draw[dual] (I) .. controls (1.6, 1.6) and (2.9, 0.2) .. (O);
+  \node at (0, -2.0) {\footnotesize Egy háromszög ($n = 3$, $e = 3$, $t = 2$) duálisa: $2$ csúcs és $3$ párhuzamos él.};
+\end{tikzpicture}
+\end{center}
+
+Összefüggő $G$ esetén a duális paraméterei $n^* = t$ és $e^* = e$, az Euler-formula szerint pedig $t^* = 2 - n^* + e^* = 2 - t + e = n$: a duálisnak éppen annyi tartománya van, ahány csúcsa $G$-nek. A szabályos testek élgráfjainál: a kocka duálisa az oktaéder (a kocka $6$ lapja az oktaéder $6$ csúcsa), a dodekaéderé az ikozaéder, a tetraéderé önmaga.
+
+**A kapcsolat a színezéssel.** Két tartomány pontosan akkor szomszédos egy közös élben, ha a nekik megfelelő duális csúcsok össze vannak kötve. Tehát:
+
+> **$G$ tartományainak jó színezése $\iff$ $G^*$ csúcsainak jó színezése.**
+
+A tartományok kiszínezéséhez szükséges színek minimális száma tehát $\chi(G^*)$, és $G^*$ maga is síkbarajzolható gráf. **A tartományszínezés helyett tehát síkbarajzolható gráfok kromatikus számát kell meghatároznunk.** (Megfordítva, minden összefüggő síkgráf egy alkalmas síkgráf duálisa — lásd a 45. szakaszt —, így a négyszín-tétel ekvivalens azzal, hogy *minden síkbarajzolható gráf csúcsai kiszínezhetők $4$ színnel*. A többszörös élek a csúcsszínezésen nem változtatnak, hurokél pedig hídmentes $G$ esetén nincs.)
+
+## 44. Az öt- és a hatszíntétel, a Fáry-tétel
+
+*Előadás: 2026. 10. 22.*
+
+Emlékeztető: $G$ síkbarajzolható gráf tartományainak színezése a $G^*$ duális gráf csúcsszínezésével egyenértékű, és $G^*$ is síkgráf. A kérdés tehát: **ha $G$ síkbarajzolható, mekkora lehet $\chi(G)$?**
+$$G \text{ síkbarajzolható} \implies \chi(G) \le 4 \quad (\text{Négyszín-tétel}), \qquad \text{illetve} \qquad \chi(G) \le 5, \quad \chi(G) \le 6.$$
+A négy szín nem csökkenthető: a $K_4$ síkbarajzolható, és $\chi(K_4) = 4$. A bizonyításokban azt használjuk ki, hogy **egy síkbarajzolható gráfnak kevés éle van** (legfeljebb $3n - 6$), **csúcsa viszont tetszőlegesen sok lehet**.
+
+A színezésnél a többszörös élek és a hurokélek nem számítanak (a hurokél színezhetetlenné tenné a gráfot, a párhuzamos élek pedig ugyanazt a feltételt ismétlik), ezért elég **egyszerű** síkbarajzolható gráfokat vizsgálni.
+
+> **Segédtétel.** Minden egyszerű síkbarajzolható gráfnak van legfeljebb $5$ fokú csúcsa.
+
+*Bizonyítás* (lásd a 39. szakaszt is). Indirekt, tegyük fel, hogy minden fok legalább $6$. Ekkor $2e = \sum_{v \in V(G)}\deg(v) \ge 6n$, tehát $e \ge 3n$. Ha $n \ge 3$, ez ellentmond az $e \le 3n - 6$ korlátnak; ha $n \le 2$, minden fok legfeljebb $1$. $\blacksquare$
+
+> **Tétel (hatszín-tétel).** Minden egyszerű síkbarajzolható gráf csúcsai kiszínezhetők $6$ színnel.
+
+*Bizonyítás.* Teljes indukció a csúcsok $n$ száma szerint („$6$ színű ceruzát veszünk”). $n \le 6$-ra nyilvánvaló. Legyen $G$ egy $n$ csúcsú egyszerű síkbarajzolható gráf. A segédtétel szerint van egy $v$ csúcsa, amelyre $\deg(v) \le 5$. **Vágjuk le** $v$-t (töröljük az éleivel együtt). A maradék $n - 1$ csúcsú gráf is egyszerű és síkbarajzolható, így az indukciós feltevés szerint $6$ színnel színezhető. A levágott $v$ még nincs kiszínezve; legfeljebb $5$ szomszédja van, ezek legfeljebb $5$ színt foglalnak, tehát jut neki szín: a hatodik. $\blacksquare$
+
+> **Tétel (ötszín-tétel, Heawood, 1890).** Minden egyszerű síkbarajzolható gráf csúcsai kiszínezhetők $5$ színnel.
+
+*Bizonyítás.* Ugyanúgy indulunk: teljes indukció $n$ szerint, $n \le 5$-re nyilvánvaló. Legyen $v$ egy legfeljebb $5$ fokú csúcs. Ha $\deg(v) \le 4$, a hatszín-tétel bizonyítása szó szerint működik: $v$-t levágva a maradék $5$ színnel színezhető, és $v$ legfeljebb $4$ szomszédja mellett jut neki az ötödik szín.
+
+A baj akkor van, ha $\deg(v) = 5$: ekkor a szomszédai, $u_1, \dots, u_5$ elvben mind az $5$ színt elhasználhatják. Ha $u_1, \dots, u_5$ páronként össze volnának kötve, egy $K_5$ volna a gráfban — ez **lehetetlen**, mert a $K_5$ nem síkbarajzolható, egy síkbarajzolható gráf részgráfja pedig maga is síkbarajzolható. **Van tehát kettő, $x = u_i$ és $y = u_j$, amelyek között nincs él.**
+
+Ebből az $(x, y, v)$ hármasból **élösszehúzással** egy „szupercsúcsot” készítünk: az $xv$ és az $yv$ élt összehúzzuk, vagyis $x$-et és $y$-t „becsúsztatjuk” $v$-be. A három csúcs helyére egyetlen $s$ csúcs kerül, amely $x$, $y$ és $v$ minden (rajtuk kívüli) szomszédjával szomszédos; a keletkező többszörös éleket egyszeresnek vesszük. (Hurokél nem keletkezik, mert $x$ és $y$ nem szomszédosak.) Az összehúzás a síkrajzon az élek mentén is elvégezhető, így a kapott $G'$ gráf **egyszerű, síkbarajzolható**, és $n - 2$ csúcsa van. Az indukciós feltevés szerint $G'$ kiszínezhető $5$ színnel.
+
+Majd **visszacsináljuk a csúcs-összevonást**: $G$ minden $x$-től, $y$-tól és $v$-től különböző csúcsa megtartja a $G'$-beli színét, $x$ és $y$ pedig megkapja az $s$ színét. Ez jó (részleges) színezés:
+
+- a többi csúcs közti élek $G'$-ben is megvannak;
+- $x$ bármely $v$-től különböző szomszédja $G'$-ben $s$-nek is szomszédja volt, tehát más színű, mint $s$, vagyis mint $x$ — és ugyanígy $y$-ra;
+- $x$ és $y$ azonos színű, de **nincsenek összekötve**.
+
+Kivéve az $xv$ és az $yv$ élt: $v$-t még nem színeztük ki. De $v$ öt szomszédja között $x$ és $y$ azonos színű, így a szomszédai legfeljebb $4$ színt használnak — **jut neki az ötödik színből!** $\blacksquare$
+
+::: kiegeszites
+**Kiegészítés — miért nem működik ugyanez négy színnel?** Négy színnel a gond már egy $4$ fokú csúcsnál jelentkezik (a szomszédai mind a négy színt elhasználhatják), és két nem szomszédos szomszéd sem mindig létezik (a $K_4$-ben például nincs). Kempe 1879-ben az ún. **Kempe-láncokkal** próbálkozott: ha $v$ szomszédai között az $a$ és $c$ színű $u_1$ és $u_3$ nem köthető össze csupa $a$ és $c$ színű csúcson át vezető úttal, akkor az $u_1$-et tartalmazó $\{a, c\}$-színű komponensben a két színt felcserélve $u_1$ is $c$ színű lesz, és $v$-nek felszabadul az $a$; ha pedig összeköthetők, a síkbarajzolhatóság miatt ez a lánc „elzárja” $u_2$-t $u_4$-től a $\{b, d\}$ színekben, és ott lehet cserélni. Ez $4$ fokú csúcsra működik, $5$ fokúra azonban két cserét kellene egyszerre végrehajtani, és ezek elronthatják egymást — ezt a hibát vette észre Heawood. Az ötszín-tételt Heawood éppen Kempe-láncokkal bizonyította; a fenti, élösszehúzásos bizonyítás ennek egy egyszerűbb változata.
+:::
+
+### A Fáry-tétel
+
+Az eddigi rajzainkon az élek gyakran görbék voltak. Kiderül, hogy erre egyszerű gráfoknál nincs szükség.
+
+> **Tétel (Fáry István, 1948).** Minden egyszerű síkbarajzolható gráf lerajzolható úgy is, hogy az élei (egyenes) szakaszok legyenek.
+
+Az előadáson a tételt nem bizonyítottuk. Példa: minden szabályos test élgráfja ilyen — a kocka élgráfja például egy négyzetbe rajzolt kisebb négyzet, a csúcsaik összekötve (lásd a 42. szakasz ábráját), a tetraéderé egy háromszög a középpontjával. Ugyanez a gráf görbe élekkel is lerajzolható volna; a tétel szerint azonban mindig van „szép”, egyenes vonalú rajz.
+
+::: kiegeszites
+**Kiegészítés — a Fáry-tétel bizonyítása.** Elég **maximális síkgráfokra** (triangulációkra) bizonyítani, hiszen minden egyszerű síkgráf élek hozzávételével trianguláció részgráfjává tehető, és a kész egyenes vonalú rajzból a hozzávett éleket egyszerűen kitöröljük. Egy legalább $3$ csúcsú trianguláció síkrajzában minden tartomány — a külső is — háromszög. Azt bizonyítjuk teljes indukcióval: *egy trianguláció síkrajza egyenes vonalú rajzzá alakítható úgy, hogy a külső háromszög tetszőleges előre megadott háromszög legyen.*
+
+$n = 3$-ra a gráf egy háromszög, kész. Legyen $n \ge 4$, és legyenek $a, b, c$ a külső háromszög csúcsai. A fokszámösszeg $2e = 6n - 12$; mivel $n \ge 4$-re minden fok legalább $3$, az $a, b, c$ fokszámainak összege legalább $9$, így ha minden más csúcs foka legalább $6$ volna, a fokszámösszeg legalább $6(n - 3) + 9 = 6n - 9$ lenne — ellentmondás. Van tehát egy $a, b, c$-től különböző, $d \le 5$ fokú $v$ csúcs. Egy belső csúcs szomszédai egy $w_1, \dots, w_d$ kört alkotnak ($v$ körül a tartományok háromszögek).
+
+Töröljük $v$-t: egy $d$-szög alakú tartomány keletkezik. Bontsuk fel ezt $d - 3$ átlóval háromszögekre úgy, hogy ne keletkezzen többszörös él: $d = 3$-ra nem kell semmi; $d = 4$-re a két átló közül legfeljebb az egyik lehet már él (ha $w_1w_3$ és $w_2w_4$ is él volna a tartományon kívül, ezek metszenék egymást), a másikat húzzuk be; $d = 5$-re válasszunk egy $w_i$ csúcsot, amely a vele nem szomszédos két $w_j$-vel sincs összekötve, és húzzuk be belőle a két átlót. Ilyen $w_i$ van: a már meglevő $w_jw_l$ „átló-élek” a tartományon kívül futnak, ezért nem metszhetik egymást; egy ötszögnek legfeljebb két egymást nem metsző átlója van, és két ilyen átlónak közös végpontja van, így ezek együtt legfeljebb három $w_j$-t érintenek. Az így kapott $n - 1$ csúcsú trianguláció külső háromszöge ugyanaz, így az indukciós feltevés szerint egyenes vonalúan lerajzolható a megadott külső háromszöggel. Az új átlókat törölve a $w_1, \dots, w_d$ csúcsok egy legfeljebb ötszöget határolnak. Ismert (és elemi geometriai esetszétválasztással igazolható), hogy minden legfeljebb ötszögnek — akár konkáv is — van olyan belső pontja, ahonnan az összes csúcsa „látszik”, vagyis a sokszög belsejében haladó szakasszal köthető össze vele; hatszögekre ez már nem igaz, ezért kellett egy legfeljebb $5$ fokú csúcs. Ide helyezve $v$-t, és összekötve $w_1, \dots, w_d$-vel, a trianguláció egyenes vonalú rajzát kapjuk. $\blacksquare$
+:::
+
+## 45. A dualitás további kérdései
+
+*Előadás: 2026. 10. 22.*
+
+**Duális gráfok a természetben.** Síkbeli elektromos áramkörökben (ellenállásokkal, tekercsekkel, kondenzátorokkal) a duális hálózatban a **soros** kapcsolásokból **párhuzamosak** lesznek és fordítva: két tartomány között két párhuzamos él a duálisban két egymás utáni (soros) élnek felel meg. A villamosmérnököknél jól ismert **csillag–delta átalakítás** is lényegében a duális gráf gondolata: egy $3$ fokú csúcs körül álló „csillag” ($K_{1,3}$) duálisa egy háromszög („delta”).
+
+*Gondolkodjunk el rajta:* a matematika számtalan területén szerepel az, hogy **duális** — a lineáris algebrában a duális tér, a projektív geometriában a pontok és egyenesek szerepcseréje, az optimalizálásban a duális lineáris program. A közös bennük, hogy egy struktúrához egy „tükörképet” rendelünk, amelyben a szerepek felcserélődnek, és kétszer tükrözve visszakapjuk az eredetit.
+
+**Igaz-e, hogy $(G^*)^* = G$?** Tipikusan igaz, de lehetnek trükkök.
+
+::: kiegeszites
+**Kiegészítés — mikor igaz, hogy $(G^*)^* = G$?** Ha $G$ összefüggő síkgráf, akkor igen. A $G^*$ minden tartományában pontosan egy $G$-csúcs van: a $G$ egy $u$ csúcsa körül a $G$-élek $e_1, \dots, e_d$ körüljárási sorrendben követik egymást, a nekik megfelelő $e_1^*, \dots, e_d^*$ duális élek pedig egy zárt vonalat alkotnak $u$ körül, amely egy $G^*$-tartományt határol, és ebben $u$ az egyetlen $G$-csúcs. Mivel a 43. szakasz szerint $G^*$-nak éppen $n$ tartománya van, ez kölcsönösen egyértelmű megfeleltetés $G$ csúcsai és $G^*$ tartományai között. Ha tehát $(G^*)^*$ csúcsait éppen $G$ csúcsaiba tesszük, akkor az $e^*$ élen átmenő $(e^*)^*$ él az $e^*$ két oldalán levő $G^*$-tartomány $G$-csúcsait, vagyis $e$ két végpontját köti össze: visszakaptuk $G$-t (egy síkrajzát).
+
+Ha $G$ **nem összefüggő**, a dolog elromlik: $G^*$ mindig összefüggő (bármely két tartomány között átmehetünk a közöttük levő éleken át), így $(G^*)^*$ is az, tehát nem lehet egyenlő $G$-vel. Például két diszjunkt háromszög duálisa egy $3$ csúcsú gráf (a két háromszög belseje és a közös külső tartomány), amelynek duálisa összefüggő.
+:::
+
+**Igaz-e, hogy ha $G$ és $H$ izomorf gráfok, akkor $G^*$ és $H^*$ is izomorf?** **Nem!** A duális nem csak a gráftól, hanem a **síkrajztól** is függ: ugyanannak a gráfnak lehetnek lényegesen különböző síkrajzai.
+
+*Ellenpélda.* Legyen $G$ egy $v$ csúcsban összeragasztott két háromszög és egy négyszög (három kör, egyetlen közös csúccsal).
+
+- Ha a három kört egymás mellé rajzoljuk, a tartományok: a két háromszög belseje ($3$-$3$ él), a négyszög belseje ($4$ él) és a külső tartomány, amelyet mind a $10$ él határol.
+- Ha az egyik háromszöget a négyszög belsejébe rajzoljuk, a tartományok: két háromszög belseje ($3$-$3$), a négyszög belsejének a háromszögön kívüli része ($4 + 3 = 7$ él) és a külső tartomány ($4 + 3 = 7$ él).
+
+A duális csúcsainak fokszáma a tartományok határoló éleinek száma, így az első duális fokszámai $3, 3, 4, 10$, a másodiké $3, 3, 7, 7$: a két duális nem izomorf, pedig mindkettő ugyanannak a gráfnak a duálisa. (Whitney tétele szerint a 3-szorosan összefüggő síkgráfoknak a gömbön lényegében egyetlen rajzuk van, így ezek duálisa egyértelmű — a fenti $G$-nek viszont elvágó csúcsa van.)
+
+## 46. Gráfparaméterek: független és lefogó halmazok
+
+*Előadás: 2026. 10. 22.*
+
+Egy **gráfparaméter** egy gráfhoz rendelt szám, amely nem függ a gráf lerajzolásától (izomorf gráfokra ugyanaz). Eddig ezekkel találkoztunk:
+
+| jelölés | jelentés |
+|:-:|:--|
+| $n = \lvert V(G) \rvert$ | a csúcsok száma |
+| $e = \lvert E(G) \rvert$ | az élek száma |
+| $\chi$ | a kromatikus szám |
+| $\chi_e$ | az élkromatikus szám |
+| $\Delta$ | a maximális fokszám |
+| $\omega$ | a klikkszám (a legnagyobb teljes részgráf mérete) |
+| $k$ | a komponensek száma |
+
+Egy paramétert vagy **megszámolunk** ($n$, $e$, $k$), vagy egy **minimumként, illetve maximumként** definiálunk ($\chi$, $\chi_e$, $\Delta$, $\omega$). A szélsőértékek az érdekesek!
+
+Most **négy új paramétert** vezetünk be.
+
+> **Definíció.** Legyen $G$ egy gráf.
+>
+> - Egy $U \subseteq V(G)$ csúcshalmaz **független**, ha semelyik két eleme között nincs él. A **független csúcsok maximális száma** $\alpha(G)$.
+> - Egy $T \subseteq V(G)$ csúcshalmaz **lefogó**, ha $G$ minden élének legalább egyik végpontja $T$-ben van (a csúcsok „lefogják” az összes élt). A **lefogó csúcsok minimális száma** $\tau(G)$.
+> - Egy $M \subseteq E(G)$ élhalmaz **független**, ha semelyik két élének nincs közös csúcsa. Ezt **párosításnak** is nevezzük („Ki kivel hajlandó táncolni?” — egy ember egyszerre csak egy partnerrel táncol). A **független élek maximális száma** $\nu(G)$.
+> - Egy $F \subseteq E(G)$ élhalmaz **lefogó** (lefedő), ha $G$ minden csúcsa illeszkedik $F$ valamelyik élére (az élek „lefedik” az összes csúcsot). A **lefogó élek minimális száma** $\rho(G)$.
+
+Egy független csúcshalmaz minden részhalmaza is független, egy párosítás minden része is párosítás; a lefogó halmazoknál fordítva, a bővítés őrzi meg a tulajdonságot. Ezért a független halmazoknál a maximumot, a lefogóknál a minimumot keressük.
+
+**Szóródás: jól van definiálva?** Az $\alpha$, $\tau$, $\nu$ mindig létezik (az üres halmaz független, az összes csúcs lefogó). A $\rho$ viszont csak akkor, ha **nincs $0$ fokú (izolált) csúcs**: egy izolált csúcsot egyetlen él sem fed le, így lefogó élhalmaz nem létezik.
+
+*Példák.* Az ötszögre ($C_5$): $\alpha = 2$, $\tau = 3$, $\nu = 2$, $\rho = 3$. A $3$ levelű csillagra ($K_{1,3}$, $n = 4$): $\alpha = 3$ (a levelek), $\tau = 1$ (a középpont), $\nu = 1$ (bármely két él közös csúcsban, a középpontban találkozik), $\rho = 3$ (minden levélhez kell a saját éle).
+
+### Nyilvánvaló egyenlőtlenségek
+
+> **Állítás.** Minden gráfra $\nu \le \tau$, és ha nincs izolált csúcs, $\alpha \le \rho$.
+
+*Bizonyítás.* **$\nu \le \tau$:** vegyünk $\nu$ független élt. Már ezek lefogásához is $\nu$ csúcs kell, mert egy csúcs a független élek közül legfeljebb egyre illeszkedik — és a többi él lefogásához esetleg további csúcsok. **$\alpha \le \rho$:** vegyünk $\alpha$ független csúcsot. Már ezek lefedéséhez is $\alpha$ él kell, mert egy él a független csúcsok közül legfeljebb egyet fed le (két független csúcs között nincs él) — és a többi csúcshoz esetleg további élek. $\blacksquare$
+
+A bizonyítás könnyű, de érdemes megérteni a mintáját: egy „független” objektum minden elemét a „lefogó” objektum egy-egy *külön* eleme kell, hogy elintézze.
+
+> **Tétel (Gallai-tétel).** Minden $n$ csúcsú gráfra
+> $$\alpha + \tau = n,$$
+> és ha a gráfban nincs izolált csúcs, akkor
+> $$\nu + \rho = n.$$
+
+Az előadáson a bizonyítást a következő alkalomra hagytuk.
+
+::: kiegeszites
+**Kiegészítés — a Gallai-tétel bizonyítása.**
+
+**$\alpha + \tau = n$.** *Egy $U$ csúcshalmaz pontosan akkor független, ha a komplementere, $V(G) \setminus U$ lefogó.* Valóban: $U$ független $\iff$ nincs él, amelynek mindkét vége $U$-ban van $\iff$ minden élnek van végpontja $V(G) \setminus U$-ban. A komplementerképzés tehát bijekció a független és a lefogó csúcshalmazok között, és az $|U|$ méretet $n - |U|$-ra változtatja; így a legnagyobb független halmaz komplementere a legkisebb lefogó halmaz: $\tau = n - \alpha$.
+
+**$\nu + \rho \le n$, azaz $\rho \le n - \nu$.** Legyen $M$ egy $\nu$ élű párosítás; ez $2\nu$ csúcsot fed le. A maradék $n - 2\nu$ csúcs mindegyikéhez válasszunk egy rá illeszkedő élt (izolált csúcs nincs, így van ilyen). Az $M$ élei a kiválasztott élekkel együtt lefogó élhalmazt alkotnak, legfeljebb $\nu + (n - 2\nu) = n - \nu$ éllel. Tehát $\rho \le n - \nu$.
+
+**$\nu + \rho \ge n$, azaz $\nu \ge n - \rho$.** Legyen $F$ egy $\rho$ élű lefogó élhalmaz. A minimalitás miatt $F$-ben nincs olyan él, amelynek mindkét végpontját más $F$-beli élek is lefedik (az ilyen él elhagyható volna). Ebből következik, hogy az $F$ élei által alkotott gráfban nincs kör és nincs $3$ hosszú út (ezek középső éle elhagyható volna), tehát $F$ minden komponense egy **csillag** (egy középpont néhány levéllel, esetleg egyetlen él). Az $F$ élei által alkotott gráf $n$ csúcsú (minden csúcsot lefed), körmentes és $\rho$ élű, így a fák élszámáról tanultak szerint (lásd a 24. szakasz $5 \Rightarrow 1$ bizonyítását) $n - \rho$ komponense van. Minden komponensből (csillagból) egy élt választva $n - \rho$ független élt kapunk. Tehát $\nu \ge n - \rho$.
+
+A két egyenlőtlenségből $\nu + \rho = n$. $\blacksquare$
+
+*Megjegyzés.* A Gallai-tétel szerint a két „nyilvánvaló egyenlőtlenség” egymással ekvivalens: $\alpha \le \rho \iff n - \tau \le n - \nu \iff \nu \le \tau$. Hogy mikor áll fenn egyenlőség — például $\nu = \tau$ —, az már mély kérdés: Kőnig Dénes tétele szerint páros gráfokban mindig.
 :::
 
 ---
@@ -2941,3 +3423,8 @@ A síkgráfok elméletének leghíresebb eredménye a **Négyszín-tétel** (App
 - **Élszám-korlátok síkgráfokban:** kettős leszámlálással ($3t \le 2e$) minden $n \ge 3$ csúcsú egyszerű síkgráfra $e \le 3n - 6$. Triangulációban $e = 3n - 6$. Következmény: minden síkgráfnak van legfeljebb 5 fokú csúcsa ($\delta \le 5$). Ha minden kör legalább $p$ élű, akkor $e \le \frac{p}{p-2}(n - 2)$; háromszögmentes és páros síkgráfokra ($p = 4$): $e \le 2n - 4$.
 - **Nem síkbarajzolható gráfok:** $K_5$ nem síkgráf ($10 \le 9$ hamis); $K_{3,3}$ nem síkgráf (páros, $9 \le 8$ hamis).
 - **Kuratowski-tétel:** $G$ pontosan akkor síkbarajzolható, ha nem tartalmaz $K_5$-tel vagy $K_{3,3}$-mal topologikusan izomorf (élfelosztással kapott) részgráfot.
+- **Gömb és tórusz:** síkbarajzolható $\iff$ gömbre rajzolható (sztereografikus vetítés); bármely tartomány külső tartománnyá tehető. A tóruszra $K_5$, $K_6$, sőt $K_7$ is rajzolható; ott $n - e + t = 0$ (cellás rajzra), így $e \le 3n$, és $K_8$ már nem fér el.
+- **Euler-féle poliédertétel:** konvex poliéderre $c - \text{é} + l = 2$ (vetítés a gömbre, majd a síkra). Pontosan $5$ szabályos test van ($\frac1p + \frac1q > \frac12$): tetraéder, kocka, oktaéder, dodekaéder, ikozaéder. Magasabb dimenzióban a lapszámok váltakozó összege $1 - (-1)^n$ (Euler–Poincaré); az $n$ dimenziós kockára $f_k = \binom{n}{k}2^{n-k}$.
+- **Tartományszínezés és duális gráf:** élben szomszédos tartományok különböző színűek. A $G^*$ duális csúcsai $G$ tartományai, élei $G$ éleit keresztezik; $G^*$ síkbarajzolható, és $G$ tartományszínezése $= G^*$ csúcsszínezése. Összefüggő $G$-re $(G^*)^* = G$, de izomorf gráfok duálisai nem feltétlenül izomorfak (a duális a rajztól függ).
+- **Síkgráfok színezése:** négyszín-tétel (Appel–Haken, számítógéppel); ötszín-tétel (legfeljebb $5$ fokú csúcs + két nem szomszédos szomszéd összehúzása $v$-be); hatszín-tétel (legfeljebb $5$ fokú csúcs levágása). **Fáry-tétel:** minden egyszerű síkgráf egyenes szakaszokkal is lerajzolható.
+- **Független és lefogó halmazok:** $\alpha$ (független csúcsok max.), $\tau$ (lefogó csúcsok min.), $\nu$ (független élek, párosítás max.), $\rho$ (lefogó élek min., csak izolált csúcs nélkül). $\nu \le \tau$, $\alpha \le \rho$. **Gallai-tétel:** $\alpha + \tau = n$, és izolált csúcs nélkül $\nu + \rho = n$.

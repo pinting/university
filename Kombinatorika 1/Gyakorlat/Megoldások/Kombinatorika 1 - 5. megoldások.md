@@ -51,6 +51,26 @@ $$6n = \frac{(n - 1)n}{2}.$$
 Mivel mindenki 6 embert talált el, $n \ge 7 > 0$, így oszthatunk $n$-nel:
 $$6 = \frac{n - 1}{2} \implies n - 1 = 12 \implies n = 13.$$
 
+*Létezik is ilyen 13 fős játék.* Az eddigiek csak azt mutatták meg, hogy más létszám nem lehetséges; azt is ellenőrizni kell, hogy $13$ fővel a feltételek teljesíthetők. Legyenek a játékosok $E_0, E_1, \dots, E_{12}$, és $E_j$-t érje pontosan $j$ találat. Az alábbi táblázat egy megfelelő meccset ad meg (minden sorban hat név áll, és az $E_j$ név pontosan $j$ sorban fordul elő — ez oszloponként megszámolva könnyen ellenőrizhető):
+
+| játékos | akiket eltalált |
+|:-:|:--|
+| $E_0$ | $E_5, E_8, E_9, E_{10}, E_{11}, E_{12}$ |
+| $E_1$ | $E_5, E_7, E_9, E_{10}, E_{11}, E_{12}$ |
+| $E_2$ | $E_5, E_7, E_9, E_{10}, E_{11}, E_{12}$ |
+| $E_3$ | $E_4, E_7, E_9, E_{10}, E_{11}, E_{12}$ |
+| $E_4$ | $E_3, E_7, E_9, E_{10}, E_{11}, E_{12}$ |
+| $E_5$ | $E_4, E_6, E_8, E_{10}, E_{11}, E_{12}$ |
+| $E_6$ | $E_4, E_5, E_8, E_{10}, E_{11}, E_{12}$ |
+| $E_7$ | $E_4, E_6, E_8, E_{10}, E_{11}, E_{12}$ |
+| $E_8$ | $E_3, E_6, E_7, E_9, E_{11}, E_{12}$ |
+| $E_9$ | $E_3, E_6, E_7, E_8, E_{11}, E_{12}$ |
+| $E_{10}$ | $E_2, E_6, E_7, E_8, E_9, E_{12}$ |
+| $E_{11}$ | $E_2, E_6, E_8, E_9, E_{10}, E_{12}$ |
+| $E_{12}$ | $E_1, E_5, E_8, E_9, E_{10}, E_{11}$ |
+
+(Senki sem lőtte önmagát. A táblázatot mohón készítettük: a legtöbb találatot igénylő $E_{12}$-től lefelé haladva minden $E_j$-hez azt a $j$ játékost választottuk lövőnek, akinek a legtöbb lövése maradt még.)
+
 ::: elmelet
 **Elméleti háttér — irányított gráfok fokszámösszege és a skatulyaelv.** Bármely irányított gráfban az összes kimenő fok összege megegyezik az összes bejövő fok összegével és az élek számával: $\sum d^+(v) = \sum d^-(v) = |E|$. Ha $n$ csúcson $n$ darab különböző fokszám szerepel a $\{0, 1, \dots, n-1\}$ tartományból, akkor azok szükségképpen a $0, 1, \dots, n-1$ számok teljes permutációját alkotják, így összegük determinisztikusan $\binom{n}{2}$.
 :::
@@ -138,6 +158,10 @@ Mivel minden megadott szám racionális, bármely két szám összege $x_i + x_j
 
 ::: elmelet
 **Elméleti háttér — Mantel-tétel és algebrai összefüggőség.** Ha egy gráf éleinek száma meghaladja a $\lfloor n^2/4 \rfloor$ Turán-korlátot, a gráfban garantáltan van háromszög ($K_3$). Egy háromszög három élének összegeiből a csúcsok értékei lineárisan kifejezhetők (egy páratlan körön a váltakozó összeg a csúcs kétszeresét adja). Ha egy csúcs racionális, az összefüggőség révén az egész komponens összes csúcsa racionálissá válik.
+
+*A Mantel-tétel bizonyítása.* Legyen $H$ egy $n$ csúcsú, $e$ élű háromszögmentes gráf. Ha $xy$ él, akkor $x$-nek és $y$-nak nincs közös szomszédja (különben háromszög volna), így $\deg(x) + \deg(y) \le n$. Ezt minden élre összeadva a bal oldalon minden $v$ csúcs $\deg(v)$-szer szerepel ($\deg(v)$ élnek végpontja), tehát
+$$\sum_{v} \deg(v)^2 \le n\,e.$$
+A számtani és négyzetes közép közti egyenlőtlenség (Cauchy–Schwarz) szerint $\sum_v \deg(v)^2 \ge \frac{1}{n}\Big(\sum_v \deg(v)\Big)^2 = \frac{(2e)^2}{n}$. A kettőt összevetve $\frac{4e^2}{n} \le ne$, azaz $e \le \frac{n^2}{4}$. (A korlát éles: a $K_{\lfloor n/2\rfloor, \lceil n/2\rceil}$ teljes páros gráf háromszögmentes, és $\lfloor n^2/4 \rfloor$ éle van.)
 :::
 
 ## 79. feladat
