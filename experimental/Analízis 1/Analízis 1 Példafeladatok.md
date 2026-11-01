@@ -2,7 +2,7 @@
 
 ### I. Mat. BSc Analízis 1 · 2026/27 első félév · kidolgozott példafeladatok részletes megoldással és elméleti háttérrel
 
-Ez a gyűjtemény a gyakorlati feladatlapok (1., 2., 4–10. feladatlap) minden feladatához egy-egy **kidolgozott példafeladatot** ad. A **P$n$.** feladat az eredeti $n$. feladat mintapárja: ugyanazt a módszert vagy elméleti eszközt mutatja be részletesen kidolgozva, más adatokkal vagy más irányból. A feladatok sorrendje és csoportosítása a feladatlapokét követi (a 3. feladatlap hiányzik, ezért a P23–P33 számok kimaradnak), így összesen $99$ feladat van.
+Ez a gyűjtemény a gyakorlati feladatlapok (1., 2., 4–10. feladatlap) minden feladatához egy-egy **kidolgozott példafeladatot** ad. A **P$n$.** feladat az eredeti $n$. feladat mintapárja: ugyanazt a módszert vagy elméleti eszközt mutatja be részletesen kidolgozva, más adatokkal vagy más irányból. A feladatok sorrendje és csoportosítása a feladatlapokét követi így a gyűjtemény mind a 10 feladatlaphoz hiánytalanul tartalmazza a kidolgozott feladatokat, összesen $110$ feladatban.
 
 Minden feladat után részletes **megoldás** következik, majd szürke dobozban az **elméleti háttér**: a felhasznált definíciók és tételek, sokszor bizonyítással, továbbá a tipikus hibák és a kapcsolódó fogalmak. Javasolt használat: először önállóan megoldani a feladatot, és csak utána elolvasni a megoldást és a dobozt.
 
@@ -628,6 +628,416 @@ ami legalább $n$, ha $n - 1 \ge 200$. **$N_0 = 200$ megfelel.** (A pontos küsz
 *Miért mások a küszöbök?* A $\sqrt[n]a - 1$ körülbelül $\frac{\ln a}{n}$, a $\sqrt[n]n - 1$ körülbelül $\frac{\ln n}{n}$ — az utóbbi lassabban tart $0$-hoz. A becslésekben ez úgy jelenik meg, hogy a második esetben „erősebb fegyver” (magasabb fokú tag) kell.
 
 *Nem kell a legjobb küszöb.* A konvergencia definíciójához elég **egy** megfelelő $N_0$; egyszerű, ellenőrizhető becslés többet ér egy pontos, de nehezen igazolható küszöbnél.
+:::
+
+# A 3. feladatlaphoz
+
+## P23. feladat
+
+Bizonyítsuk be teljes indukcióval, valamint teleszkopikus összeg segítségével is, hogy minden $n \in \mathbb{N}$ esetén:
+$$\sum_{k=1}^n k^3 = 1^3 + 2^3 + \dots + n^3 = \left(\frac{n(n+1)}{2}\right)^2.$$
+
+**Megoldás.**
+
+**1. Bizonyítás teljes indukcióval:**
+
+- *Kezdőlépés ($n = 1$):*
+  A bal oldal $1^3 = 1$, a jobb oldal $\left(\frac{1 \cdot 2}{2}\right)^2 = 1^2 = 1$. Az állítás $n = 1$-re igaz.
+- *Indukciós feltevés:* Tegyük fel, hogy valamely $n \ge 1$ egészre teljesül:
+  $$\sum_{k=1}^n k^3 = \left(\frac{n(n+1)}{2}\right)^2 = \frac{n^2(n+1)^2}{4}.$$
+- *Indukciós lépés:* Vizsgáljuk az összeget $(n+1)$-re:
+  $$\sum_{k=1}^{n+1} k^3 = \left(\sum_{k=1}^n k^3\right) + (n+1)^3 = \frac{n^2(n+1)^2}{4} + (n+1)^3.$$
+  Kiemeljük a közös $(n+1)^2$ tényezőt:
+  $$\sum_{k=1}^{n+1} k^3 = (n+1)^2 \left(\frac{n^2}{4} + n + 1\right) = (n+1)^2 \frac{n^2 + 4n + 4}{4} = (n+1)^2 \frac{(n+2)^2}{4} = \left(\frac{(n+1)(n+2)}{2}\right)^2.$$
+  Ez pontosan a képlet az $n+1$ értékre. A teljes indukció elve alapján az egyenlőség minden $n \in \mathbb{N}$-re fennáll.
+
+**2. Levezetés teleszkopikus összeggel:**
+
+Írjuk fel a $(k+1)^4 - k^4$ negyedfokú azonosságot a binomiális tétel segítségével:
+$$(k+1)^4 - k^4 = 4k^3 + 6k^2 + 4k + 1.$$
+Összegezzük mindkét oldalt $k = 1, 2, \dots, n$-re:
+$$\sum_{k=1}^n \left((k+1)^4 - k^4\right) = 4 \sum_{k=1}^n k^3 + 6 \sum_{k=1}^n k^2 + 4 \sum_{k=1}^n k + \sum_{k=1}^n 1.$$
+A bal oldalon a tagok teleszkopikusan kiesnek:
+$$(2^4 - 1^4) + (3^4 - 2^4) + \dots + ((n+1)^4 - n^4) = (n+1)^4 - 1.$$
+Felhasználva az ismert képleteket ($\sum_{k=1}^n k = \frac{n(n+1)}{2}$ és $\sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6}$):
+$$(n+1)^4 - 1 = 4 S_3(n) + 6 \cdot \frac{n(n+1)(2n+1)}{6} + 4 \cdot \frac{n(n+1)}{2} + n.$$
+$$n^4 + 4n^3 + 6n^2 + 4n = 4 S_3(n) + n(n+1)(2n+1) + 2n(n+1) + n.$$
+Mivel $n(n+1)(2n+1) + 2n(n+1) + n = n(2n^2 + 5n + 4) = 2n^3 + 5n^2 + 4n$, átrendezve:
+$$4 S_3(n) = (n^4 + 4n^3 + 6n^2 + 4n) - (2n^3 + 5n^2 + 4n) = n^4 + 2n^3 + n^2 = n^2(n+1)^2.$$
+$4$-gyel osztva azonnal adódik:
+$$S_3(n) = \frac{n^2(n+1)^2}{4} = \left(\frac{n(n+1)}{2}\right)^2. \quad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — teljes indukció és teleszkopikus összegek.**
+
+*A teljes indukció axiómája.* Ha $A(1)$ igaz, és $A(n) \implies A(n+1)$ minden $n \ge 1$-re, akkor $A(n)$ minden $n \in \mathbb{N}$-re igaz. Ezzel ellenőrizni tudunk egy már sejtett vagy adott összefüggést.
+
+*Teleszkopikus összeg.* Ha egy sorozat általános tagja előáll különbségként ($a_k = b_{k+1} - b_k$), akkor a részletösszeg közvetlenül kiszámítható:
+$$\sum_{k=1}^n (b_{k+1} - b_k) = b_{n+1} - b_1.$$
+A hatványösszegek ($S_p(n) = \sum_{k=1}^n k^p$) meghatározására a $(k+1)^{p+1} - k^{p+1}$ azonosság összegezése univerzális eljárás, amely nem igényli az eredmény előzetes ismeretét.
+:::
+
+## P24. feladat
+
+Bizonyítsuk be a binomiális tétel segítségével, hogy $1{,}05^n > n^4$ minden elegendően nagy $n \in \mathbb{N}$ esetén, és adjunk meg egy explicit $N_0$ küszöbindexet!
+
+**Megoldás.**
+
+Írjuk fel az alapot $1{,}05 = 1 + \frac{1}{20}$ alakban. Tetszőleges $n \ge 5$ esetén alkalmazzuk a binomiális tételt:
+$$1{,}05^n = \left(1 + \frac{1}{20}\right)^n = \sum_{j=0}^n \binom{n}{j} \left(\frac{1}{20}\right)^j.$$
+Mivel minden tag pozitív, az összeg szigorúan nagyobb a $j = 5$ indexű tagjánál:
+$$1{,}05^n > \binom{n}{5} \left(\frac{1}{20}\right)^5 = \frac{n(n-1)(n-2)(n-3)(n-4)}{120 \cdot 3\,200\,000} = \frac{n(n-1)(n-2)(n-3)(n-4)}{384\,000\,000}.$$
+Becsüljük meg a számlálót alulról: ha $n \ge 8$, akkor
+- $n - 1 > n/2$,
+- $n - 2 > n/2$,
+- $n - 3 > n/2$,
+- $n - 4 \ge n/2$ (hiszen $2n - 8 \ge n \iff n \ge 8$).
+Ezért minden $n \ge 8$ esetén:
+$$n(n-1)(n-2)(n-3)(n-4) > n \cdot \left(\frac{n}{2}\right)^4 = \frac{n^5}{16}.$$
+Ezt visszahelyettesítve:
+$$1{,}05^n > \frac{n^5}{16 \cdot 384\,000\,000} = \frac{n^5}{6\,144\,000\,000}.$$
+Osszuk el mindkét oldalt a pozitív $n^4$-gyel:
+$$\frac{1{,}05^n}{n^4} > \frac{n}{6\,144\,000\,000}.$$
+Ahhoz, hogy $\frac{1{,}05^n}{n^4} > 1$ teljesüljön, elegendő, ha
+$$\frac{n}{6\,144\,000\,000} \ge 1 \iff n \ge 6\,144\,000\,000.$$
+Mivel $6\,144\,000\,000 > 8$, az $N_0 = 6\,144\,000\,000$ index felett az egyenlőtlenség biztosan teljesül. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — polinomiális és exponenciális növekedési rendek.**
+
+*Főtétel.* Bármely $a > 1$ alapú exponenciális sorozat gyorsabban tart a végtelenbe tetszőleges rögzített fokszámú $n^k$ hatványnál:
+$$\lim_{n \to \infty} \frac{n^k}{a^n} = 0 \qquad (a > 1, \; k \in \mathbb{N}).$$
+*A módszer lényege.* Az $a = 1 + h$ ($h > 0$) felbontás után a binomiális tételből a $j = k + 1$ indexű tagot tartjuk meg. Mivel $\binom{n}{k+1}$ egy $(k+1)$-edfokú polinom $n$-ben, nagy $n$-re a hányados nagyságrendje $\frac{n^{k+1}}{n^k} = n \to \infty$, ami tetszőlegesen nagy értéket felvesz.
+:::
+
+## P25. feladat
+
+Határozzuk meg az alábbi összegek zárt alakját a binomiális tétel segítségével:
+a) $\sum_{k=0}^n 3^k \binom{n}{k}$;
+b) $\sum_{k=0}^n (-1)^k 2^k \binom{n}{k}$;
+c) $\sum_{k=1}^n k \binom{n}{k}$.
+
+**Megoldás.**
+
+A binomiális tétel szerint minden $x \in \mathbb{R}$ és $n \in \mathbb{N}$ esetén:
+$$(1 + x)^n = \sum_{k=0}^n \binom{n}{k} x^k.$$
+
+a) Válasszunk $x = 3$ értéket:
+$$\sum_{k=0}^n \binom{n}{k} 3^k = (1 + 3)^n = \mathbf{4^n}.$$
+
+b) Válasszunk $x = -2$ értéket:
+$$\sum_{k=0}^n \binom{n}{k} (-2)^k = \sum_{k=0}^n (-1)^k 2^k \binom{n}{k} = (1 - 2)^n = \mathbf{(-1)^n}.$$
+
+c) A $\sum_{k=1}^n k \binom{n}{k}$ összeg meghatározása:
+Deriváljuk a $P(x) = (1+x)^n = \sum_{k=0}^n \binom{n}{k} x^k$ polinom azonosság mindkét oldalát $x$ szerint:
+$$n(1+x)^{n-1} = \sum_{k=1}^n k \binom{n}{k} x^{k-1}.$$
+Az $x = 1$ helyettesítéssel:
+$$\sum_{k=1}^n k \binom{n}{k} = n(1+1)^{n-1} = \mathbf{n 2^{n-1}}.$$ $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — generátorfüggvény-módszer és kombinatorikus azonosságok.**
+
+*Kombinatorikus interpretáció.* A c) részben $n 2^{n-1}$ megadja, hányféleképpen választhatunk ki egy $n$-fős társaságból egy bizottságot és annak egy elnökét:
+- Először kiválasztjuk az elnököt ($n$ lehetőség), majd a maradék $n-1$ ember tetszőleges részhalmaza alkotja a bizottság többi tagját ($2^{n-1}$ lehetőség).
+- Másképpen: először kiválasztjuk a $k$-fős bizottságot ($\binom{n}{k}$ lehetőség), majd abból kijelöljük az elnököt ($k$ lehetőség), összegezve $k=1$-től $n$-ig.
+:::
+
+## P26. feladat
+
+Legyenek $f : A \to B$ és $g : B \to A$ tetszőleges leképezések.
+a) Igazoljuk, hogy ha $g \circ f = \mathrm{id}_A$, akkor $f$ injektív és $g$ szürjektív.
+b) Adjunk meg konkrét példát olyan $f : \mathbb{Z} \to \mathbb{Z}$ és $g : \mathbb{Z} \to \mathbb{Z}$ függvényekre, amelyekre $g \circ f = \mathrm{id}_{\mathbb{Z}}$, de $f \circ g \neq \mathrm{id}_{\mathbb{Z}}$.
+
+**Megoldás.**
+
+**a) rész:**
+- **$f$ injektivitása:** Tegyük fel, hogy $x_1, x_2 \in A$ esetén $f(x_1) = f(x_2)$. Alkalmazzuk mindkét oldalra a $g$ leképezést:
+  $$g(f(x_1)) = g(f(x_2)).$$
+  Mivel $g \circ f = \mathrm{id}_A$, a bal oldal $x_1$, a jobb oldal $x_2$, így $x_1 = x_2$. Tehát $f$ injektív.
+- **$g$ szürjektivitása:** Legyen $a \in A$ tetszőleges. Értelmezzük a $b = f(a) \in B$ elemet. Ekkor $g(b) = g(f(a)) = (g \circ f)(a) = \mathrm{id}_A(a) = a$. Tehát minden $a \in A$ elem előáll $g$ képeként, így $g$ szürjektív.
+
+**b) rész:**
+Legyen $A = B = \mathbb{Z}$. Definiáljuk:
+$$f(n) = 2n \quad (\forall n \in \mathbb{Z}),$$
+$$g(m) = \begin{cases} \frac{m}{2}, & \text{ha } m \text{ páros}, \\ 0, & \text{ha } m \text{ páratlan}. \end{cases}$$
+- Ellenőrizzük $g \circ f$-et: Tetszőleges $n \in \mathbb{Z}$ esetén $f(n) = 2n$ páros, ezért
+  $$(g \circ f)(n) = g(f(n)) = g(2n) = \frac{2n}{2} = n = \mathrm{id}_{\mathbb{Z}}(n).$$
+  Tehát $g \circ f = \mathrm{id}_{\mathbb{Z}}$ **teljesül**.
+- Ellenőrizzük $f \circ g$-t: Legyen például $m = 1 \in \mathbb{Z}$ (páratlan szám). Ekkor $g(1) = 0$, így
+  $$(f \circ g)(1) = f(g(1)) = f(0) = 2 \cdot 0 = 0 \neq 1 = \mathrm{id}_{\mathbb{Z}}(1).$$
+  Tehát $f \circ g \neq \mathrm{id}_{\mathbb{Z}}$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — egyoldali inverzek és Dedekind-végtelen.**
+
+*Balinverz és jobbinverz.*
+- $g \circ f = \mathrm{id}_A \iff g$ balinverze $f$-nek $\implies f$ injektív, $g$ szürjektív.
+- $f \circ g = \mathrm{id}_B \iff g$ jobbinverze $f$-nek $\implies f$ szürjektív, $g$ injektív.
+- Kétoldali inverz pontosan akkor létezik, ha $f$ bijektív; ekkor $f^{-1}$ egyértelmű, és megegyezik minden bal- és jobbinverzzel.
+- Véges halmazokon az egyoldali inverz létezése már maga után vonja a kétoldali inverz létezését. Végtelen halmazokon viszont az injektivitás nem vonja maga után a szürjektivitást (Dedekind-féle végtelen tulajdonság).
+:::
+
+## P27. feladat
+
+Bizonyítsuk be, hogy minden $n \ge 3$ egész számra:
+$$(n!)^2 > n^n.$$
+
+**Megoldás.**
+
+Írjuk fel az $(n!)^2$ kifejezést szimmetrikusan párosított tényezők szorzataként:
+$$(n!)^2 = (1 \cdot 2 \cdot 3 \dots n) \cdot (n \cdot (n-1) \dots 1) = \prod_{k=1}^n k(n - k + 1).$$
+Minden $k \in \{1, 2, \dots, n\}$ esetén alakítsuk át az általános tagot:
+$$k(n - k + 1) = n + (k - 1)(n - k).$$
+Mivel $1 \le k \le n$, a $(k - 1)$ és $(n - k)$ tényezők nemnegatívak, így szorzatuk $\ge 0$:
+$$k(n - k + 1) \ge n \quad (\forall k \in \{1, \dots, n\}).$$
+Egyenlőség pontosan a széleken áll fenn: $k = 1$ és $k = n$ esetén $(k-1)(n-k) = 0$.
+A belső indexekre, ha $1 < k < n$, mindkét tényező szigorúan pozitív, így:
+$$k(n - k + 1) > n \quad (\forall 1 < k < n).$$
+Ha $n \ge 3$, akkor létezik legalább egy belső tag (például $k = 2$), ezért a teljes szorzat szigorúan nagyobb:
+$$(n!)^2 = n \cdot \left(\prod_{k=2}^{n-1} k(n - k + 1)\right) \cdot n > n \cdot \left(\prod_{k=2}^{n-1} n\right) \cdot n = n \cdot n^{n-2} \cdot n = n^n.$$
+Négyzetgyököt vonva mindkét oldalból adódik az $n! > n^{n/2}$ egyenlőtlenség is minden $n \ge 3$-ra. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — szimmetrikus tényezőpárosítás és faktoriális nagyságrend.**
+
+*Gauss-párosítás szorzatokra.* A $k(n-k+1)$ tagok szimmetrikusak a középértékre:
+$$f(k) = k(n-k+1) = -\left(k - \frac{n+1}{2}\right)^2 + \left(\frac{n+1}{2}\right)^2.$$
+A parabola a széleken ($k=1, n$) veszi fel a minimumát ($n$), a közepén pedig a maximumát $\approx n^2/4$. Emiatt $(n!)^2$ minden belső tényezője meghaladja $n$-et.
+:::
+
+## P28. feladat
+
+A Hilbert-féle végtelen Grand Hotelben minden szoba foglalt (a szobák számozása $1, 2, 3, \dots$).
+a) Érkezik 4 új vendég. Hogyan tudja őket elszállásolni a recepción a meglévő vendégek kiköltöztetése nélkül?
+b) Érkezik 3 darab teljesen megtelt végtelen busz (mindegyik buszon megszámlálhatóan végtelen sok utas ül). Hogyan tudja őket elhelyezni a portás?
+
+**Megoldás.**
+
+**a) rész (4 új vendég):**
+Kérje meg a portás a hotel minden lakóját, hogy költözzön át a szobaszámánál $4$-gyel nagyobb szobába:
+$$n \mapsto n + 4 \quad (\forall n \in \mathbb{N}).$$
+- Ez a leképezés injektív: $n_1 + 4 = n_2 + 4 \implies n_1 = n_2$, tehát senki nem kerül közös szobába.
+- A meglévő lakók az $5, 6, 7, \dots$ szobákat foglalják el.
+- Az $1, 2, 3, 4$ szobák teljesen felszabadulnak (hiszen $n \ge 1 \implies n+4 \ge 5$).
+A 4 új vendéget a megüresedett $1, 2, 3, 4$ szobákban helyezi el a portás.
+
+**b) rész (3 végtelen busz):**
+A hotel lakóit jelölje $w_n$ ($n \in \mathbb{N}$), a 3 busz utasait pedig $v_{1, k}, v_{2, k}, v_{3, k}$ ($k \in \mathbb{N}$). Összesen 4 darab megszámlálható halmazt kell elhelyezni $\mathbb{N}$-ben.
+Osszuk fel a szobák $\mathbb{N}$ halmazát 4 diszjunkt, végtelen részre a 4-gyel való osztási maradékok szerint:
+- A meglévő vendégeket költöztessük a 4-gyel osztható szobákba:
+  $$w_n \mapsto 4n \quad (n \in \mathbb{N}).$$
+- Az 1. busz utasait költöztessük a $4k - 3$ alakú szobákba:
+  $$v_{1, k} \mapsto 4k - 3 \quad (k \in \mathbb{N}).$$
+- A 2. busz utasait költöztessük a $4k - 2$ alakú szobákba:
+  $$v_{2, k} \mapsto 4k - 2 \quad (k \in \mathbb{N}).$$
+- A 3. busz utasait költöztessük a $4k - 1$ alakú szobákba:
+  $$v_{3, k} \mapsto 4k - 1 \quad (k \in \mathbb{N}).$$
+Minden szobaszám pontosan az egyik csoportba esik, minden vendég kap szobát, és nincs ütközés. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — megszámlálható számosságok összeadása.**
+
+*Tétel.* Véges sok megszámlálható halmaz diszjunkt uniója megszámlálható:
+$$\aleph_0 + \aleph_0 + \dots + \aleph_0 = m \cdot \aleph_0 = \aleph_0 \qquad (m \in \mathbb{N}^+).$$
+Konstrukciós eszköz a maradékosztályok használata ($m \cdot k - r$), amely automatikusan particionálja $\mathbb{N}$-t $m$ darab izomorf diszjunkt másolatra.
+:::
+
+## P29. feladat
+
+Határozzuk meg az alábbi szélsőértékeket a számtani és mértani közép közötti egyenlőtlenség segítségével:
+a) Mekkora lehet $x^2 y$ maximuma, ha $x, y \ge 0$ és $2x + y = 12$?
+b) Mekkora lehet $4x + \frac{9}{x}$ minimuma, ha $x > 0$?
+
+**Megoldás.**
+
+**a) rész:**
+A feltétel $2x + y = 12$, és a célfüggvény $x^2 y$.
+Alakítsuk át az összeget úgy, hogy 3 tagból álljon, amelyek szorzata arányos $x^2 y$-nal. Bontsuk fel a $2x$ tagot két egyenlő részre: $x + x$:
+$$x + x + y = 12.$$
+Mivel $x, y \ge 0$, alkalmazhatjuk a 3-változós számtani és mértani közép közötti egyenlőtlenséget az $x, x, y$ nemnegatív számokra:
+$$\sqrt[3]{x \cdot x \cdot y} \le \frac{x + x + y}{3} = \frac{12}{3} = 4.$$
+Köbre emelve mindkét oldalt:
+$$x^2 y \le 4^3 = 64.$$
+Egyenlőség pontosan akkor teljesül, ha a három tag egyenlő:
+$$x = x = y.$$
+Mivel $x + x + y = 12$, ebből $3x = 12 \implies x = 4$, és így $y = 4$.
+Ekkor $x^2 y = 4^2 \cdot 4 = 64$.
+A maximum tehát **$64$**, amit az $x = 4, y = 4$ pontban vesz fel.
+
+**b) rész:**
+Legyen $x > 0$. A $4x$ és $\frac{9}{x}$ tagok szorzata független $x$-től (konstans):
+$$4x \cdot \frac{9}{x} = 36.$$
+Alkalmazzuk a 2-változós számtani és mértani közép közötti egyenlőtlenséget:
+$$\frac{4x + \frac{9}{x}}{2} \ge \sqrt{4x \cdot \frac{9}{x}} = \sqrt{36} = 6.$$
+Mindkét oldalt 2-vel szorozva:
+$$4x + \frac{9}{x} \ge 12.$$
+Egyenlőség pontosan akkor áll fenn, ha a két tag megegyezik:
+$$4x = \frac{9}{x} \iff 4x^2 = 9 \iff x^2 = \frac{9}{4} \iff x = \frac{3}{2} \quad (x > 0 \text{ miatt}).$$
+A kifejezés lehetséges legkisebb értéke tehát **$12$**, amit az $x = \frac{3}{2}$ pontban ér el. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — közepek közötti egyenlőtlenségek optimalizálásban.**
+
+*Változók szétszedésének szabálya.* Ha egy $x^a y^b$ szorzatot akarunk maximalizálni $\alpha x + \beta y = K$ feltétel mellett, akkor az $x$-es tagot $a$ darab, az $y$-os tagot $b$ darab egyenlő részre bontjuk:
+$$\underbrace{\frac{\alpha x}{a} + \dots + \frac{\alpha x}{a}}_{a \text{ db}} + \underbrace{\frac{\beta y}{b} + \dots + \frac{\beta y}{b}}_{b \text{ db}} = K.$$
+Az $(a+b)$-változós számtani-mértani egyenlőtlenségben az egyenlőség feltétele azonnal adja az optimális arányt: $\frac{\alpha x}{a} = \frac{\beta y}{b}$.
+:::
+
+## P30. feladat
+
+Bizonyítsuk be, hogy az alábbi függvények injektívek a megadott $H$ halmazon, határozzuk meg az $f(H)$ értékkészletet, és írjuk fel az inverz függvény képletét:
+a) $f(x) = \frac{2x - 1}{3x + 4}$, $H = \mathbb{R} \setminus \{-4/3\}$;
+b) $f(x) = 2x^2 - 8x + 5$, $H = (-\infty, 2]$.
+
+**Megoldás.**
+
+**a) rész:** $f(x) = \frac{2x - 1}{3x + 4}$, $H = \mathbb{R} \setminus \{-4/3\}$.
+- **Injektivitás:** Legyenek $x_1, x_2 \in H$, és tegyük fel, hogy $f(x_1) = f(x_2)$:
+  $$\frac{2x_1 - 1}{3x_1 + 4} = \frac{2x_2 - 1}{3x_2 + 4}.$$
+  Keresztbeszorozva:
+  $$(2x_1 - 1)(3x_2 + 4) = (2x_2 - 1)(3x_1 + 4)$$
+  $$6x_1 x_2 + 8x_1 - 3x_2 - 4 = 6x_1 x_2 + 8x_2 - 3x_1 - 4.$$
+  A közös $6x_1 x_2 - 4$ tagokat levonva:
+  $$8x_1 - 3x_2 = 8x_2 - 3x_1 \iff 11x_1 = 11x_2 \iff x_1 = x_2.$$
+  Tehát $f$ injektív $H$-n.
+- **Értékkészlet és inverz:** Fejezzük ki $x$-et az $y = \frac{2x-1}{3x+4}$ egyenletből:
+  $$y(3x + 4) = 2x - 1 \iff 3xy + 4y = 2x - 1 \iff 4y + 1 = x(2 - 3y).$$
+  Ha $2 - 3y \neq 0$, azaz $y \neq 2/3$, akkor
+  $$x = \frac{4y + 1}{2 - 3y}.$$
+  Ha $y = 2/3$ lenne, akkor $4(2/3) + 1 = 0 \implies 11/3 = 0$, ami lehetetlen. Tehát az értékkészlet:
+  $$f(H) = \mathbb{R} \setminus \{2/3\}.$$
+  Az inverz függvény:
+  $$F^{-1} : \mathbb{R} \setminus \{2/3\} \to \mathbb{R} \setminus \{-4/3\}, \qquad F^{-1}(y) = \frac{4y + 1}{2 - 3y}.$$
+
+**b) rész:** $f(x) = 2x^2 - 8x + 5$, $H = (-\infty, 2]$.
+- **Injektivitás:** Alakítsuk át teljes négyzetté:
+  $$f(x) = 2(x^2 - 4x) + 5 = 2(x - 2)^2 - 8 + 5 = 2(x - 2)^2 - 3.$$
+  Ha $x_1, x_2 \in (-\infty, 2]$ és $f(x_1) = f(x_2)$, akkor:
+  $$2(x_1 - 2)^2 - 3 = 2(x_2 - 2)^2 - 3 \iff (x_1 - 2)^2 = (x_2 - 2)^2.$$
+  Mivel $x_1, x_2 \le 2$, ezért $x_1 - 2 \le 0$ és $x_2 - 2 \le 0$. Két nempozitív szám négyzete pontosan akkor egyenlő, ha maguk a számok megegyeznek:
+  $$x_1 - 2 = x_2 - 2 \iff x_1 = x_2.$$
+  Tehát $f$ injektív $H$-n.
+- **Értékkészlet és inverz:** Mivel $x \le 2$, az $(x-2)^2$ kifejezés a $[0, \infty)$ intervallum minden értékét felveszi. Így $f(H) = [-3, \infty)$.
+  Az $y = 2(x - 2)^2 - 3$ egyenletből ($y \ge -3$ mellett):
+  $$(x - 2)^2 = \frac{y + 3}{2}.$$
+  Mivel $x \le 2$, a negatív gyököt kell választani ($x - 2 = -\sqrt{\frac{y+3}{2}}$):
+  $$x = 2 - \sqrt{\frac{y + 3}{2}}.$$
+  Az inverz leképezés:
+  $$F^{-1} : [-3, \infty) \to (-\infty, 2], \qquad F^{-1}(y) = 2 - \sqrt{\frac{y + 3}{2}}.$$ $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — injektivitás algebrai igazolása és az előjelek szerepe.**
+
+*Négyzetes egyenletek invertálása.* Az $u^2 = v^2$ egyenletből csak akkor következik $u = v$, ha tudjuk, hogy $u$ és $v$ előjele azonos. Amikor egy parabola ágát invertáljuk, a csúcspont által elválasztott félegyenesek valamelyikére kell szorítkozni; a gyökvonásnál a tartománynak megfelelő előjelű gyököt kell választani.
+:::
+
+## P31. feladat
+
+Bizonyítsuk be a számtani és mértani közép közötti egyenlőtlenség segítségével, hogy az
+$$e_n = \left(1 + \frac{1}{n}\right)^n$$
+sorozat szigorúan monoton növekvő minden $n \in \mathbb{N}$ esetén!
+
+**Megoldás.**
+
+Tekintsünk $(n+1)$ darab pozitív számot:
+- $n$ darab $\left(1 + \frac{1}{n}\right)$ számot, és
+- $1$ darab $1$-est.
+Mivel $1 + \frac{1}{n} > 1$, a számok nem mind egyenlők. Ezért a szigorú számtani és mértani közép közötti egyenlőtlenség szerint a mértani közepük szigorúan kisebb a számtani közepüknél:
+$$\sqrt[n+1]{\left(1 + \frac{1}{n}\right)^n \cdot 1} < \frac{n \left(1 + \frac{1}{n}\right) + 1}{n + 1}.$$
+Számítsuk ki a számtani közepet:
+$$\frac{n \cdot \frac{n+1}{n} + 1}{n + 1} = \frac{(n + 1) + 1}{n + 1} = \frac{n + 2}{n + 1} = 1 + \frac{1}{n + 1}.$$
+A bal oldalt és a jobb oldalt összevetve:
+$$\sqrt[n+1]{\left(1 + \frac{1}{n}\right)^n} < 1 + \frac{1}{n + 1}.$$
+Mivel mindkét oldal pozitív, emeljük mindkét oldalt az $(n+1)$-edik hatványra:
+$$\left(1 + \frac{1}{n}\right)^n < \left(1 + \frac{1}{n + 1}\right)^{n+1}.$$
+Ez pontosan azt jelenti, hogy
+$$e_n < e_{n+1} \quad (\forall n \in \mathbb{N}),$$
+vagyis az $(e_n)$ sorozat szigorúan monoton növekvő. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — a monoton konvergencia és az $e$ szám.**
+
+*A tétel jelentősége.*
+Az $(e_n)$ sorozat szigorúan monoton nő, míg a $d_n = \left(1 + \frac{1}{n}\right)^{n+1}$ sorozat szigorúan monoton csökken. Mivel $e_1 = 2 \le e_n < d_n \le d_1 = 4$, mindkét sorozat korlátos és monoton, így a **monoton konvergencia tétele** szerint létezik véges határértékük:
+$$\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n+1} = e \approx 2{,}71828\dots$$
+:::
+
+## P32. feladat
+
+Bizonyítsuk be teljes indukcióval, hogy minden $n \in \mathbb{N}$ esetén:
+$$n! > \left(\frac{n}{3}\right)^n.$$
+
+**Megoldás.**
+
+- **Kezdőlépés ($n = 1$):**
+  A bal oldal $1! = 1$. A jobb oldal $\left(\frac{1}{3}\right)^1 = \frac{1}{3}$.
+  Mivel $1 > \frac{1}{3}$, az egyenlőtlenség $n = 1$-re igaz.
+- **Indukciós feltevés:**
+  Tegyük fel, hogy valamely $n \ge 1$ egészre teljesül:
+  $$n! > \left(\frac{n}{3}\right)^n.$$
+- **Indukciós lépés:**
+  Megmutatjuk, hogy $(n+1)! > \left(\frac{n+1}{3}\right)^{n+1}$.
+  Az indukciós feltevés alapján:
+  $$(n+1)! = (n+1) \cdot n! > (n+1) \left(\frac{n}{3}\right)^n.$$
+  Elegendő belátni, hogy ez a kifejezés legalább akkora, mint a kívánt jobb oldal:
+  $$(n+1) \left(\frac{n}{3}\right)^n \ge \left(\frac{n+1}{3}\right)^{n+1} = \frac{n+1}{3} \cdot \left(\frac{n+1}{3}\right)^n.$$
+  Mivel $n + 1 > 0$, osszunk $(n+1)$-gyel, majd szorozzunk $3 \cdot 3^n$-nel:
+  $$\frac{n^n}{3^n} \ge \frac{(n+1)^n}{3 \cdot 3^n} \iff 3 n^n \ge (n+1)^n \iff 3 \ge \left(\frac{n+1}{n}\right)^n = \left(1 + \frac{1}{n}\right)^n.$$
+  Tudjuk, hogy az $e_n = \left(1 + \frac{1}{n}\right)^n$ sorozat szigorúan monoton növekvő és határértéke $e \approx 2{,}71828 < 3$.
+  Ezért $\left(1 + \frac{1}{n}\right)^n < 3$ minden $n \in \mathbb{N}$-re fennáll!
+  A fenti egyenlőtlenségi lánc tehát visszafelé is érvényes:
+  $$(n+1)! > (n+1) \left(\frac{n}{3}\right)^n > \left(\frac{n+1}{3}\right)^{n+1}.$$
+  A teljes indukció elve alapján az egyenlőtlenség minden $n \in \mathbb{N}$-re igaz. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — alsó becslések faktoriálisra és az $e$ konstans szerepe.**
+
+*Miért éppen a 3-as osztó?*
+Az indukciós lépés ekvivalens volt a $C \ge \left(1 + \frac{1}{n}\right)^n$ feltétellel. Mivel a sorozat szuprémuma $e$, bármely $C \ge e$ konstansra (így $C = 3$-ra és $C = 4$-re is) működik az indukciós lépés. Ha $C < e$ lenne, a lépés egy idő után elbukna.
+:::
+
+## P33. feladat
+
+Létezik-e bijekció a nyílt $(0, 1)$ intervallum és a zárt $[0, 1]$ intervallum között? Ha igen, adjunk meg egy explicit konstrukciót!
+
+**Megoldás.**
+
+**Igen, létezik.**
+
+*Konstrukció:*
+A $[0, 1]$ zárt intervallum a $(0, 1)$ nyílt intervallumhoz képest két többletpontot tartalmaz: a $0$-t és az $1$-et. Végtelen halmazon a Hilbert-szálloda elvével úgy tudunk két új pontnak helyet csinálni, hogy kiválasztunk egy megszámlálhatóan végtelen részsorozatot, és annak tagjait két pozícióval eltoljuk.
+
+Válasszunk ki a $(0, 1)$ nyílt intervallumban egy páronként különböző pontokból álló sorozatot, például:
+$$S = \left\{\frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \frac{1}{5}, \dots\right\} = \left\{\frac{1}{n+1} : n \in \mathbb{N}\right\} \subset (0, 1).$$
+Jelölje a sorozat tagjait $s_n = \frac{1}{n+1}$ ($n = 1, 2, 3, \dots$).
+Definiáljuk a $g : [0, 1] \to (0, 1)$ leképezést a következőképpen:
+- A két végpontot illesszük be a sorozat első két helyére:
+  $$g(0) = s_1 = \frac{1}{2},$$
+  $$g(1) = s_2 = \frac{1}{3}.$$
+- A sorozat meglévő tagjait toljuk el 2 indexszel:
+  $$g(s_n) = s_{n+2} \iff g\left(\frac{1}{n+1}\right) = \frac{1}{n+3} \quad (\forall n \in \mathbb{N}).$$
+- Minden más pontot hagyjunk helyben:
+  $$g(x) = x, \quad \text{ha } x \in [0, 1] \setminus (\{0, 1\} \cup S).$$
+
+*Ellenőrzés:*
+1. **Értékkészlet:** Minden felvett érték a $(0, 1)$ intervallumba esik (a behelyettesített $1/2, 1/3, \dots$ és a helyben hagyott $x$ pontok is).
+2. **Injektivitás:**
+   - A $T = \{0, 1\} \cup S$ halmazon $g(T) = S$, a leképezés kölcsönösen egyértelmű eltolás: $0 \mapsto s_1, 1 \mapsto s_2, s_1 \mapsto s_3, s_2 \mapsto s_4, \dots$
+   - A komplementer $[0, 1] \setminus T$ halmazon az identitás, ami injektív.
+   - A két képhalmaz diszjunkt: $S \cap ([0, 1] \setminus T) = \emptyset$.
+   Így $g$ injektív.
+3. **Szürjektivitás:**
+   $$g([0, 1]) = S \cup ((0, 1) \setminus S) = (0, 1).$$
+   Minden $(0, 1)$-beli pont előáll.
+
+Mivel $g : [0, 1] \to (0, 1)$ bijekció, létezik az inverze, $f = g^{-1} : (0, 1) \to [0, 1]$, amely szintén bijekció. Ezzel igazoltuk, hogy létezik bijekció $(0, 1)$ és $[0, 1]$ között. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — véges sok pont elnyelése és számossági ekvivalencia.**
+
+*Kontínuum számosság.* Minden valódi intervallum kontinuum számosságú:
+$$|(a, b)| = |[a, b]| = |[a, b)| = |(a, b]| = |\mathbb{R}| = \mathfrak{c}.$$
+Bár algebrailag és halmazelméletileg bijektíven megfeleltethetők egymásnak, a topológiai tulajdonságaik lényegesen különböznek: $[0, 1]$ kompakt és összefüggő, míg $(0, 1)$ összefüggő, de nem kompakt. Emiatt közöttük folytonos bijekció folytonos inverzzel (homeomorfizmus) nem hozható létre.
 :::
 
 # A 4. feladatlaphoz

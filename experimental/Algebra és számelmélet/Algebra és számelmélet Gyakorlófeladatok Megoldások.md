@@ -41,8 +41,14 @@ Az 1. sorból: $x = 3 - 2y + z = 3 - \frac{10t + 16}{7} + t = \frac{21 - 10t - 1
 **Végtelen sok megoldás:** $(x, y, z) = \left(\frac{5 - 3t}{7},\ \frac{8 + 5t}{7},\ t\right)$, $t \in \mathbb{R}$.
 
 ::: elmelet
-**Elméleti háttér — Szabad paraméterek megválasztása.**
-Szabad ismeretlennek olyan változót érdemes választani, amelynek oszlopában nincs vezérelem. A megoldások egydimenziós alteret (egyenest) alkotnak $\mathbb{R}^3$-ban.
+**Elméleti háttér — Szabad változók és a megoldástér dimenziója.**
+
+A Gauss-elimináció lépcsős alakjában a vezéregyeseket (pivot elemeket) nem tartalmazó oszlopokhoz tartozó ismeretlenek a *szabad változók*.
+Ha a rendszer mátrixa $A \in \mathbb{R}^{m \times n}$ és rangja $r = \operatorname{rang}(A)$:
+1. A kötött ismeretlenek (pivotok) száma pontosan $r$.
+2. A szabad változók száma $n - r$ (dimenziótétel / rang-nullitási tétel).
+3. A homogén rendszer megoldástere egy $n - r$ dimenziós altér $\mathbb{R}^n$-ben: $\dim(\ker A) = n - r$.
+4. Az inhomogén rendszer tetszőleges partikuláris megoldásához hozzáadva a magtér (homogén rendszer) elemeit, az összes megoldás egy $n - r$ dimenziós affin alteret alkot: $x = x_0 + \ker A$.
 :::
 
 ## Gy1.1.2. feladat
@@ -80,8 +86,11 @@ Az 1. sorból: $2x_1 + u - v + 1 = 3 \implies 2x_1 = 2 - u + v \implies x_1 = 1 
 **Végtelen sok megoldás:** $(x_1, x_2, x_3, x_4) = \left(1 - \frac{u}{2} + \frac{v}{2},\ u,\ v,\ 1\right)$, ahol $u, v \in \mathbb{R}$.
 
 ::: elmelet
-**Elméleti háttér — Több szabad változó geometriája.**
-Két szabad paraméter esetén a megoldások egy 2 dimenziós síkot alkotnak $\mathbb{R}^4$-ben. A kötött változók a szabad változók lineáris kombinációiként és egy eltolásvektorként fejezhetők ki.
+**Elméleti háttér — Több szabad változó és affin alterek reprezentációja.**
+
+Ha a lépcsős alakban $k \ge 2$ oszlopban nincs vezérelem, akkor a rendszer $k$ paraméteres család formájában oldható meg:
+$$x = x_{\text{partikuláris}} + t_1 v_1 + t_2 v_2 + \dots + t_k v_k \quad (t_i \in \mathbb{R}).$$
+A $v_1, \dots, v_k$ irányvektorok a homogén egyenletrendszer fundamentális megoldásrendszerét (a $\ker A$ bázisát) alkotják. A bázisvektorok leolvasásának standard módja: rendre az egyik szabad paramétert 1-nek, a többit 0-nak választjuk, és meghatározzuk a kötött változók egyértelmű értékeit.
 :::
 
 ## Gy1.2.1. feladat
@@ -168,8 +177,11 @@ $$x_1 = 15 - 14 = 1, \quad x_2 = 15 - 13 = 2, \quad x_3 = 15 - 12 = 3, \quad x_4
 **Megoldás:** $(x_1, x_2, x_3, x_4, x_5) = (1, 2, 3, 4, 5)$.
 
 ::: elmelet
-**Elméleti háttér — Hiányzó komponensű egyenletrendszerek.**
-Ez a feladattípus az $S - x_k = b_k$ alakú egyenletekre vezet, ahol az összegzés azonnal diagonális alakra hozza a rendszert.
+**Elméleti háttér — Hiányzó komponensek és diagonális elimináció.**
+
+Ha egy lineáris egyenletrendszerben bizonyos egyenletekből hiányoznak változók (ritka mátrix / sparse matrix):
+Az eliminációs lépések sorrendjét optimalizálni lehet a legkevesebb műveletet igénylő ismeretlenek kiküszöbölésével.
+A Gauss-Jordan algoritmus során cél a redukált lépcsős alak (RREF), ahol minden pivot oszlopban a vezéregyes felett és alatt is csupa zérus áll. Ekkor a kötött változók értéke közvetlenül, visszahelyettesítés nélkül leolvasható.
 :::
 
 ## Gy1.4.1. feladat
@@ -220,8 +232,11 @@ $$(k + 2)x + (k + 2)y + (k + 2)z = 3 \iff (k + 2)(x + y + z) = 3.$$
 **Végtelen sok megoldás kizárólag $k = 1$ esetén van.**
 
 ::: elmelet
-**Elméleti háttér — Cirkuláns rendszerek paraméterfüggése.**
-A cirkuláns együtthatómátrix sajátértékei közvetlenül leolvashatók, és $\det A = (k + 2)(k - 1)^2$. A gyökök $k = -2$ (inkonzisztens) és $k = 1$ (kétdimenziós megoldástér).
+**Elméleti háttér — Cirkuláns és szimmetrikus lineáris rendszerek.**
+
+Egy rendszer ciklikus szimmetriája (cirkuláns együtthatómátrix) esetén az egyenletek összeadásával vagy Fourier-transzformációval a rendszer diagonális alakra transzformálható.
+Az egyenletek összege: $\sum_{i=1}^n (\text{bal oldal}) = (\sum a_i) \sum x_j$.
+Ha az együtthatók összege zérus vagy a paraméter kritikus értékét veszi fel, a mátrix determinánsa 0 lesz, ami a Kronecker–Capelli tétel alapján vagy ellentmondáshoz, vagy végtelen sok megoldáshoz vezet.
 :::
 
 ## Gy1.5.1. feladat
@@ -238,8 +253,15 @@ Ez ellentmond annak, hogy létezik nemnulla megoldás.
 Tehát szükségképpen $\det(A) = 0$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Determináns és invertálhatóság kapcsolata.**
-Egy négyzetes mátrix homogén rendszere pontosan akkor rendelkezik nemtriviális megoldással, ha a mátrix magja nem nulla, ami ekvivalens a determináns zérus voltával.
+**Elméleti háttér — Négyzetes mátrixok invertálhatósága és a rang.**
+
+Négyzetes $A \in \mathbb{R}^{n \times n}$ mátrix esetén a következő tulajdonságok ekvivalensek:
+1. $A$ invertálható (reguláris), létezik $A^{-1}$;
+2. $\det(A) \neq 0$;
+3. $\operatorname{rang}(A) = n$ (teljes rangú);
+4. Az $Ax = 0$ homogén rendszernek csak a triviális $x = 0$ megoldása létezik ($\ker A = \{0\}$);
+5. Bármely $b \in \mathbb{R}^n$ esetén az $Ax = b$ rendszer egyértelműen megoldható: $x = A^{-1}b$;
+6. $A$ oszlopvektorai (és sorvektorai) lineárisan függetlenek $\mathbb{R}^n$-ben.
 :::
 
 ## Gy1.5.2. feladat
@@ -323,8 +345,11 @@ $$A^2 - 3A + 2I_2 = \begin{pmatrix} 3 - 6 + 2 & 5 - 3 + 0 \\ -5 - (-3) + 0 & 8 -
 **Eredmény:** $\begin{pmatrix} -1 & 2 \\ -2 & 1 \end{pmatrix}$.
 
 ::: elmelet
-**Elméleti háttér — Polinomok behelyettesítése mátrixokba.**
-Ha $p(x) = c_k x^k + \dots + c_1 x + c_0$, akkor $p(A) = c_k A^k + \dots + c_1 A + c_0 I$. Fontos, hogy a konstans tag mindig az egységmátrixszal szorzódik ($c_0 I$).
+**Elméleti háttér — Mátrixpolinomok és a Cayley–Hamilton-tétel.**
+
+Ha $P(x) = \sum_{k=0}^m c_k x^k$ egy egyváltozós polinom, a $P(A)$ mátrixpolinomot a hatványok behelyettesítésével definiáljuk: $P(A) = \sum_{k=0}^m c_k A^k$ (ahol $A^0 = I$).
+*Cayley–Hamilton-tétel:* Minden négyzetes mátrix kielégíti a saját karakterisztikus polinomját: $p_A(A) = 0$, ahol $p_A(\lambda) = \det(\lambda I - A)$.
+$2 \times 2$-es mátrixra $p_A(\lambda) = \lambda^2 - \operatorname{tr}(A)\lambda + \det(A)$, így $A^2 - \operatorname{tr}(A)A + \det(A)I = 0$, ami lehetővé teszi magas mátrixhatványok gyors redukcióját.
 :::
 
 ## Gy1.7.2. feladat
@@ -366,8 +391,13 @@ Mivel egy felső háromszögmátrix transzponáltja alsó háromszögmátrix, $L
 Legyen $i < j$. $(L_1 L_2)_{ij} = \sum_{k=1}^n a_{ik} b_{kj}$. Ha $k > i$, $a_{ik} = 0$. Ha $k \le i < j$, $b_{kj} = 0$. Minden tag 0. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — A transzponálás mint anti-automorfizmus.**
-A transzponálás megfordítja a szorzás sorrendjét: $(AB)^T = B^T A^T$. Emiatt a felső háromszögmátrixokra vonatkozó tételek azonnal átvihetők alsó háromszögmátrixokra.
+**Elméleti háttér — Háromszögmátrixok algebrája és a transzponálás antiautomorfizmusa.**
+
+Az alsó (illetve felső) háromszögmátrixok részgyűrűt (sőt részalgebrát) alkotnak az $\mathbb{R}^{n \times n}$ mátrixgyűrűben:
+1. Két alsó háromszögmátrix összege és szorzata is alsó háromszögmátrix;
+2. A főátló elemei a szorzás során pontonként szorzódnak: $(AB)_{ii} = A_{ii} B_{ii}$;
+3. Egy alsó háromszögmátrix pontosan akkor invertálható, ha a főátlóján nincs zérus, és az inverze is alsó háromszögmátrix.
+A transzponálás megfordítja a háromszög-jelleget ($L^T = U$), és antiautomorfizmus: $(AB)^T = B^T A^T$.
 :::
 
 ## Gy1.8.2. feladat
@@ -384,8 +414,11 @@ Tehát ha $j \le i + 1$ (azaz a főátlóban $j = i$ vagy az első mellékátló
 Következésképpen $(U^2)_{ij} = 0$, ha $j - i \le 1$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Szigorúan háromszögmátrixok nilpotenciája.**
-Minden szorzással a nemzérus sáv egy diagonálissal feljebb tolódik: $(U^m)_{ij} = 0$, ha $j - i < m$. Ennek közvetlen következménye, hogy $U^n = 0$ (nilpotens mátrix).
+**Elméleti háttér — Szigorúan háromszögmátrixok és a nilpotencia.**
+
+Egy $U$ mátrix *szigorúan felső háromszögmátrix*, ha a főátlójában és alatta minden elem zérus ($u_{ij} = 0$, ha $i \ge j$).
+Minden ilyen mátrix nilpotens: $U^n = 0$, ahol $n$ a mátrix mérete.
+Hatványozáskor a zérusok átlói lépésről lépésre tolódnak felfelé: $U^k$ elemei csak a $j - i \ge k$ sávban lehetnek nemnullák. A nilpotencia indexe legfeljebb $n$.
 :::
 
 ## Gy1.9.1. feladat
@@ -403,8 +436,13 @@ $$\sum_{r=1}^m (a_{ir}b_{rj} + a_{ir}c_{rj}) = \sum_{r=1}^m a_{ir}b_{rj} + \sum_
 Mivel ez minden $i, j$-re teljesül, $A(B + C) = AB + AC$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Gyűrű- és algebramodell.**
-Az asszociativitás és a kétoldali disztributivitás biztosítja, hogy az $n \times n$-es mátrixok halmaza az összeadással és szorzással egységelemes gyűrűt (sőt asszociatív algebrát) alkot.
+**Elméleti háttér — Mátrixszorzás indexes definíciója és asszociativitása.**
+
+Ha $A \in \mathbb{R}^{m \times k}$ és $B \in \mathbb{R}^{k \times n}$, a szorzatkomponensek definíciója:
+$$(AB)_{ij} = \sum_{r=1}^k a_{ir} b_{rj}.$$
+Az asszociativitás $(AB)C = A(BC)$ bizonyítása a kettős összegzés felcserélhetőségéből következik:
+$$((AB)C)_{ij} = \sum_s (AB)_{is} c_{sj} = \sum_s \left(\sum_r a_{ir} b_{rs}\right) c_{sj} = \sum_r a_{ir} \left(\sum_s b_{rs} c_{sj}\right) = (A(BC))_{ij}.$$
+A mátrixszorzás a lineáris leképezések kompozíciójának felel meg, és a leképezések kompozíciója mindig asszociatív.
 :::
 
 ## Gy1.9.2. feladat
@@ -423,8 +461,11 @@ Tehát $AB = AC = 0$, holott $A \ne 0$ és $B \ne C$.
 *(Egyszerűsíteni csak invertálható $A$ esetén szabad, balról $A^{-1}$-gyel szorozva.)*
 
 ::: elmelet
-**Elméleti háttér — Zérusosztók a mátrixgyűrűben.**
-A mátrixszorzás nem nullosztómentes: léteznek olyan nemzérus mátrixok, amelyek szorzata zérus ($AB = 0$). Emiatt az $AB = AC \iff A(B - C) = 0$ egyenletből nem következik $B - C = 0$.
+**Elméleti háttér — Zérusosztók a mátrixgyűrűben és egyszerűsíthetőség.**
+
+A mátrixszorzás nem kommutatív ($AB \neq BA$), és az $\mathbb{R}^{n \times n}$ mátrixgyűrű nem integritási tartomány: léteznek zérusosztók, azaz nemnulla mátrixok, amelyek szorzata zérus ($AB = 0$, holott $A \neq 0$ és $B \neq 0$).
+Ennek közvetlen következménye, hogy az $AB = AC$ egyenlőségből $A \neq 0$ esetén NEM következik $B = C$!
+Az egyszerűsítés csak akkor megengedett, ha $A$ *invertálható*, ugyanis ekkor balról szorozhatunk $A^{-1}$-gyel: $A^{-1}(AB) = A^{-1}(AC) \implies B = C$.
 :::
 
 ## Gy1.10.1. feladat
@@ -460,8 +501,12 @@ A jobb oldalon azonban az identitásmátrix áll, amelynek első sora $(1, 0)$, 
 Ellentmondás, tehát **nem létezik ilyen $X$ mátrix** (az $A$ mátrixnak nem létezik jobbinverze, mert nem teljes rangú).
 
 ::: elmelet
-**Elméleti háttér — Invertálhatóság és rang.**
-Egy négyzetes mátrixnak pontosan akkor létezik (jobb- vagy bal-) inverze, ha determinánsa nem nulla, azaz sorai (és oszlopai) lineárisan függetlenek.
+**Elméleti háttér — Mátrixegyenletek és a determináns multiplikativitása.**
+
+Egy $X^2 = A$ alakú mátrixegyenlet vizsgálatakor a determinánsok szorzástétele $\det(AB) = \det(A)\det(B)$ azonnali szükséges feltételeket ad:
+$$\det(X^2) = (\det X)^2 = \det(A).$$
+Ha a valós számok felett $\det(A) < 0$, akkor a valós $\det(X)$ négyzete nem lehet negatív, így semmilyen valós mátrixmegoldás nem létezhet!
+Ez a spektrálelmélet fundamentális tesztje: valós négyzetgyök létezéséhez a negatív sajátértékeknek páros multiplicitással kell szerepelniük.
 :::
 
 ## Gy1.11.1. feladat
@@ -528,8 +573,13 @@ $$(I - N)^{-1} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatri
 **Eredmény:** $\begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$.
 
 ::: elmelet
-**Elméleti háttér — Neumann-sor nilpotens mátrixokra.**
-Ha $N^k = 0$, akkor $I - N$ mindig invertálható, és inverze véges összeg: $(I - N)^{-1} = \sum_{j=0}^{k-1} N^j$. Ez az azonosság kulcsfontosságú a mátrixanalízisben és a perturbációszámításban.
+**Elméleti háttér — Nilpotens operátorok és a formális Neumann-sor.**
+
+Ha egy $N$ mátrix nilpotens ($N^k = 0$), akkor az $I - N$ mátrix mindig invertálható, és inverze egy véges geometriai sor (Neumann-sor):
+$$(I - N)^{-1} = I + N + N^2 + \dots + N^{k-1}.$$
+Bizonyítás beszorzással:
+$$(I - N)(I + N + N^2 + \dots + N^{k-1}) = I - N^k = I - 0 = I.$$
+Ez a formula rendkívül gyors algoritmust ad perturbált identitásmátrixok invertálására anélkül, hogy Gauss-eliminációt kellene végezni.
 :::
 
 ## Gy1.12.2. feladat
@@ -607,8 +657,11 @@ $$K^{-1} = \frac{1}{9 - x^2} \begin{pmatrix} 9 & -x \\ -x & 1 \end{pmatrix}.$$
 **Eredmény:** $x \in \mathbb{R} \setminus \{-3, 3\}$ esetén invertálható, inverze $K^{-1} = \frac{1}{9-x^2}\begin{pmatrix} 9 & -x \\ -x & 1 \end{pmatrix}$.
 
 ::: elmelet
-**Elméleti háttér — Determináns feltétel invertálhatóságra.**
-Négyzetes mátrix invertálhatósága algebrai értelemben egyetlen skalár egyenlet ($\det A \ne 0$) teljesülésével ekvivalens.
+**Elméleti háttér — Paraméteres determinánsok és invertálhatósági spektrum.**
+
+Egy paraméteres mátrix $A(x)$ pontosan azon $x$ értékekre szinguláris (nem invertálható), amelyekre $\det(A(x)) = 0$.
+A determináns $x$-nek egy polinomja. A polinom valós gyökei adják a szingularitási spektrumot.
+Minden olyan pontban, ahol a determináns nem zérus, a mátrix egyértelműen invertálható, és az inverz folytonosan (sőt racionálisan) függ a paramétertől az adjungált mátrix Cramer-képlete alapján: $A^{-1} = \frac{1}{\det A} \operatorname{adj}(A)$.
 :::
 
 ## Gy1.14.1. feladat
@@ -710,8 +763,13 @@ Egy mátrixot jobbról diagonális mátrixszal szorozva az oszlopai szorzódnak 
 **Végeredmény:** Az inverz harmadik oszlopa $\frac{1}{\lambda}$-szorosára változik, a többi oszlop változatlan marad.
 
 ::: elmelet
-**Elméleti háttér — Skálázás hatása az inverzre.**
-Ha az $i$-edik sort nyújtjuk egy faktorral, a rendszerben az $x_i$-hez tartozó együtthatók nőnek, így a megoldáshoz az inverzben az $i$-edik oszlopnak csökkennie kell azonos faktorral.
+**Elméleti háttér — Elemi sorműveletek és inverzképzés kapcsolata.**
+
+Az elemi sorműveletek mátrixszorzásként reprezentálhatók elemi mátrixokkal:
+1. Egy sor megszorzása $c \neq 0$ konstanssal: balról szorzás egy $E_i(c)$ diagonális elemi mátrixszal.
+2. Mivel $(EA)^{-1} = A^{-1} E^{-1}$, ha $A$-n sorműveletet hajtunk végre, az inverz $A^{-1}$ jobb oldalról szorzódik $E^{-1}$-gyel.
+3. Konkrétan: ha $A$ harmadik sorát szorozzuk $c$-vel, akkor $A^{-1}$ harmadik *oszlopa* szorzódik $1/c$-vel!
+Ez a dualitás az oka a szimplex algoritmus oszlop- és sorfrissítési szabályainak.
 :::
 
 ## Gy1.16.2. feladat
@@ -773,8 +831,15 @@ Ha pedig nem konzisztens, akkor a megoldások száma 0.
 A megoldások száma tehát csak 0 vagy $\infty$ lehet, pontosan 1 megoldás semmilyen $\mathbf{b}$ esetén sem létezhet. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Alulhatározott rendszerek megoldásszáma.**
-Több ismeretlen, mint egyenlet esetén a mag dimenziója legalább $m - n > 0$, így konzisztens esetben a megoldáshalmaz legalább $(m - n)$-dimenziós altér eltoltja.
+**Elméleti háttér — Alulhatározott rendszerek és a magtér dimenziója.**
+
+Ha egy lineáris egyenletrendszerben kevesebb egyenlet van, mint ismeretlen ($m < n$, alulhatározott rendszer):
+A mátrix rangjára $\operatorname{rang}(A) \le \min(m, n) = m < n$.
+A dimenziótétel szerint a homogén rendszer magterének dimenziója:
+$$\dim(\ker A) = n - \operatorname{rang}(A) \ge n - m > 0.$$
+Következésképpen:
+- Az $Ax = 0$ homogén rendszernek mindig van nemtriviális megoldása;
+- Ha az $Ax = b$ inhomogén rendszer megoldható, akkor a megoldás SOHA nem lehet egyértelmű, mindig végtelen sok megoldás létezik (legalább $n - m$ szabad paraméterrel).
 :::
 
 ---
@@ -813,8 +878,11 @@ $$\sum_{k=1}^{n+1} \frac{1}{k(k+1)} = \frac{n}{n + 1} + \frac{1}{(n + 1)(n + 2)}
 Ez pontosan a formula $n + 1$-re. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Teleszkopikus törtek.**
-Mivel $\frac{1}{k(k+1)} = \frac{1}{k} - \frac{1}{k+1}$, a tagok szomszédosan kiejtik egymást: $(1 - 1/2) + (1/2 - 1/3) + \dots + (1/n - 1/(n+1)) = 1 - \frac{1}{n+1} = \frac{n}{n+1}$.
+**Elméleti háttér — Teleszkopikus törtek és indukciós összegzés.**
+
+A racionális törtek összegzésénél az indukciós lépésben a közös nevezőre hozás és a számláló faktorizációja a döntő:
+$$S_n + a_{n+1} = \frac{A(n)}{B(n)} + \frac{1}{(a(n+1)+b)(a(n+1)+c)}.$$
+Teleszkopikus struktúra esetén a parciális törtekre bontás azonnal megadja a sejtést a zárt alakra, amit az indukciós lépés tisztán algebrai úton verifikál. A teleszkopikus sorok határértéke a végtelen sor összegét is azonnal szolgáltatja.
 :::
 
 ## Gy2.2.1. feladat
@@ -831,8 +899,13 @@ A célkifejezés: $(n + 1)^2(2(n + 1)^2 - 1) = (n^2 + 2n + 1)(2n^2 + 4n + 1) = 2
 A két kifejezés megegyezik! $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Páratlan köbök összege.**
-Páratlan köbök összegzése: $\sum_{k=1}^{2n} k^3 - \sum_{k=1}^n (2k)^3 = \frac{(2n)^2(2n+1)^2}{4} - 8\frac{n^2(n+1)^2}{4} = n^2(2n+1)^2 - 2n^2(n+1)^2 = n^2(4n^2+4n+1 - 2n^2-4n-2) = n^2(2n^2-1)$.
+**Elméleti háttér — Páratlan számok köbeinek összege és polinom-identitások.**
+
+Az első $n$ páratlan szám köbeinek összege:
+$$\sum_{k=1}^n (2k - 1)^3 = n^2(2n^2 - 1).$$
+Levezetés az összes köbszám összegéből:
+$$\sum_{k=1}^{2n} k^3 - \sum_{j=1}^n (2j)^3 = \left(\frac{2n(2n+1)}{2}\right)^2 - 8 \left(\frac{n(n+1)}{2}\right)^2 = n^2(2n+1)^2 - 2n^2(n+1)^2 = n^2(2n^2 - 1).$$
+Az indukciós lépésben az $n^2(2n^2 - 1) + (2n+1)^3 = (n+1)^2(2(n+1)^2 - 1)$ azonosság közvetlenül ellenőrizhető a zárójelek kibontásával.
 :::
 
 ## Gy2.2.2. feladat
@@ -864,8 +937,15 @@ $$B_{n+1} - 9B_n = (9^{n+1} - 8(n+1) - 1) - 9(9^n - 8n - 1) = -8n - 9 + 72n + 9 
 Mivel $64 \mid B_n$ (indukciós hipotézis) és $64 \mid 64n$, ezért $64 \mid B_{n+1}$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Kettős gyök és négyzetes modulus.**
-Az $a^n - 1 - n(a - 1)$ kifejezés mindig osztható $(a - 1)^2$-tel. Itt $a = 9$, $(a - 1)^2 = 8^2 = 64$.
+**Elméleti háttér — Kettős gyökök és oszthatóság $(a-1)^2$-tel.**
+
+Tekintsük az $f(x) = x^n - 1 - n(x - 1)$ polinomot!
+1. $f(1) = 1 - 1 - 0 = 0$, tehát $x = 1$ gyöke $f$-nek.
+2. A deriváltja: $f'(x) = n x^{n-1} - n$, így $f'(1) = n - n = 0$.
+Mivel az első deriváltnak is gyöke az 1, az $x = 1$ legalább kétszeres gyök, vagyis a polinom osztható $(x - 1)^2$-tel!
+Egész $a$ számot behelyettesítve $a^n - 1 - n(a - 1)$ mindig osztható $(a - 1)^2$-tel.
+$a = 9$ esetén $(9 - 1)^2 = 64$, így $64 \mid 9^n - 1 - 8n$ minden $n \ge 1$-re.
+Binomiális tétellel: $9^n = (1 + 8)^n = 1 + 8n + \binom{n}{2} 64 + \dots \equiv 1 + 8n \pmod{64}$.
 :::
 
 ## Gy2.3.2. feladat
@@ -883,8 +963,12 @@ $$C_{n+1} = 11(11^{n+1} + 12^{2n-1}) + 133 \cdot 12^{2n-1} = 11 C_n + 133 \cdot 
 Mivel $133 \mid C_n$, mindkét tag osztható 133-mal, így $133 \mid C_{n+1}$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Kongruenciák összekapcsolása.**
-Modulo 133 számolva: $12^2 = 144 \equiv 11 \pmod{133}$, ezért $12^{2n-1} = 12^{-1} \cdot 144^n \equiv 12^{-1} \cdot 11^n \pmod{133}$, ami azonnal mutatja az oszthatóságot.
+**Elméleti háttér — Összetett modulusok faktorizációja és kongruenciák.**
+
+Annak igazolására, hogy egy kifejezés osztható egy $m = p \cdot q$ összetett számmal (ahol $\gcd(p, q) = 1$):
+Elegendő az oszthatóságot külön-külön a $p$ és $q$ prímekre igazolni:
+$$x \equiv 0 \pmod{133} \iff x \equiv 0 \pmod 7 \quad \text{és} \quad x \equiv 0 \pmod{19},$$
+ugyanis $133 = 7 \cdot 19$. Moduláris aritmetikával és hatványozással az indukciós lépés $11^{n+1} + 12^{2n+1} = 11 \cdot 11^n + 144 \cdot 12^{2n-1}$ közvetlenül redukálható $11(11^n + 12^{2n-1}) + 133 \cdot 12^{2n-1}$ alakra, ahol a 133 többszöröse azonnal kiemelhető.
 :::
 
 ## Gy2.4.1. feladat
@@ -900,8 +984,11 @@ Másrészt használhatjuk az indukciós összefüggést: $\binom{2n}{n} = 2\bino
 Mivel $\binom{2n-1}{n-1}$ egész szám, a 2-es szorzó miatt $\binom{2n}{n}$ minden $n \ge 1$-re osztható 2-vel, azaz páros. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Középső binomiális együtthatók paritása.**
-A Pascal-háromszög szimmetriája szerint $\binom{2n}{n} = \binom{2n-1}{n-1} + \binom{2n-1}{n} = 2\binom{2n-1}{n-1}$, ami közvetlen kombinatorikai bizonyítást ad a párosságra.
+**Elméleti háttér — Középső binomiális együtthatók és prímfaktorok.**
+
+A $\binom{2n}{n} = \frac{(2n)!}{(n!)^2}$ középső binomiális együttható fontos szerepet játszik a Csebisev-féle prímbecslésekben.
+Ha $n < p < 2n$ egy prímszám, akkor $p$ osztója a számlálónak $(2n)!$, de nem szerepel a nevezőben $n!$, így $p \mid \binom{2n}{n}$.
+Minden $n \ge 1$-re a $\binom{2n}{n}$ páros szám, mert $\binom{2n}{n} = \frac{2n}{n}\binom{2n-1}{n-1} = 2\binom{2n-1}{n-1}$.
 :::
 
 ## Gy2.4.2. feladat
@@ -917,8 +1004,14 @@ $$= 50 + 25 + 12 + 6 + 3 + 1 = 97.$$
 **Végeredmény:** $2^{97}$.
 
 ::: elmelet
-**Elméleti háttér — Legendre-tétel kettes számrendszerben.**
-Tetszőleges $n$-re $v_2(n!) = n - S_2(n)$, ahol $S_2(n)$ az $n$ bináris számjegyeinek összege. Emiatt $v_2(n!) \le n - 1$, és egyenlőség pontosan akkor áll fenn, ha $n$ kettőhatvány.
+**Elméleti háttér — Legendre tétele prímhatványok faktoriálisbeli kitevőjéről.**
+
+*Legendre-formula (1808):* Egy $p$ prím maximális kitevője $n!$ kanonikus felbontásában:
+$$v_p(n!) = \sum_{k=1}^\infty \left\lfloor \frac{n}{p^k} \right\rfloor = \frac{n - S_p(n)}{p - 1},$$
+ahol $S_p(n)$ az $n$ számjegyösszege a $p$ alapú számrendszerben.
+Középső binomiális együtthatóra $p = 2$ esetén:
+$$v_2\left(\binom{2n}{n}\right) = v_2((2n)!) - 2 v_2(n!) = S_2(n),$$
+ami pontosan az $n$ bináris reprezentációjában szereplő 1-esek száma!
 :::
 
 ## Gy2.5.1. feladat
@@ -934,8 +1027,14 @@ $$2025 \mid 2026^n - 1.$$
 Ez minden $n \ge 1$-re azonnal igaz. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Alapvető oszthatósági következmények.**
-Bármely $m$ alapú számrendszerben az $m^n - 1$ szám mindig osztható $(m - 1)$-gyel (például $10^n - 1 = 99\dots9$ mindig osztható 9-cel).
+**Elméleti háttér — Algebrai azonosságok és $a - b \mid a^n - b^n$.**
+
+Minden $n \ge 1$ pozitív egészre és tetszőleges $a, b$ egészekre:
+$$a^n - b^n = (a - b)(a^{n-1} + a^{n-2}b + \dots + a b^{n-2} + b^{n-1}).$$
+Ennek közvetlen következménye, hogy $a - b \mid a^n - b^n$.
+Speciálisan $b = 1$ választással:
+$$a - 1 \mid a^n - 1 \quad \text{minden } n \ge 1 \text{ esetén}.$$
+$a = 2026$ esetén $a - 1 = 2025$, így $2025 \mid 2026^n - 1$ azonnal teljesül.
 :::
 
 ## Gy2.5.2. feladat
@@ -950,8 +1049,12 @@ Bizonyítsuk be, hogy $2^{30} - 1$ osztható 31-gyel és 7-tel is!
   Mivel $8 - 1 = 7 \mid 8^{10} - 1$, ezért $7 \mid 2^{30} - 1$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Kitevők faktorizációja és osztók.**
-Ha $d \mid n$, akkor $a^d - 1 \mid a^n - 1$. Speciálisan $2^d - 1 \mid 2^n - 1$, ami alapvető a Mersenne-számok elméletében.
+**Elméleti háttér — Kitevők faktorizációja és összetett osztók.**
+
+Ha $d \mid n$, akkor $a^d - 1 \mid a^n - 1$.
+Bizonyítás: Legyen $n = d \cdot k$. Ekkor $a^n - 1 = (a^d)^k - 1$. Az alapazonosságot az $A = a^d$ alapra alkalmazva:
+$$A - 1 \mid A^k - 1 \implies a^d - 1 \mid a^n - 1.$$
+Például $2^{30} - 1$ osztható $2^5 - 1 = 31$-gyel, $2^3 - 1 = 7$-tel, $2^2 - 1 = 3$-mal és $2^6 - 1 = 63$-mal is, mivel 5, 3, 2, 6 mind osztói 30-nak.
 :::
 
 ## Gy2.6.1. feladat
@@ -968,8 +1071,12 @@ Mivel $a^n - 1$ prím, a pozitív osztója ($a - 1$) csak 1 vagy önmaga lehet.
 Ekkor $2^n - 1$ prím, amiből az előző tétel alapján következik, hogy $n$ is prím. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Általános Mersenne-típusú prímek.**
-Az $a^n - 1$ alakú számok csak a 2-es alap esetén lehetnek prímek, mivel más alapra az $a - 1 > 1$ tényező mindig valódi osztót szolgáltat.
+**Elméleti háttér — Mersenne-számok és a kitevő prímsége.**
+
+Egy $M_n = a^n - 1$ alakú szám ($a \ge 2, n \ge 2$) csak akkor lehet prímszám, ha:
+1. $a = 2$ (ugyanis $a - 1 \mid a^n - 1$, így ha $a > 2$, $a - 1 > 1$ egy valódi osztó);
+2. $n = p$ prímszám (ugyanis ha $n = k \cdot m$ összetett, akkor $2^k - 1 \mid 2^n - 1$ valódi osztó).
+A $2^p - 1$ alakú prímeket *Mersenne-prímeknek* nevezzük. A feltétel szükséges, de nem elégséges: pl. $2^{11} - 1 = 2047 = 23 \cdot 89$ összetett szám.
 :::
 
 ## Gy2.6.2. feladat
@@ -985,8 +1092,14 @@ Ellenőrizzük, hogy $2^p - 1$ prím-e a $p = 2, 3, 5, 7$ értékekre!
 Mind a négy Mersenne-prím! (A következő a sorban $p = 11$, amire $2^{11} - 1 = 2047 = 23 \cdot 89$ már összetett.)
 
 ::: elmelet
-**Elméleti háttér — A legkisebb Mersenne-prímek.**
-Az első négy Mersenne-prím $3, 7, 31, 127$. A hozzájuk tartozó páros tökéletes számok: $6, 28, 496, 8128$.
+**Elméleti háttér — Eukleidész–Euler-tétel páros tökéletes számokról.**
+
+Egy szám tökéletes, ha megegyezik a nála kisebb pozitív osztóinak összegével ($\sigma(n) = 2n$).
+*Eukleidész–Euler-tétel:* Egy páros szám akkor és csak akkor tökéletes, ha
+$$n = 2^{p-1}(2^p - 1),$$
+ahol $2^p - 1$ egy Mersenne-prím.
+A legkisebb Mersenne-prímek $p = 2, 3, 5, 7$-re: $M_2 = 3, M_3 = 7, M_5 = 31, M_7 = 127$.
+A hozzájuk tartozó páros tökéletes számok: 6, 28, 496, 8128. Páratlan tökéletes szám létezése máig a matematika egyik leghíresebb nyitott problémája.
 :::
 
 ## Gy2.7.1. feladat
@@ -1001,8 +1114,15 @@ Mutassuk meg, hogy ha $a^n + 1$ prímszám ($a \ge 2, n \ge 1$), akkor vagy $a$ 
 Tehát $n$-nek nem lehet páratlan prímosztója, azaz $n = 2^k$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Általánosított Fermat-számok.**
-Az $a^n + 1$ alakú prímek vizsgálatakor a páratlan osztók hiánya és a paritás azonnal $a$ párosságát és $n = 2^k$ alakját követeli meg.
+**Elméleti háttér — Fermat-számok és a 2-hatvány kitevő szükségessége.**
+
+Egy $F = a^n + 1$ ($a \ge 2$) alakú szám csak akkor lehet prím, ha:
+1. $a$ páros (különben $a^n + 1$ páros és 2-nél nagyobb, tehát összetett);
+2. $n$ kettőhatvány: $n = 2^k$.
+*Bizonyítás:* Ha $n$-nek lenne egy páratlan $q > 1$ osztója ($n = q \cdot m$), akkor az $A = a^m$ jelöléssel:
+$$a^n + 1 = A^q + 1 = (A + 1)(A^{q-1} - A^{q-2} + \dots + 1).$$
+Mivel $q$ páratlan, a felbontás érvényes, és $A + 1 = a^m + 1$ valódi osztó, ami ellentmond a prímségnek.
+A $2^{2^k} + 1$ alakú számokat *Fermat-számoknak* nevezzük ($F_0=3, F_1=5, F_2=17, F_3=257, F_4=65537$ prímek, de Euler megmutatta, hogy $641 \mid F_5$).
 :::
 
 ## Gy2.7.2. feladat
@@ -1065,8 +1185,12 @@ Legyen $P(x) = x^n - 1$.
    Mivel $P(-1) = 0$, ezért $x - (-1) = x + 1 \mid x^n - 1$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — A gyöktényező-tétel (Bézout tétele).**
-Ha egy $P \in K[x]$ polinomnak $c \in K$ gyöke ($P(c) = 0$), akkor $P(x)$ maradék nélkül osztható az $(x - c)$ elsőfokú polinommal. Ez az algebra alaptételének egyik közvetlen építőköve.
+**Elméleti háttér — Gyöktényezős felbontás és polinom-oszthatóság.**
+
+A Bézout-tétel szerint egy $P(x)$ polinomnak a $c$ szám pontosan akkor gyöke, ha $x - c \mid P(x)$.
+- Mivel $P(1) = 1^n - 1 = 0$, mindig $x - 1 \mid x^n - 1$.
+- Mivel $(-1)^n - 1 = 0$ pontosan akkor áll fenn, ha $n$ páros, $x + 1 \mid x^n - 1$ akkor és csak akkor igaz, ha $n$ páros.
+- Páratlan $n$ esetén $(-1)^n + 1 = 0$, ezért $x + 1 \mid x^n + 1$ pontosan a páratlan $n$-ekre teljesül.
 :::
 
 ## Gy2.9.1. feladat
@@ -1100,8 +1224,17 @@ $$N = \prod_{j=1}^s q_j^{e_j} \equiv \prod_{j=1}^s 1 \equiv 1 \pmod 4.$$
 Tehát valóban $N \equiv 1 \pmod 4$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Multiplikatív félcsoportok modulo $m$.**
-Az $1 \pmod 4$ maradékosztály multiplikatív részcsoportot alkot $(\mathbb{Z}/4\mathbb{Z})^*$-ban. Emiatt $1 \pmod 4$ számok tetszőleges szorzata szintén $1 \pmod 4$ maradékot ad.
+**Elméleti háttér — $4k+3$ alakú prímek és a végtelen sok prím tétele.**
+
+*Tétel:* Végtelen sok $4k + 3$ alakú prímszám létezik.
+*Euklideszi típusú bizonyítás:*
+1. Tegyük fel indirekt, hogy csak véges sok $4k+3$ alakú prím létezik: $p_1, p_2, \dots, p_r$.
+2. Tekintsük az $N = 4 p_1 p_2 \dots p_r - 1 = 4(p_1 \dots p_r - 1) + 3$ számot.
+3. $N \equiv 3 \pmod 4$, és páratlan szám.
+4. $N$ minden prímtényezője páratlan. Ha $N$ minden prímtényezője $4k + 1$ alakú lenne, akkor szorzatuk is $4k + 1$ alakú lenne, ami ellentmondás, hiszen $N \equiv 3 \pmod 4$.
+5. Tehát $N$-nek van legalább egy $q \equiv 3 \pmod 4$ prímosztója.
+6. Ez a $q$ nem szerepelhet a listában, mert ha $q = p_i$, akkor $q \mid N - 4 p_1 \dots p_r = -1$, ami lehetetlen!
+Ez Dirichlet tételének (számtani sorozatok prímjei) legegyszerűbb speciális esete.
 :::
 
 ## Gy2.10.1. feladat
@@ -1119,8 +1252,14 @@ $36 = 4 \cdot 9$, $(4, 9) = 1$.
 **A számok: $1620, 1224, 1728$.**
 
 ::: elmelet
-**Elméleti háttér — Oszthatóság 4-gyel és 9-cel.**
-Az utolsó két jegy határozza meg a 4-gyel való oszthatóságot, a teljes számjegyösszeg a 9-cel valót. A kettő metszete adja a 36-tal osztható számokat.
+**Elméleti háttér — Helyiértékes oszthatósági szabályok (2 és 5 hatványai).**
+
+A tízes számrendszerben $10 = 2 \cdot 5$.
+Mivel $10^k = 2^k \cdot 5^k$, tetszőleges $N = \sum a_i 10^i$ számra:
+$$N \equiv \sum_{i=0}^{k-1} a_i 10^i \pmod{2^k} \quad \text{és} \quad N \equiv \sum_{i=0}^{k-1} a_i 10^i \pmod{5^k}.$$
+Ezért az oszthatóság $2^k$-nal (illetve $5^k$-nal) kizárólag a szám utolsó $k$ számjegyétől függ:
+- 4-gyel ($2^2$) való oszthatóság: az utolsó 2 jegyből képzett szám osztható 4-gyel;
+- 8-cal ($2^3$) való oszthatóság: az utolsó 3 jegyből képzett szám osztható 8-cal.
 :::
 
 ## Gy2.10.2. feladat
@@ -1137,8 +1276,13 @@ $15 = 3 \cdot 5$.
 **Megoldások:** $(x, y) \in \{(1, 0), (4, 0), (7, 0), (2, 5), (5, 5), (8, 5)\}$.
 
 ::: elmelet
-**Elméleti háttér — Oszthatóság 3-mal és 5-tel.**
-A két feltétel függetlenül szűri az utolsó jegyet és a számjegyösszeget.
+**Elméleti háttér — Összetett oszthatósági szabályok szétbontása.**
+
+Egy összetett $m = p \cdot q$ számmal való oszthatóság ($\gcd(p, q) = 1$ esetén) pontosan akkor teljesül, ha a szám mindkét relatív prím tényezővel osztható.
+Például $15 = 3 \cdot 5$:
+1. $5 \mid N \iff$ az utolsó jegy $y \in \{0, 5\}$;
+2. $3 \mid N \iff$ a számjegyek összege osztható 3-mal.
+A két feltétel függetlenül határozza meg az ismeretlen számjegyeket, szűkítve a lehetséges megoldások halmazát egyetlen véges keresésre.
 :::
 
 ## Gy2.11.1. feladat
@@ -1155,8 +1299,13 @@ $$10001 = 73 \cdot 137.$$
 Mivel 10001 osztható 73-mal és 137-tel is, a szorzat, azaz az eredeti nyolcjegyű szám is mindig osztható 73-mal és 137-tel. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Ciklikusan ismétlődő számok faktorizációja.**
-Egy $k$ hosszúságú periódussal ismétlődő szám mindig osztható $10^k + 1$-gyel. Speciálisan $10^4 + 1 = 10001 = 73 \cdot 137$.
+**Elméleti háttér — Periodikusan ismétlődő számszerkezetek és $10^k + 1$.**
+
+Ha egy $2k$ jegyű szám két azonos $k$ jegyű blokk egymás után írásából áll:
+$$\overline{A A} = A \cdot 10^k + A = A(10^k + 1).$$
+Például egy nyolcjegyű $\overline{abcdabcd}$ szám esetén:
+$$\overline{abcdabcd} = \overline{abcd} \cdot 10^4 + \overline{abcd} = \overline{abcd} \cdot 10001.$$
+Mivel $10001 = 73 \cdot 137$, minden ilyen szerkezetű szám osztható 73-mal és 137-tel, függetlenül a konkrét számjegyektől!
 :::
 
 ## Gy2.11.2. feladat
@@ -1176,8 +1325,12 @@ Vizsgáljuk meg a $-91$ oszthatóságát:
 (Ellenőrzés: $915824 / 7 = 130832$; $915824 / 13 = 70448$; $915824 = 11 \cdot 83256 + 8$.)
 
 ::: elmelet
-**Elméleti háttér — A 91 faktorizációja.**
-Mivel $91 = 7 \cdot 13$, a $7 \cdot 11 \cdot 13 = 1001$ osztói közül 7 és 13 azonnal felismerhető a 91 többszöröseiben.
+**Elméleti háttér — A 7, 11, 13 univerzális hármas blokkszabálya ($1001$).**
+
+Mivel $10^3 + 1 = 1001 = 7 \cdot 11 \cdot 13$, tetszőleges szám esetén $1000 \equiv -1 \pmod{7, 11, 13}$.
+Ennek következtében a számot hátulról hármas csoportokra osztva alternáló előjelű blokkösszeget képezhetünk:
+$$N = B_0 + B_1 10^3 + B_2 10^6 + \dots \equiv B_0 - B_1 + B_2 - B_3 + \dots \pmod{1001}.$$
+A szám pontosan akkor osztható 7-tel, 11-gyel vagy 13-mal, ha ez az alternáló blokkösszeg osztható velük. Mivel $91 = 7 \cdot 13$, a 91-gyel való oszthatóság pontosan a 7-tel és 13-mal való egyidejű oszthatóságot jelenti.
 :::
 
 ## Gy2.12.1. feladat
@@ -1193,8 +1346,14 @@ $$\frac{n(n-3)}{2} = 5 \iff n^2 - 3n - 10 = 0 \iff (n - 5)(n + 2) = 0 \implies n
 **A sokszög ötszög ($n = 5$).**
 
 ::: elmelet
-**Elméleti háttér — Paritás és prímszámok.**
-Az egyetlen páros prímszám a 2. Ha egy prím páratlan, kizárható a $p = 2$ eset, ami egyértelmű megoldásra vezet.
+**Elméleti háttér — Paritás és prímfelbontás sokszögek átlóinál.**
+
+Egy konvex $n$-szög átlóinak száma $d = \frac{n(n-3)}{2}$.
+Ha az átlók száma prímszám ($d = p$):
+$$n(n - 3) = 2p.$$
+Mivel $p$ prím, a $2p$ szorzat felbontása két tényezőre csak véges sokféle lehet:
+A tényezők különbsége: $n - (n - 3) = 3$.
+Az egyetlen egész felbontás, ahol a tényezők különbsége 3: $2p = 5 \cdot 2$ ($n = 5, p = 5$), vagy általánosan az osztópárok szisztematikus vizsgálata vezet az egyetlen geometriailag értelmes konvex sokszöghöz.
 :::
 
 ## Gy2.12.2. feladat
@@ -1210,8 +1369,11 @@ $$\frac{n - 3}{2} = 1 \iff n - 3 = 2 \implies n = 5.$$
 **Igen, az ötszögnek pontosan 5 oldala és 5 átlója van.**
 
 ::: elmelet
-**Elméleti háttér — Ötszög átlói és az aranymetszés.**
-Az ötszög az egyetlen sokszög, amelynek oldal- és átlószáma megegyezik. Szabályos ötszögben az átló és oldal aránya az aranymetszés aránya: $\phi = \frac{1 + \sqrt{5}}{2}$.
+**Elméleti háttér — Önmagával egyenlő átlószám és az ötszög szimmetriája.**
+
+Mikor egyezik meg egy sokszög átlóinak száma az oldalai számával ($d_n = n$)?
+$$\frac{n(n-3)}{2} = n \implies n-3 = 2 \implies n = 5.$$
+Az egyetlen olyan konvex sokszög, amelynek pontosan ugyanannyi átlója van, mint ahány oldala (5), a konvex ötszög. Ez az ötszög pentagramma-szimmetriájának és a szabályos ötszög aranyarányos tulajdonságainak geometriai alapja.
 :::
 
 ## Gy2.13.1. feladat
@@ -1231,8 +1393,13 @@ Minden $n \ge 2$ esetén $(n-1)^2 + 1 > 1$ és $n^2 + 2n + 2 > 1$, így $n^4 + 4
 **Egyetlen megoldás: $n = 1$.**
 
 ::: elmelet
-**Elméleti háttér — A klasszikus Sophie Germain-formula.**
-Az $n^4 + 4$ kifejezés $n = 1$-re prím (5), minden $n > 1$-re összetett. Ezt használta fel Sophie Germain a Fermat-sejtés parciális bizonyításánál.
+**Elméleti háttér — A Sophie Germain-azonosság.**
+
+A számelmélet egyik legfontosabb algebrai faktorizációja:
+$$a^4 + 4b^4 = (a^2 + 2b^2)^2 - 4a^2 b^2 = (a^2 - 2ab + 2b^2)(a^2 + 2ab + 2b^2).$$
+Alkalmazása: $n^4 + 4^n$ vizsgálatakor, ha $n$ páros ($n = 2k$), a kifejezés páros és nagyobb 2-nél.
+Ha $n$ páratlan ($n = 2k + 1$), akkor $4^n = 4 \cdot 4^{2k} = 4 \cdot (2^k)^4$, így a kifejezés $a^4 + 4b^4$ alakú ($a = n, b = 2^k$).
+A Sophie Germain-azonosság miatt $n > 1$ esetén mindkét faktor 1-nél szigorúan nagyobb egész, így a kifejezés soha nem lehet prím, kivéve az egyetlen $n = 1$ esetet ($1^4 + 4^1 = 5$).
 :::
 
 ## Gy2.13.2. feladat
@@ -1251,8 +1418,13 @@ Ha $n - 2 = -1 \implies n = 1$, akkor $1^3 - 8 = -7$, de negatív szám nem pozi
 **Végeredmény:** $n = 3$ (az érték $19$).
 
 ::: elmelet
-**Elméleti háttér — Köbök különbsége és prímség.**
-Az $n^3 - a^3 = (n - a)(n^2 + an + a^2)$ kifejezésben ha $n > a$, a prímség megköveteli, hogy $n - a = 1 \implies n = a + 1$.
+**Elméleti háttér — Köbök különbsége és prímértékek vizsgálata.**
+
+Az $n^3 - a^3 = (n - a)(n^2 + an + a^2)$ kifejezés csak akkor lehet prímszám egész $n$-re, ha a kisebbik tényező értéke 1 (vagy $-1$):
+Ha $n > a > 0$, a feltétel:
+$$n - a = 1 \implies n = a + 1.$$
+Ekkor a második tényező $n^2 + an + a^2 = (a+1)^2 + a(a+1) + a^2 = 3a^2 + 3a + 1$.
+Ha ez a szám prímszám, akkor kaptunk prím megoldást; minden más $n > a + 1$ értékre a kifejezés összetett szám.
 :::
 
 ## Gy2.14.1. feladat
@@ -1274,7 +1446,13 @@ A 2 valóban prímszám!
 
 ::: elmelet
 **Elméleti háttér — Köbök összege és az egyetlen páros prím.**
-Az $n^3 + 1 = (n+1)(n^2-n+1)$ esetén $n+1 \ge 2$, így az egyetlen mód a prímségre az, ha $n = 1$, ami a legkisebb prímet, a 2-t adja.
+
+A köbök összege felbontása:
+$$p = x^3 + y^3 = (x + y)(x^2 - xy + y^2).$$
+Mivel $p$ prím és $x, y \ge 1$, a tényezők pozitív egészek.
+Az első tényező $x + y \ge 2$. Ahhoz, hogy a szorzat prím legyen, a második tényezőnek szükségképpen 1-nek kell lennie:
+$$x^2 - xy + y^2 = 1 \iff (x - y)^2 + xy = 1.$$
+Mivel $x, y$ pozitív egészek, $xy \ge 1$, az egyetlen lehetőség $x = y = 1$. Ekkor $p = 1^3 + 1^3 = 2$, ami az egyetlen páros prímszám.
 :::
 
 ## Gy2.14.2. feladat
@@ -1295,8 +1473,10 @@ Ha $n = 1$, akkor $1^4 - 1 = 0$, nem prím.
 **NEM létezik ilyen természetes szám.**
 
 ::: elmelet
-**Elméleti háttér — Többtényezős felbontás.**
-Ha egy polinom három vagy több 1-nél nagyobb fokú faktorra bomlik, a helyettesítési érték szinte sosem lehet prím.
+**Elméleti háttér — Polinomok felbonthatósága és Schinzel-hipotézis.**
+
+Ha egy egész együtthatós polinom felbontható több nemkonstans egész polinom szorzatára: $P(x) = A(x) B(x)$, akkor $P(n)$ helyettesítési érték csak véges sok $n$-re lehet prím (azokra, ahol $A(n) = \pm 1$ vagy $B(n) = \pm 1$).
+Ezzel szemben irreducibilis polinomok esetén (mint $n^2 + 1$) a Bunyakovszkij-sejtés és a Schinzel-hipotézis jósolja meg, hogy végtelen sok prímérték keletkezik, ám ez máig bizonyítatlan.
 :::
 
 ## Gy2.15.1. feladat
@@ -1316,8 +1496,14 @@ Természetes számok között nincs megoldás!
 **Végeredmény: Nincs ilyen természetes szám.**
 
 ::: elmelet
-**Elméleti háttér — Paritási korlát négyzetszámok különbségénél.**
-Két egész szám összegének és különbségének paritása mindig megegyezik ($(A+B) \equiv (A-B) \pmod 2$). Ezért ha szorzatuk páros, mindkét faktornak párosnak kell lennie.
+**Elméleti háttér — Négyzetszámok különbsége és a paritási akadály.**
+
+Két egész szám négyzetének különbsége felbontható:
+$$a^2 - b^2 = (a - b)(a + b).$$
+Mivel $(a + b) - (a - b) = 2b$ páros szám, a két tényező ($a - b$ és $a + b$) mindig **azonos paritású**: vagy mindkettő páros, vagy mindkettő páratlan.
+- Ha mindkettő páratlan, a szorzat páratlan szám ($2k + 1$);
+- Ha mindkettő páros, a szorzat osztható 4-gyel ($4k$).
+Következésképpen egyetlen $4k + 2$ alakú szám sem állhat elő két négyzetszám különbségeként! Ezzel szemben minden páratlan szám és minden 4-gyel osztható szám előállítható két négyzetszám különbségeként.
 :::
 
 ## Gy2.15.2. feladat
@@ -1334,8 +1520,12 @@ Ekkor $0^2 + 2(0) = 0 = 0^2$.
 **Egyetlen megoldás: $n = 0$.**
 
 ::: elmelet
-**Elméleti háttér — Egységnyi különbségű négyzetszámok.**
-Az egyetlen pozitív négyzetszám, amelynek különbsége 1 egy másik négyzetszámtól, a 0 és 1 ($1 - 0 = 1$). Minden más szomszédos négyzetszám távolsága legalább 3.
+**Elméleti háttér — Egységnyi különbségű négyzetszámok és prímfelbontás.**
+
+Két egymást követő négyzetszám különbsége:
+$$(n + 1)^2 - n^2 = 2n + 1.$$
+Mivel ez az érték mindig páratlan és $n \ge 1$-re legalább 3, a pozitív négyzetszámok közötti legkisebb különbség $1^2 - 0^2 = 1$. Pozitív számok körében a legkisebb különbség $2^2 - 1^2 = 3$.
+Ennek következtében az $a^2 - b^2 = p$ egyenlet prím $p$ esetén kizárólag az $a - b = 1, a + b = p$ felbontást engedi meg, ami egyértelmű megoldást determinál.
 :::
 
 ## Gy2.16.1. feladat
@@ -1351,8 +1541,13 @@ $42 = 2 \cdot 3 \cdot 7$.
 Mivel $(6, 7) = 1$, ezért $6 \cdot 7 = 42 \mid n^7 - n$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — A $p = 7$ eset.**
-A kis Fermat-tétel közvetlenül adja a legnagyobb prímtényezőt (7), míg a gyöktényezős felbontás a kis prímeket (2 és 3).
+**Elméleti háttér — Kis Fermat-tétel és a legnagyobb prímfaktor megkeresése.**
+
+*Kis Fermat-tétel (1640):* Ha $p$ prímszám és $p \nmid a$, akkor
+$$a^{p-1} \equiv 1 \pmod p.$$
+Következésképpen $p \mid a^{p-1} - 1$.
+Ez azonnal megmutatja a kifejezés prímosztóit: pl. $a^6 - 1$ esetén $p - 1 = 6 \implies p = 7$, így 7 mindig osztója $a^6 - 1$-nek, ha $7 \nmid a$.
+A többi prímosztó az alacsonyabb kitevős faktorokból ($a^3 - 1, a^2 - 1$) adódik.
 :::
 
 ## Gy2.16.2. feladat
@@ -1368,8 +1563,14 @@ Másrészt három egymást követő szám szorzataként osztható 3-mal is.
 Mivel $(8, 3) = 1$, ezért $8 \cdot 3 = 24 \mid n(n^2 - 1)$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Páratlan számok négyzete mod 8.**
-Minden páratlan számra $n^2 \equiv 1 \pmod 8$. Emiatt $8 \mid n^2 - 1$, és a 3-mal való oszthatósággal együtt azonnal adódik a 24-gyel való oszthatóság.
+**Elméleti háttér — Páratlan számok négyzete modulo 8.**
+
+Minden páratlan egész szám felírható $n = 2k + 1$ alakban. Négyzetre emelve:
+$$n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 4k(k + 1) + 1.$$
+Mivel $k$ és $k + 1$ két egymást követő egész szám, egyikük szükségképpen páros, így $k(k+1)$ osztható 2-vel.
+Ebből következik a számelmélet egyik legfontosabb lemmája:
+$$n^2 \equiv 1 \pmod 8 \quad \text{minden páratlan } n \text{ egészre}.$$
+Ez az azonosság kizárja a $8k + 7$ alakú számok három négyzet összegeként való előállítását (Gauss háromnégyzetszám-tétele).
 :::
 
 ## Gy2.17.1. feladat
@@ -1388,8 +1589,12 @@ $$3(2a + 7b) = 2(3a + 4b) + 13b.$$
 Mivel $(3, 13) = 1$, $13 \mid 3a + 4b \iff 13 \mid 2a + 7b$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Determináns-teszt ekvivalenciára.**
-Ha a determináns osztható a prímmel, a két kongruencia kölcsönösen maga után vonja egymást, mert egyik forma a másik invertálható skalárszorosa modulo $p$.
+**Elméleti háttér — Lineáris formák ekvivalenciája modulo $p$ és determináns.**
+
+Két lineáris forma $L_1(x, y) = a_1 x + b_1 y$ és $L_2(x, y) = a_2 x + b_2 y$ pontosan akkor ekvivalens modulo $p$ (azaz $L_1 \equiv 0 \iff L_2 \equiv 0$), ha a formák együtthatói arányosak modulo $p$.
+Ez mátrixnyelven azt jelenti, hogy az együtthatókból képzett mátrix determinánsa:
+$$\Delta = a_1 b_2 - a_2 b_1 \equiv 0 \pmod p.$$
+Ha $\Delta \equiv 0 \pmod p$, a két forma egymás skalárszorosa a $\mathbb{Z}_p$ véges test felett, így magterük (megoldáshalmazuk) megegyezik.
 :::
 
 ## Gy2.17.2. feladat
@@ -1409,8 +1614,11 @@ $$4x + y = 4(3) + 2 = 12 + 2 = 14,$$
 és $19 \nmid 14$. Tehát a következtetés valóban nem érvényes.
 
 ::: elmelet
-**Elméleti háttér — Független formák modulo $p$.**
-Ha a determináns nem osztható $p$-vel, a két forma lineárisan független, így a homogén rendszernek csak a triviális $x \equiv y \equiv 0 \pmod p$ közös megoldása van.
+**Elméleti háttér — Független formák és egyértelmű zérusmegoldás.**
+
+Ha a formák determinánsa nem osztható $p$-vel ($\Delta \not\equiv 0 \pmod p$):
+A formák lineárisan függetlenek $\mathbb{Z}_p$ felett.
+A Cramer-szabály értelmében a homogén $L_1 \equiv 0, L_2 \equiv 0 \pmod p$ kongruenciarendszernek kizárólag a triviális $x \equiv 0, y \equiv 0 \pmod p$ megoldása létezik.
 :::
 
 ## Gy2.18.1. feladat
@@ -1426,8 +1634,14 @@ Mivel $999 = 27 \cdot 37$, a $999$ osztható 27-tel: $999 \equiv 0 \pmod{27}$.
 Ha $27 \mid \overline{abc}$, akkor $10\overline{abc} - 999a$ mindkét tagja osztható 27-tel, így a különbség, $\overline{bca}$ is osztható 27-tel. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Oszthatóság 27-tel.**
-Mivel $999 = 27 \times 37$, a 27 és 37 pontosan ugyanazokat a ciklikus szimmetriatulajdonságokat mutatja 3 jegyű számokra.
+**Elméleti háttér — Ciklikus szimmetria és oszthatóság 27-tel, 37-tel ($999$).**
+
+Mivel $10^3 - 1 = 999 = 27 \cdot 37$:
+Ha egy 3-jegyű szám számjegyeit ciklikusan permutáljuk:
+$$\overline{abc} + \overline{bca} + \overline{cab} = 111(a + b + c) = 3 \cdot 37(a + b + c).$$
+Továbbá a különbségek:
+$$\overline{abc} - \overline{bca} = 99a - 90b - 9c = 9(11a - 10b - c).$$
+Mivel $1000 \equiv 1 \pmod{27}$ és $\pmod{37}$, a 3-as blokkok összege határozza meg az oszthatóságot 27-tel és 37-tel.
 :::
 
 ## Gy2.18.2. feladat
@@ -1464,8 +1678,11 @@ Vizsgáljuk meg a számokat modulo 3:
 **Egyetlen megoldás: $p = 3$.**
 
 ::: elmelet
-**Elméleti háttér — Maradékosztályok lefedése.**
-A $\{0, 10, 14\} \equiv \{0, 1, 2\} \pmod 3$ eltolások lefedik az összes maradékot mod 3, így $p=3$ az egyetlen lehetséges kezdőérték.
+**Elméleti háttér — Teljes maradékrendszerek és fedési tulajdonság.**
+
+Egy $\{r_1, r_2, \dots, r_m\}$ halmazt *teljes maradékrendszernek* nevezünk modulo $m$, ha minden $x \in \mathbb{Z}$ egész szám pontosan egy $r_i$-vel kongruens modulo $m$.
+Ha adott egy számhalmaz, amely lefed minden lehetséges maradékot modulo $m$:
+Bármely egész sorozatból képezett algebrai kifejezés maradéka vizsgálható a maradékosztályokon. Ha a lehetséges értékek között minden maradékosztályból szerepel legalább egy elem, a kifejezés mindig garantáltan osztható lesz $m$-mel egy alkalmas kombinációban.
 :::
 
 ## Gy2.19.2. feladat
@@ -1484,8 +1701,14 @@ Mivel $p > 3$, ezért $8p^2 + 1 > 8(9) + 1 = 73 > 3$, vagyis egy 3-nál nagyobb 
 **Válasz: NEM létezik.**
 
 ::: elmelet
-**Elméleti háttér — Négyzetszámok modulo 3.**
-Minden 3-mal nem osztható egész szám négyzete 1-et ad maradékul 3-mal osztva ($p^2 \equiv 1 \pmod 3$). Ez az egyik leghatékonyabb eszköz diofantoszi kizárásokhoz.
+**Elméleti háttér — Kvadratikus maradékok modulo 3 és négyzetösszegek.**
+
+Modulo 3 vizsgálva az egész számok négyzeteit:
+$$0^2 \equiv 0 \pmod 3, \quad 1^2 \equiv 1 \pmod 3, \quad 2^2 \equiv 1 \pmod 3.$$
+Ezért modulo 3 a négyzetszámok kizárólag 0 vagy 1 maradékot adhatnak: $x^2 \in \{0, 1\} \pmod 3$.
+Két négyzetszám összege: $x^2 + y^2 \in \{0+0, 0+1, 1+1\} = \{0, 1, 2\} \pmod 3$.
+A 0 maradék ($3 \mid x^2 + y^2$) kizárólag $0 + 0$ esetén jöhet létre:
+$$3 \mid x^2 + y^2 \iff 3 \mid x \quad \text{és} \quad 3 \mid y.$$
 :::
 
 ## Gy2.20.1. feladat
@@ -1506,8 +1729,12 @@ Legyen a három prím $p_1 < p_2 < p_3$.
 **Igen, létezik, például a $\{3, 7, 13\}$ prímhármas.**
 
 ::: elmelet
-**Elméleti háttér — Együttes prímfeltételek.**
-Ha az összeg és a négyzetösszeg is prím, a modulo 2 és modulo 3 kongruenciák szigorú megkötéseket adnak, de a ritka prímeloszlás miatt konstrukció lehetséges.
+**Elméleti háttér — Együttes prímfeltételek és a 2-es prím kivételes szerepe.**
+
+Amikor egy feladatban több kifejezés (pl. $p + q$ és $p^2 + q^2$) egyidejű prímségét követeljük meg:
+A paritás a legelső szűrő: két páratlan prím összege páros és legalább $3 + 3 = 6$, így sosem lehet prím!
+Ennek következtében ahhoz, hogy $p + q$ prím lehessen, az egyik prímnek szükségképpen párosnak kell lennie: $p = 2$.
+A 2-es prím rögzítése után a megmaradó kifejezések egyváltozós prímkereséssé egyszerűsödnek, melyek kis modulusok szerinti vizsgálattal determinálhatók.
 :::
 
 ## Gy2.20.2. feladat
@@ -1540,8 +1767,12 @@ Legyen a négy prím $p_1 < p_2 < p_3 < p_4$, összegük $S = p_1^2 + p_2^2 + p_
   Tehát LÉTEZIK ilyen négy prím ($2, 5, 7, 11$)! $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — A 2-es prím és a paritás felborítása.**
-Páros számú négyzetszám összege csak akkor lehet páratlan (így prím), ha pontosan páratlan sok (itt egyetlen) páros tag van benne, ami a 2-es prím kötelező szereplését jelenti.
+**Elméleti háttér — Négyzetösszegek paritása és prímkorlátok.**
+
+Ha $p$ és $q$ prímek és $p^2 + q^2$ prím:
+- Ha mindkét prím páratlan, akkor $p^2 \equiv 1, q^2 \equiv 1 \pmod 2$, így összegük $p^2 + q^2 \ge 9 + 9 = 18$ páros összetett szám.
+- Tehát szükségképpen az egyik prím $p = 2$. Ekkor $4 + q^2$ prím.
+Modulo 3 vizsgálva: ha $q > 3$, akkor $q^2 \equiv 1 \pmod 3$, így $4 + q^2 \equiv 1 + 1 = 2 \pmod 3$. Ha $q = 3$, akkor $4 + 9 = 13$ prím.
 :::
 
 ## Gy2.21.1. feladat
@@ -1558,8 +1789,12 @@ A $p = 3$ prím!
 **Egyetlen megoldás: $(p, q) = (3, 2)$.**
 
 ::: elmelet
-**Elméleti háttér — Páros prímek kényszerfeltétele.**
-A $2q^2 = 8k$ feltétel azonnal determinálja a $q = 2$ értéket, megadva az egyetlen prím megoldást.
+**Elméleti háttér — Páros prímek kényszerfeltétele diofantoszi egyenletekben.**
+
+Amikor egy diofantoszi egyenletben prímek szerepelnek (pl. $p^2 - 2q^2 = 1$ vagy $p^a + q^b = r^c$):
+A paritásvizsgálat a legerősebb első lépés:
+- Ha két prím összege vagy különbsége páratlan, az egyik prímnek szükségképpen párosnak, azaz $2$-nek kell lennie.
+- Modulo 3, 4 vagy 8 vizsgálattal a négyzetszámok lehetséges maradékai ($x^2 \equiv 0, 1 \pmod 3, 4$) kizárják a végtelen ágakat, és véges sok prímértékre redukálják a rendszert.
 :::
 
 ## Gy2.21.2. feladat
@@ -1575,8 +1810,12 @@ Oldjuk meg a prímszámok körében a $p^2 - 5q^2 = 4$ egyenletet!
 **Egyetlen megoldás: $(p, q) = (7, 3)$.**
 
 ::: elmelet
-**Elméleti háttér — Modulo 3 elemzés Pell-típusú egyenleteknél.**
-A $q^2 \equiv 1 \pmod 3$ kongruencia $p^2 \equiv 0 \pmod 3$-at kényszerít ki, ami azonnal korlátozza $p$-t a 3-ra.
+**Elméleti háttér — Pell-típusú diofantoszi egyenletek moduláris szűrése.**
+
+Egy $x^2 - d y^2 = c$ alakú egyenlet vizsgálatánál a modulus megválasztása a kulcs:
+Ha az egyenletet modulo $p$ redukáljuk, ahol $d$ kvadratikus nem-maradék modulo $p$:
+A bal oldal lehetséges maradékai szigorúan korlátozottak. Ha a jobb oldal nem szerepel a lehetséges maradékok között, az egyenletnek semmilyen egész megoldása nem lehet.
+Például modulo 3: $x^2 - 3y^2 \equiv x^2 \in \{0, 1\} \pmod 3$.
 :::
 
 ## Gy2.22.1. feladat
@@ -1594,8 +1833,13 @@ Minden páratlan $m$-re: $(2^2)^m + (3^2)^m \equiv 4^m + (-4)^m = 0 \pmod{13}$.
 **Végtelen sok van: $n = 4k + 2$ ($k \ge 0$).**
 
 ::: elmelet
-**Elméleti háttér — Négyzetek ellentettje modulo $p$.**
-Mivel $a^2 + b^2 = p$ (itt $2^2 + 3^2 = 13$), automatikusan $a^2 \equiv -b^2 \pmod p$, így a páratlan kitevős hatványozás mindig zérust ad.
+**Elméleti háttér — Négyzetek ellentettje és kvadratikus reciprocitás.**
+
+Ha egy $p$ prím felírható $a^2 + b^2 = p$ alakban:
+Modulo $p$ véve az egyenletet: $a^2 \equiv -b^2 \pmod p$.
+Beszorozva $(b^{-1})^2$-tel: $(a b^{-1})^2 \equiv -1 \pmod p$.
+Ez azt jelenti, hogy $-1$ kvadratikus maradék modulo $p$.
+Euler kritériuma szerint $(-1)^{(p-1)/2} \equiv 1 \pmod p$, ami pontosan akkor teljesül, ha $\frac{p-1}{2}$ páros, azaz $p \equiv 1 \pmod 4$ (Fermat karácsonyi tétele).
 :::
 
 ## Gy2.22.2. feladat
@@ -1614,8 +1858,13 @@ Tehát **minden páratlan $n$ pozitív egészre** $7 \mid 2^n + 5^n$!
 **Igen, minden páratlan $n$-re teljesül.**
 
 ::: elmelet
-**Elméleti háttér — Közvetlen ellentett alapok.**
-Ha az alapok összege osztható a modulussal ($a + b \equiv 0 \pmod m$), akkor $a^n + b^n \equiv (-b)^n + b^n \equiv 0 \pmod m$ minden páratlan $n$-re.
+**Elméleti háttér — Ellentett alapok hatványösszege és páratlan kitevők.**
+
+Ha két szám összege osztható egy $m$ modulussal ($a + b \equiv 0 \pmod m$, azaz $b \equiv -a \pmod m$):
+Minden $n$ kitevőre:
+$$a^n + b^n \equiv a^n + (-a)^n = a^n + (-1)^n a^n \pmod m.$$
+- Ha $n$ páratlan: $(-1)^n = -1$, így $a^n - a^n = 0 \pmod m$, vagyis $m \mid a^n + b^n$ minden páratlan $n$-re teljesül!
+- Ha $n$ páros: $a^n + b^n \equiv 2a^n \pmod m$, ami csak akkor osztható $m$-mel, ha $m \mid 2a^n$.
 :::
 
 ---
@@ -1633,8 +1882,13 @@ $$\sum_{k=1}^n (6k - 3) = 6\sum_{k=1}^n k - 3\sum_{k=1}^n 1 = 6 \cdot \frac{n(n+
 **Végeredmény:** $3n^2$.
 
 ::: elmelet
-**Elméleti háttér — Számtani sorozatok összegzése.**
-Az első $n$ páratlan szám összege $n^2$. Ennek 3-szorosa adja a fenti $3n^2$ eredményt.
+**Elméleti háttér — Számtani sorozatok összegzése és másodfokú polinomok.**
+
+Minden $a_k = a_1 + (k-1)d$ számtani sorozat első $n$ tagjának összege egy konstans nélküli másodfokú polinom:
+$$S_n = \sum_{k=1}^n a_k = n \cdot \frac{2a_1 + (n-1)d}{2} = \frac{d}{2} n^2 + \left(a_1 - \frac{d}{2}\right) n.$$
+A feladatban $a_k = 6k - 3$, így $a_1 = 3$ és a differencia $d = 6$.
+Behelyettesítve: $\frac{6}{2} n^2 + (3 - 3) n = 3n^2$.
+Megjegyzés: $6k - 3 = 3(2k - 1)$, így az összeg a klasszikus páratlan számok összegének ($\sum (2k-1) = n^2$) pontosan a 3-szorosa: $3n^2$.
 :::
 
 ## Gy3.1.2. feladat
@@ -1670,8 +1924,12 @@ Mindkét másodfokú tényező diszkriminánsa negatív ($\Delta = 16 - 32 = -16
 **Végeredmény:** $(x^2 - 4x + 8)(x^2 + 4x + 8)$.
 
 ::: elmelet
-**Elméleti háttér — Negyedfokú kifejezések valós faktorizációja.**
-Bármely $x^4 + 4a^4$ alakú kifejezés felbontható két valós másodfokú tényezőre: $(x^2 - 2ax + 2a^2)(x^2 + 2ax + 2a^2)$.
+**Elméleti háttér — Negyedfokú polinomok teljes négyzetté kiegészítése.**
+
+Egy $x^4 + c$ alakú binom valós faktorizációja a teljes négyzetté kiegészítés módszerével történik:
+$$x^4 + 4a^4 = (x^2 + 2a^2)^2 - 4a^2 x^2 = (x^2 - 2ax + 2a^2)(x^2 + 2ax + 2a^2).$$
+Hasonlóan $x^4 + x^2 + 1 = (x^2 + 1)^2 - x^2 = (x^2 - x + 1)(x^2 + x + 1)$.
+Ez a technika garantálja, hogy a negatív diszkriminánsú komplex gyökpárok valós másodfokú faktorokká álljanak össze anélkül, hogy a komplex számtestre át kellene térni.
 :::
 
 ## Gy3.2.2. feladat
@@ -1686,8 +1944,12 @@ Mindkét tényező irreducibilis $\mathbb{Q}$ felett.
 **Végeredmény:** $(x^2 + 1)(x^4 - x^2 + 1)$.
 
 ::: elmelet
-**Elméleti háttér — Körosztási polinomok kapcsolata.**
-A felbontás $x^6 + 1 = \Phi_4(x) \Phi_{12}(x)$, ahol $\Phi_4(x) = x^2 + 1$ és $\Phi_{12}(x) = x^4 - x^2 + 1$ a 4-edik és 12-edik körosztási polinomok.
+**Elméleti háttér — Körosztási polinomok és az $x^n \pm 1$ faktorizációja.**
+
+Az $x^n - 1$ polinom felbontása a primitív egységgyökök $\Phi_d(x)$ körosztási polinomjainak szorzatára:
+$$x^n - 1 = \prod_{d \mid n} \Phi_d(x).$$
+Az $x^6 + 1$ polinom esetén az $y = x^2$ helyettesítéssel $y^3 + 1 = (y + 1)(y^2 - y + 1) = (x^2 + 1)(x^4 - x^2 + 1)$.
+Az $x^4 - x^2 + 1$ tovább bontható valósban: $(x^2 + 1)^2 - 3x^2 = (x^2 - \sqrt{3}x + 1)(x^2 + \sqrt{3}x + 1)$.
 :::
 
 ## Gy3.3.1. feladat
@@ -1708,8 +1970,12 @@ $\frac{4}{\sqrt[3]{2}(\sqrt[3]{2}-1)} = 4 \cdot 2^{-1/3} \cdot \frac{\sqrt[3]{4}
 **Végeredmény:** $4\sqrt[3]{2} + 2\sqrt[3]{4}$ (vagy $2\sqrt[3]{2}(2 + \sqrt[3]{2})$).
 
 ::: elmelet
-**Elméleti háttér — Kiemelés köbgyökös nevezőből.**
-Közös gyöktényező kiemelésével a nevező egyszerűbb binom alakra hozható a köbök különbségének alkalmazása előtt.
+**Elméleti háttér — Köbgyökös nevezők gyöktelenítése (köbök különbsége).**
+
+A $\frac{1}{\sqrt[3]{a} \pm \sqrt[3]{b}}$ típusú törtek gyöktelenítéséhez az $x^3 \pm y^3 = (x \pm y)(x^2 \mp xy + y^2)$ azonosságot alkalmazzuk:
+Ha a nevező $\sqrt[3]{a} - \sqrt[3]{b}$, bővítünk a hiányos négyzetösszeggel:
+$$\sqrt[3]{a^2} + \sqrt[3]{ab} + \sqrt[3]{b^2}.$$
+Ekkor a nevezőben $a - b$ jelenik meg, ami racionális szám. Ha a tagokból közös köbgyöktényező emelhető ki, a bővítés előtt érdemes egyszerűsíteni a számítási lépések minimalizálására.
 :::
 
 ## Gy3.3.2. feladat
@@ -1727,8 +1993,13 @@ $$\frac{(1 + \sqrt{2} - \sqrt{3})\sqrt{2}}{2\sqrt{2} \cdot \sqrt{2}} = \frac{\sq
 **Végeredmény:** $\frac{2 + \sqrt{2} - \sqrt{6}}{4}$.
 
 ::: elmelet
-**Elméleti háttér — Csoportosítási technika.**
-Két lépéses konjugálás: először egy gyököt izolálunk, majd a megmaradó szorzattagot racionalizáljuk.
+**Elméleti háttér — Kétlépéses konjugálás összetett gyökös kifejezéseknél.**
+
+Ha a nevezőben három vagy több gyök szerepel (pl. $1 + \sqrt{2} + \sqrt{3}$):
+1. *Csoportosítás:* a nevezőt két blokkra osztjuk: $A = 1 + \sqrt{2}$ és $B = \sqrt{3}$.
+2. *Első bővítés:* szorzunk az $A - B$ konjugálttal, ekkor a nevező $A^2 - B^2 = (1 + \sqrt{2})^2 - 3 = 2\sqrt{2}$ lesz, amelyben már csak egyetlen négyzetgyök maradt.
+3. *Második bővítés:* szorzunk $\sqrt{2}$-vel, elérve a teljesen racionális nevezőt.
+Ez az eljárás a Galois-elméletben a testbővítések normájának kiszámítását valósítja meg elemi szinten.
 :::
 
 ## Gy3.4.1. feladat
@@ -1745,8 +2016,11 @@ $$x - 1 = 3 \implies x = 4.$$
 **Egyetlen valós gyök: $x = 4$.**
 
 ::: elmelet
-**Elméleti háttér — Köbgyökvonás egyértelműsége valósban.**
-A valós köbgyökfüggvény szigorúan monoton növekvő bijekció $\mathbb{R}$-en, így valósban minden valós számnak pontosan egy köbgyöke van (míg komplexben három).
+**Elméleti háttér — Valós köbgyökvonás egyértelműsége és monotonitása.**
+
+A valós számok halmazán az $f(x) = x^3$ függvény szigorúan monoton növekvő és szürjektív ($\mathbb{R} \to \mathbb{R}$).
+Ennek következtében minden valós számnak pontosan egy valós köbgyöke létezik: $\sqrt[3]{-a} = -\sqrt[3]{a}$.
+A komplex számtest felett ezzel szemben minden nemnulla számnak pontosan 3 köbgyöke van, amelyek a komplex síkon egy szabályos háromszög csúcsait alkotják (a harmadik egységgyökökkel $\omega = e^{2\pi i / 3}$ szorozva).
 :::
 
 ## Gy3.4.2. feladat
@@ -1765,8 +2039,11 @@ Az 1 harmadik egységgyökei: $1, \omega, \omega^2$, ahol $\omega = -\frac{1}{2}
 **A gyökök:** $x_1 = -2$, $x_{2,3} = -\frac{7}{2} \pm i\frac{\sqrt{3}}{2}$.
 
 ::: elmelet
-**Elméleti háttér — Harmadik egységgyökök alkalmazása.**
-Egy $(x - c)^3 = A$ egyenlet gyökei a komplex síkon egy szabályos háromszög csúcsait alkotják, középpontjuk a $c$ valós pont.
+**Elméleti háttér — Köbgyökös azonosságok és Cardano-képletek.**
+
+Ha $\sqrt[3]{a} + \sqrt[3]{b} = c$, mindkét oldalt köbre emelve az $(u + v)^3 = u^3 + v^3 + 3uv(u + v)$ azonosságot alkalmazzuk:
+$$c^3 = a + b + 3\sqrt[3]{ab} \cdot c.$$
+Ez a kapcsolat az alapja a harmadfokú egyenletek Cardano-féle megoldóképletének, és lehetővé teszi összetett gyökös kifejezések zárt egész vagy racionális formára hozását.
 :::
 
 ## Gy3.5.1. feladat
@@ -1781,8 +2058,13 @@ A gyökök $t_1 = 3, t_2 = 7$.
 **Megoldáspárok:** $(u, v) \in \{(3, 7), (7, 3)\}$. (Ellenőrzés: $3+7=10, 3 \cdot 7 = 21$.)
 
 ::: elmelet
-**Elméleti háttér — Szimmetrikus algebrai rendszerek.**
-Az ismeretlenek felcserélhetősége miatt a megoldáshalmaz invariáns a transzpozícióra: $(u, v) \mapsto (v, u)$.
+**Elméleti háttér — Szimmetrikus kétismeretlenes rendszerek és elemi szimmetrikus polinomok.**
+
+Ha egy egyenletrendszer invariáns az ismeretlenek $x \leftrightarrow y$ cseréjére, érdemes bevezetni az elemi szimmetrikus polinomokat:
+$$\sigma_1 = x + y, \quad \sigma_2 = xy.$$
+A magasabb fokú szimmetrikus kifejezések a Newton–Girard formulákkal fejezhetők ki:
+$$x^2 + y^2 = \sigma_1^2 - 2\sigma_2, \quad x^3 + y^3 = \sigma_1^3 - 3\sigma_1 \sigma_2.$$
+A $\sigma_1, \sigma_2$ értékek meghatározása után $x$ és $y$ a $t^2 - \sigma_1 t + \sigma_2 = 0$ másodfokú egyenlet két gyökeként adódik, ami automatikusan adja a szimmetrikus megoldáspárokat.
 :::
 
 ## Gy3.5.2. feladat
@@ -1798,8 +2080,13 @@ Ha $c = 4$, $u = v = 2$. Ha $c < 4$, két különböző valós megoldás van.
 **Feltétel:** $c \le 4$.
 
 ::: elmelet
-**Elméleti háttér — Számtani és mértani közép egyenlőtlensége.**
-Pozitív $u, v$-re $uv \le \left(\frac{u+v}{2}\right)^2 = \left(\frac{4}{2}\right)^2 = 4$. Egyenlőség $u = v = 2$ esetén áll fenn.
+**Elméleti háttér — Newton–Girard-formulák hatványösszegekre.**
+
+Legyenek $s_k = x^k + y^k$ a hatványösszegek és $\sigma_1 = x + y, \sigma_2 = xy$ az elemi szimmetrikus polinomok.
+A rekurzív Newton-formula szerint:
+$$s_k - \sigma_1 s_{k-1} + \sigma_2 s_{k-2} = 0 \quad (k \ge 2).$$
+Kezdeti értékek: $s_0 = 2, s_1 = \sigma_1$.
+Ezzel $s_2 = \sigma_1^2 - 2\sigma_2$, $s_3 = \sigma_1^3 - 3\sigma_1 \sigma_2$, $s_4 = \sigma_1^4 - 4\sigma_1^2 \sigma_2 + 2\sigma_2^2$, ami tetszőleges fokú szimmetrikus egyenletrendszert lineárisan megoldhatóvá tesz.
 :::
 
 ## Gy3.6.1. feladat
@@ -1814,8 +2101,16 @@ Határozzuk meg az $(x^2 - 3x + 2)^3$ polinom fokszámát és konstans tagját!
 **Fokszám: 6, konstans tag: 8.**
 
 ::: elmelet
-**Elméleti háttér — Konstans tag és együtthatóösszeg.**
-Egy polinom konstans tagja mindig $P(0)$, míg az együtthatóinak összege a $P(1)$ helyettesítési érték.
+**Elméleti háttér — Polinomok kiértékelése és együttható-összegek.**
+
+Legyen $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$.
+A kiértékelési leképezés (evaluációs homomorfizmus) alapvető tulajdonságai:
+1. *Konstans tag:* $P(0) = a_0$;
+2. *Összes együttható összege:* $P(1) = \sum_{k=0}^n a_k$;
+3. *Alternáló együttható-összeg:* $P(-1) = a_0 - a_1 + a_2 - \dots + (-1)^n a_n$;
+4. *Páros fokú együtthatók összege:* $\frac{P(1) + P(-1)}{2}$;
+5. *Páratlan fokú együtthatók összege:* $\frac{P(1) - P(-1)}{2}$.
+Ezek a tulajdonságok a polinom kibontása nélkül, tetszőleges szorzat- vagy hatványalakból azonnal kiszámíthatók.
 :::
 
 ## Gy3.6.2. feladat
@@ -1829,8 +2124,13 @@ $$P(1) = (2(1)^2 - 1 + 1)(1^3 - 2) = (2 - 1 + 1)(1 - 2) = 2 \cdot (-1) = -2.$$
 **Az együtthatók összege: $-2$.**
 
 ::: elmelet
-**Elméleti háttér — Helyettesítési érték mint együttható-összegző.**
-Ha $P(x) = \sum a_k x^k$, akkor $P(1) = \sum a_k$. Mivel a kiértékelés gyűrűhomomorfizmus, $P(1) = A(1) B(1)$.
+**Elméleti háttér — Evaluáció mint gyűrűhomomorfizmus.**
+
+A $\operatorname{ev}_c: K[x] \to K, P \mapsto P(c)$ leképezés tetszőleges $c \in K$ esetén gyűrűhomomorfizmus:
+$$\operatorname{ev}_c(P + Q) = P(c) + Q(c), \quad \operatorname{ev}_c(P \cdot Q) = P(c) \cdot Q(c).$$
+Ennek következtében egy szorzatpolinom együtthatóinak összege a tényezők együttható-összegeinek szorzata:
+$$(P \cdot Q)(1) = P(1) \cdot Q(1).$$
+Ez teszi lehetővé hatalmas szorzatok együttható-összegeinek egyetlen lépésben történő kiszámítását.
 :::
 
 ## Gy3.7.1. feladat
@@ -1847,8 +2147,11 @@ A párok, melyek összege 4:
 **Az $x^4$ együtthatója: 6.**
 
 ::: elmelet
-**Elméleti háttér — Célzott együttható-számítás.**
-Nem szükséges az egész polinomot kibontani: elegendő kiválasztani azokat az indexpárokat, amelyek összege a megadott kitevő.
+**Elméleti háttér — Kijelölt fokszámú együtthatók konvolúciója.**
+
+Két polinom szorzatában $P(x) Q(x) = \sum c_k x^k$ a $k$-adik együttható a Cauchy-szorzat (diszkrét konvolúció) szerint:
+$$c_k = \sum_{j=0}^k a_j b_{k-j}.$$
+Egy adott $x^k$ együttható meghatározásához nem kell a teljes szorzatot elvégezni: elegendő megkeresni azokat az $(i, j)$ indexpárokat, amelyekre $i + j = k$, és összegezni az $a_i b_j$ szorzatokat.
 :::
 
 ## Gy3.7.2. feladat
@@ -1866,8 +2169,13 @@ Mivel $c \ge 0$ egész:
 **Az $x^3$ együtthatója: 16.**
 
 ::: elmelet
-**Elméleti háttér — Polinomiális tétel.**
-Többtagú kifejezések hatványozásánál a polinomiális együtthatókat használjuk: $\binom{n}{k_1, \dots, k_r} = \frac{n!}{k_1! \dots k_r!}$.
+**Elméleti háttér — A polinomiális tétel (Multinomial Theorem).**
+
+Többtagú kifejezés hatványozásakor a binomiális tétel általánosítása érvényes:
+$$(x_1 + x_2 + \dots + x_m)^n = \sum_{k_1 + \dots + k_m = n} \binom{n}{k_1, k_2, \dots, k_m} x_1^{k_1} x_2^{k_2} \dots x_m^{k_m},$$
+ahol a multinomiális együttható:
+$$\binom{n}{k_1, \dots, k_m} = \frac{n!}{k_1!\, k_2! \dots k_m!}.$$
+Egy konkrét $x^r$ tag együtthatóját azon index-vektorok adják, amelyeknél a fokszámok súlyozott összege $\sum i \cdot k_i = r$.
 :::
 
 ## Gy3.8.1. feladat
@@ -1885,8 +2193,12 @@ Ez egy nemnulla konstans polinom, melynek fokszáma $\deg(7) = 0$.
 Mindkét polinom ötödfokú volt, összegük nulladfokú.
 
 ::: elmelet
-**Elméleti háttér — Konstans polinom foka.**
-A nemnulla konstans polinom foka 0. A nullpolinom ($P(x) = 0$) foka megegyezés szerint $-\infty$ (vagy nincs értelmezve).
+**Elméleti háttér — A fokszám axiómái és a nullpolinom foka.**
+
+Egy $P(x) = \sum a_k x^k$ polinom fokán a legmagasabb nemnulla együtthatójú tag kitevőjét értjük: $\deg P = \max\{k : a_k \neq 0\}$.
+- Nemnulla konstans polinom foka: $\deg(c) = 0$ ($c \neq 0$);
+- Nullpolinom foka: konvenció szerint $\deg(0) = -\infty$ (vagy nincs értelmezve).
+Ennek a konvenciónak az oka a szorzási fokszámtétel megőrzése: $\deg(P \cdot Q) = \deg P + \deg Q$, ami $-\infty$-nel is érvényes marad ($-\infty + k = -\infty$).
 :::
 
 ## Gy3.8.2. feladat
@@ -1903,8 +2215,12 @@ A főegyütthatója megegyezik $f$ főegyütthatójával.
 **Egyetlen lehetséges érték: $\deg(g) = 5$.**
 
 ::: elmelet
-**Elméleti háttér — Fokszám-aszimmetria.**
-Ha két polinom foka eltérő, összegük és különbségük foka determinisztikusan megegyezik a nagyobbik fokkal, kiejtés nem lehetséges.
+**Elméleti háttér — Polinomösszeg foka és a vezértagok kiejtése.**
+
+Tetszőleges $P, Q \in K[x]$ polinomokra:
+$$\deg(P + Q) \le \max(\deg P, \deg Q).$$
+- Ha $\deg P \neq \deg Q$, akkor egyenlőség áll fenn: $\deg(P + Q) = \max(\deg P, \deg Q)$ (a nagyobbik fok determinálja az összeget).
+- Ha $\deg P = \deg Q$, akkor a vezértagok összeadódhatnak vagy kiejthetik egymást. Ha a főegyütthatók ellentettek ($a_n + b_n = 0$), a fokszám szigorúan csökkenhet, akár $-\infty$-ig is (ha $P = -Q$).
 :::
 
 ## Gy3.9.1. feladat
@@ -1920,8 +2236,13 @@ $a + b = 8$ és $\deg(P + Q) = 6$.
 **Egyetlen lehetőség: az egyik másodfokú, a másik hatodfokú (fokszámok: 2 és 6).**
 
 ::: elmelet
-**Elméleti háttér — Különböző fokszámok esete.**
-Ha az összeg foka nagyobb a szorzat fokának felénél, a két fokszám nem lehet egyenlő, így a nagyobbik fok determinált.
+**Elméleti háttér — Fokszám-egyenletek integritási tartományok felett.**
+
+Ha $K$ egy test (vagy integritási tartomány):
+$$\deg(P \cdot Q) = \deg P + \deg Q.$$
+Ha egy egyenletrendszerben megadott az összeg és a szorzat foka:
+$\deg(P \cdot Q) = d_1 + d_2 = S$ és $\deg(P + Q) = \max(d_1, d_2) = M$ (feltéve, hogy nincs kiejtés).
+Ebből a kétismeretlenes lineáris rendszerből a két polinom foka egyértelműen meghatározható.
 :::
 
 ## Gy3.9.2. feladat
@@ -1936,8 +2257,14 @@ De az összeg foka legfeljebb $\max(a, b) \le 6$, így nem lehet 7!
 **NEM létezik ilyen polinom.**
 
 ::: elmelet
-**Elméleti háttér — Összeg és szorzat foka közti univerzális korlát.**
-Minden nemnulla polinomra $\deg(P + Q) \le \max(\deg P, \deg Q) \le \deg(P) + \deg(Q) = \deg(PQ)$. Az összeg foka sohasem haladhatja meg a szorzat fokát.
+**Elméleti háttér — Összetett polinomok foka (láncszabály fokszámokra).**
+
+Ha $P(x)$ és $Q(x)$ nemnulla polinomok, akkor kompozíciójuk $P(Q(x))$ foka:
+$$\deg(P \circ Q) = \deg P \cdot \deg Q.$$
+*Bizonyítás:* Legyen $P(x) = a_n x^n + \dots$ ($a_n \neq 0$) és $Q(x) = b_m x^m + \dots$ ($b_m \neq 0$).
+Ekkor $P(Q(x)) = a_n (b_m x^m + \dots)^n + \dots = a_n b_m^n x^{n \cdot m} + \dots$
+Mivel a főegyüttható $a_n b_m^n \neq 0$, a fokszám pontosan $n \cdot m$.
+A kompozíció foka tehát multiplikatív, szemben a szorzat fokának additív természetével.
 :::
 
 ## Gy3.10.1. feladat
@@ -1956,8 +2283,13 @@ A hányados $x^2 - x - 6 = (x - 3)(x + 2)$.
 **A gyökök:** $x = 3$ (kétszeres gyök) és $x = -2$ (egyszeres gyök).
 
 ::: elmelet
-**Elméleti háttér — Többszörös gyökök.**
-Ha a hányadosnak is gyöke $c$, akkor $c$ többszörös gyöke az eredeti polinomnak.
+**Elméleti háttér — Gyöktényező leválasztása és multiplicitás.**
+
+Ha $P(c) = 0$, a Bézout-tétel szerint $P(x) = (x - c) Q(x)$.
+A $c$ gyök multiplicitása (többszörössége) az a maximális $m \ge 1$ egész szám, amelyre $(x - c)^m \mid P(x)$.
+Ez azt jelenti, hogy:
+$$P(x) = (x - c)^m R(x), \quad \text{ahol } R(c) \neq 0.$$
+A multiplicitás megállapításához a gyöktényezőt iteratívan osztjuk le (Horner-elrendezéssel), amíg a hányados helyettesítési értéke nem zérus.
 :::
 
 ## Gy3.10.2. feladat
@@ -1977,8 +2309,15 @@ Hányados: $x^2 + x - 6 = (x - 2)(x + 3)$.
 **Gyökök:** $1, 2, -3$.
 
 ::: elmelet
-**Elméleti háttér — Könnyű gyökök tesztelése.**
-Ha az együtthatók összege 0, akkor $x = 1$ mindig gyök. Ha a páros és páratlan fokú együtthatók összege megegyezik, akkor $x = -1$ gyök.
+**Elméleti háttér — Maradékos osztás másodfokú polinommal és Lagrange-interpoláció.**
+
+Ha egy $P(x)$ polinomot osztunk egy $D(x) = (x - a)(x - b)$ ($a \neq b$) szorzattal:
+$$P(x) = Q(x)(x - a)(x - b) + R(x), \quad \text{ahol } R(x) = Ax + B.$$
+A maradék egy legfeljebb elsőfokú polinom.
+Behelyettesítve $x = a$ és $x = b$ értékeket:
+$$R(a) = P(a), \quad R(b) = P(b).$$
+A két egyenletből $A$ és $B$ azonnal adódik, ami pontosan a 2 pontra felírt Lagrange-féle interpolációs polinom:
+$$R(x) = P(a)\frac{x - b}{a - b} + P(b)\frac{x - a}{b - a}.$$
 :::
 
 ## Gy3.11.1. feladat
@@ -1998,8 +2337,15 @@ Tehát: $P(-2) = 39$, a hányados: $g(x) = 2x^3 - 7x^2 + 14x - 23$.
 **Eredmény:** $P(x) = (x + 2)(2x^3 - 7x^2 + 14x - 23) + 39$, $P(-2) = 39$.
 
 ::: elmelet
-**Elméleti háttér — Hiányzó tagok kezelése a Horner-táblázatban.**
-Gyakori hiba a 0 együtthatójú tagok kihagyása. A hiányzó hatványok helyére mindig 0-t kell írni, különben a fokszámok és az együtthatók elcsúsznak.
+**Elméleti háttér — Maradékos osztás négyzetes gyöktényezővel $(x-a)^2$.**
+
+Ha az osztó $D(x) = (x - a)^2$:
+A maradék $R(x) = Ax + B$ alakú.
+Taylor-fejtést alkalmazva a $P(x)$ polinomra az $x = a$ pont körül:
+$$P(x) = P(a) + P'(a)(x - a) + \frac{P''(a)}{2}(x - a)^2 + \dots$$
+Mivel az $(x - a)^2$-es és magasabb tagok mind oszthatók $(x - a)^2$-tel:
+$$R(x) = P'(a)(x - a) + P(a) = P'(a)x + (P(a) - a P'(a)).$$
+Így az $x$ együtthatója mindig az első derivált helyettesítési értéke $P'(a)$, míg a konstans tag $P(a) - a P'(a)$.
 :::
 
 ## Gy3.11.2. feladat
@@ -2018,8 +2364,13 @@ A maradék 0, tehát $x - 3$ **osztója** $Q(x)$-nek, és a hányados $x^3 + x^2
 **Igen, osztója.**
 
 ::: elmelet
-**Elméleti háttér — Oszthatóság Hornerrel.**
-A maradék 0 volta egyenértékű az oszthatósággal. A hányados $x^3 + x^2 + x + 1 = (x^2 + 1)(x + 1)$ további gyökei azonnal leolvashatók.
+**Elméleti háttér — Osztási maradékok deriválttal nagy kitevőkre.**
+
+Nagy kitevőjű $x^n$ polinomok esetén a fenti Taylor-maradék formula azonnali választ ad:
+Ha $P(x) = x^n$, akkor $P(a) = a^n$ és $P'(x) = n x^{n-1} \implies P'(a) = n a^{n-1}$.
+A maradék:
+$$R(x) = n a^{n-1}(x - a) + a^n = n a^{n-1} x - (n - 1)a^n.$$
+Ez szükségtelenné teszi a hosszú polinomosztási algoritmus elvégzését.
 :::
 
 ## Gy3.12.1. feladat
@@ -2039,8 +2390,12 @@ A maradék nem 0! Tehát $x = 2$ csak **egyszeres gyök**.
 **Multiplicitás: 1 (egyszeres gyök).**
 
 ::: elmelet
-**Elméleti háttér — Multiplicitás deriválttal.**
-Ha az első derivált helyettesítési értéke nem nulla ($f'(c) \ne 0$), a gyök szükségszerűen egyszeres.
+**Elméleti háttér — Gyökök multiplicitása és a formális derivált.**
+
+*Tétel:* A $c$ szám pontosan akkor legalább $m$-szeres gyöke a $P(x)$ polinomnak, ha
+$$P(c) = P'(c) = P''(c) = \dots = P^{(m-1)}(c) = 0.$$
+Pontosan akkor $m$-szeres gyök, ha a fenti egyenlőségek mellett $P^{(m)}(c) \neq 0$.
+*Bizonyítás Taylor-sorral:* A $P(x) = \sum_{k=0}^n \frac{P^{(k)}(c)}{k!} (x - c)^k$ kifejtésben az első $m$ együttható zérus, így $(x - c)^m$ kiemelhető, és a megmaradó konstans tag $\frac{P^{(m)}(c)}{m!} \neq 0$.
 :::
 
 ## Gy3.12.2. feladat
@@ -2055,8 +2410,12 @@ Tehát a gyöktényezős alak $(x + 2)^4$, a $-2$ **négyszeres gyök**.
 **Multiplicitás: 4.**
 
 ::: elmelet
-**Elméleti háttér — Binomiális kifejtés és maximális multiplicitás.**
-Ha egy $n$-edfokú polinom $(x - c)^n$ alakú, akkor $c$ az egyetlen gyök, és multiplicitása megegyezik a fokszámmal ($n$).
+**Elméleti háttér — Közös gyökök és deriváltak legnagyobb közös osztója.**
+
+*Tétel:* A $P(x)$ polinomnak a $c$ szám pontosan akkor többszörös gyöke, ha $c$ közös gyöke $P(x)$-nek és a formális deriváltjának $P'(x)$-nek:
+$$(x - c)^2 \mid P(x) \iff (x - c) \mid \gcd(P(x), P'(x)).$$
+Ennek következtében a $P(x)$ polinom pontosan akkor négyzetmentes (minden gyöke egyszeres), ha $\gcd(P(x), P'(x)) = 1$.
+Ez a teszt az euklideszi algoritmussal a gyökök explicit kiszámítása nélkül elvégezhető!
 :::
 
 ## Gy3.13.1. feladat
@@ -2076,8 +2435,13 @@ $$f(x) = (x - 1)^3 + 3(x - 1)^2.$$
 **Eredmény:** $(x - 1)^3 + 3(x - 1)^2$.
 
 ::: elmelet
-**Elméleti háttér — Többszörös gyök leolvasása Taylor-alakból.**
-Mivel a legalacsonyabb fellépő hatvány $(x - 1)^2$, azonnal látható, hogy $x = 1$ pontosan kétszeres gyök.
+**Elméleti háttér — Polinomok Taylor-fejtése pont körül.**
+
+Tetszőleges $n$-edfokú $P(x)$ polinom és tetszőleges $c \in K$ esetén létezik egyértelmű felírás az $x - c$ hatványai szerint:
+$$P(x) = b_0 + b_1(x - c) + b_2(x - c)^2 + \dots + b_n(x - c)^n.$$
+A Taylor-formula szerint az együtthatók: $b_k = \frac{P^{(k)}(c)}{k!}$.
+A $b_0, b_1, \dots, b_n$ együtthatók kiszámításának leggyorsabb módja az iterált Horner-elrendezés $c$-vel való leosztásokkal.
+A legkisebb nemnulla $b_k$ indexe pontosan megadja a $c$ gyök multiplicitását.
 :::
 
 ## Gy3.13.2. feladat
@@ -2094,8 +2458,11 @@ Főegyüttható: $d_3 = 1$.
 **Eredmény:** $P(x) = (x + 1)^3 + (x + 1)^2 + (x + 1) + 2$.
 
 ::: elmelet
-**Elméleti háttér — Eltolás negatív alappal.**
-A $c = -1$ helyettesítés a polinom $x \mapsto x - 1$ eltoltját adja.
+**Elméleti háttér — Báziscsere polinomterekben és Taylor-transzformáció.**
+
+Az $\{1, x, x^2, \dots, x^n\}$ monom-bázisról az $\{1, (x-c), (x-c)^2, \dots, (x-c)^n\}$ eltolt bázisra való áttérés a polinomterek automorfizmusa.
+A transzformációs mátrix egy alsó háromszögmátrix, melynek elemei a Pascal-háromszög binomiális együtthatói $\binom{i}{j} c^{i-j}$.
+Az áttérés megőrzi a műveleti struktúrát és a gyökök multiplicitását.
 :::
 
 ## Gy3.14.1. feladat
@@ -2110,8 +2477,15 @@ A Horner-módszer több mint 50-szer gyorsabb!
 **Horner: 100, naiv: 5050.**
 
 ::: elmelet
-**Elméleti háttér — Műveletigény összehasonlítása.**
-Nagy fokszámoknál a kvadratikus $O(n^2)$ növekedés és a lineáris $O(n)$ közötti különbség kritikus a numerikus algoritmusokban.
+**Elméleti háttér — Racionális gyökteszt (Gauss-lemma következménye).**
+
+*Tétel:* Legyen $P(x) = a_n x^n + \dots + a_1 x + a_0$ egy egész együtthatós polinom ($a_i \in \mathbb{Z}, a_n \neq 0, a_0 \neq 0$).
+Ha a $\frac{p}{q}$ tovább nem egyszerűsíthető tört ($\gcd(p, q) = 1$) gyöke $P$-nek, akkor:
+$$p \mid a_0 \quad (\text{a számláló osztja a konstans tagot}),$$
+$$q \mid a_n \quad (\text{a nevező osztja a főegyütthatót}).$$
+*Bizonyítás:* Behelyettesítve és $q^n$-nel beszorozva: $a_n p^n + a_{n-1} p^{n-1}q + \dots + a_0 q^n = 0$.
+Átrendezve: $p(-a_n p^{n-1} - \dots) = a_0 q^n \implies p \mid a_0 q^n \implies p \mid a_0$ (mivel $\gcd(p, q) = 1$). Hasonlóan $q \mid a_n p^n \implies q \mid a_n$.
+Főpolinomnál ($a_n = 1$) minden racionális gyök szükségképpen egész szám!
 :::
 
 ## Gy3.14.2. feladat
@@ -2127,8 +2501,13 @@ $$n.$$
 **Összesen $n$ összeadás szükséges.**
 
 ::: elmelet
-**Elméleti háttér — Horner-módszer összeadási korlátja.**
-A szorzások és összeadások száma is pontosan $n$, így a teljes aritmetikai műveletigény $2n$ flopo.
+**Elméleti háttér — Racionális gyökök kizárási tesztje moduláris redukcióval.**
+
+Ha a racionális gyökteszt túl sok $\pm p/q$ jelöltet ad:
+Egy egész polinom gyökére tetszőleges $m \in \mathbb{Z}$ esetén teljesül, hogy $x - m \mid P(x) - P(m)$.
+Speciálisan tetszőleges egész $m$-re:
+$$p - m q \mid P(m).$$
+$m = 1$ és $m = -1$ választással a $p - q \mid P(1)$ és $p + q \mid P(-1)$ szigorú feltételek a jelöltek túlnyomó többségét azonnal kizárják.
 :::
 
 ## Gy3.15.1. feladat
@@ -2150,8 +2529,13 @@ Ellenőrzés: $f(3) = 9 - 4 = 5$, $f(8) = 24 - 4 = 20$.
 **Igen, létezik, például az $f(x) = 3x - 4$ polinom.**
 
 ::: elmelet
-**Elméleti háttér — Lagrange-interpoláció egész együtthatókkal.**
-Két pont esetén az $a - b \mid f(a) - f(b)$ feltétel szükséges és elégséges arra, hogy létezzen egész együtthatós elsőfokú interpolációs polinom.
+**Elméleti háttér — Viète-formulák gyökök és együtthatók kapcsolatára.**
+
+Ha $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_0$ gyökei $\alpha_1, \dots, \alpha_n \in \mathbb{C}$:
+A gyöktényezős alak $P(x) = a_n \prod_{i=1}^n (x - \alpha_i)$ beszorzásával és együttható-egyeztetéssel adódnak a Viète-formulák:
+$$\sum_{i=1}^n \alpha_i = -\frac{a_{n-1}}{a_n}, \quad \sum_{1 \le i < j \le n} \alpha_i \alpha_j = \frac{a_{n-2}}{a_n}, \quad \dots, \quad \prod_{i=1}^n \alpha_i = (-1)^n \frac{a_0}{a_n}.$$
+Másodfokú polinomra ($a x^2 + b x + c$): $x_1 + x_2 = -b/a$, $x_1 x_2 = c/a$.
+Harmadfokúra: $x_1 + x_2 + x_3 = -b/a$, $x_1 x_2 + x_1 x_3 + x_2 x_3 = c/a$, $x_1 x_2 x_3 = -d/a$.
 :::
 
 ## Gy3.15.2. feladat
@@ -2174,8 +2558,13 @@ A paritás szerint $c$ vagy páros, vagy páratlan:
 Mivel $c$ sem páros, sem páratlan nem lehet, $P(x)$-nek nem létezik egész gyöke. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Paritási akadály egész gyökökre.**
-Modulo 2 vizsgálva: ha $P(0) \equiv 1 \pmod 2$ és $P(1) \equiv 1 \pmod 2$, akkor a polinom sehol sem vehet fel 0 értéket mod 2, így nem lehet egész gyöke.
+**Elméleti háttér — Szimmetrikus gyökkifejezések és Viète-formulák.**
+
+A Viète-formulák lehetővé teszik a gyökök bármely szimmetrikus függvényének kiszámítását anélkül, hogy magukat a gyököket ismernénk:
+Például gyökök négyzetösszege harmadfokú polinomra:
+$$x_1^2 + x_2^2 + x_3^2 = (x_1 + x_2 + x_3)^2 - 2(x_1 x_2 + x_1 x_3 + x_2 x_3) = \left(-\frac{b}{a}\right)^2 - 2\left(\frac{c}{a}\right) = \frac{b^2 - 2ac}{a^2}.$$
+Gyökök reciprokösszege:
+$$\frac{1}{x_1} + \frac{1}{x_2} + \frac{1}{x_3} = \frac{x_1 x_2 + x_1 x_3 + x_2 x_3}{x_1 x_2 x_3} = \frac{c/a}{-d/a} = -\frac{c}{d}.$$
 :::
 
 ## Gy3.16.1. feladat
@@ -2192,8 +2581,14 @@ Mutassuk meg, hogy az $f(x) = x^2 - x + 41$ polinom értéke $x = 41$ és $x = 4
   Két prím szorzata, tehát összetett szám. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Euler-polinom faktorizációja a határnál.**
-A $P(p) \equiv P(0) \equiv 0 \pmod p$ azonosság garantálja, hogy a konstans tag ($p = 41$) helyettesítésével a polinom értéke osztható lesz $p$-vel, így összetett számot kapunk.
+**Elméleti háttér — A Horner-elrendezés (Ruffini–Horner-algoritmus).**
+
+A Horner-módszer a polinomok kiértékelésének és gyöktényezővel való maradékos osztásának optimális numerikus algoritmusa:
+$$P(x) = (\dots((a_n x + a_{n-1})x + a_{n-2})x + \dots + a_1)x + a_0.$$
+A Horner-táblázat első sorában a polinom együtthatói állnak.
+A második sor elemei a rekurzió szerint számolódnak: $b_n = a_n$, és $b_{k} = a_k + c \cdot b_{k+1}$.
+- Az utolsó elem $b_0$ pontosan a $P(c)$ helyettesítési érték (és a maradék);
+- A többi $b_n, \dots, b_1$ elem a $Q(x) = \frac{P(x) - P(c)}{x - c}$ hányadospolinom együtthatói.
 :::
 
 ## Gy3.16.2. feladat
@@ -2210,8 +2605,13 @@ Ha $P(x_0) = c \ne 0$ valamely $x_0$-ra:
 Tehát végtelen sok összetett érték keletkezik. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Polinomok aszimptotikus divergenciája.**
-Minden nem konstans polinom határértéke a végtelenben $\pm\infty$. Ezért az értékei előbb-utóbb meghaladják a rögzített osztókat, ami összetett számokat eredményez.
+**Elméleti háttér — Horner-elrendezés alkalmazása deriváltak számítására.**
+
+A teljes Taylor-polinom együtthatóinak kiszámításához a Horner-sémát iteráltan alkalmazzuk:
+1. Az első Horner-menet adja a maradékot $b_0 = P(c)$, és a hányados $Q_1(x)$-et.
+2. A második menet a $Q_1(x)$-re adja a $b_1 = P'(c)$ értéket, és a $Q_2(x)$-et.
+3. A $k$-adik menet a $b_{k-1} = \frac{P^{(k-1)}(c)}{(k-1)!}$ értéket adja.
+Ez az algoritmus numerikusan stabil és minimális számú műveletet igényel ($O(n^2)$ szorzás és összeadás).
 :::
 
 ## Gy3.17.1. feladat
@@ -2229,8 +2629,15 @@ Ha $q \in \{p_1, \dots, p_k\}$, akkor $q \mid N \implies q \mid N^2$, így $q \m
 Tehát $q$ egy új prím! Így végtelen sok prím osztója $n^2 + 1$-nek. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Eukleidészi konstrukció $x^2 + 1$-re.**
-Mivel $q \mid N^2 + 1 \iff N^2 \equiv -1 \pmod q$, ez azt is bizonyítja, hogy végtelen sok $4k + 1$ alakú prím létezik!
+**Elméleti háttér — Schönemann–Eisenstein-féle irreducibilitási kritérium.**
+
+*Tétel (Eisenstein, 1850):* Legyen $P(x) = a_n x^n + \dots + a_1 x + a_0 \in \mathbb{Z}[x]$.
+Ha létezik olyan $p$ prímszám, amelyre:
+1. $p \nmid a_n$ ($p$ nem osztja a főegyütthatót);
+2. $p \mid a_i$ minden $0 \le i \le n - 1$ esetén ($p$ osztja az összes többi együtthatót);
+3. $p^2 \nmid a_0$ ($p$ négyzete nem osztja a konstans tagot);
+akkor a $P(x)$ polinom irreducibilis a racionális számtest $\mathbb{Q}$ felett (és primitív polinom esetén $\mathbb{Z}$ felett is).
+*Bizonyítás:* Modulo $p$ redukálva $\bar{P}(x) = \bar{a}_n x^n$, ami mutatja, hogy bármely valódi faktor konstans tagja osztható lenne $p$-vel, ami ellentmond $p^2 \nmid a_0$-nak.
 :::
 
 ## Gy3.17.2. feladat
@@ -2245,8 +2652,12 @@ Ha az értékek mind $2^a 3^b$ alakúak lennének, akkor a prímosztók halmaza 
 Ez közvetlenül ellentmond Schur tételének. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — S-egységek és diofantoszi geometriák.**
-Ez a Siegel-tétel egyik legegyszerűbb esete: polinomok értékei nem szorítkozhatnak egy véges prímhalmaz által generált multiplikatív csoportba (S-egységek).
+**Elméleti háttér — Eltolt Eisenstein-kritérium (transzlációs módszer).**
+
+Ha egy $P(x)$ polinomra közvetlenül nem alkalmazható az Eisenstein-kritérium, gyakran sikeres az $x \mapsto x + c$ transzformáció:
+Mivel $P(x)$ pontosan akkor reducibilis $\mathbb{Q}$ felett, ha $Q(x) = P(x + c)$ reducibilis, ha $Q(x)$-re találunk megfelelő Eisenstein-prímet, $P(x)$ is irreducibilis.
+Klasszikus példa: a $p$-edik körosztási polinom $\Phi_p(x) = \frac{x^p - 1}{x - 1} = x^{p-1} + \dots + x + 1$.
+$x \mapsto x + 1$ helyettesítéssel $\Phi_p(x+1) = \frac{(x+1)^p - 1}{x} = x^{p-1} + \binom{p}{1} x^{p-2} + \dots + p$, amelyre $p$-vel teljesül az Eisenstein-kritérium, így $\Phi_p(x)$ irreducibilis $\mathbb{Q}$ felett.
 :::
 
 ## Gy3.18.1. feladat
@@ -2262,8 +2673,14 @@ $f(x) = (x - c)^3 f_1(x)$ és $g(x) = (x - c)^3 g_1(x)$.
 **Válasz: Legalább 3-szoros gyök (lehet nagyobb is, vagy a nullpolinom).**
 
 ::: elmelet
-**Elméleti háttér — Azonos multiplicitások összege.**
-Ha $m_c(f) = m_c(g) = k$, az összeg multiplicitása bármilyen $m \ge k$ értéket felvehet a maradvány-együtthatók arányától függően.
+**Elméleti háttér — Az algebra alaptétele és irreducibilitás $\mathbb{C}$ és $\mathbb{R}$ felett.**
+
+1. *$\mathbb{C}$ felett (Gauss, 1799):* A komplex számtest algebrailag zárt, minden nemkonstans polinomnak van komplex gyöke. Ezért $\mathbb{C}[x]$-ben az irreducibilis polinomok kizárólag az 1-fokú (lineáris) polinomok: $a x + b$.
+2. *$\mathbb{R}$ felett:* A valós együtthatós polinomok komplex gyökei konjugált párokban lépnek fel. A nemvalós gyökpárokhoz $(x - (u + iv))(x - (u - iv)) = x^2 - 2ux + (u^2 + v^2)$ alakú negatív diszkriminánsú valós másodfokú faktorok tartoznak.
+Ezért $\mathbb{R}[x]$-ben az irreducibilis polinomok pontosan:
+- az 1-fokú polinomok;
+- a negatív diszkriminánsú ($b^2 - 4ac < 0$) 2-fokú polinomok.
+Semmilyen 3 vagy magasabb fokú polinom nem lehet irreducibilis $\mathbb{R}$ felett!
 :::
 
 ## Gy3.18.2. feladat
@@ -2279,8 +2696,11 @@ $$m_1(f^2 + g) = \min(4, 3) = 3.$$
 **A multiplicitás pontosan 3.**
 
 ::: elmelet
-**Elméleti háttér — Hatvány és összeg kombinációja.**
-$m_c(f^k) = k \cdot m_c(f)$. Különböző multiplicitású tagok összeadásakor mindig a kisebbik multiplicitás dominál.
+**Elméleti háttér — Irreducibilitás $\mathbb{Q}$ felett: tetszőleges fokszámok.**
+
+Szemben $\mathbb{C}$-vel és $\mathbb{R}$-rel, a racionális számtest $\mathbb{Q}$ felett tetszőleges magas fokú irreducibilis polinomok léteznek!
+Például tetszőleges $n \ge 1$ egészre az $x^n - 2$ polinom az Eisenstein-kritérium szerint ($p = 2$) irreducibilis $\mathbb{Q}$ felett.
+Ez az oka annak, hogy a racionális testbővítések és az algebrai számtestek végtelenül gazdag struktúrával bírnak.
 :::
 
 ## Gy3.19.1. feladat
@@ -2296,8 +2716,13 @@ Ekkor $(x - 3)^2 = 0$, a kétszeres gyök $x = 3$.
 **Végeredmény: $k = 9$.**
 
 ::: elmelet
-**Elméleti háttér — Másodfokú diszkrimináns.**
-$D = b^2 - 4ac = 0$ biztosítja a teljes négyzetté alakíthatóságot.
+**Elméleti háttér — Euklideszi algoritmus polinomokra és l.n.k.o.**
+
+A $K[x]$ polinomgyűrű (ahol $K$ test) euklideszi gyűrű a fokszám normával: tetszőleges $A(x), B(x)$ polinomokra ($B \neq 0$) léteznek egyértelmű $Q(x)$ és $R(x)$ polinomok, hogy
+$$A(x) = Q(x) B(x) + R(x), \quad \text{ahol } \deg R < \deg B \text{ vagy } R = 0.$$
+Az euklideszi algoritmus lépései: $R_{k-1} = Q_k R_k + R_{k+1}$.
+Az utolsó nemnulla maradék a két polinom legnagyobb közös osztója, $\gcd(A, B)$ (főpolinomra normálva).
+A polinomok akkor relatív prímek, ha $\gcd(A, B) = 1$.
 :::
 
 ## Gy3.19.2. feladat
@@ -2314,8 +2739,11 @@ Helyettesítsük be $f$-be:
 Tényezőkre bontva: $x^3 - 3x + 2 = (x - 1)^2 (x + 2)$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Többszörös gyökök tesztelése deriválttal.**
-Ha a derivált valamely gyöke az eredeti polinomnak is gyöke, akkor az a pont szükségképpen többszörös gyök.
+**Elméleti háttér — Polinom euklideszi algoritmus törtmentesítése.**
+
+Egész együtthatós polinomok euklideszi algoritmusa során a törtek elkerülésére a pszeudo-osztást (pseudo-division) alkalmazzuk:
+Ha a vezértag nem osztja a másik vezértagot, az osztandót megszorozzuk az osztó főegyütthatójának megfelelő hatványával ($b_m^{\deg A - \deg B + 1}$), így minden köztes lépésben az együtthatók egészek maradnak.
+A kapott l.n.k.o. a racionális számtest felett a Gauss-lemma szerint a tartalom (együtthatók l.n.k.o.-ja) leosztásával primitív egész polinomként áll elő.
 :::
 
 ## Gy3.20.1. feladat
@@ -2332,8 +2760,13 @@ $$\frac{p}{q} \in \left\{ \pm 1, \pm 2, \pm \frac{1}{3}, \pm \frac{2}{3} \right\
 Összesen 8 lehetséges racionális gyök van. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Jelöltek generálása.**
-A jelöltek halmaza a számláló és nevező osztóinak összes lehetséges kombinációjából áll, előjellel ellátva.
+**Elméleti háttér — Bézout-azonosság polinomokra.**
+
+*Tétel:* Tetszőleges $A(x), B(x) \in K[x]$ polinomokhoz léteznek olyan $u(x), v(x) \in K[x]$ polinomok, hogy
+$$u(x) A(x) + v(x) B(x) = \gcd(A(x), B(x)).$$
+Különösen, ha $A$ és $B$ relatív prímek ($\gcd = 1$):
+$$u(x) A(x) + v(x) B(x) = 1.$$
+Az $u(x), v(x)$ Bézout-polinomok a kibővített euklideszi algoritmussal határozhatók meg a maradékok visszahelyettesítésével. A fokszámok választhatók úgy, hogy $\deg u < \deg B$ és $\deg v < \deg A$.
 :::
 
 ## Gy3.20.2. feladat
@@ -2354,8 +2787,13 @@ Egyik sem gyök.
 **Tehát az egyenletnek nincs racionális gyöke.**
 
 ::: elmelet
-**Elméleti háttér — Irracionalitás bizonyítása gyökteszttel.**
-Ha az összes lehetséges racionális jelölt kiesik, a polinomnak nem létezhet racionális gyöke. Valós gyöke ettől még lehet (itt egy valós irracionális gyök van).
+**Elméleti háttér — Kibővített euklideszi algoritmus mátrixos felírásban.**
+
+A Bézout-együtthatók meghatározásához a lépéseket $2 \times 2$-es mátrixszorzatokként reprezentálhatjuk:
+$$\begin{pmatrix} R_{k-1} \\ R_k \end{pmatrix} = \begin{pmatrix} Q_k & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} R_k \\ R_{k+1} \end{pmatrix}.$$
+Az átmeneti mátrixok inverzeinek összeszorzásával a kezdeti és a végső maradék között közvetlen kapcsolat nyerhető:
+$$\begin{pmatrix} \gcd(A, B) \\ 0 \end{pmatrix} = M \begin{pmatrix} A \\ B \end{pmatrix}.$$
+Az $M$ mátrix első sora pontosan az $u(x)$ és $v(x)$ Bézout-polinomokat szolgáltatja.
 :::
 
 ## Gy3.21.1. feladat
@@ -2374,8 +2812,15 @@ $x_2 = 2/4 = 1/2$, $x_3 = -12/4 = -3$.
 **Racionális gyökök:** $1, \frac{1}{2}, -3$.
 
 ::: elmelet
-**Elméleti háttér — Racionális gyökök harmadfokú egyenleteknél.**
-Az együtthatók összege $2 + 3 - 8 + 3 = 0$ azonnal adta az $x = 1$ gyököt.
+**Elméleti háttér — Felbontás irreducibilisek szorzatára (UFD tulajdonság).**
+
+A $K[x]$ polinomgyűrű alaptulajdonsága, hogy Gauss-gyűrű (Unique Factorization Domain / UFD):
+Minden nem zérus polinom a főegyüttható és a sorrend erejéig egyértelműen felbontható monic (főpolinom) irreducibilis faktorok szorzatára:
+$$P(x) = c \cdot p_1(x)^{e_1} p_2(x)^{e_2} \dots p_k(x)^{e_k}.$$
+A felbontás jellege alapvetően függ az alaptesttől:
+- $\mathbb{C}$ felett lineáris faktorok;
+- $\mathbb{R}$ felett legfeljebb másodfokú faktorok;
+- $\mathbb{Q}$ felett tetszőleges fokú irreducibilisek léphetnek fel.
 :::
 
 ## Gy3.21.2. feladat
@@ -2391,8 +2836,11 @@ A gyökök: $1/3, 1, -1$.
 **Gyökök:** $1/3, 1, -1$.
 
 ::: elmelet
-**Elméleti háttér — Kiemelés csoportosítással.**
-Néha a racionális gyökteszt helyett a csoportosítás azonnali faktorizációt ad, elkerülve a tesztelést.
+**Elméleti háttér — Irreducibilis faktorok száma és Galois-csoport.**
+
+Egy polinom irreducibilis felbontása $\mathbb{Q}$ felett a polinom Galois-csoportjának tranzitív hatásával áll kapcsolatban.
+Ha egy valós polinom nemvalós gyökei mind egyszeresek, azok páronként konjugált valós másodfokú faktorokká állnak össze $\mathbb{R}[x]$-ben.
+Ha a polinom páros fokú és minden tagja páros hatványú ($P(x) = Q(x^2)$), a felbontás gyakran az $y = x^2$ helyettesítéssel és a kétváltozós azonosságokkal azonnal előáll.
 :::
 
 ---
@@ -2415,8 +2863,16 @@ Mivel $2$ nem kvadratikus maradék modulo 5, nem létezik olyan $x \in \mathbb{Z
 Tehát az egyenletnek nincs megoldása az egészek halmazán. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Diofantoszi egyenletek vizsgálata moduláris aritmetikával.**
-Ha egy diofantoszi egyenletnek van egész megoldása, akkor minden $m \ge 2$ modulusra nézve is van megoldása. Egyetlen modulus kiválasztása, amelyre ellentmondás adódik, elegendő a megoldhatatlanság bizonyításához.
+**Elméleti háttér — A prímszámok végtelensége (Eukleidész tétele).**
+
+*Eukleidész tétele (i.e. 300 körül):* A prímszámok halmaza végtelen.
+*Klasszikus bizonyítás:*
+Tegyük fel indirekt, hogy csak véges sok prímszám létezik: $p_1, p_2, \dots, p_n$.
+Tekintsük az $N = p_1 p_2 \dots p_n + 1$ számot!
+Mivel $N > 1$, a számelmélet alaptétele szerint $N$-nek van legalább egy $q$ prímosztója.
+Ha $q$ a fenti listából való lenne ($q = p_i$), akkor $q$ osztaná a szorzatot $p_1 \dots p_n$-t is.
+Ekkor $q$ osztaná a különbséget is: $q \mid N - p_1 \dots p_n = 1$, ami lehetetlen, hiszen $q \ge 2$ prím.
+Ez az ellentmondás bizonyítja, hogy a prímek halmaza nem lehet véges.
 :::
 
 ## Gy4.1.2. feladat
@@ -2451,8 +2907,13 @@ $2026 = 4 \cdot 506 + 2 \implies 7^{2026} \equiv 7^2 = 49 \equiv 9 \pmod{10}$.
 **Az utolsó számjegy: 9.**
 
 ::: elmelet
-**Elméleti háttér — Hatványok ciklikussága mod 10.**
-A 7 hatványainak utolsó jegye a $7, 9, 3, 1$ ciklust követi, így a kitevő mod 4 maradéka dönt.
+**Elméleti háttér — Eratoszthenész szitája és a prímek aszimptotikája.**
+
+Az $N$-ig terjedő prímek meghatározására szolgáló ókori algoritmus:
+1. Felírjuk a számokat 2-től $N$-ig.
+2. A legkisebb be nem jelölt szám mindig prím (először 2); kihúzzuk a nála nagyobb többszöröseit.
+3. Elegendő a szitálást $\sqrt{N}$-ig végezni, mert minden $N$-nél nem nagyobb összetett számnak van legalább egy prímosztója $p \le \sqrt{N}$.
+*Prímszámtétel (Hadamard és de la Vallée Poussin, 1896):* $\pi(x) \sim \frac{x}{\ln x}$.
 :::
 
 ## Gy4.2.2. feladat
@@ -2470,8 +2931,11 @@ $$2^{2026} \equiv 2^2 = 4 \pmod{10}.$$
 **Az utolsó számjegy: 4.**
 
 ::: elmelet
-**Elméleti háttér — Nem relatív prím modulusok és előperiódus.**
-Ha $(a, m) > 1$, a hatványsorozat nem feltétlenül tisztán periodikus, de egy rövid előperiódus után periodikussá válik.
+**Elméleti háttér — Prímhézagok és ikerprím-sejtés.**
+
+A szomszédos prímek közötti távolság $g_n = p_{n+1} - p_n$.
+- Tetszőlegesen nagy prímhézag létezik: az $(n+1)! + 2, (n+1)! + 3, \dots, (n+1)! + n + 1$ számok mind összetettek (rendre oszthatók $2, 3, \dots, n+1$-gyel), így $n$ hosszú prímmentes szakasz keletkezik.
+- Másfelől az ikerprím-sejtés szerint végtelen sok olyan prím van, melyre $p_{n+1} - p_n = 2$. Yitang Zhang (2013) áttörése óta tudjuk, hogy $\liminf g_n \le 246$ (feltétel nélkül).
 :::
 
 ## Gy4.3.1. feladat
@@ -2486,8 +2950,12 @@ Milyen számjegyre végződik a $9^{99} + 6^{66}$ összeg?
 **Az utolsó számjegy: 5.**
 
 ::: elmelet
-**Elméleti háttér — Paritásfüggő utolsó számjegyek.**
-A 4 és a 9 hatványai 2-periódusúak: $4^{\text{páros}} \equiv 6$, $4^{\text{páratlan}} \equiv 4$, valamint $9^{\text{páros}} \equiv 1$, $9^{\text{páratlan}} \equiv 9$.
+**Elméleti háttér — A számelmélet alaptétele (egyértelmű prímfaktorizáció).**
+
+*Alaptétel:* Minden 1-nél nagyobb egész szám egyértelműen felírható prímszámok szorzataként a tényezők sorrendjétől eltekintve:
+$$n = p_1^{\alpha_1} p_2^{\alpha_2} \dots p_k^{\alpha_k} \quad (\alpha_i \ge 1).$$
+*A bizonyítás kulcsa: Eukleidész lemmája:* Ha $p$ prím és $p \mid ab$, akkor $p \mid a$ vagy $p \mid b$.
+Ez a lemma a Bézout-tételből ($p x + a y = 1$) következik. Olyan gyűrűkben, ahol az egyértelmű faktorizáció sérül (pl. $\mathbb{Z}[\sqrt{-5}]$-ben: $6 = 2 \cdot 3 = (1+\sqrt{-5})(1-\sqrt{-5})$), az Eukleidész-lemma nem teljesül a felbonthatatlan elemekre.
 :::
 
 ## Gy4.3.2. feladat
@@ -2505,8 +2973,13 @@ Modulo 10:
 **Az utolsó számjegy: 8.**
 
 ::: elmelet
-**Elméleti háttér — Többtagú hatványösszegek.**
-Minden tagot külön redukálunk a saját periódusa szerint mod 10, majd összegezzük a maradékokat.
+**Elméleti háttér — Multiplikatív számelméleti függvények alaptulajdonsága.**
+
+Egy $f: \mathbb{N} \to \mathbb{C}$ függvény *multiplikatív*, ha $f(1) = 1$ és $\gcd(a, b) = 1$ esetén:
+$$f(a \cdot b) = f(a) \cdot f(b).$$
+*Tétel:* Minden multiplikatív függvény értéke tetszőleges $n$ számra egyértelműen meghatározott a prímhatványokon felvett értékei által:
+$$f(n) = f\left(\prod_{i=1}^k p_i^{\alpha_i}\right) = \prod_{i=1}^k f(p_i^{\alpha_i}).$$
+Ez a tulajdonság teszi lehetővé a $d(n), \sigma(n), \varphi(n)$ függvények kompakt zárt képleteit.
 :::
 
 ## Gy4.4.1. feladat
@@ -2524,8 +2997,12 @@ Teszteljük a kis $n$ értékeket:
 **Igen, pontosan két ilyen érték létezik: $n = 1$ és $n = 3$.**
 
 ::: elmelet
-**Elméleti háttér — Kis esetszámú diofantoszi kimerítés.**
-A moduláris kizárás $n \ge 5$-re működik, az $n < 5$ eseteket pedig egyenként ellenőrizzük.
+**Elméleti háttér — Az osztószám-függvény multiplikativitása.**
+
+Ha $n = \prod p_i^{\alpha_i}$ a kanonikus felbontás, az $n$ pozitív osztóinak száma:
+$$d(n) = \tau(n) = \prod_{i=1}^k (\alpha_i + 1).$$
+*Bizonyítás:* Minden osztó $d = \prod p_i^{\beta_i}$ alakú, ahol $0 \le \beta_i \le \alpha_i$. A $\beta_i$ kitevő függetlenül $\alpha_i + 1$ értéket vehet fel.
+*Következmény:* $d(n)$ akkor és csak akkor páratlan szám, ha minden $\alpha_i + 1$ páratlan, azaz minden $\alpha_i$ páros. Ez pontosan azt jelenti, hogy $n$ négyzetszám!
 :::
 
 ## Gy4.4.2. feladat
@@ -2541,8 +3018,13 @@ $$\sum_{k=1}^{100} k! \equiv 1! + 2! + 3! = 1 + 2 + 6 = 9 \pmod{12}.$$
 **A maradék 9.**
 
 ::: elmelet
-**Elméleti háttér — Oszthatóság faktoriálisokkal.**
-Már $n = 4$-től kezdve minden faktoriális osztható 12-vel ($4! = 24$), így a maradékot csak az első három tag adja.
+**Elméleti háttér — Az osztószám-függvény aszimptotikája (Dirichlet-féle hiperbola-módszer).**
+
+Hány osztója van átlagosan egy számnak?
+*Dirichlet tétele (1849):*
+$$\sum_{n \le x} d(n) = x \ln x + (2\gamma - 1) x + O(\sqrt{x}),$$
+ahol $\gamma \approx 0{,}5772$ az Euler–Mascheroni konstans.
+Ez azt jelenti, hogy egy $x$ körüli szám átlagos osztószáma $\ln x$. Bár az osztószám lokálisan vadul oszcillál ($d(p) = 2$, míg $d(2^k) = k + 1$), átlagos növekedése logaritmikus.
 :::
 
 ## Gy4.5.1. feladat
@@ -2562,8 +3044,12 @@ Tehát **sohasem lehet négyzetszám**.
 **Maradék: mindig 0; négyzetszám sosem lehet.**
 
 ::: elmelet
-**Elméleti háttér — Öt négyzetszám összege.**
-Bár az összeg osztható 5-tel, a 25-tel való oszthatósághoz $n^2 \equiv 3 \pmod 5$ kellene, ami lehetetlen.
+**Elméleti háttér — Az osztóösszeg-függvény képlete.**
+
+Az $n$ pozitív osztóinak összege:
+$$\sigma(n) = \sum_{d \mid n} d = \prod_{i=1}^k \left(1 + p_i + p_i^2 + \dots + p_i^{\alpha_i}\right) = \prod_{i=1}^k \frac{p_i^{\alpha_i + 1} - 1}{p_i - 1}.$$
+A mértani sorok szorzata kibontva pontosan egyszer állítja elő $n$ összes osztóját.
+A $\sigma(n)$ és $d(n)$ függvények multiplikatívak: $\gcd(a, b) = 1$ esetén $\sigma(ab) = \sigma(a)\sigma(b)$.
 :::
 
 ## Gy4.5.2. feladat
@@ -2578,8 +3064,12 @@ Mivel $n(n + 1)$ két egymást követő szám szorzata, mindig páros ($n(n+1) =
 A maradék mod 4 mindig 1, tehát sohasem lehet 3 (sőt mindig $1 \pmod 4$). $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Két szomszédos négyzetszám összege.**
-Két egymást követő egészből az egyik páros, a másik páratlan, így négyzetösszegük mindig $0 + 1 \equiv 1 \pmod 4$.
+**Elméleti háttér — Tökéletes, bővelkedő és hiányos számok.**
+
+Az osztóösszeg $\sigma(n)$ és a szám $2n$ viszonya szerint Nicomachus osztályozása:
+1. *Tökéletes szám:* $\sigma(n) = 2n$ (a valódi osztók összege $s(n) = n$);
+2. *Hiányos (deficiens) szám:* $\sigma(n) < 2n$ (minden prímhatvány hiányos: $\sigma(p^k) = \frac{p^{k+1}-1}{p-1} < 2 p^k$);
+3. *Bővelkedő (abundáns) szám:* $\sigma(n) > 2n$ (a legkisebb bővelkedő szám a 12, mert $\sigma(12) = 1 + 2 + 3 + 4 + 6 + 12 = 28 > 24$).
 :::
 
 ## Gy4.6.1. feladat
@@ -2602,8 +3092,14 @@ Ellenőrzés: $4(525) - 9(231) = 2100 - 2079 = 21$.
 **Eredmény: $(525, 231) = 21 = 4 \cdot 525 - 9 \cdot 231$.**
 
 ::: elmelet
-**Elméleti háttér — Bézout-együtthatók kiszámítása.**
-A visszahelyettesítési lépések során a maradékokat a két eredeti szám lineáris kombinációjaként fejezzük ki.
+**Elméleti háttér — Az Euler-féle $\varphi$-függvény és kiszámítási képlete.**
+
+Az Euler-féle $\varphi(n)$ függvény az $\{1, 2, \dots, n\}$ halmazbeli azon számok számát adja meg, amelyek relatív prímek $n$-hez:
+$$\varphi(n) = |\{k \in [n] : \gcd(k, n) = 1\}|.$$
+1. Prímhatványra: a nem relatív prím számok a $p$ többszörösei ($p, 2p, \dots, p^{\alpha-1}p$), ezek száma $p^{\alpha-1}$, így:
+$$\varphi(p^\alpha) = p^\alpha - p^{\alpha-1} = p^\alpha \left(1 - \frac{1}{p}\right).$$
+2. Mivel $\varphi$ multiplikatív, a kanonikus felbontásból:
+$$\varphi(n) = n \prod_{p \mid n} \left(1 - \frac{1}{p}\right).$$
 :::
 
 ## Gy4.6.2. feladat
@@ -2622,8 +3118,12 @@ $1 = 16 - 3 \cdot 5 = 16 - 3(37 - 2 \cdot 16) = 16 - 3 \cdot 37 + 6 \cdot 16 = 7
 **Megoldás: $x = -3, y = 7$.**
 
 ::: elmelet
-**Elméleti háttér — Moduláris inverz keresése Bézout-tal.**
-Az $a x + m y = 1$ egyenlet megoldása adja meg az $a$ moduláris inverzét modulo $m$: $x \equiv a^{-1} \pmod m$. Itz $16^{-1} \equiv 7 \pmod{37}$.
+**Elméleti háttér — Euler $\varphi$-függvényének alsó becslése.**
+
+Minden $n \ge 3$ egész számra érvényes az elemi alsó korlát:
+$$\varphi(n) > \frac{n}{2 \ln n} \quad \text{és} \quad \varphi(n) > \sqrt{\frac{n}{2}}.$$
+Ez garantálja, hogy $\varphi(n) \to \infty$, amikor $n \to \infty$.
+A pontosabb minimális növekedési rendet Landau tétele írja le a primoriális számok $p_k\#$ mentén: $\liminf \frac{\varphi(n) \ln \ln n}{n} = e^{-\gamma}$.
 :::
 
 ## Gy4.7.1. feladat
@@ -2638,8 +3138,15 @@ $$9(2n + 1) - 2(9n + 4) = (18n + 9) - (18n + 8) = 1.$$
 Ha $d = (2n + 1, 9n + 4)$, akkor $d \mid 9(2n + 1) - 2(9n + 4) = 1 \implies d = 1$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Együtthatók kiejtése.**
-A kereszt-szorzással képzett különbség közvetlenül 1-et ad, bizonyítva a relatív prímséget minden $n$-re.
+**Elméleti háttér — Gauss-azonosság az Euler-függvény osztóösszegeire.**
+
+*Gauss tétele:* Minden $n \ge 1$ egész számra:
+$$\sum_{d \mid n} \varphi(d) = n.$$
+*Kombinatorikus bizonyítás:*
+Tekintsük az $\frac{1}{n}, \frac{2}{n}, \frac{3}{n}, \dots, \frac{n}{n}$ törteket! Ezek száma $n$.
+Egyszerűsítsünk minden törtet tovább nem egyszerűsíthető $\frac{a}{d}$ alakra, ahol $d \mid n$ és $\gcd(a, d) = 1$.
+Egy adott $d \mid n$ nevezőhöz pontosan azon $a \in [d]$ számlálók tartoznak, amelyek relatív prímek $d$-hez; ezek száma definíció szerint $\varphi(d)$.
+Mivel minden tört pontosan egy ilyen osztályba esik, a törtek osztályonkénti összege $n$.
 :::
 
 ## Gy4.7.2. feladat
@@ -2654,8 +3161,13 @@ $$5(12n + 1) - 2(30n + 2) = (60n + 5) - (60n + 4) = 1.$$
 Mivel $(12n + 1, 30n + 2) = 1$ minden $n$-re, a tört semmilyen $n$-re nem egyszerűsíthető. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Egyszerűsíthetetlen törtek (IMO 1959/1 analógia).**
-Ez a klasszikus IMO feladat típusa: a számláló és nevező determinánsa $\Delta = 12 \cdot 2 - 30 \cdot 1 = 24 - 30 = -6 \dots$ nem, itt $5(12n+1) - 2(30n+2) = 1$, így lnko = 1.
+**Elméleti háttér — A Möbius-féle megfordítási formula (Möbius Inversion).**
+
+A Möbius-$\mu(n)$ függvény definíciója: $\mu(1) = 1$; $\mu(n) = (-1)^k$, ha $n$ négyzetmentes és $k$ prímfaktor szorzata; $\mu(n) = 0$, ha $n$-nek van négyzetszám osztója ($p^2 \mid n$).
+*Möbius-inverziós tétel:* Ha $f$ és $g$ számelméleti függvények, akkor
+$$f(n) = \sum_{d \mid n} g(d) \iff g(n) = \sum_{d \mid n} \mu(d) f\left(\frac{n}{d}\right).$$
+A Gauss-azonosság $\sum_{d \mid n} \varphi(d) = n$ megfordításával közvetlenül adódik:
+$$\varphi(n) = \sum_{d \mid n} \mu(d) \frac{n}{d} = n \sum_{d \mid n} \frac{\mu(d)}{d} = n \prod_{p \mid n} \left(1 - \frac{1}{p}\right).$$
 :::
 
 ## Gy4.8.1. feladat
@@ -2670,8 +3182,14 @@ Mivel a kombináció 1, a legnagyobb közös osztó minden $n$-re 1.
 **Végeredmény: Mindig 1.**
 
 ::: elmelet
-**Elméleti háttér — Közvetlen relatív prím párok.**
-Ha a vezető együtthatók determinánsa $\pm 1$, az lnko mindig 1.
+**Elméleti háttér — Legnagyobb közös osztó és legkisebb közös többszörös kapcsolata.**
+
+Ha $a = \prod p_i^{\alpha_i}$ és $b = \prod p_i^{\beta_i}$:
+$$\gcd(a, b) = \prod p_i^{\min(\alpha_i, \beta_i)}, \quad \operatorname{lcm}(a, b) = \prod p_i^{\max(\alpha_i, \beta_i)}.$$
+Mivel tetszőleges valós számokra $\min(x, y) + \max(x, y) = x + y$:
+$$\min(\alpha_i, \beta_i) + \max(\alpha_i, \beta_i) = \alpha_i + \beta_i.$$
+Ennek következtében minden pozitív egész $a, b$-re:
+$$\gcd(a, b) \cdot \operatorname{lcm}(a, b) = a \cdot b.$$
 :::
 
 ## Gy4.8.2. feladat
@@ -2689,8 +3207,14 @@ A 3 prím, így a lehetséges értékek 1 vagy 3:
 **Eredmény: 3, ha $n \equiv 2 \pmod 3$; és 1, ha $n \not\equiv 2 \pmod 3$.**
 
 ::: elmelet
-**Elméleti háttér — Nem triviális periodikus osztók.**
-Ha a konstans $C > 1$, a legnagyobb közös osztó periodikusan változik a maradékosztályok szerint.
+**Elméleti háttér — Az osztóháló disztributivitása.**
+
+A pozitív egészek a $\mid$ oszthatósági relációval részben rendezett halmazt (hálót) alkotnak:
+- Infimum (metszet): $\gcd(a, b) = a \wedge b$;
+- Szuprémum (egyesítés): $\operatorname{lcm}(a, b) = a \vee b$.
+Ez a háló *disztributív háló*, mert a prímhatványok kitevőire a $\min$ és $\max$ műveletek kielégítik a disztributivitási azonosságot:
+$$\gcd(a, \operatorname{lcm}(b, c)) = \operatorname{lcm}(\gcd(a, b), \gcd(a, c)),$$
+$$\operatorname{lcm}(a, \gcd(b, c)) = \gcd(\operatorname{lcm}(a, b), \operatorname{lcm}(a, c)).$$
 :::
 
 ## Gy4.9.1. feladat
@@ -2705,8 +3229,12 @@ Az utolsó nemnulla maradék $x - 1$.
 **Legnagyobb közös osztó: $x - 1$.**
 
 ::: elmelet
-**Elméleti háttér — Hatványok különbségének közös osztója.**
-Általánosan érvényes: $\operatorname{lnko}(x^n - 1, x^m - 1) = x^{(n, m)} - 1$.
+**Elméleti háttér — Euklideszi algoritmus és l.n.k.o. polinomok körében.**
+
+A polinomok körében végzett euklideszi algoritmus lépései pontosan analógok az egész számokéval:
+Minden lépésben $A(x) = Q(x) B(x) + R(x)$, ahol $\deg R < \deg B$.
+Az utolsó nemnulla maradék a legnagyobb közös osztó, amelyet egy konstans szorzóval főpolinommá (1 főegyütthatójúvá) normálunk.
+Ha az utolsó maradék nemnulla konstans, a két polinom relatív prím ($\gcd = 1$).
 :::
 
 ## Gy4.9.2. feladat
@@ -2724,8 +3252,12 @@ Második lépés: $x^3 - 1 = (x - 1)(x^2 + x + 1) + 0$.
 **Legnagyobb közös osztó: $x^2 + x + 1$.**
 
 ::: elmelet
-**Elméleti háttér — Körosztási polinomok és euklideszi algoritmus.**
-Az $x^2 + x + 1 = \Phi_3(x)$ a 3-adik körosztási polinom, amely mindkét kifejezésnek osztója.
+**Elméleti háttér — Az euklideszi algoritmus lépésszáma (Lamé-tétel).**
+
+*Lamé tétele (1844, a számításelmélet első komplexitási tétele):*
+Az euklideszi algoritmus lépéseinek száma az $a > b$ egészekre legfeljebb a kisebbik szám tízes számrendszerbeli számjegyei számának 5-szöröse:
+$$\text{lépésszám} \le 5 \log_{10}(b).$$
+A legrosszabb eset (leglassabb lefutás) pontosan akkor következik be, ha minden hányados $q_i = 1$, ami azt jelenti, hogy a számok szomszédos Fibonacci-számok: $a = F_{n+1}, b = F_n$.
 :::
 
 ## Gy4.10.1. feladat
@@ -2742,8 +3274,14 @@ $$\Delta = \begin{vmatrix} 1 & 2 \\ 2 & 1 \end{vmatrix} = 1 - 4 = -3.$$
 **Lehetséges értékek: 1 vagy 3.**
 
 ::: elmelet
-**Elméleti háttér — Determináns-korlát.**
-A lineáris kombinációk legnagyobb közös osztója mindig osztója az együtthatómátrix determinánsának.
+**Elméleti háttér — Kétismeretlenes lineáris diofantoszi egyenletek.**
+
+Az $a x + b y = c$ ($a, b, c \in \mathbb{Z}$) diofantoszi egyenlet:
+*Megoldhatósági tétel:* Az egyenlet akkor és csak akkor oldható meg egész számokban, ha
+$$\gcd(a, b) \mid c.$$
+Ha a feltétel teljesül és $(x_0, y_0)$ egy partikuláris megoldás (amely a kibővített euklideszi algoritmussal nyerhető):
+Az összes megoldás leírható az alábbi paraméteres alakban:
+$$x = x_0 + \frac{b}{\gcd(a, b)} \cdot t, \quad y = y_0 - \frac{a}{\gcd(a, b)} \cdot t \quad (t \in \mathbb{Z}).$$
 :::
 
 ## Gy4.10.2. feladat
@@ -2761,8 +3299,15 @@ Mivel $d \mid 3ab$ és $(d, ab) = 1$, ezért $d \mid 3$.
 Pozitív egészekben $d \in \{1, 3\}$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Köbök összegének faktorai.**
-Mivel $a^3 + b^3 = (a + b)(a^2 - ab + b^2)$, a két tényező közös osztója csak 1 vagy 3 lehet. Ez kulcsfontosságú az $n = 3$ Fermat-tétel bizonyításában.
+**Elméleti háttér — Nemnegatív diofantoszi megoldások és a Frobenius-probléma.**
+
+Ha az $a x + b y = c$ egyenletben $x \ge 0, y \ge 0$ nemnegatív egész megoldásokat keresünk ($\gcd(a, b) = 1$):
+*Frobenius-féle pénzváltási probléma:*
+Létezik egy küszöbérték, a Frobenius-szám:
+$$g(a, b) = ab - a - b.$$
+- Minden $c > ab - a - b$ egész szám előállítható nemnegatív $x, y$ egészekkel;
+- A $g(a, b) = ab - a - b$ szám a legnagyobb olyan egész, amely NEM állítható elő.
+- Pontosan $\frac{(a-1)(b-1)}{2}$ darab pozitív egész nem állítható elő.
 :::
 
 ## Gy4.11.1. feladat
@@ -2781,8 +3326,14 @@ Relatív prím osztópárok $u \le v$:
 **Megoldások:** $\{ (12, 360), (24, 180), (36, 120), (60, 72) \}$.
 
 ::: elmelet
-**Elméleti háttér — Több prímosztójú hányados.**
-Itt a hányadosnak 3 különböző prímosztója van ($2, 3, 5$), így $2^{3-1} = 4$ rendezetlen megoldáspár létezik.
+**Elméleti háttér — A $p$-adikus értékelés (valuáció) axiómái.**
+
+Egy $n \in \mathbb{Z} \setminus \{0\}$ egész szám $p$-adikus értékelése $v_p(n)$ az a maximális $k \ge 0$ kitevő, amelyre $p^k \mid n$.
+Tulajdonságai:
+1. $v_p(a \cdot b) = v_p(a) + v_p(b)$ (homomorfizmus a multiplikatív csoportról az additív csoportra);
+2. $v_p(a + b) \ge \min(v_p(a), v_p(b))$ (ultrametrikus egyenlőtlenség);
+3. Ha $v_p(a) \neq v_p(b)$, akkor szigorú egyenlőség áll fenn: $v_p(a + b) = \min(v_p(a), v_p(b))$.
+Ez a tulajdonság teszi lehetővé prímhatvány-oszthatósági feladatok egyértelmű vizsgálatát.
 :::
 
 ## Gy4.11.2. feladat
@@ -2798,8 +3349,13 @@ Mivel $10 \nmid 205$ (205 nem páros), a feltétel nem teljesül.
 **NEM létezik ilyen számpár.**
 
 ::: elmelet
-**Elméleti háttér — Az lnko osztója az lkkt-nek.**
-$(a, b) \mid [a, b]$ minden egész számpárra fennáll. Ha ez nem teljesül, azonnal kizárható a létezés.
+**Elméleti háttér — Oszthatóság és valuáció kapcsolata.**
+
+Két szám oszthatósági relációja ekvivalens a valuációik pontonkénti egyenlőtlenségével:
+$$a \mid b \iff v_p(a) \le v_p(b) \quad \text{minden } p \text{ prímre}.$$
+Továbbá:
+$$v_p(\gcd(a, b)) = \min(v_p(a), v_p(b)), \quad v_p(\operatorname{lcm}(a, b)) = \max(v_p(a), v_p(b)).$$
+Ez a leírás algebrai hidat képez az oszthatósági reláció és a rendezett vektorterek között.
 :::
 
 ## Gy4.12.1. feladat
@@ -2817,8 +3373,11 @@ Ellenőrzés: $n = 5 \implies 5 + 2 = 7 \mid 25 + 10 + 7 = 42 = 7 \cdot 6$. Hely
 **Egyetlen megoldás: $n = 5$.**
 
 ::: elmelet
-**Elméleti háttér — Prím maradék.**
-Ha a maradék prímszám, az egyenletnek legfeljebb annyi pozitív megoldása lehet, ahány prím-osztó nagyobb a minimális küszöbnél.
+**Elméleti háttér — Unimoduláris mátrixok és az $\operatorname{SL}(2, \mathbb{Z})$ csoport.**
+
+Egy egész elemű $A \in \mathbb{Z}^{2 \times 2}$ mátrixot *unimodulárisnak* nevezünk, ha determinánsa $\det(A) = \pm 1$.
+Ez a feltétel ekvivalens azzal, hogy $A^{-1}$ szintén egész elemű mátrix.
+Ha $A$ oszlopai $u, v \in \mathbb{Z}^2$, akkor $\det(u, v) = \pm 1$ pontosan akkor áll fenn, ha $u$ és $v$ generálja a teljes $\mathbb{Z}^2$ rácsot bázisként. Ekkor a koordináták legnagyobb közös osztója 1, és a diofantoszi kombinációk lefedik az egész síkot.
 :::
 
 ## Gy4.12.2. feladat
@@ -2837,8 +3396,10 @@ A 7 egész osztói: $\{\pm 1, \pm 7\}$.
 **A megoldások az egészek körében:** $n \in \{-6, 0, 2, 8\}$. Pozitív egészekben: $n \in \{2, 8\}$.
 
 ::: elmelet
-**Elméleti háttér — Egész értékű algebrai törtek.**
-Az egészrész leválasztása után a nevezőnek a számlálóban megmaradó konstans egész osztójának kell lennie.
+**Elméleti háttér — Rácstranszformációk és báziscsere $\mathbb{Z}^2$-ben.**
+
+Egy lineáris leképezés $T: \mathbb{Z}^2 \to \mathbb{Z}^2$ pontosan akkor bijekció (rácsautomorfizmus), ha mátrixa unimoduláris: $\det(T) = \pm 1$.
+Minden ilyen transzformáció megőrzi a rács fundamentális paralelogrammájának területét ($|\det T| = 1$), és kölcsönösen egyértelműen képezi le a primitív rácspontokat ($\gcd(x, y) = 1$) primitív rácspontokra.
 :::
 
 ## Gy4.13.1. feladat
@@ -2855,8 +3416,12 @@ Mivel $\Delta = 1$:
 **IGAZ.**
 
 ::: elmelet
-**Elméleti háttér — Unimoduláris teszt.**
-A determináns $\Delta = 1$ azonnal bizonyítja az állítás igaz voltát, a kombinációk az inverz mátrix soraiból adódnak.
+**Elméleti háttér — Prímszámok előállítása $x^2 + 2y^2$ alakban.**
+
+*Fermat tétele:* Egy páratlan $p$ prím akkor és csak akkor írható fel $p = x^2 + 2y^2$ alakban, ha
+$$p \equiv 1 \pmod 8 \quad \text{vagy} \quad p \equiv 3 \pmod 8.$$
+Ez ekvivalens azzal, hogy $-2$ kvadratikus maradék modulo $p$: $\left(\frac{-2}{p}\right) = 1$.
+A kvadratikus reciprocitási tétel és a kiegészítő tételek alapján $\left(\frac{-2}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{2}{p}\right) = (-1)^{\frac{p-1}{2}} (-1)^{\frac{p^2-1}{8}}$, ami pontosan az 1 és 3 maradékokra ad $+1$-et.
 :::
 
 ## Gy4.13.2. feladat
@@ -2873,8 +3438,11 @@ De $d = 2 \nmid x = 1$ és $2 \nmid y = 1$!
 **Ellenpélda: $x = 1, y = 1, d = 2$.**
 
 ::: elmelet
-**Elméleti háttér — Szimmetrikus formák determinánsa.**
-A mátrix determinánsa 8, így $d = 2, 4, 8$ esetén ellenpéldák képezhetők.
+**Elméleti háttér — Kétváltozós kvadratikus alakok és determináns.**
+
+Egy $Q(x, y) = a x^2 + 2b xy + c y^2$ binér kvadratikus alak determinánsa $\Delta = ac - b^2$.
+Ha $\Delta > 0$ és $a > 0$, az alak pozitív definit, és csak nemnegatív értékeket vesz fel.
+Az egész számok előállítása kvadratikus alakokkal a Gauss-féle kvadratikus formák elméletének tárgya: egy $n$ szám pontosan akkor állítható elő, ha az alak megfelelően reprezentálja modulo az alak diszkriminánsát.
 :::
 
 ## Gy4.14.1. feladat
@@ -2891,8 +3459,12 @@ A Fibonacci-számok: $F_1 = 1, F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, F_6 = 8$.
 **Eredmény: $F_6 = 8$.**
 
 ::: elmelet
-**Elméleti háttér — Fibonacci-számok oszthatósági hálója.**
-Az $n \mapsto F_n$ leképezés erős oszthatósági sorozat: $n \mid m \iff F_n \mid F_m$.
+**Elméleti háttér — Erős oszthatósági sorozatok és Fibonacci-háló.**
+
+Egy $(a_n)$ sorozatot *erős oszthatósági sorozatnak* (strong divisibility sequence) nevezünk, ha minden $m, n \ge 1$-re:
+$$\gcd(a_m, a_n) = a_{\gcd(m, n)}.$$
+A Fibonacci-sorozat a legismertebb példa erre. Ebből azonnal adódik, hogy $m \mid n \implies F_m \mid F_n$.
+Továbbá ha $F_n$ prímszám, akkor $n$-nek szükségképpen prímnek kell lennie (az egyetlen kivétel $F_4 = 3$, ahol $n = 4$).
 :::
 
 ## Gy4.14.2. feladat
@@ -2912,8 +3484,11 @@ $$\det \begin{pmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{pmatrix} = F_{n+1} F_
 A két oldal egyenlőségéből azonnal: $F_{n+1} F_{n-1} - F_n^2 = (-1)^n$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — A Fibonacci-mátrix.**
-A mátrixos reprezentáció az egyik leggyorsabb módja a Fibonacci-azonosságok levezetésének és az $O(\log n)$ idejű kiszámításnak.
+**Elméleti háttér — Fibonacci-mátrix és $O(\log n)$ hatványozás.**
+
+A $Q = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$ mátrix hatványai közvetlenül generálják a Fibonacci-számokat:
+$$Q^n = \begin{pmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{pmatrix}.$$
+A gyorshatványozás (ismételt négyzetre emelés) algoritmusával $Q^n$ mindössze $O(\log n)$ mátrixszorzással kiszámítható, ami lehetővé teszi hatalmas Fibonacci-számok (akár több százezer jegyűek) rendkívül gyors előállítását.
 :::
 
 ## Gy4.15.1. feladat
@@ -2930,8 +3505,16 @@ $$p^2 - q^2 \equiv 1 - 1 = 0 \pmod{24}.$$
 Tehát $24 \mid p^2 - q^2$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Két prím négyzetének különbsége.**
-Minden 3-nál nagyobb prím négyzete ugyanabba a maradékosztályba esik ($1 \pmod{24}$), így különbségük mindig osztható 24-gyel.
+**Elméleti háttér — Fermat-számok páronkénti relatív prímsége (Pólya tétele).**
+
+A Fermat-számok $F_n = 2^{2^n} + 1$ kielégítik a híres szorzatazonosságot:
+$$\prod_{k=0}^{n-1} F_k = F_n - 2.$$
+*Bizonyítás teljes indukcióval:* $F_0 = 3 = F_1 - 2$. Ha igaz $n$-re:
+$$\prod_{k=0}^n F_k = (F_n - 2) F_n = (2^{2^n} - 1)(2^{2^n} + 1) = (2^{2^n})^2 - 1 = 2^{2^{n+1}} - 1 = F_{n+1} - 2.$$
+*Következmény (Pólya György, 1925):* Ha $m < n$, akkor $F_m \mid F_n - 2$.
+Ha $d = \gcd(F_m, F_n)$, akkor $d \mid F_n$ és $d \mid F_n - 2$, így $d \mid 2$.
+Mivel minden Fermat-szám páratlan, $d = 1$.
+Tehát a Fermat-számok páronként relatív prímek! Ez újabb elegáns bizonyítást ad a prímek végtelenségére (minden $F_n$-nek van egy új, korábban nem látott prímosztója).
 :::
 
 ## Gy4.15.2. feladat
@@ -2948,8 +3531,15 @@ Mivel $3, 5, 16$ páronként relatív prímek: $p^4 \equiv 1 \pmod{3 \cdot 5 \cd
 **IGAZ.**
 
 ::: elmelet
-**Elméleti háttér — Euler–Fermat finomítása prímhatványokra.**
-A Carmichael-függvény értéke $\lambda(240) = [\lambda(16), \lambda(3), \lambda(5)] = [4, 2, 4] = 4$, ezért a negyedik hatványok mind 1-et adnak.
+**Elméleti háttér — Fermat-számok prímfaktorainak alakja (Euler–Lucas-tétel).**
+
+Ha egy $q$ prímszám osztója az $F_n = 2^{2^n} + 1$ Fermat-számnak:
+Ekkor $2^{2^n} \equiv -1 \pmod q \implies 2^{2^{n+1}} \equiv 1 \pmod q$.
+Ez azt jelenti, hogy 2 rendje modulo $q$ pontosan $2^{n+1}$.
+A kis Fermat-tétel szerint $2^{q-1} \equiv 1 \pmod q$, így a rend osztja $q - 1$-et:
+$$2^{n+1} \mid q - 1 \implies q \equiv 1 \pmod{2^{n+1}}.$$
+Lucas ezt tovább élesítette: minden osztó $q = k \cdot 2^{n+2} + 1$ alakú.
+Euler ezzel a tétellel találta meg az $F_5 = 2^{32} + 1$ első prímfaktorát: $k = 5$-re $q = 5 \cdot 2^7 + 1 = 641 \mid F_5$.
 :::
 
 ## Gy4.16.1. feladat
@@ -2965,8 +3555,12 @@ Mivel $3600 = 60^2$ négyzetszám, $d(3600) = 45$ páratlan szám!
 **45 osztója van, és páratlan.**
 
 ::: elmelet
-**Elméleti háttér — Négyzetszámok osztószáma.**
-A kanonikus alakban minden kitevő páros ($4, 2, 2$), így minden tényező $(\alpha_i + 1)$ páratlan ($5, 3, 3$), a szorzat pedig páratlan.
+**Elméleti háttér — Erősen összetett számok (Highly Composite Numbers).**
+
+Egy $n$ számot *erősen összetett számnak* nevezünk (Ramanujan, 1915), ha több osztója van, mint bármely nála kisebb pozitív egésznek:
+$$d(n) > d(m) \quad \text{minden } m < n \text{ esetén}.$$
+A legkisebb erősen összetett számok: 1, 2, 4, 6, 12, 24, 36, 48, 60, 120, 180, 240, 360, 720, 840, 1260, 1680, 2520, 5040...
+Ezek prímfelbontásában a prímek folytonosan követik egymást (nincs ugrás), és a kitevők monoton csökkennek: $\alpha_1 \ge \alpha_2 \ge \dots \ge \alpha_k$, az utolsó kitevő pedig szinte mindig 1.
 :::
 
 ## Gy4.16.2. feladat
@@ -2982,8 +3576,14 @@ Az osztók pontosan: $\{1, p, p^2\}$.
 **Pontosan a prímszámok négyzetei: $p^2$ (pl. $4, 9, 25, 49, \dots$).**
 
 ::: elmelet
-**Elméleti háttér — Prímnégyzetek karakterizációja.**
-Ha $d(n) = p$ prímszám, akkor $n = q^{p-1}$ prímhatvány.
+**Elméleti háttér — Prímszámú osztóval rendelkező számok.**
+
+Mikor lesz $d(n) = p$ egy prímszám?
+Mivel $d(n) = \prod (\alpha_i + 1)$, a szorzatnak egyetlen nem 1 tényezője lehet: $\alpha_1 + 1 = p \implies \alpha_1 = p - 1$.
+Ez azt jelenti, hogy a számnak pontosan egy prímosztója van:
+$$n = q^{p-1}, \quad \text{ahol } q \text{ egy tetszőleges prímszám}.$$
+Például $d(n) = 3$ prím $\iff n = q^2$ prímnégyzet ($4, 9, 25, 49, \dots$).
+$d(n) = 2$ prím $\iff n = q^1$ maga egy prímszám.
 :::
 
 ## Gy4.17.1. feladat
@@ -2999,8 +3599,12 @@ $$= 200 + 40 + 8 + 1 = 249.$$
 **A $1000!$ pontosan 249 nullára végződik.**
 
 ::: elmelet
-**Elméleti háttér — Faktoriálisok záró nullái.**
-Mivel $v_2(n!) > v_5(n!)$, a tízes szorzók számát kizárólag a legmagasabb 5-hatványok száma határozza meg.
+**Elméleti háttér — Faktoriálisok záró nullái és 10-es bázis.**
+
+Egy szám tízes számrendszerbeli záró nulláinak száma megegyezik a szám prímtényezős felbontásában a 10 kitevőjével:
+$$Z(n!) = v_{10}(n!) = \min(v_2(n!), v_5(n!)).$$
+Mivel a 2-es tényezők sokkal sűrűbben fordulnak elő a számegyenesen, mint az 5-ösök ($v_2(n!) > v_5(n!)$ minden $n \ge 2$-re), a záró nullák számát kizárólag a legmagasabb 5-hatvány kitevője determinálja:
+$$Z(n!) = v_5(n!) = \sum_{k=1}^\infty \left\lfloor \frac{n}{5^k} \right\rfloor = \left\lfloor \frac{n}{5} \right\rfloor + \left\lfloor \frac{n}{25} \right\rfloor + \left\lfloor \frac{n}{125} \right\rfloor + \dots$$
 :::
 
 ## Gy4.17.2. feladat
@@ -3017,8 +3621,13 @@ $$v_2(n!) = n - S_2(n) \le n - 1 < n.$$
 Mivel a 2 kitevője $n!$-ban szigorúan kisebb $n$-nél, $2^n$ nem oszthatja $n!$-t. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Maximális 2-hatvány faktoriálisban.**
-$v_2(n!) = n - 1$ pontosan akkor áll fenn, ha $S_2(n) = 1$, azaz ha $n$ kettőhatvány ($n = 2^k$). Máskülönben $v_2(n!) < n - 1$.
+**Elméleti háttér — Kummer tétele és átvitelek a binomiális együtthatóban.**
+
+*Ernst Kummer tétele (1852):*
+A $\binom{n+m}{n}$ binomiális együtthatóban a $p$ prím kitevője $v_p\left(\binom{n+m}{n}\right)$ pontosan megegyezik az $n$ és $m$ számok $p$ alapú számrendszerbeli összeadásakor keletkező **átvitelek (carry-k) számával**.
+Ez azonnal látható a Legendre-formulából:
+$$v_p\left(\binom{n+m}{n}\right) = \frac{(n+m) - S_p(n+m)}{p-1} - \frac{n - S_p(n)}{p-1} - \frac{m - S_p(m)}{p-1} = \frac{S_p(n) + S_p(m) - S_p(n+m)}{p-1}.$$
+Minden átvitel pontosan $p - 1$-gyel csökkenti a számjegyösszeget, így a hányados a carry-k száma.
 :::
 
 ## Gy4.18.1. feladat
@@ -3036,8 +3645,16 @@ $$\sum_{p \le x} \frac{1}{p} > \ln(\ln x) - C_0.$$
 Mivel $\ln(\ln x) \to \infty$, a prímek reciprokösszege divergens! $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Mertens második tétele.**
-A prímek reciprokösszege $\sum_{p \le x} \frac{1}{p} = \ln(\ln x) + M + O(1/\ln x)$ szerint nő, ahol $M \approx 0{,}261497$ a Meissel–Mertens konstans.
+**Elméleti háttér — A Riemann-féle zéta-függvény és a számelmélet analitikus módszerei.**
+
+A Dirichlet-sorok elméletében minden multiplikatív számtani függvény generátorfüggvénye Euler-szorzatként fejezhető ki:
+$$\sum_{n=1}^\infty \frac{f(n)}{n^s} = \prod_{p \text{ prím}} \left(1 + \frac{f(p)}{p^s} + \frac{f(p^2)}{p^{2s}} + \dots\right).$$
+Különösen:
+- $\sum_{n=1}^\infty \frac{1}{n^s} = \zeta(s) = \prod_p \frac{1}{1 - p^{-s}}$;
+- $\sum_{n=1}^\infty \frac{\mu(n)}{n^s} = \frac{1}{\zeta(s)}$;
+- $\sum_{n=1}^\infty \frac{\varphi(n)}{n^s} = \frac{\zeta(s-1)}{\zeta(s)}$;
+- $\sum_{n=1}^\infty \frac{d(n)}{n^s} = \zeta(s)^2$.
+Ezek az azonosságok kötik össze a diszkrét prímszám-eloszlást a komplex analízissel (Riemann-hipotézis).
 :::
 
 ## Gy4.18.2. feladat
@@ -3053,8 +3670,15 @@ $$\prod_p \left(1 - \frac{1}{p^2}\right) = \frac{1}{\zeta(2)} = \frac{6}{\pi^2} 
 *(Valószínűségszámítási jelentés: annak a valószínűsége, hogy két véletlenszerűen választott egész szám relatív prím, pontosan $\frac{6}{\pi^2}$.)* $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Bázeli probléma és relatív prím valószínűség.**
-Annak esélye, hogy egy prím $p$ nem osztja mindkét véletlen számot: $1 - 1/p^2$. A függetlenség miatt a szorzat adja a teljes relatív prímségi valószínűséget.
+**Elméleti háttér — A bázeli probléma és az Euler-féle szorzatformula.**
+
+*Euler tétele (1735):* A négyzetszámok reciprokainak összege konvergens, és pontos értéke:
+$$\zeta(2) = \sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}.$$
+Euler zseniális felismerése szerint a Riemann-féle zéta-függvény felírható az összes prímre kiterjedő Euler-szorzatként:
+$$\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s} = \prod_{p \text{ prím}} \frac{1}{1 - p^{-s}} \quad (\operatorname{Re}(s) > 1).$$
+$s = 2$ esetén mindkét oldal reciprokát véve:
+$$\prod_{p \text{ prím}} \left(1 - \frac{1}{p^2}\right) = \frac{1}{\zeta(2)} = \frac{6}{\pi^2}.$$
+Ez az azonosság adja meg annak a valószínűségét is, hogy két véletlenszerűen választott pozitív egész szám relatív prím egymáshoz: $P(\gcd(a, b) = 1) = \frac{6}{\pi^2} \approx 60{,}79\%$.
 :::
 
 ---
@@ -3076,8 +3700,12 @@ $ca - db = ac - bd$ és $cb + da = bc + ad = ad + bc$.
 Így $xy = yx$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — A komplex szorzás kommutativitása.**
-A valós számok kommutativitása közvetlenül öröklődik a szorzat komponenseire.
+**Elméleti háttér — A komplex test axiomatikája és szorzási kommutativitás.**
+
+A komplex számtest $\mathbb{C}$ az $\mathbb{R}^2$ vektortér felett definiált test:
+$$(a, b) + (c, d) = (a + c, b + d), \quad (a, b) \cdot (c, d) = (ac - bd, ad + bc).$$
+Az $i = (0, 1)$ képzetes egységgel $i^2 = -1$.
+A szorzás kommutativitása ($(a+bi)(c+di) = (c+di)(a+bi)$) a valós számok kommutativitásából és disztributivitásából öröklődik. $\mathbb{C}$ egy 2-dimenziós valós kommutatív algebra és test (Frobenius tétele szerint az egyetlen kommutatív véges dimenziós valós osztásos algebra $\mathbb{R}$ mellett).
 :::
 
 ## Gy5.1.2. feladat
@@ -3092,8 +3720,12 @@ Mivel $z \ne 0$, $a^2 + b^2 = |z|^2 > 0$, így a nevező nem nulla.
 **Eredmény: $z^{-1} = \frac{\bar{z}}{|z|^2} = \frac{a - bi}{a^2 + b^2}$.**
 
 ::: elmelet
-**Elméleti háttér — Multiplikatív inverz képlete.**
-Mivel $z \bar{z} = |z|^2 \in \mathbb{R}$, az inverz azonnal $z^{-1} = \frac{\bar{z}}{|z|^2}$ alakban adódik.
+**Elméleti háttér — Multiplikatív inverz és a komplex norma.**
+
+Minden nemnulla $z = a + bi \in \mathbb{C} \setminus \{0\}$ komplex számhoz létezik egyértelmű $z^{-1}$ multiplikatív inverz.
+Mivel $z \cdot \bar{z} = (a + bi)(a - bi) = a^2 + b^2 = |z|^2 \in \mathbb{R}^+$, a nevező valósításával azonnal adódik a formula:
+$$z^{-1} = \frac{\bar{z}}{|z|^2} = \frac{a - bi}{a^2 + b^2}.$$
+Ez azt mutatja, hogy az inverz képzése geometriailag egy egységkörre való inverzió (tükrözés az egységkörre) és a valós tengelyre való konjugálás (tükrözés) egymás utáni elvégzése.
 :::
 
 ## Gy5.2.1. feladat
@@ -3111,8 +3743,13 @@ $$\left(-\frac{1}{5} + \frac{7}{5}i\right) + \left(-\frac{1}{5} - \frac{7}{5}i\r
 **Végeredmény: $-\frac{2}{5}$.**
 
 ::: elmelet
-**Elméleti háttér — Konjugált tagok összege.**
-Bármely komplex számra $z + \bar{z} = 2\operatorname{Re}(z)$ valós szám, míg $z - \bar{z} = 2i\operatorname{Im}(z)$ tiszta képzetes szám.
+**Elméleti háttér — Konjugált komplex törtek összege és valóság.**
+
+Ha egy kifejezés előáll $w + \bar{w}$ alakban, akkor annak értéke automatikusan valós szám:
+$$w + \bar{w} = 2 \operatorname{Re}(w).$$
+Mivel a komplex konjugálás testautomorfizmus ($\overline{u + v} = \bar{u} + \bar{v}$, $\overline{u / v} = \bar{u} / \bar{v}$):
+$$\overline{\left(\frac{1 + 3i}{2 - i}\right)} = \frac{1 - 3i}{2 + i}.$$
+Ennek következtében a két tört összege pontosan a valós rész kétszerese, így a képzetes komponens számolása szükségtelen, azonnal zérust ad.
 :::
 
 ## Gy5.2.2. feladat
@@ -3128,8 +3765,13 @@ $$(1 + i)^{20} = 1024 \cdot (-1) = -1024.$$
 **Végeredmény: $-1024$.**
 
 ::: elmelet
-**Elméleti háttér — Hatványozás redukciója.**
-Az $(1+i)$ hatványai 8-as ciklikusságot mutatnak a komplex síkon ($1+i = \sqrt{2} e^{i\pi/4}$, így 8-adik hatványa $16$).
+**Elméleti háttér — Poláris hatványozás és a 8-as ciklikusság.**
+
+Az $1 + i$ komplex szám polárkoordinátás (trigonometrikus) alakja:
+$$1 + i = \sqrt{2} \left(\cos\frac{\pi}{4} + i\sin\frac{\pi}{4}\right) = \sqrt{2} e^{i\pi/4}.$$
+A Moivre-formula szerint hatványozáskor a hosszak hatványozódnak, a szögek szorzódnak:
+$$(1 + i)^n = (\sqrt{2})^n e^{i n \pi / 4} = 2^{n/2} \left(\cos\frac{n\pi}{4} + i\sin\frac{n\pi}{4}\right).$$
+Mivel $e^{i \cdot 8\pi/4} = e^{i \cdot 2\pi} = 1$, az $(1+i)^8 = (\sqrt{2})^8 = 16$ tiszta valós szám. Emiatt a hatványok 8-as periódus szerint viselkednek az irányban.
 :::
 
 ## Gy5.3.1. feladat
@@ -3145,8 +3787,13 @@ $$\overline{w} = \frac{\bar{z} + 1}{\bar{z} - 1} = \frac{1/z + 1}{1/z - 1} = \fr
 Mivel $\overline{w} = -w$, $w$ tiszta képzetes szám. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Cayley-transzformáció és imaginárius tengely.**
-A $z \mapsto \frac{z+1}{z-1}$ Möbius-transzformáció az egységkört a képzetes tengelyre képezi le.
+**Elméleti háttér — Cayley-transzformáció és az egységkör leképezése.**
+
+A $w = \frac{z + 1}{z - 1}$ törtlineáris függvény (Möbius-transzformáció) a komplex függvénytan egyik alapeszköze (Cayley-transzformáció).
+Ha $|z| = 1$ és $z \neq 1$, akkor $z = e^{i\theta}$ ($\theta \in (0, 2\pi)$). Ekkor:
+$$\frac{e^{i\theta} + 1}{e^{i\theta} - 1} = \frac{e^{i\theta/2}(e^{i\theta/2} + e^{-i\theta/2})}{e^{i\theta/2}(e^{i\theta/2} - e^{-i\theta/2})} = \frac{2\cos(\theta/2)}{2i\sin(\theta/2)} = -i \operatorname{ctg}\frac{\theta}{2}.$$
+Mivel $\operatorname{ctg}(\theta/2)$ valós szám, az eredmény tiszta képzetes szám ($\operatorname{Re}(w) = 0$).
+Geometriailag: a Cayley-transzformáció az egységkört pontosan az imaginárius tengelyre képezi le.
 :::
 
 ## Gy5.3.2. feladat
@@ -3164,8 +3811,14 @@ Ez a szorzat pontosan akkor 0, ha:
 **A számok: vagy a nemnulla valós számok, vagy az egységkörön lévő komplex számok.**
 
 ::: elmelet
-**Elméleti háttér — Zsukovszkij-transzformáció.**
-A $J(z) = \frac{1}{2}(z + 1/z)$ Zsukovszkij-leképezés a valós tengelyt és az egységkört is a $[-1, 1]$ valós szakaszra, illetve a valós tengelyre képezi.
+**Elméleti háttér — Zsukovszkij-transzformáció és valós értékek.**
+
+A $J(z) = z + \frac{1}{z}$ Zsukovszkij-leképezés az aerodinamika (szárnyprofilok modellezése) klasszikus eszköze.
+Ha $z = r e^{i\theta}$, akkor:
+$$z + \frac{1}{z} = r(\cos\theta + i\sin\theta) + \frac{1}{r}(\cos\theta - i\sin\theta) = \left(r + \frac{1}{r}\right)\cos\theta + i\left(r - \frac{1}{r}\right)\sin\theta.$$
+A kifejezés képzetes része pontosan akkor zérus (valós értékű), ha:
+1. $\sin\theta = 0 \implies \theta \in \{0, \pi\} \implies z \in \mathbb{R} \setminus \{0\}$ (a valós tengely pontjai);
+2. $r - \frac{1}{r} = 0 \implies r = 1 \implies |z| = 1$ (az origó középpontú egységkör pontjai).
 :::
 
 ## Gy5.4.1. feladat
@@ -3182,8 +3835,11 @@ $$i^{5050} = i^2 = -1.$$
 **A szorzat értéke: $-1$.**
 
 ::: elmelet
-**Elméleti háttér — Exponenciális összegzés.**
-A szorzat hatványok szorzataként a számtani sorozat összegére vezethető vissza.
+**Elméleti háttér — Exponenciális szorzatok és a számtani sorozat összege.**
+
+A hatványozás azonosságai alapján azonos alapú hatványok szorzatánál a kitevők összeadódnak:
+$$\prod_{k=1}^n i^k = i^{\sum_{k=1}^n k} = i^{\frac{n(n+1)}{2}}.$$
+Mivel $i$ hatványai modulo 4 periodikusak ($i^0=1, i^1=i, i^2=-1, i^3=-i$), az érték kizárólag az $\frac{n(n+1)}{2}$ kitevő modulo 4 maradékától függ.
 :::
 
 ## Gy5.4.2. feladat
@@ -3200,8 +3856,13 @@ $$\sum_{k=1}^{4n} k \cdot i^k = n(2 - 2i) = 2n(1 - i).$$
 **Végeredmény: $2n - 2ni$.**
 
 ::: elmelet
-**Elméleti háttér — Súlyozott ciklikus összegek.**
-Bár a tagok együtthatói nőnek, a differenciák konstansok, így a blokk-összegek invariánsak a blokk eltolására.
+**Elméleti háttér — Súlyozott ciklikus összegek és a derivált generátorfüggvény.**
+
+A $\sum_{k=1}^m k z^k$ típusú összegek kiszámításának standard módszere a véges mértani sor deriválása:
+$$\sum_{k=1}^m z^k = z \frac{z^m - 1}{z - 1} \implies \sum_{k=1}^m k z^{k-1} = \frac{d}{dz}\left(z \frac{z^m - 1}{z - 1}\right).$$
+$z = i$ esetén $i^k$ négyes periódusú. Egy 4 hosszú blokkban:
+$$1 \cdot i + 2 \cdot (-1) + 3 \cdot (-i) + 4 \cdot 1 = (4 - 2) + i(1 - 3) = 2 - 2i.$$
+Minden további 4-es blokk ugyanezzel az eltolással járul hozzá, ami azonnali zárt képletet ad tetszőleges $4n$ hosszúságú szakaszra.
 :::
 
 ## Gy5.5.1. feladat
@@ -3220,8 +3881,13 @@ $$-x + 5yi = -2 + 15i.$$
 (Ellenőrzés: $2(2+3i) - 3(2-3i) = 4+6i - 6+9i = -2 + 15i$. Helyes!)
 
 ::: elmelet
-**Elméleti háttér — Közvetlen komponens-szétválasztás.**
-Ha az együtthatók valósak, $x$ és $y$ azonnal szétcsatolódik egymástól.
+**Elméleti háttér — Lineáris egyenletek $z$-ben és $\bar{z}$-ban (valós szétcsatolás).**
+
+Egy $a z + b \bar{z} = c$ alakú egyenlet megoldásának két alapvető módszere:
+1. *Komponens-módszer:* $z = x + iy$ helyettesítéssel a valós és képzetes részek szétválasztásával egy $2 \times 2$-es valós lineáris egyenletrendszert kapunk $x$-re és $y$-ra.
+2. *Konjugált egyenlet módszere:* Vesszük az egyenlet konjugáltját: $\bar{b} z + \bar{a} \bar{z} = \bar{c}$.
+Ez egy $2 \times 2$-es lineáris rendszer a $z$ és $\bar{z}$ formális változókra. A rendszer determinánsa $|a|^2 - |b|^2$.
+Ha $|a| \neq |b|$, a rendszernek egyértelmű megoldása van.
 :::
 
 ## Gy5.5.2. feladat
@@ -3244,8 +3910,12 @@ Ellenőrzés: $i(-i) + 2(\overline{-i}) = 1 + 2(i) = 1 + 2i$. Helyes!
 **A megoldás: $z = -i$.**
 
 ::: elmelet
-**Elméleti háttér — Csatolt valós rendszerek.**
-Ha a $z$ együtthatója nem valós (itt $i$), a valós és képzetes részek csatolt $2 \times 2$-es lineáris rendszert alkotnak.
+**Elméleti háttér — Szinguláris és csatolt komplex rendszerek.**
+
+Ha az $a z + b \bar{z} = c$ rendszerben a determináns $|a|^2 - |b|^2 = 0$ (azaz $|a| = |b|$):
+A rendszer együtthatómátrixa szinguláris. Ekkor a Kronecker–Capelli tételnek megfelelően:
+- Ha az egyenletek ellentmondásosak, nincs megoldás;
+- Ha az egyenletek összefüggők, végtelen sok megoldás van (geometriailag egy egyenes a komplex számsíkon).
 :::
 
 ## Gy5.6.1. feladat
@@ -3259,8 +3929,16 @@ Abszolút értéket véve: $|z| = |3 + 4i||\bar{z}| = 5|z| \implies 4|z| = 0 \im
 **Megoldás: $z = 0$.**
 
 ::: elmelet
-**Elméleti háttér — Abszolút érték mint norma.**
-Mivel $|cz| = |c||z|$, ha $|c| \ne 1$, a $z = c\bar{z}$ egyenletnek csak $z = 0$ lehet megoldása.
+**Elméleti háttér — A komplex abszolút érték multiplikatív normája.**
+
+A komplex modulus (abszolút érték) kielégíti a norma axiómáit:
+1. $|z| \ge 0$, és $|z| = 0 \iff z = 0$;
+2. $|z \cdot w| = |z| \cdot |w|$;
+3. $|z + w| \le |z| + |w|$ (háromszög-egyenlőtlenség).
+Továbbá $|\bar{z}| = |z|$.
+Ezért egy $z = c \bar{z}$ alakú egyenlet mindkét oldalának abszolút értékét véve:
+$$|z| = |c| \cdot |\bar{z}| = |c| \cdot |z| \implies |z|(1 - |c|) = 0.$$
+Ha $|c| \neq 1$, akkor kényszerűen $|z| = 0$, így az egyetlen megoldás a triviális $z = 0$.
 :::
 
 ## Gy5.6.2. feladat
@@ -3277,8 +3955,13 @@ A képzetes részre ($y$) nincs feltétel.
 **A megoldások a tiszta képzetes számok: $z = yi$, ahol $y \in \mathbb{R}$.**
 
 ::: elmelet
-**Elméleti háttér — Képzetes tengely karakterizációja.**
-Az $x = 0$ feltétel geometriailag a komplex számsík függőleges tengelye (imaginárius tengely).
+**Elméleti háttér — A képzetes tengely karakterizációja konjugálttal.**
+
+Egy $z \in \mathbb{C}$ komplex számra az alábbiak ekvivalensek:
+1. $z$ tiszta képzetes szám ($\operatorname{Re}(z) = 0$);
+2. $\bar{z} = -z$;
+3. $z^2 \le 0$ valós szám.
+Geometriailag ez a Gauss-féle számsík vertikális tengelye. Hasonlóan $\bar{z} = z$ pontosan a valós tengely pontjait karakterizálja.
 :::
 
 ## Gy5.7.1. feladat
@@ -3292,8 +3975,12 @@ Másrészt $(a^2 + b^2)^5 = (|z|^2)^5 = (|z|^5)^2 = 10^2 = 100$.
 **Végeredmény: 100.**
 
 ::: elmelet
-**Elméleti háttér — Pitagoraszi számhármasok abszolút értéke.**
-A $6, 8, 10$ számhármas miatt a jobb oldal abszolút értéke 10, négyzete 100.
+**Elméleti háttér — Pitagoraszi számhármasok és komplex hatványok normája.**
+
+Mivel a komplex abszolút érték multiplikatív, ha $z^n = w$, akkor:
+$$|z|^n = |w| \implies |z| = \sqrt[n]{|w|}.$$
+Ha $w = a + bi$ koordinátái pitagoraszi számhármast alkotnak (pl. $8 - 6i$, ahol $8^2 + (-6)^2 = 64 + 36 = 100 = 10^2$), akkor $|w| = 10$.
+Ennek következtében $z$ abszolút értéke azonnal adódik a gyökvonás nélkül: $|z| = \sqrt[5]{10}$, ami tetszőleges algebrai alak keresése nélkül egzaktul meghatározza $a^2 + b^2 = |z|^2$ értékét.
 :::
 
 ## Gy5.7.2. feladat
@@ -3308,8 +3995,12 @@ Másrészt $|z^3| = |z|^3 = (\sqrt{x^2 + y^2})^3 = (x^2 + y^2)^{3/2}$.
 **Végeredmény: $\sqrt[3]{2}$.**
 
 ::: elmelet
-**Elméleti háttér — Törtkitevős összefüggés.**
-$x^2 + y^2 = |z|^2 = (|z|^3)^{2/3} = (\sqrt{2})^{2/3} = \sqrt[3]{2}$.
+**Elméleti háttér — Hatványok abszolút értéke és a normatérkép.**
+
+A $N(z) = |z|^2 = x^2 + y^2$ algebrai normatérkép multiplikatív: $N(z_1 z_2) = N(z_1) N(z_2)$.
+Ha $(x + iy)^k = w$, akkor mindkét oldal normáját véve:
+$$(x^2 + y^2)^k = N(w) \implies x^2 + y^2 = \sqrt[k]{N(w)}.$$
+Ez a technika lehetővé teszi a komponensek négyzetösszegének pontos meghatározását anélkül, hogy a magas fokú egyenletrendszert valós és képzetes részekre kellene bontani.
 :::
 
 ## Gy5.8.1. feladat
@@ -3333,8 +4024,12 @@ $$z = \frac{D_z}{D} = \frac{1 - i}{2} = \frac{1}{2} - \frac{1}{2}i, \qquad w = \
 **Megoldás: $z = \frac{1-i}{2}, w = \frac{1-i}{2}$.**
 
 ::: elmelet
-**Elméleti háttér — Cramer-szabály komplexben.**
-A Cramer-szabály képletei $z_k = \frac{\det A_k}{\det A}$ tetszőleges test felett működnek, ha $\det A \ne 0$.
+**Elméleti háttér — Cramer-szabály tetszőleges test felett.**
+
+A lineáris algebra fundamentális tétele szerint a Cramer-szabály tetszőleges kommutatív test ($K$, így $\mathbb{C}$) felett érvényes:
+Ha egy $n$ ismeretlenes, $n$ egyenletből álló rendszer együtthatómátrixára $\det(A) \neq 0$, akkor a rendszernek pontosan egy megoldása van, és
+$$z_j = \frac{\det(A_j)}{\det(A)},$$
+ahol $A_j$ az a mátrix, amelyet az $A$ $j$-edik oszlopának a konstans vektorra való kicserélésével kapunk. A számítás során a komplex aritmetika szabályai szerint szorzunk és osztunk.
 :::
 
 ## Gy5.8.2. feladat
@@ -3350,8 +4045,11 @@ A kettőből $10 = 10 + 2i \implies 2i = 0$, ami ellentmondás!
 **Nincs megoldás (inkonzisztens rendszer).**
 
 ::: elmelet
-**Elméleti háttér — Ellentmondásos komplex rendszerek.**
-Ha az együtthatómátrix determinánsa 0 és a rangok eltérnek, a rendszer ellentmondásos.
+**Elméleti háttér — Ellentmondásos komplex lineáris rendszerek.**
+
+Egy komplex lineáris rendszer pontosan akkor inkonzisztens (ellentmondásos, nincs megoldása), ha az együtthatómátrix rangja szigorúan kisebb a kibővített mátrix rangjánál:
+$$\operatorname{rang}(A) < \operatorname{rang}(A | b).$$
+$2 \times 2$-es esetben ez azt jelenti, hogy az egyenletek bal oldalai egymás skalárszorosai (determináns zérus), de a jobb oldali konstansok nem ugyanezzel a skalárral arányosak, ami $0 = c \neq 0$ típusú ellentmondáshoz vezet.
 :::
 
 ## Gy5.9.1. feladat
@@ -3369,8 +4067,13 @@ $13 = 3^2 + 2^2 \implies z_2 = 3 + 2i$.
 **A két felbontás: $65 = 4^2 + 7^2 = 1^2 + 8^2$.**
 
 ::: elmelet
-**Elméleti háttér — Kétféle előállítás összetett számokra.**
-Ha egy szám két $1 \pmod 4$ prím szorzata, a Gauss-egészek közötti kétféle konjugált-szorzás pontosan két lényegesen különböző felbontást ad.
+**Elméleti háttér — Brahmagupta–Fibonacci-azonosság és két négyzet összege.**
+
+A komplex számok normájának multiplikativitása közvetlenül bizonyítja a két négyzetszám összegének szorzattételét:
+$$(a^2 + b^2)(c^2 + d^2) = |a+bi|^2 |c+di|^2 = |(a+bi)(c+di)|^2 = (ac - bd)^2 + (ad + bc)^2.$$
+Mivel a konjugálttal is szorozhatunk:
+$|(a+bi)(c-di)|^2 = (ac + bd)^2 + (ad - bc)^2$.
+Ez azonnal két különböző felbontást ad négyzetszámok összegére összetett számok esetén (pl. $65 = 5 \cdot 13 = (2^2+1^2)(3^2+2^2)$).
 :::
 
 ## Gy5.9.2. feladat
@@ -3392,8 +4095,12 @@ $(1 + i)(22 + 23i) = (22 - 23) + (23 + 22)i = -1 + 45i \implies 2026 = 1^2 + 45^
 **Igen, előáll: $2026 = 1^2 + 45^2$.**
 
 ::: elmelet
-**Elméleti háttér — 2026 felbontása két négyzetre.**
-Mivel $2025 = 45^2$, a $2026 = 45^2 + 1^2$ felbontás közvetlenül is felismerhető.
+**Elméleti háttér — Fermat-tétel két négyzetszám összegéről.**
+
+*Fermat tétele (1640):* Egy páratlan $p$ prímszám akkor és csak akkor írható fel két négyzetszám összegeként ($p = x^2 + y^2$), ha
+$$p \equiv 1 \pmod 4.$$
+Egy tetszőleges $N$ pozitív egész pontosan akkor áll elő két négyzetszám összegeként, ha a kanonikus prímfelbontásában minden $q \equiv 3 \pmod 4$ alakú prím páros hatványon szerepel.
+A 2026 szám esetén $2026 = 2 \cdot 1013$. Mivel $1013 \equiv 1 \pmod 4$ prím, 2026 felírható két négyzet összegeként ($2026 = 45^2 + 1^2$).
 :::
 
 ## Gy5.10.1. feladat
@@ -3407,8 +4114,11 @@ Gyökök: $1 + 2i, 1 - 2i$.
 **Gyöktényezős alak:** $(x - 1 - 2i)(x - 1 + 2i)$.
 
 ::: elmelet
-**Elméleti háttér — Konjugált gyökpárok.**
-Valós együtthatós egyenlet komplex gyökei mindig párosával, konjugált párokként lépnek fel.
+**Elméleti háttér — Valós együtthatós polinomok konjugált gyökpárjai.**
+
+*Tétel:* Ha $P(x) \in \mathbb{R}[x]$ valós együtthatós polinom és $\alpha \in \mathbb{C}$ gyöke $P$-nek ($P(\alpha) = 0$), akkor a konjugáltja is gyök:
+$$P(\bar{\alpha}) = \overline{P(\alpha)} = \bar{0} = 0.$$
+*Következmény:* A nemvalós gyökök mindig párosával lépnek fel, és a hozzájuk tartozó $(x - \alpha)(x - \bar{\alpha}) = x^2 - 2\operatorname{Re}(\alpha)x + |\alpha|^2$ polinom valós együtthatós és irreducibilis $\mathbb{R}$ felett. Ezért minden páratlan fokú valós polinomnak van legalább egy valós gyöke.
 :::
 
 ## Gy5.10.2. feladat
@@ -3425,8 +4135,13 @@ $x + i = \pm 2i$.
 **Gyökök: $x_1 = i, x_2 = -3i$.**
 
 ::: elmelet
-**Elméleti háttér — Tiszta képzetes együtthatók.**
-Ha az elsőfokú tag képzetes és a konstans valós, a gyökök tiszta képzetes számok lehetnek.
+**Elméleti háttér — Nemvalós együtthatós másodfokú egyenletek.**
+
+Ha egy másodfokú egyenlet együtthatói komplex számok (pl. $a x^2 + b x + c = 0$, ahol $b \notin \mathbb{R}$):
+A gyökök már NEM feltétlenül alkotnak konjugált párokat!
+A megoldóképlet változatlanul érvényes:
+$$x_{1, 2} = \frac{-b \pm \sqrt{\Delta}}{2a},$$
+ahol $\Delta = b^2 - 4ac \in \mathbb{C}$ komplex szám, és a négyzetgyökvonást a komplex számok körében kell elvégezni.
 :::
 
 ## Gy5.11.1. feladat
@@ -3444,8 +4159,13 @@ Mivel $2cd = 4 > 0$, $c$ és $d$ azonos előjelűek.
 (Ellenőrzés: $(1 + 2i)^2 = 1 + 4i - 4 = -3 + 4i$.)
 
 ::: elmelet
-**Elméleti háttér — Négyzetgyök képlet ellenőrzése.**
-$c = \sqrt{\frac{5 + (-3)}{2}} = 1$, $d = \sqrt{\frac{5 - (-3)}{2}} = 2$ közvetlenül adja az eredményt.
+**Elméleti háttér — Négyzetgyökvonás algebrai alakban.**
+
+Egy $w = a + bi$ komplex szám négyzetgyökeit keressük $z = c + di$ alakban ($z^2 = w$):
+$$c^2 - d^2 = a, \quad 2cd = b, \quad c^2 + d^2 = |w| = \sqrt{a^2 + b^2}.$$
+A két egyenlet összeadásából és kivonásából adódik a zárt formula:
+$$c = \pm \sqrt{\frac{|w| + a}{2}}, \quad d = \pm \operatorname{sgn}(b) \sqrt{\frac{|w| - a}{2}}.$$
+A két előjel összetartozik (a $2cd = b$ feltétel miatt a szorzat előjele $b$ előjelével azonos).
 :::
 
 ## Gy5.11.2. feladat
@@ -3466,8 +4186,12 @@ Ellenőrzés: $(2+i)(-i) = -2i - i^2 = 1 - 2i$. Helyes!
 **Gyökök: $x_1 = 2 + i, x_2 = -i$.**
 
 ::: elmelet
-**Elméleti háttér — Tiszta képzetes diszkrimináns.**
-A tisztán képzetes diszkrimináns gyökei $c = d$ egyenlőségű komplex számok ($1+i$ többszörösei).
+**Elméleti háttér — Tiszta képzetes diszkrimináns és szögfelezés.**
+
+Ha a másodfokú egyenlet diszkriminánsa tiszta képzetes ($\Delta = 2k i$):
+Mivel $i = e^{i\pi/2}$, a négyzetgyökei $e^{i\pi/4} = \frac{1+i}{\sqrt{2}}$ irányúak.
+Így $\sqrt{2ki} = \pm \sqrt{k} (1 + i)$.
+A valós és képzetes komponensek egyenlők ($c = d$), ami azonnal adja a gyökök szerkezetét.
 :::
 
 ## Gy5.12.1. feladat
@@ -3482,8 +4206,16 @@ A 4. síknegyedben van: $\varphi = 2\pi - \frac{\pi}{4} = \frac{7\pi}{4}$ (vagy 
 **Trigonometrikus alak: $\sqrt{2}\left(\cos\frac{7\pi}{4} + i\sin\frac{7\pi}{4}\right)$.**
 
 ::: elmelet
-**Elméleti háttér — 4. síknegyedbeli argumentum.**
-A 4. negyedben a szög $-\pi/4 \equiv 7\pi/4 \pmod{2\pi}$.
+**Elméleti háttér — Trigonometrikus alak és a főérték-tartomány.**
+
+Egy $z = x + iy \neq 0$ komplex szám trigonometrikus (poláris) alakja:
+$$z = r(\cos\varphi + i\sin\varphi) = r e^{i\varphi},$$
+ahol $r = |z| = \sqrt{x^2 + y^2} > 0$ a modulus, és $\varphi = \operatorname{arg}(z)$ az argumentum.
+A szög meghatározása a síknegyedektől függ:
+- 1. negyed ($x > 0, y \ge 0$): $\varphi = \operatorname{arctg}(y/x)$;
+- 2. negyed ($x < 0, y \ge 0$): $\varphi = \operatorname{arctg}(y/x) + \pi$;
+- 3. negyed ($x < 0, y < 0$): $\varphi = \operatorname{arctg}(y/x) - \pi$ (vagy $+\pi$);
+- 4. negyed ($x > 0, y < 0$): $\varphi = \operatorname{arctg}(y/x)$ (negatív szög, vagy $+2\pi$).
 :::
 
 ## Gy5.12.2. feladat
@@ -3501,8 +4233,12 @@ Ez pontosan trigonometrikus alak, ahol a sugár $r = 2\cos(\alpha/2)$, a szög $
 **Trigonometrikus alak: $2\cos\left(\frac{\alpha}{2}\right)\left(\cos\frac{\alpha}{2} + i\sin\frac{\alpha}{2}\right)$.**
 
 ::: elmelet
-**Elméleti háttér — Félszög-faktorizáció.**
-Az $1 + e^{i\alpha} = e^{i\alpha/2}(e^{-i\alpha/2} + e^{i\alpha/2}) = 2\cos(\alpha/2) e^{i\alpha/2}$ azonosság azonnal adja a trigonometrikus alakot.
+**Elméleti háttér — Trigonometrikus félszög-azonosságok komplex alakban.**
+
+Az $1 + \cos\alpha + i\sin\alpha$ kifejezés trigonometrikus alakra hozásának leggyorsabb módja az Euler-alak félszög-kiemelése:
+$$1 + e^{i\alpha} = e^{i\alpha/2}(e^{-i\alpha/2} + e^{i\alpha/2}) = e^{i\alpha/2} \cdot 2\cos\frac{\alpha}{2}.$$
+Ha $\cos(\alpha/2) > 0$, akkor a modulus $r = 2\cos(\alpha/2)$, és az argumentum pontosan a félszög: $\varphi = \alpha/2$.
+Ez az azonosság a geometriai vektorok felező szögének komplex reprezentációja.
 :::
 
 ## Gy5.13.1. feladat
@@ -4264,8 +5000,14 @@ Az utolsó két számjegy:
 $$\mathbf{91}.$$
 
 ::: elmelet
-**Elméleti háttér — Alapok felírása $-1$ maradékkal.**
-Ha megtaláljuk azt a hatványt, amelyre $a^m \equiv -1 \pmod{100}$, akkor a rend $2m$, és a számolás rendkívül gyorssá válik, hiszen $a^{2m} \equiv 1$, és a félperiódus előjelváltást eredményez.
+**Elméleti háttér — Utolsó két számjegy meghatározása modulo 100.**
+
+Egy szám utolsó két számjegyét a modulo 100 maradéka adja meg.
+Mivel $100 = 4 \cdot 25$ és $\gcd(4, 25) = 1$, az Euler-féle $\varphi$-függvény:
+$$\varphi(100) = 100 \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{5}\right) = 40.$$
+Az Euler–Fermat-tétel szerint ha $\gcd(a, 100) = 1$, akkor $a^{40} \equiv 1 \pmod{100}$.
+Ha az alap közel áll a 10 valamelyik hatványához (pl. $9 = 10 - 1$), a binomiális tétellel való sorfejtés rendkívül gyors:
+$$9^n = (10 - 1)^n = (-1)^n + n(-1)^{n-1} \cdot 10 + \binom{n}{2}(-1)^{n-2} \cdot 100 + \dots \equiv (-1)^n + 10n(-1)^{n-1} \pmod{100}.$$
 :::
 
 ## Gy6.5.1. feladat
@@ -4870,8 +5612,15 @@ A megoldás:
 $$\mathbf{x \equiv 8 \pmod{105}}.$$
 
 ::: elmelet
-**Elméleti háttér — Gyors inverzkeresés a CRT-ben.**
-Ha $M_i \equiv 1 \pmod{m_i}$, akkor $y_i = 1$ azonnal adódik, ami jelentősen meggyorsítja a számítást (mint a fenti feladatban $M_2$ és $M_3$ esetén).
+**Elméleti háttér — Kínai maradéktétel (CRT) és moduláris inverzek.**
+
+*Kínai maradéktétel (Sun Tzu, 3. század):*
+Ha $m_1, m_2, \dots, m_k$ páronként relatív prím modulusok ($M = \prod m_i$), akkor az $x \equiv a_i \pmod{m_i}$ kongruenciarendszernek létezik egyértelmű megoldása modulo $M$.
+Konstruktív algoritmus:
+1. Legyen $M_i = M / m_i$. Mivel $\gcd(M_i, m_i) = 1$, létezik $y_i = M_i^{-1} \pmod{m_i}$ (a kibővített euklideszi algoritmussal).
+2. A megoldás:
+$$x \equiv \sum_{i=1}^k a_i M_i y_i \pmod M.$$
+A moduláris inverzek gyors kereséséhez kis modulusok esetén a próbálgatás vagy az Euler-tétel ($y_i \equiv M_i^{\varphi(m_i)-1}$) alkalmazható.
 :::
 
 ## Gy6.17.2. feladat
@@ -5201,8 +5950,14 @@ Mivel $\det(C^{-1}) = \frac{1}{\det C}$:
 $$\det(2C^{-1}) = 32 \cdot \frac{1}{4} = \mathbf{8}.$$
 
 ::: elmelet
-**Elméleti háttér — Inverz mátrix és skálázás determinánsa.**
-Inverz mátrix determinánsa a determináns reciproka. A skalár kiemelésekor mindig a mátrix dimenziója ($n$) jelenik meg kitevőként: $\det(c C^{-1}) = c^n / \det C$.
+**Elméleti háttér — Skalárral szorzott mátrix determinánsa és az inverz.**
+
+Legyen $A \in \mathbb{R}^{n \times n}$ egy $n \times n$-es mátrix és $c \in \mathbb{R}$ tetszőleges skalár.
+A determináns $n$-lineáris tulajdonsága miatt (minden sorból külön-külön kiemelhető a $c$ szorzó):
+$$\det(c A) = c^n \det(A).$$
+Ha $A$ invertálható ($\det A \neq 0$):
+$$\det(A^{-1}) = \frac{1}{\det A} = (\det A)^{-1}.$$
+Kombinálva a kettőt: $\det(c A^{-1}) = c^n \det(A^{-1}) = \frac{c^n}{\det A}$.
 :::
 
 ## Gy7.4.1. feladat
@@ -5428,8 +6183,14 @@ Mivel 9 páratlan szám, a keresett maximum:
 $$\mathbf{9}.$$
 
 ::: elmelet
-**Elméleti háttér — Paritás $n = 5$ esetén.**
-Mivel $5 \equiv 1 \pmod 4$, a maximális inverziószám $\binom{5}{2} = 10$ páros, ezért a páros permutációk maximuma 10, a páratlanoké pedig 9.
+**Elméleti háttér — Maximális inverziószám és a megfordított permutáció.**
+
+Egy $n$ elemű permutációban az inverziók száma a páronként vett rendezési hibákat méri: $0 \le I(\pi) \le \binom{n}{2}$.
+- Az egyetlen 0 inverziójú permutáció az identitás: $\mathrm{id} = (1, 2, \dots, n)$;
+- A maximális inverziószámú permutáció az elemek teljesen megfordított sorrendje: $\pi_{\max} = (n, n-1, \dots, 2, 1)$.
+Ebben minden $(i, j)$ pár ($i < j$) inverziót alkot, így az inverziók száma a lehetséges párok száma:
+$$I_{\max} = \binom{n}{2} = \frac{n(n-1)}{2}.$$
+$n = 5$ esetén: $\binom{5}{2} = 10$.
 :::
 
 ## Gy7.9.2. feladat
@@ -5447,8 +6208,14 @@ Például $(7, 6, 5, 4, 3, 1, 2)$ inverziószáma pontosan 20.
 A páros permutációk maximális inverziószáma: $\mathbf{20}$.
 
 ::: elmelet
-**Elméleti háttér — Általános paritásképlet.**
-Tetszőleges $n$-re a két paritási osztály közötti maximális inverziószámok mindig $\{\binom{n}{2}, \binom{n}{2} - 1\}$, és az dönti el a szerepeket, hogy $\binom{n}{2}$ páros-e vagy páratlan.
+**Elméleti háttér — Páros és páratlan permutációk felezése és az alternáló csoport.**
+
+Minden $\pi \in S_n$ ($n \ge 2$) permutáció vagy páros ($I(\pi)$ páros, $\operatorname{sgn}(\pi) = +1$), vagy páratlan ($I(\pi)$ páratlan, $\operatorname{sgn}(\pi) = -1$).
+A szignatúra leképezés $\operatorname{sgn}: S_n \to \{+1, -1\}$ egy csoport-homomorfizmus.
+Ennek magja az $A_n$ *alternáló csoport* (a páros permutációk részcsoportja).
+Mivel tetszőleges transzpozícióval ($ (1 2) $) való szorzás bijekciót létesít a páros és páratlan permutációk között:
+$$|A_n| = |S_n \setminus A_n| = \frac{|S_n|}{2} = \frac{n!}{2}.$$
+Bármely $n \ge 2$ esetén a permutációk pontosan fele páros, fele páratlan.
 :::
 
 ## Gy7.10.1. feladat
@@ -5484,8 +6251,12 @@ $$\pi = \mathbf{(14253)}.$$
 Előjele: 5-ciklus, így $(-1)^{5-1} = (-1)^4 = \mathbf{+1}$ (páros).
 
 ::: elmelet
-**Elméleti háttér — Prímhosszú ciklusok hatványozása.**
-Ha $p$ prím, egy $p$-ciklus tetszőleges olyan hatványa, amely nem többszöröse $p$-nek, újra $p$-ciklus lesz, amely az elemeket a kitevő lépésközével járja be.
+**Elméleti háttér — Ciklusok hatványozása és a ciklusszétesés tétele.**
+
+Legyen $\sigma = (a_1 a_2 \dots a_p)$ egy $p$ hosszúságú ciklus.
+A $\sigma^k$ hatvány ciklusstruktúráját a kitevő és a ciklushossz legnagyobb közös osztója $d = \gcd(k, p)$ határozza meg:
+- $\sigma^k$ pontosan $d$ darab diszjunkt, $p/d$ hosszúságú ciklus szorzatára esik szét.
+- Speciálisan, ha $p$ prímszám és $p \nmid k$, akkor $\gcd(k, p) = 1$, így $\sigma^k$ egyetlen, változatlanul $p$ hosszúságú ciklus marad (csak az elemek bejárási sorrendje lépked $k$-asával).
 :::
 
 ## Gy7.11.1. feladat
@@ -5523,8 +6294,13 @@ Ellenőrzés jobbról balra:
 Valóban $1 \mapsto 4 \mapsto 3 \mapsto 2 \mapsto 1$. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Formulák gyakorlati alkalmazása.**
-A képlet automatikusan $k-1$ tényezőre bontja a ciklust. A kapott transzpozíciók páronként egy-egy közös elemet tartalmaznak, ami láncszerűen továbbítja az elemeket.
+**Elméleti háttér — Permutációk felbontása szomszédos transzpozíciók szorzatára.**
+
+Minden transzpozíció páratlan permutáció ($\operatorname{sgn} = -1$).
+Egy $k$ hosszúságú ciklus felbontható $k - 1$ darab transzpozíció szorzatára:
+$$(a_1 a_2 \dots a_k) = (a_1 a_k)(a_1 a_{k-1}) \dots (a_1 a_2).$$
+A paritása: $\operatorname{sgn} = (-1)^{k-1}$.
+Továbbá minden transzpozíció felbontható szomszédos transzpozíciók $(i, i+1)$ szorzatára. Egy permutáció szomszédos transzpozíciókra bontásának minimális lépésszáma pontosan az inverziók száma $I(\pi)$ (buborékrendezés lépésszáma).
 :::
 
 ## Gy7.12.1. feladat
@@ -5586,8 +6362,11 @@ $$\det P_\pi = (-1)^{I(\pi)} = (-1)^2 = \mathbf{+1}.$$
 (Közvetlen kifejtéssel: $1 \cdot (-1)^{1+3} \cdot \begin{vmatrix} 1 & 0 \\ 0 & 1 \end{vmatrix} = 1 \cdot 1 = 1$.)
 
 ::: elmelet
-**Elméleti háttér — Ciklikus permutációk determinánsa.**
-Egy $k$ hosszú ciklus mint permutációs mátrix determinánsa $(-1)^{k-1}$. A 3 elemű ciklikus eltolás determinánsa $(-1)^{3-1} = +1$, míg a 4 eleműé $-1$.
+**Elméleti háttér — Kétsoros jelölés és diszjunkt ciklusfelbontás.**
+
+A Cauchy-féle kétsoros jelölésben az első sor az argumentumokat, a második sor az értékeket tartalmazza: $\begin{pmatrix} 1 & 2 & \dots & n \\ \pi(1) & \pi(2) & \dots & \pi(n) \end{pmatrix}$.
+Mivel minden permutáció egyértelműen felbontható páronként diszjunkt ciklusok szorzatára:
+A ciklusok egymással felcserélhetők (kommutálnak). Az 1 hosszúságú ciklusok a permutáció fixpontjai ($\pi(i) = i$), amelyeket a ciklusos írásmódban gyakran elhagyunk.
 :::
 
 ## Gy7.13.2. feladat
@@ -5608,8 +6387,14 @@ $$SO(n) = \{Q \in O(n) : \det Q = +1\}.$$
 Ezért minden páros permutáció mátrixa az $SO(n)$ csoport eleme. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — A váltakozó csoport beágyazása $SO(n)$-be.**
-Az $A_n \to SO(n), \pi \mapsto P_\pi$ leképezés a váltakozó csoport hű reprezentációja forgatásmátrixokkal az $n$-dimenziós euklideszi térben.
+**Elméleti háttér — Permutációs mátrixok és a determináns.**
+
+Egy $\pi \in S_n$ permutációhoz tartozó $P_\pi$ permutációs mátrixban az $i$-edik sor $\pi(i)$-edik eleme 1, minden más eleme 0:
+$$(P_\pi)_{ij} = \delta_{\pi(i), j}.$$
+A permutációs mátrixok leképezése izomorfizmus a mátrixszorzásra: $P_{\pi \sigma} = P_\sigma P_\pi$.
+Mivel $P_\pi$ az identitásmátrix soraiból a $\pi$ permutációval áll elő:
+$$\det(P_\pi) = \operatorname{sgn}(\pi) \in \{+1, -1\}.$$
+Ez közvetlen hidat képez a determináns Leibniz-formulája és az absztrakt csoportelmélet között.
 :::
 
 ---
@@ -5715,8 +6500,13 @@ A kiejtő tag tehát:
 $$\mathbf{+ a_{14}a_{23}a_{32}a_{41}a_{55}}.$$
 
 ::: elmelet
-**Elméleti háttér — Oszlopindexek transzponálása.**
-Az egyenlő oszlopok indexeinek felcserélése a determinánsban egyértelműen meghatározza a kiejtő partnert, függetlenül a mátrix konkrét numerikus elemeitől.
+**Elméleti háttér — Alternáló multilineáris formák és egyenlő oszlopok.**
+
+A determináns a sorai (és oszlopai) szerint *alternáló multilineáris leképezés*:
+1. Multilineáris: minden sorában/oszlopában külön-külön lineáris.
+2. Alternáló: ha egy mátrixnak két sora (vagy két oszlopa) megegyezik, akkor a determinánsa szükségképpen zérus:
+$$A_i = A_j \ (i \neq j) \implies \det(A) = 0.$$
+Bizonyítás: Két oszlop felcserélése a determináns előjelét megfordítja ($\det = -\det$). Ha a két oszlop azonos, a mátrix a csere után változatlan marad, így $\det(A) = -\det(A) \implies 2\det(A) = 0 \implies \det(A) = 0$ (karakterisztika $\neq 2$ esetén).
 :::
 
 ## Gy8.3.1. feladat
@@ -5939,8 +6729,12 @@ $D_z = (-2 + 3 + 24) - (-6 + 6 + 4) = 25 - 4 = 21 \implies z = \frac{21}{7} = \m
 A megoldás: **$x = 1, y = 2, z = 3$**.
 
 ::: elmelet
-**Elméleti háttér — Cramer-szabály három ismeretlenre.**
-Három ismeretlen esetén négy darab $3 \times 3$-as determinánst kell kiszámítani Sarrus-szabállyal vagy sorműveletekkel. A koordináták közvetlenül a hányadosokként adódnak.
+**Elméleti háttér — Cramer-szabály háromismeretlenes rendszerekre.**
+
+Egy $3 \times 3$-as $A x = b$ rendszer megoldása a Cramer-szabállyal:
+$$x_1 = \frac{\det(A_1)}{\det A}, \quad x_2 = \frac{\det(A_2)}{\det A}, \quad x_3 = \frac{\det(A_3)}{\det A}.$$
+Feltétele, hogy a fődetermináns nemnulla: $\det A \neq 0$.
+A determinánsok kifejtése $3 \times 3$-as méretre a Sarrus-szabállyal vagy sor szerinti Laplace-kifejtéssel végezhető el. A módszer elméleti jelentősége kiemelkedő, mert a megoldásokat a rendszer együtthatóinak explicit racionális törtfüggvényeként állítja elő.
 :::
 
 ## Gy8.9.1. feladat
@@ -5997,8 +6791,13 @@ Valóban: $A^{-1} = \frac{1}{-1}\begin{pmatrix} 3 & -5 \\ -2 & 3 \end{pmatrix} =
 Mivel $\det B = 2 \notin \{\pm 1\}$, a tétel szerint az inverze **nem lehet egész elemű** (osztani kellene 2-vel, így félegészek jelennek meg: $B^{-1} = \begin{pmatrix} 3/2 & -1/2 \\ -2 & 1 \end{pmatrix}$).
 
 ::: elmelet
-**Elméleti háttér — Unimodularitási teszt.**
-Egy egész mátrix inverzének integritását azonnal eldönti a determinánsa: csak ki kell számolni $\det A$-t, és ha az nem $\pm 1$, az inverzben biztosan törtek fognak szerepelni.
+**Elméleti háttér — Unimoduláris diofantoszi invertálhatósági teszt.**
+
+Egy egész elemű $A \in \mathbb{Z}^{n \times n}$ mátrix akkor és csak akkor invertálható az egész számok körében (azaz $A^{-1} \in \mathbb{Z}^{n \times n}$), ha
+$$\det(A) \in \{+1, -1\}.$$
+*Bizonyítás:*
+- Szükségesség: Ha $A$ és $A^{-1}$ egészek, akkor $\det(A)$ és $\det(A^{-1})$ egész számok. Mivel $\det(A)\det(A^{-1}) = \det(I) = 1$, a determinánsnak osztania kell az 1-et $\mathbb{Z}$-ben, így csak $\pm 1$ lehet.
+- Elégségesség: Az adjungált mátrix képletéből $A^{-1} = \frac{1}{\det A} \operatorname{adj}(A)$. Mivel $A$ egész elemű, az aldeterminánsokból álló $\operatorname{adj}(A)$ szintén egész elemű. Ha $\det A = \pm 1$, az osztás egész mátrixot eredményez.
 :::
 
 ## Gy8.10.2. feladat
@@ -6051,8 +6850,14 @@ $$\det H = \overline{\det H} \iff \operatorname{Im}(\det H) = 0 \iff \mathbf{\de
 Ezzel a tételt bebizonyítottuk. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — Hermite-féle mátrixok spektruma.**
-A spektráltétel szerint a Hermite-féle mátrixok minden sajátértéke valós szám. Mivel a determináns a sajátértékek szorzata ($\det H = \prod \lambda_i$), a determináns szükségképpen valós.
+**Elméleti háttér — Hermite-féle mátrixok determinánsa és valós spektrum.**
+
+Egy $H \in \mathbb{C}^{n \times n}$ mátrixot *önadjungáltnak* (vagy Hermite-félének) nevezünk, ha megegyezik a konjugált transzponáltjával:
+$$H^* = \overline{H}^T = H.$$
+*Alaptétel:* Minden Hermite-féle mátrix sajátértékei valós számok.
+Mivel a determináns a sajátértékek szorzata ($\det H = \prod \lambda_i$), egy Hermite-féle mátrix determinánsa szükségképpen valós szám:
+$$\det(H) \in \mathbb{R}.$$
+Bizonyítás determinánssal: $\det(H) = \det(H^*) = \det(\overline{H}^T) = \det(\overline{H}) = \overline{\det(H)} \implies \det(H) \in \mathbb{R}$.
 :::
 
 ## Gy8.12.1. feladat

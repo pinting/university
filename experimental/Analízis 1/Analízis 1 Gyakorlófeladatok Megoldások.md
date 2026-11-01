@@ -1951,6 +1951,597 @@ Minden $n > N_0(\varepsilon)$ esetén $|b_n - 0| \le \frac{4}{n} < \varepsilon$.
 - **Nevező csökkentése:** A tört egyszerűsítésére és a küszöbindex kényelmes kiszámítására gyakran alkalmazzuk, hogy a bonyolult nevezőt egy egyszerűbb, kisebb pozitív kifejezéssel helyettesítjük ($\sqrt{n+1} + \sqrt{n} > 2\sqrt{n}$).
 :::
 
+# A 3. feladatlaphoz
+
+## Gy23.1. feladat
+
+Bizonyítsuk be teljes indukcióval, hogy minden $n \in \mathbb{N}$ esetén:
+$$1 \cdot 2 + 2 \cdot 3 + \dots + n(n+1) = \frac{n(n+1)(n+2)}{3}.$$
+
+**Megoldás.**
+
+- **Kezdőlépés ($n = 1$):**
+  A bal oldal $1 \cdot 2 = 2$. A jobb oldal $\frac{1 \cdot 2 \cdot 3}{3} = 2$. Az egyenlőség $n = 1$-re teljesül.
+- **Indukciós feltevés:**
+  Tegyük fel, hogy valamely $n \ge 1$ egészre igaz az állítás:
+  $$\sum_{k=1}^n k(k+1) = \frac{n(n+1)(n+2)}{3}.$$
+- **Indukciós lépés:**
+  Számítsuk ki az összeget $(n+1)$-re:
+  $$\sum_{k=1}^{n+1} k(k+1) = \left(\sum_{k=1}^n k(k+1)\right) + (n+1)(n+2) = \frac{n(n+1)(n+2)}{3} + (n+1)(n+2).$$
+  Kiemeljük a közös $(n+1)(n+2)$ tényezőt:
+  $$\sum_{k=1}^{n+1} k(k+1) = (n+1)(n+2)\left(\frac{n}{3} + 1\right) = (n+1)(n+2)\frac{n+3}{3} = \frac{(n+1)((n+1)+1)((n+1)+2)}{3}.$$
+  Ez pontosan a formula az $(n+1)$ értékre. A teljes indukció elve alapján az egyenlőség minden $n \in \mathbb{N}$-re fennáll. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — szomszédos szorzatok összegezése.**
+
+A $k(k+1) = k^{\underline{2}}$ kifejezés az úgynevezett csökkenő faktoriális. Ahogy a folytonos analízisben $\int x^2 dx = \frac{x^3}{3}$, úgy a diszkrét kalkulusban $\sum_{k=1}^n k^{\underline{m}} = \frac{(n+1)^{\underline{m+1}}}{m+1}$. Itt $m=2$ esetén kapjuk az $\frac{n(n+1)(n+2)}{3}$ képletet.
+:::
+
+## Gy23.2. feladat
+
+Számítsuk ki a $\sum_{k=1}^n \frac{1}{k(k+1)}$ összeget parciális törtekre bontással (teleszkopikus összegként), majd igazoljuk a kapott zárt alakot teljes indukcióval is!
+
+**Megoldás.**
+
+**1. Kiszámítás teleszkopikus összeggel:**
+Bontsuk az általános tagot parciális törtekre:
+$$\frac{1}{k(k+1)} = \frac{(k+1) - k}{k(k+1)} = \frac{1}{k} - \frac{1}{k+1}.$$
+Írjuk fel a részletösszeget:
+$$\sum_{k=1}^n \frac{1}{k(k+1)} = \left(1 - \frac{1}{2}\right) + \left(\frac{1}{2} - \frac{1}{3}\right) + \dots + \left(\frac{1}{n} - \frac{1}{n+1}\right).$$
+A szomszédos tagok kiesnek, egyedül az első tag első és az utolsó tag második része marad meg:
+$$\sum_{k=1}^n \frac{1}{k(k+1)} = 1 - \frac{1}{n+1} = \mathbf{\frac{n}{n+1}}.$$
+
+**2. Bizonyítás teljes indukcióval:**
+- *Kezdőlépés ($n = 1$):* $\frac{1}{1 \cdot 2} = \frac{1}{2}$ és $\frac{1}{1+1} = \frac{1}{2}$. Igaz.
+- *Indukciós lépés:* Tegyük fel, hogy $n$-re igaz. Ekkor $(n+1)$-re:
+  $$\sum_{k=1}^{n+1} \frac{1}{k(k+1)} = \frac{n}{n+1} + \frac{1}{(n+1)(n+2)} = \frac{n(n+2) + 1}{(n+1)(n+2)} = \frac{n^2 + 2n + 1}{(n+1)(n+2)} = \frac{(n+1)^2}{(n+1)(n+2)} = \frac{n+1}{n+2}.$$
+  A teljes indukció elve alapján a képlet minden $n \in \mathbb{N}$-re érvényes. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — teleszkopikus sorok és parciális törtekre bontás.**
+
+A racionális törtkifejezések összegzésekor a parciális törtekre bontás $\frac{1}{k(k+1)} = \frac{1}{k} - \frac{1}{k+1}$ teszi lehetővé a teleszkopikus kiesést:
+$$S_n = \sum_{k=1}^n \left(\frac{1}{k} - \frac{1}{k+1}\right) = \left(1 - \frac{1}{2}\right) + \left(\frac{1}{2} - \frac{1}{3}\right) + \dots + \left(\frac{1}{n} - \frac{1}{n+1}\right) = 1 - \frac{1}{n+1}.$$
+A végtelen sor összege a definíció szerint a parciális összegek $S_n$ sorozatának határértéke:
+$$\sum_{k=1}^\infty \frac{1}{k(k+1)} = \lim_{n \to \infty} S_n = \lim_{n \to \infty} \left(1 - \frac{1}{n+1}\right) = 1.$$
+Általánosan, ha egy sor tagjai felírhatók $a_k = b_k - b_{k+1}$ alakban, akkor $S_n = b_1 - b_{n+1}$, így a sor pontosan akkor konvergens, ha a $(b_n)$ sorozatnak létezik véges határértéke.
+:::
+
+## Gy24.1. feladat
+
+Mutassuk meg a binomiális tétel segítségével, hogy $1{,}2^n > n^3$ minden elegendően nagy $n \in \mathbb{N}$ esetén, és határozzunk meg egy explicit $N_0$ küszöbindexet!
+
+**Megoldás.**
+
+Írjuk fel az alapot $1{,}2 = 1 + \frac{1}{5}$ alakban. Ha $n \ge 4$, a binomiális tételt alkalmazva és a $k = 4$ indexű pozitív tagot megtartva:
+$$1{,}2^n = \left(1 + \frac{1}{5}\right)^n > \binom{n}{4} \left(\frac{1}{5}\right)^4 = \frac{n(n-1)(n-2)(n-3)}{24 \cdot 625} = \frac{n(n-1)(n-2)(n-3)}{15\,000}.$$
+Ha $n \ge 6$, akkor $n-1 > n/2$, $n-2 > n/2$ és $n-3 \ge n/2$, így
+$$n(n-1)(n-2)(n-3) > n \left(\frac{n}{2}\right)^3 = \frac{n^4}{8}.$$
+Ebből:
+$$1{,}2^n > \frac{n^4}{8 \cdot 15\,000} = \frac{n^4}{120\,000}.$$
+Mindkét oldalt $n^3$-nal osztva:
+$$\frac{1{,}2^n}{n^3} > \frac{n}{120\,000}.$$
+Ezért ha $n \ge 120\,000$, akkor $\frac{n}{120\,000} \ge 1$, tehát $1{,}2^n > n^3$.
+Küszöbindexnek választható $N_0 = 120\,000$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — polinomiális és exponenciális növekedés összehasonlítása.**
+
+A binomiális tétel az egyik legerősebb elemi eszköz exponenciális sorozatok alulról történő becslésére:
+$$2^n = (1 + 1)^n = \sum_{j=0}^n \binom{n}{j} > \binom{n}{k+1} = \frac{n(n-1)\dots(n-k)}{(k+1)!}.$$
+Ha egy $n^k$ fokszámú kifejezést hasonlítunk össze $2^n$-nel, akkor legalább a $(k+1)$-edik binomiális tagot érdemes megtartani, mert annak fokszáma $k+1 > k$. Ekkor:
+$$\frac{2^n}{n^k} > \frac{n(n-1)\dots(n-k)}{(k+1)!\, n^k} = \frac{n}{n} \cdot \frac{n-1}{n} \dots \frac{n-k+1}{n} \cdot \frac{n-k}{(k+1)!} \to \infty,$$
+mivel az első $k$ tört 1-hez tart, míg az utolsó tényező $\frac{n-k}{(k+1)!} \to \infty$. Ezzel tetszőleges fix $k \in \mathbb{N}$ esetén igazolható, hogy az exponenciális növekedés minden rögzített hatványt leköröz.
+:::
+
+## Gy24.2. feladat
+
+Mutassuk meg, hogy $2^n > n^5$ ha $n$ elegendően nagy, és adjunk meg egy explicit $N_0$ küszöbindexet!
+
+**Megoldás.**
+
+Tetszőleges $n \ge 6$ esetén írjuk fel a binomiális tételt:
+$$2^n = (1 + 1)^n = \sum_{j=0}^n \binom{n}{j} > \binom{n}{6} = \frac{n(n-1)(n-2)(n-3)(n-4)(n-5)}{720}.$$
+Ha $n \ge 10$, akkor $n-1, n-2, n-3, n-4, n-5 \ge n/2$, így a számláló alulról becsülhető:
+$$n(n-1)(n-2)(n-3)(n-4)(n-5) > n \left(\frac{n}{2}\right)^5 = \frac{n^6}{32}.$$
+Ebből:
+$$2^n > \frac{n^6}{32 \cdot 720} = \frac{n^6}{23\,040}.$$
+Mindkét oldalt $n^5$-tel osztva:
+$$\frac{2^n}{n^5} > \frac{n}{23\,040}.$$
+Ha $n \ge 23\,040$, akkor a tört értéke legalább $1$, így $2^n > n^5$.
+Választható küszöb: $N_0 = 23\,040$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — növekedési hierarchiák és hányados-kritérium sorozatokra.**
+
+A matematikai analízis alapvető növekedési hierarchiája:
+$$\ln n \ll n^\alpha \ll a^n \ll n! \ll n^n \quad (\alpha > 0,\, a > 1).$$
+Annak igazolására, hogy $\lim_{n \to \infty} \frac{n^k}{2^n} = 0$, a binomiális becslésen túl standard módszer a szomszédos tagok hányadosának vizsgálata:
+$$\frac{a_{n+1}}{a_n} = \frac{(n+1)^k}{2^{n+1}} \cdot \frac{2^n}{n^k} = \frac{1}{2} \left(1 + \frac{1}{n}\right)^k \to \frac{1}{2} < 1.$$
+Mivel a hányados határértéke $q = 1/2 < 1$, tetszőleges $q < c < 1$ (például $c = 3/4$) esetén létezik olyan $N$, hogy $n \ge N$-re $a_{n+1} \le c \cdot a_n$, amiből $0 < a_n \le a_N c^{n-N} \to 0$ következik a rendőrelv szerint.
+:::
+
+## Gy25.1. feladat
+
+Határozzuk meg az alábbi összegek zárt alakját a binomiális tétel segítségével:
+a) $\sum_{k=0}^n (-1)^k \binom{n}{k} 3^{n-k}$;
+b) $\sum_{k=0}^{\lfloor n/2 \rfloor} \binom{n}{2k}$.
+
+**Megoldás.**
+
+**a) rész:**
+A binomiális tétel alapján:
+$$\sum_{k=0}^n \binom{n}{k} 3^{n-k} (-1)^k = (3 + (-1))^n = (3 - 1)^n = \mathbf{2^n}.$$
+
+**b) rész:**
+Írjuk fel a binomiális tételt $x = 1$ és $x = -1$ esetén ($n \ge 1$):
+$$(1 + 1)^n = \binom{n}{0} + \binom{n}{1} + \binom{n}{2} + \dots + \binom{n}{n} = 2^n,$$
+$$(1 - 1)^n = \binom{n}{0} - \binom{n}{1} + \binom{n}{2} - \dots + (-1)^n \binom{n}{n} = 0.$$
+Adjuk össze a két egyenletet: a páratlan indexű tagok kiejtik egymást, a páros indexűek pedig megkettőződnek:
+$$2 \left(\binom{n}{0} + \binom{n}{2} + \binom{n}{4} + \dots\right) = 2^n + 0 = 2^n.$$
+Mindkét oldalt 2-vel osztva:
+$$\sum_{k=0}^{\lfloor n/2 \rfloor} \binom{n}{2k} = \mathbf{2^{n-1}}.$$ $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — szimmetrizálás és gyökök szerinti átlagolás (roots of unity filter).**
+
+Egy polinom vagy hatványsor páros, illetve páratlan indexű együtthatóinak szétválasztásához a helyettesítési értékek lineáris kombinációját használjuk:
+- Páros indexű tagok összege: $\frac{f(x) + f(-x)}{2} = \sum_{k \ge 0} a_{2k} x^{2k}$;
+- Páratlan indexű tagok összege: $\frac{f(x) - f(-x)}{2} = \sum_{k \ge 0} a_{2k+1} x^{2k+1}$.
+Ez a módszer a diszkrét Fourier-transzformáció és a komplex egységgyökök szerinti szűrés legegyszerűbb, 2-es rendű esete. Általánosítás: ha egy $\sum a_n x^n$ sorból csak a $d$-vel osztható indexű tagokat szeretnénk kiválasztani, az $\varepsilon = e^{2\pi i / d}$ primitív $d$-edik egységgyökkel képezzük a következő átlagot:
+$$\frac{1}{d} \sum_{j=0}^{d-1} f(\varepsilon^j x) = \sum_{k=0}^\infty a_{dk} x^{dk}.$$
+:::
+
+## Gy25.2. feladat
+
+Igazoljuk, hogy minden $n \ge 2$ esetén $\sum_{k=1}^n k(k-1) \binom{n}{k} = n(n-1) 2^{n-2}$, és ennek felhasználásával számítsuk ki a $\sum_{k=1}^n k^2 \binom{n}{k}$ összeg értékét!
+
+**Megoldás.**
+
+Tekintsük a $P(x) = (1 + x)^n = \sum_{k=0}^n \binom{n}{k} x^k$ azonosságot.
+Deriváljuk kétszer mindkét oldalt $x$ szerint:
+$$P'(x) = n(1 + x)^{n-1} = \sum_{k=1}^n k \binom{n}{k} x^{k-1},$$
+$$P''(x) = n(n - 1)(1 + x)^{n-2} = \sum_{k=2}^n k(k - 1) \binom{n}{k} x^{k-2}.$$
+Az $x = 1$ helyettesítéssel:
+$$\sum_{k=1}^n k(k - 1) \binom{n}{k} = n(n - 1)(1 + 1)^{n-2} = \mathbf{n(n - 1) 2^{n-2}}.$$
+(Mivel $k=1$-re $k(k-1)=0$, az összegzés $k=1$-től is indítható.)
+A $k^2$ kifejezés felbontása: $k^2 = k(k - 1) + k$. Ezért:
+$$\sum_{k=1}^n k^2 \binom{n}{k} = \sum_{k=1}^n k(k - 1) \binom{n}{k} + \sum_{k=1}^n k \binom{n}{k}.$$
+Az első összeg $n(n - 1) 2^{n-2}$, a második összeg pedig a P25 feladat alapján $n 2^{n-1} = 2n 2^{n-2}$.
+Összeadva:
+$$\sum_{k=1}^n k^2 \binom{n}{k} = n(n - 1) 2^{n-2} + 2n 2^{n-2} = n 2^{n-2} ((n - 1) + 2) = \mathbf{n(n + 1) 2^{n-2}}.$$ $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — csökkenő faktoriálisok és binomiális momentumok.**
+
+Binomiális együtthatókat tartalmazó súlyozott összegek $\sum_{k=0}^n k^m \binom{n}{k}$ kiszámításakor a közönséges $k^m$ hatványok helyett érdemes csökkenő faktoriális hatványokra ($k^{\underline{r}} = k(k-1)\dots(k-r+1)$) áttérni, a másodfajú Stirling-számok segítségével:
+$$k^2 = k(k-1) + k = k^{\underline{2}} + k^{\underline{1}}.$$
+Ennek oka a binomiális együttható absorbciós azonossága:
+$$k^{\underline{r}} \binom{n}{k} = n^{\underline{r}} \binom{n-r}{k-r}.$$
+Így az összeg tagjai közvetlenül visszavezethetők az alap binomiális összegre:
+$$\sum_{k=0}^n k(k-1)\binom{n}{k} = n(n-1) \sum_{k=2}^n \binom{n-2}{k-2} = n(n-1) 2^{n-2}.$$
+Másik ekvivalens megközelítés az $(1+x)^n$ függvény kétszeri deriválása és $x = 1$ helyettesítése.
+:::
+
+## Gy26.1. feladat
+
+Legyen $A = B = \mathbb{N} = \{1, 2, 3, \dots\}$. Adjunk meg olyan $f, g : \mathbb{N} \to \mathbb{N}$ függvényeket, amelyekre $f \circ g = \mathrm{id}_{\mathbb{N}}$, de $g \circ f \neq \mathrm{id}_{\mathbb{N}}$.
+
+**Megoldás.**
+
+Definiáljuk a következő leképezéseket:
+$$g(n) = 2n \quad (\forall n \in \mathbb{N}),$$
+$$f(m) = \begin{cases} \frac{m}{2}, & \text{ha } m \text{ páros}, \\ 1, & \text{ha } m \text{ páratlan}. \end{cases}$$
+- **$f \circ g$ vizsgálata:** Tetszőleges $n \in \mathbb{N}$ esetén $g(n) = 2n$ páros szám, így
+  $$(f \circ g)(n) = f(2n) = \frac{2n}{2} = n = \mathrm{id}_{\mathbb{N}}(n).$$
+  Tehát $f \circ g = \mathrm{id}_{\mathbb{N}}$ teljesül.
+- **$g \circ f$ vizsgálata:** Tekintsük az $m = 1 \in \mathbb{N}$ páratlan számot:
+  $$(g \circ f)(1) = g(f(1)) = g(1) = 2 \cdot 1 = 2 \neq 1 = \mathrm{id}_{\mathbb{N}}(1).$$
+  Tehát $g \circ f \neq \mathrm{id}_{\mathbb{N}}$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — jobbinverz nem feltétlenül balinverz.**
+
+Itt $g$ az $f$ jobbinverze ($f \circ g = \mathrm{id}$), ami garantálja, hogy $f$ szürjektív és $g$ injektív. Viszont $f$ nem injektív (minden páratlan számot $1$-be visz), így balinverze nem létezhet.
+:::
+
+## Gy26.2. feladat
+
+Bizonyítsuk be, hogy ha $f : A \to B$ és $g : B \to C$ olyan leképezések, amelyekre $g \circ f : A \to C$ bijekció, akkor $f$ injektív és $g$ szürjektív. Mutassunk példát arra, hogy ebből nem feltétlenül következik sem $f$ szürjektivitása, sem $g$ injektivitása!
+
+**Megoldás.**
+
+Mivel $h = g \circ f$ bijekció, létezik az inverze $h^{-1} : C \to A$, amelyre $h^{-1} \circ (g \circ f) = \mathrm{id}_A$ és $(g \circ f) \circ h^{-1} = \mathrm{id}_C$.
+- A kompozíció asszociativitása miatt $(h^{-1} \circ g) \circ f = \mathrm{id}_A$. Ebből a P26 feladat szerint következik, hogy $f$-nek van balinverze, így $f$ **injektív**.
+- Hasonlóan $g \circ (f \circ h^{-1}) = \mathrm{id}_C$. Ebből adódik, hogy $g$-nek van jobbinverze, így $g$ **szürjektív**.
+
+**Példa arra, hogy $f$ nem feltétlenül szürjektív és $g$ nem feltétlenül injektív:**
+Legyen $A = \{1\}$, $B = \{1, 2\}$, $C = \{1\}$.
+Definiáljuk: $f(1) = 1$, és $g(1) = 1, g(2) = 1$.
+Ekkor $(g \circ f)(1) = g(1) = 1$, tehát $g \circ f : \{1\} \to \{1\}$ az identitás, ami bijekció.
+Ugyanakkor:
+- $f$ értékkészlete $\{1\} \neq B$, tehát $f$ nem szürjektív.
+- $g(1) = g(2) = 1$, tehát $g$ nem injektív. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — függvénykompozíció injektivitása és szürjektivitása.**
+
+Legyenek $f: A \to B$ és $g: B \to C$ leképezések. A kompozíció $g \circ f: A \to C$ tulajdonságaiból az alábbi következtetések vonhatók le:
+1. Ha $g \circ f$ injektív, akkor $f$ szükségképpen injektív (de $g$-ről semmi sem állítható: $g$ a képterületen kívül összevonhat elemeket).
+2. Ha $g \circ f$ szürjektív, akkor $g$ szükségképpen szürjektív (de $f$-ről semmi sem állítható: $f$ értékkészlete nem kell, hogy $B$ legyen, elég, ha lefedi $g$ működéséhez szükséges előképeket).
+3. Ha $g \circ f$ bijektív, akkor $f$ injektív és $g$ szürjektív, ám $f$ szürjektivitása vagy $g$ injektivitása általában nem igaz, hacsak $A, B, C$ nem azonos véges számosságú halmazok.
+:::
+
+## Gy27.1. feladat
+
+Bizonyítsuk be a számtani és mértani közép közötti egyenlőtlenség segítségével, hogy minden $n \ge 2$ egész számra:
+$$n! < \left(\frac{n+1}{2}\right)^n.$$
+
+**Megoldás.**
+
+Alkalmazzuk a szigorú számtani és mértani közép közötti egyenlőtlenséget az $1, 2, 3, \dots, n$ pozitív valós számokra:
+$$\sqrt[n]{1 \cdot 2 \cdot 3 \cdots n} < \frac{1 + 2 + 3 + \dots + n}{n}.$$
+(Mivel $n \ge 2$, az $1, 2, \dots, n$ számok nem mind egyenlők, így a szigorú egyenlőtlenség áll fenn.)
+A számlálóban szereplő számtani sorozat összege $\frac{n(n+1)}{2}$, így a jobb oldal:
+$$\frac{\frac{n(n+1)}{2}}{n} = \frac{n+1}{2}.$$
+A bal oldalon $\sqrt[n]{n!}$ áll. Tehát:
+$$\sqrt[n]{n!} < \frac{n+1}{2}.$$
+Mivel mindkét oldal pozitív, emeljük mindkét oldalt $n$-edik hatványra:
+$$n! < \left(\frac{n+1}{2}\right)^n. \quad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — a faktoriális nagyságrendje és számtani-mértani közép.**
+
+Az $1, 2, \dots, n$ számok mértani és számtani közepe közötti egyenlőtlenségből azonnal elegáns felső korlát nyerhető a faktoriálisra:
+$$\sqrt[n]{n!} = \sqrt[n]{1 \cdot 2 \dots n} < \frac{1 + 2 + \dots + n}{n} = \frac{n(n+1)}{2n} = \frac{n+1}{2},$$
+amelyből $n! < \left(\frac{n+1}{2}\right)^n$ következik minden $n \ge 2$-re (a szigorú egyenlőtlenség amiatt áll, mert az $1, 2, \dots, n$ tagok nem mind egyenlők).
+A mélyebb aszimptotikát a Stirling-formula írja le:
+$$n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n,$$
+amely mutatja, hogy $n!$ exponenciálisan kisebb $n^n$-nél (faktora $(1/e)^n$), de gyorsabban növekszik bármely rögzített $a^n$ geometriai sorozatnál.
+:::
+
+## Gy27.2. feladat
+
+Igazoljuk a szimmetrikus tényezőpárosítás módszerével, hogy minden $n \ge 3$ egész számra $(n!)^2 > n^n$.
+
+**Megoldás.**
+
+Írjuk fel $(n!)^2$-et a tagok párosításával:
+$$(n!)^2 = \prod_{k=1}^n k(n - k + 1).$$
+Minden $k \in \{1, \dots, n\}$ esetén:
+$$k(n - k + 1) - n = kn - k^2 + k - n = (k - 1)(n - k) \ge 0.$$
+Ezért $k(n - k + 1) \ge n$.
+Ha $n \ge 3$, akkor a belső $k = 2$ tagra $(2 - 1)(n - 2) = n - 2 > 0$, így $k(n - k + 1) > n$.
+Ezért a szorzat szigorúan nagyobb az alsó korlátok szorzatánál:
+$$(n!)^2 > \prod_{k=1}^n n = n^n.$$
+Négyzetgyököt vonva: $n! > n^{n/2}$ minden $n \ge 3$-ra. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — szimmetrikus párok szorzata és parabola-szélsőérték.**
+
+A szorzat tényezőinek párosítása az elejéről és végéről ($k$ és $n+1-k$) standard szimmetrizálási fogás:
+$$f(k) = k(n+1-k) = -k^2 + (n+1)k.$$
+A valós $x$ változóra kiterjesztett $f(x) = -x^2 + (n+1)x$ függvény egy lefelé nyíló parabola, melynek csúcspontja (maximuma) az intervallum közepén, $x_0 = \frac{n+1}{2}$ pontban van, míg minimumát az $[1, n]$ kompakt intervallum határpontjaiban veszi fel:
+$$f(1) = f(n) = 1 \cdot n = n.$$
+Következésképpen minden $k \in \{1, 2, \dots, n\}$ egészre $f(k) \ge n$, és a belső pontokban ($1 < k < n$) szigorú egyenlőtlenség áll: $f(k) > n$. A tényezőket összeszorozva adódik a szigorú $(n!)^2 > n^n$ egyenlőtlenség.
+:::
+
+## Gy28.1. feladat
+
+A Hilbert-féle Grand Hotelben minden szoba foglalt (a szobák számozása $1, 2, 3, \dots$). Érkezik egy 10 fős turistacsoport. Hogyan tudja őket a portás elszállásolni úgy, hogy minden meglévő vendég szobát kapjon, és a 10 új vendég is bekerüljön?
+
+**Megoldás.**
+
+Kérje meg a portás a hotel minden $n \in \mathbb{N}$ szobában lakó vendégét, hogy költözzön az $(n + 10)$-edik szobába:
+$$n \mapsto n + 10.$$
+- Az $n \mapsto n + 10$ leképezés injektív, így senki sem kerül közös szobába.
+- A meglévő vendégek a $11, 12, 13, \dots$ szobákba kerülnek.
+- Az $1, 2, \dots, 10$ sorszámú szobák teljesen felszabadulnak.
+A portás az újonnan érkezett 10 vendéget az $1, 2, \dots, 10$ szobákban helyezi el. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — megszámlálható végtelen számosságok összeadása: $\aleph_0 + k = \aleph_0$.**
+
+Egy halmaz végtelen voltának Dedekind-féle definíciója éppen az, hogy létezik valódi részhalmazával egyenlő számosságú. A Hilbert-féle Grand Hotel paradoxon szemlélteti a helyzetet: ha egy végtelen szobaszámú szálloda tele van, és érkezik még $k$ vendég, minden korábbi lakót eltolunk $k$ szobával ($n \mapsto n + k$), így az első $k$ szoba felszabadul az új vendégeknek.
+Formálisan: tetszőleges $H$ megszámlálhatóan végtelen halmaz és attól diszjunkt véges $K = \{a_1, \dots, a_k\}$ halmaz esetén a számosságok összege:
+$$|H \cup K| = \aleph_0 + k = \aleph_0.$$
+A leképezés konstruktív: ha $h: \mathbb{N} \to H$ bijekció, akkor az új bijekció az első $k$ számra $a_i$-t, az $n > k$ számokra $h(n-k)$-t képezi le.
+:::
+
+## Gy28.2. feladat
+
+A Hilbert-szállodában telt ház van. A szomszédos szállodából megszámlálhatóan végtelen sok vendég érkezik. A szállodaigazgató azonban megtiltja, hogy a páros sorszámú szobákban lakó vendégek elköltözzenek a szobájukból. Megoldható-e az új vendégek elhelyezése úgy, hogy a páros szobák lakói helyben maradnak?
+
+**Megoldás.**
+
+**Igen, megoldható.**
+A páros szobák lakói helyben maradnak, így a költözésben csak a páratlan szobák ($1, 3, 5, \dots, 2k-1, \dots$) vesznek részt.
+- A meglévő, $(2k - 1)$-edik szobában lakó vendéget költöztessük át a $(4k - 3)$-adik szobába ($k \in \mathbb{N}$):
+  $$2k - 1 \mapsto 4k - 3.$$
+  (Ez a sorozat az $1, 5, 9, 13, \dots$ szobákat foglalja el, amelyek mind páratlanok, így nem ütköznek a helyben maradó páros szobákkal.)
+- Az új szállodából érkező $j$-edik vendéget költöztessük a $(4j - 1)$-edik szobába ($j \in \mathbb{N}$):
+  $$j \mapsto 4j - 1.$$
+  (Ez a sorozat a $3, 7, 11, 15, \dots$ szobákat foglalja el.)
+Mivel minden páratlan szám vagy $4k - 3$ vagy $4j - 1$ alakú (de nem mindkettő), minden páratlan szoba pontosan egy lakót kap, a páros szobák lakói pedig a helyükön maradnak. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — megszámlálható halmazok elnyelési tulajdonsága.**
+
+Ha $A$ megszámlálhatóan végtelen halmaz és $B \subseteq A$ végtelen részhalmaz, akkor $B$ szintén megszámlálhatóan végtelen ($|B| = \aleph_0$). Két megszámlálható halmaz diszjunkt uniója szintén megszámlálható:
+$$\aleph_0 + \aleph_0 = \aleph_0.$$
+Ez teszi lehetővé, hogy az univerzumnak csak egy megfelelő részét deformáljuk: a páratlan számok részhalmaza önmagában bijektív $\mathbb{N}$-nel, így elegendő kapacitást nyújt egy tetszőleges diszjunkt megszámlálható halmaz elnyelésére (például a páratlan helyek felét az új elemekre fordítva), miközben a páros számok komplementer rendszere teljesen érintetlen marad (identitás).
+:::
+
+## Gy29.1. feladat
+
+Határozzuk meg az $x y^3$ kifejezés maximális értékét a számtani és mértani közép közötti egyenlőtlenség segítségével, ha $x, y \ge 0$ és $x + y = 12$!
+
+**Megoldás.**
+
+Bontsuk fel az $y$ változót 3 egyenlő részre: $y = \frac{y}{3} + \frac{y}{3} + \frac{y}{3}$. Ekkor:
+$$x + \frac{y}{3} + \frac{y}{3} + \frac{y}{3} = x + y = 12.$$
+Alkalmazzuk a 4-változós számtani és mértani közép közötti egyenlőtlenséget az $x, \frac{y}{3}, \frac{y}{3}, \frac{y}{3}$ nemnegatív számokra:
+$$\sqrt[4]{x \cdot \left(\frac{y}{3}\right)^3} \le \frac{x + \frac{y}{3} + \frac{y}{3} + \frac{y}{3}}{4} = \frac{12}{4} = 3.$$
+Mindkét oldalt 4-edik hatványra emelve:
+$$x \cdot \frac{y^3}{27} \le 3^4 = 81 \implies x y^3 \le 81 \cdot 27 = \mathbf{2187}.$$
+Egyenlőség pontosan akkor áll fenn, ha $x = \frac{y}{3} = \frac{y}{3} = \frac{y}{3}$, vagyis $y = 3x$.
+A feltételbe helyettesítve: $x + 3x = 12 \implies 4x = 12 \implies x = 3$, és így $y = 9$.
+Ekkor $x y^3 = 3 \cdot 9^3 = 3 \cdot 729 = 2187$.
+A keresett maximum tehát **$2187$**. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — súlyozott számtani és mértani közép egyenlőtlensége.**
+
+Tetszőleges nemnegatív $x_1, \dots, x_k$ számokra és $\lambda_1, \dots, \lambda_k > 0$ racionális vagy valós súlyokra ($\sum \lambda_i = 1$):
+$$x_1^{\lambda_1} x_2^{\lambda_2} \dots x_k^{\lambda_k} \le \lambda_1 x_1 + \lambda_2 x_2 + \dots + \lambda_k x_k,$$
+ahol egyenlőség akkor és csak akkor áll fenn, ha $x_1 = x_2 = \dots = x_k$.
+Szorzat maximalizálásakor lineáris megszorítás mellett ($c_1 x + c_2 y = K$) az $x^a y^b$ kifejezést úgy alakítjuk, hogy a tényezők a feltételben szereplő arányok szerint lépjenek fel:
+$$x^a y^b = \left(\frac{a}{c_1}\right)^a \left(\frac{b}{c_2}\right)^b \cdot \underbrace{\left(\frac{c_1 x}{a}\right)^a \left(\frac{c_2 y}{b}\right)^b}_{\text{egyenlő tagok szorzata}}.$$
+A maximum pontosan akkor valósul meg, amikor $\frac{c_1 x}{a} = \frac{c_2 y}{b}$.
+:::
+
+## Gy29.2. feladat
+
+Egy felül nyitott, négyzet alapú téglatest alakú doboz térfogata $V = 32\ \text{cm}^3$. Határozzuk meg a doboz felszínének minimális értékét a számtani és mértani közép közötti egyenlőtlenség segítségével!
+
+**Megoldás.**
+
+Jelölje az alap négyzet oldalát $a > 0$, a magasságot $m > 0$.
+A térfogat: $V = a^2 m = 32 \implies m = \frac{32}{a^2}$.
+A nyitott doboz felszíne az alaplapból és a 4 oldallapból áll:
+$$A = a^2 + 4am = a^2 + 4a \cdot \frac{32}{a^2} = a^2 + \frac{128}{a}.$$
+Bontsuk a $\frac{128}{a}$ tagot két egyenlő részre: $\frac{64}{a} + \frac{64}{a}$. Ekkor a 3 tag szorzata független lesz $a$-tól:
+$$a^2 \cdot \frac{64}{a} \cdot \frac{64}{a} = 64^2 = 4096.$$
+Alkalmazzuk a 3-változós számtani és mértani közép közötti egyenlőtlenséget:
+$$\frac{a^2 + \frac{64}{a} + \frac{64}{a}}{3} \ge \sqrt[3]{a^2 \cdot \frac{64}{a} \cdot \frac{64}{a}} = \sqrt[3]{4096} = 16.$$
+Mindkét oldalt 3-mal szorozva:
+$$A = a^2 + \frac{128}{a} \ge 3 \cdot 16 = \mathbf{48}.$$
+Egyenlőség pontosan akkor áll fenn, ha $a^2 = \frac{64}{a} \iff a^3 = 64 \iff a = 4$. Ekkor $m = \frac{32}{16} = 2$.
+A minimális felszín tehát **$48\ \text{cm}^2$**. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — változó kiküszöbölése közepekkel (hatványkiegyenlítés).**
+
+Ha egy $f(x) = c_1 x^\alpha + c_2 x^{-\beta}$ alakú pozitív függvény minimumát keressük $x > 0$ esetén ($\alpha, \beta > 0$), a számtani-mértani közép alkalmazásához olyan felbontásra van szükség, amelynél a tagok szorzatában a változó kiesik (a szorzat konstans).
+Ehhez az $x^\alpha$-s tagot $\beta$ darab azonos részre, míg az $x^{-\beta}$-s tagot $\alpha$ darab azonos részre bontjuk:
+$$\alpha \beta \cdot \text{kitevő} - \beta \alpha \cdot \text{kitevő} = 0.$$
+Ekkor a $\beta + \alpha$ tagú összeg mértani közepe már független $x$-től, és az összeg pontosan akkor éri el minimumát, amikor az összes felbontott tag egyenlő.
+:::
+
+## Gy30.1. feladat
+
+Bizonyítsuk be, hogy az $f(x) = \frac{1-x}{1+x}$ függvény injektív a $(-1, \infty)$ intervallumon, határozzuk meg az értékkészletét, és írjuk fel az inverz függvény képletét!
+
+**Megoldás.**
+
+Alakítsuk át az előírást:
+$$f(x) = \frac{2 - (x + 1)}{x + 1} = \frac{2}{x + 1} - 1.$$
+- **Injektivitás:** Legyenek $x_1, x_2 \in (-1, \infty)$. Ha $f(x_1) = f(x_2)$, akkor:
+  $$\frac{2}{x_1 + 1} - 1 = \frac{2}{x_2 + 1} - 1 \iff \frac{2}{x_1 + 1} = \frac{2}{x_2 + 1} \iff x_1 + 1 = x_2 + 1 \iff x_1 = x_2.$$
+  Tehát $f$ injektív. (Sőt $x+1 > 0$ miatt szigorúan monoton csökkenő.)
+- **Értékkészlet:** Ha $x \in (-1, \infty)$, akkor $x + 1 \in (0, \infty)$, így $\frac{2}{x+1} \in (0, \infty)$. Ebből $f(x) = \frac{2}{x+1} - 1 \in (-1, \infty)$.
+  Tehát $f(H) = (-1, \infty)$.
+- **Inverz függvény:** Fejezzük ki $x$-et az $y = \frac{1-x}{1+x}$ egyenletből ($y \in (-1, \infty)$):
+  $$y(1 + x) = 1 - x \iff y + xy = 1 - x \iff x(y + 1) = 1 - y \iff x = \frac{1 - y}{1 + y}.$$
+  Az inverz függvény:
+  $$F^{-1} : (-1, \infty) \to (-1, \infty), \qquad F^{-1}(y) = \frac{1 - y}{1 + y}.$$ $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — involúciók és szimmetria a főátlóra.**
+
+Egy $f: A \to A$ leképezést *involúciónak* nevezünk, ha önmaga inverze, vagyis:
+$$f \circ f = \mathrm{id}_A, \quad \text{azaz minden } x \in A \text{-ra } f(f(x)) = x.$$
+Az involúciók legfontosabb tulajdonságai:
+1. Minden involúció automatikusan bijekció: $f^{-1} = f$.
+2. Geometriai szemléltetés: a függvény grafikonja tengelyesen szimmetrikus az $y = x$ egyenesre (főátlóra), mivel a pontok $(x, y) \in \Gamma_f \iff (y, x) \in \Gamma_f$ tükrözése önmagába viszi a grafikont.
+3. Tipikus valós példák: $f(x) = -x$, $f(x) = \frac{1}{x}$, $f(x) = c - x$, valamint az általános törtlineáris függvényeknél $f(x) = \frac{ax+b}{cx-a}$ (a főátló elemeinek összege 0).
+:::
+
+## Gy30.2. feladat
+
+Bizonyítsuk be, hogy az $f(x) = x^2 - 4x + 7$ függvény injektív a $[2, \infty)$ intervallumon, határozzuk meg az értékkészletét, és adjuk meg az inverz függvényét!
+
+**Megoldás.**
+
+Írjuk fel teljes négyzet alakban:
+$$f(x) = (x - 2)^2 + 3.$$
+- **Injektivitás:** Legyenek $x_1, x_2 \in [2, \infty)$, és $f(x_1) = f(x_2)$:
+  $$(x_1 - 2)^2 + 3 = (x_2 - 2)^2 + 3 \iff (x_1 - 2)^2 = (x_2 - 2)^2.$$
+  Mivel $x_1, x_2 \ge 2$, ezért $x_1 - 2 \ge 0$ és $x_2 - 2 \ge 0$. Nemnegatív számok négyzete pontosan akkor egyenlő, ha maguk a számok egyenlők:
+  $$x_1 - 2 = x_2 - 2 \iff x_1 = x_2.$$
+  Tehát $f$ injektív a $[2, \infty)$ halmazon.
+- **Értékkészlet:** Ha $x \in [2, \infty)$, akkor $(x - 2)^2 \in [0, \infty)$, így $f(x) \in [3, \infty)$. Tehát $f(H) = [3, \infty)$.
+- **Inverz:** Fejezzük ki $x$-et az $y = (x - 2)^2 + 3$ egyenletből ($y \ge 3$):
+  $$(x - 2)^2 = y - 3.$$
+  Mivel $x \ge 2$, a nemnegatív négyzetgyököt kell választani:
+  $$x - 2 = \sqrt{y - 3} \iff x = 2 + \sqrt{y - 3}.$$
+  Az inverz függvény:
+  $$F^{-1} : [3, \infty) \to [2, \infty), \qquad F^{-1}(y) = 2 + \sqrt{y - 3}.$$ $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — lokális invertálhatóság és ágak szétválasztása.**
+
+Egy $f(x) = ax^2 + bx + c$ másodfokú polinom globálisan nem injektív $\mathbb{R}$-en, mivel tengelyesen szimmetrikus a csúcspontjának $x_0 = -\frac{b}{2a}$ tengelyére: $f(x_0 - t) = f(x_0 + t)$.
+Invertálhatóvá tételéhez az értelmezési tartományt egy olyan maximális intervallumra kell leszűkíteni, amelyen a függvény szigorúan monoton:
+- vagy a bal oldali ágra: $(-\infty, x_0]$;
+- vagy a jobb oldali ágra: $[x_0, \infty)$.
+Az inverz függvény explicit előállításához az $y = ax^2 + bx + c$ egyenletet $x$-re rendezzük a másodfokú megoldóképlettel: $x = x_0 \pm \sqrt{\dots}$. A $\pm$ előjelválasztást az eredeti ág határozza meg: a jobb oldali ágon a $+$, a bal oldali ágon a $-$ előjel érvényes.
+:::
+
+## Gy31.1. feladat
+
+Igazoljuk a binomiális tétel segítségével, hogy minden $n \ge 1$ egész számra $\left(1 + \frac{1}{n}\right)^n < 3$!
+
+**Megoldás.**
+
+Fejtsük ki az $\left(1 + \frac{1}{n}\right)^n$ kifejezést a binomiális tétellel:
+$$\left(1 + \frac{1}{n}\right)^n = \sum_{k=0}^n \binom{n}{k} \frac{1}{n^k} = 1 + n \cdot \frac{1}{n} + \sum_{k=2}^n \frac{n(n-1)\dots(n-k+1)}{k!} \frac{1}{n^k}.$$
+A harmadik tagtól kezdve minden tényezőre:
+$$\frac{n(n-1)\dots(n-k+1)}{n^k} = 1 \cdot \left(1 - \frac{1}{n}\right) \dots \left(1 - \frac{k-1}{n}\right) < 1.$$
+Ezért:
+$$\left(1 + \frac{1}{n}\right)^n < 1 + 1 + \sum_{k=2}^n \frac{1}{k!}.$$
+Mivel minden $k \ge 2$ esetén $k! = 2 \cdot 3 \dots k \ge 2^{k-1}$, a faktoriálisokat mértani sorral becsülhetjük felülről:
+$$\sum_{k=2}^n \frac{1}{k!} \le \sum_{k=2}^n \frac{1}{2^{k-1}} < \sum_{j=1}^\infty \frac{1}{2^j} = \frac{1/2}{1 - 1/2} = 1.$$
+Ezt behelyettesítve:
+$$\left(1 + \frac{1}{n}\right)^n < 1 + 1 + 1 = 3. \quad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — az Euler-féle $e$ szám és a sorfejtés korlátjai.**
+
+Az $e$ matematikai állandó definíció szerint az $e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n$ határérték.
+A binomiális tétel kibontásával:
+$$\left(1 + \frac{1}{n}\right)^n = \sum_{k=0}^n \frac{1}{k!} \left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right)\dots\left(1 - \frac{k-1}{n}\right) < \sum_{k=0}^n \frac{1}{k!}.$$
+Mivel $k \ge 2$-re $k! \ge 2^{k-1}$, a faktoriálisok reciprokösszege felülről majorálható egy végtelen mértani sorral:
+$$e < 1 + 1 + \sum_{k=2}^\infty \frac{1}{2^{k-1}} = 2 + 1 = 3.$$
+Ez a klasszikus becslés bizonyítja az $e \in (2, 3)$ korlátot elemi úton, anélkül, hogy a sor pontos értékét ($e \approx 2{,}71828$) ismernünk kellene.
+:::
+
+## Gy31.2. feladat
+
+Mutassuk meg, hogy a $c_n = \left(1 - \frac{1}{n}\right)^n$ sorozat szigorúan monoton növekvő minden $n \ge 2$ esetén!
+
+**Megoldás.**
+
+Írjuk át a sorozat tagjainak reciprokát:
+$$\frac{1}{c_n} = \frac{1}{\left(\frac{n-1}{n}\right)^n} = \left(\frac{n}{n-1}\right)^n = \left(1 + \frac{1}{n-1}\right)^n.$$
+Jelölje $k = n - 1 \ge 1$. Ekkor a reciprok pontosan
+$$d_k = \left(1 + \frac{1}{k}\right)^{k+1}.$$
+A 31. tétel szerint a $(d_k)$ sorozat **szigorúan monoton csökkenő** minden $k \in \mathbb{N}$ esetén.
+Mivel $\frac{1}{c_n} = d_{n-1}$, és a $(d_{n-1})$ sorozat szigorúan csökken, a reciproka, azaz a $(c_n)$ sorozat szükségképpen **szigorúan monoton növekvő** minden $n \ge 2$ esetén:
+$$c_n < c_{n+1} \quad (\forall n \ge 2).$$ $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — reciprocitási szabály és határátmenet inverze.**
+
+Ha egy pozitív tagú sorozat határértéke nem zérus: $\lim_{n \to \infty} a_n = A > 0$, akkor a reciproksorozat határértéke létezik és $\lim_{n \to \infty} \frac{1}{a_n} = \frac{1}{A}$.
+Továbbá a reciprok-képzés megfordítja a monotonitást: ha $(a_n)$ szigorúan monoton növekvő és pozitív, akkor $(1/a_n)$ szigorúan monoton csökkenő.
+A feladatban szereplő $\left(1 - \frac{1}{n}\right)^n$ sorozat esetén:
+$$\left(1 - \frac{1}{n}\right)^n = \left(\frac{n-1}{n}\right)^n = \frac{1}{\left(\frac{n}{n-1}\right)^n} = \frac{1}{\left(1 + \frac{1}{n-1}\right)^{n-1} \cdot \left(1 + \frac{1}{n-1}\right)} \to \frac{1}{e \cdot 1} = \frac{1}{e}.$$
+:::
+
+## Gy32.1. feladat
+
+Bizonyítsuk be teljes indukcióval, hogy minden $n \in \mathbb{N}$ esetén:
+$$n! > \left(\frac{n}{e+1}\right)^n.$$
+
+**Megoldás.**
+
+- **Kezdőlépés ($n = 1$):**
+  $1! = 1$, míg $\left(\frac{1}{e+1}\right)^1 = \frac{1}{e+1} < 1$. Igaz.
+- **Indukciós feltevés:** Tegyük fel, hogy $n$-re igaz: $n! > \left(\frac{n}{e+1}\right)^n$.
+- **Indukciós lépés:**
+  $$(n+1)! = (n+1) n! > (n+1) \left(\frac{n}{e+1}\right)^n.$$
+  Elegendő igazolni, hogy:
+  $$(n+1) \left(\frac{n}{e+1}\right)^n \ge \left(\frac{n+1}{e+1}\right)^{n+1} = \frac{n+1}{e+1} \left(\frac{n+1}{e+1}\right)^n.$$
+  Osszunk $(n+1)$-gyel és szorozzunk $(e+1)^{n+1}$-gyel:
+  $$(e+1) n^n \ge (n+1)^n \iff e+1 \ge \left(1 + \frac{1}{n}\right)^n.$$
+  Tudjuk, hogy $\left(1 + \frac{1}{n}\right)^n < e < e + 1$ minden $n \in \mathbb{N}$-re fennáll.
+  Így az egyenlőtlenség teljesül, és a teljes indukció elve alapján minden $n \in \mathbb{N}$-re igaz. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — indukciós lépés kritikus konstansai és exponenciális majorálás.**
+
+Amikor egy $a_n \le C^n$ alakú egyenlőtlenséget próbálunk teljes indukcióval igazolni egy rekurzív vagy faktoriális jellegű sorozatra, az indukciós lépésben az alábbi hányados viselkedése a döntő:
+$$\frac{a_{n+1}}{a_n} \le C.$$
+Mivel $\frac{(n+1)! / (n+1)}{n! / n} \dots$ kifejezésekben gyakran megjelenik az $\left(1 + \frac{1}{n}\right)^n$ sorozat, amely alulról szigorúan monoton nő $e$-hez, a $C \ge e$ feltétel elengedhetetlen ahhoz, hogy a lépés minden $n$-re teljesüljön. Bármely $C < e$ választás esetén véges sok lépés után az indukciós lépés elakad, míg $C \ge 3 > e$ esetén az egyenlőtlenség robusztusan fennáll.
+:::
+
+## Gy32.2. feladat
+
+Bizonyítsuk be, hogy $\frac{n^n}{n!} < 3^n$ minden $n \in \mathbb{N}$ esetén!
+
+**Megoldás.**
+
+Az egyenlőtlenség átrendezve:
+$$n! > \left(\frac{n}{3}\right)^n.$$
+Ezt az egyenlőtlenséget a P32 feladatban teljes indukcióval bizonyítottuk minden $n \in \mathbb{N}$-re.
+Alternatív levezetés hányadossal:
+Jelölje $a_n = \frac{n^n}{n!}$. Vizsgáljuk a két szomszédos tag hányadosát:
+$$\frac{a_{n+1}}{a_n} = \frac{\frac{(n+1)^{n+1}}{(n+1)!}}{\frac{n^n}{n!}} = \frac{(n+1)^{n+1}}{(n+1) n^n} = \frac{(n+1)^n}{n^n} = \left(1 + \frac{1}{n}\right)^n.$$
+Tudjuk, hogy $\left(1 + \frac{1}{n}\right)^n < e < 3$ minden $n \in \mathbb{N}$-re.
+Mivel $a_1 = \frac{1^1}{1!} = 1 < 3^1$, és $a_{n+1} < 3 a_n$, teljes indukcióval azonnal adódik:
+$$a_n < 3^n \quad (\forall n \in \mathbb{N}). \quad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — hányados-elv és teleszkopikus egyenlőtlenségek sorozatokra.**
+
+Ha egy pozitív tagú $(x_n)$ sorozatra teljesül, hogy minden $k \ge 1$-re $\frac{x_{k+1}}{x_k} \le q$, akkor a hányadosok teleszkopikus összeszorzásával:
+$$x_n = x_1 \cdot \frac{x_2}{x_1} \cdot \frac{x_3}{x_2} \dots \frac{x_n}{x_{n-1}} \le x_1 \cdot q^{n-1}.$$
+Ez a mértani sorral való összehasonlítás (a későbbi d'Alembert-féle hányadoskritérium előfutára). Ha $q < 1$, a sorozat nullához tart; ha $q$ egy tetszőleges konstans, hatékony felső korlátot ad a sorozat tagjainak növekedési ütemére.
+:::
+
+## Gy33.1. feladat
+
+Konstruáljunk explicit bijekciót a félig nyílt $[0, 1)$ intervallum és a nyílt $(0, 1)$ intervallum között!
+
+**Megoldás.**
+
+A $[0, 1)$ halmaz a $(0, 1)$ halmazhoz képest egyetlen többletpontot (a $0$-t) tartalmaz.
+Válasszunk ki a $(0, 1)$ nyílt intervallumban egy megszámlálható pontsorozatot:
+$$S = \left\{\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \dots, \frac{1}{2^n}, \dots\right\} = \left\{\frac{1}{2^n} : n \in \mathbb{N}\right\} \subset (0, 1).$$
+Definiáljuk az $f : [0, 1) \to (0, 1)$ leképezést az alábbi előírással:
+$$f(x) = \begin{cases} \frac{1}{2}, & \text{ha } x = 0, \\ \frac{1}{2^{n+1}}, & \text{ha } x = \frac{1}{2^n} \text{ valamely } n \in \mathbb{N} \text{ esetén}, \\ x, & \text{ha } x \in [0, 1) \setminus (\{0\} \cup S). \end{cases}$$
+- **Értékkészlet:** A $0$ képe $1/2 \in (0, 1)$; az $1/2^n$ pontok képei $1/2^{n+1} \in (0, 1)$; a többi pont helyben marad, így értékeik $(0, 1)$-ben vannak. Tehát $f([0, 1)) \subseteq (0, 1)$.
+- **Injektivitás:** A $\{0\} \cup S$ halmazon $f$ a $0 \mapsto 1/2 \mapsto 1/4 \mapsto 1/8 \dots$ kölcsönösen egyértelmű eltolás. A komplementeren az identitás, a két képhalmaz diszjunkt ($S$ és $(0, 1) \setminus S$). Így $f$ injektív.
+- **Szürjektivitás:** $R(f) = S \cup ((0, 1) \setminus S) = (0, 1)$. Minden pont előáll.
+Tehát $f$ valóban bijekció $[0, 1)$ és $(0, 1)$ között. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — egyetlen pont elnyelése megszámlálható részsorozaton.**
+
+A Hilbert-féle szálloda $n \mapsto n+1$ trükkje tetszőleges végtelen halmazon lehetővé teszi egy vagy véges sok elem hozzáadását vagy elhagyását a számosság megváltoztatása nélkül.
+:::
+
+## Gy33.2. feladat
+
+Létezik-e bijekció a zárt $[0, 1]$ intervallum és az egy pontot elhagyó $[0, 1] \setminus \{1/2\}$ halmaz között? Ha igen, adjunk meg egy explicit konstrukciót!
+
+**Megoldás.**
+
+**Igen, létezik.**
+
+*Konstrukció:*
+Az $1/2$ pont hiányát úgy küszöböljük ki, hogy egy olyan pontsorozatot választunk $[0, 1]$-ben, amelynek első tagja $s_1 = 1/2$, és a sorozat mentén eltolást alkalmazunk.
+Legyen $s_k = \frac{1}{2} + \frac{1}{2^{k+1}}$ minden $k \in \mathbb{N}^+$ esetén:
+$$s_1 = \frac{1}{2} + \frac{1}{4} = \frac{3}{4}, \quad s_2 = \frac{1}{2} + \frac{1}{8} = \frac{5}{8}, \quad s_3 = \frac{1}{2} + \frac{1}{16} = \frac{9}{16}, \dots$$
+Egészítsük ki a sort a $0$-adik taggal: $s_0 = \frac{1}{2}$.
+A halmaz $S = \{s_0, s_1, s_2, \dots\} = \{1/2\} \cup \{s_k : k \in \mathbb{N}^+\} \subset [0, 1]$.
+Definiáljuk a $g : [0, 1] \to [0, 1] \setminus \{1/2\}$ leképezést:
+$$g(x) = \begin{cases} s_{k+1}, & \text{ha } x = s_k \text{ valamely } k \in \mathbb{N}_0 \text{ esetén}, \\ x, & \text{ha } x \in [0, 1] \setminus S. \end{cases}$$
+- **Értékkészlet:** A pontok képei: $s_0 = 1/2 \mapsto s_1 = 3/4$, $s_1 \mapsto s_2 = 5/8$, stb. Az $s_0 = 1/2$ érték sosem áll elő képként, mert a sorozat minden tagja $s_{k+1}$-be megy ($k+1 \ge 1$). Minden más pont helyben marad. Tehát a képhalmaz része $[0, 1] \setminus \{1/2\}$-nek.
+- **Injektivitás:** $S$-en az indexléptetés $k \mapsto k+1$ injektív, $S$-en kívül az identitás injektív, és a képhalmazok diszjunktak.
+- **Szürjektivitás:** Minden $y \in [0, 1] \setminus \{1/2\}$ pontnak van ősképe: ha $y = s_m$ ($m \ge 1$), akkor ősképe $s_{m-1}$; ha $y \notin S$, akkor ősképe önmaga.
+Tehát $g$ bijekció $[0, 1]$ és $[0, 1] \setminus \{1/2\}$ között. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — a kontinuum számosság stabilitása megszámlálható részhalmaz elhagyásakor.**
+
+A halmazelmélet egyik legfontosabb tétele szerint, ha egy kontinuum számosságú halmazból ($|X| = \mathfrak{c} = 2^{\aleph_0}$, például $X = \mathbb{R}$ vagy $X = [a, b]$) elhagyunk egy legfeljebb megszámlálható $A$ részhalmazt ($|A| \le \aleph_0$), a maradék számossága nem változik:
+$$|\mathbb{R} \setminus A| = \mathfrak{c}.$$
+Bizonyítás: Mivel $\mathbb{R} \setminus A$ végtelen, kiválasztható belőle egy $B$ megszámlálható részhalmaz. Ekkor $A \cup B$ szintén megszámlálható, így létezik $g: A \cup B \to B$ bijekció (Hilbert-szálloda elv). Ezt kiterjesztve a maradék $(\mathbb{R} \setminus A) \setminus B$ pontjain az identitással, egy explicit $\mathbb{R} \to \mathbb{R} \setminus A$ bijekciót kapunk.
+:::
+
 # A 4. feladatlaphoz
 
 ## Gy34.1. feladat
@@ -4627,9 +5218,15 @@ A Gy66.1 tétel szerint $\limsup b_n = -A$ pontosan akkor teljesül, ha minden $
 Mivel az ekvivalencia a tükrözött sorozatra fennáll, a tétel az eredeti $(a_n)$ sorozatra is maradéktalanul igazolt. $\blacksquare$
 
 ::: elmelet
-**Elméleti háttér — A liminf duális jellemzése.**
+**Elméleti háttér — a liminf és limsup duális kapcsolata és a torlódási értékek.**
 
-- **Tükrözés ereje:** Nem szükséges a bizonyítás lépéseit elölről kezdeni: az $a_n \mapsto -a_n$ transzformáció automatikusan megfordítja a relációkat és felcseréli a szuprémumot az infimummal.
+A valós számsorozatok limes superiorja és limes inferiorja közötti alapvető kapcsolat a tükrözési elv:
+$$\liminf_{n \to \infty} a_n = -\limsup_{n \to \infty} (-a_n), \quad \limsup_{n \to \infty} a_n = -\liminf_{n \to \infty} (-a_n).$$
+Ez azon alapszik, hogy tetszőleges nemüres korlátos $H \subset \mathbb{R}$ halmazra $\inf(H) = -\sup(-H)$.
+A részsorozatok határértékeinek halmazát $\mathcal{S}$-sel jelölve:
+- $\limsup a_n = \max \mathcal{S}$ (a legnagyobb torlódási érték);
+- $\liminf a_n = \min \mathcal{S}$ (a legkisebb torlódási érték).
+Egy sorozat akkor és csak akkor konvergens (vagy tart $\pm\infty$-hez), ha $\liminf a_n = \limsup a_n$, és ekkor ez a közös érték a sorozat határértéke.
 :::
 
 ## Gy67.1. feladat

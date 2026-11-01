@@ -384,6 +384,101 @@ a) $a_n = \dfrac{1}{\sqrt{n + 1} + \sqrt{n}}$;
 
 b) $b_n = \sqrt[n]{5} - 1$.
 
+# A 3. feladatlaphoz
+
+## Gy23.1. feladat
+
+Bizonyítsuk be teljes indukcióval, hogy minden $n \in \mathbb{N}$ esetén:
+$$1 \cdot 2 + 2 \cdot 3 + \dots + n(n+1) = \frac{n(n+1)(n+2)}{3}.$$
+
+## Gy23.2. feladat
+
+Számítsuk ki a $\sum_{k=1}^n \frac{1}{k(k+1)}$ összeget parciális törtekre bontással (teleszkopikus összegként), majd igazoljuk a kapott zárt alakot teljes indukcióval is!
+
+## Gy24.1. feladat
+
+Mutassuk meg a binomiális tétel segítségével, hogy $1{,}2^n > n^3$ minden elegendően nagy $n \in \mathbb{N}$ esetén, és határozzunk meg egy explicit $N_0$ küszöbindexet!
+
+## Gy24.2. feladat
+
+Mutassuk meg, hogy $2^n > n^5$ ha $n$ elegendően nagy, és adjunk meg egy explicit $N_0$ küszöbindexet!
+
+## Gy25.1. feladat
+
+Határozzuk meg az alábbi összegek zárt alakját a binomiális tétel segítségével:
+a) $\sum_{k=0}^n (-1)^k \binom{n}{k} 3^{n-k}$;
+b) $\sum_{k=0}^{\lfloor n/2 \rfloor} \binom{n}{2k}$ (páros alsó indexű binomiális együtthatók összege).
+
+## Gy25.2. feladat
+
+Igazoljuk, hogy minden $n \ge 2$ esetén $\sum_{k=1}^n k(k-1) \binom{n}{k} = n(n-1) 2^{n-2}$, és ennek felhasználásával számítsuk ki a $\sum_{k=1}^n k^2 \binom{n}{k}$ összeg értékét!
+
+## Gy26.1. feladat
+
+Legyen $A = B = \mathbb{N} = \{1, 2, 3, \dots\}$. Adjunk meg olyan $f, g : \mathbb{N} \to \mathbb{N}$ függvényeket, amelyekre $f \circ g = \mathrm{id}_{\mathbb{N}}$, de $g \circ f \neq \mathrm{id}_{\mathbb{N}}$.
+
+## Gy26.2. feladat
+
+Bizonyítsuk be, hogy ha $f : A \to B$ és $g : B \to C$ olyan leképezések, amelyekre $g \circ f : A \to C$ bijekció, akkor $f$ injektív és $g$ szürjektív. Mutassunk példát arra, hogy ebből nem feltétlenül következik sem $f$ szürjektivitása, sem $g$ injektivitása!
+
+## Gy27.1. feladat
+
+Bizonyítsuk be a számtani és mértani közép közötti egyenlőtlenség segítségével, hogy minden $n \ge 2$ egész számra:
+$$n! < \left(\frac{n+1}{2}\right)^n.$$
+
+## Gy27.2. feladat
+
+Igazoljuk a szimmetrikus tényezőpárosítás módszerével, hogy minden $n \ge 3$ egész számra $(n!)^2 > n^n$.
+
+## Gy28.1. feladat
+
+A Hilbert-féle Grand Hotelben minden szoba foglalt (a szobák számozása $1, 2, 3, \dots$). Érkezik egy 10 fős turistacsoport. Hogyan tudja őket a portás elszállásolni úgy, hogy minden meglévő vendég szobát kapjon, és a 10 új vendég is bekerüljön?
+
+## Gy28.2. feladat
+
+A Hilbert-szállodában telt ház van. A szomszédos szállodából megszámlálhatóan végtelen sok vendég érkezik. A szállodaigazgató azonban megtiltja, hogy a páros sorszámú szobákban lakó vendégek elköltözzenek a szobájukból. Megoldható-e az új vendégek elhelyezése úgy, hogy a páros szobák lakói helyben maradnak?
+
+## Gy29.1. feladat
+
+Határozzuk meg az $x y^3$ kifejezés maximális értékét a számtani és mértani közép közötti egyenlőtlenség segítségével, ha $x, y \ge 0$ és $x + y = 12$!
+
+## Gy29.2. feladat
+
+Egy felül nyitott, négyzet alapú téglatest alakú doboz térfogata $V = 32\ \text{cm}^3$. Határozzuk meg a doboz felszínének minimális értékét a számtani és mértani közép közötti egyenlőtlenség segítségével!
+
+## Gy30.1. feladat
+
+Bizonyítsuk be, hogy az $f(x) = \frac{1-x}{1+x}$ függvény injektív a $(-1, \infty)$ intervallumon, határozzuk meg az értékkészletét, és írjuk fel az inverz függvény képletét!
+
+## Gy30.2. feladat
+
+Bizonyítsuk be, hogy az $f(x) = x^2 - 4x + 7$ függvény injektív a $[2, \infty)$ intervallumon, határozzuk meg az értékkészletét, és adjuk meg az inverz függvényét!
+
+## Gy31.1. feladat
+
+Igazoljuk a binomiális tétel segítségével, hogy minden $n \ge 1$ egész számra $\left(1 + \frac{1}{n}\right)^n < 3$!
+
+## Gy31.2. feladat
+
+Mutassuk meg, hogy a $c_n = \left(1 - \frac{1}{n}\right)^n$ sorozat szigorúan monoton növekvő minden $n \ge 2$ esetén!
+
+## Gy32.1. feladat
+
+Bizonyítsuk be teljes indukcióval, hogy minden $n \in \mathbb{N}$ esetén:
+$$n! > \left(\frac{n}{e+1}\right)^n.$$
+
+## Gy32.2. feladat
+
+Bizonyítsuk be, hogy $\frac{n^n}{n!} < 3^n$ minden $n \in \mathbb{N}$ esetén!
+
+## Gy33.1. feladat
+
+Konstruáljunk explicit bijekciót a félig nyílt $[0, 1)$ intervallum és a nyílt $(0, 1)$ intervallum között!
+
+## Gy33.2. feladat
+
+Létezik-e bijekció a zárt $[0, 1]$ intervallum és az egy pontot elhagyó $[0, 1] \setminus \{1/2\}$ halmaz között? Ha igen, adjunk meg egy explicit konstrukciót!
+
 # A 4. feladatlaphoz
 
 ## Gy34.1. feladat
