@@ -1,9 +1,5 @@
-% Preamble for the reMarkable-sized PDF exports built by the Makefile.
-%   reMarkable 1 — 1404x1872 px @ 226 dpi -> 447.29 x 596.39 bp (≈ 157 x 210 mm)
-% The page box matches the panel aspect ratio so the reader shows the page
-% full-screen with no letterboxing and no pinch-zooming.
-\usepackage[paperwidth=447.29bp,paperheight=596.39bp,%
-            top=11mm,bottom=13mm,left=11mm,right=11mm]{geometry}
+% Common preamble for PDF exports built by the Makefile.
+% Paper size is configured via Pandoc (-V geometry:...paper).
 \usepackage{amsmath}
 \usepackage{amssymb}
 \DeclareMathOperator{\lnko}{lnko}
