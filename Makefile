@@ -16,6 +16,12 @@ HEADER     := header.tex
 FILTER     := extension.lua
 SIZES      ?= a4 a5 a6
 
+# Proportional margins per paper size:
+# Side margins ≈ 7.5% of width, top ≈ 5.3%, bottom ≈ 6.1% of height.
+GEOMETRY_a4 ?= a4paper,top=16mm,bottom=18mm,left=16mm,right=16mm,footskip=8mm
+GEOMETRY_a5 ?= a5paper,top=11mm,bottom=13mm,left=11mm,right=11mm,footskip=6mm
+GEOMETRY_a6 ?= a6paper,top=8mm,bottom=9mm,left=8mm,right=8mm,footskip=4.5mm
+
 # No -V lang: this TeX install has no Hungarian hyphenation patterns.
 PANDOC_FLAGS = \
   --pdf-engine=$(PDF_ENGINE) \
@@ -54,6 +60,12 @@ concat:
 render:
 ifdef FILE
 	@for size in $(SIZES); do \
+	  case "$$size" in \
+	    a4) geom="$(GEOMETRY_a4)" ;; \
+	    a5) geom="$(GEOMETRY_a5)" ;; \
+	    a6) geom="$(GEOMETRY_a6)" ;; \
+	    *)  geom="$${size}paper" ;; \
+	  esac; \
 	  src="$(FILE)"; \
 	  src="$${src#./}"; \
 	  dest="out/$$size/$${src%.md}.pdf"; \
@@ -62,11 +74,17 @@ ifdef FILE
 	  $(PANDOC) "$$src" -o "$$dest" \
 	    --resource-path="$$(dirname "$$src")" \
 	    -V title-meta="$$(basename "$$src" .md)" \
-	    -V geometry:$${size}paper \
+	    -V geometry:"$$geom" \
 	    $(PANDOC_FLAGS); \
 	done
 else
 	@for size in $(SIZES); do \
+	  case "$$size" in \
+	    a4) geom="$(GEOMETRY_a4)" ;; \
+	    a5) geom="$(GEOMETRY_a5)" ;; \
+	    a6) geom="$(GEOMETRY_a6)" ;; \
+	    *)  geom="$${size}paper" ;; \
+	  esac; \
 	  find . -name '*.md' -not -path './.*' -not -path './out/*' -not -name 'README.md' -not -path '*/Gyakorlat/*' | LC_ALL=C sort -V | while IFS= read -r src; do \
 	    src="$${src#./}"; \
 	    dest="out/$$size/$${src%.md}.pdf"; \
@@ -75,7 +93,7 @@ else
 	    $(PANDOC) "$$src" -o "$$dest" \
 	      --resource-path="$$(dirname "$$src")" \
 	      -V title-meta="$$(basename "$$src" .md)" \
-	      -V geometry:$${size}paper \
+	      -V geometry:"$$geom" \
 	      $(PANDOC_FLAGS); \
 	  done; \
 	done

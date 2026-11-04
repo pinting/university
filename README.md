@@ -1,4 +1,6 @@
-# ELTE Matematika BSc 2026 university materials
+# University notes
+
+**PDFs are in the `out` folder!**
 
 ## Build
 
