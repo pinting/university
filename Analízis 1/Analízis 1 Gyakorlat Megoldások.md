@@ -4016,6 +4016,415 @@ $$\frac{d_1 + \dots + d_{m+n}}{m + n} = \frac{(d_1 + \dots + d_m) + (e_1 + \dots
 
 **Tételek:** határérték és alapműveletek, határérték és kompozíció, egyenlőtlenségek és határérték (két tétel), átviteli elv folytonos függvényekre.
 
+# Analízis 1 – 11. feladatlap – megoldások
+
+### I. Mat. BSc Analízis 1 · 2026/27 első félév
+
+## 111. feladat
+
+Határozzuk meg a következő függvények szakadási pontjait. Milyen típusú a szakadás?
+
+a) $f(x) = \dfrac{x^3 - 1}{x - 1}$, b) $g(x) = \dfrac{x^2 - 1}{|x - 1|}$, c) $h_1(x) = x\left[\dfrac{1}{x}\right]$, d) $h_2(x) = x^2\left[\dfrac{1}{x}\right]$.
+
+**Megoldás.**
+
+Emlékeztető: ha $f$ értelmezve van $a$ egy pontozott környezetében, és $a$-ban nem folytonos (vagy ott nincs is értelmezve), akkor $a$ **szakadási hely**. Típusai: **megszüntethető** (létezik véges $\lim_{x \to a} f(x)$), **ugrás** (a két véges féloldali határérték különbözik) — ezek az **elsőfajúak** —, minden más **másodfajú**.
+
+a) $D(f) = \mathbb{R} \setminus \{1\}$, és itt $f(x) = \frac{(x - 1)(x^2 + x + 1)}{x - 1} = x^2 + x + 1$, ami polinom, tehát folytonos. Egyetlen szakadási hely az $x = 1$, ahol
+$$\lim_{x \to 1} f(x) = \lim_{x \to 1} (x^2 + x + 1) = 3.$$
+**Megszüntethető szakadás** ($f(1) := 3$ választással folytonos függvényt kapunk).
+
+b) $D(g) = \mathbb{R} \setminus \{1\}$, és
+$$g(x) = \frac{(x - 1)(x + 1)}{|x - 1|} = (x + 1)\operatorname{sgn}(x - 1) = \begin{cases} x + 1, & x > 1, \\ -(x + 1), & x < 1. \end{cases}$$
+$x \ne 1$-ben $g$ folytonos. Az $1$-ben $g(1 + 0) = 2$, $g(1 - 0) = -2$: két különböző véges féloldali határérték, **ugrás** (elsőfajú szakadás).
+
+c) $D(h_1) = \mathbb{R} \setminus \{0\}$. Az $\left[\frac1x\right]$ csak ott változik, ahol $\frac1x$ egész, azaz az $x = \frac1k$ ($k \in \mathbb{Z} \setminus \{0\}$) pontokban; két ilyen szomszédos pont között $\left[\frac1x\right]$ állandó, így $h_1$ ott $x$ konstansszorosa, folytonos.
+
+- *$x = \frac1k$, $k \ge 1$.* Ha $\frac{1}{k+1} < x \le \frac1k$, akkor $k \le \frac1x < k + 1$, így $h_1(x) = kx$; ha $\frac1k < x < \frac{1}{k-1}$ (illetve $k = 1$-re $x > 1$), akkor $h_1(x) = (k - 1)x$. Tehát
+$$h_1\!\left(\tfrac1k\right) = 1 = h_1\!\left(\tfrac1k - 0\right), \qquad h_1\!\left(\tfrac1k + 0\right) = \frac{k - 1}{k}.$$
+- *$x = -\frac1m$, $m \ge 1$.* Ha $-\frac{1}{m-1} < x \le -\frac1m$ (illetve $m = 1$-re $x \le -1$), akkor $-m \le \frac1x < -m + 1$, így $h_1(x) = -mx$; ha $-\frac1m < x < -\frac{1}{m+1}$, akkor $h_1(x) = -(m + 1)x$. Tehát
+$$h_1\!\left(-\tfrac1m\right) = 1 = h_1\!\left(-\tfrac1m - 0\right), \qquad h_1\!\left(-\tfrac1m + 0\right) = \frac{m + 1}{m}.$$
+- *$x = 0$.* Az $\frac1x - 1 < \left[\frac1x\right] \le \frac1x$ egyenlőtlenséget $x$-szel szorozva: $x > 0$-ra $1 - x < h_1(x) \le 1$, $x < 0$-ra $1 \le h_1(x) < 1 - x$. A rendőrelv szerint $\lim_{x \to 0} h_1(x) = 1$.
+
+**Tehát $h_1$-nek minden $x = \frac1k$ ($k \in \mathbb{Z} \setminus \{0\}$) pontban ugrása van** (az ugrás nagysága $\frac1{|k|}$; balról folytonos), **a $0$-ban pedig megszüntethető szakadása** ($h_1(0) := 1$).
+
+d) $h_2(x) = x \cdot h_1(x)$, és $x$ folytonos, sehol sem $0$ az $\frac1k$ pontokban, így a szakadási helyek ugyanazok, mint c)-ben:
+
+- $x = \frac1k$ ($k \ge 1$): $h_2\left(\frac1k\right) = h_2\left(\frac1k - 0\right) = \frac1k$, $h_2\left(\frac1k + 0\right) = \frac{k - 1}{k^2}$ — **ugrás** ($\frac{1}{k^2}$ nagyságú).
+- $x = -\frac1m$ ($m \ge 1$): $h_2\left(-\frac1m\right) = h_2\left(-\frac1m - 0\right) = -\frac1m$, $h_2\left(-\frac1m + 0\right) = -\frac{m + 1}{m^2}$ — **ugrás**.
+- $x = 0$: $\lim_{x \to 0} h_2(x) = \lim_{x \to 0} x \cdot h_1(x) = 0 \cdot 1 = 0$ — **megszüntethető** ($h_2(0) := 0$; ezt a kiterjesztést a 9. feladatlapon már láttuk folytonosnak).
+
+::: elmelet
+**Elméleti háttér — a szakadások osztályozása.**
+
+*Hol kell keresni?* Elemi függvények (polinomok, racionális törtfüggvények, $|\cdot|$, $\operatorname{sgn}$ a $0$-n kívül) összetételei az értelmezési tartományuk belsejében folytonosak; szakadás csak ott lehet, ahol egy „nem folytonos alkotórész” (egészrész, előjel) ugrik, vagy ahol a képlet nincs értelmezve (nevező $0$).
+
+*Típus meghatározása.* Ki kell számolni a két féloldali határértéket. Ha mindkettő véges és egyenlő: **megszüntethető** szakadás (a pontbeli érték hiányzik vagy „rossz”). Ha mindkettő véges, de különbözik: **ugrás**. Ha valamelyik végtelen vagy nem létezik: **másodfajú** szakadás (pl. $\frac1x$ vagy $\sin\frac1x$ a $0$-ban).
+
+*Egészrész-trükk.* Az $[u] \le u < [u] + 1$ (ekvivalensen $u - 1 < [u] \le u$) becslés a rendőrelvvel együtt adja a $0$-beli határértéket. Az $x\left[\frac1x\right]$ ugrásai $\frac1{|k|}$ nagyságúak és a $0$ felé torlódnak, mégis a $0$-ban létezik a határérték — a szakadási helyek halmazának torlódási pontjában a függvény lehet „szép”.
+:::
+
+## 112. feladat
+
+Következik-e abból, hogy $\forall n \in \mathbb{N}$-re $f_n \in C(\mathbb{R})$, hogy $f(x) \overset{\text{def}}{=} \inf_{n \in \mathbb{N}} f_n(x)$ is folytonos $\mathbb{R}$-en.
+
+**Megoldás.**
+
+**Nem.** Legyen
+$$f_n(x) = \max(0,\ 1 - n|x|)$$
+(egy $0$ középpontú, $1$ magas, $\frac2n$ alapú „sátor”). Ez folytonos (folytonos függvények összetétele és maximuma). Ha $x \ne 0$, akkor $n \ge \frac1{|x|}$ esetén $f_n(x) = 0$, és minden $f_n \ge 0$, így $\inf_n f_n(x) = 0$. A $0$-ban $f_n(0) = 1$ minden $n$-re, így $\inf_n f_n(0) = 1$. Tehát
+$$f(x) = \begin{cases} 1, & x = 0, \\ 0, & x \ne 0, \end{cases}$$
+ami a $0$-ban nem folytonos (megszüntethető szakadás).
+
+(Az infimum még csak valós értékű sem feltétlenül: $f_n(x) = -n$-re $\inf_n f_n(x) = -\infty$.)
+
+::: elmelet
+**Elméleti háttér — véges és végtelen sok függvény infimuma.** Két (véges sok) folytonos függvény minimuma folytonos, mert $\min(f, g) = \frac{f + g - |f - g|}{2}$ (100. feladat). Végtelen sok függvénynél ez elromlik: a pontonkénti infimum nem „érzi” a függvények közötti egyenletes kapcsolatot. Ami megmarad: folytonos függvények infimuma mindig **felülről félig folytonos** ($\limsup_{x \to a} f(x) \le f(a)$) — a példában a $0$-beli érték „felfelé” ugrik ki. Folytonosságot pl. **egyenletes konvergencia** biztosít: ha $f_n$ monoton fogyó és egyenletesen tart $f$-hez, akkor $f = \inf_n f_n$ folytonos (a Dini-tétel szerint kompakt halmazon a monoton pontonkénti konvergenciából folytonos határfüggvény esetén ez automatikus).
+:::
+
+## 113*. feladat
+
+Hány folytonos $\mathbb{R} \to \mathbb{R}$ függvény van? (Megszámlálható? Kontinuum sok? Még több?)
+
+**Megoldás.**
+
+**Pontosan kontinuum sok** — vagyis ugyanannyi, mint valós szám, és (Cantor tétele szerint) kevesebb, mint az összes $\mathbb{R} \to \mathbb{R}$ függvény ($2^{\mathfrak c}$).
+
+*Legalább kontinuum.* A konstans függvények ($c \in \mathbb{R}$) mind folytonosak és különbözők: $c \mapsto (x \mapsto c)$ injekció $\mathbb{R}$-ből $C(\mathbb{R})$-be.
+
+*Legfeljebb kontinuum.* A 101. feladat (illetve az ott használt gondolat) szerint két folytonos függvény, amely a racionális számokon megegyezik, mindenhol megegyezik. Tehát az $f \mapsto f|_{\mathbb{Q}}$ leképezés injektív $C(\mathbb{R})$-ből az $\mathbb{R}^{\mathbb{Q}}$ halmazba (a $\mathbb{Q} \to \mathbb{R}$ függvények halmaza). Mivel $\mathbb{Q}$ megszámlálható, $\mathbb{R}^{\mathbb{Q}}$ ugyanakkora, mint $\mathbb{R}^{\mathbb{N}}$, a valós számsorozatok halmaza, és
+$$|\mathbb{R}^{\mathbb{N}}| = \left(2^{\aleph_0}\right)^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0} = 2^{\aleph_0} = \mathfrak c.$$
+(Szemléletesen: a valós számok $0$–$1$ sorozatokkal kódolhatók, egy számsorozat tehát egy „$0$–$1$ sorozatokból álló sorozat”, azaz egy $\mathbb{N} \times \mathbb{N} \to \{0, 1\}$ függvény; mivel $\mathbb{N} \times \mathbb{N}$ megszámlálható, ez egyetlen $0$–$1$ sorozattal is kódolható.)
+
+A Cantor–Bernstein-tétel szerint $|C(\mathbb{R})| = \mathfrak c$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — számosságok és a folytonosság „merevsége”.** Megszámlálható halmaz: $|\mathbb{N}|$-nyi ($\aleph_0$); kontinuum: $|\mathbb{R}| = 2^{\aleph_0} = \mathfrak c$. A Cantor-tétel szerint minden halmaz hatványhalmaza szigorúan nagyobb, így az összes $\mathbb{R} \to \mathbb{R}$ függvény halmaza, $|\mathbb{R}^{\mathbb{R}}| = \mathfrak c^{\mathfrak c} = 2^{\mathfrak c}$, szigorúan több a kontinuumnál. A folytonos függvényeket egy **megszámlálható** sűrű halmazon felvett értékeik meghatározzák — ezért csak $\mathfrak c^{\aleph_0} = \mathfrak c$ van belőlük. Ugyanez az érvelés mutatja, hogy a monoton függvények is kontinuum sokan vannak (ezeket a racionális pontokbeli értékek és a megszámlálható sok szakadási hely értékei határozzák meg).
+:::
+
+## 114. feladat
+
+Legyen $f \in C[0, 1]$, $f(0) = f(1) = 0$.
+
+a) Mutassuk meg, hogy $f$-nek van $1/2$ hosszúságú vízszintes húrja, azaz $\exists x \in [0, 1/2]$, hogy $f(x + \frac12) = f(x)$.
+
+b\*) Mutassuk meg, hogy $\forall n \in \mathbb{N}$-re $f$-nek van $1/n$ hosszúságú vízszintes húrja, azaz $\exists x \in [0, 1 - \frac1n]$, hogy $f(x + \frac1n) = f(x)$.
+
+**Megoldás.**
+
+a) Legyen $g(x) = f(x + \frac12) - f(x)$, $x \in [0, \frac12]$. Ez folytonos (folytonos függvények különbsége és kompozíciója), és
+$$g(0) = f\!\left(\tfrac12\right) - f(0) = f\!\left(\tfrac12\right), \qquad g\!\left(\tfrac12\right) = f(1) - f\!\left(\tfrac12\right) = -f\!\left(\tfrac12\right).$$
+Így $g(0) \cdot g(\frac12) = -f(\frac12)^2 \le 0$. Ha a szorzat $0$, akkor $g(0) = 0$ (és $x = 0$ jó); különben $g$ a két végpontban ellentétes előjelű, és a Bolzano-tétel szerint van $x \in (0, \frac12)$, amelyre $g(x) = 0$, azaz $f(x + \frac12) = f(x)$. $\blacksquare$
+
+b) Legyen $g(x) = f(x + \frac1n) - f(x)$, $x \in [0, 1 - \frac1n]$; ez folytonos. A $\frac kn$ ($k = 0, 1, \dots, n - 1$) pontokban vett értékek összege **teleszkopikus**:
+$$\sum_{k=0}^{n-1} g\!\left(\tfrac kn\right) = \sum_{k=0}^{n-1} \left( f\!\left(\tfrac{k+1}{n}\right) - f\!\left(\tfrac kn\right) \right) = f(1) - f(0) = 0.$$
+Ezért a $g(\frac kn)$ számok nem lehetnek mind pozitívak, és nem lehetnek mind negatívak. Ha valamelyik $0$, kész. Különben van $i, j$, hogy $g(\frac in) > 0 > g(\frac jn)$, és a Bolzano-tétel szerint $g$-nek van gyöke a $\frac in$ és $\frac jn$ közötti zárt intervallumban, amely része $[0, 1 - \frac1n]$-nek. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — a vízszintes húrok tétele (Lévy).** A „vízszintes húr” egy $x$ és $x + h$ pont, ahol a függvény ugyanazt az értéket veszi fel. A bizonyítás mintája: a keresett egyenletet átrendezzük egy $g = 0$ alakú egyenletté, és a **Bolzano-tételt** alkalmazzuk; ehhez kell egy pozitív és egy nem pozitív érték. A b) részben a **teleszkopikus összeg** garantálja, hogy $g$ nem lehet állandó előjelű az $\frac kn$ pontokban.
+
+*Csak $\frac1n$ alakú hosszakra igaz!* Paul Lévy tétele szerint ha $h \in (0, 1)$ nem $\frac1n$ alakú, akkor van olyan $f \in C[0, 1]$, $f(0) = f(1) = 0$, amelynek nincs $h$ hosszú vízszintes húrja; például
+$$f(x) = \sin^2\!\frac{\pi x}{h} - x \sin^2\!\frac{\pi}{h}.$$
+Ekkor $f(x + h) - f(x) = -h\sin^2\frac{\pi}{h} \ne 0$ (mert $\frac1h \notin \mathbb{Z}$), tehát sehol sincs $h$ hosszú vízszintes húr.
+:::
+
+## 115. feladat
+
+a) Adjunk meg olyan $f : [0, 1] \to [0, 1]$ függvényt, amely monoton és végtelen sok szakadási helye van.
+
+b\*) Adjunk meg olyan $f : [0, 1] \to [0, 1]$ függvényt, amely monoton és a szakadási helyei sűrű halmazt alkotnak $[0, 1]$-ben.
+
+**Megoldás.**
+
+a) Egy „lépcsőfüggvény” egyre sűrűsödő lépcsőkkel:
+$$f(x) = \begin{cases} 0, & x = 0, \\ \frac1n, & \frac{1}{n+1} < x \le \frac1n \quad (n = 1, 2, \dots). \end{cases}$$
+Minden $x \in (0, 1]$ pontosan egy $\left(\frac{1}{n+1}, \frac1n\right]$ intervallumba esik, tehát $f$ jól definiált, értékei $[0, 1]$-ben vannak, és monoton nő (a nagyobb $x$-hez kisebb vagy ugyanakkora $n$, azaz nagyobb vagy ugyanakkora $\frac1n$ tartozik). Minden $n \ge 2$-re az $\frac1n$ pontban
+$$f\!\left(\tfrac1n\right) = \frac1n, \qquad f\!\left(\tfrac1n + 0\right) = \frac{1}{n-1},$$
+tehát ugrás van: **végtelen sok szakadási hely** ($\frac12, \frac13, \frac14, \dots$).
+
+b) Soroljuk fel a $(0, 1)$-beli racionális számokat: $q_1, q_2, q_3, \dots$ (ez megszámlálható halmaz). Legyen
+$$f(x) = \sum_{n :\ q_n < x} \frac{1}{2^n}, \qquad x \in [0, 1].$$
+Ez a $\sum \frac1{2^n}$ konvergens, nemnegatív tagú sor egy részsorának összege, tehát jól definiált, és $0 \le f(x) \le \sum_{n=1}^\infty \frac1{2^n} = 1$.
+
+- *Monoton:* ha $x < y$, akkor $\{n : q_n < x\} \subseteq \{n : q_n < y\}$, és a tagok nemnegatívak, így $f(x) \le f(y)$.
+- *Minden $q_k$-ban szakad:* ha $x > q_k$, akkor az összegben szerepel az $\frac1{2^k}$ tag és minden olyan tag, amely $f(q_k)$-ban szerepel, így $f(x) \ge f(q_k) + \frac1{2^k}$. Tehát $f(q_k + 0) \ge f(q_k) + \frac{1}{2^k} > f(q_k)$: **ugrás**.
+
+A szakadási helyek tehát tartalmazzák a $\mathbb{Q} \cap (0, 1)$ halmazt, amely **sűrű** $[0, 1]$-ben.
+
+(Kiegészítésként: $f$ minden irracionális pontban folytonos. Ha $x \notin \mathbb{Q}$ és $\varepsilon > 0$, válasszunk $N$-et úgy, hogy $\sum_{n > N} 2^{-n} < \varepsilon$, és legyen $\delta$ az $x$ távolsága a $q_1, \dots, q_N$ pontoktól. Ha $|y - x| < \delta$, akkor $x$ és $y$ között egyik $q_1, \dots, q_N$ sincs, így $|f(y) - f(x)| \le \sum_{n > N} 2^{-n} < \varepsilon$.)
+
+::: elmelet
+**Elméleti háttér — monoton függvények szakadásai.** Monoton függvénynek minden pontban léteznek a véges féloldali határértékei, így csak **ugrásai** lehetnek, és ezekből legfeljebb **megszámlálhatóan sok** van (minden ugrás-intervallumba más racionális szám jut). A b) rész azt mutatja, hogy ennél többet nem lehet mondani: a szakadási helyek bármely megszámlálható halmazt kitölthetnek, akár sűrűt is. A konstrukció általános: ha $\{a_n\}$ tetszőleges megszámlálható halmaz és $\sum c_n$ pozitív tagú konvergens sor, akkor $f(x) = \sum_{a_n < x} c_n$ monoton nő, pontosan az $a_n$ pontokban szakad, és ott az ugrás nagysága éppen $c_n$.
+:::
+
+## 116*. feladat
+
+Bizonyítsuk be, hogy bármely $f : \mathbb{R} \to \mathbb{R}$ függvény elsőfajú szakadási helyeinek halmaza megszámlálható.
+
+**Megoldás.**
+
+Egy elsőfajú szakadási helyen mindkét féloldali határérték, $f(a - 0)$ és $f(a + 0)$ létezik és véges, és $f$ nem folytonos $a$-ban. Négy (nem feltétlenül diszjunkt) részhalmazra bontjuk ezeket, és mindegyikről megmutatjuk, hogy injektíven leképezhető a megszámlálható $\mathbb{Q}^3$ halmazba.
+
+**1. $f(a - 0) < f(a + 0)$.** Válasszunk egy $r \in \mathbb{Q}$ számot, hogy $f(a - 0) < r < f(a + 0)$. A féloldali határértékek definíciója szerint vannak $p, q \in \mathbb{Q}$, $p < a < q$, hogy
+$$f(x) < r, \text{ ha } p < x < a, \qquad f(x) > r, \text{ ha } a < x < q.$$
+Legyen $\Phi(a) = (p, q, r)$. **$\Phi$ injektív:** ha $a < b$ és $\Phi(a) = \Phi(b) = (p, q, r)$, akkor legyen $x \in (a, b)$ tetszőleges. Mivel $a < x < b < q$, az $a$-ra vonatkozó feltétel szerint $f(x) > r$; mivel $p < a < x < b$, a $b$-re vonatkozó feltétel szerint $f(x) < r$. Ellentmondás.
+
+**2. $f(a - 0) > f(a + 0)$.** Ugyanígy (vagy az 1. esetet $-f$-re alkalmazva).
+
+**3. $f(a - 0) = f(a + 0) = L < f(a)$** (megszüntethető szakadás, a függvényérték „fölül” van). Válasszunk $r \in \mathbb{Q}$-t, $L < r < f(a)$, és $p, q \in \mathbb{Q}$-t, $p < a < q$, hogy $f(x) < r$, ha $x \in (p, q) \setminus \{a\}$. Legyen $\Psi(a) = (p, q, r)$. **Injektív:** ha $a \ne b$ és $\Psi(a) = \Psi(b)$, akkor $b \in (p, q) \setminus \{a\}$, így az $a$-ra vonatkozó feltétel szerint $f(b) < r$; de $b$ választása szerint $f(b) > r$. Ellentmondás.
+
+**4. $f(a - 0) = f(a + 0) = L > f(a)$.** Ugyanígy.
+
+Ha a két féloldali határérték egyenlő és $f(a)$-val is egyenlő, akkor $f$ folytonos $a$-ban; tehát a négy eset lefedi az összes elsőfajú szakadási helyet. Mindegyik halmaz injektíven képezhető a megszámlálható $\mathbb{Q}^3$-ba, így megszámlálható, és megszámlálható sok megszámlálható halmaz uniója megszámlálható. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — racionális „tanúk” és megszámlálhatóság.** A módszer: minden „rossz” ponthoz hozzárendelünk véges sok racionális számot (tanút), és megmutatjuk, hogy a tanúk egyértelműen meghatározzák a pontot. Ehhez a racionális számok **sűrűsége** kell (bármely két valós szám között van racionális). Ugyanez a gondolat volt a monoton függvények szakadásainak megszámlálhatóságánál (ott egyetlen racionális szám is elég volt, mert a monotonitás miatt az ugrás-intervallumok diszjunktak). A tétel általánosítása: tetszőleges függvénynek legfeljebb megszámlálhatóan sok olyan pontja van, ahol a féloldali határértékek léteznek, de különböznek. A **másodfajú** szakadásokra nincs ilyen korlát: a Dirichlet-függvény minden pontban (másodfajú módon) szakad.
+:::
+
+## 117. feladat
+
+Mutassuk meg, hogy ha $f \in C(\mathbb{R})$ és $\lim\limits_{x \to \infty} f(x) = \lim\limits_{x \to -\infty} f(x)$, akkor $f$-nek vagy van legnagyobb, vagy van legkisebb értéke. (Mindkettő nem feltétlenül.)
+
+**Megoldás.**
+
+Legyen $L$ a közös határérték ($L \in \mathbb{R}$ vagy $L = \pm\infty$).
+
+**$L \in \mathbb{R}$.** Ha $f \equiv L$, akkor $f$-nek van legnagyobb és legkisebb értéke is. Különben van $x_0$, hogy $f(x_0) \ne L$; legyen mondjuk $f(x_0) > L$ (a másik eset $-f$-re alkalmazva ugyanez). Legyen $\varepsilon = f(x_0) - L > 0$. A határértékek miatt van $K > 0$, hogy $|x| > K$ esetén $f(x) < L + \varepsilon = f(x_0)$. Növelve $K$-t feltehetjük, hogy $|x_0| \le K$. A $[-K, K]$ korlátos, zárt intervallumon $f$ folytonos, így a **Weierstrass-tétel** szerint van $c \in [-K, K]$, ahol $f$ felveszi a maximumát ezen az intervallumon: $f(c) \ge f(x)$ minden $x \in [-K, K]$-ra, speciálisan $f(c) \ge f(x_0)$. Ha $|x| > K$, akkor $f(x) < f(x_0) \le f(c)$. Tehát **$f(c)$ az $f$ legnagyobb értéke** $\mathbb{R}$-en. (Ha $f(x_0) < L$, ugyanígy legkisebb értéket kapunk.)
+
+**$L = +\infty$.** Legyen $x_0$ tetszőleges; van $K \ge |x_0|$, hogy $|x| > K$ esetén $f(x) > f(x_0)$. A $[-K, K]$-n vett minimum ($f(c) \le f(x_0)$) a Weierstrass-tétel szerint létezik, és ez **az $f$ legkisebb értéke**. $L = -\infty$ esetén ugyanígy legnagyobb érték van.
+
+**Mindkettő nem feltétlenül.** Az $f(x) = \frac{1}{1 + x^2}$ függvényre mindkét határérték $0$; legnagyobb értéke $f(0) = 1$, de legkisebb értéke nincs ($f > 0$, és $\inf f = 0$). Az $f(x) = x^2$ esetén mindkét határérték $+\infty$, legkisebb érték van ($0$), legnagyobb nincs. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Weierstrass-tétel nem korlátos intervallumon.** A Weierstrass-tétel ($f \in C[a, b] \Rightarrow$ $f$ felveszi a maximumát és minimumát) kompakt, azaz korlátos és zárt intervallumra szól; $\mathbb{R}$-en általában hamis ($\operatorname{arctg}$, $x$). A tipikus kiterjesztés: ha a végtelenben a függvény „lejjebb van”, mint valamely belső értéke, akkor a maximumot elég egy elég nagy $[-K, K]$-n keresni, és ott a Weierstrass-tétel működik. A határérték definíciója adja a $K$-t, a Weierstrass-tétel a szélsőértéket. Ugyanígy látható be pl., hogy $\lim_{\pm\infty} f = +\infty$ esetén egy folytonos függvénynek van minimuma (pl. polinomok páros fokszámmal és pozitív főegyütthatóval).
+:::
+
+# Analízis 1 – 12. feladatlap – megoldások
+
+### I. Mat. BSc Analízis 1 · 2026/27 első félév
+
+## 118. feladat
+
+Legyen $f \in C(\mathbb{R})$ periodikus. Mutassuk meg, hogy $f$ korlátos.
+
+**Megoldás.**
+
+Legyen $p > 0$ egy periódusa: $f(x + p) = f(x)$ minden $x$-re, így indukcióval $f(x + kp) = f(x)$ minden $k \in \mathbb{Z}$-re. A $[0, p]$ korlátos, zárt intervallumon $f$ folytonos, ezért a **Weierstrass-tétel** szerint korlátos: van $M$, hogy $|f(t)| \le M$, ha $t \in [0, p]$.
+
+Legyen $x \in \mathbb{R}$ tetszőleges, és $k = \left[\frac xp\right]$. Ekkor $k \le \frac xp < k + 1$, azaz $t = x - kp \in [0, p)$, és
+$$|f(x)| = |f(t + kp)| = |f(t)| \le M.$$
+Tehát $f$ korlátos $\mathbb{R}$-en. $\blacksquare$
+
+(Sőt, $f$ fel is veszi a legnagyobb és a legkisebb értékét: a $[0, p]$-n felvett maximum és minimum az egész $\mathbb{R}$-en is az.)
+
+::: elmelet
+**Elméleti háttér — periodikus függvények és a Weierstrass-tétel.** Egy $p$ szerint periodikus függvény minden értékét felveszi már egy $p$ hosszú intervallumon, így értékkészlete megegyezik a $[0, p]$-re vett leszűkítés értékkészletével: $R(f) = f([0, p])$. Ha $f$ folytonos, ez a Weierstrass-tétel szerint korlátos és zárt (sőt, a Bolzano-tétel szerint intervallum). Folytonosság nélkül az állítás hamis: a $\operatorname{tg}$ $\pi$ szerint periodikus, de nem korlátos — igaz, nincs is értelmezve az egész $\mathbb{R}$-en; az $f(x) = \frac{1}{\{x\}}$ ($\{x\} \ne 0$), $f(n) = 0$ pedig $\mathbb{R}$-en értelmezett, $1$ szerint periodikus, nem korlátos.
+:::
+
+## 119. feladat
+
+A $\sin$ és $\cos$ addíciós képleteiből vezessük le, hogy $\operatorname{tg}(x + y) = \dfrac{\operatorname{tg} x + \operatorname{tg} y}{1 - \operatorname{tg} x \cdot \operatorname{tg} y}$.
+
+**Megoldás.**
+
+Tegyük fel, hogy $\operatorname{tg} x$, $\operatorname{tg} y$ és $\operatorname{tg}(x + y)$ értelmezett, azaz $\cos x \ne 0$, $\cos y \ne 0$ és $\cos(x + y) \ne 0$. Az addíciós képletek szerint
+$$\operatorname{tg}(x + y) = \frac{\sin(x + y)}{\cos(x + y)} = \frac{\sin x \cos y + \cos x \sin y}{\cos x \cos y - \sin x \sin y}.$$
+Osszuk el a számlálót és a nevezőt is $\cos x \cos y \ne 0$-val:
+$$\operatorname{tg}(x + y) = \frac{\dfrac{\sin x}{\cos x} + \dfrac{\sin y}{\cos y}}{1 - \dfrac{\sin x}{\cos x} \cdot \dfrac{\sin y}{\cos y}} = \frac{\operatorname{tg} x + \operatorname{tg} y}{1 - \operatorname{tg} x \operatorname{tg} y}.$$
+(A nevező nem $0$: $1 - \operatorname{tg} x \operatorname{tg} y = \frac{\cos(x + y)}{\cos x \cos y} \ne 0$.) $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — addíciós képletek és értelmezési tartomány.** Az alapképletek:
+$$\sin(x \pm y) = \sin x \cos y \pm \cos x \sin y, \qquad \cos(x \pm y) = \cos x \cos y \mp \sin x \sin y.$$
+Ezekből hányadosképzéssel és „$\cos x \cos y$-nal való egyszerűsítéssel” kapjuk a tangens addíciós képletét; ugyanígy $\operatorname{tg}(x - y) = \frac{\operatorname{tg} x - \operatorname{tg} y}{1 + \operatorname{tg} x \operatorname{tg} y}$, és $y = x$-re $\operatorname{tg} 2x = \frac{2\operatorname{tg} x}{1 - \operatorname{tg}^2 x}$. Fontos a feltételek nyomon követése: a képlet csak ott érvényes, ahol mindhárom tangens értelmezett. Ha pl. $\operatorname{tg} x \operatorname{tg} y = 1$, akkor $\cos(x + y) = 0$, és a bal oldal sem létezik.
+:::
+
+## 120. feladat
+
+Ábrázoljuk a $\sin(\arcsin x)$ és az $\arcsin(\sin x)$ függvényeket!
+
+**Megoldás.**
+
+**$\sin(\arcsin x)$.** Az $\arcsin : [-1, 1] \to [-\frac\pi2, \frac\pi2]$ a $\sin$ függvény $[-\frac\pi2, \frac\pi2]$-re vett leszűkítésének inverze. Ezért $\sin(\arcsin x) = x$ minden $x \in [-1, 1]$-re, és máshol nincs értelmezve. **A grafikon az $y = x$ egyenes $[-1, 1]$ feletti szakasza.**
+
+**$\arcsin(\sin x)$.** Értelmezve van minden $x \in \mathbb{R}$-re (mert $\sin x \in [-1, 1]$), értékei $[-\frac\pi2, \frac\pi2]$-ben vannak, $2\pi$ szerint periodikus és páratlan.
+
+- Ha $x \in [-\frac\pi2, \frac\pi2]$, akkor $\arcsin(\sin x) = x$ (az inverz definíciója).
+- Ha $x \in [\frac\pi2, \frac{3\pi}2]$, akkor $\pi - x \in [-\frac\pi2, \frac\pi2]$ és $\sin(\pi - x) = \sin x$, így $\arcsin(\sin x) = \pi - x$.
+
+Általában: ha $x \in \left[k\pi - \frac\pi2,\ k\pi + \frac\pi2\right]$ ($k \in \mathbb{Z}$), akkor $\arcsin(\sin x) = (-1)^k (x - k\pi)$, hiszen $\sin x = (-1)^k \sin(x - k\pi)$ és $x - k\pi \in [-\frac\pi2, \frac\pi2]$. **A grafikon egy „háromszöghullám”**: $\pm 1$ meredekségű szakaszokból áll, csúcsai a $\left(\frac\pi2 + 2k\pi, \frac\pi2\right)$ és a $\left(-\frac\pi2 + 2k\pi, -\frac\pi2\right)$ pontok.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.62,
+  axis/.style={draw=black!60, -{Stealth[scale=0.8]}},
+  graph/.style={draw=black, very thick}
+]
+  \begin{scope}
+    \draw[axis] (-2.2, 0) -- (2.4, 0) node[right] {\footnotesize $x$};
+    \draw[axis] (0, -2.2) -- (0, 2.4) node[above] {\footnotesize $y$};
+    \draw[graph] (-1.5, -1.5) -- (1.5, 1.5);
+    \fill (-1.5, -1.5) circle (2pt); \fill (1.5, 1.5) circle (2pt);
+    \draw (1.5, 0.08) -- (1.5, -0.08) node[below] {\scriptsize $1$};
+    \draw (-1.5, 0.08) -- (-1.5, -0.08) node[below] {\scriptsize $-1$};
+    \draw (0.08, 1.5) -- (-0.08, 1.5) node[left] {\scriptsize $1$};
+    \node at (0, -2.9) {\footnotesize $y = \sin(\arcsin x)$, $x \in [-1, 1]$};
+  \end{scope}
+  \begin{scope}[xshift=12cm]
+    \draw[axis] (-8.2, 0) -- (8.6, 0) node[right] {\footnotesize $x$};
+    \draw[axis] (0, -2.2) -- (0, 2.4) node[above] {\footnotesize $y$};
+    \draw[graph] (-7.854, -1.5708) -- (-4.712, 1.5708) -- (-1.5708, -1.5708) -- (1.5708, 1.5708) -- (4.712, -1.5708) -- (7.854, 1.5708);
+    \draw[draw=black!30, dashed] (-8, 1.5708) -- (8, 1.5708);
+    \draw[draw=black!30, dashed] (-8, -1.5708) -- (8, -1.5708);
+    \node[left] at (-8, 1.5708) {\scriptsize $\frac\pi2$};
+    \node[left] at (-8, -1.5708) {\scriptsize $-\frac\pi2$};
+    \foreach \x/\l in {1.5708/{\frac\pi2}, 3.1416/{\pi}, 4.712/{\frac{3\pi}2}, -3.1416/{-\pi}} {
+      \draw (\x, 0.08) -- (\x, -0.08) node[below] {\scriptsize $\l$};
+    }
+    \node at (0, -2.9) {\footnotesize $y = \arcsin(\sin x)$};
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — inverz függvény és leszűkítés.** Ha $g$ a $\sin$ $[-\frac\pi2, \frac\pi2]$-re vett leszűkítése, akkor $\arcsin = g^{-1}$, és
+
+- $g(g^{-1}(y)) = y$ minden $y \in D(g^{-1}) = [-1, 1]$-re: ezért $\sin(\arcsin x) = x$, de **csak** $[-1, 1]$-en;
+- $g^{-1}(g(x)) = x$ csak $x \in D(g) = [-\frac\pi2, \frac\pi2]$-re igaz. A teljes $\sin$-nal $\arcsin(\sin x)$ a $[-\frac\pi2, \frac\pi2]$-ből vett egyetlen olyan $t$-t adja, amelyre $\sin t = \sin x$ — ezt a $\sin$ szimmetriáival ($\sin(\pi - x) = \sin x$, $2\pi$-periodicitás) kell megtalálni.
+
+Ugyanígy $\cos(\arccos x) = x$ ($x \in [-1, 1]$), $\arccos(\cos x) = |x|$ a $[-\pi, \pi]$-n, $2\pi$-periodikusan kiterjesztve; $\operatorname{tg}(\operatorname{arctg} x) = x$ minden valós $x$-re, és $\operatorname{arctg}(\operatorname{tg} x) = x - k\pi$, ha $x \in (k\pi - \frac\pi2, k\pi + \frac\pi2)$.
+:::
+
+## 121. feladat
+
+Bizonyítsuk be, hogy az $x \cdot \sin x = 100$ egyenletnek végtelen sok gyöke van.
+
+**Megoldás.**
+
+Legyen $g(x) = x \sin x - 100$; ez folytonos $\mathbb{R}$-en. Minden $k \in \mathbb{N}$-re legyen
+$$a_k = 2k\pi, \qquad b_k = 2k\pi + \frac\pi2.$$
+Ekkor $g(a_k) = 2k\pi \cdot 0 - 100 = -100 < 0$, és $g(b_k) = b_k \cdot 1 - 100 = 2k\pi + \frac\pi2 - 100 > 0$, ha $k \ge 16$ (ekkor $2k\pi \ge 32\pi > 100$). A **Bolzano-tétel** szerint minden $k \ge 16$-ra van $x_k \in (a_k, b_k)$, amelyre $g(x_k) = 0$. Az $(a_k, b_k)$ intervallumok páronként diszjunktak, így az $x_k$ gyökök mind különbözők: **végtelen sok gyök van**. $\blacksquare$
+
+(Ugyanígy minden $(2k\pi + \frac\pi2, (2k + 1)\pi)$ intervallumban is van gyök, és a páratlanság miatt negatív gyökök is vannak: $x \sin x$ páros függvény.)
+
+::: elmelet
+**Elméleti háttér — gyökök létezése a Bolzano-tétellel.** Ha $g \in C[a, b]$ és $g(a) < 0 < g(b)$ (vagy fordítva), akkor van $c \in (a, b)$, hogy $g(c) = 0$. Végtelen sok gyökhöz végtelen sok **diszjunkt** intervallum kell, amelyek végpontjaiban $g$ előjelet vált. Oszcilláló függvényeknél a természetes választás a nevezetes pontok ($\sin x = 0$, illetve $\pm 1$): itt $x \sin x$ értéke $0$, illetve $\pm x$, és ez utóbbi abszolút értéke $\to \infty$, tehát előbb-utóbb minden korlátot (itt $100$-at) átlép.
+:::
+
+## 122. feladat
+
+Bizonyítsuk be, hogy
+
+a) $\arcsin x = \arccos \sqrt{1 - x^2}$, $x \in [0, 1]$,
+
+b) $\operatorname{arctg} x = \arcsin \dfrac{x}{\sqrt{1 + x^2}}$, $x \in \mathbb{R}$.
+
+**Megoldás.**
+
+A módszer: a bal oldal értéke egy $\alpha$ szög; kiszámoljuk, hogy a jobb oldali függvény „belseje” $\alpha$-nak melyik szögfüggvénye, és ellenőrizzük, hogy $\alpha$ a jobb oldali arkusz függvény értékkészletében van.
+
+a) Legyen $x \in [0, 1]$ és $\alpha = \arcsin x$. Ekkor $\sin \alpha = x \ge 0$ és $\alpha \in [-\frac\pi2, \frac\pi2]$, így $\alpha \in [0, \frac\pi2]$. Itt $\cos \alpha \ge 0$, tehát
+$$\cos \alpha = \sqrt{1 - \sin^2 \alpha} = \sqrt{1 - x^2}.$$
+Mivel $\alpha \in [0, \frac\pi2] \subseteq [0, \pi]$, és $\arccos$ a $\cos$ $[0, \pi]$-re vett leszűkítésének inverze, $\arccos \sqrt{1 - x^2} = \arccos(\cos \alpha) = \alpha = \arcsin x$. $\blacksquare$
+
+(A feltétel lényeges: $x \in [-1, 0)$-ra a bal oldal negatív, a jobb oldal nemnegatív, ott $\arcsin x = -\arccos\sqrt{1 - x^2}$.)
+
+b) Legyen $x \in \mathbb{R}$ és $\alpha = \operatorname{arctg} x \in (-\frac\pi2, \frac\pi2)$. Ekkor $\operatorname{tg} \alpha = x$ és $\cos \alpha > 0$. Az $1 + \operatorname{tg}^2 \alpha = \frac{\sin^2\alpha + \cos^2\alpha}{\cos^2 \alpha} = \frac{1}{\cos^2 \alpha}$ azonosságból
+$$\cos \alpha = \frac{1}{\sqrt{1 + x^2}}, \qquad \sin \alpha = \operatorname{tg} \alpha \cdot \cos \alpha = \frac{x}{\sqrt{1 + x^2}}.$$
+Mivel $\alpha \in (-\frac\pi2, \frac\pi2) \subseteq [-\frac\pi2, \frac\pi2]$, $\arcsin \frac{x}{\sqrt{1 + x^2}} = \arcsin(\sin \alpha) = \alpha = \operatorname{arctg} x$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — az arkusz függvények értékkészlete.** $\arcsin : [-1, 1] \to [-\frac\pi2, \frac\pi2]$, $\arccos : [-1, 1] \to [0, \pi]$, $\operatorname{arctg} : \mathbb{R} \to (-\frac\pi2, \frac\pi2)$. Egy $\operatorname{arc} h(y) = \alpha$ egyenlőség igazolásához két dolog kell: (1) $h(\alpha) = y$, és (2) $\alpha$ a megfelelő értékkészletben van. A $\sqrt{1 - \sin^2}$ típusú átírásoknál az előjel a szög helyétől függ ($\cos \alpha \ge 0 \iff \alpha \in [-\frac\pi2, \frac\pi2]$ a $[-\pi, \pi]$-n belül) — ezért kellett a)-ban az $x \ge 0$ feltétel. Hasonló azonosságok: $\arcsin x + \arccos x = \frac\pi2$, $\operatorname{arctg} x + \operatorname{arctg}\frac1x = \frac\pi2$ ($x > 0$).
+:::
+
+## 123. feladat
+
+Bizonyítsuk be, hogy $\log_a(x/y) = (\log_a x) - \log_a y$.
+
+**Megoldás.**
+
+Legyen $a > 0$, $a \ne 1$ és $x, y > 0$. A $\log_a$ az $a^t$ ($t \in \mathbb{R}$) függvény inverze: $\log_a z$ az az egyetlen $t$, amelyre $a^t = z$. Legyen $u = \log_a x$ és $v = \log_a y$, azaz $a^u = x$, $a^v = y$. A hatványozás azonossága ($a^{s + t} = a^s a^t$) szerint $a^{u - v} \cdot a^v = a^u$, így
+$$a^{u - v} = \frac{a^u}{a^v} = \frac{x}{y}.$$
+Mivel $a^t$ szigorúan monoton, tehát injektív, ebből $\log_a \frac xy = u - v = \log_a x - \log_a y$. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — a logaritmus azonosságai a hatványozáséiból.** A $t \mapsto a^t$ ($a > 0$, $a \ne 1$) szigorúan monoton, folytonos bijekció $\mathbb{R}$ és $(0, \infty)$ között; inverze a $\log_a$. A hatványozás azonosságai ($a^{s + t} = a^s a^t$, $a^{-t} = \frac{1}{a^t}$, $(a^s)^t = a^{st}$) az inverzen keresztül a logaritmus azonosságaivá alakulnak: $\log_a(xy) = \log_a x + \log_a y$, $\log_a \frac xy = \log_a x - \log_a y$, $\log_a x^b = b \log_a x$, és $\log_a x = \frac{\log x}{\log a}$. A módszer mindig ugyanaz: mindkét oldalt $a$ kitevőjébe írjuk, és az injektivitást használjuk.
+:::
+
+## 124*. feladat
+
+Bizonyítsuk be, hogy ha $n$ pozitív egész, akkor $\cos nx$ felírható mint $\cos x$ $n$-edfokú polinomja, azaz létezik egy $T_n$ $n$-edfokú polinom úgy, hogy $\cos nx = T_n(\cos x)$ minden $x$-re.
+
+**Megoldás.**
+
+**Egy rekurzió.** Az addíciós képletek szerint
+$$\cos((n + 1)x) = \cos nx \cos x - \sin nx \sin x, \qquad \cos((n - 1)x) = \cos nx \cos x + \sin nx \sin x.$$
+Összeadva:
+$$\cos((n + 1)x) = 2\cos x \cos nx - \cos((n - 1)x).$$
+
+**A polinomok.** Legyen $T_0(t) = 1$, $T_1(t) = t$, és $n \ge 1$-re
+$$T_{n+1}(t) = 2t\,T_n(t) - T_{n-1}(t).$$
+Teljes indukcióval megmutatjuk, hogy minden $n \ge 0$-ra $\cos nx = T_n(\cos x)$, és $n \ge 1$-re $T_n$ $n$-edfokú, $2^{n-1}$ főegyütthatóval.
+
+- $n = 0, 1$: $\cos 0 = 1 = T_0(\cos x)$, $\cos x = T_1(\cos x)$; $T_1$ elsőfokú, főegyütthatója $1 = 2^0$.
+- Ha az állítás $n - 1$-re és $n$-re igaz ($n \ge 1$), akkor a rekurzió szerint
+$$\cos((n + 1)x) = 2\cos x\, T_n(\cos x) - T_{n-1}(\cos x) = T_{n+1}(\cos x).$$
+A $2t\,T_n(t)$ polinom $(n + 1)$-edfokú, főegyütthatója $2 \cdot 2^{n-1} = 2^n$, a $T_{n-1}$ foka legfeljebb $n - 1$, így nem befolyásolja a főtagot: $T_{n+1}$ $(n + 1)$-edfokú, főegyütthatója $2^n$. $\blacksquare$
+
+Az első néhány polinom:
+$$T_2(t) = 2t^2 - 1, \quad T_3(t) = 4t^3 - 3t, \quad T_4(t) = 8t^4 - 8t^2 + 1,$$
+vagyis pl. $\cos 2x = 2\cos^2 x - 1$, $\cos 3x = 4\cos^3 x - 3\cos x$.
+
+::: elmelet
+**Elméleti háttér — a Csebisev-polinomok.** A $T_n$ polinomok a **Csebisev-polinomok**. A $\cos((n+1)x) + \cos((n-1)x) = 2\cos x \cos nx$ azonosság (szorzattá alakítás) egy másodrendű lineáris rekurziót ad, amely a polinomok fokát egyesével növeli. Tulajdonságaik: $|T_n(t)| \le 1$ a $[-1, 1]$-en, ott $n + 1$ helyen veszik fel a $\pm 1$ értéket; $T_n$ paritása $n$ paritásával egyezik. A $\sin nx$ hasonlóan nem polinomja $\sin x$-nek, de $\frac{\sin((n+1)x)}{\sin x}$ már polinomja $\cos x$-nek (másodfajú Csebisev-polinomok). Komplex számokkal: $\cos nx = \operatorname{Re}(\cos x + i\sin x)^n$, és a binomiális tétel után $\sin^2 x = 1 - \cos^2 x$ helyettesítéssel közvetlenül is adódik $T_n$.
+:::
+
+## 125. feladat
+
+Vezessük le az $\operatorname{sh}(x \pm y) = \operatorname{sh} x \operatorname{ch} y \pm \operatorname{ch} x \operatorname{sh} y$ és az $\operatorname{ch}(x \pm y) = \operatorname{ch} x \operatorname{ch} y \pm \operatorname{sh} x \operatorname{sh} y$ addíciós képleteket.
+
+**Megoldás.**
+
+Definíció szerint $\operatorname{sh} x = \frac{e^x - e^{-x}}{2}$, $\operatorname{ch} x = \frac{e^x + e^{-x}}{2}$. Számoljuk ki a jobb oldalakat (a $+$ előjellel):
+$$\operatorname{sh} x \operatorname{ch} y + \operatorname{ch} x \operatorname{sh} y = \frac{(e^x - e^{-x})(e^y + e^{-y}) + (e^x + e^{-x})(e^y - e^{-y})}{4}.$$
+A számlálóban:
+$$\left(e^{x+y} + e^{x-y} - e^{-x+y} - e^{-x-y}\right) + \left(e^{x+y} - e^{x-y} + e^{-x+y} - e^{-x-y}\right) = 2e^{x+y} - 2e^{-(x+y)},$$
+tehát az összeg $\frac{e^{x+y} - e^{-(x+y)}}{2} = \operatorname{sh}(x + y)$. Hasonlóan
+$$\operatorname{ch} x \operatorname{ch} y + \operatorname{sh} x \operatorname{sh} y = \frac{(e^x + e^{-x})(e^y + e^{-y}) + (e^x - e^{-x})(e^y - e^{-y})}{4},$$
+a számláló
+$$\left(e^{x+y} + e^{x-y} + e^{-x+y} + e^{-x-y}\right) + \left(e^{x+y} - e^{x-y} - e^{-x+y} + e^{-x-y}\right) = 2e^{x+y} + 2e^{-(x+y)},$$
+tehát az összeg $\operatorname{ch}(x + y)$.
+
+**A $-$ előjelű képletek** $y$ helyére $-y$-t írva adódnak, mert $\operatorname{sh}$ páratlan ($\operatorname{sh}(-y) = -\operatorname{sh} y$) és $\operatorname{ch}$ páros ($\operatorname{ch}(-y) = \operatorname{ch} y$):
+$$\operatorname{sh}(x - y) = \operatorname{sh} x \operatorname{ch} y - \operatorname{ch} x \operatorname{sh} y, \qquad \operatorname{ch}(x - y) = \operatorname{ch} x \operatorname{ch} y - \operatorname{sh} x \operatorname{sh} y. \qquad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — hiperbolikus függvények.** $\operatorname{sh}$ és $\operatorname{ch}$ az $e^x$ páratlan, illetve páros része: $e^x = \operatorname{ch} x + \operatorname{sh} x$, $e^{-x} = \operatorname{ch} x - \operatorname{sh} x$; szorozva: $\operatorname{ch}^2 x - \operatorname{sh}^2 x = 1$ (ezért „hiperbolikus”: a $(\operatorname{ch} t, \operatorname{sh} t)$ pont az $x^2 - y^2 = 1$ hiperbolán fut). Az addíciós képletek egy rövidebb levezetése: $e^{x+y} = e^x e^y = (\operatorname{ch} x + \operatorname{sh} x)(\operatorname{ch} y + \operatorname{sh} y)$, és a páros, illetve páratlan részeket szétválasztva (az $x, y \to -x, -y$ cserére nézve) kapjuk $\operatorname{ch}(x + y)$-t és $\operatorname{sh}(x + y)$-t. A képletek a trigonometrikusak megfelelői, a $\operatorname{ch}$-nál előjelváltással ($\cos(x + y) = \cos x \cos y - \sin x \sin y$).
+:::
+
+## 126. feladat
+
+Mutassuk meg, hogy $\operatorname{arsh}(x) = \log\left(x + \sqrt{x^2 + 1}\right)$ és $\operatorname{arch} x = \log\left(x + \sqrt{x^2 - 1}\right)$.
+
+**Megoldás.**
+
+(Itt $\log$ a természetes alapú logaritmus.)
+
+**$\operatorname{arsh}$.** Az $\operatorname{sh} : \mathbb{R} \to \mathbb{R}$ szigorúan monoton nő ($e^x$ nő, $e^{-x}$ fogy) és folytonos, $\lim_{\pm\infty} \operatorname{sh} = \pm\infty$, tehát bijekció; inverze az $\operatorname{arsh}$. Legyen $y \in \mathbb{R}$; keressük azt az $x$-et, amelyre $\operatorname{sh} x = y$:
+$$\frac{e^x - e^{-x}}{2} = y \iff e^{2x} - 2y\,e^x - 1 = 0.$$
+Az $u = e^x > 0$ helyettesítéssel $u^2 - 2yu - 1 = 0$, ennek gyökei $u = y \pm \sqrt{y^2 + 1}$. A két gyök szorzata $-1$, tehát pontosan egy pozitív van: $u = y + \sqrt{y^2 + 1}$ (ez pozitív, mert $\sqrt{y^2 + 1} > |y|$). Így $x = \log\left(y + \sqrt{y^2 + 1}\right)$, azaz
+$$\operatorname{arsh} y = \log\left(y + \sqrt{y^2 + 1}\right), \qquad y \in \mathbb{R}.$$
+
+**$\operatorname{arch}$.** A $\operatorname{ch}$ nem injektív (páros), ezért a $[0, \infty)$-re vett leszűkítését invertáljuk: ott szigorúan monoton nő, folytonos, $\operatorname{ch} 0 = 1$, $\lim_{\infty} \operatorname{ch} = \infty$, tehát $[0, \infty) \to [1, \infty)$ bijekció; inverze $\operatorname{arch} : [1, \infty) \to [0, \infty)$. Legyen $y \ge 1$; keressük azt az $x \ge 0$-t, amelyre $\operatorname{ch} x = y$:
+$$e^{2x} - 2y\,e^x + 1 = 0 \iff u^2 - 2yu + 1 = 0, \quad u = e^x.$$
+A gyökök $u = y \pm \sqrt{y^2 - 1}$; mindkettő pozitív, szorzatuk $1$. Mivel $x \ge 0 \iff u = e^x \ge 1$, a nagyobbik gyök kell: $u = y + \sqrt{y^2 - 1} \ge 1$ (a kisebbik ennek reciproka, $\le 1$). Tehát
+$$\operatorname{arch} y = \log\left(y + \sqrt{y^2 - 1}\right), \qquad y \ge 1. \qquad \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — inverz függvény képlete egyenletmegoldással.** Ha $f$ egy intervallumon szigorúan monoton és folytonos, akkor inverze is az (az inverz függvény folytonosságáról szóló tétel), és képletét az $f(x) = y$ egyenlet $x$-re való megoldása adja. Exponenciális kifejezéseknél az $u = e^x$ helyettesítés másodfokú egyenletre vezet; a két gyök közül a feltételeknek ($u > 0$, illetve a leszűkítés miatt $u \ge 1$) megfelelőt kell kiválasztani. A Viète-formulák (gyökök szorzata) gyorsan megmutatják, melyik a jó gyök. Hasonlóan: $\operatorname{arth} x = \frac12 \log\frac{1 + x}{1 - x}$ ($|x| < 1$).
+:::
+
 # Analízis 1 – 1. ZH (2022 normál) – megoldások
 
 ### B. Sc. I. Mat. Haladó analízis · Első ZH · Normál verzió (2022/23-I. félév)
