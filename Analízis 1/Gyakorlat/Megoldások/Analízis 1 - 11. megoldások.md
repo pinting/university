@@ -180,3 +180,31 @@ Legyen $L$ a közös határérték ($L \in \mathbb{R}$ vagy $L = \pm\infty$).
 ::: elmelet
 **Elméleti háttér — Weierstrass-tétel nem korlátos intervallumon.** A Weierstrass-tétel ($f \in C[a, b] \Rightarrow$ $f$ felveszi a maximumát és minimumát) kompakt, azaz korlátos és zárt intervallumra szól; $\mathbb{R}$-en általában hamis ($\operatorname{arctg}$, $x$). A tipikus kiterjesztés: ha a végtelenben a függvény „lejjebb van”, mint valamely belső értéke, akkor a maximumot elég egy elég nagy $[-K, K]$-n keresni, és ott a Weierstrass-tétel működik. A határérték definíciója adja a $K$-t, a Weierstrass-tétel a szélsőértéket. Ugyanígy látható be pl., hogy $\lim_{\pm\infty} f = +\infty$ esetén egy folytonos függvénynek van minimuma (pl. polinomok páros fokszámmal és pozitív főegyütthatóval).
 :::
+
+## Röpzhra
+
+**Definíciók:** szakadási helyek.
+
+**Tételek:** folytonosság/határérték és kompozíció, folytonosság és korlátosság, Weierstrass és Bolzano–Darboux tétel, folytonos függvények értékkészlete, inverz függvény folytonossága, monoton függvények féloldali határértékei és szakadási helyei, konvexitás és folytonosság ($h_{a,b}$-s lemma is).
+
+### Definíciók és tételek kidolgozása
+
+#### Definíciók
+
+- **Szakadási helyek osztályozása:** Legyen $f$ értelmezve az $x_0$ egy pontozott környezetében. Ha $f$ nem folytonos $x_0$-ban, akkor $x_0$ **szakadási hely**.
+  - **Megszüntethető szakadás:** létezik a véges $\lim_{x \to x_0} f(x) = L$ határérték, de vagy $x_0 \notin D(f)$, vagy $f(x_0) \ne L$.
+  - **Elsőfajú szakadás (ugrás):** léteznek a véges egyoldali határértékek: $f(x_0 - 0) = \lim_{x \to x_0 - 0} f(x) \in \mathbb{R}$ és $f(x_0 + 0) = \lim_{x \to x_0 + 0} f(x) \in \mathbb{R}$, de $f(x_0 - 0) \ne f(x_0 + 0)$. Az ugrás nagysága: $|f(x_0 + 0) - f(x_0 - 0)|$.
+  - **Másodfajú szakadás (lényeges szakadás):** a két egyoldali határérték közül legalább az egyik nem létezik vagy nem véges ($\pm\infty$).
+
+#### Tételek
+
+- **Folytonosság / határérték és kompozíció:** Ha $g$ folytonos az $u_0 = f(x_0)$ pontban, és $f$ folytonos az $x_0$ pontban, akkor $g \circ f$ is folytonos az $x_0$ pontban. Határértékre: ha $\lim_{x \to x_0} f(x) = u_0$ és $g$ folytonos $u_0$-ban, akkor $\lim_{x \to x_0} g(f(x)) = g(u_0)$.
+- **Folytonosság és korlátosság (lokális és globális):**
+  - *Lokális:* Ha $f$ folytonos az $x_0$ pontban, akkor $x_0$-nak létezik olyan környezete, amelyben $f$ korlátos.
+  - *Globális (Weierstrass I.):* Korlátos és zárt $[a, b]$ intervallumon folytonos függvény korlátos: $\exists K > 0: \forall x \in [a, b]: |f(x)| \le K$.
+- **Weierstrass-tétel (szélsőértéktétel):** Ha $f \in C[a, b]$, akkor $f$ felveszi a maximumát és minimumát $[a, b]$-n, azaz léteznek $\xi_{\min}, \xi_{\max} \in [a, b]$ pontok, hogy minden $x \in [a, b]$-re $f(\xi_{\min}) \le f(x) \le f(\xi_{\max})$.
+- **Bolzano–Darboux-tétel (közbülsőérték-tétel):** Ha $f \in C[a, b]$ és $f(a) < c < f(b)$ (vagy fordítva), akkor létezik olyan $\xi \in (a, b)$, amelyre $f(\xi) = c$.
+- **Folytonos függvények értékkészlete:** Ha $I \subseteq \mathbb{R}$ tetszőleges intervallum és $f \in C(I)$, akkor az értékkészlet $f(I)$ is intervallum. Speciálisan ha $I = [a, b]$ korlátos és zárt, akkor $f([a, b]) = [\min f, \max f]$ is korlátos és zárt intervallum.
+- **Inverz függvény folytonossága:** Ha $f$ egy $I$ intervallumon értelmezett szigorúan monoton és folytonos függvény, akkor $J = f(I)$ is intervallum, és az $f^{-1} : J \to I$ inverz függvény létezik, szigorúan monoton (ugyanolyan irányban), és folytonos $J$-n.
+- **Monoton függvények féloldali határértékei és szakadási helyei:** Ha $f$ monoton egy $(a, b)$ intervallumon, akkor minden $x_0 \in (a, b)$ pontban léteznek a véges egyoldali határértékek: monoton növő $f$-re $f(x_0 - 0) = \sup_{x < x_0} f(x) \le f(x_0) \le \inf_{x > x_0} f(x) = f(x_0 + 0)$. Következésképpen monoton függvénynek csak elsőfajú szakadási helyei lehetnek, és a szakadási helyek halmaza legfeljebb megszámlálható.
+- **Konvexitás és folytonosság ($h_{a,b}$-s lemma):** Nyílt $(a, b)$ intervallumon konvex függvény folytonos (sőt lokálisan Lipschitz-folytonos). A $h_{a,b}(x) = \frac{f(x) - f(p)}{x - p}$ húrmeredekség-függvény monoton növő, amiből a bal- és jobb oldali deriváltak létezése és a folytonosság következik.

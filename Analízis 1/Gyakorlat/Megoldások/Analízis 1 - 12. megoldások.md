@@ -223,3 +223,61 @@ $$\operatorname{arch} y = \log\left(y + \sqrt{y^2 - 1}\right), \qquad y \ge 1. \
 ::: elmelet
 **Elméleti háttér — inverz függvény képlete egyenletmegoldással.** Ha $f$ egy intervallumon szigorúan monoton és folytonos, akkor inverze is az (az inverz függvény folytonosságáról szóló tétel), és képletét az $f(x) = y$ egyenlet $x$-re való megoldása adja. Exponenciális kifejezéseknél az $u = e^x$ helyettesítés másodfokú egyenletre vezet; a két gyök közül a feltételeknek ($u > 0$, illetve a leszűkítés miatt $u \ge 1$) megfelelőt kell kiválasztani. A Viète-formulák (gyökök szorzata) gyorsan megmutatják, melyik a jó gyök. Hasonlóan: $\operatorname{arth} x = \frac12 \log\frac{1 + x}{1 - x}$ ($|x| < 1$).
 :::
+
+## Röpzhra
+
+**Definíciók:** $\sin x$, $\cos x$, $\operatorname{tg} x$, $\operatorname{ctg} x$, arkusz függvények, $a^x$ ($x \in \mathbb{R}$).
+
+**Tételek:** addíciós képletek, $\sin x$ becslése, megváltozása/folytonossága, hatványozás azonosságai, $a^x$ monotonitása, folytonossága, határértékei, $x^b$ monotonitása, folytonossága, határértékei.
+
+### Definíciók és tételek kidolgozása
+
+#### Definíciók
+
+- **$\sin x$ és $\cos x$:** Tetszőleges $x \in [0, 2\pi)$ esetén mérjünk fel az origó középpontú egységkörre egy $x$ hosszúságú körívet pozitív (óramutató járásával ellentétes) irányban a $(1, 0)$ pontból indulva. Az így kapott pont első koordinátája $\cos x$, második koordinátája $\sin x$. Tetszőleges $x \in \mathbb{R}$-re a $2\pi$-periodikus kiterjesztés: ha $x = x_0 + 2k\pi$ ($x_0 \in [0, 2\pi), k \in \mathbb{Z}$), akkor $\cos x = \cos x_0$ és $\sin x = \sin x_0$.
+- **$\operatorname{tg} x$ és $\operatorname{ctg} x$:**
+  $$\operatorname{tg} x = \frac{\sin x}{\cos x}, \qquad D(\operatorname{tg}) = \mathbb{R} \setminus \left\{\frac{\pi}{2} + k\pi : k \in \mathbb{Z}\right\},$$
+  $$\operatorname{ctg} x = \frac{\cos x}{\sin x}, \qquad D(\operatorname{ctg}) = \mathbb{R} \setminus \{k\pi : k \in \mathbb{Z}\}.$$
+- **Arkusz függvények (ciklometrikus függvények):** A trigonometrikus függvények megfelelő szigorúan monoton leszűkítéseinek inverzei:
+  - $\arcsin = \left(\sin|_{[-\pi/2, \pi/2]}\right)^{-1} : [-1, 1] \to \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]$ (szigorúan monoton növő);
+  - $\arccos = \left(\cos|_{[0, \pi]}\right)^{-1} : [-1, 1] \to [0, \pi]$ (szigorúan monoton csökkenő);
+  - $\operatorname{arctg} = \left(\operatorname{tg}|_{(-\pi/2, \pi/2)}\right)^{-1} : \mathbb{R} \to \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$ (szigorúan monoton növő);
+  - $\operatorname{arcctg} = \left(\operatorname{ctg}|_{(0, \pi)}\right)^{-1} : \mathbb{R} \to (0, \pi)$ (szigorúan monoton csökkenő).
+- **$a^x$ ($x \in \mathbb{R}$, $a > 0$):**
+  - Ha $x = n \in \mathbb{N}$: $a^n = \underbrace{a \cdot a \cdots a}_{n\text{-szer}}$.
+  - Egész kitevőre: $a^0 = 1$, $a^{-n} = \frac{1}{a^n}$ ($n \in \mathbb{N}$).
+  - Racionális kitevőre: $a^{p/q} = \sqrt[q]{a^p}$ ($p \in \mathbb{Z}, q \in \mathbb{N}$).
+  - Tetszőleges valós $x \in \mathbb{R}$-re:
+    - Ha $a > 1$: $a^x = \sup\{a^r : r \in \mathbb{Q}, r < x\} = \inf\{a^s : s \in \mathbb{Q}, s > x\}$.
+    - Ha $0 < a < 1$: $a^x = \inf\{a^r : r \in \mathbb{Q}, r < x\} = \sup\{a^s : s \in \mathbb{Q}, s > x\}$.
+    - Ha $a = 1$: $1^x = 1$.
+
+#### Tételek
+
+- **Addíciós képletek:** Minden $x, y \in \mathbb{R}$-re
+  $$\sin(x \pm y) = \sin x \cos y \pm \cos x \sin y,$$
+  $$\cos(x \pm y) = \cos x \cos y \mp \sin x \sin y.$$
+  *(Következmények: $\sin 2x = 2\sin x \cos x$, $\cos 2x = \cos^2 x - \sin^2 x = 2\cos^2 x - 1 = 1 - 2\sin^2 x$, valamint a különbség szorzattá alakítása: $\sin x - \sin y = 2\sin\frac{x - y}{2}\cos\frac{x + y}{2}$.)*
+- **$\sin x$ becslése:**
+  - Ha $x > 0$, akkor $\sin x < x$.
+  - Ha $x \ne 0$, akkor $|\sin x| < |x|$.
+  *(Bizonyítás: $0 < x < \pi/2$ esetén a körív hossza nagyobb a húr hosszánál, azaz $2x > 2\sin x$; $x \ge \pi/2$-re $\sin x \le 1 < \pi/2 \le x$. Páratlanságból adódik $x < 0$-ra is.)*
+- **$\sin x$ megváltozása és folytonossága (Lipschitz-tulajdonság):** Minden $x, y \in \mathbb{R}$-re
+  $$|\sin x - \sin y| \le |x - y|, \qquad |\cos x - \cos y| \le |x - y|.$$
+  *(Bizonyítás: $|\sin x - \sin y| = 2\left|\sin\frac{x - y}{2}\right|\left|\cos\frac{x + y}{2}\right| \le 2\cdot \frac{|x - y|}{2}\cdot 1 = |x - y|$. Ebből következik, hogy $\sin$ és $\cos$ Lipschitz-folytonosak $L = 1$-gyel, tehát egyenletesen folytonosak és speciálisan folytonosak az egész $\mathbb{R}$-en.)*
+- **A hatványozás azonosságai:** Bármely $a, b > 0$ és $x, y \in \mathbb{R}$ esetén
+  1. $(ab)^x = a^x b^x$,
+  2. $a^{x + y} = a^x a^y$,
+  3. $(a^x)^y = a^{xy}$.
+- **Az $a^x$ exponenciális függvény tulajdonságai:**
+  - *Monotonitás:* ha $a > 1$, akkor $x_1 < x_2 \implies a^{x_1} < a^{x_2}$ (szigorúan monoton növő); ha $0 < a < 1$, akkor $x_1 < x_2 \implies a^{x_1} > a^{x_2}$ (szigorúan monoton csökkenő).
+  - *Folytonosság:* minden $a > 0$-ra az $x \mapsto a^x$ függvény folytonos $\mathbb{R}$-en ($a^x \in C(\mathbb{R})$).
+  - *Határértékei:*
+    - Ha $a > 1$: $\lim_{x \to +\infty} a^x = +\infty$ és $\lim_{x \to -\infty} a^x = 0$.
+    - Ha $0 < a < 1$: $\lim_{x \to +\infty} a^x = 0$ és $\lim_{x \to -\infty} a^x = +\infty$.
+- **Az $x^b$ hatványfüggvény tulajdonságai ($x > 0$):**
+  - *Monotonitás:* ha $b > 0$, akkor $x^b$ szigorúan monoton növő $(0, \infty)$-en; ha $b < 0$, akkor $x^b$ szigorúan monoton csökkenő $(0, \infty)$-en.
+  - *Folytonosság:* minden rögzített $b \in \mathbb{R}$-re az $x \mapsto x^b$ függvény folytonos a $(0, \infty)$ intervallumon.
+  - *Határértékei:*
+    - Ha $b > 0$: $\lim_{x \to 0+0} x^b = 0$ és $\lim_{x \to +\infty} x^b = +\infty$.
+    - Ha $b < 0$: $\lim_{x \to 0+0} x^b = +\infty$ és $\lim_{x \to +\infty} x^b = 0$.
