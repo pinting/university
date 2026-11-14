@@ -909,7 +909,7 @@ $$f(n) = n^3, \qquad f(n) = 2^{\omega(n)}, \qquad f(n) = n + 2.$$
 
 A von Mangoldt-féle $\Lambda$ függvény definíciója a következő:
 $$\Lambda(n) = \begin{cases} \log p, & \text{ha } n = p^\alpha, \text{ ahol } p \text{ prím és } \alpha \ge 1, \\ 0, & \text{különben.} \end{cases}$$
-Igazoljuk, hogy $\Lambda$ additív.
+Igazoljuk, hogy $\Lambda$ nem additív.
 
 ## 6. feladat
 

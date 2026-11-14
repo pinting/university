@@ -4558,11 +4558,11 @@ $$f(n) = n^3, \qquad f(n) = 2^{\omega(n)}, \qquad f(n) = n + 2.$$
 
 A von Mangoldt-féle $\Lambda$ függvény definíciója a következő:
 $$\Lambda(n) = \begin{cases} \log p, & \text{ha } n = p^\alpha, \text{ ahol } p \text{ prím és } \alpha \ge 1, \\ 0, & \text{különben.} \end{cases}$$
-Igazoljuk, hogy $\Lambda$ additív.
+Igazoljuk, hogy $\Lambda$ nem additív.
 
 **Megoldás.**
 
-Vizsgáljuk meg a kitűzésben szereplő állítást a számelméleti függvények szokásos additivitása szerint ($f(ab) = f(a) + f(b)$ minden $(a, b) = 1$-re):
+Elég egy ellenpéldát mutatni az additivitás definíciójára ($f(ab) = f(a) + f(b)$ minden $(a, b) = 1$-re):
 - Vegyük az $a = 2$ és $b = 3$ relatív prím számokat: $(2, 3) = 1$.
 - Mivel 2 és 3 prímek:
   $$\Lambda(2) = \log 2, \qquad \Lambda(3) = \log 3.$$
@@ -4572,7 +4572,7 @@ Vizsgáljuk meg a kitűzésben szereplő állítást a számelméleti függvény
 - Azonban:
   $$\Lambda(2) + \Lambda(3) = \log 2 + \log 3 = \log 6 \ne 0 = \Lambda(6).$$
 
-Tehát a $\Lambda$ függvény a szokásos definíció szerint **nem additív** (és nem is multiplikatív, hiszen $\Lambda(1) = 0 \ne 1$).
+Tehát a $\Lambda$ függvény **nem additív** (és nem is multiplikatív, hiszen $\Lambda(1) = 0 \ne 1$).
 
 ::: elmelet
 **Megjegyzés — a von Mangoldt-függvény valódi szerepe.** A $\Lambda$ függvény alapvető tulajdonsága nem az additivitás, hanem az, hogy összegzési függvénye a logaritmus (6. feladat (2) része):
