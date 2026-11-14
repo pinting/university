@@ -12,7 +12,7 @@
 
 ## Előszó
 
-A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv **Sziklai Péter** (ELTE TTK, Számítógéptudományi Tanszék) előadásainak kézírásos jegyzeteiből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok, Euler-séták, Hamilton-körök, csúcs- és élszínezések, a síkbarajzolható gráfok és az Euler-formula, a gömbre és tóruszra rajzolt gráfok, a szabályos testek, a tartományok színezése és a duális gráf, a független és lefogó csúcs- és élhalmazok, végül a párosítások: a Hall-, a Frobenius- és a Tutte-tétel). Az anyag felépítése, a tárgyalás rendje, a tételek és bizonyítások az ő előadásait követik; az érdem az övé, az esetleges hibák a feldolgozásból erednek.
+A Kombinatorika 1 előadáshoz nincs hivatalos jegyzet. Ez a könyv **Sziklai Péter** (ELTE TTK, Számítógéptudományi Tanszék) előadásainak kézírásos jegyzeteiből született, és ugyanazt az utat járja be, **ugyanabban a sorrendben**, ahogyan az előadás haladt: a leszámlálás alapelveitől a binomiális együtthatókon, a logikai szitán, a rekurziókon és a Catalan-számokon át a gráfelmélet fejezeteiig (fák, feszítőfák, Prüfer-kód, fokszámsorozatok, Euler-séták, Hamilton-körök, csúcs- és élszínezések, a síkbarajzolható gráfok és az Euler-formula, a gömbre és tóruszra rajzolt gráfok, a szabályos testek, a tartományok színezése és a duális gráf, a független és lefogó csúcs- és élhalmazok, a párosítások: a Hall-, a Frobenius- és a Tutte-tétel, a deficites Hall-tétel és a stabil párosítások), majd a negyedik részben a többszörös összefüggőség, a Ramsey- és a Turán-tételkör, végül a halmazrendszerek (Sperner, Erdős–Ko–Rado) és a lineáris algebrai módszer. Az anyag felépítése, a tárgyalás rendje, a tételek és bizonyítások az ő előadásait követik; az érdem az övé, az esetleges hibák a feldolgozásból erednek.
 
 A könyv azonban nem csupán a jegyzet letisztázott változata. Az előadáson sok minden szóban hangzik el, vagy csak egy rajz utal rá; itt ezeket a lépéseket kiírtuk. Minden új fogalom előtt igyekeztünk megmutatni, milyen kérdés teszi szükségessé, utána pedig példákon kipróbáltuk.
 
@@ -49,6 +49,8 @@ A kombinatorika a véges struktúrák tudománya. Ebben a félévben három nagy
 - **leszámlálás**: hányféleképpen lehet valamit megtenni, hány adott tulajdonságú objektum van;
 - **gráfelmélet**: pontok és az őket összekötő vonalak rendszereinek vizsgálata;
 - **halmazrendszerek**: egy alaphalmaz részhalmazainak családjai.
+
+Az első három rész a leszámlálással és a gráfelmélettel foglalkozik; a negyedik rész végén, a Sperner- és az Erdős–Ko–Rado-tételnél jutunk el a halmazrendszerekhez.
 
 Az első rész a leszámlálásról szól. A kérdések egyszerűen hangzanak („hány átlója van egy konvex 100-szögnek?”, „hányféleképpen ülhet le öt házaspár egy kerek asztal köré?”), a válaszhoz azonban rendszerezett gondolkodásra van szükség. Ennek az eszköztárát építjük fel.
 
@@ -87,11 +89,69 @@ A név onnan ered, hogy egy legelőn a tehenek számát úgy is meghatározhatju
 *Példa.* Hány átlója van egy konvex $n$-szögnek? Minden csúcsból $n - 3$ átló indul (önmagához és a két szomszédjához nem húzunk átlót). Ez összesen $n(n-3)$ — de így minden átlót **pontosan kétszer** számoltunk, mindkét végpontjánál egyszer. A tehénszabály szerint az átlók száma
 $$\frac{n(n-3)}{2}.$$
 
-## 2. A skatulyaelv és a bijekció-elv
+## 2. Bizonyítási módszerek, a skatulyaelv és a bijekció-elv
+
+A kombinatorikában a legtöbb állítás egyszerűen hangzik, és kis esetekben könnyen ellenőrizhető. A vizsgán és a könyvben azonban **bizonyítást** várunk: olyan érvelést, amely *minden* esetre működik, nem csak a kipróbáltakra. Mielőtt továbblépnénk, összefoglaljuk azokat az alapvető bizonyítási sémákat, amelyeket a félév során újra és újra használni fogunk.
+
+### Szükséges és elégséges feltétel
+
+A matematikai állítások jelentős része „ha $A$, akkor $B$” alakú; ezt röviden $A \Rightarrow B$-vel jelöljük.
+
+> **Definíció.** Ha $A \Rightarrow B$ igaz, akkor azt mondjuk, hogy
+>
+> - $B$ **szükséges feltétele** $A$-nak (ha $B$ nem teljesül, $A$ sem teljesülhet);
+> - $A$ **elégséges feltétele** $B$-nek (ha $A$ teljesül, abból már következik $B$).
+>
+> Ha $A \Rightarrow B$ és $B \Rightarrow A$ is igaz, akkor $A$ **szükséges és elégséges feltétele** $B$-nek; ezt így írjuk: $A \iff B$, és így mondjuk: „$B$ **pontosan akkor** teljesül, ha $A$”.
+
+*Példa.* Ha egy egész szám osztható $6$-tal, akkor osztható $3$-mal is. A $3$-mal való oszthatóság tehát **szükséges** feltétele a $6$-tal való oszthatóságnak, de nem elégséges: a $9$ osztható $3$-mal, $6$-tal viszont nem. Ezzel szemben „$n$ páros” szükséges és elégséges feltétele annak, hogy $n^2$ páros legyen.
+
+Vigyázzunk: egy állítás **megfordítása** ($B \Rightarrow A$) nem következik magából az állításból. Ezzel szemben a **kontrapozíciója**, „ha nem $B$, akkor nem $A$”, mindig egyenértékű vele: ha $6 \mid n$-ből következik $3 \mid n$, akkor $3 \nmid n$-ből következik $6 \nmid n$.
+
+A könyv legtöbb fontos tétele „pontosan akkor” alakú (Euler tétele az Euler-körsétáról, a Hall-tétel, a Tutte-tétel…). Ezeket mindig **két irányban** bizonyítjuk: a $\Rightarrow$ irány a feltétel *szükségességét*, a $\Leftarrow$ irány az *elégségességét* mutatja meg. Gyakran az egyik irány könnyű, a másik nehéz. Más tételek csak elégséges feltételt adnak (ilyen lesz Dirac tétele a Hamilton-körökről), és ilyenkor a feltétel nem teljesülése még semmit sem bizonyít.
+
+### Indirekt bizonyítás
+
+Az **indirekt bizonyításban** feltesszük, hogy a bizonyítandó állítás **nem** igaz, és ebből ellentmondásra jutunk. Mivel igaz feltevésből nem következhet ellentmondás, a kiinduló feltevés hamis volt — vagyis az állítás igaz.
+
+> **Tétel (Eukleidész).** Végtelen sok prímszám van.
+
+*Bizonyítás (indirekt).* Tegyük fel, hogy csak véges sok prím van: $p_1, p_2, \dots, p_k$. Tekintsük az
+$$N = p_1 p_2 \cdots p_k + 1$$
+számot. Mivel $N \ge 2$, van prímosztója, és ez a feltevés szerint valamelyik $p_i$. De $p_i$ osztja a $p_1 \cdots p_k$ szorzatot is, tehát a különbségüket, $1$-et is — ellentmondás. $\blacksquare$
+
+A skatulyaelv bizonyítása (lásd alább) is indirekt, és a gráfelméletben szinte minden „nincs ilyen” vagy „biztosan van ilyen” típusú állítást így bizonyítunk.
+
+### Teljes indukció
+
+Tegyük fel, hogy minden $n \ge 1$ egészre adott egy $P(n)$ állítás, és szeretnénk mindegyiket bizonyítani.
+
+> **A teljes indukció elve.** Ha
+>
+> 1. $P(1)$ igaz (**kezdő lépés**), és
+> 2. minden $n \ge 1$ esetén $P(n)$-ből következik $P(n+1)$ (**indukciós lépés**),
+>
+> akkor $P(n)$ minden $n \ge 1$-re igaz.
+
+Szemléletesen: ha az első dominó eldől, és minden dominó magával rántja a következőt, akkor mind eldől. A kezdőpont $1$ helyett bármely $n_0$ egész lehet (például $0$).
+
+*Példa.* Minden $n \ge 1$-re
+$$1 + 2 + \dots + n = \frac{n(n+1)}{2}.$$
+*Bizonyítás.* $n = 1$-re mindkét oldal $1$. Ha az állítás igaz $n$-re, akkor
+$$1 + 2 + \dots + n + (n+1) = \frac{n(n+1)}{2} + (n+1) = \frac{(n+1)(n+2)}{2},$$
+ami éppen az állítás $n + 1$-re. $\blacksquare$
+
+*Példa (a sík felosztása).* Hány részre osztja a síkot $n$ **általános helyzetű** egyenes (semelyik kettő nem párhuzamos, és semelyik három nem megy át egy ponton)? Jelölje ezt $r_n$; $r_0 = 1$, $r_1 = 2$, $r_2 = 4$, $r_3 = 7$. Ha már $n$ egyenes meg van rajzolva, az $(n+1)$-edik egyenes a többit $n$ különböző pontban metszi, ezek az új egyenest $n + 1$ darabra vágják, és minden darab egy meglevő tartományt kettévág. Tehát $r_{n+1} = r_n + (n+1)$, és az előző példa szerint indukcióval
+$$r_n = 1 + (1 + 2 + \dots + n) = 1 + \frac{n(n+1)}{2}.$$
+Ez a gondolatmenet — *a mennyiséget az eggyel kisebb esetből fejezzük ki* — a II. részben a rekurziókkal folytatódik.
+
+Gyakran kényelmesebb az **erős** (más néven teljes) indukció: az indukciós lépésben nemcsak $P(n)$-et, hanem az összes $P(1), \dots, P(n)$ állítást feltételezhetjük $P(n+1)$ bizonyításához. Például így látható be, hogy **minden $n \ge 2$ egész felbontható prímek szorzatára**: ha $n$ prím, kész vagyunk; ha nem, akkor $n = ab$, ahol $2 \le a, b < n$, és az indukciós feltevés szerint $a$ is, $b$ is prímek szorzata, tehát $n$ is.
+
+*Egy tanulságos hiba.* „Minden ló egyforma színű.” „Bizonyítás”: egy lóra igaz. Ha $n + 1$ ló közül elhagyjuk az elsőt, a maradék $n$ egyforma színű; ha az utolsót hagyjuk el, a maradék $n$ ismét egyforma színű; a két csoport közös lovai miatt tehát mind az $n + 1$ egyforma színű. — A hiba: az indukciós lépés $n = 1$-ről $n = 2$-re **nem** működik, mert ekkor a két csoportnak nincs közös eleme. Az indukciós lépésnek **minden** $n$-re helyesnek kell lennie.
 
 ### A skatulyaelv
 
-Az előző szakasz elvei *pontos* értéket adtak. A skatulyaelv ezzel szemben *létezést* bizonyít: azt mondja meg, hogy valami biztosan bekövetkezik, de azt nem, hogy hol.
+Az 1. szakasz elvei *pontos* értéket adtak. A skatulyaelv ezzel szemben *létezést* bizonyít: azt mondja meg, hogy valami biztosan bekövetkezik, de azt nem, hogy hol.
 
 > **Skatulyaelv (egyszerű alak).** Ha $n$ skatulyába $n$-nél több golyót teszünk, akkor lesz olyan skatulya, amelyben egynél több golyó van.
 
@@ -107,7 +167,7 @@ ami ellentmond annak, hogy $k \cdot n$-nél több golyó van. $\blacksquare$
 
 *Példa.* Bármely $n + 1$ egész szám között van kettő, amelyek különbsége osztható $n$-nel. Valóban: a skatulyák legyenek az $n$-nel való osztási maradékok ($0, 1, \dots, n-1$), a golyók a számok. Mivel $n + 1 > n$, van két szám azonos maradékkal, és ezek különbsége osztható $n$-nel.
 
-*Példa.* Egy $25$ fős csoportban biztosan van három ember, akik ugyanabban a hónapban született: $12$ skatulya (hónap), $25 > 2 \cdot 12$ golyó, tehát valamelyik hónapra legalább $3$ születésnap jut.
+*Példa.* Egy $25$ fős csoportban biztosan van három ember, akik ugyanabban a hónapban születtek: $12$ skatulya (hónap), $25 > 2 \cdot 12$ golyó, tehát valamelyik hónapra legalább $3$ születésnap jut.
 
 ### A bijekció-elv
 
@@ -218,6 +278,26 @@ $$\frac{(k+n-1)!}{k!\,(n-1)!} = \binom{k + n - 1}{k}.$$
 
 **Másik szemlélet.** Ugyanez a szám adja meg az $x_1 + x_2 + \dots + x_n = k$ egyenlet nemnegatív egész megoldásainak számát is: $x_i$ az $i$-edik fajtából kért gombócok száma.
 
+### Pénzosztás
+
+Ugyanez a feladat sokszor „pénzosztás” alakban jelenik meg.
+
+> **Feladat.** Hányféleképpen oszthatunk szét $k$ egyforma gesztenyét (vagy $k$ darab egyforintost) $n$ különböző ember között?
+
+Egy szétosztást az határoz meg, hogy az $i$-edik ember hány gesztenyét kap, ez legyen $x_i \ge 0$; ekkor $x_1 + \dots + x_n = k$. A szétosztások tehát kölcsönösen egyértelműen megfelelnek az egyenlet nemnegatív egész megoldásainak, és a pöttyös–vonalas jelsorozatoknak is ($k$ pötty a gesztenyék, $n - 1$ vonal választja el az embereket). A válasz tehát ugyanaz, mint a fagylaltnál:
+$$\binom{n + k - 1}{k} = \binom{n + k - 1}{n - 1}.$$
+A két feladat valójában ugyanaz: a fagylaltfajták helyett emberek, a gombócok helyett gesztenyék szerepelnek. Az **ismétléses kombináció** és a **pénzosztás** két nyelv ugyanarra a leszámlálásra.
+
+> **Feladat.** Hányféleképpen oszthatunk szét $k$ egyforma gesztenyét $n$ ember között úgy, hogy **mindenki kapjon legalább egyet** ($k \ge n$)?
+
+*Első megoldás.* Adjunk előre mindenkinek egy-egy gesztenyét. A maradék $k - n$ gesztenyét már tetszőlegesen oszthatjuk szét, ez az előző feladat szerint
+$$\binom{n + (k - n) - 1}{k - n} = \binom{k - 1}{k - n} = \binom{k-1}{n-1}$$
+lehetőség. (Az $y_i = x_i - 1$ helyettesítés bijekció az $x_i \ge 1$ és az $y_i \ge 0$ feltételű megoldások között.)
+
+*Második megoldás.* Rakjuk sorba a $k$ gesztenyét. A $k$ gesztenye között $k - 1$ rés van; egy szétosztást úgy kapunk, hogy ezek közül $n - 1$ résbe elválasztót teszünk (az első elválasztó előtti gesztenyék az első emberéi, és így tovább). Mivel két elválasztó nem kerülhet ugyanabba a résbe, és a sor elejére vagy végére sem kerülhet, mindenki legalább egyet kap. A lehetőségek száma $\binom{k-1}{n-1}$.
+
+*Példa.* $10$ gesztenyét $3$ gyerek között $\binom{12}{2} = 66$-féleképpen oszthatunk szét, és ezek közül $\binom{9}{2} = 36$-ban kap mindenki legalább egyet.
+
 ## 6. A Pascal-háromszög és a binomiális tétel
 
 ### A Pascal-háromszög
@@ -280,6 +360,41 @@ Ezzel a „minden negyedik” binomiális együttható összege is kiszámolhat�
 $$\binom{n}{0} + \binom{n}{4} + \binom{n}{8} + \dots = \frac{2^n + 0 + (1+i)^n + (1-i)^n}{4} = \frac{2^n + 2^{n/2+1}\cos\frac{n\pi}{4}}{4}.$$
 Ellenőrzés $n = 4$-re: $\binom{4}{0} + \binom{4}{4} = 2$, és a jobb oldal $\frac{16 - 8}{4} = 2$.
 :::
+
+### Azonosságok a Pascal-háromszögben
+
+A Pascal-szabály a háromszög **két egymás utáni sorát** kapcsolja össze. Most néhány további azonosságot nézünk meg, amelyekben **különböző sorokból** vett elemek szerepelnek. Mindegyiket kétféleképpen bizonyítjuk:
+
+- **algebrai** úton: számolással, a Pascal-szabállyal, indukcióval vagy a binomiális tétellel;
+- **kombinatorikus** úton: megmutatjuk, hogy a két oldal ugyanannak a halmaznak az elemszáma, csak más csoportosításban (kettős leszámlálás).
+
+> **Állítás (hokiütő-azonosság).** Minden $0 \le k \le n$ esetén
+> $$\binom{k}{k} + \binom{k+1}{k} + \binom{k+2}{k} + \dots + \binom{n}{k} = \binom{n+1}{k+1}.$$
+
+A Pascal-háromszögben a bal oldal egy ferde sor (átló) mentén lefelé haladó számok összege, a jobb oldal pedig az utolsó tag alatt, a másik irányban álló szám: a kijelölt számok egy hokiütőre emlékeztetnek. Például $k = 2$, $n = 5$ esetén $1 + 3 + 6 + 10 = 20 = \binom{6}{3}$.
+
+*Algebrai bizonyítás (indukció $n$ szerint).* $n = k$-ra mindkét oldal $1$. Ha az állítás igaz $n$-re, akkor a Pascal-szabály szerint
+$$\sum_{i=k}^{n+1} \binom{i}{k} = \binom{n+1}{k+1} + \binom{n+1}{k} = \binom{n+2}{k+1}. \ \blacksquare$$
+
+*Kombinatorikus bizonyítás.* A jobb oldal az $[n+1]$ halmaz $(k+1)$ elemű részhalmazainak száma. Csoportosítsuk ezeket a **legnagyobb elemük** szerint! Ha a legnagyobb elem $i + 1$ (ahol $k \le i \le n$), akkor a többi $k$ elemet az $[i]$ halmazból kell választani: ez $\binom{i}{k}$ lehetőség. Az esetszétválasztás elve szerint az összeg éppen a bal oldal. $\blacksquare$
+
+> **Állítás (Vandermonde-azonosság).** Minden $m, n, k \ge 0$ esetén
+> $$\sum_{i=0}^{k} \binom{m}{i}\binom{n}{k-i} = \binom{m+n}{k}.$$
+> Speciálisan ($m = n = k$ esetén, a szimmetriát is felhasználva):
+> $$\binom{n}{0}^2 + \binom{n}{1}^2 + \dots + \binom{n}{n}^2 = \binom{2n}{n}.$$
+
+*Kombinatorikus bizonyítás.* Egy osztályba $m$ fiú és $n$ lány jár; hányféleképpen választhatunk ki közülük egy $k$ fős küldöttséget? Közvetlenül $\binom{m+n}{k}$-féleképpen. Csoportosítsuk a küldöttségeket aszerint, hogy hány fiú van bennük: ha $i$ fiú van, akkor őket $\binom{m}{i}$-, a $k - i$ lányt $\binom{n}{k-i}$-féleképpen választhatjuk ki. Összegezve a bal oldalt kapjuk. A speciális esetben $\binom{n}{n-i} = \binom{n}{i}$ miatt a tagok négyzetek. $\blacksquare$
+
+*Algebrai bizonyítás.* Az $(1+x)^{m+n} = (1+x)^m(1+x)^n$ polinomazonosságban hasonlítsuk össze az $x^k$ együtthatóját. A bal oldalon ez a binomiális tétel szerint $\binom{m+n}{k}$. A jobb oldalon az $x^k$ tagot úgy kapjuk, hogy az első tényező $x^i$-es tagját ($\binom{m}{i}x^i$) a második tényező $x^{k-i}$-es tagjával ($\binom{n}{k-i}x^{k-i}$) szorozzuk, és ezt minden $i$-re összeadjuk. $\blacksquare$
+
+> **Állítás.** Minden $n \ge 1$ esetén
+> $$1\cdot\binom{n}{1} + 2\cdot\binom{n}{2} + \dots + n\cdot\binom{n}{n} = n\cdot 2^{n-1}.$$
+
+*Kombinatorikus bizonyítás.* Egy $n$ fős társaságból válasszunk ki egy tetszőleges (nemüres) bizottságot, és annak egy elnököt. Ha előbb a bizottságot választjuk ($i$ fős: $\binom{n}{i}$ lehetőség), majd az elnököt ($i$ lehetőség), a bal oldalt kapjuk. Ha előbb az elnököt választjuk ($n$ lehetőség), majd a többi $n - 1$ emberről egyenként eldöntjük, bekerül-e a bizottságba ($2^{n-1}$ lehetőség), a jobb oldalt. $\blacksquare$
+
+*Algebrai bizonyítás.* $i\binom{n}{i} = i\cdot\frac{n!}{i!\,(n-i)!} = n\cdot\frac{(n-1)!}{(i-1)!\,(n-i)!} = n\binom{n-1}{i-1}$, így az összeg $n\sum_{i=1}^{n}\binom{n-1}{i-1} = n \cdot 2^{n-1}$, a Pascal-háromszög $(n-1)$-edik sorának összege szerint. $\blacksquare$
+
+Érdemes megfigyelni, hogy a kombinatorikus bizonyítások mindig ugyanazt a receptet követik: **keresünk egy halmazt, amelyet a jobb oldal megszámol, és megmutatjuk, hogy a bal oldal ugyanezt a halmazt számolja, csak darabokra bontva.**
 
 ## 7. A logikai szita
 
@@ -422,9 +537,10 @@ A következő részben két új témát kezdünk el: a **keresési feladatokat**
 
 ## Az I. rész összefoglalása
 
-- A leszámlálás négy alapelve: **esetszétválasztás** (+), **a rossz esetek kidobása** (−), **független választás** (×) és a **tehénszabály** (/). Ezekhez jön a **skatulyaelv** (létezés) és a **bijekció-elv** (két halmaz azonos elemszámú, ha kölcsönösen egyértelműen megfeleltethetők).
-- Képletek: $n!$, $\frac{(n_1 + \dots + n_k)!}{n_1! \cdots n_k!}$, $\frac{n!}{(n-k)!}$, $n^k$, $\binom{n}{k}$, $\binom{n+k-1}{k}$.
-- A binomiális együtthatók tulajdonságai: szimmetria, Pascal-szabály, $\sum_i \binom{n}{i} = 2^n$, a váltakozó összeg $0$ ($n \ge 1$). Binomiális tétel: $(x+y)^n = \sum_i \binom{n}{i}x^{n-i}y^i$.
+- **Bizonyítási módszerek:** $A \Rightarrow B$ esetén $B$ szükséges feltétele $A$-nak, $A$ elégséges feltétele $B$-nek; „pontosan akkor” ($\iff$) állításnál két irányt kell bizonyítani. **Indirekt bizonyítás:** a tagadásból ellentmondásra jutunk. **Teljes indukció:** kezdő lépés és indukciós lépés (erős indukcióban az összes kisebb esetet feltételezhetjük).
+- A leszámlálás négy alapelve: **esetszétválasztás** (+), **a rossz esetek kidobása** (−), **független választás** (×) és a **tehénszabály** (/). Ezekhez jön a **skatulyaelv** (létezés: $n$ skatulyába $kn$-nél több golyó esetén valahol legalább $k+1$ golyó van) és a **bijekció-elv** (két halmaz azonos elemszámú, ha kölcsönösen egyértelműen megfeleltethetők).
+- Képletek: $n!$, $\frac{(n_1 + \dots + n_k)!}{n_1! \cdots n_k!}$, $\frac{n!}{(n-k)!}$, $n^k$, $\binom{n}{k}$, $\binom{n+k-1}{k}$. **Pénzosztás:** $k$ egyforma tárgy $n$ ember között $\binom{n+k-1}{n-1}$-féleképpen, ha mindenki kap legalább egyet, $\binom{k-1}{n-1}$-féleképpen osztható szét.
+- A binomiális együtthatók tulajdonságai: szimmetria, Pascal-szabály, $\sum_i \binom{n}{i} = 2^n$, a váltakozó összeg $0$ ($n \ge 1$). Binomiális tétel: $(x+y)^n = \sum_i \binom{n}{i}x^{n-i}y^i$. Különböző sorokat összekötő azonosságok: hokiütő $\sum_{i=k}^{n}\binom{i}{k} = \binom{n+1}{k+1}$, Vandermonde $\sum_i \binom{m}{i}\binom{n}{k-i} = \binom{m+n}{k}$, $\sum_i \binom{n}{i}^2 = \binom{2n}{n}$, valamint $\sum_i i\binom{n}{i} = n2^{n-1}$ — algebrai és kombinatorikus (kettős leszámlálásos) bizonyítással.
 - **Logikai szita:** $\big|A \setminus \bigcup A_i\big| = \sum_{I}(-1)^{|I|}|A_I|$. Bizonyítás: mindenkit pontosan egyszer számolunk.
 - Alkalmazások: $n! = \sum_j (-1)^j\binom{n}{j}(n-j)^n$; a fixpontmentes permutációk száma $D_n = n!\sum_{j=0}^{n}\frac{(-1)^j}{j!} \approx \frac{n!}{e}$; $\varphi(n) = n\prod_{p \mid n}\left(1 - \frac{1}{p}\right)$.
 
@@ -494,7 +610,7 @@ Az első néhány tag:
 
 A $(*)$ egyenlőség egy **másodrendű rekurzió**: minden tagot az előző **kettőből** állít elő. Fontos látni, hogy a rekurzió (a „képzési szabály”) önmagában **nem határozza meg** a sorozatot: a $2, 5, 7, 12, 19, \dots$ sorozat is kielégíti. A sorozat egyértelmű megadásához **kezdeti feltétel** is kell — itt $F_1 = F_2 = 1$. Kényelmes a sorozatot visszafelé is kiterjeszteni: a $(*)$ szabály szerint $F_2 = F_1 + F_0$, ezért legyen $F_0 = 0$.
 
-Mivel a sorozatot rekurzió definiálja, a tulajdonságait természetes módon **teljes indukcióval** bizonyíthatjuk.
+Mivel a sorozatot rekurzió definiálja, a tulajdonságait természetes módon **teljes indukcióval** (2. szakasz) bizonyíthatjuk.
 
 ### A Fibonacci-számok összege
 
@@ -516,6 +632,34 @@ $$F_1 + \dots + F_k + F_{k+1} = (F_{k+2} - 1) + F_{k+1} = (F_{k+1} + F_{k+2}) - 
 ahol az utolsó lépésben a $(*)$ rekurziót használtuk. $\blacksquare$
 
 Figyeljük meg a módszert: **sejtés kis esetekből, majd bizonyítás indukcióval**. Ez a rekurzív sorozatoknál újra és újra bevált stratégia.
+
+### További azonosságok
+
+Ugyanezzel a stratégiával a Fibonacci-számok sok további összefüggése igazolható. Mindegyiket érdemes előbb a táblázaton ellenőrizni.
+
+> **Állítás.** Minden $k \ge 1$ és $n \ge 1$ esetén
+>
+> 1. $F_1 + F_3 + F_5 + \dots + F_{2k-1} = F_{2k}$ (a páratlan indexű tagok összege);
+> 2. $F_1^2 + F_2^2 + \dots + F_k^2 = F_k F_{k+1}$ (a négyzetösszeg);
+> 3. $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$ (Cassini-azonosság).
+
+*Bizonyítás.* Mindhárom teljes indukcióval megy.
+
+1. $k = 1$-re $F_1 = 1 = F_2$. Ha az állítás igaz $k$-ra, akkor $F_1 + \dots + F_{2k-1} + F_{2k+1} = F_{2k} + F_{2k+1} = F_{2k+2}$.
+2. $k = 1$-re $F_1^2 = 1 = F_1F_2$. Ha igaz $k$-ra, akkor $F_1^2 + \dots + F_{k+1}^2 = F_kF_{k+1} + F_{k+1}^2 = F_{k+1}(F_k + F_{k+1}) = F_{k+1}F_{k+2}$.
+3. $n = 1$-re $F_2F_0 - F_1^2 = 0 - 1 = -1$. Ha igaz $n$-re, akkor a rekurziót kétszer használva
+$$F_{n+2}F_n - F_{n+1}^2 = (F_{n+1} + F_n)F_n - F_{n+1}^2 = F_n^2 - F_{n+1}(F_{n+1} - F_n) = F_n^2 - F_{n+1}F_{n-1} = -(-1)^n = (-1)^{n+1}. \ \blacksquare$$
+
+A négyzetösszeg-azonosságnak szép geometriai jelentése van: az $1 \times 1$, $1 \times 1$, $2 \times 2$, $3 \times 3$, $5 \times 5$, … négyzeteket egymás mellé illesztve mindig téglalapot kapunk, amelynek oldalai két szomszédos Fibonacci-szám. A Cassini-azonosság szerint pedig két szomszédos Fibonacci-szám relatív prím: ha $d$ osztaná $F_n$-et és $F_{n+1}$-et, akkor a $(-1)^n$-et is osztaná.
+
+::: kiegeszites
+**Kiegészítés — az összeadási képlet.** *Minden $m \ge 1$ és $n \ge 0$ esetén $F_{m+n} = F_mF_{n+1} + F_{m-1}F_n$.*
+
+*Bizonyítás.* Rögzített $n$ mellett erős indukció $m$ szerint. $m = 1$-re $F_{n+1} = F_1F_{n+1} + F_0F_n$, $m = 2$-re $F_{n+2} = F_{n+1} + F_n = F_2F_{n+1} + F_1F_n$. Ha $m \ge 2$, és az állítás igaz $m$-re és $m - 1$-re, akkor összeadva
+$$F_{m+1+n} = F_{m+n} + F_{m-1+n} = (F_m + F_{m-1})F_{n+1} + (F_{m-1} + F_{m-2})F_n = F_{m+1}F_{n+1} + F_mF_n. \ \blacksquare$$
+
+Az $m = n$ esetben $F_{2n} = F_n(F_{n+1} + F_{n-1})$, tehát $F_n \mid F_{2n}$. (Általában is igaz, hogy $F_n \mid F_{kn}$.)
+:::
 
 ### Egy érdekesség
 
@@ -663,6 +807,56 @@ mert a diszkrimináns $0$. $\blacksquare$
 
 *Ellenőrzés:* a rekurzióból $a_2 = 4\cdot 6 - 4\cdot 2 = 16$, a képletből $a_2 = 4 \cdot 4 = 16$. $\blacksquare$
 
+Még két rövid példa; az elsőben a kezdeti feltételek nem $a_0$-nál kezdődnek.
+
+*Példa.* A karakterisztikus egyenlet gyökei $q_1 = 2$ és $q_2 = 3$, a kezdőértékek $a_1 = 1$, $a_2 = 2$. Ekkor $a_n = \alpha 2^n + \beta 3^n$, és $2\alpha + 3\beta = 1$, $4\alpha + 9\beta = 2$. Az első egyenlet kétszeresét kivonva $3\beta = 0$, tehát $\beta = 0$, $\alpha = \frac12$, és $a_n = 2^{n-1}$. (A rekurzió itt $a_n = 5a_{n-1} - 6a_{n-2}$, és valóban $5 \cdot 2^{n-2} - 6 \cdot 2^{n-3} = 2^{n-3}(10 - 6) = 2^{n-1}$.)
+
+*Példa.* A karakterisztikus egyenletnek $q = 2$ kétszeres gyöke, $a_0 = 2$, $a_1 = 3$. Ekkor $a_n = (\alpha + \beta n)2^n$, ahol $\alpha = a_0 = 2$ és $2(\alpha + \beta) = 3$, tehát $\beta = -\frac12$, és
+$$a_n = \left(2 - \frac{n}{2}\right)2^n = (4 - n)\,2^{n-1}.$$
+
+### Magasabb rendű rekurziók
+
+A módszer szó szerint átvihető arra az esetre is, amikor minden tag az előző $k$ tagtól függ.
+
+> **Definíció.** **$k$-adrendű, állandó együtthatós lineáris rekurzió** az
+> $$a_n = c_1a_{n-1} + c_2a_{n-2} + \dots + c_ka_{n-k} \qquad (n \ge k)$$
+> összefüggés, ahol $c_1, \dots, c_k$ adott számok és $c_k \ne 0$. A sorozatot az $a_0, \dots, a_{k-1}$ kezdőértékek egyértelműen meghatározzák. A rekurzió **karakterisztikus egyenlete**
+> $$q^k - c_1q^{k-1} - c_2q^{k-2} - \dots - c_k = 0.$$
+
+A karakterisztikus egyenletet ugyanúgy kapjuk, mint eddig: a $q^n$ mértani sorozatot behelyettesítjük, és $q^{n-k}$-val osztunk. A megoldások most is alteret alkotnak, és ez az altér — az egyértelműségi lemma $k$ kezdőértékes változata szerint — **$k$-dimenziós**. Elég tehát $k$ „független” megoldást találni.
+
+> **Tétel.** Legyenek a karakterisztikus egyenlet (komplex) gyökei $q_1, \dots, q_s$, rendre $m_1, \dots, m_s$ multiplicitással ($m_1 + \dots + m_s = k$). Ekkor a rekurzió minden megoldása
+> $$a_n = \sum_{i=1}^{s}\big(\alpha_{i,0} + \alpha_{i,1}n + \alpha_{i,2}n^2 + \dots + \alpha_{i,m_i-1}n^{m_i-1}\big)\,q_i^n$$
+> alakú, ahol a $k$ darab $\alpha_{i,j}$ együtthatót a kezdeti feltételek egyértelműen meghatározzák.
+
+Egy $m$-szeres gyök tehát a $q^n, nq^n, \dots, n^{m-1}q^n$ sorozatokat adja; $k = 2$-re ez éppen a két korábbi tétel. Az együtthatók egyértelmű meghatározhatóságát (egy Vandermonde-típusú determináns nemnullaságát) nem bizonyítjuk.
+
+::: kiegeszites
+**Kiegészítés — miért megoldás az $n^jq^n$ sorozat?** Legyen $p(x) = x^k - c_1x^{k-1} - \dots - c_k$ a karakterisztikus polinom, és $q$ legalább $m$-szeres gyöke, $0 \le j \le m - 1$. Rögzített $n \ge k$ mellett tekintsük az
+$$f(x) = x^{n-k}p(x) = x^n - c_1x^{n-1} - \dots - c_kx^{n-k}$$
+polinomot; ennek $q$ szintén legalább $m$-szeres gyöke. Jelölje $D$ az $f \mapsto x f'$ műveletet. Mivel $D(x^t) = t x^t$,
+$$D^j f(x) = n^jx^n - c_1(n-1)^jx^{n-1} - \dots - c_k(n-k)^jx^{n-k}.$$
+A $D^jf$ polinom az $f, f', \dots, f^{(j)}$ deriváltak $x$-hatványokkal vett kombinációja, és ezek mind eltűnnek $q$-ban, mert $j < m$ (egy $m$-szeres gyök az első $m - 1$ deriváltnak is gyöke). Tehát $D^jf(q) = 0$, ami átrendezve
+$$n^jq^n = c_1(n-1)^jq^{n-1} + \dots + c_k(n-k)^jq^{n-k}$$
+— vagyis az $a_n = n^jq^n$ sorozat kielégíti a rekurziót. $\blacksquare$
+:::
+
+### Visszafelé: rekurzió adott megoldáshoz
+
+A tétel visszafelé is használható: ha ismerjük a megoldás alakját, kiolvashatjuk belőle a karakterisztikus egyenlet gyökeit, és abból a rekurziót.
+
+- $a_n = 5\cdot n\cdot 2^n$: ilyen tag a $2$ kétszeres gyökéből származik, a karakterisztikus egyenlet $(q-2)^2 = q^2 - 4q + 4 = 0$, a rekurzió tehát $a_n = 4a_{n-1} - 4a_{n-2}$.
+- $a_n = 3\cdot 2^n + 3\cdot(-2)^n$: a gyökök $2$ és $-2$, az egyenlet $(q-2)(q+2) = q^2 - 4 = 0$, a rekurzió $a_n = 4a_{n-2}$ (ez is másodrendű, csak $c_1 = 0$).
+- $a_n = n^3$: ez az $1$ négyszeres gyökéhez tartozó $n^3\cdot 1^n$ tag. Az egyenlet $(q-1)^4 = q^4 - 4q^3 + 6q^2 - 4q + 1 = 0$, a rekurzió $a_n = 4a_{n-1} - 6a_{n-2} + 4a_{n-3} - a_{n-4}$, tehát **negyedrendű**.
+
+> **Állítás.** Az $a_n = n^3$ sorozat nem megoldása semmilyen másodrendű, állandó együtthatós lineáris rekurziónak.
+
+*Bizonyítás (indirekt).* Tegyük fel, hogy minden $n \ge 2$-re $n^3 = c_1(n-1)^3 + c_2(n-2)^3$. Mindkét oldal $n$-nek polinomja, és végtelen sok helyen egyenlők, tehát az együtthatóik is egyenlők. A jobb oldal kifejtve
+$$(c_1 + c_2)n^3 - (3c_1 + 6c_2)n^2 + (3c_1 + 12c_2)n - (c_1 + 8c_2).$$
+Az $n^3$ és $n^2$ együtthatóiból $c_1 + c_2 = 1$ és $3c_1 + 6c_2 = 0$, ahonnan $c_1 = 2$, $c_2 = -1$. Ekkor azonban az $n$ együtthatója $3 \cdot 2 - 12 = -6 \ne 0$ — ellentmondás. $\blacksquare$
+
+(Más szóval: egy másodrendű rekurzió megoldásaiban a polinomiális szorzó legfeljebb elsőfokú lehet, az $n^3$ ennél „túl gyorsan” változik.)
+
 ## 13. A lépcsőmászás feladata
 
 > **Feladat.** Egy $n$ fokú lépcsőn hányféleképpen lehet felmenni, ha minden lépésben $1$ vagy $2$ fokot lépünk?
@@ -684,6 +878,18 @@ $$L_n = L_{n-1} + L_{n-2}.$$
 
 Ez éppen a Fibonacci-rekurzió! A kezdőértékek: $L_1 = 1 = F_2$ és $L_2 = 2 = F_3$. Mivel a két sorozat ugyanazt a rekurziót elégíti ki, és az első két tagjuk egyezik, a 11. szakasz lemmája szerint (eltolt indexeléssel)
 $$L_n = F_{n+1} \quad \text{minden } n \ge 1 \text{ esetén.}$$
+
+### Ötletek a rekurzió felállítására
+
+A lépcsőmászás mintájára sok feladat megoldható. A legfontosabb ötlet mindig ugyanaz: **vizsgáljuk meg, hogyan végződhet (vagy kezdődhet) az objektum, és a maradékot ismerjük fel kisebb, ugyanilyen típusú feladatként.**
+
+*Példa.* Hány olyan $n$ hosszú $0$–$1$ sorozat van, amelyben **nincs két szomszédos $1$-es**? Jelölje ezt $b_n$; $b_1 = 2$ ($0$, $1$), $b_2 = 3$ ($00$, $01$, $10$). Ha a sorozat utolsó jegye $0$, előtte tetszőleges jó $(n-1)$ hosszú sorozat állhat; ha $1$, akkor az utolsó előtti jegy $0$, és előtte tetszőleges jó $(n-2)$ hosszú sorozat áll. Tehát $b_n = b_{n-1} + b_{n-2}$, és a kezdőértékekből $b_n = F_{n+2}$.
+
+*Példa.* Hányféleképpen fedhető le egy $2 \times n$-es tábla $1 \times 2$-es dominókkal? Ha $d_n$ a lefedések száma, akkor a bal szélső oszlopot vagy egy álló dominó fedi (a maradék $2 \times (n-1)$-es), vagy két egymás feletti fekvő dominó (a maradék $2 \times (n-2)$-es). Így $d_n = d_{n-1} + d_{n-2}$, $d_1 = 1$, $d_2 = 2$, tehát $d_n = F_{n+1}$ — a lépcsőmászással azonos feladat ($1$ fok = álló dominó, $2$ fok = két fekvő dominó).
+
+*Példa (nem homogén rekurzió).* A 2. szakaszban a sík felosztásánál az $r_n = r_{n-1} + n$ rekurziót kaptuk. Ez nem az eddigi alakú (van benne egy $n$-től függő tag), de a különbségeket összegezve közvetlenül megoldható.
+
+Az előadáson látott lépéseket kiegészítve a rekurzió felállításának teljes receptje: **(0)** nevezzük el a mennyiséget; **(1)** számoljunk ki kis eseteket; **(2)** esetszétválasztással (az utolsó vagy az első lépés szerint) fejezzük ki a kisebb esetekkel; **(3)** a kezdőértékeket is határozzuk meg; **(4)** oldjuk meg a rekurziót (karakterisztikus egyenlettel), vagy ismerjük fel egy már ismert sorozatként; **(5)** ellenőrizzük a kis eseteken.
 
 ## 14. Rácsutak és a tükrözési elv
 
@@ -787,6 +993,7 @@ A feladat sokféle alakban megfogalmazható:
 - **$\pm 1$ sorozatok.** Írjunk $+1$-et minden $1$ eurós és $-1$-et minden $2$ eurós fizetőhöz. A pénztárban levő $1$ eurósok száma a sorozat részletösszege. A jó sorrendek tehát éppen azok a sorozatok, amelyek $n$ darab $+1$-ből és $n$ darab $-1$-ből állnak, és **minden kezdőszeletük összege nemnegatív**. Például $n = 5$-re a
 $$+\,-\,+\,+\,+\,-\,+\,-\,-\,-$$
 sorozat részletösszegei $1, 0, 1, 2, 3, 2, 3, 2, 1, 0$, tehát jó.
+
 - **Helyes zárójelezések.** Ha $+1$ helyett „(”-t, $-1$ helyett „)”-t írunk, a jó sorozatok éppen a helyesen zárójelezett kifejezések $n$ zárójelpárral, például $(\,(\,(\,\dots)\,\dots)\,\dots)$.
 - **Rácsutak.** Ezt a változatot érdemes lerajzolni.
 
@@ -1219,9 +1426,9 @@ Ezzel a leszámlálás fejezet végére értünk.
 ## A II. rész összefoglalása
 
 - **Barkochba:** $n$ elem közül egy kitalálásához $\lceil \log_2 n \rceil$ igen/nem kérdés kell és elég. Felső becslés: kettes számrendszer (a kérdések előre leírhatók). Alsó becslés: az ördög a nagyobbik felet választja, így $k$ válasz után még legalább $n/2^k$ lehetőség marad.
-- **Fibonacci-számok:** $F_n = F_{n-1} + F_{n-2}$, $F_0 = 0$, $F_1 = 1$; $\sum_{i=1}^k F_i = F_{k+2} - 1$; Binet-képlet: $F_n = \frac{1}{\sqrt5}\big(\Phi^n - \Psi^n\big)$.
-- **Lineáris rekurziók:** az $a_n = c_1a_{n-1} + c_2a_{n-2}$ megoldásai kétdimenziós alteret alkotnak. Karakterisztikus egyenlet: $q^2 - c_1q - c_2 = 0$. Két különböző gyök esetén $a_n = \alpha q_1^n + \beta q_2^n$, kétszeres gyök esetén $a_n = \alpha q^n + \beta nq^n$; $\alpha$ és $\beta$ a kezdeti feltételekből adódik.
-- **Rekurzív gondolkodás:** nevezzük el a mennyiséget, számoljunk kis eseteket, keressünk rekurziót esetszétválasztással (lépcsőmászás: $L_n = F_{n+1}$).
+- **Fibonacci-számok:** $F_n = F_{n-1} + F_{n-2}$, $F_0 = 0$, $F_1 = 1$; $\sum_{i=1}^k F_i = F_{k+2} - 1$, $\sum_{i=1}^{k} F_{2i-1} = F_{2k}$, $\sum_{i=1}^k F_i^2 = F_kF_{k+1}$, $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$; Binet-képlet: $F_n = \frac{1}{\sqrt5}\big(\Phi^n - \Psi^n\big)$.
+- **Lineáris rekurziók:** az $a_n = c_1a_{n-1} + c_2a_{n-2}$ megoldásai kétdimenziós alteret alkotnak. Karakterisztikus egyenlet: $q^2 - c_1q - c_2 = 0$. Két különböző gyök esetén $a_n = \alpha q_1^n + \beta q_2^n$, kétszeres gyök esetén $a_n = \alpha q^n + \beta nq^n$; $\alpha$ és $\beta$ a kezdeti feltételekből adódik. $k$-adrendű rekurziónál egy $m$-szeres $q$ gyök a $q^n, nq^n, \dots, n^{m-1}q^n$ megoldásokat adja. Visszafelé: a megoldás alakjából a gyököket, abból a rekurziót kapjuk (pl. $n^3$ csak negyedrendű rekurziónak lehet megoldása).
+- **Rekurzív gondolkodás:** nevezzük el a mennyiséget, számoljunk kis eseteket, keressünk rekurziót esetszétválasztással (lépcsőmászás: $L_n = F_{n+1}$; szomszédos $1$-esek nélküli $0$–$1$ sorozatok: $F_{n+2}$; dominólefedések: $F_{n+1}$).
 - **Rácsutak:** $(0,0) \to (a,b)$: $\binom{a+b}{a}$. **Tükrözési elv:** az első érintés utáni rész tükrözése bijekció.
 - **Catalan-számok:** $C_n = \binom{2n}{n} - \binom{2n}{n-1} = \frac{1}{n+1}\binom{2n}{n}$, rekurzió: $C_n = \sum_{k=1}^n C_{k-1}C_{n-k}$. Ezek számolják a pénztár-feladat jó sorrendjeit, a helyes zárójelezéseket, a konvex $(n+2)$-szög háromszögeléseit és az $n+1$ tényezős szorzat zárójelezéseit.
 
@@ -1229,7 +1436,7 @@ Ezzel a leszámlálás fejezet végére értünk.
 
 # III. RÉSZ: GRÁFELMÉLET
 
-A gráfelmélet a XX. században fejlődött igazán önálló tudományterületté, és mára a matematika egyik legtöbbet alkalmazott ága: hálózatok, útvonaltervezés, ütemezés, kémiai molekulák szerkezete — mind gráfokkal modellezhető. Ebben a részben az alapfogalmaktól a fák elméletén és a fokszámsorozatok vizsgálatán át az Euler-séták és a Hamilton-körök kérdésén keresztül a gráfszínezésekig (csúcs- és élszínezés, Vizing-tétel) és a síkbarajzolható gráfok elméletéig (Euler-formula, Kuratowski-tétel, gömb és tórusz, szabályos testek, duális gráf, öt- és hatszín-tétel) jutunk el, végül a független és lefogó csúcs- és élhalmazokkal (Gallai-tétel) zárunk.
+A gráfelmélet a XX. században fejlődött igazán önálló tudományterületté, és mára a matematika egyik legtöbbet alkalmazott ága: hálózatok, útvonaltervezés, ütemezés, kémiai molekulák szerkezete — mind gráfokkal modellezhető. Ebben a részben az alapfogalmaktól a fák elméletén és a fokszámsorozatok vizsgálatán át az Euler-séták és a Hamilton-körök kérdésén keresztül a gráfszínezésekig (csúcs- és élszínezés, Vizing-tétel) és a síkbarajzolható gráfok elméletéig (Euler-formula, Kuratowski-tétel, gömb és tórusz, szabályos testek, duális gráf, öt- és hatszín-tétel) jutunk el, majd a független és lefogó csúcs- és élhalmazok (Gallai-tételek) után a párosítások elméletével (Hall-, Frobenius-, Tutte-, Kőnig-tétel, deficites Hall-tétel, stabil párosítások) zárunk.
 
 ## 17. Gráfok, egyszerű gráfok, izomorfia
 
@@ -1269,6 +1476,8 @@ A szó görög eredetű: *izo* = ugyanaz, *morf* = alak. Az izomorfia a gráfelm
 ## 18. Fokszám és a kézfogási lemma
 
 > **Definíció (fokszám).** Egy $v$ csúcs **fokszáma**, $d(v)$ vagy $\deg(v)$, a $v$-re illeszkedő élek száma (hurokél esetén a hurokél kettővel számít).
+
+A gráf csúcsainak legnagyobb fokszámát **maximális fokszámnak**, $\Delta(G)$-nek, a legkisebbet **minimális fokszámnak**, $\delta(G)$-nek nevezzük. Ha minden csúcs foka ugyanannyi, mondjuk $r$, akkor a gráf **$r$-reguláris** ($\delta = \Delta = r$).
 
 > **Tétel (kézfogási lemma).** Minden $G$ gráfban
 > $$\sum_{v \in V(G)} \deg(v) = 2\,|E(G)|.$$
@@ -1459,6 +1668,10 @@ kör: a $p_{i+1}, \dots, p_{j-1}$ csúcsok $j$ minimalitása miatt nincsenek raj
 $$|E(G)| = \sum_{i=1}^{c}(n_i - 1) = n - c.$$
 Mivel $|E(G)| = n - 1$, ebből $c = 1$, vagyis $G$ összefüggő. $\blacksquare$
 :::
+
+Az utolsó bizonyítás egy önmagában is fontos képletet adott. A körmentes gráfokat **erdőnek** nevezzük (komponenseik fák).
+
+> **Következmény.** Egy $n$ csúcsú, $c$ komponensű erdőnek pontosan $n - c$ éle van; így egy $n$ csúcsú körmentes gráfnak **legfeljebb $n - 1$** éle van. Egy $n$ csúcsú összefüggő gráfnak pedig **legalább $n - 1$** éle van, mert tartalmaz egy $n - 1$ élű feszítőfát.
 
 ## 25. Minimális összsúlyú feszítőfa
 
@@ -1690,6 +1903,7 @@ Az Erdős–Gallai-feltétel ellenőrzéséhez $n$ egyenlőtlenséget kell megvi
 
 1. Vegyük a legnagyobb igényű csúcsot, $d_n$-t, és kössük össze a **közvetlenül előtte álló** $d_n$ darab csúccsal — vagyis a többiek közül a $d_n$ legnagyobb igényűvel. Ezek igénye $1$-gyel csökken, a $v_n$-é $0$ lesz:
 $$\dots,\ d_{n-d_n} - 1,\ \dots,\ d_{n-2} - 1,\ d_{n-1} - 1,\ d_n \to 0.$$
+
 2. Rendezzük újra a megmaradt igényeket, és **ismételjük**: újra a legnagyobbat elégítjük ki a közvetlenül utána következőkkel.
 3. Ha minden igény $0$-ra csökkent, **kész**: megkaptuk a gráfot. Ha valamelyik lépés nem hajtható végre (nincs elég pozitív igényű csúcs, amellyel a legnagyobbat össze lehetne kötni), akkor **nincs ilyen egyszerű gráf**.
 
@@ -1830,6 +2044,8 @@ Az Euler-sétánál minden **élt** pontosan egyszer kellett bejárni. Mi a hely
 > - **Hamilton-út:** olyan út $G$-ben, amely a gráf **minden csúcsát** tartalmazza. Ez egy $n - 1$ hosszú út.
 > - **Hamilton-kör:** olyan kör $G$-ben, amely a gráf minden csúcsát tartalmazza. Ez egy $n$ hosszú kör.
 
+A 23. szakasz nyelvén: a Hamilton-út egy olyan **feszítő részgráf, amely út** (feszítő út), a Hamilton-kör pedig egy **feszítő kör**. Míg feszítőfája minden összefüggő gráfnak van, feszítő útja csak a Hamilton-utat tartalmazó gráfoknak.
+
 > **Kérdés.** Van-e $G$-ben Hamilton-kör (Hamilton-út)?
 
 Az Euler-séta kérdésére a fokszámok paritása egyszerű és teljes választ adott. A Hamilton-kör kérdése ezzel szemben **NP-teljes probléma**: nem ismerünk rá hatékony algoritmust, és ilyen nem is várható. Ezért be kell érnünk **szükséges** és **elégséges** feltételekkel: olyanokkal, amelyek ha nem teljesülnek, biztosan nincs Hamilton-kör, illetve olyanokkal, amelyek ha teljesülnek, biztosan van.
@@ -1906,6 +2122,7 @@ A Dirac-tétel ennek speciális esete: ha minden fok legalább $\frac{n}{2}$, ak
 Az előző fejezetekben láttuk, hogy míg az Euler-séták és körséták létezése egyszerűen és gyorsan (polinomiális időben) ellenőrizhető a fokszámok paritásából, addig a Hamilton-út és Hamilton-kör létezésének eldöntése számításelméleti szempontból rendkívül nehéz (NP-teljes feladat). Most a gráfelmélet egy újabb, gazdag és gyakorlati szempontból is alapvető területére lépünk: a **gráfszínezésekhez**.
 
 Színezési feladatokkal a mindennapi életben és a számítástudományban is lépten-nyomon találkozunk:
+
 - **Vizsgabeosztás és órarendkészítés:** a kurzusok a csúcsok, és két kurzus közé élt húzunk, ha van közös hallgatójuk. Olyan időpontokat (színeket) kell a vizsgákhoz rendelni, hogy ütköző vizsgák ne essenek azonos időpontra.
 - **Frekvenciakiosztás:** a rádióadók vagy mobil adótornyok csúcsok; ha két adó közel van egymáshoz (interferálhatnak), élt húzunk közéjük. Az azonos frekvenciák a színek.
 - **Regiszterallokáció a fordítóprogramokban:** a programban szereplő változók közül melyek férnek el a processzor korlátozott számú hardver-regiszterében úgy, hogy az egyszerre élő változók ne ütközzenek.
@@ -1928,6 +2145,7 @@ Bármely $n$ csúcsú egyszerű gráfra nyilvánvalóan teljesül:
 $$1 \le \chi(G) \le n.$$
 
 Nézzük meg a két szélsőértéket:
+
 - **Alsó szélsőérték:** $\chi(G) = 1$ pontosan akkor áll fenn, ha a gráfnak **egyetlen éle sincs** (üres gráf, $E = \emptyset$). Ha ugyanis akár egyetlen $uv$ él is létezik, akkor $u$ és $v$ nem kaphat azonos színt, így legalább $2$ színre van szükség.
 - **Felső szélsőérték:** $\chi(G) = n$ pontosan akkor áll fenn, ha $G = K_n$, az $n$ csúcsú **teljes gráf**. A teljes gráfban ugyanis bármely két csúcs össze van kötve, így semelyik kettő nem kaphat azonos színt: mind az $n$ csúcsnak külön színt kell kapnia.
 
@@ -2162,6 +2380,7 @@ Egy jó színezésben az azonos színt kapott csúcsok között nem futhat él.
 Ha $c: V \to \{1, 2, \dots, k\}$ egy jó színezés, akkor vezessük be az egyes színekhez tartozó csúcshalmazokat:
 $$V_i = \{v \in V : c(v) = i\} \qquad (i = 1, 2, \dots, k).$$
 Ekkor:
+
 1. $V = V_1 \cup V_2 \cup \dots \cup V_k$, és az osztályok páronként diszjunktak ($V_i \cap V_j = \emptyset$).
 2. Minden $V_i$ osztály **független halmaz**: az osztályon belül nem megy él!
 3. **Élek kizárólag a különböző színosztályok között futhatnak.**
@@ -2206,6 +2425,7 @@ A gráf $k$ színnel való jó színezése tehát **teljesen ekvivalens azzal**,
 ## 35. Páros gráfok és a 2-színezhetőség
 
 A színezések legegyszerűbb nemtriviális esete a $2$ színnel való színezhetőség: mikor elég $2$ szín egy gráf kiszínezéséhez?
+
 - Ha $\chi(G) = 1$, a gráfnak egyáltalán nincs éle.
 - Ha $\chi(G) = 2$, a csúcsok két független halmazba ($A$ és $B$) oszthatók: $V = A \cup B$, és minden él egy $A$-beli és egy $B$-beli csúcs között fut.
 
@@ -2349,6 +2569,7 @@ A $K_2$-ből indulva $M(K_2)$ az ötszög ($C_5$, $\chi = 3$), $M(C_5)$ a $11$ c
 ### Számítási bonyolultság: mi könnyű és mi nehéz?
 
 Gyakorlati szempontból döntő kérdés, hogy algoritmikusan mennyire nehéz eldönteni egy gráf színezhetőségét:
+
 - **$\chi(G) \le 2$ eldöntése: nagyon könnyű.** A 35. szakaszban látott legrövidebb utak paritásán alapuló szélességi keresés (BFS) a gráf éleinek és csúcsainak számával arányos, lineáris időben ($O(|V| + |E|)$ lépésben) vagy kiszínezi a gráfot $2$ színnel, vagy talál egy páratlan kört.
 - **$\chi(G) \le 3$ eldöntése: NAGYON NEHÉZ (NP-teljes).** Richard Karp híres 1972-es eredménye szerint már annak eldöntése is NP-teljes, hogy egy tetszőleges gráf kiszínezhető-e $3$ színnel! Nincs rá ismert hatékony (polinomiális idejű) algoritmus.
 - **$\chi(G)$ pontos meghatározása: NP-nehéz.** Általános gráfban a kromatikus szám kiszámítása a legnehezebb algoritmikus problémák közé tartozik.
@@ -2448,6 +2669,7 @@ A válasz a gráfelmélet egyik legszebb és legmeglepőbb tétele:
 
 Ez a tétel azt jelenti, hogy egy egyszerű gráf élkromatikus száma **mindössze kétféle értéket vehet fel**: vagy $\Delta(G)$, vagy $\Delta(G) + 1$!
 Ennek megfelelően a gráfokat két osztályba soroljuk:
+
 - **1. osztályú gráfok (Class 1):** amelyekre $\chi'(G) = \Delta(G)$. Ide tartoznak például a páros gráfok (Kőnig Dénes tétele szerint minden páros gráf 1. osztályú).
 - **2. osztályú gráfok (Class 2):** amelyekre $\chi'(G) = \Delta(G) + 1$. Ide tartoznak a páratlan körök, és általában azok a gráfok, amelyekben túl sok él van ahhoz, hogy $\Delta$ darab független élhalmazba lehessen őket tömöríteni.
 
@@ -2516,6 +2738,7 @@ Mikor rajzolható le egy gráf a síkba úgy, hogy az élei ne keresztezzék egy
 Tekintsük a $4$ csúcsú teljes gráfot, a $K_4$-et.
 Ha egy négyzet négy sarkaként rajzoljuk le és behúzzuk az oldalait meg a két átlóját, akkor a két átló a négyzet közepén metszi egymást. Ez a rajz nem síkbeli.
 Azonban ez nem a gráf hibája, hanem a lerajzolásé! $K_4$ ugyanis **síkbarajzolható**:
+
 - Az egyik átlót megrajzolhatjuk úgy, hogy a négyzetet kívülről megkerülje;
 - vagy lerajzolhatunk egy háromszöget, és a negyedik csúcsot a háromszög belsejébe helyezve összeköthetjük a három sarokcsúccsal.
 Mindkét esetben metszésmentes síkrajzot kapunk.
@@ -2571,6 +2794,7 @@ Amikor egy gráfot lerajzolunk a síkba metszések nélkül, a gráf élei felda
 > **Definíció (tartományok).** Amikor egy gráfot lerajzolunk a síkba, az a síkot geometriailag összefüggő nyílt részekre, úgynevezett **tartományokra** (vagy lapokra, angolul *faces*) bontja. A tartományok számát $t$-vel (vagy $f$-fel) jelöljük.
 
 Fontos szem előtt tartani:
+
 - A tartományok közül $t - 1$ darab **korlátos** (belső tartomány).
 - Pontosan $1$ darab tartomány **nem korlátos** (ez a gráfot körülvevő, a végtelenbe nyúló **külső tartomány**).
 A külső tartomány ugyanolyan teljes jogú tartománya a síkrajznak, mint a belsők!
@@ -2635,6 +2859,7 @@ Válasszunk ki egy tetszőleges kört, és azon egy tetszőleges $e_0$ élt.
 Mivel $e_0$ egy körön fekszik, a kör belsejét és külsejét választja el egymástól, tehát két különböző tartomány közös határán helyezkedik el.
 Töröljük ki az $e_0$ élt a síkrajzból!
 Mi történik a paraméterekkel?
+
 - A csúcsok száma nem változik: $n' = n$.
 - Az élek száma $1$-gyel csökken: $e' = e - 1$.
 - Az $e_0$ által elválasztott két tartomány egyetlen közös tartománnyá olvad össze, így a tartományok száma is $1$-gyel csökken: $t' = t - 1$.
@@ -2649,11 +2874,13 @@ Ismételjük ezt az élbontó lépést mindaddig, amíg a gráfban található k
 
 **3. Befejezés: fához jutottunk.**
 Amikor már nincs több kör a gráfban, a megmaradt gráf:
+
 - összefüggő (mert minden lépés megőrizte az összefüggőséget),
 - körmentes (mert addig töröltünk, amíg volt kör).
 Ez a 21. szakasz definíciója szerint egy **fa** (az eredeti gráf egy feszítőfája)!
 
 Egy $n$ csúcsú fa paramétereit jól ismerjük:
+
 - éleinek száma: $e_{\text{fa}} = n - 1$,
 - mivel nincsenek körei, a síkot nem vágja belső részekre, így egyetlen tartománya van: a külső tartomány, azaz $t_{\text{fa}} = 1$.
 
@@ -2864,6 +3091,7 @@ Az előző szakaszban levezetett élszám-korlátok rendkívül erős eszközt a
 ### 1. Példa: az 5-csúcsú teljes gráf ($K_5$)
 
 Tekintsük a $K_5$ teljes gráfot:
+
 - csúcsok száma: $n = 5$,
 - élek száma: $e = \binom{5}{2} = 10$.
 
@@ -2876,6 +3104,7 @@ Ez azonban nyilvánvaló képtelenség: $10 \le 9$ nem igaz!
 
 Egy klasszikus fejtörő így szól: három háznak és három kútnak szeretnénk gáz-, víz- és villanyvezetéket építeni úgy, hogy minden háztól mindhárom kúthoz fusson vezeték, de a vezetékek sehol se keresztezzék egymást. Lehetséges ez a síkban?
 Ez a feladat a $K_{3,3}$ teljes páros gráf síkbarajzolhatóságát kérdezi:
+
 - csúcsok száma: $n = 3 + 3 = 6$,
 - élek száma: $e = 3 \times 3 = 9$.
 
@@ -2963,6 +3192,7 @@ Kazimierz Kuratowski lengyel matematikus 1930-ban bebizonyította, hogy e két g
 > **Tétel (Kuratowski-tétel, 1930).** Egy tetszőleges $G$ gráf pontosan akkor síkbarajzolható, ha **nem tartalmaz olyan részgráfot**, amely $K_5$-tel vagy $K_{3,3}$-mal topologikusan izomorf (azaz nem tartalmaz felosztott $K_5$-öt vagy felosztott $K_{3,3}$-at).
 
 A tétel két iránya közötti különbség alapvető:
+
 - **$\implies$ (a könnyű irány):** Ha $G$ tartalmaz felosztott $K_5$-öt vagy $K_{3,3}$-at, akkor $G$ nem lehet síkbarajzolható. Ha ugyanis $G$ lerajzolható lenne metszések nélkül, akkor a részgráfja is síkban lenne, és a $2$-fokú osztópontokat „kiegyenesítve” $K_5$ vagy $K_{3,3}$ metszésmentes síkrajzát kapnánk, amiről már beláttuk, hogy lehetetlen!
 - **$\impliedby$ (a nehéz irány):** Ha egy gráf nem síkbarajzolható, akkor **szükségképpen tartalmaz** egy felosztott $K_5$ vagy $K_{3,3}$ részgráfot. Ennek bizonyítása jóval mélyebb gráfelméleti és topológiai eszközöket igényel.
 
@@ -3428,7 +3658,7 @@ Ha ezután egy $u \in A$ csúcs fedetlen maradt, akkor:
 
 **2. lépés: javító utak.** Színezzük a párosítás éleit pirosra, a többi élt feketére.
 
-> **Definíció.** **Javító út** az az út, amely egy **fedetlen $A$-beli** csúcsból indul, felváltva „fölfelé” (nem párosításbeli, fekete élen $A$-ból $B$-be) és „lefelé” (párosításbeli, piros élen $B$-ből $A$-ba) halad, és egy **fedetlen $B$-beli** csúcsban ér véget. Ha nem követeljük meg, hogy a végpont fedetlen $B$-beli csúcs legyen, **javító út kezdeményről** (alternáló útról) beszélünk.
+> **Definíció.** **Javító út** az az út, amely egy **fedetlen $A$-beli** csúcsból indul, felváltva „fölfelé” (nem párosításbeli, fekete élen $A$-ból $B$-be) és „lefelé” (párosításbeli, piros élen $B$-ből $A$-ba) halad, és egy **fedetlen $B$-beli** csúcsban ér véget. Ha nem követeljük meg, hogy a végpont fedetlen $B$-beli csúcs legyen, **javító út kezdeményről** (más néven **majdnem javító útról** vagy alternáló útról) beszélünk.
 
 Ha találunk egy javító utat, akkor **javítunk**: az út mentén a fekete éleket pirosra, a piros éleket feketére színezzük. A javító út fekete élei eggyel többen vannak, mint a pirosak (fekete éllel kezdődik és végződik), így a piros élek száma eggyel nő. Az eredmény újra párosítás: az út belső csúcsai továbbra is pontosan egy piros élre illeszkednek, a két végpont pedig (amelyek eddig fedetlenek voltak) most egyre. A korábban fedett csúcsok fedettek maradnak, és a két végpont is fedetté vált.
 
@@ -3600,6 +3830,93 @@ azaz $|X| \le |N(X)|$. $\blacksquare$
 *Bizonyítás.* $\chi_e \ge \Delta = r$ mindig igaz (egy csúcs $r$ éle csupa különböző színt kap). A felső becsléshez élszínezést készítünk; ebben **minden színosztály egy párosítás**. Az előző tétel szerint létezik teljes párosítás: ennek éleit színezzük **pirossal**, és töröljük ki őket. Minden csúcsról pontosan egy él tűnt el, így egy $(r-1)$-reguláris páros gráf marad. Ha $r - 1 \ge 1$, ebben is van teljes párosítás: ennek éleit színezzük a **második** színnel, és így tovább. A harmadik, …, $r$-edik szín után minden él színt kap, és az azonos színű élek páronként diszjunktak. Tehát $\chi_e \le r$. $\blacksquare$
 
 Ez Kőnig élszínezési tételének (36. szakasz: páros gráfra $\chi'(G) = \Delta(G)$) a reguláris speciális esete. Egy tetszőleges páros gráf egyébként kiegészíthető $\Delta$-reguláris páros (multi)gráffá, így a fenti bizonyításból a Kőnig-tétel is következik.
+
+## 48. A deficites Hall-tétel és a Kőnig-tétel
+
+A Hall-tétel megmondja, mikor van $A$-t fedő párosítás. De mi a helyzet, ha a Hall-feltétel **nem** teljesül? Ekkor nincs $A$-t fedő párosítás — de mekkora a legnagyobb? A válasz meglepően pontos: a Hall-feltétel „hiánya” éppen a fedetlenül maradó csúcsok számát adja meg.
+
+> **Definíció.** A $G(A, B)$ páros gráfban egy $X \subseteq A$ halmaz **hiánya** (deficitje) $|X| - |N(X)|$. A gráf hiánya
+> $$d = \max_{X \subseteq A}\big(|X| - |N(X)|\big).$$
+
+Mivel $X = \emptyset$-ra a hiány $0$, mindig $d \ge 0$; a Hall-feltétel pontosan azt jelenti, hogy $d = 0$. Ha a Hall-feltétel „$d$ híján” teljesül, vagyis minden $X \subseteq A$-ra $|N(X)| \ge |X| - d$, akkor a következő tétel szerint majdnem teljes a siker: csak $d$ csúcs marad ki.
+
+> **Tétel (deficites Hall-tétel, Kőnig Dénes).** A $G(A, B)$ páros gráfban
+> $$\nu(G) = |A| - d = |A| - \max_{X \subseteq A}\big(|X| - |N(X)|\big).$$
+
+*Bizonyítás.* **$\nu \le |A| - d$.** Legyen $X$ egy $d$ hiányú halmaz, és $M$ egy tetszőleges párosítás. Az $X$-nek csak $N(X)$-beli csúcsokkal lehet párja, és ezek a párok különbözők, így $X$-ből legfeljebb $|N(X)|$ csúcs fedett. Legalább $|X| - |N(X)| = d$ csúcsa tehát fedetlen, vagyis $|M| \le |A| - d$.
+
+**$\nu \ge |A| - d$.** Vegyünk hozzá $B$-hez $d$ új csúcsot, és mindegyiket kössük össze $A$ összes csúcsával. Az új $G'$ gráfban minden nemüres $X \subseteq A$-ra
+$$|N_{G'}(X)| = |N(X)| + d \ge |X|,$$
+mert $d$ a hiányok maximuma. $G'$ tehát teljesíti a Hall-feltételt, így van benne $A$-t fedő $M'$ párosítás. Ennek legfeljebb $d$ éle megy új csúcsba; ezeket elhagyva $G$-nek egy legalább $|A| - d$ élű párosítását kapjuk. $\blacksquare$
+
+*Példa.* Legyen $A = \{a_1, a_2, a_3, a_4\}$, $B = \{b_1, b_2, b_3\}$, és az élek $a_1b_1$, $a_2b_1$, $a_3b_1$, $a_4b_2$, $a_4b_3$. Az $X = \{a_1, a_2, a_3\}$ halmazra $N(X) = \{b_1\}$, a hiány $2$; nagyobb hiány nincs. A tétel szerint $\nu = 4 - 2 = 2$, és valóban: az $a_1b_1$, $a_4b_2$ párosítás maximális.
+
+### Kőnig tétele: $\nu = \tau$ páros gráfokban
+
+A 46. szakaszban láttuk, hogy minden gráfban $\nu \le \tau$: a független élek lefogásához legalább annyi csúcs kell, ahány él van. Általános gráfban ez nem mindig egyenlőség: a háromszögben $\nu = 1$, de $\tau = 2$. Páros gráfokban azonban igen.
+
+> **Tétel (Kőnig Dénes, 1931).** Minden páros gráfban a független élek maximális száma egyenlő az éleket lefogó csúcsok minimális számával:
+> $$\nu(G) = \tau(G).$$
+
+*Bizonyítás a deficites Hall-tételből.* Legyen $G = G(A, B)$, és $X \subseteq A$ egy maximális, $d$ hiányú halmaz. Legyen
+$$L = (A \setminus X) \cup N(X).$$
+**$L$ lefogó:** egy $ab$ él ($a \in A$, $b \in B$) esetén ha $a \notin X$, akkor $a \in L$; ha $a \in X$, akkor $b \in N(X) \subseteq L$. Tehát
+$$\tau \le |L| = |A| - |X| + |N(X)| = |A| - d = \nu,$$
+és $\nu \le \tau$ miatt $\nu = \tau$. $\blacksquare$
+
+(A 47. szakasz kiegészítésében a javító utas algoritmusból is levezettük ugyanezt: a megtalált párosítás mellé az algoritmus egy ugyanakkora lefogó csúcshalmazt is ad, amely **bizonyítja**, hogy nagyobb párosítás nincs.)
+
+A Gallai-tételekkel ($\alpha + \tau = n$, $\nu + \rho = n$) összevetve:
+
+> **Következmény.** Ha $G$ izolált csúcs nélküli páros gráf, akkor $\alpha(G) = \rho(G)$: a független csúcsok maximális száma egyenlő a csúcsokat lefedő élek minimális számával.
+
+*Bizonyítás.* $\alpha = n - \tau = n - \nu = \rho$. $\blacksquare$
+
+**Mátrixos alak.** A 47. szakasz párosítási mátrixával (most tetszőleges $p \times q$ méretben) Kőnig tétele így szól: *egy $0$–$1$ mátrixban a független (semelyik kettő nem egy sorban vagy oszlopban álló) $1$-esek maximális száma egyenlő azon sorok és oszlopok minimális számával, amelyek együtt az összes $1$-est lefedik.* A sorok és oszlopok a csúcsok, az $1$-esek az élek, a független $1$-esek a párosítás, a lefedő sorok és oszlopok a lefogó csúcshalmaz.
+
+## 49. Stabil párosítások
+
+Eddig a párosításnál csak az számított, hogy két csúcs **összeköthető**-e. A valóságban a résztvevőknek gyakran **preferenciáik** is vannak: nem mindegy, kivel kerülnek párba.
+
+> **Feladat (stabil házasság).** Adott $n$ fiú és $n$ lány. Mindenki rangsorolja a másik nem összes tagját (szigorú sorrendben, holtverseny nélkül). Keressünk olyan teljes párosítást (párba állítást), amelyben **nincs olyan fiú és lány, akik egymást jobban szeretnék a saját párjuknál**!
+
+> **Definíció.** Legyen $M$ egy teljes párosítás. Egy $(f, l)$ fiú–lány pár **blokkoló pár**, ha nem egymás párjai $M$-ben, de $f$ a saját párjánál jobban szereti $l$-et, **és** $l$ is a saját párjánál jobban szereti $f$-et. $M$ **stabil**, ha nincs blokkoló pár.
+
+Egy blokkoló pár tagjai „otthagynák” a párjukat egymásért, a párosítás tehát nem tartós. Gráfelméleti nyelven: a $K_{n,n}$ teljes páros gráf minden csúcsánál adott a szomszédok egy sorrendje, és olyan teljes párosítást keresünk, amelyhez nincs a fenti értelemben „jobb” él. Egyáltalán nem nyilvánvaló, hogy ilyen mindig létezik — a megfelelő „nem kétosztályú” feladatban (szobatárs-probléma) nem is mindig létezik.
+
+> **Tétel (Gale–Shapley, 1962).** Minden ilyen preferenciarendszerhez létezik stabil párosítás.
+
+A bizonyítás egy algoritmus, a **leánykérő algoritmus**:
+
+1. Minden körben minden olyan fiú, akinek **nincs** ideiglenes párja, megkéri annak a lánynak a kezét, aki a listáján a legelőkelőbb helyen áll azok közül, akik őt még nem utasították el.
+2. Minden lány az addig kapott ajánlatok (a régi ideiglenes partnerét is beleértve) közül a **legjobbat** megtartja („talán”), a többit **elutasítja** („nem”).
+3. Ha minden fiúnak van ideiglenes párja, az algoritmus véget ér, és az ideiglenes párok véglegesek.
+
+*Bizonyítás.* **Véget ér.** Minden fiú minden lányt legfeljebb egyszer kér meg, így legfeljebb $n^2$ leánykérés történik.
+
+**Mindenki párt kap.** Egy lány, akit egyszer megkértek, attól kezdve mindig ideiglenes párral rendelkezik (csak jobbra cseréli). Ha egy fiút mind az $n$ lány elutasítana, akkor mind az $n$ lánynak volna ideiglenes párja — egy-egy tőle különböző fiú —, de csak $n - 1$ másik fiú van. Ellentmondás.
+
+**A párosítás stabil.** Tegyük fel indirekt, hogy $(f, l)$ blokkoló pár: $f$ jobban szereti $l$-et, mint a végső párját, $l'$-t. Mivel $f$ a listáján felülről lefelé haladva kért meg lányokat, $l$-et $l'$ előtt megkérte, és $l$ elutasította — vagy rögtön, vagy később —, mégpedig egy általa jobbnak tartott fiú kedvéért. Egy lány partnere azonban csak javul, tehát $l$ végső párját is jobban szereti $f$-nél. Ez ellentmond annak, hogy $(f, l)$ blokkoló. $\blacksquare$
+
+*Példa.* Fiúk: $A, B, C$; lányok: $x, y, z$. A preferenciák (balról jobbra csökkenő sorrendben):
+
+| | 1. | 2. | 3. |
+|:-:|:-:|:-:|:-:|
+| $A$ | $x$ | $y$ | $z$ |
+| $B$ | $x$ | $z$ | $y$ |
+| $C$ | $y$ | $x$ | $z$ |
+| $x$ | $C$ | $B$ | $A$ |
+| $y$ | $A$ | $C$ | $B$ |
+| $z$ | $A$ | $B$ | $C$ |
+
+1. kör: $A$ és $B$ az $x$-et, $C$ az $y$-t kéri meg. Az $x$ megtartja $B$-t, elutasítja $A$-t; az $y$ megtartja $C$-t.
+2. kör: $A$ az $y$-t kéri meg; az $y$ jobban szereti $A$-t, mint $C$-t, tehát $A$-t tartja meg, $C$-t elutasítja.
+3. kör: $C$ az $x$-et kéri meg; az $x$ jobban szereti $C$-t, mint $B$-t: $C$-t tartja meg, $B$-t elutasítja.
+4. kör: $B$ a $z$-t kéri meg, aki még szabad, és megtartja.
+
+Az eredmény: $A$–$y$, $B$–$z$, $C$–$x$. Ellenőrizzük: $A$ jobban szeretné $x$-et, de $x$-nek $C$ az első helyezettje; $B$ is $x$-et szeretné, ugyanezért hiába; $C$ az $y$-t szeretné, de $y$-nak $A$ az első. Nincs blokkoló pár.
+
+**Megjegyzések.** Az algoritmus a fiúk szempontjából **optimális**: minden fiú a lehető legjobb olyan lányt kapja, aki egyáltalán valamely stabil párosításban a párja lehet (ezt nem bizonyítjuk); a lányok szempontjából pedig a legrosszabbat. A tétel akkor is igaz, ha a gráf nem teljes páros gráf (nem mindenki fogadható el mindenkinek): ekkor a stabil párosítás nem feltétlenül teljes, de mindig létezik. Ilyen elven működnek a valódi „párosító piacok”: az amerikai rezidensképzés elosztása, és a magyar felsőoktatási felvételi rendszer is egy változatát használja. Shapley és Roth 2012-ben közgazdasági Nobel-emlékdíjat kapott ezekért az eredményekért.
 
 ---
 
@@ -3811,7 +4128,7 @@ Ez Kőnig élszínezési tételének (36. szakasz: páros gráfra $\chi'(G) = \D
     - Páros gráfok karakterizációja: $G$ páros $\iff$ $G$-ben nincs páratlan kör (minden köre páros hosszúságú).
     - Maximális élszám egyszerű páros gráfban:
       $$e \le |A| \cdot |B| \le \lfloor n^2 / 4 \rfloor$$
-      (Mantel-tétel: egyenlőség a kiegyensúlyozott $K_{\lfloor n/2 \rfloor, \lceil n/2 \rceil}$ teljes páros gráfra áll fenn).
+      (Mantel-tétel, 54. szakasz: háromszögmentes gráfra is ez a korlát; egyenlőség a kiegyensúlyozott $K_{\lfloor n/2 \rfloor, \lceil n/2 \rceil}$ teljes páros gráfra áll fenn).
     - Speciálisan: minden fa páros gráf; minden páros gráf háromszögmentes ($\omega \le 2$).
   - *Gyakorlati megközelítés:*
     - *BFS rétegezés (2-színezés előállítása és páratlan kör detektálása):*
@@ -4014,3 +4331,505 @@ Ez Kőnig élszínezési tételének (36. szakasz: páros gráfra $\chi'(G) = \D
       4. Egy párosítás pontosan akkor maximális, ha NEM létezik hozzá javító út!
     - *Hall-feltétel cáfolata:* ha nincs $A$-t fedő párosítás, mutassunk egy szűk keresztmetszetet: egy konkrét $X \subseteq A$ részhalmazt, amelyre $|N(X)| < |X|$ (pl. 3 embernek csak 2 közös ismerőse van).
     - *Tutte-feltétel cáfolata:* mutassunk olyan $S \subseteq V$ csúcshalmazt, amelynek elhagyásával több páratlan komponens keletkezik, mint $|S|$ (pl. páratlan csúcsszámú gráfra $S = \emptyset$ esetén $c_{\mathrm{ptl}} \ge 1 > 0$).
+
+- **Deficites Hall-tétel és Kőnig-tétel:**
+  - *Elmélet:* Az $X \subseteq A$ hiánya $|X| - |N(X)|$; a gráf hiánya $d = \max_{X \subseteq A}(|X| - |N(X)|) \ge 0$. Ha a Hall-feltétel $d$ híján teljesül, legfeljebb $d$ csúcs marad fedetlen.
+  - *Kötelező (egyenlőtlenségek) & képletek:*
+    - Deficites Hall-tétel: $\nu(G) = |A| - \max_{X \subseteq A}\big(|X| - |N(X)|\big)$.
+    - Kőnig-tétel: páros gráfban $\nu = \tau$; lefogó halmaz: $(A \setminus X) \cup N(X)$ a maximális hiányú $X$-re. Izolált csúcs nélküli páros gráfban $\alpha = \rho$.
+  - *Gyakorlati megközelítés:*
+    - *Maximalitás igazolása:* egy $k$ élű párosítás mellé mutassunk egy $k$ elemű lefogó csúcshalmazt (vagy egy $|A| - k$ hiányú $X$ halmazt) — ez bizonyítja, hogy nagyobb párosítás nincs.
+
+- **Stabil párosítások:**
+  - *Elmélet:* $n$ fiú, $n$ lány, szigorú preferencialisták. Blokkoló pár: nem egymás párjai, de mindketten egymást jobban szeretik a saját párjuknál. Stabil: nincs blokkoló pár.
+  - *Kötelező tétel:* Gale–Shapley: stabil párosítás mindig létezik; a leánykérő algoritmus legfeljebb $n^2$ kérés után stabil párosítást ad (fiúoptimális, lánypesszimális).
+  - *Gyakorlati megközelítés:* futtassuk az algoritmust körönként (a szabad fiúk a listájuk következő lányát kérik meg, a lányok a legjobb ajánlatot tartják meg), majd ellenőrizzük, hogy minden fiú, aki jobbat szeretne, az illető lánynál rosszabb helyen áll, mint annak párja.
+
+---
+
+# IV. RÉSZ: ÖSSZEFÜGGŐSÉG, EXTREMÁLIS GRÁFELMÉLET ÉS HALMAZRENDSZEREK
+
+Az eddigi kérdések többsége **létezési** kérdés volt: van-e a gráfban Euler-körséta, Hamilton-kör, teljes párosítás? Ebben a részben **mennyiségi** kérdéseket teszünk fel. Mennyire „erősen” összefüggő egy gráf: hány csúcs vagy él kiesését bírja ki? Mekkorának kell lennie egy gráfnak ahhoz, hogy biztosan legyen benne egy adott alakzat (Ramsey), és legfeljebb hány éle lehet, ha nincs benne (Turán)? Végül egy alaphalmaz részhalmazaiból álló családokat vizsgálunk: legfeljebb hány tagjuk lehet, ha a tagok bizonyos módon viszonyulnak egymáshoz (Sperner, Erdős–Ko–Rado)? Ezek az **extremális kombinatorika** kérdései. A bizonyításokban a korábbi eszközök — skatulyaelv, kettős leszámlálás, indukció, a Hall-tétel — mind visszatérnek, a végén pedig egy új eszköz, a lineáris algebra is megjelenik.
+
+## 50. Többszörös összefüggőség
+
+Egy számítógép-hálózatot vagy úthálózatot akkor nevezünk megbízhatónak, ha néhány gép (csúcs) vagy kábel (él) kiesése után is összefüggő marad. Egy fa például nagyon sérülékeny: bármely élét elhagyva szétesik (24. szakasz), és — ha nem egyetlen élből áll — bármely nem levél csúcsát elhagyva is. Egy kör már kibírja egy tetszőleges él vagy csúcs kiesését, de kettőét már nem feltétlenül. Ezt a különbséget mérjük meg.
+
+Ha $X \subseteq V(G)$, akkor $G - X$ a $G$-ből az $X$ csúcsainak (és a rájuk illeszkedő éleknek) a törlésével kapott gráf; ha $F \subseteq E(G)$, akkor $G - F$ az $F$ éleinek törlésével kapott gráf.
+
+> **Definíció (többszörös pontösszefüggőség).** Legyen $k \ge 1$. A $G$ gráf **$k$-szorosan (pont)összefüggő**, ha legalább $k + 1$ csúcsa van, és bárhogyan hagyunk el belőle **legfeljebb $k - 1$ csúcsot**, összefüggő marad.
+>
+> A $G$ gráf **(pont)összefüggőségi száma**, $\kappa(G)$, a legnagyobb olyan $k$, amelyre $G$ $k$-szorosan összefüggő (ha $G$ nem összefüggő, vagy csak egy csúcsa van, akkor $\kappa(G) = 0$).
+
+> **Definíció (többszörös élösszefüggőség).** A $G$ gráf **$k$-szorosan élösszefüggő**, ha legalább $2$ csúcsa van, és bárhogyan hagyunk el belőle **legfeljebb $k - 1$ élt**, összefüggő marad.
+>
+> A $G$ gráf **élösszefüggőségi száma**, $\kappa'(G)$ (vagy $\lambda(G)$), a legnagyobb olyan $k$, amelyre $G$ $k$-szorosan élösszefüggő (nem összefüggő gráfra $\kappa'(G) = 0$).
+
+**Mi a különbség a két fogalom között?** A „$k$-szorosan összefüggő” egy **tulajdonság**, amely vagy teljesül, vagy nem; a $\kappa$ egy **szám**. A kettő kapcsolata: $G$ pontosan akkor $k$-szorosan összefüggő, ha $\kappa(G) \ge k$. Egy $3$-szorosan összefüggő gráf tehát $2$-szeresen és $1$-szeresen is összefüggő (az $1$-szeres összefüggőség a közönséges összefüggőség). Ugyanez igaz az élösszefüggőségre.
+
+A $k + 1$ csúcsra vonatkozó kikötés a teljes gráfok miatt kell: a $K_n$-ből akárhány csúcsot elhagyva teljes gráf marad, tehát sosem esik szét. A definíció szerint $\kappa(K_n) = n - 1$. Minden **nem teljes** gráfban viszont van két nem szomszédos csúcs, és a többi csúcsot elhagyva a gráf szétesik; ilyenkor
+$$\kappa(G) = \min\{\, |X| : X \subseteq V(G),\ G - X \text{ nem összefüggő} \,\},$$
+vagyis a legkisebb **elvágó csúcshalmaz** mérete. Hasonlóan, ha $G$-nek legalább $2$ csúcsa van, $\kappa'(G)$ a legkisebb **elvágó élhalmaz** mérete. Egy olyan csúcsot, amelynek elhagyásával a gráf szétesik, **elvágó csúcsnak**, egy olyan élt, amelynek elhagyásával szétesik, **hídnak** nevezünk. Így egy legalább $3$ csúcsú összefüggő gráf pontosan akkor $2$-szeresen összefüggő, ha nincs elvágó csúcsa, és pontosan akkor $2$-szeresen élösszefüggő, ha nincs hídja.
+
+*Példák.* A táblázat utolsó oszlopában a $\delta$ minimális fokszám (18. szakasz) áll; hamarosan kiderül, miért érdemes mellé írni.
+
+| gráf | $\kappa$ | $\kappa'$ | $\delta$ |
+|:--|:-:|:-:|:-:|
+| fa ($n \ge 2$) | $1$ | $1$ | $1$ |
+| kör, $C_n$ | $2$ | $2$ | $2$ |
+| teljes gráf, $K_n$ | $n - 1$ | $n - 1$ | $n - 1$ |
+| teljes páros gráf, $K_{a,b}$ ($a \le b$) | $a$ | $a$ | $a$ |
+| két háromszög egy közös csúccsal | $1$ | $2$ | $2$ |
+
+Az utolsó sor mutatja, hogy a két szám különbözhet: a közös csúcs elvágó csúcs, híd viszont nincs.
+
+> **Tétel (Whitney).** Minden gráfra
+> $$\kappa(G) \le \kappa'(G) \le \delta(G).$$
+
+*Bizonyítás.* **$\kappa' \le \delta$:** ha $v$ egy minimális fokú csúcs, akkor a rá illeszkedő $\delta$ élt elhagyva $v$ izolált lesz, a gráf szétesik (ha $n \ge 2$).
+
+**$\kappa \le \kappa'$:** Ha $G$ teljes gráf, $\kappa = \kappa' = n - 1$. Egyébként legyen $F$ egy legkisebb elvágó élhalmaz, $|F| = \kappa'$, és legyen $S$ a $G - F$ egyik komponensének csúcshalmaza; ekkor $F$ éppen az $S$ és $V \setminus S$ közötti élek halmaza (a minimalitás miatt). Ha $S$ minden csúcsa $V \setminus S$ minden csúcsával szomszédos, akkor $|F| = |S| \cdot |V \setminus S| \ge n - 1 \ge \kappa$. Különben van egy $s \in S$ és egy $t \notin S$ nem szomszédos csúcspár. Válasszunk minden $F$-beli élnek egy végpontját: ha az él $s$-re illeszkedik, a másik végpontját (ez nem $t$, hiszen $st$ nem él), különben az $S$-beli végpontját. A kiválasztott csúcsok $X$ halmazára $|X| \le |F|$, és $s, t \notin X$. Minden $s$-ből $t$-be vezető út valahol átlép $S$-ből $V \setminus S$-be egy $F$-beli élen, és ennek az élnek a kiválasztott végpontja az úton van. Tehát $G - X$-ben $s$ és $t$ között nincs út, vagyis $\kappa \le |X| \le \kappa'$. $\blacksquare$
+
+> **Következmény.** Ha egy gráf $k$-szorosan pontösszefüggő, akkor $k$-szorosan élösszefüggő is.
+
+A megfordítás nem igaz, és a különbség tetszőlegesen nagy lehet. *Példa:* ragasszunk össze két $K_6$-ot egyetlen közös csúcsban. A közös csúcs elvágó csúcs, tehát $\kappa = 1$. Az élösszefüggőség viszont $5$: ha egy élhalmaz törlése után a gráf szétesik, akkor valamelyik $K_6$ csúcsai két nemüres részre ($a$ és $6 - a$ csúcsra) esnek szét (ha egyik sem esne szét, a közös csúcs miatt mindkettő ugyanabba a részbe kerülne), és ehhez a $K_6$-ból legalább $a(6 - a) \ge 5$ élt kellett törölni. A gráf tehát $5$-szörösen élösszefüggő, de még $2$-szeresen sem pontösszefüggő.
+
+::: kiegeszites
+**Kiegészítés — egy tanulságos buktató: páros fokú gráfok élvágásai.** Létezik-e olyan egyszerű gráf, amelynek **minden** fokszáma $4$, élösszefüggőségi száma $3$ és pontösszefüggőségi száma $2$? Meglepő módon **nem**. Ha minden fokszám páros, akkor minden $S \subseteq V$ halmazra a kézfogási lemma szerint
+$$\sum_{v \in S}\deg(v) = 2\,e(S) + e(S, V \setminus S),$$
+ahol $e(S)$ az $S$-en belüli, $e(S, V \setminus S)$ az $S$-ből kifutó élek száma. A bal oldal páros, így $e(S, V \setminus S)$ is páros. Minden elvágó élhalmaz tartalmaz egy ilyen „$S$ és a komplementere közötti” élhalmazt, a legkisebb pedig éppen ilyen, tehát **páros fokú gráfban $\kappa'$ páros**. Egy $4$-reguláris gráfban így $\kappa' \in \{0, 2, 4\}$.
+
+Ha a fokszámokra csak alsó korlátot írunk elő, a kívánt viselkedés már előállítható. Vegyünk két $K_5$-öt, $a_1, \dots, a_5$ és $b_1, \dots, b_5$ csúcsokkal, és kössük össze őket az $a_1b_1$, $a_1b_2$, $a_2b_3$ élekkel. A minimális fokszám $4$. A három összekötő él elvágó élhalmaz, és kisebb nincs (egy $K_5$ kettévágásához legalább $4$ él kell), tehát $\kappa' = 3$. Az $\{a_1, a_2\}$ csúcsok elhagyása szétvágja a gráfot, egyetlen csúcsé nem, tehát $\kappa = 2$.
+:::
+
+## 51. Menger tételei
+
+Az összefüggőség eredeti definíciója az utakról szólt: bármely két csúcs között vezet út. Természetes kérdés, hogy a **többszörös** összefüggőség is megfogalmazható-e utakkal: igaz-e, hogy egy $k$-szorosan összefüggő gráfban bármely két csúcs között **$k$ független út** vezet? Menger tételei szerint igen — sőt, ennél pontosabb is igaz.
+
+> **Definíció.** Az $u$ és $v$ csúcsok közötti utak
+>
+> - **éldiszjunktak**, ha páronként nincs közös élük;
+> - **(belsőleg) pontdiszjunktak**, ha páronként nincs közös csúcsuk az $u$ és $v$ végpontokon kívül.
+>
+> Egy $F \subseteq E(G)$ élhalmaz **elválasztja** $u$-t és $v$-t, ha $G - F$-ben nincs $u$-$v$ út. Egy $X \subseteq V(G) \setminus \{u, v\}$ csúcshalmaz elválasztja $u$-t és $v$-t, ha $G - X$-ben nincs $u$-$v$ út.
+
+Az egyik irány könnyű. Ha van $k$ éldiszjunkt $u$-$v$ út, akkor egy elválasztó élhalmaznak mindegyikből legalább egy élt tartalmaznia kell, és ezek az élek különbözők; tehát **az elválasztó élhalmaz legalább $k$ elemű**. Ugyanígy $k$ pontdiszjunkt út esetén minden elválasztó csúcshalmaz legalább $k$ elemű. Menger tétele szerint ez az egyszerű korlát mindig éles.
+
+> **Tétel (Menger, élváltozat).** Ha $u \ne v$ a $G$ gráf két csúcsa, akkor az $u$ és $v$ közötti **páronként éldiszjunkt utak maximális száma** egyenlő az $u$-t és $v$-t elválasztó élhalmazok **minimális elemszámával**.
+
+> **Tétel (Menger, pontváltozat).** Ha $u$ és $v$ a $G$ gráf két különböző, **nem szomszédos** csúcsa, akkor az $u$ és $v$ közötti **páronként belsőleg pontdiszjunkt utak maximális száma** egyenlő az $u$-t és $v$-t elválasztó csúcshalmazok **minimális elemszámával**.
+
+(A pontváltozatban a nem szomszédosság azért kell, mert szomszédos csúcsokat semmilyen csúcshalmaz nem választ el.) A tételeket nem bizonyítjuk. Érdemes azonban észrevenni, hogy a Kőnig-tétel (48. szakasz) a pontváltozat speciális esete: ha egy $G(A, B)$ páros gráfhoz hozzáveszünk egy $u$ csúcsot, amelyet $A$ összes csúcsával, és egy $v$ csúcsot, amelyet $B$ összes csúcsával összekötünk, akkor a pontdiszjunkt $u$-$v$ utak éppen a párosítások éleinek, az elválasztó csúcshalmazok éppen a lefogó csúcshalmazoknak felelnek meg.
+
+A Menger-tételek „lokális” állítások: egy rögzített csúcspárról szólnak. Belőlük kapjuk a többszörös összefüggőség útjellemzését.
+
+> **Tétel.**
+>
+> 1. Egy legalább $2$ csúcsú $G$ gráf pontosan akkor $k$-szorosan **élösszefüggő**, ha bármely két csúcsa között van $k$ páronként **éldiszjunkt** út.
+> 2. (Whitney) Egy legalább $k + 1$ csúcsú $G$ gráf pontosan akkor $k$-szorosan **pontösszefüggő**, ha bármely két csúcsa között van $k$ páronként belsőleg **pontdiszjunkt** út.
+
+*Bizonyítás (az 1. állításé, a Menger-tétel felhasználásával).* Ha bármely két csúcs között van $k$ éldiszjunkt út, és elhagyunk legfeljebb $k - 1$ élt, akkor bármely két csúcs között legalább egy út sértetlen marad: a gráf összefüggő. Megfordítva, ha $G$ $k$-szorosan élösszefüggő, akkor $k$-nál kevesebb él elhagyásával semmilyen $u, v$ pár nem választható el, tehát az elválasztó élhalmazok legalább $k$ eleműek, és a Menger-tétel szerint van $k$ éldiszjunkt $u$-$v$ út. $\blacksquare$
+
+A 2. állítás nem szomszédos csúcspárokra ugyanígy következik a pontváltozatból; a szomszédos párok esete egy további ötletet igényel, ezt nem részletezzük.
+
+### Kétszeres összefüggőség és körök
+
+A $k = 2$ eset különösen szemléletes, mert két pontdiszjunkt $u$-$v$ út együtt egy **kört** alkot.
+
+> **Tétel.** Legyen $G$ legalább $3$ csúcsú gráf. A következők ekvivalensek:
+>
+> 1. $G$ $2$-szeresen (pont)összefüggő;
+> 2. $G$ bármely két csúcsán átmegy egy közös kör;
+> 3. $G$-ben nincs izolált csúcs, és bármely két élén átmegy egy közös kör.
+
+*Bizonyítás.* **$1 \Rightarrow 2$:** Whitney tétele szerint bármely két csúcs között van két belsőleg pontdiszjunkt út, ezek együtt kört alkotnak.
+
+**$2 \Rightarrow 1$:** A gráf összefüggő (bármely két csúcs egy körön, tehát egy úton van). Hagyjunk el egy $w$ csúcsot, és legyen $u, v$ két másik csúcs. A közös körük két, belsőleg diszjunkt $u$-$v$ útra bomlik, és $w$ ezek közül legfeljebb az egyiken van; a másik út $G - w$-ben is megvan. Tehát $G - w$ összefüggő.
+
+**$1 \Rightarrow 3$:** Legyen $e$ és $f$ két él. Osszuk fel mindkettőt egy-egy új csúccsal, $x$-szel és $y$-nal (soros bővítés). A kapott $G'$ gráf is $2$-szeresen összefüggő: ha $x$-et hagyjuk el, $G - e$ marad, amely összefüggő, mert $\kappa' \ge \kappa \ge 2$ miatt $G$-ben nincs híd; ha egy régi $w$ csúcsot, akkor $G - w$ egy felosztását kapjuk, amelyhez $x$ és $y$ legalább egy éllel kapcsolódik. Az $1 \Rightarrow 2$ irány szerint $x$ és $y$ rajta van $G'$ egy közös körén. Ez a kör $x$-en áthaladva az $e$ mindkét felét használja, $y$-on áthaladva az $f$ mindkét felét; a felosztást visszacsinálva egy $G$-beli kört kapunk, amely $e$-n és $f$-en is átmegy.
+
+**$3 \Rightarrow 2$:** Mivel $n \ge 3$ és nincs izolált csúcs, legalább két él van, így a feltétel szerint minden él rajta van egy körön; ezért minden csúcs foka legalább $2$. Két csúcs, $u$ és $v$ esetén válasszunk tehát egy $u$-ra illeszkedő $e$ és egy $v$-re illeszkedő $f \ne e$ élt. Az $e$-n és $f$-en átmenő kör $u$-n és $v$-n is átmegy. $\blacksquare$
+
+Hasonlóan: egy összefüggő gráf pontosan akkor $2$-szeresen **élösszefüggő**, ha minden éle rajta van egy körön (nincs hídja), és ez pontosan akkor teljesül, ha bármely két csúcsa rajta van egy közös **zárt vonalon** (a két éldiszjunkt út egymás után fűzve zárt vonal, de csúcsok ismétlődhetnek benne).
+
+## 52. Ramsey tétele
+
+> **Feladat.** Igaz-e, hogy bármely $6$ ember között van $3$, akik páronként ismerik egymást, vagy $3$, akik páronként nem ismerik egymást?
+
+Fogalmazzuk át gráfokra: a csúcsok az emberek, és két csúcsot pirossal kötünk össze, ha az illetők ismerik egymást, kékkel, ha nem. Így a $K_6$ teljes gráf éleinek egy **két színnel való színezését** kapjuk, és a kérdés: van-e biztosan **egyszínű háromszög**?
+
+*Igen.* Legyen $v$ egy tetszőleges csúcs. Ebből $5$ él indul, két színnel színezve; a skatulyaelv szerint legalább $3$ egyforma színű, mondjuk piros: $va$, $vb$, $vc$. Ha az $ab$, $bc$, $ca$ élek valamelyike piros, akkor az $v$-vel együtt piros háromszöget alkot. Ha egyik sem piros, akkor $abc$ kék háromszög. $\blacksquare$
+
+$5$ ember viszont nem elég: a $K_5$ éleit színezzük úgy, hogy egy ötszög ($C_5$) élei pirosak, az átlók (egy ötágú csillag élei) kékek. Mindkét színosztály egy-egy ötszög, amelyben nincs háromszög.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
+  red/.style={draw=black, very thick},
+  blue/.style={draw=black!55, thick, dashed}
+]
+  \foreach \i in {0,1,2,3,4} { \coordinate (p\i) at (90 + 72*\i:1.4); }
+  \draw[red] (p0) -- (p1) -- (p2) -- (p3) -- (p4) -- (p0);
+  \draw[blue] (p0) -- (p2) -- (p4) -- (p1) -- (p3) -- (p0);
+  \foreach \i in {0,1,2,3,4} { \node[pt] at (p\i) {}; }
+  \node at (0, -2.0) {\footnotesize A $K_5$ egyszínű háromszög nélküli színezése: piros (folytonos) ötszög, kék (szaggatott) csillag.};
+\end{tikzpicture}
+\end{center}
+
+A jelenség általános: elég nagy teljes gráf bármely két színnel való színezésében van **nagy** egyszínű teljes részgráf.
+
+> **Tétel (Ramsey, 1930).** Minden $k, l \ge 1$ egészhez van olyan $N$, hogy bármely $N$ csúcsú (egyszerű) gráfban van $k$ csúcsú teljes részgráf ($K_k$) vagy $l$ csúcsú üres részgráf ($l$ független csúcs).
+>
+> Ekvivalens alak: a $K_N$ éleit akárhogyan színezzük pirosra és kékre, lesz **piros $K_k$** vagy **kék $K_l$**.
+
+(A két alak azonos: a gráf élei a piros élek, a nem élek a kék élek.)
+
+> **Definíció (Ramsey-szám).** Az $R(k, l)$ **Ramsey-szám** a legkisebb olyan $N$, amelyre a $K_N$ éleinek bármely piros–kék színezésében van piros $K_k$ vagy kék $K_l$.
+
+Az $R(k, l) = N$ állítás tehát **két** állítást jelent: (1) a $K_N$ **minden** színezésében van piros $K_k$ vagy kék $K_l$ (ez $R(k,l) \le N$), és (2) a $K_{N-1}$-nek **van** olyan színezése, amelyben egyik sincs (ez $R(k, l) > N - 1$). A fenti feladat éppen azt mutatta meg, hogy
+$$R(3, 3) = 6.$$
+
+*Mit jelent az, hogy $R(4, 4) = 18$?* Azt, hogy $18$ ember között mindig van $4$ kölcsönös ismerős vagy $4$ kölcsönösen idegen, de $17$ embernél ez nem biztos: a $K_{17}$ éleinek van olyan színezése, amelyben nincs egyszínű $K_4$.
+
+**Milyen következtetést vonhatunk le egy konkrét színezésből?** Egyetlen színezés csak **alsó becslést** igazolhat: ha a $K_N$ egy színezésében nincs piros $K_k$ és kék $K_l$, akkor $R(k, l) > N$. Felső becsléshez viszont **minden** színezésről kell állítanunk valamit — ezt egy példa soha nem bizonyítja.
+
+**Egyszerű tulajdonságok.**
+
+- $R(k, l) = R(l, k)$: a színeket felcserélve.
+- $R(1, l) = 1$: egyetlen csúcs már $K_1$.
+- $R(2, l) = l$: a $K_l$ egy színezésében vagy van piros él (ez egy piros $K_2$), vagy minden él kék (ez egy kék $K_l$); a $K_{l-1}$ csupa kék színezésében viszont egyik sincs.
+
+### Felső becslés
+
+> **Tétel.** Minden $k, l \ge 2$ esetén
+> $$R(k, l) \le R(k - 1, l) + R(k, l - 1).$$
+
+*Bizonyítás.* Legyen $N = R(k-1, l) + R(k, l-1)$, és tekintsük a $K_N$ egy tetszőleges piros–kék színezését. Rögzítsünk egy $v$ csúcsot; ennek $N - 1$ szomszédja van. Legyen $P$ azoknak a halmaza, amelyekhez piros, és $K$ azoké, amelyekhez kék él vezet $v$-ből. Mivel $|P| + |K| = N - 1 = R(k-1, l) + R(k, l-1) - 1$, a skatulyaelv szerint vagy $|P| \ge R(k-1, l)$, vagy $|K| \ge R(k, l-1)$.
+
+- Ha $|P| \ge R(k-1, l)$, akkor a $P$ csúcsai között van piros $K_{k-1}$ — ehhez $v$-t hozzávéve piros $K_k$-t kapunk —, vagy kék $K_l$. Mindkét esetben készen vagyunk.
+- Ha $|K| \ge R(k, l-1)$, akkor a $K$ csúcsai között van piros $K_k$, vagy kék $K_{l-1}$ — ehhez $v$-t hozzávéve kék $K_l$-t kapunk. $\blacksquare$
+
+Ez a tétel Ramsey tételének bizonyítását is adja: $k + l$ szerinti indukcióval minden $R(k, l)$ véges. Sőt explicit korlát is adódik:
+
+> **Következmény.** Minden $k, l \ge 1$ esetén
+> $$R(k, l) \le \binom{k + l - 2}{k - 1}.$$
+> Speciálisan $R(k, k) \le \binom{2k-2}{k-1} < 4^{k-1}$.
+
+*Bizonyítás.* Indukció $k + l$ szerint. Ha $k = 1$ vagy $l = 1$, akkor $R(k, l) = 1 = \binom{k+l-2}{k-1}$. Különben a tétel és az indukciós feltevés szerint
+$$R(k, l) \le \binom{k + l - 3}{k - 2} + \binom{k + l - 3}{k - 1} = \binom{k + l - 2}{k - 1},$$
+a Pascal-szabály szerint. Végül $\binom{2k-2}{k-1}$ a $(2k-2)$-edik sor egyik eleme, tehát kisebb a sor összegénél, $2^{2k-2} = 4^{k-1}$-nél. $\blacksquare$
+
+A becslés általában **nem éles**. Például $R(3, 4) \le R(2, 4) + R(3, 3) = 4 + 6 = 10$, a pontos érték azonban $9$.
+
+::: kiegeszites
+**Kiegészítés — $R(3, 4) = 9$ (gyakorlati anyag).**
+
+*$R(3, 4) \le 9$.* Tegyük fel indirekt, hogy a $K_9$ egy színezésében nincs piros háromszög és kék $K_4$. Legyen $v$ tetszőleges csúcs.
+
+- Ha $v$-nek legalább $4$ piros szomszédja volna, akkor ezek között nem lehet piros él (az $v$-vel piros háromszöget adna), tehát kék $K_4$-et alkotnának. Így $v$-nek legfeljebb $3$ piros szomszédja van.
+- Ha $v$-nek legalább $6$ kék szomszédja volna, akkor ezek között $R(3,3) = 6$ miatt volna piros háromszög vagy kék háromszög, utóbbi $v$-vel kék $K_4$-et adna. Így legfeljebb $5$ kék szomszédja van.
+
+Mivel $v$-nek $8$ szomszédja van, pontosan $3$ piros és $5$ kék. Ez **minden** csúcsra igaz, tehát a piros élek gráfja $3$-reguláris, $9$ csúccsal. A kézfogási lemma szerint azonban a fokszámösszeg, $9 \cdot 3 = 27$, páros kellene legyen — ellentmondás.
+
+(Általában is igaz: ha $R(k-1, l)$ és $R(k, l-1)$ is páros, akkor a felső becslésben szigorú egyenlőtlenség áll.)
+
+*$R(3, 4) > 8$.* A $K_8$ csúcsait számozzuk körbe $0, 1, \dots, 7$-tel, és $i$-t $j$-vel kössük össze **piros** éllel, ha $j - i \equiv \pm 1$ vagy $4 \pmod 8$ (a nyolcszög oldalai és a négy leghosszabb átló), a többi él legyen kék. Piros háromszög nincs (két piros szomszéd különbsége $\pm 2$, $\pm 3$ vagy $0$ — egyik sem piros). Kék $K_4$ sincs, mert az $\{0, \dots, 7\}$ halmaznak csak két olyan $4$ elemű részhalmaza van, amelyben semelyik két elem nem szomszédos a körön: $\{0, 2, 4, 6\}$ és $\{1, 3, 5, 7\}$, és mindkettőben van egy $4$ különbségű, tehát piros pár.
+:::
+
+A Ramsey-számok meghatározása rendkívül nehéz. Az ismert értékek: $R(3,3) = 6$, $R(3,4) = 9$, $R(3,5) = 14$, $R(4,4) = 18$; az $R(5,5)$ értékét ma sem ismerjük (csak annyit, hogy $43$ és $46$ közé esik). Erdős Pál egy híres mondása szerint ha egy földönkívüli hatalom az $R(5,5)$ kiszámítását követelné tőlünk, a Föld összes számítógépét és matematikusát rá kellene állítani; ha az $R(6,6)$-ot, inkább a támadásra kellene felkészülni.
+
+## 53. Többszínű Ramsey-tételek és a Schur-tétel
+
+Mi történik, ha nem két, hanem több színnel színezünk?
+
+> **Definíció.** Az $R(k_1, k_2, \dots, k_r)$ **Ramsey-szám** a legkisebb olyan $N$, amelyre a $K_N$ éleinek bármely $r$ színnel való színezésében valamely $i$-re van **$i$-edik színű $K_{k_i}$**. Speciálisan $R(a, b, c)$ a legkisebb $N$, amelyre a $K_N$ bármely piros–kék–zöld színezésében van piros $K_a$, kék $K_b$ vagy zöld $K_c$.
+
+> **Tétel (többszínű Ramsey-tétel).** Az $R(k_1, \dots, k_r)$ szám minden $r \ge 1$ és $k_1, \dots, k_r \ge 1$ esetén véges.
+
+*Bizonyítás (színösszevonás).* Indukció $r$ szerint; $r \le 2$-re már láttuk. Legyen $r \ge 3$, és vonjuk össze az utolsó két színt egyetlen „vegyes” színné. Ha
+$$N = R\big(k_1, \dots, k_{r-2}, R(k_{r-1}, k_r)\big),$$
+amely az indukciós feltevés szerint véges (ez $r - 1$ színre vonatkozik), akkor a $K_N$ bármely $r$-színezésében vagy valamely $i \le r - 2$-re van $i$-edik színű $K_{k_i}$, vagy van egy $R(k_{r-1}, k_r)$ csúcsú „vegyes” színű teljes részgráf. Ez utóbbi élei két színt viselnek, tehát benne van $(r-1)$-edik színű $K_{k_{r-1}}$ vagy $r$-edik színű $K_{k_r}$. $\blacksquare$
+
+### Csupa háromszög: $R(3, 3, 3) \le 17$
+
+> **Tétel.** $R(3, 3, 3) \le 17$: a $K_{17}$ éleinek bármely háromszínezésében van egyszínű háromszög.
+
+*Bizonyítás.* Egy $v$ csúcsból $16$ él indul. Mivel $16 > 3 \cdot 5$, a skatulyaelv szerint valamelyik színből, mondjuk pirosból, legalább $6$ él indul, a $v$-t $6$ csúccsal köti össze. Ha e $6$ csúcs között van piros él, akkor az $v$-vel piros háromszöget ad. Ha nincs, akkor ez a $6$ csúcs csak két színnel (kékkel és zölddel) van színezve, és $R(3, 3) = 6$ miatt van köztük egyszínű háromszög. $\blacksquare$
+
+Ismert, hogy valójában $R(3, 3, 3) = 17$ (Greenwood és Gleason, 1955): a $K_{16}$ éleinek van olyan háromszínezése, amelyben nincs egyszínű háromszög. *Mit jelent tehát, hogy $R(3,3,3) = 17$?* Hogy $17$ pontú teljes gráf három színnel színezett éleiben mindig van egyszínű háromszög, $16$ pontúéban viszont nem feltétlenül.
+
+A bizonyítás változtatás nélkül megismételhető $r$ színre. Jelölje $R_r = R(3, 3, \dots, 3)$ ($r$ darab hármas) a megfelelő Ramsey-számot; $R_1 = 3$, $R_2 = 6$.
+
+> **Tétel.** Minden $r \ge 2$ esetén $R_r \le r\,(R_{r-1} - 1) + 2$, és ebből
+> $$R_r \le \lfloor e \cdot r! \rfloor + 1.$$
+
+*Bizonyítás.* Legyen $N = r(R_{r-1} - 1) + 2$. Egy $v$ csúcsból $N - 1 = r(R_{r-1} - 1) + 1$ él indul, így valamelyik színből legalább $R_{r-1}$. Az ezekkel elért csúcsok között vagy van ilyen színű él (és háromszög $v$-vel), vagy legfeljebb $r - 1$ szín szerepel, és az $R_{r-1}$ definíciója szerint van egyszínű háromszög.
+
+A zárt alakhoz legyen $a_r = R_r - 1$; ekkor $a_r \le r\,a_{r-1} + 1$ és $a_1 = 2$. $r!$-sal osztva $\frac{a_r}{r!} \le \frac{a_{r-1}}{(r-1)!} + \frac{1}{r!}$, és mivel $\frac{a_1}{1!} = 2 = \frac{1}{0!} + \frac{1}{1!}$,
+$$\frac{a_r}{r!} \le \sum_{j=0}^{r}\frac{1}{j!} < e.$$
+Az $r!\sum_{j=0}^{r}\frac{1}{j!}$ egész szám, és kisebb $e \cdot r!$-nál, tehát legfeljebb $\lfloor e \cdot r! \rfloor$. $\blacksquare$
+
+(Ugyanez a $\sum \frac{1}{j!}$ összeg jelent meg a fixpontmentes permutációknál, a 8. szakaszban.) Ellenőrzés: $\lfloor 2e \rfloor + 1 = 6$, $\lfloor 6e \rfloor + 1 = 17$, és $r = 4$-re a korlát $66$.
+
+### Felső becslések általános többszínű Ramsey-számokra
+
+Két módszert láttunk, és mindkettő általánosan használható:
+
+- **Színösszevonás:** néhány színt egynek tekintünk, például $R(k_1, k_2, k_3) \le R\big(k_1, R(k_2, k_3)\big)$.
+- **A háromszöges bizonyítás lemásolása:** egy $v$ csúcs éleit színenként szétválogatva, ugyanúgy, mint két színnél, kapjuk, hogy
+$$R(k_1, \dots, k_r) \le \sum_{i=1}^{r} R(k_1, \dots, k_{i-1}, k_i - 1, k_{i+1}, \dots, k_r) - r + 2.$$
+Valóban: ha $N$ a jobb oldal, akkor $v$-ből $N - 1 = \sum_i \big(R(\dots, k_i - 1, \dots) - 1\big) + 1$ él indul, így valamelyik $i$-edik színből legalább $R(\dots, k_i - 1, \dots)$; ezek végpontjai között van $j$-edik színű $K_{k_j}$ valamely $j \ne i$-re, vagy $i$-edik színű $K_{k_i - 1}$, amely $v$-vel $K_{k_i}$-t ad. $r = 2$-re ez az előző szakasz tétele.
+
+*Példa.* $R(3, 3, 4)$-re a második módszer — felhasználva, hogy $R(2, b, c) = R(b, c)$ (az első színből egyetlen él már $K_2$) — azt adja, hogy
+$$R(3, 3, 4) \le R(2, 3, 4) + R(3, 2, 4) + R(3, 3, 3) - 1 = 9 + 9 + 17 - 1 = 34,$$
+míg az első két szín összevonása csak $R(3,3,4) \le R(6, 4) \le \binom{8}{3} = 56$-ot ad.
+
+### Schur tétele
+
+Ramsey tételének egy meglepő számelméleti alkalmazása:
+
+> **Tétel (Schur, 1916).** Minden $r \ge 1$ esetén van olyan $n$, hogy az $\{1, 2, \dots, n\}$ számokat akárhogyan színezzük $r$ színnel, lesz három (nem feltétlenül különböző) **egyszínű** $x, y, z$ szám, amelyre $x + y = z$. Ehhez $n \ge R_r - 1$ elég, így például $n \ge \lfloor e \cdot r! \rfloor$.
+
+*Bizonyítás.* Legyen $n = R_r - 1$, és színezzük az $[n]$ számait $r$ színnel. Tekintsük a $K_{n+1}$ teljes gráfot az $1, 2, \dots, n+1$ csúcsokon, és az $\{i, j\}$ élt színezzük az $|i - j| \in [n]$ szám színére. Mivel $n + 1 = R_r$, van egyszínű háromszög, mondjuk az $i < j < k$ csúcsokon. Legyen
+$$x = j - i, \qquad y = k - j, \qquad z = k - i.$$
+Ezek a háromszög három élének színét viselik, tehát egyszínűek, és $x + y = z$. $\blacksquare$
+
+*Példa.* Két színre $R_2 - 1 = 5$: az $\{1, \dots, 5\}$ bármely kétszínezésében van egyszínű megoldás. Az $\{1, 2, 3, 4\}$ viszont kiszínezhető jól: az $\{1, 4\}$ legyen piros, a $\{2, 3\}$ kék ($1 + 1 = 2$, $1 + 3 = 4$, $2 + 2 = 4$ mind vegyes színű). Az $5$ tehát a legkisebb jó $n$ két színre.
+
+## 54. Extremális kérdések: a Mantel-tétel
+
+A Ramsey-tétel azt mondja, hogy elég nagy gráfban (vagy a komplementerében) **mindig** van nagy teljes részgráf. Most egy rokon, de másfajta kérdést teszünk fel: **hány éle lehet** egy $n$ csúcsú egyszerű gráfnak, ha nem tartalmaz egy adott $H$ részgráfot? Ezt a maximumot $\mathrm{ex}(n, H)$-val jelöljük, és az ilyen kérdéseket **extremális gráfelméleti** kérdéseknek nevezzük. Az első és legegyszerűbb eset: $H$ a háromszög.
+
+Egy háromszögmentes gráfra jó példa a páros gráf; közülük a legtöbb éle a lehető legkiegyensúlyozottabb teljes páros gráfnak, a $K_{\lfloor n/2 \rfloor, \lceil n/2 \rceil}$-nek van, összesen $\lfloor n/2 \rfloor \cdot \lceil n/2 \rceil = \lfloor n^2/4 \rfloor$. Kiderül, hogy ennél jobb nincs.
+
+> **Tétel (Mantel, 1907).** Egy $n$ csúcsú, háromszöget nem tartalmazó egyszerű gráfnak legfeljebb $\left\lfloor \dfrac{n^2}{4} \right\rfloor$ éle van. Egyenlőség csak a $K_{\lfloor n/2 \rfloor, \lceil n/2 \rceil}$ teljes páros gráfra áll fenn.
+
+*Bizonyítás.* Legyen $G$ háromszögmentes, $v$ egy maximális, $\Delta$ fokú csúcsa, és $N(v)$ a szomszédainak halmaza. Az $N(v)$ csúcsai között nincs él, mert egy ilyen él $v$-vel háromszöget alkotna. Legyen $A = V \setminus N(v)$; ekkor $|A| = n - \Delta$. Mivel $N(v)$ független, **minden élnek van végpontja $A$-ban**, így
+$$e(G) \le \sum_{a \in A} \deg(a) \le (n - \Delta)\,\Delta \le \frac{n^2}{4},$$
+ahol az utolsó lépés a számtani és mértani közép közötti egyenlőtlenség: $\sqrt{(n - \Delta)\Delta} \le \frac{n}{2}$. Mivel $e(G)$ egész, $e(G) \le \lfloor n^2/4 \rfloor$.
+
+*Az egyenlőség esete (kiegészítés Mantel tételéhez).* Ha $e(G) = \lfloor n^2/4 \rfloor$, akkor a fenti láncban mindenhol egyenlőség áll (az utolsó lépésben az egész részre). Az első egyenlőtlenség csak úgy lehet egyenlőség, ha **$A$-n belül sincs él** (egy ilyen élt kétszer számoltunk volna). A második csak úgy, ha minden $a \in A$ foka $\Delta = |N(v)|$. Tehát $G$ páros gráf az $A$ és $N(v)$ osztályokkal, és minden $A$-beli csúcs $N(v)$ összes csúcsával szomszédos: $G = K_{n-\Delta, \Delta}$. Végül $(n - \Delta)\Delta = \lfloor n^2/4 \rfloor$ csak $\Delta \in \{\lfloor n/2 \rfloor, \lceil n/2 \rceil\}$ esetén teljesül. $\blacksquare$
+
+::: kiegeszites
+**Kiegészítés — egy második bizonyítás fokszámokkal.** Ha $uv$ él, akkor $u$-nak és $v$-nek nincs közös szomszédja (különben háromszög volna), tehát $\deg(u) + \deg(v) \le n$. Ezt minden élre összeadva a bal oldalon minden $w$ csúcs $\deg(w)$-szer szerepel (egyszer minden rá illeszkedő élnél):
+$$\sum_{w \in V} \deg(w)^2 = \sum_{uv \in E}\big(\deg(u) + \deg(v)\big) \le n \cdot e.$$
+A számtani és négyzetes közép közötti egyenlőtlenség (Cauchy–Schwarz) szerint
+$$\sum_{w}\deg(w)^2 \ge \frac{1}{n}\Big(\sum_w \deg(w)\Big)^2 = \frac{4e^2}{n}.$$
+Összevetve $\frac{4e^2}{n} \le ne$, azaz $e \le \frac{n^2}{4}$. $\blacksquare$
+:::
+
+### Négy hosszú kört nem tartalmazó gráfok
+
+Ha háromszög helyett a $C_4$-et tiltjuk, a kép gyökeresen megváltozik: a teljes páros gráf már tele van négyszögekkel, és kiderül, hogy a $C_4$-mentes gráfoknak nagyságrendileg kevesebb élük lehet.
+
+> **Tétel.** Ha egy $n$ csúcsú egyszerű gráf nem tartalmaz $4$ hosszú kört, akkor élszáma
+> $$e \le \frac{n}{4}\left(1 + \sqrt{4n - 3}\right).$$
+
+*Bizonyítás (kettős leszámlálás).* Számoljuk meg a „cseresznyéket”: az olyan $(w, \{x, y\})$ párokat, ahol $x \ne y$ a $w$ csúcs két szomszédja (egy $2$ hosszú út, $w$ a közepe). Egy $w$ csúcsnál $\binom{\deg(w)}{2}$ cseresznye van. Másrészt egy $\{x, y\}$ párhoz legfeljebb **egy** $w$ tartozhat: ha két különböző $w$ és $w'$ is szomszédja volna $x$-nek és $y$-nak is, akkor $x\,w\,y\,w'$ egy $4$ hosszú kör volna. Tehát
+$$\sum_{w \in V}\binom{\deg(w)}{2} \le \binom{n}{2}.$$
+A bal oldal $\frac12\big(\sum \deg(w)^2 - \sum \deg(w)\big)$, ahol $\sum \deg(w) = 2e$ (kézfogási lemma), és a számtani és négyzetes közép közötti (Cauchy–Schwarz-) egyenlőtlenség szerint $\sum \deg(w)^2 \ge \frac1n\big(\sum \deg(w)\big)^2 = \frac{4e^2}{n}$. A bal oldal tehát legalább $\frac12\left(\frac{4e^2}{n} - 2e\right)$, így
+$$\frac{4e^2}{n} - 2e \le n(n-1), \qquad 4e^2 - 2ne - n^2(n-1) \le 0.$$
+Ez $e$-ben másodfokú egyenlőtlenség; a nagyobbik gyöknél nem lehet nagyobb:
+$$e \le \frac{2n + \sqrt{4n^2 + 16n^2(n-1)}}{8} = \frac{n}{4}\left(1 + \sqrt{4n - 3}\right). \ \blacksquare$$
+
+Tehát $\mathrm{ex}(n, C_4)$ nagyságrendje legfeljebb $\frac12 n^{3/2}$, szemben a háromszögmentes gráfok $\frac14 n^2$-ével. (Ismert, hogy ez a nagyságrend helyes: vannak $C_4$-mentes gráfok körülbelül $\frac12 n^{3/2}$ éllel.)
+
+## 55. Turán tétele
+
+Mantel tétele a háromszögről, vagyis a $K_3$-ról szólt. Turán Pál 1941-ben megválaszolta a kérdést tetszőleges teljes gráfra: hány éle lehet egy $n$ csúcsú gráfnak, ha nem tartalmaz $K_{r+1}$-et? Ehhez a páros gráfok általánosítására van szükség.
+
+> **Definíció.**
+>
+> - Egy gráf **$r$ osztályú** (vagy $r$-osztályú), ha a csúcshalmaza felbontható $r$ (esetleg üres) diszjunkt **osztályra** úgy, hogy azonos osztályba tartozó csúcsok között nincs él. (A $2$ osztályú gráfok éppen a páros gráfok.)
+> - Egy $r$ osztályú gráf **teljes $r$ osztályú**, ha bármely két **különböző** osztályba tartozó csúcs össze van kötve.
+> - A **Turán-gráf**, $T(n, r)$, az az $n$ csúcsú teljes $r$ osztályú gráf, amelyben az osztályok mérete a lehető legkiegyenlítettebb: mindegyik $\lfloor n/r \rfloor$ vagy $\lceil n/r \rceil$ elemű.
+
+Egy gráf pontosan akkor $r$ osztályú, ha $\chi(G) \le r$: az osztályok éppen a színosztályok. Egy $r$ osztályú gráf **nem tartalmaz $K_{r+1}$-et**, hiszen $r + 1$ csúcs közül a skatulyaelv szerint kettő azonos osztályba esik, és azok nincsenek összekötve.
+
+A $T(n, r)$ élszáma: ha az osztályok mérete $n_1, \dots, n_r$, akkor
+$$e\big(T(n, r)\big) = \binom{n}{2} - \sum_{i=1}^{r}\binom{n_i}{2},$$
+hiszen a teljes gráfból éppen az osztályokon belüli éleket hagyjuk el.
+
+*Példák.* A $T(10, 5)$ öt kételemű osztályból áll: élszáma $\binom{10}{2} - 5 \cdot 1 = 45 - 5 = 40$. A $T(11, 4)$ osztályai $3, 3, 3, 2$ eleműek: élszáma $\binom{11}{2} - 3\binom{3}{2} - \binom{2}{2} = 55 - 9 - 1 = 45$. A $T(n, 2)$ a $K_{\lfloor n/2 \rfloor, \lceil n/2 \rceil}$, a Mantel-tétel extremális gráfja.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
+  edge/.style={draw=black!30, thin},
+  cls/.style={draw=black!70, thick, rounded corners=8pt}
+]
+  \coordinate (a1) at (-1.2, 3.0);
+  \coordinate (a2) at (0, 3.0);
+  \coordinate (a3) at (1.2, 3.0);
+  \coordinate (b1) at (3.0, 1.2);
+  \coordinate (b2) at (3.0, 0);
+  \coordinate (b3) at (3.0, -1.2);
+  \coordinate (c1) at (-1.2, -3.0);
+  \coordinate (c2) at (0, -3.0);
+  \coordinate (c3) at (1.2, -3.0);
+  \coordinate (d1) at (-3.0, 0.6);
+  \coordinate (d2) at (-3.0, -0.6);
+  \foreach \x in {a1,a2,a3} { \foreach \y in {b1,b2,b3,c1,c2,c3,d1,d2} { \draw[edge] (\x) -- (\y); } }
+  \foreach \x in {b1,b2,b3} { \foreach \y in {c1,c2,c3,d1,d2} { \draw[edge] (\x) -- (\y); } }
+  \foreach \x in {c1,c2,c3} { \foreach \y in {d1,d2} { \draw[edge] (\x) -- (\y); } }
+  \draw[cls] (-1.65, 2.6) rectangle (1.65, 3.4);
+  \draw[cls] (2.6, -1.65) rectangle (3.4, 1.65);
+  \draw[cls] (-1.65, -3.4) rectangle (1.65, -2.6);
+  \draw[cls] (-3.4, -1.05) rectangle (-2.6, 1.05);
+  \foreach \p in {a1,a2,a3,b1,b2,b3,c1,c2,c3,d1,d2} { \node[pt] at (\p) {}; }
+  \node at (0, -4.1) {\footnotesize A $T(11, 4)$ Turán-gráf: osztályok mérete $3, 3, 3, 2$; minden különböző osztálybeli pár össze van kötve ($45$ él).};
+\end{tikzpicture}
+\end{center}
+
+> **Állítás.** Az $n$ csúcsú $r$ osztályú gráfok közül a $T(n, r)$ Turán-gráfnak van a legtöbb éle.
+
+*Bizonyítás.* Legyen $G$ egy maximális élszámú $n$ csúcsú $r$ osztályú gráf. $G$ teljes $r$ osztályú, hiszen ha két különböző osztálybeli csúcs nem volna összekötve, az élt hozzávéve $r$ osztályú gráf maradna, több éllel. Tegyük fel, hogy van két osztály, amelyek mérete $a$ és $b$, ahol $a \ge b + 2$. Tegyünk át egy $x$ csúcsot a nagyobbik osztályból a kisebbikbe (és kössük össze a régi osztálytársaival). Az $x$ elveszíti a $b$ elemű osztály felé futó $b$ élét, és nyer $a - 1$ új élt a régi osztálya felé; a többi él nem változik. Az élszám tehát $(a - 1) - b \ge 1$-gyel nő — ellentmondás. Így bármely két osztály mérete legfeljebb $1$-gyel tér el, vagyis $G = T(n, r)$. (Az ilyen kiegyenlített osztálymérethalmaz egyértelmű: $n$-et $r$ részre osztva a maradéknyi osztály $\lceil n/r \rceil$, a többi $\lfloor n/r \rfloor$ elemű.) $\blacksquare$
+
+Ez az állítás az $r$ osztályú gráfok között adja meg a maximumot. A meglepő az, hogy a $K_{r+1}$-et nem tartalmazó gráfok között is ez a maximum — pedig ezek sokkal többen vannak (például az ötszög háromszögmentes, de nem páros).
+
+> **Tétel (Turán, 1941).** Ha egy $n$ csúcsú egyszerű gráf nem tartalmaz $K_{r+1}$-et, akkor élszáma legfeljebb $e\big(T(n, r)\big)$, és egyenlőség csak a $T(n, r)$ Turán-gráfra áll fenn. Speciálisan
+> $$e(G) \le \left(1 - \frac{1}{r}\right)\frac{n^2}{2}.$$
+
+Az $r = 2$ eset a Mantel-tétel. A tételt az előadáson nem bizonyítottuk.
+
+::: kiegeszites
+**Kiegészítés — a felső korlát bizonyítása** (indukció $n$ szerint, $r$ rögzített). Ha $n \le r$, akkor $T(n, r) = K_n$, és nincs mit bizonyítani. Legyen $n > r$, és $G$ egy $K_{r+1}$-mentes, $n$ csúcsú gráf **maximális** élszámmal. Ekkor $G$ tartalmaz $K_r$-et: $G$ nem teljes (hiszen $n \ge r + 1$), és bármely új élt hozzávéve keletkezne egy $K_{r+1}$, amelyből az új él egyik végpontját elhagyva egy $G$-beli $K_r$ marad.
+
+Legyen $Q$ egy $K_r$ csúcshalmaza. A $G$ éleit három csoportba osztjuk:
+
+- a $Q$-n belül $\binom{r}{2}$ él van;
+- egy $Q$-n kívüli csúcs legfeljebb $r - 1$ $Q$-beli csúccsal szomszédos (különben $K_{r+1}$ volna), így a $Q$ és a többi csúcs között legfeljebb $(n - r)(r - 1)$ él van;
+- a $G - Q$ gráf $n - r$ csúcsú és $K_{r+1}$-mentes, így az indukciós feltevés szerint legfeljebb $e\big(T(n - r, r)\big)$ éle van.
+
+Összesen $e(G) \le \binom{r}{2} + (n - r)(r - 1) + e\big(T(n-r, r)\big)$. Ez éppen $e\big(T(n, r)\big)$: ha a $T(n - r, r)$ minden osztályához egy új csúcsot adunk, a $T(n, r)$-et kapjuk, és az új élek: az $r$ új csúcs közötti $\binom{r}{2}$ él, valamint minden régi csúcsból $r - 1$ él a másik osztályba került új csúcsokhoz.
+
+A $(1 - \frac1r)\frac{n^2}{2}$ korlát: a $\sum_i \binom{n_i}{2}$ összeg $\sum_i n_i = n$ mellett akkor a legkisebb, ha minden $n_i = \frac{n}{r}$ (konvexitás), így $e\big(T(n,r)\big) \le \binom{n}{2} - r\binom{n/r}{2} = \frac{n^2}{2}\left(1 - \frac{1}{r}\right)$. $\blacksquare$
+:::
+
+A tétel ellenőrzéseképpen: $n = 11$, $r = 4$ esetén $\left(1 - \frac14\right)\frac{121}{2} = 45{,}375$, és valóban $e\big(T(11, 4)\big) = 45$.
+
+## 56. Halmazrendszerek: a Sperner-tétel és az LYM-egyenlőtlenség
+
+Az utolsó szakaszokban a gráfok helyett **halmazrendszerekkel** foglalkozunk. Egy $[n]$ alaphalmaz részhalmazaiból álló $\mathcal{F}$ családot **halmazrendszernek** nevezünk. (Ha minden tag kételemű, ez éppen egy gráf élhalmaza — a halmazrendszer a gráf általánosítása.) Az extremális kérdés itt: legfeljebb hány tagja lehet egy halmazrendszernek, ha a tagok bizonyos tiltott viszonyban nem állhatnak egymással?
+
+> **Definíció (Sperner-rendszer).** Az $\mathcal{F}$ halmazrendszer **Sperner-rendszer** (antilánc), ha egyik tagja sem része egy másiknak: bármely két különböző $A, B \in \mathcal{F}$ esetén $A \not\subseteq B$.
+
+*Példa.* Egy $k$ elemű halmaz nem lehet része egy másik $k$ eleműnek, ezért az $[n]$ **összes $k$ elemű részhalmaza** Sperner-rendszert alkot; ennek $\binom{n}{k}$ tagja van. Ez $k = \lfloor n/2 \rfloor$ esetén a legnagyobb: a Pascal-háromszög sorai közepén állnak a legnagyobb számok.
+
+> **Tétel (Sperner, 1928).** Ha $\mathcal{F}$ az $[n]$ részhalmazaiból álló Sperner-rendszer, akkor
+> $$|\mathcal{F}| \le \binom{n}{\lfloor n/2 \rfloor}.$$
+
+A tétel tehát azt mondja, hogy a fenti „középső szint” a lehető legjobb. Például
+
+- **páros, $2m$ elemű** alaphalmaz esetén a maximális méretű Sperner-rendszer az összes $m$ elemű részhalmaz családja, $\binom{2m}{m}$ taggal;
+- **páratlan, $2m + 1$ elemű** alaphalmaz esetén az összes $m$ elemű, vagy az összes $m + 1$ elemű részhalmaz családja, $\binom{2m+1}{m} = \binom{2m+1}{m+1}$ taggal.
+
+(Ismert, hogy más maximális méretű Sperner-rendszer nincs; ezt nem bizonyítjuk.)
+
+A tételt egy erősebb egyenlőtlenségből vezetjük le, amely a különböző méretű tagokat „súlyozva” számolja.
+
+> **Tétel (LYM-egyenlőtlenség; Lubell, Yamamoto, Meshalkin).** Ha $\mathcal{F}$ az $[n]$ részhalmazaiból álló Sperner-rendszer, akkor
+> $$\sum_{A \in \mathcal{F}} \frac{1}{\binom{n}{|A|}} \le 1.$$
+
+*Bizonyítás (kettős leszámlálás).* Az $[n]$ elemeinek egy $\pi = (\pi_1, \pi_2, \dots, \pi_n)$ permutációjának **kezdőszeletei** az
+$$\emptyset \subset \{\pi_1\} \subset \{\pi_1, \pi_2\} \subset \dots \subset \{\pi_1, \dots, \pi_n\} = [n]$$
+halmazok. Számoljuk meg azokat a $(\pi, A)$ párokat, ahol $\pi$ permutáció, $A \in \mathcal{F}$, és $A$ a $\pi$ egy kezdőszelete.
+
+- *Permutációnként:* egy $\pi$ kezdőszeletei közül bármely kettő közül az egyik része a másiknak, így $\mathcal{F}$-ből **legfeljebb egy** lehet köztük. A párok száma tehát legfeljebb $n!$.
+- *Halmazonként:* egy $|A| = k$ elemű halmaz pontosan azoknak a permutációknak kezdőszelete, amelyek először $A$ elemeit sorolják fel valamilyen sorrendben ($k!$ lehetőség), aztán a többit ($(n-k)!$ lehetőség). A párok száma tehát $\sum_{A \in \mathcal{F}} |A|!\,(n - |A|)!$.
+
+Így $\sum_{A \in \mathcal{F}} |A|!\,(n - |A|)! \le n!$, és $n!$-sal osztva éppen az állítást kapjuk. $\blacksquare$
+
+*A Sperner-tétel bizonyítása az LYM-ből.* Minden $k$-ra $\binom{n}{k} \le \binom{n}{\lfloor n/2 \rfloor}$, ezért
+$$\frac{|\mathcal{F}|}{\binom{n}{\lfloor n/2 \rfloor}} = \sum_{A \in \mathcal{F}} \frac{1}{\binom{n}{\lfloor n/2 \rfloor}} \le \sum_{A \in \mathcal{F}} \frac{1}{\binom{n}{|A|}} \le 1. \ \blacksquare$$
+
+Az LYM-egyenlőtlenség ennél többet is mond: ha egy Sperner-rendszerben vannak „szélső” (nagyon kicsi vagy nagyon nagy) tagok, azok a kis $\binom{n}{|A|}$ nevező miatt sokkal többet „fogyasztanak” a rendelkezésre álló $1$-ből, mint a középsők.
+
+## 57. A Sperner-tétel második bizonyítása: láncok és párosítások
+
+Az előző bizonyításban a permutációk kezdőszeletei **láncot** alkottak.
+
+> **Definíció.** Egy $A_1 \subset A_2 \subset \dots \subset A_t$ halmazsorozatot **láncnak** nevezünk.
+
+A kulcsmegfigyelés: **egy Sperner-rendszernek egy lánccal legfeljebb egy közös tagja lehet**, hiszen a lánc bármely két tagja közül az egyik része a másiknak. Ha tehát az $[n]$ összes részhalmazát fel tudjuk osztani $L$ darab diszjunkt láncra, akkor minden Sperner-rendszernek legfeljebb $L$ tagja van. A Sperner-tételhez elég tehát a következő.
+
+> **Tétel.** Az $[n]$ összes részhalmaza felosztható $\binom{n}{\lfloor n/2 \rfloor}$ darab diszjunkt láncra.
+
+*Bizonyítás (a Hall-tétellel).* Jelölje $\mathcal{L}_k$ a $k$ elemű részhalmazok családját (a $k$-adik **szintet**), és legyen $m = \lfloor n/2 \rfloor$. Tekintsük azt a páros gráfot, amelynek két osztálya $\mathcal{L}_k$ és $\mathcal{L}_{k+1}$, és egy $A \in \mathcal{L}_k$ és $B \in \mathcal{L}_{k+1}$ akkor szomszédos, ha $A \subset B$.
+
+*Ha $k < m$, akkor van $\mathcal{L}_k$-t fedő párosítás.* Egy $k$ elemű halmaznak $n - k$ darab $(k+1)$ elemű bővítése van, egy $(k+1)$ elemű halmaznak $k + 1$ darab $k$ elemű része. Ha $\mathcal{X} \subseteq \mathcal{L}_k$, akkor az $\mathcal{X}$-ből induló élek száma $|\mathcal{X}|(n - k)$, és ezek mind $N(\mathcal{X})$-be futnak, amelynek minden eleme legfeljebb $k + 1$ élt fogad. Így
+$$|\mathcal{X}|(n - k) \le |N(\mathcal{X})|(k + 1), \qquad |N(\mathcal{X})| \ge \frac{n - k}{k + 1}|\mathcal{X}| \ge |\mathcal{X}|,$$
+mert $k \le m - 1$ miatt $k + 1 \le n - k$. A Hall-feltétel teljesül, tehát a Hall-tétel szerint van $\mathcal{L}_k$-t fedő párosítás. (Ugyanez a gondolatmenet, mint az $r$-reguláris páros gráfoknál a 47. szakaszban.)
+
+*Ha $k > m$, akkor van $\mathcal{L}_k$-t fedő párosítás $\mathcal{L}_{k-1}$-be.* Ez az előzőből komplementerképzéssel adódik ($A \mapsto [n] \setminus A$ a $k$-adik szintet az $(n-k)$-adikba viszi, és $n - k < n - m$, vagyis $n - k \le \lceil n/2 \rceil - 1$; a fenti számolás erre is működik).
+
+Vegyük ezeknek a párosításoknak az unióját: minden $k < m$-re egy $\mathcal{L}_k \to \mathcal{L}_{k+1}$, minden $k > m$-re egy $\mathcal{L}_k \to \mathcal{L}_{k-1}$ párosítást. A kapott gráfban minden él két szomszédos szint között fut, és minden halmaznak **legfeljebb egy** szomszédja van a felette és legfeljebb egy az alatta levő szinten. A komponensek tehát a szinteken monoton haladó utak, vagyis **láncok**. Minden komponens pontosan egy $\mathcal{L}_m$-beli halmazt tartalmaz: egy $m$ alatti halmazból mindig van lépés felfelé, egy $m$ feletti halmazból mindig van lépés lefelé, így minden komponens eléri az $m$-edik szintet, egy monoton lánc pedig csak egyszer. A láncok száma tehát $|\mathcal{L}_m| = \binom{n}{m}$. $\blacksquare$
+
+*Példa ($n = 3$).* Az $\emptyset \to \{1\}$ párosítás, a $\{1,2\} \to \{1\}$, $\{2,3\} \to \{2\}$, $\{1,3\} \to \{3\}$ párosítás és a $\{1,2,3\} \to \{1,2\}$ párosítás a következő $3 = \binom{3}{1}$ láncot adja:
+$$\emptyset \subset \{1\} \subset \{1,2\} \subset \{1,2,3\}, \qquad \{2\} \subset \{2,3\}, \qquad \{3\} \subset \{1,3\}.$$
+
+## 58. Metsző halmazrendszerek: az Erdős–Ko–Rado-tétel
+
+A Sperner-rendszereknél a tiltott viszony a tartalmazás volt. Most egy másik természetes megszorítást vizsgálunk: a tagok közül semelyik kettő ne legyen **diszjunkt**. Ha például egy bizottságrendszerben bármely két bizottságnak kell legyen közös tagja (hogy információt cserélhessenek), legfeljebb hány bizottság lehet?
+
+> **Definíció.** Az $\mathcal{F}$ halmazrendszer **metsző**, ha bármely két tagjának van közös eleme: $A \cap B \ne \emptyset$ minden $A, B \in \mathcal{F}$-re.
+
+Ha a tagok mérete tetszőleges, a kérdés könnyű. Az $[n]$ részhalmazai $2^{n-1}$ darab $\{A, [n] \setminus A\}$ komplementerpárba rendezhetők, és egy metsző rendszer minden párból legfeljebb egy halmazt tartalmazhat (a két halmaz diszjunkt). Tehát $|\mathcal{F}| \le 2^{n-1}$, és ezt például az $1$-et tartalmazó összes részhalmaz el is éri.
+
+Érdekesebb a kérdés, ha minden tag **ugyanakkora**, $k$ elemű. Ha $k > n/2$, akkor bármely két $k$ elemű halmaz metszi egymást, így az összes, $\binom{n}{k}$ darab $k$ elemű halmaz metsző rendszert alkot. Ha $k \le n/2$, egy természetes metsző rendszer a **csillag**: egy rögzített elemet tartalmazó összes $k$ elemű halmaz. Ennek $\binom{n-1}{k-1}$ tagja van.
+
+> **Tétel (Erdős–Ko–Rado, 1961).** Ha $k \le n/2$, és $\mathcal{F}$ az $[n]$ halmaz $k$ elemű részhalmazaiból álló metsző rendszer, akkor
+> $$|\mathcal{F}| \le \binom{n-1}{k-1}.$$
+
+*Bizonyítás (Katona Gyula ciklikus módszere).* Helyezzük el az $[n]$ elemeit egy kör mentén valamilyen sorrendben; az ilyen **ciklikus sorrendek** száma $(n-1)!$. Egy ciklikus sorrendben **ívnek** nevezünk egy $k$ egymást követő elemből álló halmazt; ív pontosan $n$ darab van.
+
+*Lemma.* Egy rögzített ciklikus sorrendben legfeljebb $k$ ív tartozhat $\mathcal{F}$-hez.
+
+Ha egy ív sincs $\mathcal{F}$-ben, kész vagyunk. Különben legyen $I \in \mathcal{F}$ egy ív, elemei a körön az $1., 2., \dots, k.$ helyen. Minden más $\mathcal{F}$-beli ív metszi $I$-t, tehát vagy $I$ belsejében kezdődik, vagy $I$ belsejében végződik. Minden $i = 1, \dots, k - 1$-re tekintsük azt az ívet, amely az $i$-edik helyen **végződik**, és azt, amely az $(i+1)$-edik helyen **kezdődik**. Ez a kettő együtt $2k \le n$ egymást követő helyet fed le, tehát **diszjunkt**, így közülük legfeljebb egy lehet $\mathcal{F}$-ben. Az $I$-n kívül minden $I$-t metsző ív ilyen párok valamelyikébe tartozik, így $\mathcal{F}$-ben legfeljebb $1 + (k - 1) = k$ ív van. $\square$
+
+*A kettős leszámlálás.* Számoljuk meg azokat a $(\sigma, A)$ párokat, ahol $\sigma$ ciklikus sorrend és $A \in \mathcal{F}$ egy íve.
+
+- A lemma szerint ez legfeljebb $k \cdot (n-1)!$.
+- Egy rögzített $k$ elemű $A$ halmaz pontosan $k!\,(n-k)!$ ciklikus sorrendben ív: $A$ elemeit egy blokkba rendezzük ($k!$-féleképpen), majd a blokkot és a maradék $n - k$ elemet körbe rendezzük ($(n - k)!$-féleképpen).
+
+Tehát $|\mathcal{F}| \cdot k!\,(n-k)! \le k\,(n-1)!$, ahonnan
+$$|\mathcal{F}| \le \frac{k\,(n-1)!}{k!\,(n-k)!} = \frac{(n-1)!}{(k-1)!\,(n-k)!} = \binom{n-1}{k-1}. \ \blacksquare$$
+
+A $k \le n/2$ feltétel a lemmában kellett: ott használtuk, hogy két ív, amely együtt $2k$ helyet fed le, diszjunkt. *Példa:* $n = 4$, $k = 2$ esetén a korlát $\binom{3}{1} = 3$; ezt a $\{12, 13, 14\}$ csillag, de a $\{12, 13, 23\}$ „háromszög” is eléri. ($k < n/2$ esetén a csillagok az egyetlen maximális rendszerek; ezt nem bizonyítjuk.)
+
+## 59. Lineáris algebrai bizonyítások
+
+A 11. szakaszban már láttuk, hogy a lineáris algebra a kombinatorikában is hasznos: a rekurzió megoldásai alteret alkottak, és a dimenzió megmondta, hány szabad paraméter van. Most egy másik, nagyon erős alkalmazást mutatunk be: a **dimenzióérvet**.
+
+**A módszer.** Ha egy halmazrendszer minden tagjához hozzá tudunk rendelni egy vektort egy $n$ dimenziós vektortérben úgy, hogy ezek a vektorok **lineárisan függetlenek** legyenek, akkor a rendszernek **legfeljebb $n$ tagja** van — hiszen egy $n$ dimenziós térben legfeljebb $n$ lineárisan független vektor van.
+
+Egy $A \subseteq [n]$ halmaz **karakterisztikus vektora** az a $v_A \in \{0,1\}^n$ vektor, amelynek $i$-edik koordinátája $1$, ha $i \in A$, és $0$ különben (ez a 2. szakasz $0$–$1$ sorozata). A skaláris szorzat kombinatorikai jelentése:
+$$v_A \cdot v_B = \sum_{i=1}^{n} (v_A)_i (v_B)_i = |A \cap B|.$$
+
+> **Tétel („páratlan város”).** Egy városban $n$ lakos klubokat alapít, a következő szabályokkal: minden klubnak **páratlan** sok tagja van, és bármely két különböző klubnak **páros** sok közös tagja. Ekkor legfeljebb $n$ klub lehet.
+
+*Bizonyítás.* Dolgozzunk a kételemű $\mathbb{Z}_2 = \{0, 1\}$ test fölött (modulo $2$ számolunk). Legyenek a klubok $A_1, \dots, A_m \subseteq [n]$, karakterisztikus vektoraik $v_1, \dots, v_m \in \mathbb{Z}_2^n$. A feltételek szerint modulo $2$
+$$v_i \cdot v_i = |A_i| \equiv 1, \qquad v_i \cdot v_j = |A_i \cap A_j| \equiv 0 \quad (i \ne j).$$
+Tegyük fel, hogy $\lambda_1v_1 + \dots + \lambda_mv_m = 0$ valamely $\lambda_i \in \mathbb{Z}_2$ együtthatókkal. Szorozzuk meg skalárisan $v_j$-vel: a bal oldalon csak a $j$-edik tag marad, $\lambda_j \cdot 1 = 0$, tehát $\lambda_j = 0$. Ez minden $j$-re igaz, így a vektorok lineárisan függetlenek a $\mathbb{Z}_2^n$ $n$ dimenziós vektortérben, és ezért $m \le n$. $\blacksquare$
+
+A korlát éles: az $n$ darab egyelemű klub megfelel a szabályoknak. A tétel tisztán kombinatorikus megfogalmazású, mégsem ismert rá egyszerű, lineáris algebra nélküli bizonyítás. Hogy a paritási feltétel lényeges, mutatja a „páros város”: ha minden klub mérete **páros** és minden metszet páros, akkor akár $2^{\lfloor n/2 \rfloor}$ klub is lehet (osszuk a lakosokat párokba, és minden klub párok uniója legyen).
+
+> **Tétel (Fisher-egyenlőtlenség, általánosított alak).** Legyen $\lambda \ge 1$, és $A_1, \dots, A_m \subseteq [n]$ különböző halmazok, amelyek közül bármely kettőnek **pontosan $\lambda$** közös eleme van. Ekkor $m \le n$.
+
+*Bizonyítás.* Most a valós számok fölött dolgozunk, a $v_i$ karakterisztikus vektorokkal. Tegyük fel, hogy $\sum_i c_iv_i = 0$. Ennek önmagával vett skaláris szorzata
+$$0 = \Big|\sum_i c_iv_i\Big|^2 = \sum_i c_i^2|A_i| + \sum_{i \ne j} c_ic_j\lambda = \lambda\Big(\sum_i c_i\Big)^2 + \sum_i c_i^2\big(|A_i| - \lambda\big).$$
+Minden $|A_i| \ge \lambda$ (hiszen $A_i$ tartalmaz egy $\lambda$ elemű metszetet), és **legfeljebb egy** $i$-re lehet $|A_i| = \lambda$: ha két ilyen volna, mindkettő a $\lambda$ elemű közös részükkel egyezne, tehát egyenlők volnának. Így az összeg minden tagja nemnegatív, tehát mind $0$: $\sum_i c_i = 0$, és $c_i = 0$ minden olyan $i$-re, amelyre $|A_i| > \lambda$. Ha van egy $i_0$ index, amelyre $|A_{i_0}| = \lambda$, akkor a többi $c_i$ nulla volta miatt $c_{i_0} = \sum_i c_i = 0$. Tehát minden $c_i = 0$: a vektorok lineárisan függetlenek $\mathbb{R}^n$-ben, és $m \le n$. $\blacksquare$
+
+A két bizonyítás közös gondolata: a kombinatorikus feltételek (méretek, metszetek) a **skaláris szorzatokról** szólnak, a skaláris szorzatokból pedig a lineáris függetlenség kiolvasható.
+
+## A IV. rész összefoglalása
+
+- **Többszörös összefüggőség:** $G$ $k$-szorosan pontösszefüggő, ha legalább $k+1$ csúcsú, és legfeljebb $k - 1$ csúcs elhagyása után összefüggő marad; $k$-szorosan élösszefüggő, ha legfeljebb $k - 1$ él elhagyása után összefüggő marad. $\kappa(G)$ és $\kappa'(G)$ a legnagyobb ilyen $k$ (nem teljes gráfra: a legkisebb elvágó csúcs-, illetve élhalmaz mérete). **Whitney:** $\kappa \le \kappa' \le \delta$; tehát $k$-szoros pontösszefüggőségből $k$-szoros élösszefüggőség következik, fordítva nem (két $K_6$ egy közös csúccsal: $\kappa = 1$, $\kappa' = 5$). Páros fokú gráfban $\kappa'$ páros.
+- **Menger-tételek:** két csúcs közötti éldiszjunkt utak maximális száma = az elválasztó élhalmazok minimális mérete; nem szomszédos csúcsok közötti pontdiszjunkt utak maximális száma = az elválasztó csúcshalmazok minimális mérete. Ebből: $k$-szorosan él-/pontösszefüggő $\iff$ bármely két csúcs között $k$ él-/pontdiszjunkt út. $n \ge 3$-ra: $2$-szeresen összefüggő $\iff$ bármely két csúcs (bármely két él) közös körön van.
+- **Ramsey:** $R(k, l)$ a legkisebb $N$, amelyre a $K_N$ bármely kétszínezésében van piros $K_k$ vagy kék $K_l$. $R(3,3) = 6$, $R(3,4) = 9$, $R(4,4) = 18$. $R(k,l) \le R(k-1,l) + R(k,l-1)$, $R(k,l) \le \binom{k+l-2}{k-1}$. Egy konkrét színezés csak alsó becslést ad.
+- **Többszínű Ramsey:** $R(3,3,3) = 17$; $R_r \le r(R_{r-1} - 1) + 2$, $R_r \le \lfloor e \cdot r! \rfloor + 1$. Felső becslések: színösszevonás, illetve $R(k_1, \dots, k_r) \le \sum_i R(\dots, k_i - 1, \dots) - r + 2$. **Schur:** $[n]$ bármely $r$-színezésében van egyszínű $x + y = z$, ha $n \ge R_r - 1$.
+- **Mantel:** háromszögmentes gráfnak legfeljebb $\lfloor n^2/4 \rfloor$ éle van, egyenlőség csak $K_{\lfloor n/2 \rfloor, \lceil n/2 \rceil}$-re. $C_4$-mentes gráfnak legfeljebb $\frac{n}{4}(1 + \sqrt{4n-3})$ éle van (cseresznyék kettős leszámlálása).
+- **Turán:** $T(n, r)$ a kiegyenlített teljes $r$ osztályú gráf, $e(T(n,r)) = \binom{n}{2} - \sum_i \binom{n_i}{2} \le (1 - \frac1r)\frac{n^2}{2}$; az $r$ osztályú gráfok között ennek a legtöbb az éle. Turán tétele: $K_{r+1}$-mentes $n$ csúcsú gráfnak legfeljebb $e(T(n,r))$ éle van. $e(T(10,5)) = 40$, $e(T(11,4)) = 45$.
+- **Sperner:** Sperner-rendszer (egyik tag sem része a másiknak) legfeljebb $\binom{n}{\lfloor n/2 \rfloor}$ tagú; LYM: $\sum_{A \in \mathcal{F}} 1/\binom{n}{|A|} \le 1$ (bizonyítás: permutációk kezdőszeletei). Második bizonyítás: a részhalmazok $\binom{n}{\lfloor n/2 \rfloor}$ láncra bonthatók (Hall-tétel a szomszédos szintek között).
+- **Erdős–Ko–Rado:** $k \le n/2$ esetén egy $k$ elemű halmazokból álló metsző rendszer legfeljebb $\binom{n-1}{k-1}$ tagú (Katona ciklikus bizonyítása); éles a csillagra. Tetszőleges méretű tagokra a korlát $2^{n-1}$.
+- **Lineáris algebrai módszer:** független vektorok száma legfeljebb a dimenzió. Páratlan város: páratlan méretű klubok páros metszetekkel — legfeljebb $n$ klub ($\mathbb{Z}_2$ fölött). Fisher: ha bármely két halmaz metszete pontosan $\lambda \ge 1$ elemű, legfeljebb $n$ halmaz van.
