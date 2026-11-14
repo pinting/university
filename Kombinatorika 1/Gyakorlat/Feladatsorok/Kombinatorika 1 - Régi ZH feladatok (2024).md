@@ -1,4 +1,4 @@
-# Kombinatorika 1 – 5. feladatsor (2024)
+# Kombinatorika 1 – Régi ZH feladatok (2024)
 
 ### Kombinatorika 1 normál · 2024.
 
