@@ -1885,7 +1885,7 @@ Alapfogalmak és tételek a feladatsorhoz:
 - **Zárt séta, zárt vonal (körvonal), kör:** Ha $v_0 = v_k$. A **kör** (cycle) olyan zárt séta ($k \ge 3$), amelyben a kezdő- és végpont kivételével minden csúcs különböző, és minden él különböző.
 - **Euler-vonal:**
   - **Zárt Euler-vonal:** Olyan zárt vonal, amely a gráf *minden élét* pontosan egyszer tartalmazza. Létezésének szükséges és elégséges feltétele: a gráf (az izolált csúcsoktól eltekintve) összefüggő, és minden csúcsának foka páros.
-  - **Nyílt Euler-vonal:** Olyan nyílt vonal, amely a gráf minden élét pontosan egyszer tartalmazza. Feltétele: a gráf összefüggő, és pontosan két páratlan fokú csúcsa van (a vonal ezek között halad).
+  - **Nyílt Euler-vonal:** Olyan nyílt vonal, amely a gráf minden élét pontosan egyszer tartalmazza. Feltétele: a gráf (az izolált csúcsoktól eltekintve) összefüggő, és pontosan két páratlan fokú csúcsa van (a vonal ezek között halad).
 - **Hamilton-út és Hamilton-kör:**
   - **Hamilton-út:** Olyan út, amely a gráf *minden csúcsát* pontosan egyszer tartalmazza.
   - **Hamilton-kör:** Olyan kör, amely a gráf minden csúcsát pontosan egyszer tartalmazza.
@@ -1987,7 +1987,7 @@ Vizsgáljuk meg mindkét esetet:
    $$a_1 - b_1 - a_2 - b_2 - a_3 - b_3 - a_1.$$
 2. Ha $\overline{G} \cong C_6$: jelölje a komplementer kör csúcsait sorban $1, 2, 3, 4, 5, 6$. Ekkor $G$-ben pontosan azok a csúcspárok vannak összekötve, amelyek nem szomszédosak a $C_6$-ban. Könnyen találunk benne Hamilton-kört:
    $$1 - 3 - 5 - 2 - 6 - 4 - 1.$$
-   Ellenőrzés: a használt élek különbségei mod 6: $|3-1|=2$, $|5-3|=2$, $|2-5|=3$, $|6-2|=4 \equiv 2$, $|4-6|=2$, $|1-4|=3$. Egyik sem 1 mod 6, tehát mind élei $G$-nek!
+   Ellenőrzés: a használt élek különbségei mod 6: $|3-1|=2$, $|5-3|=2$, $|2-5|=3$, $|6-2|=4 \equiv -2$, $|4-6|=2$, $|1-4|=3$. Egyik sem 1 mod 6, tehát mind élei $G$-nek!
 
 Mivel nincs más 6 csúcsú 3-reguláris egyszerű gráf, **minden 6 csúcsú 3-reguláris egyszerű gráfban van Hamilton-kör**.
 
@@ -2289,7 +2289,7 @@ Egy tetszőleges élét (pl. $C - A$) elhagyva a kapott sorozat **Hamilton-út**
 **b)** **Nincs olyan Hamilton-kör, amelyben $X$ és $Y$ szomszédos:**
 Vizsgáljuk meg a 10 külső csúcs közötti éleket:
 - A páratlan betűk halmaza $C_1 = \{A, C, E, G, I\}$ egy 5 hosszú kört alkot belső átlókkal: az élek $A-C, C-E, E-G, G-I, I-A$, valamint átlók mint $C-G$. Egyetlen él sem megy $C_1$-ből a páros betűk felé!
-- A páros betűk halmaza $C_2 = \{B, D, F, H, J\}$ szintén egy 5 hosszú kört alkot átlókkal ($B-D, D-F, F-H, H-J, J-B$).
+- A páros betűk halmaza $C_2 = \{B, D, F, H, J\}$ szintén egy 5 hosszú kört alkot ($B-D, D-F, F-H, H-J, J-B$), egy átlóval ($B-H$).
 - A külső csúcsok között **egyetlen él sincs $C_1$ és $C_2$ között**! A $G - \{X, Y\}$ részgráf két diszjunkt összefüggő komponensre esik: $C_1$-re és $C_2$-re.
 
 Tegyük fel indirekt, hogy létezik olyan $H$ Hamilton-kör, amelyben $X$ és $Y$ szomszédos (azaz $H$ tartalmazza az $\{X, Y\}$ élt).
@@ -2468,14 +2468,11 @@ $$1 - 2 - 3 - \dots - 100$$
 sorozat minden szomszédos elemére $|(i+1) - i| = 1 \le 2$, ami egy triviális Hamilton-út. (Sőt a páros és páratlan számokon oda-vissza lépkedve Hamilton-kör is készíthető).
 
 **b)** **Van Hamilton-út.**
-Konstruálhatunk explicit Hamilton-utat:
-Például induljunk ki az alábbi 6 elemű blokkból:
-$$1, 3, 5, 2, 4, 6$$
-(a lépések: $+2, +2, -3, +2, +2$, mind megengedettek).
-Ezt követően 4-esével lépegetünk előre az alábbi mintával minden $k \ge 1$ esetén:
-a $4k+2$ csúcsról a következő 4-es blokkba lépünk:
-$$(4k+2) \xrightarrow{+2} (4k+4) \xrightarrow{+2} (4k+6) \xrightarrow{-3} (4k+3) \xrightarrow{+2} (4k+5) \xrightarrow{+2} (4k+7) \dots$$
-A lépések mind $+2$ vagy $-3$ távolságúak, mindegyik 4-es csoportban minden csúcsot pontosan egyszer érintünk, és a 100 csúcs teljes egészében bejárható. Tehát létezik Hamilton-út.
+Konstruálhatunk explicit Hamilton-utat. Osszuk a csúcsokat 20 darab 5 elemű blokkra: $\{5k+1, \dots, 5k+5\}$, $k = 0, 1, \dots, 19$. A $k$-adik blokkot a következő sorrendben járjuk be:
+$$5k+3 \xrightarrow{-2} 5k+1 \xrightarrow{+3} 5k+4 \xrightarrow{-2} 5k+2 \xrightarrow{+3} 5k+5.$$
+A blokk utolsó csúcsából ($5k+5$) a következő blokk első csúcsába ($5k+8$) $+3$-mal lépünk át. Így a teljes út:
+$$3, 1, 4, 2, 5, 8, 6, 9, 7, 10, 13, 11, \dots, 98, 96, 99, 97, 100.$$
+Minden lépés $2$ vagy $3$ hosszú, és mind a 100 csúcsot pontosan egyszer érintjük. Tehát létezik Hamilton-út.
 
 **c)** **Nincs Hamilton-út.**
 Tekintsük az 50-nél nagyobb prímszámokat $\{1, 2, \dots, 100\}$-ban:
@@ -2553,11 +2550,11 @@ A 4 sarokmező ($(1,1), (1,4), (4,1), (4,4)$) mindegyikéből egy huszár kizár
 Például az $(1,1)$ szomszédai a táblán csak a $(2,3)$ és a $(3,2)$.
 Ha töröljük az $S$ halmaz 4 csúcsát:
 - a 4 sarokmező mindegyike izolált ponttá válik (4 komponens);
-- a maradék 8 peremmező 4 darab diszjunkt él-párt alkot (pl. $(1,2)$ és $(3,1)$ össze vannak kötve, de más elérhető szomszédjuk nincs $G - S$-ben), ami további 4 komponenst jelent.
+- a maradék 8 peremmező két diszjunkt 4 hosszú kört alkot: $(1,2) - (3,1) - (4,3) - (2,4) - (1,2)$ és $(1,3) - (2,1) - (4,2) - (3,4) - (1,3)$, ami további 2 komponenst jelent.
 Így $G - S$ komponenseinek száma:
-$$c(G - S) = 4 + 4 = 8.$$
+$$c(G - S) = 4 + 2 = 6.$$
 A Hamilton-út létezésének szükséges feltétele szerint $c(G - S) \le |S| + 1$ kellene, de:
-$$8 > 4 + 1 = 5.$$
+$$6 > 4 + 1 = 5.$$
 Ezért a $4 \times 4$-es táblán **sem nyílt, sem zárt bejárás nem lehetséges**.
 
 **b) $5 \times 5$-ös tábla (25 mező):**
@@ -2590,7 +2587,7 @@ A sarkok szomszédai mind fehérek:
 - $(3,5)$ szomszédai: $(2,3)$ és $(1,4)$.
 Válasszuk ki az alábbi 5 fehér mezőből álló halmazt:
 $$S = \{(1,2), (1,4), (2,3), (3,2), (3,4)\} \qquad (|S| = 5).$$
-Ha ezt az 5 csúcsot töröljük a gráfból, a 4 fekete sarokmező mindegyike izolált ponttá válik, és a középső oszlop fekete mezői is leválnak, összesen $c(G - S) = 7$ komponens keletkezik.
+Ha ezt az 5 csúcsot töröljük a gráfból, a 4 fekete sarokmező mindegyike izolált ponttá válik; a $(2,2)$ és $(2,4)$ mezők szomszédai ($(1,4), (3,4)$, illetve $(1,2), (3,2)$) mind $S$-ben vannak, így ezek is izoláltak lesznek; végül a megmaradó $(1,3), (2,1), (3,3), (2,5)$ mezők egy 4 hosszú kört alkotnak. Összesen tehát $c(G - S) = 4 + 2 + 1 = 7$ komponens keletkezik.
 A Hamilton-útra vonatkozó feltétel szerint $c(G - S) \le |S| + 1$ kellene, de:
 $$7 > 5 + 1 = 6.$$
 Ezért a $3 \times 5$-ös táblán **sem nyílt, sem zárt bejárás nem lehetséges**.
@@ -2645,7 +2642,7 @@ Ezért:
 - **$n = 1$ esetén:** A gráfnak 2 csúcsa van ($\emptyset$ és $\{1\}$). Egy egyszerű körhöz legalább 3 csúcs szükséges, így $n = 1$-re **nincs Hamilton-kör**.
 - **$n \ge 2$ esetén:** **Mindig van Hamilton-kör.**
   *Bizonyítás:* A hiperkockagráf ($Q_n$) csúcsai szintén a részhalmazok, és két halmaz akkor szomszédos, ha szimmetrikus differenciájuk 1 elemű (azaz az egyik úgy keletkezik a másikból, hogy hozzáadunk vagy elhagyunk egyetlen elemet).
-  Mivel ha $|Y \setminus X| = 1$ és $X \subset Y$, akkor az egyik tartalmazza a másikat, a $Q_n$ hiperkocka minden éle éle a mi $G$ korunknak is (azaz $Q_n \subseteq G$).
+  Mivel ha $|Y \setminus X| = 1$ és $X \subset Y$, akkor az egyik tartalmazza a másikat, a $Q_n$ hiperkocka minden éle a mi $G$ gráfunknak is éle (azaz $Q_n \subseteq G$).
   Ismert tétel, hogy a $Q_n$ hiperkockában minden $n \ge 2$ esetén létezik Hamilton-kör (ezt adja meg a bináris Gray-kód).
   Mivel $Q_n$ részgráfja $G$-nek, a $Q_n$-beli Hamilton-kör a $G$ gráfban is Hamilton-kör!
   *(Például $n=2$-re: $\emptyset - \{1\} - \{1, 2\} - \{2\} - \emptyset$; $n=3$-ra: $\emptyset - \{1\} - \{1, 2\} - \{2\} - \{2, 3\} - \{3\} - \{1, 3\} - \{1, 2, 3\} - \emptyset$).*
@@ -4043,5 +4040,5 @@ Ellenőrizzük mind a 3 lehetséges sorpárt:
   - Mindkettő piros ($P, P$): kizárólag a 3. oszlopban fordul elő (1 oszlop).
   - Mindkettő kék ($K, K$): kizárólag a 6. oszlopban fordul elő (1 oszlop).
 
-Mivel semelyik sorpárban sincs két olyan oszlop, ahol a mezők színe azonos (akár mindkettő piros, akár mindkettő kék) lenne, a táblázatban **egyetlen olyan $2 \times 2$-es részháló sincs, amelynek mind a 4 csúcsa azonos színű**.
+Mivel semelyik sorpárban sincs két olyan oszlop, ahol a mezők színe azonos (akár mindkettő piros, akár mindkettő kék) lenne, a táblázatban **egyetlen olyan $2 \times 2$-es részháló sincs, amelynek mind a 4 mezője azonos színű**.
 Ez a színezés igazolja, hogy 6 oszlopra az állítás nem feltétlenül igaz. $\blacksquare$

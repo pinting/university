@@ -726,7 +726,9 @@ Legyenek adottak a következő vektorok $\mathbb{R}^3$-ben: $u_1 = (1, -1, 0)$, 
 Igazoljuk az alábbi állításokat a lineáris függetlenséggel kapcsolatban.
 
 (1) Ha egy vektorrendszer tartalmaz két azonos vektort, akkor lineárisan összefüggő.
+
 (2) Ha a $\{v_1, v_2, v_3\}$ vektorrendszer lineárisan független, akkor a $\{v_1 + v_2, v_2 + v_3, v_3 + v_1\}$ rendszer is lineárisan független.
+
 (3) Ha a $\{v_1, v_2, \ldots, v_k\}$ rendszer lineárisan összefüggő, akkor bármilyen $u$ vektorra a $\{v_1, v_2, \ldots, v_k, u\}$ rendszer is összefüggő marad.
 
 ## 5. feladat
@@ -754,8 +756,11 @@ Határozzuk meg a mátrix rangját a $p$ paraméter függvényében.
 Tegyük fel, hogy az $A \in \mathbb{R}^{n \times k}$ és $B \in \mathbb{R}^{k \times m}$ mátrixok esetén létezik az $AB$ mátrixszorzat. Mely állítások igazak az alábbiak közül minden ilyen mátrixpárra?
 
 (1) Ha a $B$ mátrix oszlopvektorai lineárisan összefüggők, akkor az $AB$ mátrix oszlopvektorai is lineárisan összefüggők.
+
 (2) Ha az $A$ mátrix oszlopvektorai lineárisan összefüggők, akkor az $AB$ mátrix oszlopvektorai is lineárisan összefüggők.
+
 (3) Az $AB$ mátrix rangja nem nagyobb, mint az $A$ mátrix rangja.
+
 (4) Az $AB$ mátrix rangja nem nagyobb, mint a $B$ mátrix rangja.
 
 ## 10. feladat
@@ -763,8 +768,11 @@ Tegyük fel, hogy az $A \in \mathbb{R}^{n \times k}$ és $B \in \mathbb{R}^{k \t
 Legyen $A \in \mathbb{R}^{n \times n}$ egy négyzetes mátrix. Mely állítások ekvivalensek azzal a feltétellel, hogy az $A$ mátrix oszlopvektorai lineárisan függetlenek?
 
 (1) Az $Ax = 0$ homogén lineáris egyenletrendszernek csak a triviális megoldása létezik.
+
 (2) Bármely $b \in \mathbb{R}^n$ vektor esetén az $Ax = b$ inhomogén lineáris egyenletrendszernek pontosan egy megoldása van.
+
 (3) Az $A$ mátrix sorvektorai lineárisan összefüggők.
+
 (4) $\det(A) = 0$.
 
 # Algebra és számelmélet – 10. feladatsor
@@ -774,8 +782,11 @@ Legyen $A \in \mathbb{R}^{n \times n}$ egy négyzetes mátrix. Mely állítások
 Döntsük el, hogy az alábbi halmazok a megadott művelet(ek)re nézve csoportot, gyűrűt vagy testet alkotnak-e. Ha csoport, kommutatív-e?
 
 (1) $(\mathbb{Z}, -)$ (az egész számok halmaza a kivonásra),
+
 (2) $(\mathbb{R} \setminus \{0\}, \cdot)$ (a nemnulla valós számok a szorzásra),
+
 (3) A $2 \times 2$-es valós mátrixok az összeadásra és a mátrixszorzásra nézve,
+
 (4) A $K = \{a + b\sqrt{2} \mid a, b \in \mathbb{Q}\}$ halmaz a szokásos valós összeadásra és szorzásra nézve.
 
 ## 2. feladat
@@ -807,9 +818,13 @@ Hány olyan $f$ legfeljebb harmadfokú polinom van $\mathbb{Z}_3[x]$-ben, amely 
 Legyen $R$ gyűrű, $r, s \in R$, és $m, n$ egész számok. Igazoljuk az alábbiakat:
 
 (1) $(-n)r$ az $nr$ ellentettje,
+
 (2) $mr + nr = (m + n)r$,
+
 (3) $n(mr) = (nm)r$,
+
 (4) $n(r + s) = nr + ns$,
+
 (5) $n(rs) = (nr)s = r(ns)$.
 
 ## 9. feladat
@@ -899,7 +914,9 @@ Igazoljuk, hogy $\Lambda$ additív.
 ## 6. feladat
 
 Bizonyítsuk, hogy
+
 (1) $\sum_{d \mid n} \mu(d) = \lfloor 1/n \rfloor$,
+
 (2) (házi feladat) $\sum_{d \mid n} \Lambda(d) = \log n$.
 
 ## 7. feladat

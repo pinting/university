@@ -18,7 +18,9 @@ Legyenek adottak a következő vektorok $\mathbb{R}^3$-ben: $u_1 = (1, -1, 0)$, 
 Igazoljuk az alábbi állításokat a lineáris függetlenséggel kapcsolatban.
 
 (1) Ha egy vektorrendszer tartalmaz két azonos vektort, akkor lineárisan összefüggő.
+
 (2) Ha a $\{v_1, v_2, v_3\}$ vektorrendszer lineárisan független, akkor a $\{v_1 + v_2, v_2 + v_3, v_3 + v_1\}$ rendszer is lineárisan független.
+
 (3) Ha a $\{v_1, v_2, \ldots, v_k\}$ rendszer lineárisan összefüggő, akkor bármilyen $u$ vektorra a $\{v_1, v_2, \ldots, v_k, u\}$ rendszer is összefüggő marad.
 
 ## 5. feladat
@@ -46,8 +48,11 @@ Határozzuk meg a mátrix rangját a $p$ paraméter függvényében.
 Tegyük fel, hogy az $A \in \mathbb{R}^{n \times k}$ és $B \in \mathbb{R}^{k \times m}$ mátrixok esetén létezik az $AB$ mátrixszorzat. Mely állítások igazak az alábbiak közül minden ilyen mátrixpárra?
 
 (1) Ha a $B$ mátrix oszlopvektorai lineárisan összefüggők, akkor az $AB$ mátrix oszlopvektorai is lineárisan összefüggők.
+
 (2) Ha az $A$ mátrix oszlopvektorai lineárisan összefüggők, akkor az $AB$ mátrix oszlopvektorai is lineárisan összefüggők.
+
 (3) Az $AB$ mátrix rangja nem nagyobb, mint az $A$ mátrix rangja.
+
 (4) Az $AB$ mátrix rangja nem nagyobb, mint a $B$ mátrix rangja.
 
 ## 10. feladat
@@ -55,6 +60,9 @@ Tegyük fel, hogy az $A \in \mathbb{R}^{n \times k}$ és $B \in \mathbb{R}^{k \t
 Legyen $A \in \mathbb{R}^{n \times n}$ egy négyzetes mátrix. Mely állítások ekvivalensek azzal a feltétellel, hogy az $A$ mátrix oszlopvektorai lineárisan függetlenek?
 
 (1) Az $Ax = 0$ homogén lineáris egyenletrendszernek csak a triviális megoldása létezik.
+
 (2) Bármely $b \in \mathbb{R}^n$ vektor esetén az $Ax = b$ inhomogén lineáris egyenletrendszernek pontosan egy megoldása van.
+
 (3) Az $A$ mátrix sorvektorai lineárisan összefüggők.
+
 (4) $\det(A) = 0$.

@@ -5,8 +5,11 @@
 Döntsük el, hogy az alábbi halmazok a megadott művelet(ek)re nézve csoportot, gyűrűt vagy testet alkotnak-e. Ha csoport, kommutatív-e?
 
 (1) $(\mathbb{Z}, -)$ (az egész számok halmaza a kivonásra),
+
 (2) $(\mathbb{R} \setminus \{0\}, \cdot)$ (a nemnulla valós számok a szorzásra),
+
 (3) A $2 \times 2$-es valós mátrixok az összeadásra és a mátrixszorzásra nézve,
+
 (4) A $K = \{a + b\sqrt{2} \mid a, b \in \mathbb{Q}\}$ halmaz a szokásos valós összeadásra és szorzásra nézve.
 
 ## 2. feladat
@@ -38,9 +41,13 @@ Hány olyan $f$ legfeljebb harmadfokú polinom van $\mathbb{Z}_3[x]$-ben, amely 
 Legyen $R$ gyűrű, $r, s \in R$, és $m, n$ egész számok. Igazoljuk az alábbiakat:
 
 (1) $(-n)r$ az $nr$ ellentettje,
+
 (2) $mr + nr = (m + n)r$,
+
 (3) $n(mr) = (nm)r$,
+
 (4) $n(r + s) = nr + ns$,
+
 (5) $n(rs) = (nr)s = r(ns)$.
 
 ## 9. feladat

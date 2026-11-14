@@ -264,5 +264,5 @@ Ellenőrizzük mind a 3 lehetséges sorpárt:
   - Mindkettő piros ($P, P$): kizárólag a 3. oszlopban fordul elő (1 oszlop).
   - Mindkettő kék ($K, K$): kizárólag a 6. oszlopban fordul elő (1 oszlop).
 
-Mivel semelyik sorpárban sincs két olyan oszlop, ahol a mezők színe azonos (akár mindkettő piros, akár mindkettő kék) lenne, a táblázatban **egyetlen olyan $2 \times 2$-es részháló sincs, amelynek mind a 4 csúcsa azonos színű**.
+Mivel semelyik sorpárban sincs két olyan oszlop, ahol a mezők színe azonos (akár mindkettő piros, akár mindkettő kék) lenne, a táblázatban **egyetlen olyan $2 \times 2$-es részháló sincs, amelynek mind a 4 mezője azonos színű**.
 Ez a színezés igazolja, hogy 6 oszlopra az állítás nem feltétlenül igaz. $\blacksquare$

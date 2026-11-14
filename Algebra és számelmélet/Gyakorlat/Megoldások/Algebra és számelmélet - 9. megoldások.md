@@ -152,7 +152,9 @@ Fontos tételek:
 Igazoljuk az alábbi állításokat a lineáris függetlenséggel kapcsolatban.
 
 (1) Ha egy vektorrendszer tartalmaz két azonos vektort, akkor lineárisan összefüggő.
+
 (2) Ha a $\{v_1, v_2, v_3\}$ vektorrendszer lineárisan független, akkor a $\{v_1 + v_2, v_2 + v_3, v_3 + v_1\}$ rendszer is lineárisan független.
+
 (3) Ha a $\{v_1, v_2, \ldots, v_k\}$ rendszer lineárisan összefüggő, akkor bármilyen $u$ vektorra a $\{v_1, v_2, \ldots, v_k, u\}$ rendszer is összefüggő marad.
 
 **Megoldás.**
@@ -184,7 +186,7 @@ Ebből következik, hogy $c_2 = -0 = 0$ és $c_3 = -0 = 0$.
 Tehát a $c_1 w_1 + c_2 w_2 + c_3 w_3 = 0$ egyenlőség csak a triviális $c_1 = c_2 = c_3 = 0$ esetben teljesülhet.
 Ez azt bizonyítja, hogy a $\{v_1 + v_2, v_2 + v_3, v_3 + v_1\}$ rendszer **lineárisan független**. $\blacksquare$
 
-*(Mátrixos megjegyzés: a transzformáció mátrixa $\begin{pmatrix} 1 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}$, melynek determinánsa $1 \cdot 1 + 1 \cdot 1 = 2 \ne 0$, így a leképezés invertálható. Érdekesség, hogy $2$ karakterisztikájú test felett $1+1=0$ miatt $c_1+c_2+c_3$ nem lenne független, de $\mathbb{R}$ felett igen.)*
+*(Mátrixos megjegyzés: a transzformáció mátrixa $\begin{pmatrix} 1 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}$, melynek determinánsa $1 \cdot 1 + 1 \cdot 1 = 2 \ne 0$, így a leképezés invertálható. Érdekesség, hogy $2$ karakterisztikájú test felett a determináns $2 = 0$, és ott a rendszer valóban összefüggő: $w_1 + w_2 + w_3 = 2(v_1 + v_2 + v_3) = 0$. $\mathbb{R}$ felett viszont független.)*
 
 **(3) Bizonyítás.**
 Mivel a $\{v_1, v_2, \ldots, v_k\}$ rendszer lineárisan összefüggő, léteznek olyan $c_1, c_2, \dots, c_k$ skalárok, amelyek **nem mindegyike nulla**, és amelyekre:
@@ -393,8 +395,11 @@ Ez a mátrix már lépcsős alakú (ha $p \ne 4$, a második sor pivotja a máso
 Tegyük fel, hogy az $A \in \mathbb{R}^{n \times k}$ és $B \in \mathbb{R}^{k \times m}$ mátrixok esetén létezik az $AB$ mátrixszorzat. Mely állítások igazak az alábbiak közül minden ilyen mátrixpárra?
 
 (1) Ha a $B$ mátrix oszlopvektorai lineárisan összefüggők, akkor az $AB$ mátrix oszlopvektorai is lineárisan összefüggők.
+
 (2) Ha az $A$ mátrix oszlopvektorai lineárisan összefüggők, akkor az $AB$ mátrix oszlopvektorai is lineárisan összefüggők.
+
 (3) Az $AB$ mátrix rangja nem nagyobb, mint az $A$ mátrix rangja.
+
 (4) Az $AB$ mátrix rangja nem nagyobb, mint a $B$ mátrix rangja.
 
 **Megoldás.**
@@ -471,8 +476,11 @@ Az állítás tehát igaz: az $AB$ rangja nem nagyobb $B$ rangjánál. $\blacksq
 Legyen $A \in \mathbb{R}^{n \times n}$ egy négyzetes mátrix. Mely állítások ekvivalensek azzal a feltétellel, hogy az $A$ mátrix oszlopvektorai lineárisan függetlenek?
 
 (1) Az $Ax = 0$ homogén lineáris egyenletrendszernek csak a triviális megoldása létezik.
+
 (2) Bármely $b \in \mathbb{R}^n$ vektor esetén az $Ax = b$ inhomogén lineáris egyenletrendszernek pontosan egy megoldása van.
+
 (3) Az $A$ mátrix sorvektorai lineárisan összefüggők.
+
 (4) $\det(A) = 0$.
 
 **Megoldás.**

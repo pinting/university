@@ -21,8 +21,11 @@ Alapfogalmak és tételek a feladatsorhoz:
 Döntsük el, hogy az alábbi halmazok a megadott művelet(ek)re nézve csoportot, gyűrűt vagy testet alkotnak-e. Ha csoport, kommutatív-e?
 
 (1) $(\mathbb{Z}, -)$ (az egész számok halmaza a kivonásra),
+
 (2) $(\mathbb{R} \setminus \{0\}, \cdot)$ (a nemnulla valós számok a szorzásra),
+
 (3) A $2 \times 2$-es valós mátrixok az összeadásra és a mátrixszorzásra nézve,
+
 (4) A $K = \{a + b\sqrt{2} \mid a, b \in \mathbb{Q}\}$ halmaz a szokásos valós összeadásra és szorzásra nézve.
 
 **Megoldás.**
@@ -377,9 +380,13 @@ Tehát **pontosan 3** ilyen polinom létezik.
 Legyen $R$ gyűrű, $r, s \in R$, és $m, n$ egész számok. Igazoljuk az alábbiakat:
 
 (1) $(-n)r$ az $nr$ ellentettje,
+
 (2) $mr + nr = (m + n)r$,
+
 (3) $n(mr) = (nm)r$,
+
 (4) $n(r + s) = nr + ns$,
+
 (5) $n(rs) = (nr)s = r(ns)$.
 
 **Bizonyítás.**
@@ -710,6 +717,7 @@ Vizsgáljuk meg az egyes számköröket:
 - **$\mathbb{Z}$ felett:** A $\mathbb{Z}[x]$ gyűrűben a polinomok együtthatóinak egész számoknak kell lenniük. Mivel $\frac{4}{5} \notin \mathbb{Z}$, a $h(x) = \frac{4}{5}x$ nem eleme a $\mathbb{Z}[x]$ gyűrűnek, és más polinom sem elégítheti ki az egyenlőséget. Tehát $\mathbb{Z}[x]$-ben $5x^2 \nmid 4x^3$. Az oszthatóság **NEM IGAZ**.
 
 Összefoglalva:
+
 | Gyűrű | $\mathbb{C}[x]$ | $\mathbb{R}[x]$ | $\mathbb{Q}[x]$ | $\mathbb{Z}[x]$ |
 |:---:|:---:|:---:|:---:|:---:|
 | $5x^2 \mid 4x^3$ | **Igaz** | **Igaz** | **Igaz** | **Nem igaz** |

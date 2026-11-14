@@ -27,7 +27,9 @@ Igazoljuk, hogy $\Lambda$ additív.
 ## 6. feladat
 
 Bizonyítsuk, hogy
+
 (1) $\sum_{d \mid n} \mu(d) = \lfloor 1/n \rfloor$,
+
 (2) (házi feladat) $\sum_{d \mid n} \Lambda(d) = \log n$.
 
 ## 7. feladat

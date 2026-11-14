@@ -136,17 +136,20 @@ Vizsgáljuk meg a kitűzésben szereplő állítást a számelméleti függvény
 
 Tehát a $\Lambda$ függvény a szokásos definíció szerint **nem additív** (és nem is multiplikatív, hiszen $\Lambda(1) = 0 \ne 1$).
 
-> [!NOTE]
-> A számelméletben a von Mangoldt-függvény alapvető tulajdonsága nem az önmagában vett additivitása, hanem az, hogy az összegzési függvénye adja a logaritmust (amint azt a 6. feladat (2) része mutatja):
-> $$\sum_{d \mid n} \Lambda(d) = \log n.$$
-> A $\log n$ függvény viszont már **teljesen additív**! A feladatkitűzés ezen tulajdonság vizsgálatára vagy a sejtés ellenőrzésére irányult.
+::: elmelet
+**Megjegyzés — a von Mangoldt-függvény valódi szerepe.** A $\Lambda$ függvény alapvető tulajdonsága nem az additivitás, hanem az, hogy összegzési függvénye a logaritmus (6. feladat (2) része):
+$$\sum_{d \mid n} \Lambda(d) = \log n, \qquad \text{azaz} \qquad \Lambda * \mathbf{1} = \log.$$
+A $\log n$ függvény viszont már **teljesen additív**. A Möbius-féle megfordítással ebből $\Lambda = \mu * \log$, azaz $\Lambda(n) = -\sum_{d \mid n} \mu(d) \log d$.
+:::
 
 ---
 
 ## 6. feladat
 
 Bizonyítsuk, hogy
+
 (1) $\sum_{d \mid n} \mu(d) = \lfloor 1/n \rfloor$,
+
 (2) (házi feladat) $\sum_{d \mid n} \Lambda(d) = \log n$.
 
 **Megoldás.**
@@ -242,21 +245,19 @@ $$\sigma(x) - x = \sum_{\substack{d \mid x \\ d < x}} d.$$
 Az egyenlet szerint $\sigma(x) - x = 7$, tehát az $x$-nél szigorúan kisebb pozitív osztók összege pontosan 7:
 $$\sum_{\substack{d \mid x \\ d < x}} d = 7.$$
 
-- Az 1 mindig osztója $x$-nek, így az $1 < d < x$ osztók összege $7 - 1 = 6$.
-- Ha nem lenne más valódi osztó (azaz $x$ prím lenne), akkor az összeg csak 1 lenne, ami nem 7.
-- Legyen $d_1$ az $x$ legnagyobb valódi osztója ($1 < d_1 < x$).
-  Mivel az osztók összege 7, $d_1 < 7$.
-  Vizsgáljuk meg a lehetséges valódi osztókat:
-  - Ha $6 \mid x$, akkor $2 \mid x$ és $3 \mid x$ is teljesül, de ekkor a valódi osztók között szerepel $1, 2, 3, 6$, amelyek összege $1 + 2 + 3 + 6 = 12 > 7$, ami ellentmondás.
-  - Ha $5 \mid x$, akkor $1 + 5 = 6$. A hiányzó 1 már nem adható hozzá még egyszer, ha pedig van más osztó (pl. 2), az összeg meghaladja a 7-et.
-  - Ha $4 \mid x$, akkor $2 \mid x$ is fennáll. Ekkor a valódi osztók között ott van az $1, 2, 4$, amelyek összege pontosan:
-    $$1 + 2 + 4 = 7.$$
-    Ha nincs más valódi osztó, akkor $x$-nek csak az 1, 2, 4 a valódi osztói. A 4 a legnagyobb valódi osztó, így a legkisebb prímfaktor 2, amiből $x = 2 \cdot 4 = 8$.
-    Ellenőrizzük az $x = 8$-at:
-    $$\sigma(8) = 1 + 2 + 4 + 8 = 15 = 8 + 7.$$
-    Tehát $x = 8$ megoldás.
-  - Ha a legnagyobb valódi osztó 3 lenne: az osztók csak 1 és 3 lehetnének, összegük $4 \ne 7$.
-  - Ha a legnagyobb valódi osztó 2 lenne: az osztók csak 1 és 2 lehetnének, összegük $3 \ne 7$.
+- $x = 1$ nem megoldás, mert $\sigma(1) = 1 \ne 8$.
+- Ha $x$ prím, akkor egyetlen valódi osztója az 1, az összeg $1 \ne 7$.
+- Ha $x$ összetett, legyen $p$ a legkisebb prímosztója, és $d_1 = \frac{x}{p}$ a legnagyobb valódi osztója ($1 < d_1 < x$). Az 1 és a $d_1$ is szerepel az összegben, így $1 + d_1 \le 7$, azaz $d_1 \le 6$. Mivel $p$ a legkisebb prímosztó, $p \le d_1$ legkisebb prímosztója. A lehetséges esetek:
+
+| $d_1$ | $x = p \cdot d_1$ | valódi osztók | összegük |
+|:---:|:---:|:---:|:---:|
+| $2$ | $4$ | $1, 2$ | $3$ |
+| $3$ | $6, 9$ | $1, 2, 3$; $1, 3$ | $6$; $4$ |
+| $4$ | $8$ | $1, 2, 4$ | $\mathbf{7}$ |
+| $5$ | $10, 15, 25$ | $1, 2, 5$; $1, 3, 5$; $1, 5$ | $8$; $9$; $6$ |
+| $6$ | $12$ | $1, 2, 3, 4, 6$ | $16$ |
+
+Egyedül $x = 8$ felel meg: $\sigma(8) = 1 + 2 + 4 + 8 = 15 = 8 + 7$.
 
 Ezért az egyenlet egyetlen megoldása a pozitív egészek körében:
 $$\mathbf{x = 8}.$$
@@ -460,7 +461,7 @@ $$\frac{p^{k+1} - 1}{p - 1} = 2p^k.$$
 Szorozzuk be mindkét oldalt a $(p - 1) > 0$ kifejezéssel:
 $$p^{k+1} - 1 = 2p^k(p - 1) = 2p^{k+1} - 2p^k.$$
 Rendezzük az egyenletet:
-$$2p^k - 1 = 2p^{k+1} - p^{k+1} = p^{k+1}.$$
+$$2p^k - 1 = p^{k+1}.$$
 Mindkét oldalból vonjunk ki $p^{k+1}$-et, és adjunk hozzá 1-et:
 $$2p^k - p^{k+1} = 1 \iff p^k(2 - p) = 1.$$
 Mivel $p$ prímszám, $p \ge 2$:
