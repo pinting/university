@@ -5206,6 +5206,926 @@ $$4p^3 + 27q^2 = 0,$$
   - $\arcsin$: az inverz függvény szabályával, $c = \arcsin x \in \left(-\frac\pi2, \frac\pi2\right)$, $\cos c > 0$: $(\arcsin x)' = \frac{1}{\cos c} = \frac{1}{\sqrt{1 - \sin^2 c}} = \frac{1}{\sqrt{1 - x^2}}$; $\arccos x = \frac\pi2 - \arcsin x$.
   - $\operatorname{arctg}$: $(\operatorname{arctg} x)' = \cos^2 c = \frac{1}{1 + \operatorname{tg}^2 c} = \frac{1}{1 + x^2}$, ahol $c = \operatorname{arctg} x$; $\operatorname{arcctg} x = \frac\pi2 - \operatorname{arctg} x$.
 
+# Analízis 1 – 15. feladatlap – megoldások
+
+### I. Mat. BSc Analízis 1 · 2026/27 első félév
+
+## 152. feladat
+
+Bizonyítsuk be, hogy az $x^2 - y^2 = a$ és az $xy = b$ görbék merőlegesen metszik egymást!
+
+**Megoldás.**
+
+Legyen $(x_0, y_0)$ a két görbe egy tetszőleges közös pontja. Két görbe merőlegesen metszi egymást a metszéspontban, ha az ott húzott érintőik merőlegesek egymásra.
+
+**1. eset: $b \ne 0$.** Mivel $x_0 y_0 = b \ne 0$, sem $x_0$, sem $y_0$ nem lehet nulla.
+
+- Az $x^2 - y^2 = a$ egyenletet $x$ szerint implicit módon deriválva (az $y = y(x)$ feltevéssel):
+  $$2x - 2y y' = 0 \quad \Longrightarrow \quad y'_1(x_0, y_0) = \frac{x_0}{y_0}.$$
+- Az $xy = b$ egyenletet $x$ szerint implicit módon deriválva:
+  $$y + x y' = 0 \quad \Longrightarrow \quad y'_2(x_0, y_0) = -\frac{y_0}{x_0}.$$
+
+Számítsuk ki az érintők meredekségeinek szorzatát:
+$$y'_1(x_0, y_0) \cdot y'_2(x_0, y_0) = \frac{x_0}{y_0} \cdot \left(-\frac{y_0}{x_0}\right) = -1.$$
+Mivel két egyenes meredekségének szorzata $-1$, az érintők merőlegesek egymásra, tehát a görbék valóban merőlegesen metszik egymást.
+
+**2. eset: $b = 0$.** Ekkor $xy = 0$, vagyis a görbe az $x$- és az $y$-tengely uniója.
+- Ha $a > 0$, akkor $x^2 - y^2 = a$ a $(\pm\sqrt{a}, 0)$ pontokban metszi az $y = 0$ egyenest ($x$-tengely). Itt a hiperbola érintője függőleges ($x = \pm\sqrt{a}$), az $x$-tengely érintője vízszintes ($y = 0$), ezek merőlegesek.
+- Ha $a < 0$, akkor a metszéspontok a $(0, \pm\sqrt{-a})$ pontok az $y$-tengelyen; itt a hiperbola érintője vízszintes, az $y$-tengely függőleges, amelyek szintén merőlegesek.
+- Ha $a = b = 0$, a görbék az origóban találkoznak, de ott nem differenciálható elágazási pont van.
+
+::: elmelet
+**Elméleti háttér — ortogonális trajektóriák és a Cauchy–Riemann-egyenletek.**
+Két görbesereg ortogonális, ha minden metszéspontban az érintőik merőlegesek egymásra. Vektoros szempontból az $F(x, y) = x^2 - y^2 - a = 0$ és $G(x, y) = xy - b = 0$ szintvonalak normálvektorai a gradiensvektorok: $\nabla F = (2x, -2y)$ és $\nabla G = (y, x)$. A skaláris szorzatuk:
+$$\nabla F \cdot \nabla G = 2x \cdot y + (-2y) \cdot x = 2xy - 2xy = 0.$$
+Komplex függvénytani háttér: a $w = z^2 = (x + iy)^2 = (x^2 - y^2) + i(2xy)$ leképezés valós és képzetes része harmonikus és eleget tesz a Cauchy–Riemann-egyenleteknek, így a valós és képzetes rész szintvonalai automatikusan ortogonális hálót alkotnak.
+:::
+
+## 153. feladat
+
+Mutassuk meg, hogy ha $f : \mathbb{R} \to \mathbb{R}$ páros és differenciálható, akkor $f'$ páratlan.
+
+**Megoldás.**
+
+A feltétel szerint $f(-x) = f(x)$ minden $x \in \mathbb{R}$-re. Meg kell mutatnunk, hogy $f'(-x) = -f'(x)$ minden $x \in \mathbb{R}$-re.
+
+**1. módszer (közvetlenül a definícióból):**
+A derivált definíciója szerint a $-x$ helyen:
+$$f'(-x) = \lim_{h \to 0} \frac{f(-x + h) - f(-x)}{h}.$$
+Mivel $f$ páros, $f(-x) = f(x)$, és $f(-x + h) = f(-(x - h)) = f(x - h)$. Ezt behelyettesítve:
+$$f'(-x) = \lim_{h \to 0} \frac{f(x - h) - f(x)}{h}.$$
+Alkalmazzuk a $k = -h$ helyettesítést. Mivel $h \to 0 \iff k \to 0$:
+$$f'(-x) = \lim_{k \to 0} \frac{f(x + k) - f(x)}{-k} = -\lim_{k \to 0} \frac{f(x + k) - f(x)}{k} = -f'(x).$$
+Ez pontosan azt jelenti, hogy $f'$ páratlan függvény.
+
+**2. módszer (láncszabállyal):**
+Legyen $g(x) = f(-x) = (f \circ \varphi)(x)$, ahol $\varphi(x) = -x$. A láncszabály szerint:
+$$g'(x) = f'(\varphi(x)) \cdot \varphi'(x) = f'(-x) \cdot (-1) = -f'(-x).$$
+Másrészt $f$ páros volta miatt minden $x$-re $g(x) = f(x)$, így a deriváltjaik is megegyeznek: $g'(x) = f'(x)$. A kettőt egyenlővé téve:
+$$f'(x) = -f'(-x) \quad \Longleftrightarrow \quad f'(-x) = -f'(x).$$
+
+::: elmelet
+**Elméleti háttér — szimmetriák és derivált.**
+Ha egy függvény páros, grafikonja szimmetrikus az $y$-tengelyre. Az $x$ és $-x$ pontokbeli érintők egymás tükörképei az $y$-tengelyre, így meredekségeik egymás ellentettjei: $f'(-x) = -f'(x)$.
+Speciálisan $x = 0$-ban: $f'(0) = -f'(0) \implies 2f'(0) = 0 \implies f'(0) = 0$. Vagyis minden mindenütt differenciálható páros függvénynek az origóban vízszintes az érintője. Hasonlóan bizonyítható, hogy páratlan differenciálható függvény deriváltja páros.
+:::
+
+## 154. feladat
+
+Elfogadva azt a tényt, hogy az $f(x) = x^x$ függvény szigorúan monoton $[1, \infty)$-ben határozzuk meg inverzének a deriváltját a $27$ pontban.
+
+**Megoldás.**
+
+Legyen $y_0 = 27$. Olyan $x_0 \in [1, \infty)$ értéket keresünk, amelyre $f(x_0) = 27$.
+Mivel
+$$f(3) = 3^3 = 27,$$
+és a feladat szerint $f$ szigorúan monoton az $[1, \infty)$ intervallumon (ezért injektív), $x_0 = 3$ az egyetlen ilyen érték.
+
+Számítsuk ki $f'(x)$-et:
+$$f(x) = x^x = e^{x \ln x} \qquad (x \ge 1).$$
+A láncszabály és a szorzatszabály alapján:
+$$f'(x) = e^{x \ln x} \cdot (x \ln x)' = x^x \left(1 \cdot \ln x + x \cdot \frac1x\right) = x^x (\ln x + 1).$$
+Az $x_0 = 3$ helyen:
+$$f'(3) = 3^3 (\ln 3 + 1) = 27(1 + \ln 3) \ne 0.$$
+
+Mivel $f$ folytonos és szigorúan monoton, az inverz függvény differenciálási szabálya szerint $\varphi = f^{-1}$ differenciálható a $27$ pontban, és
+$$(f^{-1})'(27) = \frac{1}{f'(3)} = \frac{1}{27(1 + \ln 3)}.$$
+
+::: elmelet
+**Elméleti háttér — inverz függvény deriválása.**
+Ha $f$ szigorúan monoton és folytonos egy intervallumon, és az $x_0$ pontban $f'(x_0) \ne 0$, akkor az inverz függvény $\varphi = f^{-1}$ differenciálható az $y_0 = f(x_0)$ pontban, és
+$$\varphi'(y_0) = \frac{1}{f'(x_0)} = \frac{1}{f'(\varphi(y_0))}.$$
+A képlet szemléletesen abból adódik, hogy az inverz függvény grafikonja az eredeti függvény tükörképe az $y = x$ egyenesre, így a meredekség a reciprokára változik: $\frac{dx}{dy} = \frac{1}{dy/dx}$.
+:::
+
+## 155. feladat
+
+Mutassuk meg, hogy az $y = \frac{x^2}{4c}$ egyenletű parabola alakú tükör, az $y$-tengellyel párhuzamos egyeneseket a $(0, c)$ fókuszponton keresztül veri vissza. (ld. bal alsó ábra.)
+
+**Megoldás.**
+
+Tegyük fel, hogy $c > 0$. Legyen $P\left(x_0, y_0\right) = \left(x_0, \frac{x_0^2}{4c}\right)$ a parabola tetszőleges pontja.
+
+- Ha $x_0 = 0$, akkor $P = (0, 0)$ a tengelypont. Itt az érintő vízszintes ($y = 0$), a függőlegesen lefelé érkező fénysugár függőlegesen felfelé verődik vissza, átmenve a $(0, c)$ fókuszponton.
+- Tegyük fel, hogy $x_0 \ne 0$. A parabola tengelyes szimmetriája miatt feltehetjük, hogy $x_0 > 0$.
+
+A beeső sugár függőleges, iránya lefelé mutat: $\mathbf{v}_{\text{be}} = (0, -1)$.
+A parabola érintőjének meredeksége a $P$ pontban:
+$$y' = \left(\frac{x^2}{4c}\right)' = \frac{2x}{4c} = \frac{x}{2c} \quad \Longrightarrow \quad m = \frac{x_0}{2c} > 0.$$
+Jelölje $\alpha$ az érintő hajlásszögét a pozitív $x$-tengelyhez: $\operatorname{tg} \alpha = m = \frac{x_0}{2c}$.
+A függőleges beeső egyenes és az érintő közötti $\theta_1$ beesési szög:
+$$\theta_1 = \frac\pi2 - \alpha \quad \Longrightarrow \quad \operatorname{tg} \theta_1 = \operatorname{ctg} \alpha = \frac{1}{m} = \frac{2c}{x_0}.$$
+
+Most vizsgáljuk a $P$-ből a fókuszpontba, $F(0, c)$-be tartó visszavert egyenest!
+A $PF$ egyenes irányvektora:
+$$\vec{PF} = \left(0 - x_0,\, c - \frac{x_0^2}{4c}\right) = \left(-x_0,\, \frac{4c^2 - x_0^2}{4c}\right),$$
+így meredeksége:
+$$m_{PF} = \frac{\frac{4c^2 - x_0^2}{4c}}{-x_0} = \frac{x_0^2 - 4c^2}{4c x_0}.$$
+
+Számítsuk ki az érintő és a $PF$ egyenes által bezárt $\theta_2$ visszaverődési szöget a két egyenes hajlásszögére vonatkozó képlettel:
+$$\operatorname{tg} \theta_2 = \frac{m - m_{PF}}{1 + m \cdot m_{PF}}.$$
+A számláló:
+$$m - m_{PF} = \frac{x_0}{2c} - \frac{x_0^2 - 4c^2}{4c x_0} = \frac{2x_0^2 - (x_0^2 - 4c^2)}{4c x_0} = \frac{x_0^2 + 4c^2}{4c x_0}.$$
+A nevező:
+$$1 + m \cdot m_{PF} = 1 + \frac{x_0}{2c} \cdot \frac{x_0^2 - 4c^2}{4c x_0} = 1 + \frac{x_0^2 - 4c^2}{8c^2} = \frac{8c^2 + x_0^2 - 4c^2}{8c^2} = \frac{x_0^2 + 4c^2}{8c^2}.$$
+A kettő hányadosa:
+$$\operatorname{tg} \theta_2 = \frac{\frac{x_0^2 + 4c^2}{4c x_0}}{\frac{x_0^2 + 4c^2}{8c^2}} = \frac{8c^2}{4c x_0} = \frac{2c}{x_0}.$$
+Azt kaptuk, hogy
+$$\operatorname{tg} \theta_1 = \operatorname{tg} \theta_2 = \frac{2c}{x_0} \quad \Longrightarrow \quad \theta_1 = \theta_2.$$
+A beesési szög megegyezik a visszaverődési szöggel, tehát a fénysugár pontosan a $(0, c)$ fókuszponton keresztül verődik vissza.
+
+::: elmelet
+**Elméleti háttér — a parabola geometriai és optikai definíciója.**
+A parabola azon pontok mértani helye a síkon, amelyek egyenlő távolságra vannak az $F(0, c)$ fókusztól és a vezéregyenestől ($y = -c$). A $P\left(x_0, \frac{x_0^2}{4c}\right)$ pont távolsága a vezéregyenestől $y_0 + c = \frac{x_0^2}{4c} + c$, a fókusztól pedig $\sqrt{x_0^2 + (y_0 - c)^2} = \sqrt{x_0^2 + \frac{x_0^4}{16c^2} - \frac{x_0^2}{2} + c^2} = \frac{x_0^2}{4c} + c$. A parabola érintője felezi a fókuszi sugár és a tengellyel párhuzamos egyenes által bezárt szöget. Ezen alapszik a parabolatükrök (csillagászati távcsövek, fényszórók, parabolaantennák) működése.
+:::
+
+## 156*. feladat
+
+Tegyük fel, hogy $f$ differenciálható $\mathbb{R}$-en. Mutassuk meg, hogy ekkor létezik $g_n \in C(\mathbb{R})$, hogy $\forall x \in \mathbb{R}$-re $\lim_{n \to \infty} g_n(x) = f'(x)$. (Ezt hívják a derivált Baire 1 tulajdonságának.)
+
+**Megoldás.**
+
+Minden $n \in \mathbb{N}^+$-ra definiáljuk a differenciahányados-függvényt:
+$$g_n(x) = \frac{f\left(x + \frac1n\right) - f(x)}{\frac1n} = n\left(f\left(x + \frac1n\right) - f(x)\right).$$
+
+**1. A $g_n$ függvények folytonossága:**
+Mivel $f$ mindenütt differenciálható $\mathbb{R}$-en, $f$ folytonos is $\mathbb{R}$-en: $f \in C(\mathbb{R})$.
+Az $x \mapsto x + \frac1n$ eltolás folytonos, így az összetett $x \mapsto f\left(x + \frac1n\right)$ függvény is folytonos. Két folytonos függvény különbsége és konstansszorosa szintén folytonos, tehát
+$$g_n \in C(\mathbb{R}) \qquad \forall n \in \mathbb{N}^+.$$
+
+**2. Pontonkénti konvergencia $f'$-höz:**
+Legyen $x \in \mathbb{R}$ tetszőlegesen rögzített. A derivált definíciója szerint
+$$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}.$$
+Mivel a $h_n = \frac1n$ sorozatra $h_n \to 0$ és $h_n \ne 0$ minden $n$-re, a függvényhatárérték átviteli elve (Heine-definíció) szerint
+$$\lim_{n \to \infty} g_n(x) = \lim_{n \to \infty} \frac{f\left(x + \frac1n\right) - f(x)}{\frac1n} = f'(x).$$
+Ez minden $x \in \mathbb{R}$-re teljesül, tehát a folytonos $g_n$ függvénysorozat pontonként konvergál az $f'$ deriváltfüggvényhez.
+
+::: elmelet
+**Elméleti háttér — Baire-osztályok.**
+Egy függvény **Baire 1** osztályú, ha előáll folytonos függvények pontonkénti határértékeként. A feladat megmutatja, hogy **minden deriváltfüggvény Baire 1 osztályú** — még akkor is, ha maga a derivált nem folytonos (pl. $x^2 \sin(1/x)$ deriváltja a $0$-ban). Baire tétele szerint minden Baire 1 osztályú függvénynek a szakadási pontjai I. kategóriájú (sovány) halmazt alkotnak, így folytonossági pontjai sűrűek. Ebből ismét következik, hogy egy derivált nem viselkedhet tetszőlegesen vadul (pl. a Dirichlet-függvény nem lehet deriváltfüggvény).
+:::
+
+## 157. feladat
+
+Bizonyítsuk be, hogy $|\operatorname{arctg} x - \operatorname{arctg} y| \le |x - y|$, teljesül $\forall x, y \in \mathbb{R}$-re.
+
+**Megoldás.**
+
+- Ha $x = y$, akkor a bal oldal $|\operatorname{arctg} x - \operatorname{arctg} x| = 0$, a jobb oldal $|x - x| = 0$, az egyenlőség fennáll.
+- Tegyük fel, hogy $x \ne y$; az $x$ és $y$ szimmetriája miatt feltehetjük, hogy $x < y$.
+
+Tekintsük az $f(t) = \operatorname{arctg} t$ függvényt az $[x, y]$ zárt intervallumon.
+1. $f$ folytonos az $[x, y]$ intervallumon,
+2. $f$ differenciálható az $(x, y)$ nyílt intervallumon, és deriváltja $f'(t) = \dfrac{1}{1 + t^2}$.
+
+A Lagrange-féle középértéktétel szerint létezik olyan $c \in (x, y)$, amelyre
+$$\frac{\operatorname{arctg} y - \operatorname{arctg} x}{y - x} = f'(c) = \frac{1}{1 + c^2}.$$
+Mivel $c \in \mathbb{R}$, $c^2 \ge 0$, ezért $1 + c^2 \ge 1$, amiből
+$$0 < \frac{1}{1 + c^2} \le 1.$$
+Abszolút értéket véve:
+$$\left|\frac{\operatorname{arctg} y - \operatorname{arctg} x}{y - x}\right| = \frac{1}{1 + c^2} \le 1.$$
+Mindkét oldalt megszorozva a pozitív $|y - x|$-szel:
+$$|\operatorname{arctg} x - \operatorname{arctg} y| \le |x - y|.$$
+
+::: elmelet
+**Elméleti háttér — Lipschitz-folytonosság és a Lagrange-tétel.**
+Egy függvény $L$-Lipschitz-tulajdonságú, ha $|f(x) - f(y)| \le L|x - y|$. A Lagrange-tétel közvetlen következménye: ha egy differenciálható függvény deriváltja korlátos, $|f'(t)| \le L$, akkor a függvény $L$-Lipschitz. Mivel $(\operatorname{arctg} t)' = \frac{1}{1 + t^2} \le 1$, az $\operatorname{arctg}$ függvény $1$-Lipschitz (nem-tágító) leképezés. Hasonlóan bizonyítható, hogy $|\sin x - \sin y| \le |x - y|$ és $|\cos x - \cos y| \le |x - y|$, mert $|\sin'| = |\cos| \le 1$.
+:::
+
+## 158. feladat
+
+Az előadáson a Cauchy-középértéktétel bizonyítása csak vázlatos volt.
+
+A $h(x) = f(x) - (g(x) - g(a))\frac{f(b) - f(a)}{g(b) - g(a)}$ segédfüggvény került megadásra. Fejezzük be a bizonyítást!
+
+**Megoldás.**
+
+**A tétel kimondása:** Ha $f, g \in C[a, b]$, mindketten differenciálhatók $(a, b)$-n, és $g'(x) \ne 0$ minden $x \in (a, b)$-re, akkor létezik olyan $c \in (a, b)$, amelyre
+$$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}.$$
+
+**A bizonyítás lépései:**
+
+**1. lépés: A nevező nem nulla.**
+Megmutatjuk, hogy $g(b) - g(a) \ne 0$.
+Indirekt tegyük fel, hogy $g(b) = g(a)$. Mivel $g \in C[a, b]$ és $g$ differenciálható $(a, b)$-n, $g$-re teljesülnek a Rolle-tétel feltételei az $[a, b]$ intervallumon. A Rolle-tétel szerint létezne olyan $\xi \in (a, b)$, amelyre $g'(\xi) = 0$. Ez ellentmond a feltevésnek, miszerint $g'(x) \ne 0$ minden $x \in (a, b)$-re. Tehát $g(b) - g(a) \ne 0$, és a megadott $K = \frac{f(b) - f(a)}{g(b) - g(a)}$ hányados értelmezett.
+
+**2. lépés: A $h(x)$ segédfüggvény tulajdonságai.**
+Definiáljuk a segédfüggvényt:
+$$h(x) = f(x) - \big(g(x) - g(a)\big) \frac{f(b) - f(a)}{g(b) - g(a)}.$$
+- *Folytonosság:* $f$ és $g$ folytonos $[a, b]$-n, és $h$ ezek lineáris kombinációja, így $h \in C[a, b]$.
+- *Differenciálhatóság:* $f$ és $g$ differenciálható $(a, b)$-n, így $h$ is az, és a deriváltja:
+  $$h'(x) = f'(x) - g'(x) \frac{f(b) - f(a)}{g(b) - g(a)}.$$
+- *Végpontbeli értékek:*
+  $$h(a) = f(a) - (g(a) - g(a)) \frac{f(b) - f(a)}{g(b) - g(a)} = f(a) - 0 = f(a),$$
+  $$h(b) = f(b) - (g(b) - g(a)) \frac{f(b) - f(a)}{g(b) - g(a)} = f(b) - (f(b) - f(a)) = f(a).$$
+  Tehát $h(a) = h(b)$.
+
+**3. lépés: Rolle tétele alkalmazása.**
+Mivel $h \in C[a, b]$, differenciálható $(a, b)$-n, és $h(a) = h(b)$, a Rolle-tétel szerint létezik olyan $c \in (a, b)$, amelyre
+$$h'(c) = 0.$$
+
+**4. lépés: A képlet felírása.**
+Behelyettesítve $h'(c)$ kifejezését:
+$$0 = h'(c) = f'(c) - g'(c) \frac{f(b) - f(a)}{g(b) - g(a)} \quad \Longrightarrow \quad f'(c) = g'(c) \frac{f(b) - f(a)}{g(b) - g(a)}.$$
+Mivel a feltevés szerint $g'(c) \ne 0$, mindkét oldalt eloszthatjuk $g'(c)$-vel:
+$$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}.$$
+Ezzel a bizonyítást befejeztük. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — a középértéktételek hierarchiája.**
+A három középértéktétel egymásból következik:
+$$\text{Weierstrass-tétel} \implies \text{Rolle-tétel} \implies \text{Lagrange-tétel} \implies \text{Cauchy-tétel}.$$
+A Cauchy-tétel geometriai jelentése: a síkbeli paraméteres görbe $(g(t), f(t))$ húrjának iránya megegyezik a görbe érintőjének irányával egy alkalmas $t = c$ időpillanatban. A Cauchy-középértéktétel a legfőbb eszköze a L'Hospital-szabály bizonyításának.
+:::
+
+## 159. feladat
+
+Mutassuk meg, hogy az $x^7 + 8x^2 + 5x - 23 = 0$ egyenletnek legfeljebb három különböző gyöke van.
+
+**Megoldás.**
+
+Legyen $P(x) = x^7 + 8x^2 + 5x - 23$. A polinomfüggvény a teljes $\mathbb{R}$-en akárhányszor differenciálható.
+
+Számítsuk ki a deriváltjait:
+$$P'(x) = 7x^6 + 16x + 5,$$
+$$P''(x) = 42x^5 + 16,$$
+$$P'''(x) = 210x^4.$$
+
+**1. A $P''(x)$ zérushelyeinek száma:**
+Mivel $P'''(x) = 210x^4 \ge 0$, és csak $x = 0$-ban nulla, $P''$ szigorúan monoton növekvő a teljes $\mathbb{R}$-en.
+Mivel $\lim_{x \to -\infty} P''(x) = -\infty$ és $\lim_{x \to \infty} P''(x) = +\infty$, a Bolzano–Darboux-tétel és a szigorú monotonitás miatt a
+$$P''(x) = 42x^5 + 16 = 0$$
+egyenletnek **pontosan egy valós gyöke van** ($x_0 = -\sqrt[5]{16/42} = -\sqrt[5]{8/21}$).
+
+**2. A $P'(x)$ gyökeinek száma:**
+A Rolle-tétel következménye szerint két különböző gyök között a deriváltnak mindig van legalább egy gyöke.
+Ha $P'$-nek legalább $3$ különböző valós gyöke volna, akkor a Rolle-tétel szerint $P''$-nek legalább $2$ különböző valós gyöke kellene legyen. Mivel $P''$-nek csak $1$ valós gyöke van, $P'$-nek **legfeljebb $2$ különböző valós gyöke lehet**.
+
+**3. A $P(x)$ gyökeinek száma:**
+Ismét a Rolle-tétel miatt: ha $P$-nek legalább $4$ különböző valós gyöke volna, akkor a szomszédos gyökök közötti intervallumokra a Rolle-tételt alkalmazva $P'$-nek legalább $3$ különböző valós gyökének kellene lennie.
+Ez azonban ellentmond annak, hogy $P'$-nek legfeljebb $2$ valós gyöke van.
+
+Következésképpen a $P(x) = 0$ egyenletnek **legfeljebb három különböző valós gyöke lehet**.
+
+*(Megjegyzés: $P(1) = 1 + 8 + 5 - 23 = -9 < 0$ és $P(2) = 128 + 32 + 10 - 23 = 147 > 0$, így a Bolzano–Darboux-tétel szerint legalább egy valós gyöke biztosan van.)*
+
+::: elmelet
+**Elméleti háttér — Rolle tétele és a polinomok valós gyökeinek száma.**
+Ha egy intervallumon differenciálható $f$ függvénynek $k$ darab különböző valós gyöke van, akkor a Rolle-tétel szerint $f'$-nek legalább $k - 1$ darab különböző valós gyöke van. Kontrapozícióval: ha $f^{(m)}$-nek legfeljebb $r$ valós gyöke van, akkor $f$-nek legfeljebb $r + m$ valós gyöke lehet. Jelen feladatban $m = 2$, $r = 1$, így $P$ valós gyökeinek száma legfeljebb $1 + 2 = 3$.
+:::
+
+## 160. feladat
+
+Határozzuk meg az $f(x) = x^m(1 - x)^n$, ($m, n \in \mathbb{N}$) maximumát és minimumát $[0, 1]$-en!
+
+**Megoldás.**
+
+Feltehető, hogy $m, n \ge 1$ (pozitív egészek; ha valamelyik $0$, a feladat triviális).
+A függvény értelmezési tartománya $[0, 1]$.
+
+**1. Minimum:**
+Minden $x \in [0, 1]$-re $x \ge 0$ és $1 - x \ge 0$, ezért
+$$f(x) = x^m (1 - x)^n \ge 0.$$
+A végpontokban:
+$$f(0) = 0^m \cdot 1^n = 0, \qquad f(1) = 1^m \cdot 0^n = 0.$$
+Bármely belső $x \in (0, 1)$ pontra $x > 0$ és $1 - x > 0$, így $f(x) > 0$.
+Ezért $f$ **abszolút minimuma $0$**, amelyet a két végpontban, $x = 0$-ban és $x = 1$-ben vesz fel.
+
+**2. Maximum:**
+$f$ folytonos a korlátos és zárt $[0, 1]$ intervallumon, így a Weierstrass-tétel szerint felveszi a maximumát. Mivel a végpontokban értéke $0$, a nyílt $(0, 1)$ intervallumon pedig pozitív, a maximumát egy $(0, 1)$-beli belső pontban veszi fel, ahol a Fermat-tétel szerint $f'(x) = 0$.
+
+Számítsuk ki a deriváltat a szorzatszabállyal és a láncszabállyal:
+$$f'(x) = m x^{m-1} (1 - x)^n + x^m \cdot n(1 - x)^{n-1} \cdot (-1) = x^{m-1} (1 - x)^{n-1} \Big( m(1 - x) - nx \Big).$$
+Bontsuk fel a zárójelet:
+$$m(1 - x) - nx = m - (m + n)x.$$
+Mivel $x \in (0, 1)$-re $x^{m-1} > 0$ és $(1 - x)^{n-1} > 0$, a derivált pontosan akkor nulla, ha
+$$m - (m + n)x = 0 \quad \Longleftrightarrow \quad x_0 = \frac{m}{m + n}.$$
+
+**A stacionárius pont jellege:**
+- Ha $x \in \left(0, \frac{m}{m+n}\right)$, akkor $m - (m + n)x > 0$, így $f'(x) > 0$, a függvény szigorúan nő.
+- Ha $x \in \left(\frac{m}{m+n}, 1\right)$, akkor $m - (m + n)x < 0$, így $f'(x) < 0$, a függvény szigorúan csökken.
+
+Ezért $x_0 = \frac{m}{m + n}$ az egyetlen lokális és globális maximumhely.
+
+A maximális érték:
+$$f\left(\frac{m}{m+n}\right) = \left(\frac{m}{m+n}\right)^m \left(1 - \frac{m}{m+n}\right)^n = \left(\frac{m}{m+n}\right)^m \left(\frac{n}{m+n}\right)^n = \frac{m^m n^n}{(m + n)^{m + n}}.$$
+
+**Összegzés:**
+- **Minimum:** $0$, felvételi helyei $x = 0$ és $x = 1$.
+- **Maximum:** $\dfrac{m^m n^n}{(m + n)^{m + n}}$, felvételi helye $x = \dfrac{m}{m + n}$.
+
+::: elmelet
+**Elméleti háttér — kapcsolat a számtani–mértani egyenlőtlenséggel.**
+Ugyanez az eredmény deriválás nélkül is adódik a súlyozott számtani–mértani egyenlőtlenségből: tekintsünk $m$ darab $\frac{x}{m}$ és $n$ darab $\frac{1-x}{n}$ számot. Összegük konstans: $m \cdot \frac{x}{m} + n \cdot \frac{1-x}{n} = x + (1 - x) = 1$. A szorzatuk akkor maximális, ha a tagok mind egyenlők: $\frac{x}{m} = \frac{1-x}{n} \iff nx = m - mx \iff x = \frac{m}{m+n}$.
+:::
+
+## 161. feladat
+
+Mutassuk meg, hogy ha $f$ és $g$ differenciálható $[a, b]$-ben. $f(a) \ge g(a)$ és $\forall x \in [a, b]$-re $f'(x) \ge g'(x)$, akkor $\forall x \in [a, b]$-re $f(x) \ge g(x)$.
+
+**Megoldás.**
+
+Tekintsük a $h(x) = f(x) - g(x)$ különbségfüggvényt az $[a, b]$ intervallumon.
+
+**1. Differenciálhatóság és folytonosság:**
+Mivel $f$ és $g$ differenciálható $[a, b]$-n, a $h$ különbségfüggvény is differenciálható $[a, b]$-n, és így folytonos is $[a, b]$-n.
+
+**2. A derivált előjele és a monotonitás:**
+A feltétel szerint minden $x \in [a, b]$-re:
+$$h'(x) = f'(x) - g'(x) \ge 0.$$
+A monotonitási tétel (a Lagrange-féle középértéktétel közvetlen következménye) szerint ha egy intervallumon folytonos és nyílt belsejében differenciálható függvény deriváltja mindenütt nemnegatív, akkor a függvény **monoton növekvő** az intervallumon.
+
+Valóban, tetszőleges $x \in (a, b]$-re alkalmazva a Lagrange-tételt az $[a, x]$ intervallumon: létezik olyan $c \in (a, x)$, amelyre
+$$\frac{h(x) - h(a)}{x - a} = h'(c) \ge 0.$$
+Mivel $x - a > 0$, mindkét oldalt megszorozva $(x - a)$-val:
+$$h(x) - h(a) \ge 0 \quad \Longrightarrow \quad h(x) \ge h(a).$$
+Ez nyilván $x = a$-ra is igaz (egyenlőséggel).
+
+**3. Következtetés:**
+A feltétel szerint $f(a) \ge g(a)$, vagyis $h(a) = f(a) - g(a) \ge 0$.
+Ezt összevetve a monotonitásból kapott eredménnyel:
+$$h(x) \ge h(a) \ge 0 \qquad \forall x \in [a, b].$$
+Mivel $h(x) = f(x) - g(x) \ge 0$, átrendezve:
+$$f(x) \ge g(x) \qquad \forall x \in [a, b].$$
+
+::: elmelet
+**Elméleti háttér — egyenlőtlenségek igazolása differenciálszámítással.**
+Ez a feladat az egyik legfontosabb módszert mutatja be az analízisben egyenlőtlenségek igazolására: a bizonyítandó $f(x) \ge g(x)$ egyenlőtlenséget $h(x) = f(x) - g(x) \ge 0$ alakba írjuk át, megmutatjuk, hogy $h(a) \ge 0$, és a $h'(x) \ge 0$ derivált-feltételből következtetünk a függvény növekedésére. Ezzel a technikával bizonyíthatók pl. a Taylor-polinomos becslések is (vö. 162. feladat).
+:::
+
+## Röpzhra
+
+**Definíciók:** szig. lok. növ., Darboux tul.
+
+**Tételek:** $(\log_a x)'$, $(x^a)'$, lok. növekedés $a$-ban és $f'(a)$; $f'(a)$ és szig. lok. növ., Rolle, Lagrange, Cauchy, Darboux, monotonitás $[a, b]$-n és $f'$.
+
+### Definíciók és tételek kidolgozása
+
+#### Definíciók
+
+- **Szigorúan lokálisan növekvő függvény:** Az $f$ függvény **szigorúan lokálisan növekedő** az $a \in D(f)$ pontban, ha létezik olyan $\delta > 0$, hogy
+  $$x \in (a - \delta, a) \cap D(f) \implies f(x) < f(a),$$
+  $$x \in (a, a + \delta) \cap D(f) \implies f(a) < f(x).$$
+  *(Lokálisan növekedő: ha szigorú $<$ helyett $\le$ áll.)*
+- **Darboux-tulajdonság:** A $g : I \to \mathbb{R}$ függvény **Darboux-tulajdonságú** az $I$ intervallumon, ha bármely $a, b \in I$, $a < b$ esetén minden, $g(a)$ és $g(b)$ közötti $d$ értékhez létezik olyan $c \in (a, b)$, amelyre $g(c) = d$. (Más szóval: $g$ bármely részintervallumot intervallumra képez le, azaz „nem ugorhat át" értékeket.)
+
+#### Tételek
+
+- **$(\log_a x)' = \dfrac{1}{x \ln a}$ ($x > 0$, $a > 0, a \ne 1$):**
+  *Bizonyítás.* Legyen először $a = e$, azaz $f(x) = \ln x$. Mivel $f$ az invertálható, differenciálható $g(y) = e^y$ függvény inverze, és $g'(y) = e^y \ne 0$, az inverz függvény deriválási szabálya szerint
+  $$(\ln x)' = \frac{1}{g'(\ln x)} = \frac{1}{e^{\ln x}} = \frac1x.$$
+  Tetszőleges $a > 0, a \ne 1$ alapra az alapáttérési képlet szerint $\log_a x = \frac{\ln x}{\ln a}$, így
+  $$(\log_a x)' = \left(\frac{\ln x}{\ln a}\right)' = \frac{1}{\ln a} (\ln x)' = \frac{1}{x \ln a}.$$
+- **$(x^a)' = a x^{a-1}$ ($x > 0, a \in \mathbb{R}$):**
+  *Bizonyítás.* Az azonosság szerint $x^a = e^{a \ln x}$. Mivel az exponenciális és a logaritmus függvény differenciálható, a láncszabállyal:
+  $$(x^a)' = \left(e^{a \ln x}\right)' = e^{a \ln x} \cdot (a \ln x)' = x^a \cdot \frac{a}{x} = a x^{a-1}.$$
+- **Lokális növekedés $a$-ban és $f'(a)$:**
+  Ha $f$ differenciálható $a$-ban és lokálisan nő $a$-ban, akkor $f'(a) \ge 0$.
+  *Bizonyítás.* A lokális növekedés miatt létezik $\delta > 0$, hogy $x \in (a, a + \delta)$-ra $f(x) \ge f(a)$, így a differenciahányados $\frac{f(x) - f(a)}{x - a} \ge 0$. Jobbról tartva $x \to a+0$, a határérték $f'(a) \ge 0$. (Balról ugyanez: mindkét oldal nempozitív, hányadosuk nemnegatív.)
+- **$f'(a)$ és szigorú lokális növekedés:**
+  Ha $f$ differenciálható $a$-ban és $f'(a) > 0$, akkor $f$ szigorúan lokálisan nő $a$-ban.
+  *Bizonyítás.* Mivel $\lim_{x \to a} \frac{f(x) - f(a)}{x - a} = f'(a) > 0$, a határérték jeltartási tulajdonsága miatt létezik olyan $\delta > 0$, amelyre minden $x \in \dot{B}(a, \delta)$-ra $\frac{f(x) - f(a)}{x - a} > 0$. Ekkor $x > a$ esetén $f(x) - f(a) > 0 \implies f(x) > f(a)$, és $x < a$ esetén $f(x) - f(a) < 0 \implies f(x) < f(a)$. Ez pontosan a szigorú lokális növekedés definíciója.
+- **Rolle-tétel:** Ha $f \in C[a, b]$, differenciálható $(a, b)$-n és $f(a) = f(b)$, akkor létezik $c \in (a, b)$, hogy $f'(c) = 0$.
+  *Bizonyítás.* Ha $f$ konstans $[a, b]$-n, akkor minden $c \in (a, b)$-re $f'(c) = 0$. Ha $f$ nem konstans, akkor a Weierstrass-tétel szerint felveszi a maximumát és minimumát $[a, b]$-n. Mivel nem konstans, a két szélsőérték közül legalább az egyik nem $f(a) = f(b)$, így egy $c \in (a, b)$ belső pontban vétetik fel. Ott lokális szélsőérték van, így a Fermat-tétel szerint $f'(c) = 0$.
+- **Lagrange-féle középértéktétel:** Ha $f \in C[a, b]$ és differenciálható $(a, b)$-n, akkor létezik $c \in (a, b)$, hogy $f'(c) = \frac{f(b) - f(a)}{b - a}$.
+  *Bizonyítás.* Legyen $g(x) = f(x) - (x - a)\frac{f(b) - f(a)}{b - a}$. Ekkor $g \in C[a, b]$, differenciálható $(a, b)$-n, és $g(a) = g(b) = f(a)$. A Rolle-tétel szerint létezik $c \in (a, b)$, amelyre $g'(c) = 0 \iff f'(c) - \frac{f(b) - f(a)}{b - a} = 0$.
+- **Cauchy-féle középértéktétel:** Ha $f, g \in C[a, b]$, differenciálhatók $(a, b)$-n és $g'(x) \ne 0$ mindenütt $(a, b)$-n, akkor létezik $c \in (a, b)$, hogy $\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$.
+  *(Bizonyítás: lásd a 158. feladat kidolgozását.)*
+- **Darboux-tétel:** Ha $f$ differenciálható az $[a, b]$ intervallumon, akkor $f'$ Darboux-tulajdonságú: minden, $f'_+(a)$ és $f'_-(b)$ közötti $d$ értéket felvesz egy $c \in (a, b)$ pontban.
+  *Bizonyítás.* Tegyük fel pl., hogy $f'_+(a) < d < f'_-(b)$. Legyen $g(x) = f(x) - dx$. Ekkor $g$ differenciálható $[a, b]$-n, így folytonos is, a Weierstrass-tétel szerint felveszi a minimumát egy $c \in [a, b]$ pontban. Mivel $g'_+(a) = f'_+(a) - d < 0$, $g$ szigorúan lokálisan csökken $a$-ban, így $a$ nem lehet minimumhely. Hasonlóan $g'_-(b) = f'_-(b) - d > 0$, így $g$ szigorúan lokálisan nő $b$-ben, $b$ sem lehet minimumhely. Ezért $c \in (a, b)$ belső pont. Belső szélsőértékhelyen a derivált eltűnik: $0 = g'(c) = f'(c) - d \implies f'(c) = d$.
+- **Monotonitás $[a, b]$-n és $f'$:** Legyen $f \in C[a, b]$ és differenciálható $(a, b)$-n.
+  1. $f$ monoton növekvő $[a, b]$-n $\iff \forall x \in (a, b): f'(x) \ge 0$.
+  2. Ha $\forall x \in (a, b): f'(x) > 0$, akkor $f$ szigorúan monoton növekvő $[a, b]$-n.
+  *Bizonyítás.* Legyen $a \le x_1 < x_2 \le b$. A Lagrange-tétel szerint létezik $c \in (x_1, x_2)$, hogy $f(x_2) - f(x_1) = f'(c)(x_2 - x_1)$.
+  Ha $f'(c) \ge 0$, akkor $f(x_2) - f(x_1) \ge 0 \implies f(x_1) \le f(x_2)$ (monoton növő).
+  Ha $f'(c) > 0$, akkor $f(x_2) - f(x_1) > 0 \implies f(x_1) < f(x_2)$ (szigorúan monoton növő).
+
+# Analízis 1 – 16. feladatlap – megoldások
+
+### I. Mat. BSc Analízis 1 · 2026/27 első félév
+
+> **Házi feladat (a 15. feladatlapról):** 155.
+
+## 162. feladat
+
+Bizonyítsuk be, hogy
+
+a) $\forall x \ge 0$-re $x - \dfrac{x^2}{2} \le \log(1 + x) \le x - \dfrac{x^2}{2} + \dfrac{x^3}{3}$;
+
+b) $\forall x \ge 0$-re $x - \dfrac{x^3}{3!} \le \sin x \le x - \dfrac{x^3}{3!} + \dfrac{x^5}{5!}$.
+
+**Megoldás.**
+
+**a)** Ha $x = 0$, akkor $0 - 0 \le \log 1 \le 0 - 0 + 0$, vagyis $0 \le 0 \le 0$, ami egyenlőséggel teljesül. Tegyük fel, hogy $x > 0$.
+
+- **A bal oldali egyenlőtlenség:** Legyen $f_1(x) = \log(1 + x) - \left(x - \dfrac{x^2}{2}\right)$.
+  Ekkor $f_1(0) = 0$, és a derivált:
+  $$f_1'(x) = \frac{1}{1 + x} - (1 - x) = \frac{1 - (1 - x^2)}{1 + x} = \frac{x^2}{1 + x}.$$
+  Mivel $x > 0$, $x^2 > 0$ és $1 + x > 0$, így $f_1'(x) > 0$. A monotonitási tétel szerint $f_1$ szigorúan monoton növekvő a $[0, \infty)$ intervallumon. Mivel $f_1(0) = 0$, minden $x > 0$-ra $f_1(x) > 0$, azaz
+  $$x - \frac{x^2}{2} \le \log(1 + x).$$
+
+- **A jobb oldali egyenlőtlenség:** Legyen $f_2(x) = x - \dfrac{x^2}{2} + \dfrac{x^3}{3} - \log(1 + x)$.
+  Ekkor $f_2(0) = 0$, és a derivált:
+  $$f_2'(x) = 1 - x + x^2 - \frac{1}{1 + x} = \frac{(1 - x + x^2)(1 + x) - 1}{1 + x} = \frac{(1 + x^3) - 1}{1 + x} = \frac{x^3}{1 + x}.$$
+  Mivel $x > 0$, $f_2'(x) > 0$, tehát $f_2$ szigorúan monoton nő $[0, \infty)$-en. Mivel $f_2(0) = 0$, minden $x > 0$-ra $f_2(x) > 0$, azaz
+  $$\log(1 + x) \le x - \frac{x^2}{2} + \frac{x^3}{3}.$$
+
+**b)** Ha $x = 0$, az egyenlőség $0 \le 0 \le 0$ triviálisan teljesül. Tegyük fel, hogy $x > 0$.
+Ismert, hogy $x \ge 0$-ra $\sin x \le x$, azaz a $h_0(x) = x - \sin x$ függvényre $h_0(x) \ge 0$.
+
+- **A bal oldali egyenlőtlenség:** Legyen $g_1(x) = \sin x - \left(x - \dfrac{x^3}{6}\right)$.
+  Ekkor $g_1(0) = 0$. Számítsuk ki az egymást követő deriváltakat:
+  $$g_1'(x) = \cos x - 1 + \frac{x^2}{2}, \qquad g_1'(0) = 0;$$
+  $$g_1''(x) = -\sin x + x = x - \sin x = h_0(x) \ge 0 \qquad \forall x \ge 0.$$
+  Mivel $g_1''(x) \ge 0$, a $g_1'$ függvény monoton növekvő a $[0, \infty)$ intervallumon. Mivel $g_1'(0) = 0$, ebből következik, hogy $g_1'(x) \ge 0$ minden $x \ge 0$-ra.
+  Mivel $g_1'(x) \ge 0$, maga a $g_1$ függvény is monoton növekvő a $[0, \infty)$ intervallumon. Mivel $g_1(0) = 0$, minden $x \ge 0$-ra $g_1(x) \ge 0$, azaz
+  $$x - \frac{x^3}{3!} \le \sin x.$$
+
+- **A jobb oldali egyenlőtlenség:** Legyen $g_2(x) = x - \dfrac{x^3}{6} + \dfrac{x^5}{120} - \sin x$.
+  Ekkor $g_2(0) = 0$. Deriváljunk kétszer:
+  $$g_2'(x) = 1 - \frac{x^2}{2} + \frac{x^4}{24} - \cos x, \qquad g_2'(0) = 0;$$
+  $$g_2''(x) = -x + \frac{x^3}{6} + \sin x = \sin x - \left(x - \frac{x^3}{6}\right) = g_1(x).$$
+  Az előző pontban éppen azt láttuk be, hogy $g_1(x) \ge 0$ minden $x \ge 0$-ra!
+  Tehát $g_2''(x) \ge 0$ minden $x \ge 0$-ra.
+  Mivel $g_2''(x) \ge 0$ és $g_2'(0) = 0$, következik, hogy $g_2'(x) \ge 0$ minden $x \ge 0$-ra.
+  Mivel $g_2'(x) \ge 0$ és $g_2(0) = 0$, következik, hogy $g_2(x) \ge 0$ minden $x \ge 0$-ra, vagyis
+  $$\sin x \le x - \frac{x^3}{3!} + \frac{x^5}{5!}.$$
+
+::: elmelet
+**Elméleti háttér — Taylor-polinomok és a váltakozó előjelű sorok.**
+A kapott becslések a $\log(1 + x)$ és $\sin x$ függvények $0$ körüli Taylor-polinomjai:
+$$\log(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots, \qquad \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots$$
+A Leibniz-típusú váltakozó előjelű sorok részletösszegei alulról és felülről közrefogják a függvényértéket. A Lagrange-féle hibataggal: $f(x) = T_n(x) + \frac{f^{(n+1)}(\xi)}{(n+1)!} x^{n+1}$. A deriváltak előjele közvetlenül adja a becsléseket.
+:::
+
+## 163. feladat
+
+Tegyük föl, hogy $f$ differenciálható $\mathbb{R}$-en és $f' = f$. Mutassuk meg, hogy $\exists\, c \in \mathbb{R}$, hogy $f(x) = c e^x$.
+
+**Megoldás.**
+
+Tekintsük a $g(x) = f(x) e^{-x} = \dfrac{f(x)}{e^x}$ segédfüggvényt.
+Mivel $f$ differenciálható $\mathbb{R}$-en, és $e^{-x}$ is differenciálható, a szorzatszabály és a láncszabály szerint $g$ is differenciálható $\mathbb{R}$-en.
+
+Számítsuk ki $g'(x)$-et:
+$$g'(x) = f'(x) e^{-x} + f(x) (-e^{-x}) = \big(f'(x) - f(x)\big) e^{-x}.$$
+A feladat feltétele szerint minden $x \in \mathbb{R}$-re $f'(x) = f(x)$, azaz $f'(x) - f(x) = 0$. Ezt behelyettesítve:
+$$g'(x) = 0 \cdot e^{-x} = 0 \qquad \forall x \in \mathbb{R}.$$
+
+A Lagrange-féle középértéktétel közvetlen következménye szerint ha egy összefüggő intervallumon (itt a teljes $\mathbb{R}$-en) értelmezett differenciálható függvény deriváltja mindenütt nulla, akkor a függvény **konstans**.
+Valóban: tetszőleges $x \in \mathbb{R}$-re a $[0, x]$ (vagy $[x, 0]$) intervallumon létezik $\xi$, hogy $g(x) - g(0) = g'(\xi)x = 0$, tehát
+$$g(x) = g(0) \qquad \forall x \in \mathbb{R}.$$
+Legyen $c = g(0) = f(0) e^0 = f(0) \in \mathbb{R}$. Ekkor
+$$\frac{f(x)}{e^x} = c \quad \Longleftrightarrow \quad f(x) = c e^x.$$
+
+::: elmelet
+**Elméleti háttér — közönséges differenciálegyenletek és az exponenciális függvény.**
+Az $y' = y$ a legegyszerűbb elsőrendű homogén lineáris differenciálegyenlet. A feladat rávilágít az exponenciális függvény alapvető karakterizációjára: az egyetlen olyan függvények, amelyek deriváltja megegyezik önmagukkal, a $c e^x$ alakú függvények. Az integráló tényezővel való szorzás ($e^{-x}$) a differenciálegyenletek megoldásának standard módszere.
+:::
+
+## 164. feladat
+
+Határozzuk meg egy henger alakú $4\text{ dl}$ térfogatú konzervdoboz optimális méreteit, ha szeretnénk a felhasznált fém mennyiségét (a henger felszínét) minimalizálni.
+
+**Megoldás.**
+
+Jelölje a henger alapkörének sugarát $r > 0$, testmagasságát $m > 0$.
+A konzervdoboz térfogata:
+$$V = 4\text{ dl} = 0{,}4\text{ dm}^3 = 400\text{ cm}^3.$$
+A henger térfogatképlete: $V = \pi r^2 m$, amiből a magasság kifejezhető a sugárral:
+$$m = \frac{V}{\pi r^2}.$$
+
+A felhasznált fém mennyisége a zárt henger teljes felszíne (két alapkör és a palást):
+$$A(r) = 2 \cdot \pi r^2 + 2\pi r m = 2\pi r^2 + 2\pi r \frac{V}{\pi r^2} = 2\pi r^2 + \frac{2V}{r} \qquad (r > 0).$$
+
+Keressük az $A(r)$ függvény minimumát az $(0, \infty)$ nyílt félegyenesen.
+Számítsuk ki a deriváltat:
+$$A'(r) = 4\pi r - \frac{2V}{r^2} = \frac{4\pi r^3 - 2V}{r^2}.$$
+A stacionárius pontban $A'(r) = 0$:
+$$4\pi r^3 - 2V = 0 \quad \Longleftrightarrow \quad 2\pi r^3 = V \quad \Longleftrightarrow \quad r_0 = \sqrt[3]{\frac{V}{2\pi}}.$$
+
+Számítsuk ki a második deriváltat:
+$$A''(r) = 4\pi + \frac{4V}{r^3}.$$
+Mivel $r > 0$ és $V > 0$, $A''(r) > 0$ minden $r > 0$-ra, tehát $A(r)$ szigorúan konvex a teljes $(0, \infty)$ tartományon. Ezért $r_0$ az egyetlen, globális minimumhely.
+
+Vizsgáljuk meg az optimális méretek arányát:
+$$m = \frac{V}{\pi r_0^2} = \frac{2\pi r_0^3}{\pi r_0^2} = 2r_0.$$
+Vagyis az optimális doboz magassága pontosan megegyezik az átmérőjével: **$m = 2r$** (tengelymetszete négyzet).
+
+**Numerikus értékek:**
+$V = 400\text{ cm}^3$ esetén:
+$$r = \sqrt[3]{\frac{400}{2\pi}} = \sqrt[3]{\frac{200}{\pi}} \approx \sqrt[3]{63{,}662} \approx 3{,}993\text{ cm} \approx 4{,}0\text{ cm}.$$
+$$m = 2r \approx 7{,}986\text{ cm} \approx 8{,}0\text{ cm}.$$
+*(Deciméterben: $r \approx 0{,}40\text{ dm}$, $m \approx 0{,}80\text{ dm}$.)*
+
+A minimális felhasznált lemezfelület:
+$$A_{\min} = 2\pi r^2 + 4\pi r^2 = 6\pi r^2 = 6\pi \left(\frac{200}{\pi}\right)^{2/3} \approx 300{,}5\text{ cm}^2 \approx 3{,}0\text{ dm}^2.$$
+
+::: elmelet
+**Elméleti háttér — a számtani–mértani egyenlőtlenség alkalmazása.**
+A feladat deriválás nélkül is megoldható a számtani–mértani egyenlőtlenséggel:
+$$A(r) = 2\pi r^2 + \frac{V}{r} + \frac{V}{r} \ge 3 \sqrt[3]{2\pi r^2 \cdot \frac{V}{r} \cdot \frac{V}{r}} = 3 \sqrt[3]{2\pi V^2}.$$
+Egyenlőség pontosan akkor áll fenn, ha a három tag egyenlő: $2\pi r^2 = \frac{V}{r} \iff 2\pi r^3 = V \iff m = 2r$.
+:::
+
+## 165. feladat
+
+Egy $6{,}5\text{ m}$ magas létrát a falnak támasztottunk. Ha a létra alját $0{,}25\,\dfrac{\text{m}}{\text{s}}$ sebességgel húzzuk el a faltól milyen gyorsan fog a létra teteje süllyedni akkor, amikor az alja $2{,}5\text{ m}$-nyire van a faltól?
+
+**Megoldás.**
+
+Jelölje $t$ az időt, $x(t)$ a létra alsó végének távolságát a függőleges faltól, $y(t)$ pedig a létra felső végének magasságát a vízszintes talajtól.
+A létra hossza $L = 6{,}5\text{ m}$. A Pitagorasz-tétel szerint minden pillanatban fennáll:
+$$x(t)^2 + y(t)^2 = L^2 = (6{,}5)^2 = 42{,}25.$$
+
+A vizsgált időpillanatban $x = 2{,}5\text{ m}$. Számítsuk ki a létra tetejének $y$ magasságát:
+$$y = \sqrt{L^2 - x^2} = \sqrt{(6{,}5)^2 - (2{,}5)^2} = \sqrt{(6{,}5 - 2{,}5)(6{,}5 + 2{,}5)} = \sqrt{4 \cdot 9} = \sqrt{36} = 6\text{ m}.$$
+*(Ez az $5 - 12 - 13$ nevezetes derékszögű háromszög $0{,}5$-szöröse: $2{,}5; 6; 6{,}5$.)*
+
+Deriváljuk a geometriai kényszerfeltételt $t$ szerint (láncszabály):
+$$\frac{d}{dt}\big(x(t)^2 + y(t)^2\big) = \frac{d}{dt}(L^2) \quad \Longrightarrow \quad 2x(t) x'(t) + 2y(t) y'(t) = 0.$$
+Ebből kifejezve $y'(t)$-t:
+$$y'(t) = -\frac{x(t)}{y(t)} x'(t).$$
+
+A megadott adatok: $x = 2{,}5\text{ m}$, $y = 6\text{ m}$, és az alsó vég sebessége $x'(t) = 0{,}25\,\dfrac{\text{m}}{\text{s}} = \dfrac14\,\dfrac{\text{m}}{\text{s}}$.
+Behelyettesítve:
+$$y'(t) = -\frac{2{,}5}{6} \cdot 0{,}25 = -\frac{5/2}{6} \cdot \frac14 = -\frac{5}{12} \cdot \frac14 = -\frac{5}{48}\,\frac{\text{m}}{\text{s}} \approx -0{,}1042\,\frac{\text{m}}{\text{s}}.$$
+
+A negatív előjel azt jelzi, hogy az $y$ magasság csökken (a létra süllyed).
+
+**Válasz:** A létra teteje $\dfrac{5}{48}\,\dfrac{\text{m}}{\text{s}} \approx 0{,}104\,\dfrac{\text{m}}{\text{s}} \approx 10{,}4\,\dfrac{\text{cm}}{\text{s}}$ sebességgel süllyed.
+
+::: elmelet
+**Elméleti háttér — csatolt sebességek (related rates).**
+Amikor két vagy több egymással összefüggő mennyiség az idő függvényében változik, az őket összekötő geometriai egyenlet implicit deriválásával kapcsolatot kapunk a változási sebességeik (idő szerinti deriváltjaik) között. Figyeljük meg, hogy amint $x \to L$ (a létra vízszintesbe ér, $y \to 0$), a süllyedési sebesség $|y'| \to \infty$ végtelenhez tartana — a valóságban a létra elválik a faltól.
+:::
+
+## 166. feladat
+
+Tegyük fel, hogy $f$ folytonos és szigorúan konvex $[a, b]$-n. Hol veszi fel $[a, b]$-n a maximumát?
+
+**Megoldás.**
+
+Legyen $x \in (a, b)$ tetszőleges belső pont. Az $x$ pont egyértelműen felírható az $a$ és $b$ végpontok szigorú konvex kombinációjaként:
+$$x = (1 - \lambda)a + \lambda b, \qquad \text{ahol } \lambda = \frac{x - a}{b - a} \in (0, 1).$$
+Mivel $f$ szigorúan konvex az $[a, b]$ intervallumon, a konvexitás definíciója szerint minden $\lambda \in (0, 1)$-re:
+$$f(x) < (1 - \lambda)f(a) + \lambda f(b).$$
+Mivel két valós szám súlyozott számtani közepe nem haladhatja meg a két szám maximumát:
+$$(1 - \lambda)f(a) + \lambda f(b) \le \max\big(f(a), f(b)\big).$$
+Ezért minden belső $x \in (a, b)$ pontra:
+$$f(x) < \max\big(f(a), f(b)\big).$$
+
+Mivel $f$ folytonos a korlátos és zárt $[a, b]$ intervallumon, a Weierstrass-tétel szerint létezik legalább egy olyan $x_{\max} \in [a, b]$ pont, amelyben $f$ felveszi a maximumát.
+Mivel a fenti egyenlőtlenség szerint egyetlen belső $x \in (a, b)$ pontban sem érheti el az érték a $\max\big(f(a), f(b)\big)$ értéket, **a maximumot $f$ nem veheti fel semelyik belső pontban**.
+
+Következésképpen $f$ a maximumát kizárólag az intervallum **határpontjaiban (végpontjaiban)** veheti fel:
+- Ha $f(a) > f(b)$, akkor a maximumot egyértelműen az $x = a$ végpontban veszi fel;
+- Ha $f(b) > f(a)$, akkor a maximumot egyértelműen az $x = b$ végpontban veszi fel;
+- Ha $f(a) = f(b)$, akkor a maximumot mindkét végpontban ($x = a$ és $x = b$) felveszi.
+
+**Válasz:** $f$ a maximumát az intervallum végpontjában (végpontjaiban) veszi fel, és a maximum értéke $\max\big(f(a), f(b)\big)$.
+
+::: elmelet
+**Elméleti háttér — a maximum-elv konvex függvényekre.**
+Konvex függvényekre igaz a maximum-elv: kompakt konvex halmazon értelmezett konvex függvény maximumát mindig a halmaz határán (szélső pontjaiban) veszi fel. Ezzel szemben a lokális minimumok mindig belső pontok (ha léteznek), és konvex függvényre minden lokális minimum automatikusan globális minimum is.
+:::
+
+## 167. feladat
+
+Legyen $f(x) = |x|^3$, $f^{(2)}(x) = ?$; $f^{(3)}(x) = ?$
+
+**Megoldás.**
+
+Írjuk fel az $f(x) = |x|^3$ függvényt esetszétválasztással:
+$$f(x) = \begin{cases} x^3 & \text{ha } x \ge 0, \\ -x^3 & \text{ha } x < 0. \end{cases}$$
+
+**1. Első derivált:**
+- Ha $x > 0$: $f'(x) = (x^3)' = 3x^2$.
+- Ha $x < 0$: $f'(x) = (-x^3)' = -3x^2$.
+- Az $x = 0$ pontban a definíció szerint:
+  $$f'(0) = \lim_{h \to 0} \frac{|h|^3 - 0}{h} = \lim_{h \to 0} |h| \cdot \frac{|h|^2}{h} = \lim_{h \to 0} h|h| = 0.$$
+Tehát $f'(x) = 3x|x| = \begin{cases} 3x^2 & \text{ha } x \ge 0, \\ -3x^2 & \text{ha } x < 0. \end{cases}$
+
+**2. Második derivált ($f^{(2)}(x)$):**
+- Ha $x > 0$: $f''(x) = (3x^2)' = 6x$.
+- Ha $x < 0$: $f''(x) = (-3x^2)' = -6x$.
+- Az $x = 0$ pontban vizsgáljuk a differenciahányados határértékét:
+  $$\lim_{h \to 0+0} \frac{f'(h) - f'(0)}{h} = \lim_{h \to 0+0} \frac{3h^2}{h} = \lim_{h \to 0+0} 3h = 0,$$
+  $$\lim_{h \to 0-0} \frac{f'(h) - f'(0)}{h} = \lim_{h \to 0-0} \frac{-3h^2}{h} = \lim_{h \to 0-0} (-3h) = 0.$$
+  A két féloldali határérték megegyezik, így $f''(0) = 0$.
+Tehát a második derivált minden $x \in \mathbb{R}$-re létezik:
+$$f^{(2)}(x) = 6|x| = \begin{cases} 6x & \text{ha } x \ge 0, \\ -6x & \text{ha } x < 0. \end{cases}$$
+
+**3. Harmadik derivált ($f^{(3)}(x)$):**
+- Ha $x > 0$: $f'''(x) = (6x)' = 6$.
+- Ha $x < 0$: $f'''(x) = (-6x)' = -6$.
+- Az $x = 0$ pontban vizsgáljuk a differenciahányadost:
+  $$\lim_{h \to 0+0} \frac{f''(h) - f''(0)}{h} = \lim_{h \to 0+0} \frac{6h - 0}{h} = 6,$$
+  $$\lim_{h \to 0-0} \frac{f''(h) - f''(0)}{h} = \lim_{h \to 0-0} \frac{-6h - 0}{h} = -6.$$
+  Mivel a jobb és bal oldali határérték különbözik ($6 \ne -6$), a harmadik derivált az $x = 0$ pontban **nem létezik**.
+
+**Válasz:**
+$$f^{(2)}(x) = 6|x| \qquad (x \in \mathbb{R}),$$
+$$f^{(3)}(x) = 6 \operatorname{sgn}(x) = \begin{cases} 6 & \text{ha } x > 0, \\ -6 & \text{ha } x < 0, \end{cases} \qquad D(f^{(3)}) = \mathbb{R} \setminus \{0\}.$$
+
+::: elmelet
+**Elméleti háttér — a differenciálhatósági rend.**
+Az $f(x) = |x|^k$ függvény ($k \in \mathbb{N}^+$) az origóban pontosan $(k - 1)$-szer differenciálható folytonosan. Jelen esetben $k = 3$, így $f \in C^2(\mathbb{R})$, de $f \notin C^3(\mathbb{R})$.
+:::
+
+## 168. feladat
+
+Vizsgáljuk meg konvexitás szempontjából a $\operatorname{tg} x$ függvényt.
+
+**Megoldás.**
+
+A tangensfüggvény értelmezési tartománya:
+$$D(f) = \mathbb{R} \setminus \left\{\frac\pi2 + k\pi : k \in \mathbb{Z}\right\}.$$
+Mivel $\operatorname{tg}(x + \pi) = \operatorname{tg} x$, a függvény $\pi$-periodikus, ezért elegendő a konvexitást a fundamentális $I_0 = \left(-\frac\pi2, \frac\pi2\right)$ intervallumon vizsgálni.
+
+Számítsuk ki a deriváltakat:
+$$f'(x) = \frac{1}{\cos^2 x},$$
+$$f''(x) = \left((\cos x)^{-2}\right)' = -2(\cos x)^{-3}(-\sin x) = \frac{2\sin x}{\cos^3 x}.$$
+
+Mivel az $I_0 = \left(-\frac\pi2, \frac\pi2\right)$ intervallumon $\cos x > 0$, a nevező $\cos^3 x > 0$ mindenütt szigorúan pozitív. Ezért $f''(x)$ előjele megegyezik $\sin x$ előjelével:
+
+1. **A $\left(-\frac\pi2, 0\right)$ intervallumon:** $\sin x < 0$, így $f''(x) < 0$.
+   Ezért a $\operatorname{tg} x$ függvény **szigorúan konkáv** a $\left(-\frac\pi2, 0\right]$ intervallumon.
+2. **Az $x = 0$ pontban:** $f''(0) = 0$, és a második derivált előjelet vált (negatívból pozitívba megy át).
+   Ezért $x = 0$ **inflexiós hely** (inflexiós pont: $(0, 0)$).
+3. **A $\left(0, \frac\pi2\right)$ intervallumon:** $\sin x > 0$, így $f''(x) > 0$.
+   Ezért a $\operatorname{tg} x$ függvény **szigorúan konvex** a $\left[0, \frac\pi2\right)$ intervallumon.
+
+**Összefoglalás a teljes értelmezési tartományon:**
+Minden $k \in \mathbb{Z}$-re a $\left(-\frac\pi2 + k\pi, \frac\pi2 + k\pi\right)$ periódusintervallumon:
+- **szigorúan konkáv** a $\left(-\frac\pi2 + k\pi,\, k\pi\right]$ intervallumon;
+- **szigorúan konvex** a $\left[k\pi,\, \frac\pi2 + k\pi\right)$ intervallumon;
+- **inflexiós pontjai:** $x_k = k\pi$ ($k \in \mathbb{Z}$).
+
+::: elmelet
+**Elméleti háttér — konvexitási intervallumok és inflexió.**
+A konvexitás mindig összefüggő intervallumon értelmezett fogalom. A tangensfüggvény nem konvex a teljes értelmezési tartományán, mert az nem összefüggő. Az inflexiós pontban az érintő átmetszi a görbét: az origóban húzott érintő az $y = x$ egyenes, amely $x < 0$-ra a görbe felett, $x > 0$-ra a görbe alatt halad.
+:::
+
+## 169. feladat
+
+Határozzuk meg az alábbi függvények abszolút szélsőértékeit a megadott intervallumokon:
+
+a) $x + e^{-x}$, $[-2, 2]$; b) $x - \operatorname{arctg} x$, $[-1, 1]$; c) $x \cdot \log x$, $(0, \infty)$.
+
+**Megoldás.**
+
+**a) $f(x) = x + e^{-x}$ a $[-2, 2]$ intervallumon.**
+
+A függvény folytonos és differenciálható a kompakt $[-2, 2]$ intervallumon, így a Weierstrass-tétel szerint létezik abszolút minimuma és maximuma. Ezek vagy a stacionárius pontokban ($f'(x) = 0$), vagy az intervallum végpontjaiban lehetnek.
+
+Derivált:
+$$f'(x) = 1 - e^{-x}.$$
+A stacionárius pont:
+$$1 - e^{-x} = 0 \quad \Longleftrightarrow \quad e^{-x} = 1 \quad \Longleftrightarrow \quad x = 0 \in [-2, 2].$$
+Mivel $f''(x) = e^{-x} > 0$, $x = 0$ szigorú lokális minimumhely.
+
+Számítsuk ki a függvényértékeket a lehetséges helyeken:
+- Belső pontban: $f(0) = 0 + e^0 = 1$;
+- Bal végpontban: $f(-2) = -2 + e^2 \approx -2 + 7{,}3891 = 5{,}3891$;
+- Jobb végpontban: $f(2) = 2 + e^{-2} \approx 2 + 0{,}1353 = 2{,}1353$.
+
+Összehasonlítás: $1 < 2 + e^{-2} < e^2 - 2$ (mivel $e^2 - e^{-2} \approx 7{,}25 > 4$).
+- **Abszolút minimum:** értéke $1$, felvételi helye $x = 0$.
+- **Abszolút maximum:** értéke $e^2 - 2$, felvételi helye $x = -2$.
+
+---
+
+**b) $f(x) = x - \operatorname{arctg} x$ a $[-1, 1]$ intervallumon.**
+
+A függvény folytonos és differenciálható $[-1, 1]$-en.
+Derivált:
+$$f'(x) = 1 - \frac{1}{1 + x^2} = \frac{x^2}{1 + x^2}.$$
+Mivel $x^2 \ge 0$ és $1 + x^2 > 0$:
+$$f'(x) \ge 0 \qquad \forall x \in [-1, 1],$$
+és $f'(x) = 0$ kizárólag az $x = 0$ pontban teljesül.
+Mivel a derivált csak egyetlen pontban tűnik el, és mindenütt máshol szigorúan pozitív, $f$ **szigorúan monoton növekvő** a teljes $[-1, 1]$ intervallumon.
+
+Ennélfogva az abszolút szélsőértékek a végpontokban vétetnek fel:
+- **Abszolút minimum** a bal végpontban:
+  $$f(-1) = -1 - \operatorname{arctg}(-1) = -1 - \left(-\frac\pi4\right) = \frac\pi4 - 1 \approx -0{,}2146.$$
+- **Abszolút maximum** a jobb végpontban:
+  $$f(1) = 1 - \operatorname{arctg}(1) = 1 - \frac\pi4 \approx 0{,}2146.$$
+*(Az $x = 0$ stacionárius pontban $f(0) = 0$, de mivel $f'$ nem vált előjelet, ez inflexiós pont, nem szélsőértékhely.)*
+
+---
+
+**c) $f(x) = x \log x$ a $(0, \infty)$ intervallumon.**
+
+A függvény differenciálható a nyílt $(0, \infty)$ intervallumon.
+Derivált:
+$$f'(x) = 1 \cdot \log x + x \cdot \frac1x = \log x + 1.$$
+Stacionárius pont:
+$$\log x + 1 = 0 \quad \Longleftrightarrow \quad \log x = -1 \quad \Longleftrightarrow \quad x_0 = \frac1e.$$
+Második derivált:
+$$f''(x) = \frac1x > 0 \qquad \forall x \in (0, \infty).$$
+Mivel $f''(x) > 0$ a teljes értelmezési tartományon, $f$ szigorúan konvex $(0, \infty)$-en, így $x_0 = \frac1e$ az egyetlen, **globális abszolút minimumhely**.
+
+A minimális érték:
+$$f\left(\frac1e\right) = \frac1e \log\left(\frac1e\right) = -\frac1e \approx -0{,}3679.$$
+
+Vizsgáljuk a határértékeket a tartomány szélein:
+- $\lim_{x \to \infty} x \log x = +\infty$, tehát a függvény felülről nem korlátos, **abszolút maximuma nem létezik**.
+- $\lim_{x \to 0+0} x \log x = 0$ (a L'Hospital-szabállyal: $\lim_{x \to 0} \frac{\log x}{1/x} = \lim_{x \to 0} \frac{1/x}{-1/x^2} = 0$), és $0 > -\frac1e$.
+
+**Összegzés:**
+- **Abszolút minimum:** $-\dfrac1e$, felvételi helye $x = \dfrac1e$.
+- **Abszolút maximum:** nincs.
+
+::: elmelet
+**Elméleti háttér — szélsőérték zárt vs. nyílt intervallumon.**
+Kompakt (korlátos és zárt) intervallumon a Weierstrass-tétel garantálja az abszolút szélsőértékek létezését; a jelöltek a belső stacionárius pontok és a végpontok. Nyílt intervallumon a határértékek vizsgálata dönti el, hogy létezik-e globális szélsőérték.
+:::
+
+## 170. feladat
+
+Határozzuk meg az $y = x^2/8$ parabolán a $(0, 6)$ ponthoz legközelebbi ponto(ka)t.
+
+**Megoldás.**
+
+A parabola tetszőleges pontja $P\left(x, \frac{x^2}{8}\right)$.
+A $Q(0, 6)$ ponttól mért távolság négyzete:
+$$D(x) = (x - 0)^2 + \left(\frac{x^2}{8} - 6\right)^2 = x^2 + \frac{x^4}{64} - \frac{12x^2}{8} + 36 = \frac{x^4}{64} - \frac{x^2}{2} + 36.$$
+Mivel a négyzetgyökfüggvény szigorúan monoton növekvő a $[0, \infty)$-en, a távolság pontosan ott minimális, ahol a távolságnégyzet $D(x)$ minimális.
+
+Vezessük be az $u = x^2 \ge 0$ új változót. Ekkor a távolságnégyzet:
+$$g(u) = \frac{u^2}{64} - \frac{u}{2} + 36 \qquad (u \ge 0).$$
+Ez egy felfelé nyíló másodfokú polinom! Deriváltja:
+$$g'(u) = \frac{2u}{64} - \frac12 = \frac{u}{32} - \frac12.$$
+A stacionárius pont:
+$$\frac{u}{32} - \frac12 = 0 \quad \Longleftrightarrow \quad u = 16.$$
+Mivel $u = 16 > 0$ a megengedett tartományba esik, és $g''(u) = \frac{1}{32} > 0$, itt valóban globális minimum van.
+
+Visszahelyettesítve $x$-re:
+$$x^2 = 16 \quad \Longleftrightarrow \quad x = \pm 4.$$
+A megfelelő $y$-koordináták:
+$$y = \frac{(\pm 4)^2}{8} = \frac{16}{8} = 2.$$
+
+A keresett legközelebbi pontok a **$(-4, 2)$** és a **$(4, 2)$**.
+
+A minimális távolság értéke:
+$$d_{\min} = \sqrt{(\pm 4 - 0)^2 + (2 - 6)^2} = \sqrt{16 + 16} = \sqrt{32} = 4\sqrt{2} \approx 5{,}657.$$
+
+*(Megjegyzés: a parabola tengelypontja $P_0(0, 0)$, ennek távolsága $6$, ami szigorúan nagyobb, mint $4\sqrt{2} \approx 5{,}657$.)*
+
+::: elmelet
+**Elméleti háttér — távolságminimum és normális egyenes.**
+A differenciálgeometria alaptétele szerint a sík egy külső pontjából a sima görbéhez húzott legrövidebb szakasz egyenese merőleges a görbe érintőjére az érintési pontban (a szakasz a görbe normálisa).
+Ellenőrzés: az $y = x^2/8$ érintőjének meredeksége $x = 4$-ben $y' = 4/4 = 1$. A normális meredeksége $-1$. A $(4, 2)$ és $(0, 6)$ pontokat összekötő egyenes meredeksége $\frac{6 - 2}{0 - 4} = \frac{4}{-4} = -1$, ami pontosan a normális meredeksége!
+:::
+
+## 171. feladat
+
+Egy $3 - 4 - 5$ oldalhosszúságú derékszögű háromszögbe írunk téglalapokat, úgy hogy egyik oldaluk a háromszög $5$ egység hosszúságú átfogóján van. Határozzuk meg ezen téglalapok közül a maximális területűt.
+
+**Megoldás.**
+
+Legyen a derékszögű háromszög befogóinak hossza $a = 3$ és $b = 4$, átfogója $c = 5$.
+A háromszög területe a befogókból:
+$$T_\Delta = \frac{a \cdot b}{2} = \frac{3 \cdot 4}{2} = 6.$$
+Jelölje $m_c$ az átfogóhoz tartozó magasságot. Mivel $T_\Delta = \frac{c \cdot m_c}{2}$:
+$$\frac{5 \cdot m_c}{2} = 6 \quad \Longrightarrow \quad m_c = \frac{12}{5} = 2{,}4.$$
+
+A beírt téglalap átfogón fekvő oldalának hossza legyen $x$, a rá merőleges oldalának hossza pedig $y$ ($0 \le y \le m_c$).
+A téglalap felső oldala párhuzamos az átfogóval, és a befogókat metszve egy olyan kis derékszögű háromszöget vág le a derékszögű csúcsnál, amely hasonló az eredeti háromszöghöz.
+Ennek a levágott kis háromszögnek az átfogója $x$, az átfogóhoz tartozó magassága pedig $m_c - y$.
+A hasonlóság arányából:
+$$\frac{x}{c} = \frac{m_c - y}{m_c} \quad \Longrightarrow \quad x = c\left(1 - \frac{y}{m_c}\right) = 5\left(1 - \frac{5}{12}y\right).$$
+
+A téglalap területe $y$ függvényében:
+$$T(y) = x \cdot y = c y \left(1 - \frac{y}{m_c}\right) = 5y\left(1 - \frac{5}{12}y\right) = 5y - \frac{25}{12}y^2 \qquad \left(0 \le y \le \frac{12}{5}\right).$$
+
+Ez egy lefelé nyíló másodfokú parabola $y$-ban, amelynek zérushelyei $y = 0$ és $y = m_c = \frac{12}{5}$.
+A parabola szimmetriája miatt a csúcspontja (maximumhelye) a két zérushely számtani közepe:
+$$y_0 = \frac{m_c}{2} = \frac{12/5}{2} = \frac{6}{5} = 1{,}2.$$
+A téglalap átfogón fekvő oldalának hossza ekkor:
+$$x_0 = c\left(1 - \frac{m_c/2}{m_c}\right) = \frac{c}{2} = \frac{5}{2} = 2{,}5.$$
+
+A maximális terület:
+$$T_{\max} = x_0 \cdot y_0 = \frac{5}{2} \cdot \frac{6}{5} = 3.$$
+
+Figyeljük meg, hogy
+$$T_{\max} = \frac{c}{2} \cdot \frac{m_c}{2} = \frac{c \cdot m_c}{4} = \frac{T_\Delta}{2} = 3.$$
+
+**Válasz:** A maximális területű téglalap területe **$3$** területegység. Oldalai az átfogón fekvő $2{,}5$ és az arra merőleges $1{,}2$.
+
+::: elmelet
+**Elméleti háttér — háromszögbe írt maximális téglalap általános tétele.**
+Tetszőleges háromszögbe írt, adott oldalon fekvő téglalapok közül a maximális területű területe mindig pontosan fele a háromszög területének ($T_{\max} = \frac12 T_\Delta$), az oldalfelező párhuzamos által meghatározott méretekkel ($x = c/2, y = m_c/2$).
+:::
+
+## 172. feladat
+
+Milyen hosszú létrát vihetünk be egy toronyba a $h$ magasságú ajtón, ha az ajtóval szemközti fal az ajtótól $d$ távolságra van?
+
+**Megoldás.**
+
+Vegyük fel a helyzet keresztmetszetét egy függőleges síkban (a lap bal alsó ábrájának megfelelően).
+A torony bejárata egy $h$ magasságú nyílás. A külső talaj vízszintes. Az ajtóval szemben $d$ távolságra egy függőleges fal áll.
+A létrát ferdén döntve próbáljuk bevinni. Jelölje $\theta$ a létra dőlésszögét a vízszinteshez ($0 < \theta < \frac\pi2$).
+Ahhoz, hogy a létrát be lehessen vinni, a létra nem akadhat el: minden megvalósuló szögben át kell férnie.
+
+A geometriailag legszűkebb helyzetben a létra egyenese áthalad az ajtó felső sarkán, alsó vége a külső talajon van, felső vége pedig a szemközti falon támaszkodik.
+Határozzuk meg ezen egyenesszakasz $L(\theta)$ hosszát:
+- A külső talajtól az ajtó felső széléig tartó szakasz hossza egy $h$ magasságú derékszögű háromszög átfogója:
+  $$L_1(\theta) = \frac{h}{\sin \theta}.$$
+- Az ajtó felső szélétől a szemközti falig tartó szakasz hossza egy $d$ vízszintes távolságú derékszögű háromszög átfogója:
+  $$L_2(\theta) = \frac{d}{\cos \theta}.$$
+
+Így a $\theta$ szögben még átférő szakasz hossza:
+$$L(\theta) = L_1(\theta) + L_2(\theta) = \frac{h}{\sin \theta} + \frac{d}{\cos \theta} \qquad \left(0 < \theta < \frac\pi2\right).$$
+
+A toronyba bevihető **leghosszabb létra** hossza megegyezik ezen szakaszok **minimumával**:
+$$L_{\max} = \min_{\theta \in (0, \pi/2)} L(\theta),$$
+hiszen a létra a legkedvezőtlenebb helyzetben (a szűk keresztmetszetnél) sem akadhat el.
+
+**A minimumhely megkeresése:**
+Deriváljuk $L(\theta)$-t $\theta$ szerint:
+$$L'(\theta) = -\frac{h \cos \theta}{\sin^2 \theta} + \frac{d \sin \theta}{\cos^2 \theta} = \frac{d \sin^3 \theta - h \cos^3 \theta}{\sin^2 \theta \cos^2 \theta}.$$
+A stacionárius pontban $L'(\theta) = 0$:
+$$d \sin^3 \theta - h \cos^3 \theta = 0 \quad \Longleftrightarrow \quad \operatorname{tg}^3 \theta = \frac{h}{d} \quad \Longleftrightarrow \quad \operatorname{tg} \theta = \left(\frac{h}{d}\right)^{1/3}.$$
+
+Ebből a szögfüggvények értékei a $\sin \theta = \frac{\operatorname{tg} \theta}{\sqrt{1 + \operatorname{tg}^2 \theta}}$ és $\cos \theta = \frac{1}{\sqrt{1 + \operatorname{tg}^2 \theta}}$ összefüggésekkel:
+$$\sin \theta = \frac{h^{1/3}}{\sqrt{h^{2/3} + d^{2/3}}}, \qquad \cos \theta = \frac{d^{1/3}}{\sqrt{h^{2/3} + d^{2/3}}}.$$
+
+Mivel $\lim_{\theta \to 0+0} L(\theta) = +\infty$ és $\lim_{\theta \to \frac\pi2-0} L(\theta) = +\infty$, a folytonos $L(\theta)$ függvénynek ebben az egyetlen stacionárius pontban globális minimuma van.
+
+Számítsuk ki a minimális hosszt:
+$$L_{\min} = \frac{h}{\sin \theta} + \frac{d}{\cos \theta} = \frac{h}{\frac{h^{1/3}}{\sqrt{h^{2/3} + d^{2/3}}}} + \frac{d}{\frac{d^{1/3}}{\sqrt{h^{2/3} + d^{2/3}}}}$$
+$$= h^{2/3} \sqrt{h^{2/3} + d^{2/3}} + d^{2/3} \sqrt{h^{2/3} + d^{2/3}} = \big(h^{2/3} + d^{2/3}\big) \sqrt{h^{2/3} + d^{2/3}} = \big(h^{2/3} + d^{2/3}\big)^{3/2}.$$
+
+**Válasz:** A toronyba bevihető leghosszabb létra hossza:
+$$\left(h^{2/3} + d^{2/3}\right)^{3/2} = \left(\sqrt[3]{h^2} + \sqrt[3]{d^2}\right)^{3/2}.$$
+
+::: elmelet
+**Elméleti háttér — a derékszögű folyosó-probléma és az asztroid.**
+Ugyanez a matematikai probléma merül fel, amikor egy derékszögű folyosókanyarban viszünk át egy gerendát vagy csövet (ahol a két folyosó szélessége $h$ és $d$). A létra által súrolt burkológörbe (envelope) az $x^{2/3} + y^{2/3} = L^{2/3}$ egyenletű **asztroid** (hipociklois).
+:::
+
+## Röpzhra
+
+**Definíciók:** $f''$, $f^{(k)}$, inflexiós hely.
+
+**Tételek:** Elégs. felt. szig. lok. min./max-ra $f''$ segítségével; $(f + g)^{(n)}$, $(f \cdot g)^{(n)}$; konvexitás és $f'$, konvexitás és $f''$, Hölder egyenlőtlenség, konvexitás és érintők.
+
+### Definíciók és tételek kidolgozása
+
+#### Definíciók
+
+- **Második derivált ($f''$):** Ha az $f'$ deriváltfüggvény differenciálható az $a \in D(f')$ pontban, akkor $(f')'(a)$-t az $f$ függvény $a$-beli **második deriváltjának** nevezzük; jelölése $f''(a)$ vagy $f^{(2)}(a)$.
+- **$k$-adik derivált ($f^{(k)}$):** Teljes indukcióval: $f^{(0)} \stackrel{\text{def}}{=} f$. Ha $f^{(k-1)}$ differenciálható $a$-ban, akkor $(f^{(k-1)})'(a)$-t az $f$ függvény $a$-beli **$k$-adik deriváltjának** nevezzük, jele $f^{(k)}(a)$.
+- **Inflexiós hely:** Az $a$ pont az $f$ függvény **inflexiós helye**, ha $f$-nek létezik (véges vagy végtelen) deriváltja $a$-ban, és létezik olyan $\delta > 0$, hogy $f$ konvex az $(a - \delta, a]$ intervallumon és konkáv az $[a, a + \delta)$ intervallumon, vagy fordítva (azaz a görbület jellege megváltozik az $a$ pontban).
+
+#### Tételek
+
+- **Elégséges feltétel szigorú lokális min./max-ra $f''$ segítségével:**
+  Tegyük fel, hogy $f$ differenciálható az $a$ egy környezetében, létezik $f''(a)$, és $f'(a) = 0$.
+  1. Ha $f''(a) > 0$, akkor $a$ szigorú lokális minimumhely.
+  2. Ha $f''(a) < 0$, akkor $a$ szigorú lokális maximumhely.
+  *Bizonyítás (az 1. állításra).* Mivel $f''(a) = (f')'(a) > 0$, az $f'$ függvény szigorúan lokálisan nő az $a$ pontban. Mivel $f'(a) = 0$, létezik $\delta > 0$, hogy:
+  $$x \in (a - \delta, a) \implies f'(x) < f'(a) = 0,$$
+  $$x \in (a, a + \delta) \implies f'(x) > f'(a) = 0.$$
+  A monotonitási tétel szerint $f$ szigorúan monoton csökken az $(a - \delta, a]$ intervallumon, és szigorúan monoton nő az $[a, a + \delta)$ intervallumon. Ezért minden $x \in \dot{B}(a, \delta)$-ra $f(x) > f(a)$, vagyis $a$ szigorú lokális minimumhely.
+- **$(f + g)^{(n)}$ és $(f \cdot g)^{(n)}$ (Leibniz-szabály):**
+  Ha $f$ és $g$ $n$-szer differenciálható $a$-ban:
+  1. $(f + g)^{(n)}(a) = f^{(n)}(a) + g^{(n)}(a)$.
+  2. **Leibniz-szabály:** $(f \cdot g)^{(n)}(a) = \sum_{k=0}^n \binom{n}{k} f^{(k)}(a) g^{(n-k)}(a)$.
+  *Bizonyítás (a Leibniz-szabályra, teljes indukcióval).* $n = 1$-re a szorzatszabály: $(fg)' = f'g + fg'$. Tegyük fel, hogy $n$-re igaz. Ekkor:
+  $$(fg)^{(n+1)} = \left(\sum_{k=0}^n \binom{n}{k} f^{(k)} g^{(n-k)}\right)' = \sum_{k=0}^n \binom{n}{k} \left(f^{(k+1)} g^{(n-k)} + f^{(k)} g^{(n-k+1)}\right).$$
+  Az azonos $f^{(j)} g^{(n+1-j)}$ tagok együtthatója $\binom{n}{j-1} + \binom{n}{j} = \binom{n+1}{j}$ (Pascal-azonosság), így adódik a formula $(n + 1)$-re.
+- **Konvexitás és $f'$:**
+  Tegyük fel, hogy $f$ differenciálható az $I$ intervallumon.
+  $f$ konvex $I$-n $\iff f'$ monoton növekvő $I$-n.
+  $f$ szigorúan konvex $I$-n $\iff f'$ szigorúan monoton növekvő $I$-n.
+  *Bizonyítás.*
+  $(\Rightarrow)$ Ha $f$ konvex, tetszőleges $a < b$ esetén a húrmeredekségek monotonitásából $f'(a) \le \frac{f(b) - f(a)}{b - a} \le f'(b)$, így $f'(a) \le f'(b)$.
+  $(\Leftarrow)$ Ha $f'$ monoton nő, és $a < x < b$, akkor a Lagrange-tétel szerint $\frac{f(x) - f(a)}{x - a} = f'(u) \le f'(v) = \frac{f(b) - f(x)}{b - x}$ ($u \in (a, x), v \in (x, b)$), amiből átrendezéssel $f(x) \le f(a) + \frac{f(b) - f(a)}{b - a}(x - a)$, ami a konvexitás.
+- **Konvexitás és $f''$:**
+  Tegyük fel, hogy $f$ kétszer differenciálható az $I$ intervallumon.
+  $f$ konvex $I$-n $\iff f''(x) \ge 0$ minden $x \in I$-re.
+  Ha $f''(x) > 0$ minden $x \in I$-re, akkor $f$ szigorúan konvex $I$-n.
+  *Bizonyítás.* Az előző tétel és a derivált előjele és monotonitása közötti kapcsolat ($f'$ monoton nő $\iff (f')' = f'' \ge 0$) közvetlen szorzata.
+- **Hölder-egyenlőtlenség:**
+  Ha $p, q > 1$, $\frac{1}{p} + \frac{1}{q} = 1$, és $a_k, b_k \ge 0$ ($k = 1, \dots, n$), akkor
+  $$\sum_{k=1}^n a_k b_k \le \left(\sum_{k=1}^n a_k^p\right)^{1/p} \left(\sum_{k=1}^n b_k^q\right)^{1/q}.$$
+  *Bizonyítás.* Az $\ln$ függvény szigorúan konkáv, így a Young-egyenlőtlenség érvényes: $ab \le \frac{a^p}{p} + \frac{b^q}{q}$.
+  Legyen $A = \left(\sum a_k^p\right)^{1/p}$ és $B = \left(\sum b_k^q\right)^{1/q}$ (ha $A = 0$ vagy $B = 0$, az egyenlőtlenség triviális $0 \le 0$).
+  Alkalmazzuk a Young-egyenlőtlenséget az $\frac{a_k}{A}$ és $\frac{b_k}{B}$ számokra:
+  $$\frac{a_k b_k}{AB} \le \frac{1}{p} \frac{a_k^p}{A^p} + \frac{1}{q} \frac{b_k^q}{B^q}.$$
+  Összegezve $k = 1$-től $n$-ig:
+  $$\frac{\sum a_k b_k}{AB} \le \frac{1}{p} \frac{\sum a_k^p}{A^p} + \frac{1}{q} \frac{\sum b_k^q}{B^q} = \frac{1}{p} \cdot 1 + \frac{1}{q} \cdot 1 = \frac{1}{p} + \frac{1}{q} = 1.$$
+  Mindkét oldalt megszorozva $AB$-vel, megkapjuk a tételt.
+- **Konvexitás és érintők:**
+  Ha $f$ differenciálható az $I$ intervallumon, akkor $f$ akkor és csak akkor konvex $I$-n, ha minden érintője a grafikon alatt halad:
+  $$f(x) \ge f(a) + f'(a)(x - a) \qquad \forall a, x \in I.$$
+  *Bizonyítás.* A konvexitás miatt $a < x$-re $\frac{f(x) - f(a)}{x - a} \ge f'(a)$, megszorozva a pozitív $(x - a)$-val kapjuk az egyenlőtlenséget. Ha $x < a$, akkor $\frac{f(a) - f(x)}{a - x} \le f'(a)$, megszorozva $(a - x)$-szel: $f(a) - f(x) \le f'(a)(a - x) \iff f(x) \ge f(a) + f'(a)(x - a)$.
+  Megfordítva, ha az egyenlőtlenség teljesül, akkor $a < b$-re $f'(a) \le \frac{f(b) - f(a)}{b - a} \le f'(b)$, így $f'$ monoton nő, tehát $f$ konvex.
+
 # Analízis 1 – 1. ZH (2022 normál) – megoldások
 
 ### B. Sc. I. Mat. Haladó analízis · Első ZH · Normál verzió (2022/23-I. félév)
