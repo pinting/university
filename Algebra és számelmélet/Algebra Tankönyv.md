@@ -1,3 +1,5 @@
+<!-- Generated file, do not edit! Source: Algebra és számelmélet/Tankönyv/Algebra/, regenerate with: make concat -->
+
 # Algebra Tankönyv
 
 ### Felsőbb fokú algebra kezdőknek, lépésről lépésre

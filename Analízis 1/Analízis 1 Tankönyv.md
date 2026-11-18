@@ -1,3 +1,5 @@
+<!-- Generated file, do not edit! Source: Analízis 1/Tankönyv/, regenerate with: make concat -->
+
 # Analízis 1 Tankönyv
 
 ### Bevezetés a differenciál- és integrálszámítás alapfogalmaiba, lépésről lépésre

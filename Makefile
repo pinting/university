@@ -1,8 +1,9 @@
 # Build the university course materials.
 #
 #   make          concat + render (all documents, all sizes: a4, a5, a6)
-#   make concat   join each subject's Gyakorlat sheets into one Markdown file
-#                 per sheet folder, overwriting previous files
+#   make concat   join each subject's Gyakorlat sheets, Jegyzet chapters,
+#                 and Tankönyv chapters into one Markdown file per document,
+#                 overwriting previous files
 #   make render   render Markdown files as PDFs into out/a4, out/a5, out/a6
 #                 (overwriting previous files). To render a specific file:
 #                   make render FILE="path/to/document.md"
@@ -56,6 +57,32 @@ concat:
 	    | xargs -0 awk 'FNR == 1 && NR != 1 { print "" } { print }'; \
 	  } > "$$target"; \
 	done
+	@find . -mindepth 2 -maxdepth 2 \( -path './*/Jegyzet' -o -path './*/Tankönyv' \) -type d | LC_ALL=C sort -V | while IFS= read -r dir; do \
+	  if [ -n "$$(find "$$dir" -maxdepth 1 -name '*.md' 2>/dev/null)" ]; then \
+	    dir="$${dir#./}"; \
+	    subj="$${dir%%/*}"; \
+	    folder="$${dir##*/}"; \
+	    target="$$subj/$$subj $$folder.md"; \
+	    echo "==> $$target"; \
+	    { printf '<!-- Generated file, do not edit! Source: %s/, regenerate with: make concat -->\n\n' "$$dir"; \
+	      find "$$dir" -maxdepth 1 -name '*.md' -print0 | LC_ALL=C sort -zV \
+	      | xargs -0 awk 'FNR == 1 && NR != 1 { print "" } { print }'; \
+	    } > "$$target"; \
+	  fi; \
+	done
+	@find . -mindepth 3 -maxdepth 3 \( -path './*/Tankönyv/*' -o -path './*/Jegyzet/*' \) -type d | LC_ALL=C sort -V | while IFS= read -r dir; do \
+	  dir="$${dir#./}"; \
+	  subj="$${dir%%/*}"; \
+	  rest="$${dir#*/}"; \
+	  kind="$${rest%%/*}"; \
+	  folder="$${rest##*/}"; \
+	  target="$$subj/$$folder $$kind.md"; \
+	  echo "==> $$target"; \
+	  { printf '<!-- Generated file, do not edit! Source: %s/, regenerate with: make concat -->\n\n' "$$dir"; \
+	    find "$$dir" -maxdepth 1 -name '*.md' -print0 | LC_ALL=C sort -zV \
+	    | xargs -0 awk 'FNR == 1 && NR != 1 { print "" } { print }'; \
+	  } > "$$target"; \
+	done
 
 render:
 ifdef FILE
@@ -85,7 +112,7 @@ else
 	    a6) geom="$(GEOMETRY_a6)" ;; \
 	    *)  geom="$${size}paper" ;; \
 	  esac; \
-	  find . -name '*.md' -not -path './.*' -not -path './out/*' -not -name 'README.md' -not -path '*/Gyakorlat/*' | LC_ALL=C sort -V | while IFS= read -r src; do \
+	  find . -name '*.md' -not -path './.*' -not -path './out/*' -not -name 'README.md' -not -path '*/Gyakorlat/*' -not -path '*/Tankönyv/*' -not -path '*/Jegyzet/*' | LC_ALL=C sort -V | while IFS= read -r src; do \
 	    src="$${src#./}"; \
 	    dest="out/$$size/$${src%.md}.pdf"; \
 	    echo "==> $$dest"; \

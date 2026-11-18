@@ -1,3 +1,5 @@
+<!-- Generated file, do not edit! Source: Algebra és számelmélet/Tankönyv/Számelmélet/, regenerate with: make concat -->
+
 # Számelmélet Tankönyv
 
 ### Elemi számelmélet lépésről lépésre

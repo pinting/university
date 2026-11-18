@@ -1,3 +1,5 @@
+<!-- Generated file, do not edit! Source: Analízis 1/Jegyzet/, regenerate with: make concat -->
+
 # Analízis I.
 
 ### Összefüggő jegyzet a kézírásos előadásjegyzet alapján

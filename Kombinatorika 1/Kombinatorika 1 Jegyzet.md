@@ -1,3 +1,5 @@
+<!-- Generated file, do not edit! Source: Kombinatorika 1/Jegyzet/, regenerate with: make concat -->
+
 # Kombinatorika 1 Tankönyv
 
 ### Leszámlálás és gráfelmélet lépésről lépésre — az előadás jegyzetei alapján

@@ -1,0 +1,7 @@
+# UTÓSZÓ
+
+Ezzel a félév anyagának végére értünk. Érdemes visszatekinteni, milyen utat jártunk be. A mátrixokkal és a Gauss-eliminációval kezdtük — egy számolási technikával, amely a kínai *Kilenc fejezet* óta lényegében változatlan. A polinomokkal és a komplex számokkal megértettük, miért van minden polinomegyenletnek megoldása a komplex számok körében, és hogyan alakítja a forgatás algebrává a geometriát. A determinánsok és a rang teljes választ adtak a lineáris egyenletrendszerek megoldhatóságára. Az absztrakt struktúrák — csoport, gyűrű, test, euklideszi gyűrű — megmutatták, hogy az egész számok, a polinomok és a maradékosztályok ugyanazoknak a törvényeknek engedelmeskednek, és hogy a számelmélet alaptétele mindenhol érvényes, ahol „jó” maradékos osztás van. Végül a reneszánsz megoldóképleteitől Galoisig, a körosztási polinomoktól Gauss 17-szögéig eljutottunk oda, hogy a lineáris algebra egyetlen dimenzióérve kétezer éves geometriai rejtélyeket döntött el.
+
+Az algebra igazi ereje éppen ebben a szemléletben rejlik: ha egy problémát a megfelelő struktúra nyelvére fordítunk le, a megoldás sokszor szinte magától adódik. Ez a gondolkodásmód a matematika minden további területén — a Galois-elmélettől a kódelméletig és a kriptográfiáig — elkísér majd.
+
+A könyv anyaga, felépítése és szelleme Gyarmati Katalin *Előadásvázlatok felsőbb fokú algebrából kezdőknek* című jegyzetéből származik, amelyet a szerző ezzel a jókívánsággal zár, és amelyet mi is szívesen átveszünk: *kellemes szünetet és sok sikert a vizsgákhoz!*
