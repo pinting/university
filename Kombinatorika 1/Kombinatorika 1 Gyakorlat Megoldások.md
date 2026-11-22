@@ -2229,33 +2229,201 @@ A bal oldali palotaalaprajz szerint a) legkevesebb hány ajtót kell befalazni a
 
 **Megoldás.**
 
-Készítsük el a palota duális gráfját: a csúcsok a szobák, és két csúcs között pontosan akkor fut él, ha a megfelelő két szoba között van ajtó.
-Az alaprajz szerint a palotában 14 szoba és 22 ajtó található.
-Számoljuk meg a szobák fokszámait (az ajtók számát):
-- A 4 belső/középső terem mindegyike pontosan 3 ajtóval rendelkezik ($d = 3$, **páratlan**).
-- A többi 10 terem (folyosók, sarokszobák stb.) mindegyike páros számú ajtóval (2 vagy 4) rendelkezik.
+Modellezzük a palotát gráffal (duális gráf): a gráf csúcsai a palota termei, és két csúcs között pontosan akkor fut él, ha a két megfelelő terem között van ajtó.
 
-Tehát a palotában pontosan **4 páratlan fokú terem** van.
-Egy ajtó befalazása egy él törlését jelenti a gráfból, ami pontosan a két érintett szoba fokszámát csökkenti 1-gyel, így azok paritását az ellenkezőjére változtatja.
+### A palota gráfjának felépítése
 
-**a)** Olyan séta, amely minden megmaradó ajtón pontosan egyszer megy át: ez egy (nyílt vagy zárt) Euler-vonal.
-Euler tétele szerint ehhez a páratlan fokú csúcsok száma legfeljebb 2 lehet.
-Jelenleg 4 páratlan csúcs van, így legalább egy befalazás szükséges.
-Ha befalazzuk a két felső középső terem közötti ajtót:
-- e két terem foka $3$-ról $2$-re csökken (páros lesz),
-- a másik két belső terem foka változatlanul 3 marad (páratlan),
-- a többi terem foka páros marad.
-Így pontosan 2 páratlan fokú terem marad, a gráf összefüggő marad, tehát létezik nyílt Euler-séta.
-Ezért legkevesebb **1 ajtót** kell befalazni.
+A palota alaprajzán az alábbi 14 terem található (vízszintes és függőleges szimmetriával):
+- **Bal szárny (7 terem):**
+  - $S_1$ (bal-felső sarokterem) és $S_2$ (bal-alsó sarokterem)
+  - $F_1$ (felső-bal folyosó) és $F_2$ (alsó-bal folyosó)
+  - $K_1$ (középső-bal terem)
+  - $B_1$ (belső felső-bal terem) és $B_2$ (belső alsó-bal terem)
+- **Jobb szárny (7 terem):**
+  - $B_3$ (belső felső-jobb terem) és $B_4$ (belső alsó-jobb terem)
+  - $K_2$ (középső-jobb terem)
+  - $F_3$ (felső-jobb folyosó) és $F_4$ (alsó-jobb folyosó)
+  - $S_3$ (jobb-felső sarokterem) és $S_4$ (jobb-alsó sarokterem)
 
-**b)** Ha vissza is akarunk érni a kiindulási terembe, akkor zárt Euler-vonalra van szükség.
-Ehhez az összes csúcs fokszámának párosnak kell lennie (0 páratlan csúcs).
-Egy ajtó befalazása legfeljebb 2 csúcs paritását változtathatja páratlanról párosra, így a 4 páratlan csúcs megszüntetéséhez legalább $\frac{4}{2} = 2$ ajtó befalazása szükséges.
-Ez meg is valósítható:
-1. Befalazzuk a két felső belső terem közötti ajtót (mindkettő páros lesz).
-2. Befalazzuk a két alsó belső terem közötti ajtót (mindkettő páros lesz).
-Ekkor mind a 14 terem foka páros lesz, és a palota összefüggő marad, így létezik zárt Euler-séta.
-Ezért legkevesebb **2 ajtót** kell befalazni.
+A palotában összesen **22 ajtó** (él) található:
+- $S_1$ és $S_2$ között a válaszfalon **2 ajtó** nyílik (párhuzamos élek). Hasonlóan $S_3$ és $S_4$ között is **2 ajtó** van.
+- A bal szárnyon belül: $S_1 - F_1$, $S_1 - K_1$, $S_2 - F_2$, $S_2 - K_1$, $F_1 - B_1$, $F_2 - B_2$, $K_1 - B_1$, $K_1 - B_2$ (8 ajtó).
+- A jobb szárnyon belül szimmetrikusan: $S_3 - F_3$, $S_3 - K_2$, $S_4 - F_4$, $S_4 - K_2$, $F_3 - B_3$, $F_4 - B_4$, $K_2 - B_3$, $K_2 - B_4$ (8 ajtó).
+- A **két szárny közötti egyetlen összeköttetést** a két belső átjáró alkotja:
+  - $B_1 - B_3$ (felső átjáró a középső függőleges falon)
+  - $B_2 - B_4$ (alsó átjáró a középső függőleges falon)
+
+```mermaid
+graph LR
+    subgraph Bal ["Bal szárny"]
+        S1["S₁ (fok: 4)"]
+        S2["S₂ (fok: 4)"]
+        F1["F₁ (fok: 2)"]
+        F2["F₂ (fok: 2)"]
+        K1["K₁ (fok: 4)"]
+        B1["B₁ (fok: 3 ⚠️)"]
+        B2["B₂ (fok: 3 ⚠️)"]
+    end
+
+    subgraph Jobb ["Jobb szárny"]
+        B3["B₃ (fok: 3 ⚠️)"]
+        B4["B₄ (fok: 3 ⚠️)"]
+        K2["K₂ (fok: 4)"]
+        F3["F₃ (fok: 2)"]
+        F4["F₄ (fok: 2)"]
+        S3["S₃ (fok: 4)"]
+        S4["S₄ (fok: 4)"]
+    end
+
+    S1 ---|"ajtó a"| S2
+    S1 ---|"ajtó b"| S2
+    S1 --- F1
+    S1 --- K1
+    S2 --- F2
+    S2 --- K1
+    F1 --- B1
+    F2 --- B2
+    K1 --- B1
+    K1 --- B2
+
+    B1 ===|"felső átjáró"| B3
+    B2 ===|"alsó átjáró"| B4
+
+    B3 --- K2
+    B4 --- K2
+    B3 --- F3
+    B4 --- F4
+    F3 --- S3
+    F4 --- S4
+    K2 --- S3
+    K2 --- S4
+    S3 ---|"ajtó a"| S4
+    S3 ---|"ajtó b"| S4
+
+    classDef odd fill:#ffcccc,stroke:#cc0000,stroke-width:2px;
+    class B1,B2,B3,B4 odd;
+```
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.05,
+  room/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small},
+  oddroom/.style={circle, draw=red!80!black, fill=red!15, inner sep=2pt, font=\small\bfseries},
+  hall/.style={rectangle, rounded corners=3pt, draw=blue!70!black, fill=blue!10, inner sep=3pt, font=\small},
+  corridor/.style={rectangle, draw=gray, fill=gray!15, inner sep=2.5pt, font=\small},
+  door/.style={thick}
+]
+  % Csucsok
+  \node[room] (S1) at (0, 3) {$S_1$ \scriptsize (4)};
+  \node[room] (S2) at (0, 1) {$S_2$ \scriptsize (4)};
+  \node[corridor] (F1) at (2.2, 3.5) {$F_1$ \scriptsize (2)};
+  \node[corridor] (F2) at (2.2, 0.5) {$F_2$ \scriptsize (2)};
+  \node[hall] (K1) at (1.8, 2) {$K_1$ \scriptsize (4)};
+  \node[oddroom] (B1) at (3.3, 2.6) {$B_1$ \scriptsize (3)};
+  \node[oddroom] (B2) at (3.3, 1.4) {$B_2$ \scriptsize (3)};
+
+  \node[oddroom] (B3) at (4.7, 2.6) {$B_3$ \scriptsize (3)};
+  \node[oddroom] (B4) at (4.7, 1.4) {$B_4$ \scriptsize (3)};
+  \node[hall] (K2) at (6.2, 2) {$K_2$ \scriptsize (4)};
+  \node[corridor] (F3) at (5.8, 3.5) {$F_3$ \scriptsize (2)};
+  \node[corridor] (F4) at (5.8, 0.5) {$F_4$ \scriptsize (2)};
+  \node[room] (S3) at (8, 3) {$S_3$ \scriptsize (4)};
+  \node[room] (S4) at (8, 1) {$S_4$ \scriptsize (4)};
+
+  % Elek
+  \draw[door] (S1) to[bend left=20] (S2);
+  \draw[door] (S1) to[bend right=20] (S2);
+  \draw[door] (S1) -- (F1);
+  \draw[door] (S1) -- (K1);
+  \draw[door] (S2) -- (F2);
+  \draw[door] (S2) -- (K1);
+  \draw[door] (F1) -- (B1);
+  \draw[door] (F2) -- (B2);
+  \draw[door] (K1) -- (B1);
+  \draw[door] (K1) -- (B2);
+
+  \draw[door, very thick] (B1) -- node[above, font=\scriptsize] {felső átjáró} (B3);
+  \draw[door, very thick] (B2) -- node[below, font=\scriptsize] {alsó átjáró} (B4);
+
+  \draw[door] (B3) -- (K2);
+  \draw[door] (B4) -- (K2);
+  \draw[door] (B3) -- (F3);
+  \draw[door] (B4) -- (F4);
+  \draw[door] (F3) -- (S3);
+  \draw[door] (F4) -- (S4);
+  \draw[door] (K2) -- (S3);
+  \draw[door] (K2) -- (S4);
+  \draw[door] (S3) to[bend left=20] (S4);
+  \draw[door] (S3) to[bend right=20] (S4);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+Számoljuk meg a termek fokszámait (az ajtók számát):
+- **4 páratlan fokú terem:** $d(B_1) = d(B_2) = d(B_3) = d(B_4) = 3$.
+- **10 páros fokú terem:**
+  - $d(F_1) = d(F_2) = d(F_3) = d(F_4) = 2$,
+  - $d(S_1) = d(S_2) = d(S_3) = d(S_4) = 4$,
+  - $d(K_1) = d(K_2) = 4$.
+
+Egy ajtó befalazása pontosan egy él törlését jelenti a gráfból, ami a két érintett terem fokszámát $1$-gyel csökkenti, így azok paritását az ellenkezőjére változtatja.
+
+---
+
+### a) Olyan séta, amely minden megmaradó ajtón pontosan egyszer megy át
+
+Ez egy **nyílt (vagy zárt) Euler-vonal**.
+Euler tétele szerint egy összefüggő gráfban akkor és csak akkor létezik nyílt Euler-vonal, ha a páratlan fokú csúcsok száma legfeljebb $2$ (pontosan $0$ vagy $2$).
+
+1. Jelenleg $4$ páratlan fokú csúcs van, így legalább egy befalazás szükséges ($0$ nem elég).
+2. Egyetlen ajtó befalazásával két szomszédos csúcs fokszáma csökken $1$-gyel. Ha olyan ajtót választunk, amely két páratlan csúcsot köt össze, akkor mindkét érintett csúcs párossá válik, így a páratlan csúcsok száma $4 - 2 = 2$-re csökken.
+3. Befalazzuk a két felső belső terem közötti **$B_1 - B_3$ felső átjárót** (az ábrán a kék karikás és áthúzott ajtó):
+   - $B_1$ és $B_3$ foka $3$-ról $2$-re csökken (**páros** lesz).
+   - $B_2$ és $B_4$ foka változatlanul $3$ marad (**páratlan**).
+   - A többi 10 terem foka változatlanul páros.
+   - **Összefüggőség:** A palota megmaradó ajtóinak gráfja **összefüggő marad**, hiszen a bal és jobb szárnyat az alsó átjáró ($B_2 - B_4$) továbbra is közvetlenül összeköti.
+
+Így pontosan 2 páratlan fokú csúcs ($B_2$ és $B_4$) marad egy összefüggő gráfban, tehát létezik nyílt Euler-séta (amely a $B_2$ és $B_4$ termek egyike és másika között halad).
+
+**Válasz: Legkevesebb 1 ajtót kell befalazni.**
+
+---
+
+### b) Visszatérés a kiindulási terembe (zárt Euler-vonal)
+
+A feltétel egy **zárt Euler-vonal** létezését írja elő.
+Euler tétele szerint ehhez a megmaradó ajtók gráfjának **összefüggőnek** kell lennie, és **minden terem foka páros** kell legyen ($0$ páratlan csúcs).
+
+#### Miért hibás a naiv „2 ajtó elég” állítás?
+A 4 páratlan csúcs paritásának párosra változtatásához 2 él elhagyásával a 2 élnek a 4 páratlan csúcs között kellene futnia:
+- a felső $B_1 - B_3$ átjárónak, és
+- az alsó $B_2 - B_4$ átjárónak.
+
+Csakhogy a $\{B_1 - B_3, \ B_2 - B_4\}$ élpár a palota bal szárnya ($7$ terem) és jobb szárnya ($7$ terem) közötti **egyetlen összeköttetés (egy 2 élű vágás)**!
+Ha mindkét átjárót befalazzuk, a gráf **két diszjunkt összefüggő komponensre esik szét** (mindkét komponensben 10-10 megmaradó ajtóval). Két diszjunkt épületrész ajtóit egyetlen összefüggő sétával lehetetlen bejárni, így **2 ajtó befalazásával nem valósítható meg zárt Euler-séta**.
+
+#### Miért nem elegendő 3 ajtó befalazása sem?
+Egy zárt Euler-vonalat tartalmazó gráfban **egyetlen vágás sem lehet páratlan méretű** (speciálisan nem tartalmazhat hidat / vágóélt), hiszen a séta ahányszor átmegy a vágáson az egyik oldalra, pontosan annyiszor kell visszatérnie a másik oldalra.
+- Ha a két szárnyat összekötő átjárók közül pontosan 1-et falazunk be, a másik megmaradó átjáró híd lesz a két oldal között, amin zárt séta nem mehet át minden ajtón pontosan egyszer.
+- Ha mindkét összekötő átjáró ($B_1 - B_3$ és $B_2 - B_4$) megmarad, akkor a 4 belső terem ($B_1, B_2, B_3, B_4$) fokát kizárólag a saját szárnyuk felé néző ajtókkal lehet csökkenteni. Mivel mind a 4 teremhez külön, nem közös ajtók vezetnek a többi terem felől, mind a 4 terem paritásának megváltoztatásához legalább $1-1$ külön ajtót – összesen tehát legalább 4 ajtót – kell befalazni.
+
+#### Megvalósítás 4 ajtó befalazásával (az ábra piros X jelölései)
+Befalazzuk a 4 belső terem és a szomszédos nagy termek ($K_1, K_2$) közötti ajtókat (a fényképen a 4 piros X):
+1. $K_1 - B_1$
+2. $K_1 - B_2$
+3. $K_2 - B_3$
+4. $K_2 - B_4$
+
+Ekkor a fokszámok:
+- $\deg(B_1) = \deg(B_2) = \deg(B_3) = \deg(B_4) = 3 - 1 = 2$ (**páros**).
+- $\deg(K_1) = \deg(K_2) = 4 - 2 = 2$ (**páros** maradt).
+- Az összes többi terem foka változatlan: $\deg(F_i) = 2$, $\deg(S_i) = 4$ (mind **páros**).
+- **Összefüggőség:** A palota teljesen összefüggő marad: a bal és jobb oldal között mindkét átjáró ($B_1 - B_3$ és $B_2 - B_4$) nyitva áll, és a termek körbejárhatók a folyosókon ($F_1, F_2, F_3, F_4$) és a saroktermeken ($S_1, S_2, S_3, S_4$) keresztül.
+
+Mivel minden csúcs foka páros és a gráf összefüggő, létezik zárt Euler-séta.
+
+**Válasz: Legkevesebb 4 ajtót kell befalazni.**
 
 ---
 
