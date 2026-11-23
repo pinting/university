@@ -51,6 +51,53 @@ Az élek a valódi tartalmazási relációknak felelnek meg:
 - Bármely $\{i\}$ egyelemű részhalmaz szomszédai: $\emptyset$, $\{1, 2, 3\}$, valamint a két őt tartalmazó kételemű halmaz (foka $1 + 1 + 2 = 4$).
 - Bármely $\{i, j\}$ kételemű részhalmaz szomszédai: $\emptyset$, $\{1, 2, 3\}$, valamint az ő két egyelemű részhalmaza $\{i\}$ és $\{j\}$ (foka $1 + 1 + 2 = 4$).
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.05,
+  v/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small}
+]
+  % Csucsok szintenkent (Hasse-diagram elrendezesben)
+  \node[v] (empty) at (0, 0) {$\emptyset$};
+  
+  \node[v] (1) at (-2.5, 1.8) {$\{1\}$};
+  \node[v] (2) at (0, 1.8) {$\{2\}$};
+  \node[v] (3) at (2.5, 1.8) {$\{3\}$};
+  
+  \node[v] (12) at (-2.5, 3.6) {$\{1,2\}$};
+  \node[v] (13) at (0, 3.6) {$\{1,3\}$};
+  \node[v] (23) at (2.5, 3.6) {$\{2,3\}$};
+  
+  \node[v] (123) at (0, 5.4) {$\{1,2,3\}$};
+
+  % Ures halmazbol indulo elek (mind a 7 csucsba)
+  \draw[thick] (empty) -- (1);
+  \draw[thick] (empty) -- (2);
+  \draw[thick] (empty) -- (3);
+  \draw[gray, dashed] (empty) to[bend left=25] (12);
+  \draw[gray, dashed] (empty) to[bend right=25] (23);
+  \draw[gray, dashed] (empty) to[bend left=10] (13);
+  \draw[gray, dashed] (empty) to[bend right=55] (123);
+
+  % 1-es es 2-es szintek kozotti elek
+  \draw[thick] (1) -- (12);
+  \draw[thick] (1) -- (13);
+  \draw[thick] (2) -- (12);
+  \draw[thick] (2) -- (23);
+  \draw[thick] (3) -- (13);
+  \draw[thick] (3) -- (23);
+
+  % Teljes halmazba futo elek (mind a 7 csucsbol)
+  \draw[thick] (12) -- (123);
+  \draw[thick] (13) -- (123);
+  \draw[thick] (23) -- (123);
+  \draw[gray, dashed] (1) to[bend left=30] (123);
+  \draw[gray, dashed] (2) to[bend right=15] (123);
+  \draw[gray, dashed] (3) to[bend right=30] (123);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 **a)** Az $\{1, 2\}$ és $\{1, 3\}$ csúcsok nem szomszédosak (egyik sem tartalmazza a másikat), így nem létezik 1 hosszú séta. Létezik viszont 2 hosszú út (és így séta is) köztük, például az $\{1\}$ közös részhalmazon át:
 $$\{1, 2\} - \{1\} - \{1, 3\}$$
 (továbbá az $\emptyset$ és az $\{1, 2, 3\}$ csúcsokon keresztül is). Tehát a legrövidebb séta hossza **2**.
@@ -135,6 +182,60 @@ Kössük össze $w$-t az $u_1, u_2, u_3$ csúcsokkal!
 - A többi csúcs foka már eredetileg is 3 volt.
 - A kapott $G$ gráf egyszerű, összefüggő és 3-reguláris!
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=0.95,
+  v/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small},
+  cut/.style={circle, draw=red!80!black, fill=red!15, inner sep=2.5pt, font=\small\bfseries}
+]
+  % Kozponti vagocsucs
+  \node[cut] (w) at (0, 0) {$w$};
+
+  % H1 komponens (felul)
+  \begin{scope}[shift={(0, 2.2)}]
+    \node[v] (u1) at (0, 0) {$u_1$};
+    \node[v] (c1) at (-1.1, 1.0) {$c_1$};
+    \node[v] (d1) at (1.1, 1.0) {$d_1$};
+    \node[v] (a1) at (-0.7, 2.2) {$a_1$};
+    \node[v] (b1) at (0.7, 2.2) {$b_1$};
+    \draw (u1) -- (c1); \draw (u1) -- (d1);
+    \draw (a1) -- (b1); \draw (a1) -- (c1); \draw (a1) -- (d1);
+    \draw (b1) -- (c1); \draw (b1) -- (d1);
+  \end{scope}
+
+  % H2 komponens (bal lent)
+  \begin{scope}[shift={(-2.8, -1.6)}]
+    \node[v] (u2) at (0.8, 0.4) {$u_2$};
+    \node[v] (c2) at (-0.2, 1.1) {$c_2$};
+    \node[v] (d2) at (0.4, -0.7) {$d_2$};
+    \node[v] (a2) at (-1.3, 0.4) {$a_2$};
+    \node[v] (b2) at (-0.8, -0.8) {$b_2$};
+    \draw (u2) -- (c2); \draw (u2) -- (d2);
+    \draw (a2) -- (b2); \draw (a2) -- (c2); \draw (a2) -- (d2);
+    \draw (b2) -- (c2); \draw (b2) -- (d2);
+  \end{scope}
+
+  % H3 komponens (jobb lent)
+  \begin{scope}[shift={(2.8, -1.6)}]
+    \node[v] (u3) at (-0.8, 0.4) {$u_3$};
+    \node[v] (c3) at (0.2, 1.1) {$c_3$};
+    \node[v] (d3) at (-0.4, -0.7) {$d_3$};
+    \node[v] (a3) at (1.3, 0.4) {$a_3$};
+    \node[v] (b3) at (0.8, -0.8) {$b_3$};
+    \draw (u3) -- (c3); \draw (u3) -- (d3);
+    \draw (a3) -- (b3); \draw (a3) -- (c3); \draw (a3) -- (d3);
+    \draw (b3) -- (c3); \draw (b3) -- (d3);
+  \end{scope}
+
+  % w osszekotese a harom komponenssel
+  \draw[very thick, red!80!black] (w) -- (u1);
+  \draw[very thick, red!80!black] (w) -- (u2);
+  \draw[very thick, red!80!black] (w) -- (u3);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 **Miért nincs benne Hamilton-út?**
 Ha elhagyjuk az $S = \{w\}$ egyelemű csúcshalmazt, a $G - \{w\}$ gráf a három független $H_1, H_2, H_3$ komponensre esik szét, így:
 $$c(G - \{w\}) = 3 > |\{w\}| + 1 = 2.$$
@@ -193,6 +294,125 @@ A gráf nem összefüggő (két külön éllel rendelkező komponense van), így
 
 Van-e Hamilton-kör az alábbi gráfokban? És Hamilton-út?
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.9,
+  pt/.style={circle, draw=black, fill=white, inner sep=2.5pt}
+]
+  % 1. graf (haziko K4 alappal)
+  \begin{scope}[xshift=0cm]
+    \node[pt] (T) at (1, 2.5) {};
+    \node[pt] (TL) at (0.2, 1.2) {};
+    \node[pt] (TR) at (1.8, 1.2) {};
+    \node[pt] (BL) at (0.2, 0) {};
+    \node[pt] (BR) at (1.8, 0) {};
+    \draw (T) -- (TL); \draw (T) -- (TR);
+    \draw (TL) -- (TR); \draw (TL) -- (BL); \draw (TR) -- (BR); \draw (BL) -- (BR);
+    \draw (TL) -- (BR); \draw (TR) -- (BL);
+  \end{scope}
+
+  % 2. graf (ket K4 egy kozos C csuccsal)
+  \begin{scope}[xshift=3.8cm, yshift=0.3cm]
+    \node[pt] (C) at (1.5, 0.8) {};
+    \node[pt] (L_left) at (0, 0.8) {};
+    \node[pt] (L_top) at (0.8, 1.5) {};
+    \node[pt] (L_bot) at (0.8, 0.1) {};
+    \node[pt] (R_right) at (3.0, 0.8) {};
+    \node[pt] (R_top) at (2.2, 1.5) {};
+    \node[pt] (R_bot) at (2.2, 0.1) {};
+    % Bal oldali K4
+    \draw (L_left) -- (L_top);
+    \draw (L_top) -- (C);
+    \draw (C) -- (L_bot);
+    \draw (L_bot) -- (L_left);
+    \draw (L_left) -- (C);
+    \draw (L_top) -- (L_bot);
+    % Jobb oldali K4
+    \draw (C) -- (R_top);
+    \draw (R_top) -- (R_right);
+    \draw (R_right) -- (R_bot);
+    \draw (R_bot) -- (C);
+    \draw (C) -- (R_right);
+    \draw (R_top) -- (R_bot);
+  \end{scope}
+
+  % 3. graf (ket K4 es also haromszog C csuccsal, TL_left - B_left osszekotessel)
+  \begin{scope}[xshift=8.5cm, yshift=0.3cm]
+    \node[pt] (C) at (1.5, 1.0) {};
+    % felso bal K4
+    \node[pt] (TL_top) at (0.9, 2.1) {};
+    \node[pt] (TL_left) at (0.2, 1.0) {};
+    \node[pt] (TL_mid) at (0.9, 1.4) {};
+    \draw (C) -- (TL_top);
+    \draw (TL_top) -- (TL_left);
+    \draw (TL_left) -- (C);
+    \draw (TL_mid) -- (C);
+    \draw (TL_mid) -- (TL_top);
+    \draw (TL_mid) -- (TL_left);
+    % felso jobb K4
+    \node[pt] (TR_top) at (2.1, 2.1) {};
+    \node[pt] (TR_right) at (2.8, 1.0) {};
+    \node[pt] (TR_mid) at (2.1, 1.4) {};
+    \draw (C) -- (TR_top);
+    \draw (TR_top) -- (TR_right);
+    \draw (TR_right) -- (C);
+    \draw (TR_mid) -- (C);
+    \draw (TR_mid) -- (TR_top);
+    \draw (TR_mid) -- (TR_right);
+    % also haromszog es javitas
+    \node[pt] (B_left) at (0.8, 0.0) {};
+    \node[pt] (B_right) at (2.2, 0.0) {};
+    \draw (C) -- (B_left);
+    \draw (B_left) -- (B_right);
+    \draw (B_right) -- (C);
+    \draw (TL_left) -- (B_left);
+  \end{scope}
+
+  % 4. graf (racs: kulso es belso 8-as negyzet + 4 kullo)
+  \begin{scope}[xshift=13.0cm]
+    % kulso negyzet
+    \node[pt] (O1) at (0, 0) {};
+    \node[pt] (O2) at (1.4, 0) {};
+    \node[pt] (O3) at (2.8, 0) {};
+    \node[pt] (O4) at (2.8, 1.4) {};
+    \node[pt] (O5) at (2.8, 2.8) {};
+    \node[pt] (O6) at (1.4, 2.8) {};
+    \node[pt] (O7) at (0, 2.8) {};
+    \node[pt] (O8) at (0, 1.4) {};
+    \draw (O1) -- (O2);
+    \draw (O2) -- (O3);
+    \draw (O3) -- (O4);
+    \draw (O4) -- (O5);
+    \draw (O5) -- (O6);
+    \draw (O6) -- (O7);
+    \draw (O7) -- (O8);
+    \draw (O8) -- (O1);
+    % belso negyzet
+    \node[pt] (I1) at (0.6, 0.6) {};
+    \node[pt] (I2) at (1.4, 0.6) {};
+    \node[pt] (I3) at (2.2, 0.6) {};
+    \node[pt] (I4) at (2.2, 1.4) {};
+    \node[pt] (I5) at (2.2, 2.2) {};
+    \node[pt] (I6) at (1.4, 2.2) {};
+    \node[pt] (I7) at (0.6, 2.2) {};
+    \node[pt] (I8) at (0.6, 1.4) {};
+    \draw (I1) -- (I2);
+    \draw (I2) -- (I3);
+    \draw (I3) -- (I4);
+    \draw (I4) -- (I5);
+    \draw (I5) -- (I6);
+    \draw (I6) -- (I7);
+    \draw (I7) -- (I8);
+    \draw (I8) -- (I1);
+    % kozeppont es kullok
+    \node[pt] (M) at (1.4, 1.4) {};
+    \draw (O2) -- (I2); \draw (I2) -- (M); \draw (M) -- (I6); \draw (I6) -- (O6);
+    \draw (O8) -- (I8); \draw (I8) -- (M); \draw (M) -- (I4); \draw (I4) -- (O4);
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 **Megoldás.**
 
 **1. gráf (házikó alakú gráf, 5 csúcs):**
@@ -210,12 +430,14 @@ A bal oldali 3 csúcs a központi $C$ csúccsal egy $K_4$-et alkot, a jobb oldal
   $$L_1 - L_2 - L_3 - C - R_1 - R_2 - R_3.$$
   Ez 7 csúcsú út, tehát **van Hamilton-út**.
 
-**3. gráf (két $K_4$ és egy háromszög egy közös $C$ csúccsal, 9 csúcs):**
-A központi $C$ vágócsúcs, amelyhez két diszjunkt $K_4$ és egy diszjunkt háromszög csatlakozik (a külső csúcsok száma $3 + 3 + 2 = 8$).
-- Ha töröljük az $S = \{C\}$ csúcsot ($|S| = 1$), a gráf 3 komponensre esik szét:
-  $$c(G - \{C\}) = 3.$$
-- Hamilton-kör esetén $c(G - S) \le |S| = 1$ kellene, de $3 > 1$, így **nincs Hamilton-kör**.
-- Hamilton-út esetén $c(G - S) \le |S| + 1 = 2$ kellene, de $3 > 2$, így **Hamilton-út sincs**.
+**3. gráf (két $K_4$ és egy háromszög, 9 csúcs):**
+A gráfban a központi $C$ csúcshoz két diszjunkt $K_4$ és egy alsó háromszög csatlakozik.
+- **Hamilton-kör:** Töröljük az $S = \{C\}$ csúcsot ($|S| = 1$). A jobb oldali $K_4 \setminus \{C\}$ független komponensként leválik, így a megmaradó komponensek száma legalább 2: $c(G - \{C\}) \ge 2 > |\{C\}| = 1$. A csúcstörlős szükséges feltétel megsérülése miatt **nincs Hamilton-kör**.
+- **Hamilton-út vizsgálata:**
+  - *A javított ábra szerint ($TL_{left} - B_{left}$ összeköttetéssel):* A bal oldali $K_4$ alsó-bal csúcsa és az alsó háromszög bal csúcsa össze van kötve. Ekkor $S = \{C\}$ törlésével a bal oldal és az alsó rész egyetlen 5 csúcsú komponensben marad, a jobb $K_4$ pedig egy 3 csúcsú komponens lesz: $c(G - \{C\}) = 2 \le |S| + 1 = 2$. Ebben a gráfban **létezik Hamilton-út**:
+    $$TR_{top} - TR_{mid} - TR_{right} - C - B_{right} - B_{left} - TL_{left} - TL_{top} - TL_{mid}.$$
+    Ez mind a 9 csúcsot pontosan egyszer látogatja meg!
+  - *Az eredeti (szimmetrikus) feladat szerint (ahol a három blokk kizárólag a $C$ csúcsban érintkezik):* Ekkor $c(G - \{C\}) = 3 > 1 + 1 = 2$, így a csúcstörlős feltétel szerint **Hamilton-út sem létezik** (ezért szerepel a feladatlap jegyzetében a *„Nincs kör, nincs út”* válasz).
 
 **4. gráf (17 csúcsú rács-szerű, koncentrikus körökből álló gráf):**
 A gráf csúcsai:
@@ -274,6 +496,30 @@ A $C_5$ gráfban van Hamilton-kör (maga a kör), de minden csúcs foka $2$, ami
   $d(1) + d(5) = 2 + 3 = 5 \ge 5$.
   Minden nem szomszédos pár fokszámösszege legalább $n = 5$, így az **Ore-tétel alkalmazható**, és garantálja a Hamilton-kör létezését (amely valóban létezik, pl. $1 - 2 - 4 - 5 - 3 - 1$).
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.05,
+  v/.style={circle, draw=black, fill=white, inner sep=2.5pt, font=\small}
+]
+  \node[v, label=left:{$1 \ (\deg=2)$}] (1) at (0, 1.2) {1};
+  \node[v, label=above:{$2 \ (\deg=4)$}] (2) at (2, 2.2) {2};
+  \node[v, label=below:{$3 \ (\deg=4)$}] (3) at (2, 0.2) {3};
+  \node[v, label=above:{$4 \ (\deg=3)$}] (4) at (4, 2.2) {4};
+  \node[v, label=below:{$5 \ (\deg=3)$}] (5) at (4, 0.2) {5};
+
+  % 1 csatlakozasa 2-hoz es 3-hoz
+  \draw[thick] (1) -- (2);
+  \draw[thick] (1) -- (3);
+
+  % {2,3,4,5} K4 reszgraf
+  \draw[thick] (2) -- (4) -- (5) -- (3) -- (2);
+  \draw[thick] (2) -- (5);
+  \draw[thick] (3) -- (4);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 **c)** Az Ore-tétel feltétele nem szükséges: tekintsük újra az $n \ge 5$ csúcsú $C_n$ kört (pl. $C_5$).
 Van benne Hamilton-kör, de bármely két nem szomszédos csúcs fokszámösszege $2 + 2 = 4 < 5 = n$. Tehát van Hamilton-kör anélkül, hogy az Ore-feltétel teljesülne.
 
@@ -290,11 +536,54 @@ b) Mutass olyan gráfot, amely nem összefüggő, de van benne zárt Euler-vonal
 **a)** Vegyünk két diszjunkt háromszöget: $G = C_3 \cup C_3$.
 Ebben a gráfban 6 csúcs van, és minden csúcs foka pontosan 2 (tehát páros). Ennek ellenére nincs zárt Euler-vonal, mivel a gráf nem összefüggő, így egyetlen séta nem tartalmazhatja mindkét diszjunkt háromszög éleit.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.0,
+  v/.style={circle, draw=black, fill=white, inner sep=2.5pt}
+]
+  % 1. C3
+  \node[v] (a1) at (0, 0) {};
+  \node[v] (a2) at (1.4, 0) {};
+  \node[v] (a3) at (0.7, 1.1) {};
+  \draw[thick] (a1) -- (a2);
+  \draw[thick] (a2) -- (a3);
+  \draw[thick] (a3) -- (a1);
+
+  % 2. C3
+  \node[v] (b1) at (2.6, 0) {};
+  \node[v] (b2) at (4.0, 0) {};
+  \node[v] (b3) at (3.3, 1.1) {};
+  \draw[thick] (b1) -- (b2);
+  \draw[thick] (b2) -- (b3);
+  \draw[thick] (b3) -- (b1);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 **b)** Euler tétele megengedi, hogy a gráfban legyenek olyan komponensek, amelyek egyetlen izolált csúcsból állnak (nem tartalmaznak élt).
 Legyen $G$ egy 3 hosszú kör és egy izolált csúcs uniója:
 $$V = \{1, 2, 3, 4\}, \qquad E = \{\{1, 2\}, \{2, 3\}, \{3, 1\}\}.$$
 A 4-es csúcs foka 0, így a gráf nem összefüggő (két komponense van: $\{1, 2, 3\}$ és $\{4\}$).
 Ugyanakkor az $1 - 2 - 3 - 1$ zárt séta a gráf **összes élét** pontosan egyszer tartalmazza, vagyis definíció szerint zárt Euler-vonal!
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.0,
+  v/.style={circle, draw=black, fill=white, inner sep=2.5pt, font=\small}
+]
+  \node[v] (c1) at (0, 0) {1};
+  \node[v] (c2) at (1.4, 0) {2};
+  \node[v] (c3) at (0.7, 1.1) {3};
+  \draw[thick] (c1) -- (c2);
+  \draw[thick] (c2) -- (c3);
+  \draw[thick] (c3) -- (c1);
+
+  \node[v, fill=gray!20] (c4) at (2.6, 0.5) {4};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 ---
 
@@ -318,6 +607,51 @@ Mindegyik $C_i$ legyen egy olyan 4 csúcsú gráf ($v_{i,1}, v_{i,2}, v_{i,3}, v
 Mindhárom komponensben $x$-et kössük össze $v_{i,1}$-gyel, $y$-t pedig $v_{i,3}$-mal.
 A gráf összesen $2 + 3 \times 4 = 14$ csúcsú.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=0.95,
+  pt/.style={circle, draw=black, fill=white, inner sep=2.2pt, font=\small},
+  hub/.style={circle, draw=black, fill=blue!15, inner sep=2.5pt, font=\small\bfseries}
+]
+  % Kituntetett csucsok: x es y
+  \node[hub] (x) at (-1.5, 2.5) {$x$};
+  \node[hub] (y) at (1.5, 2.5) {$y$};
+  \draw[very thick] (x) -- (y);
+
+  % C1 komponens (bal)
+  \node[pt] (v11) at (-3.8, 1.1) {$v_{1,1}$};
+  \node[pt] (v13) at (-2.6, 1.1) {$v_{1,3}$};
+  \node[pt] (v12) at (-4.2, 0.0) {$v_{1,2}$};
+  \node[pt] (v14) at (-2.2, 0.0) {$v_{1,4}$};
+  \draw[thick] (v11) -- (v12) -- (v13) -- (v14) -- (v11);
+  \draw[thick] (v11) -- (v13);
+  \draw[thick, blue!80!black] (x) -- (v11);
+  \draw[thick, blue!80!black] (y) -- (v13);
+
+  % C2 komponens (kozep)
+  \node[pt] (v21) at (-0.6, 1.1) {$v_{2,1}$};
+  \node[pt] (v23) at (0.6, 1.1) {$v_{2,3}$};
+  \node[pt] (v22) at (-1.0, 0.0) {$v_{2,2}$};
+  \node[pt] (v24) at (1.0, 0.0) {$v_{2,4}$};
+  \draw[thick] (v21) -- (v22) -- (v23) -- (v24) -- (v21);
+  \draw[thick] (v21) -- (v23);
+  \draw[thick, blue!80!black] (x) -- (v21);
+  \draw[thick, blue!80!black] (y) -- (v23);
+
+  % C3 komponens (jobb)
+  \node[pt] (v31) at (2.6, 1.1) {$v_{3,1}$};
+  \node[pt] (v33) at (3.8, 1.1) {$v_{3,3}$};
+  \node[pt] (v32) at (2.2, 0.0) {$v_{3,2}$};
+  \node[pt] (v34) at (4.2, 0.0) {$v_{3,4}$};
+  \draw[thick] (v31) -- (v32) -- (v33) -- (v34) -- (v31);
+  \draw[thick] (v31) -- (v33);
+  \draw[thick, blue!80!black] (x) -- (v31);
+  \draw[thick, blue!80!black] (y) -- (v33);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 *Miért nincs benne Hamilton-út?*
 Egy Hamilton-útnak mindhárom $C_1, C_2, C_3$ komponenst be kell járnia. Mivel a komponensek között csak $x$-en és $y$-on keresztül lehet átjárni, és egy út $x$-et legfeljebb egyszer, $y$-t is legfeljebb egyszer érintheti:
 - Legfeljebb két komponens tartalmazhatja az út végpontjait (egyikben indul, másikban végződik).
@@ -335,9 +669,57 @@ A klasszikus példa a **Petersen-gráf** ($n = 10$ csúcs, 15 él):
 - Ismert tétel, hogy a Petersen-gráfban **nincs Hamilton-kör** (például a külső 5-szög és belső 5-ágú csillag közötti küllők paritásos számlálásával igazolható).
 - Ugyanakkor a Petersen-gráf 3-szorosan összefüggő, és tetszőleges $S \subset V$ csúcshalmazra $c(G - S) \le |S|$, vagyis a csúcstörlős kritérium nem tudja kimutatni a Hamilton-kör hiányát.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.0,
+  v/.style={circle, draw=black, fill=white, inner sep=2.5pt}
+]
+  % Kulso 5-szog
+  \foreach \i in {1,...,5} {
+    \node[v] (O\i) at ({90 + (\i-1)*72}:2.2) {};
+  }
+  \draw[thick] (O1) -- (O2) -- (O3) -- (O4) -- (O5) -- (O1);
+
+  % Belso 5-szog / csillag
+  \foreach \i in {1,...,5} {
+    \node[v] (I\i) at ({90 + (\i-1)*72}:1.1) {};
+  }
+  \draw[thick] (I1) -- (I3) -- (I5) -- (I2) -- (I4) -- (I1);
+
+  % Kullok
+  \foreach \i in {1,...,5} {
+    \draw[thick] (O\i) -- (I\i);
+  }
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 **c)** Olyan gráfot keresünk, amelyben van Hamilton-út és zárt Euler-vonal, de nincs Hamilton-kör.
 **Példa:** A „pillangó gráf” (két háromszög egy közös csúccsal):
 Legyen $V = \{v, a_1, a_2, b_1, b_2\}$, és az élek a két háromszög élei: $v - a_1 - a_2 - v$ és $v - b_1 - b_2 - v$.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.0,
+  v/.style={circle, draw=black, fill=white, inner sep=2.5pt, font=\small}
+]
+  \node[v, fill=red!15] (v) at (0, 0) {$v$};
+  \node[v] (a1) at (-1.8, 0.9) {$a_1$};
+  \node[v] (a2) at (-1.8, -0.9) {$a_2$};
+  \node[v] (b1) at (1.8, 0.9) {$b_1$};
+  \node[v] (b2) at (1.8, -0.9) {$b_2$};
+
+  \draw[thick] (v) -- (a1);
+  \draw[thick] (a1) -- (a2);
+  \draw[thick] (a2) -- (v);
+  \draw[thick] (v) -- (b1);
+  \draw[thick] (b1) -- (b2);
+  \draw[thick] (b2) -- (v);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 - **Zárt Euler-vonal:** Minden csúcs foka páros ($d(v) = 4$, $d(a_1) = d(a_2) = d(b_1) = d(b_2) = 2$), és a gráf összefüggő, így van zárt Euler-vonal:
   $$v - a_1 - a_2 - v - b_1 - b_2 - v.$$
 - **Hamilton-út:** Létezik:
@@ -350,6 +732,99 @@ Legyen $V = \{v, a_1, a_2, b_1, b_2\}$, és az élek a két háromszög élei: $
 ## 96. feladat
 
 A bal oldali palotaalaprajz szerint a) legkevesebb hány ajtót kell befalazni ahhoz, hogy tehessünk olyan sétát, amely során minden megmaradó ajtón pontosan egyszer megyünk át? b) És ha még vissza is akarunk érni a kiindulási terembe?
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.85]
+  % Kulso fal
+  \draw[very thick] (0, 0) rectangle (8, 4);
+
+  % Fuggoleges falak
+  \draw[thick] (1.5, 0) -- (1.5, 0.26);
+  \draw[thick] (1.5, 0.76) -- (1.5, 1.26);
+  \draw[thick] (1.5, 1.76) -- (1.5, 2.26);
+  \draw[thick] (1.5, 2.76) -- (1.5, 3.26);
+  \draw[thick] (1.5, 3.76) -- (1.5, 4);
+
+  \draw[thick] (3, 1) -- (3, 1.26);
+  \draw[thick] (3, 1.76) -- (3, 2.26);
+  \draw[thick] (3, 2.76) -- (3, 3);
+
+  \draw[thick] (4, 0) -- (4, 1.26);
+  \draw[thick] (4, 1.76) -- (4, 2.26);
+  \draw[thick] (4, 2.76) -- (4, 4);
+
+  \draw[thick] (5, 1) -- (5, 1.26);
+  \draw[thick] (5, 1.76) -- (5, 2.26);
+  \draw[thick] (5, 2.76) -- (5, 3);
+
+  \draw[thick] (6.5, 0) -- (6.5, 0.26);
+  \draw[thick] (6.5, 0.76) -- (6.5, 1.26);
+  \draw[thick] (6.5, 1.76) -- (6.5, 2.26);
+  \draw[thick] (6.5, 2.76) -- (6.5, 3.26);
+  \draw[thick] (6.5, 3.76) -- (6.5, 4);
+
+  % Vizszintes falak
+  \draw[thick] (0, 2) -- (0.16, 2);
+  \draw[thick] (0.56, 2) -- (0.96, 2);
+  \draw[thick] (1.36, 2) -- (1.5, 2);
+
+  \draw[thick] (1.5, 1) -- (3.26, 1);
+  \draw[thick] (3.76, 1) -- (4.26, 1);
+  \draw[thick] (4.76, 1) -- (6.5, 1);
+
+  \draw[thick] (3, 2) -- (5, 2);
+
+  \draw[thick] (1.5, 3) -- (3.26, 3);
+  \draw[thick] (3.76, 3) -- (4.26, 3);
+  \draw[thick] (4.76, 3) -- (6.5, 3);
+
+  \draw[thick] (6.5, 2) -- (6.66, 2);
+  \draw[thick] (7.06, 2) -- (7.46, 2);
+  \draw[thick] (7.86, 2) -- (8, 2);
+
+  % Ajtok zaro vonalai
+  \draw (0.16, 1.85) -- (0.16, 2.15); \draw (0.56, 1.85) -- (0.56, 2.15);
+  \draw (0.96, 1.85) -- (0.96, 2.15); \draw (1.36, 1.85) -- (1.36, 2.15);
+  \draw (6.66, 1.85) -- (6.66, 2.15); \draw (7.06, 1.85) -- (7.06, 2.15);
+  \draw (7.46, 1.85) -- (7.46, 2.15); \draw (7.86, 1.85) -- (7.86, 2.15);
+  \draw (1.35, 0.26) -- (1.65, 0.26); \draw (1.35, 0.76) -- (1.65, 0.76);
+  \draw (1.35, 1.26) -- (1.65, 1.26); \draw (1.35, 1.76) -- (1.65, 1.76);
+  \draw (1.35, 2.26) -- (1.65, 2.26); \draw (1.35, 2.76) -- (1.65, 2.76);
+  \draw (1.35, 3.26) -- (1.65, 3.26); \draw (1.35, 3.76) -- (1.65, 3.76);
+  \draw (6.35, 0.26) -- (6.65, 0.26); \draw (6.35, 0.76) -- (6.65, 0.76);
+  \draw (6.35, 1.26) -- (6.65, 1.26); \draw (6.35, 1.76) -- (6.65, 1.76);
+  \draw (6.35, 2.26) -- (6.65, 2.26); \draw (6.35, 2.76) -- (6.65, 2.76);
+  \draw (6.35, 3.26) -- (6.65, 3.26); \draw (6.35, 3.76) -- (6.65, 3.76);
+  \draw (2.85, 1.26) -- (3.15, 1.26); \draw (2.85, 1.76) -- (3.15, 1.76);
+  \draw (2.85, 2.26) -- (3.15, 2.26); \draw (2.85, 2.76) -- (3.15, 2.76);
+  \draw (4.85, 1.26) -- (5.15, 1.26); \draw (4.85, 1.76) -- (5.15, 1.76);
+  \draw (4.85, 2.26) -- (5.15, 2.26); \draw (4.85, 2.76) -- (5.15, 2.76);
+  \draw (3.85, 1.26) -- (4.15, 1.26); \draw (3.85, 1.76) -- (4.15, 1.76);
+  \draw (3.85, 2.26) -- (4.15, 2.26); \draw (3.85, 2.76) -- (4.15, 2.76);
+  \draw (3.26, 0.85) -- (3.26, 1.15); \draw (3.76, 0.85) -- (3.76, 1.15);
+  \draw (4.26, 0.85) -- (4.26, 1.15); \draw (4.76, 0.85) -- (4.76, 1.15);
+  \draw (3.26, 2.85) -- (3.26, 3.15); \draw (3.76, 2.85) -- (3.76, 3.15);
+  \draw (4.26, 2.85) -- (4.26, 3.15); \draw (4.76, 2.85) -- (4.76, 3.15);
+
+  % Termek feliratai
+  \node[font=\footnotesize, gray] at (0.75, 3) {$S_1$};
+  \node[font=\footnotesize, gray] at (0.75, 1) {$S_2$};
+  \node[font=\footnotesize, gray] at (2.25, 3.5) {$F_1$};
+  \node[font=\footnotesize, gray] at (2.25, 0.5) {$F_2$};
+  \node[font=\footnotesize, gray] at (2.25, 2) {$K_1$};
+  \node[font=\footnotesize, gray] at (3.5, 2.5) {$B_1$};
+  \node[font=\footnotesize, gray] at (3.5, 1.5) {$B_2$};
+  \node[font=\footnotesize, gray] at (4.5, 2.5) {$B_3$};
+  \node[font=\footnotesize, gray] at (4.5, 1.5) {$B_4$};
+  \node[font=\footnotesize, gray] at (5.75, 2) {$K_2$};
+  \node[font=\footnotesize, gray] at (5.75, 3.5) {$F_3$};
+  \node[font=\footnotesize, gray] at (5.75, 0.5) {$F_4$};
+  \node[font=\footnotesize, gray] at (7.25, 3) {$S_3$};
+  \node[font=\footnotesize, gray] at (7.25, 1) {$S_4$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 **Megoldás.**
 
@@ -376,57 +851,6 @@ A palotában összesen **22 ajtó** (él) található:
 - A **két szárny közötti egyetlen összeköttetést** a két belső átjáró alkotja:
   - $B_1 - B_3$ (felső átjáró a középső függőleges falon)
   - $B_2 - B_4$ (alsó átjáró a középső függőleges falon)
-
-```mermaid
-graph LR
-    subgraph Bal ["Bal szárny"]
-        S1["S₁ (fok: 4)"]
-        S2["S₂ (fok: 4)"]
-        F1["F₁ (fok: 2)"]
-        F2["F₂ (fok: 2)"]
-        K1["K₁ (fok: 4)"]
-        B1["B₁ (fok: 3 ⚠️)"]
-        B2["B₂ (fok: 3 ⚠️)"]
-    end
-
-    subgraph Jobb ["Jobb szárny"]
-        B3["B₃ (fok: 3 ⚠️)"]
-        B4["B₄ (fok: 3 ⚠️)"]
-        K2["K₂ (fok: 4)"]
-        F3["F₃ (fok: 2)"]
-        F4["F₄ (fok: 2)"]
-        S3["S₃ (fok: 4)"]
-        S4["S₄ (fok: 4)"]
-    end
-
-    S1 ---|"ajtó a"| S2
-    S1 ---|"ajtó b"| S2
-    S1 --- F1
-    S1 --- K1
-    S2 --- F2
-    S2 --- K1
-    F1 --- B1
-    F2 --- B2
-    K1 --- B1
-    K1 --- B2
-
-    B1 ===|"felső átjáró"| B3
-    B2 ===|"alsó átjáró"| B4
-
-    B3 --- K2
-    B4 --- K2
-    B3 --- F3
-    B4 --- F4
-    F3 --- S3
-    F4 --- S4
-    K2 --- S3
-    K2 --- S4
-    S3 ---|"ajtó a"| S4
-    S3 ---|"ajtó b"| S4
-
-    classDef odd fill:#ffcccc,stroke:#cc0000,stroke-width:2px;
-    class B1,B2,B3,B4 odd;
-```
 
 \begin{center}
 \begin{adjustbox}{max width=\linewidth}
@@ -554,6 +978,40 @@ Mivel minden csúcs foka páros és a gráf összefüggő, létezik zárt Euler-
 ## 97. feladat
 
 Mutasd meg, hogy a jobb oldali gráfban a) van Hamilton-út és Hamilton-kör (például a csúcsok megfelelő felsorolásával); b) nincs olyan Hamilton-kör, amelyben az $X$ és az $Y$ szomszédos!
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.05,
+  pt/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small\bfseries}
+]
+  \node[pt] (A) at (90:2.3) {$A$};
+  \node[pt] (B) at (54:2.3) {$B$};
+  \node[pt] (C) at (18:2.3) {$C$};
+  \node[pt] (D) at (-18:2.3) {$D$};
+  \node[pt] (E) at (-54:2.3) {$E$};
+  \node[pt] (F) at (-90:2.3) {$F$};
+  \node[pt] (G) at (-126:2.3) {$G$};
+  \node[pt] (H) at (-162:2.3) {$H$};
+  \node[pt] (I) at (162:2.3) {$I$};
+  \node[pt] (J) at (126:2.3) {$J$};
+  \node[pt, fill=blue!10] (X) at (0, 1.1) {$X$};
+  \node[pt, fill=blue!10] (Y) at (0, -1.1) {$Y$};
+
+  \draw (A) -- (C); \draw (A) -- (I); \draw (A) -- (X);
+  \draw (B) -- (D); \draw (B) -- (H); \draw (B) -- (J);
+  \draw (C) -- (E); \draw (C) -- (G);
+  \draw (D) -- (F); \draw (D) -- (X);
+  \draw (E) -- (G); \draw (E) -- (X); \draw (E) -- (Y);
+  \draw (F) -- (H); \draw (F) -- (Y);
+  \draw (G) -- (I);
+  \draw (H) -- (J);
+  \draw (I) -- (Y);
+  \draw (J) -- (X); \draw (J) -- (Y);
+  \draw (X) -- (Y);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 **Megoldás.**
 
@@ -848,6 +1306,45 @@ $$c(G - S) = 4 + 2 = 6.$$
 A Hamilton-út létezésének szükséges feltétele szerint $c(G - S) \le |S| + 1$ kellene, de:
 $$6 > 4 + 1 = 5.$$
 Ezért a $4 \times 4$-es táblán **sem nyílt, sem zárt bejárás nem lehetséges**.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=1.0]
+  % 4x4 sakktabla racs
+  \draw[step=1cm, gray!60, very thin] (0, 0) grid (4, 4);
+
+  % Sarkok (izolaltak S torlese utan): sarga
+  \foreach \x/\y in {0/0, 0/3, 3/0, 3/3} {
+    \fill[yellow!25] (\x, \y) rectangle ++(1, 1);
+  }
+  % S belso mezok (torolt csucsok): piros
+  \foreach \x/\y in {1/1, 1/2, 2/1, 2/2} {
+    \fill[red!20] (\x, \y) rectangle ++(1, 1);
+    \node[red!80!black, font=\bfseries] at (\x+0.5, \y+0.5) {$S$};
+  }
+
+  % Csucspontok
+  \node[circle, draw=black, fill=yellow!60, inner sep=1.8pt] (c11) at (0.5, 3.5) {};
+  \node[circle, draw=black, fill=yellow!60, inner sep=1.8pt] (c14) at (3.5, 3.5) {};
+  \node[circle, draw=black, fill=yellow!60, inner sep=1.8pt] (c41) at (0.5, 0.5) {};
+  \node[circle, draw=black, fill=yellow!60, inner sep=1.8pt] (c44) at (3.5, 0.5) {};
+
+  % 1. ciklus mezopontjai (kek)
+  \node[circle, draw=blue!80!black, fill=blue!30, inner sep=1.8pt] (c12) at (1.5, 3.5) {};
+  \node[circle, draw=blue!80!black, fill=blue!30, inner sep=1.8pt] (c31) at (0.5, 1.5) {};
+  \node[circle, draw=blue!80!black, fill=blue!30, inner sep=1.8pt] (c43) at (2.5, 0.5) {};
+  \node[circle, draw=blue!80!black, fill=blue!30, inner sep=1.8pt] (c24) at (3.5, 2.5) {};
+  \draw[very thick, blue!80!black] (c12) -- (c31) -- (c43) -- (c24) -- (c12);
+
+  % 2. ciklus mezopontjai (zold)
+  \node[circle, draw=green!60!black, fill=green!30, inner sep=1.8pt] (c13) at (2.5, 3.5) {};
+  \node[circle, draw=green!60!black, fill=green!30, inner sep=1.8pt] (c21) at (0.5, 2.5) {};
+  \node[circle, draw=green!60!black, fill=green!30, inner sep=1.8pt] (c42) at (1.5, 0.5) {};
+  \node[circle, draw=green!60!black, fill=green!30, inner sep=1.8pt] (c34) at (3.5, 1.5) {};
+  \draw[very thick, green!60!black] (c13) -- (c21) -- (c42) -- (c34) -- (c13);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 **b) $5 \times 5$-ös tábla (25 mező):**
 - **Zárt bejárás:** **Nem lehetséges**, mert a mezők száma (25) páratlan, így páros gráfban nem tartalmazhat Hamilton-kört.

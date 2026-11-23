@@ -41,7 +41,7 @@ Van-e Hamilton-kör az alábbi gráfokban? És Hamilton-út?
 \begin{tikzpicture}[scale=0.9,
   pt/.style={circle, draw=black, fill=white, inner sep=2.5pt}
 ]
-  % 1. graf
+  % 1. graf (haziko K4 alappal)
   \begin{scope}[xshift=0cm]
     \node[pt] (T) at (1, 2.5) {};
     \node[pt] (TL) at (0.2, 1.2) {};
@@ -53,7 +53,7 @@ Van-e Hamilton-kör az alábbi gráfokban? És Hamilton-út?
     \draw (TL) -- (BR); \draw (TR) -- (BL);
   \end{scope}
 
-  % 2. graf (pillango / bowtie)
+  % 2. graf (ket K4 egy kozos C csuccsal)
   \begin{scope}[xshift=3.8cm, yshift=0.3cm]
     \node[pt] (C) at (1.5, 0.8) {};
     \node[pt] (L_left) at (0, 0.8) {};
@@ -62,34 +62,55 @@ Van-e Hamilton-kör az alábbi gráfokban? És Hamilton-út?
     \node[pt] (R_right) at (3.0, 0.8) {};
     \node[pt] (R_top) at (2.2, 1.5) {};
     \node[pt] (R_bot) at (2.2, 0.1) {};
-    \draw (L_left) -- (L_top) -- (C) -- (L_bot) -- cycle;
-    \draw (L_left) -- (C); \draw (L_top) -- (L_bot);
-    \draw (R_right) -- (R_top) -- (C) -- (R_bot) -- cycle;
-    \draw (R_right) -- (C); \draw (R_top) -- (R_bot);
+    % Bal oldali K4
+    \draw (L_left) -- (L_top);
+    \draw (L_top) -- (C);
+    \draw (C) -- (L_bot);
+    \draw (L_bot) -- (L_left);
+    \draw (L_left) -- (C);
+    \draw (L_top) -- (L_bot);
+    % Jobb oldali K4
+    \draw (C) -- (R_top);
+    \draw (R_top) -- (R_right);
+    \draw (R_right) -- (R_bot);
+    \draw (R_bot) -- (C);
+    \draw (C) -- (R_right);
+    \draw (R_top) -- (R_bot);
   \end{scope}
 
-  % 3. graf
+  % 3. graf (ket K4 es also haromszog C csuccsal, TL_left - B_left osszekotessel)
   \begin{scope}[xshift=8.5cm, yshift=0.3cm]
     \node[pt] (C) at (1.5, 1.0) {};
     % felso bal K4
     \node[pt] (TL_top) at (0.9, 2.1) {};
     \node[pt] (TL_left) at (0.2, 1.0) {};
     \node[pt] (TL_mid) at (0.9, 1.4) {};
-    \draw (C) -- (TL_top) -- (TL_left) -- cycle;
-    \draw (TL_mid) -- (C); \draw (TL_mid) -- (TL_top); \draw (TL_mid) -- (TL_left);
+    \draw (C) -- (TL_top);
+    \draw (TL_top) -- (TL_left);
+    \draw (TL_left) -- (C);
+    \draw (TL_mid) -- (C);
+    \draw (TL_mid) -- (TL_top);
+    \draw (TL_mid) -- (TL_left);
     % felso jobb K4
     \node[pt] (TR_top) at (2.1, 2.1) {};
     \node[pt] (TR_right) at (2.8, 1.0) {};
     \node[pt] (TR_mid) at (2.1, 1.4) {};
-    \draw (C) -- (TR_top) -- (TR_right) -- cycle;
-    \draw (TR_mid) -- (C); \draw (TR_mid) -- (TR_top); \draw (TR_mid) -- (TR_right);
-    % also haromszog
+    \draw (C) -- (TR_top);
+    \draw (TR_top) -- (TR_right);
+    \draw (TR_right) -- (C);
+    \draw (TR_mid) -- (C);
+    \draw (TR_mid) -- (TR_top);
+    \draw (TR_mid) -- (TR_right);
+    % also haromszog es javitas
     \node[pt] (B_left) at (0.8, 0.0) {};
     \node[pt] (B_right) at (2.2, 0.0) {};
-    \draw (C) -- (B_left) -- (B_right) -- cycle;
+    \draw (C) -- (B_left);
+    \draw (B_left) -- (B_right);
+    \draw (B_right) -- (C);
+    \draw (TL_left) -- (B_left);
   \end{scope}
 
-  % 4. graf (racs)
+  % 4. graf (racs: kulso es belso 8-as negyzet + 4 kullo)
   \begin{scope}[xshift=13.0cm]
     % kulso negyzet
     \node[pt] (O1) at (0, 0) {};
@@ -100,7 +121,14 @@ Van-e Hamilton-kör az alábbi gráfokban? És Hamilton-út?
     \node[pt] (O6) at (1.4, 2.8) {};
     \node[pt] (O7) at (0, 2.8) {};
     \node[pt] (O8) at (0, 1.4) {};
-    \draw (O1) -- (O2) -- (O3) -- (O4) -- (O5) -- (O6) -- (O7) -- (O8) -- cycle;
+    \draw (O1) -- (O2);
+    \draw (O2) -- (O3);
+    \draw (O3) -- (O4);
+    \draw (O4) -- (O5);
+    \draw (O5) -- (O6);
+    \draw (O6) -- (O7);
+    \draw (O7) -- (O8);
+    \draw (O8) -- (O1);
     % belso negyzet
     \node[pt] (I1) at (0.6, 0.6) {};
     \node[pt] (I2) at (1.4, 0.6) {};
@@ -110,11 +138,18 @@ Van-e Hamilton-kör az alábbi gráfokban? És Hamilton-út?
     \node[pt] (I6) at (1.4, 2.2) {};
     \node[pt] (I7) at (0.6, 2.2) {};
     \node[pt] (I8) at (0.6, 1.4) {};
-    \draw (I1) -- (I2) -- (I3) -- (I4) -- (I5) -- (I6) -- (I7) -- (I8) -- cycle;
+    \draw (I1) -- (I2);
+    \draw (I2) -- (I3);
+    \draw (I3) -- (I4);
+    \draw (I4) -- (I5);
+    \draw (I5) -- (I6);
+    \draw (I6) -- (I7);
+    \draw (I7) -- (I8);
+    \draw (I8) -- (I1);
     % kozeppont es kullok
     \node[pt] (M) at (1.4, 1.4) {};
-    \draw (O2) -- (I2) -- (M) -- (I6) -- (O6);
-    \draw (O8) -- (I8) -- (M) -- (I4) -- (O4);
+    \draw (O2) -- (I2); \draw (I2) -- (M); \draw (M) -- (I6); \draw (I6) -- (O6);
+    \draw (O8) -- (I8); \draw (I8) -- (M); \draw (M) -- (I4); \draw (I4) -- (O4);
   \end{scope}
 \end{tikzpicture}
 \end{adjustbox}

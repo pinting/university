@@ -57,6 +57,47 @@ Mutass olyan négy, öt, illetve hat csúcsú egyszerű gráfot, ami izomorf a k
 - **5 csúcs:** a $C_5$ kör. A komplementere az 5 átló, ami szintén 5 hosszú kör (az „ötágú csillag").
 - **6 csúcs: nincs ilyen.** Önkomplementer gráfban $G$ és $\overline G$ együtt $\binom n2$ élt tartalmaz, és egyenlő sok élük van. Tehát $G$-nek $\frac{n(n-1)}{4}$ éle van, ami $n = 6$-ra $\frac{15}{2}$, nem egész. (Lásd a 69. feladatot is.)
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=0.95,
+  v/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small}
+]
+  % P4 es komplementere
+  \begin{scope}[xshift=0cm]
+    \node[font=\small\bfseries] at (1.5, 2.3) {$G \cong P_4$};
+    \node[v] (a) at (0, 1.2) {$a$};
+    \node[v] (b) at (1, 1.2) {$b$};
+    \node[v] (c) at (2, 1.2) {$c$};
+    \node[v] (d) at (3, 1.2) {$d$};
+    \draw[thick] (a) -- (b) -- (c) -- (d);
+
+    \node[font=\small\bfseries] at (1.5, -0.2) {$\overline{G} \cong P_4$};
+    \node[v] (ca) at (0, -1.2) {$c$};
+    \node[v] (cb) at (1, -1.2) {$a$};
+    \node[v] (cc) at (2, -1.2) {$d$};
+    \node[v] (cd) at (3, -1.2) {$b$};
+    \draw[thick] (ca) -- (cb) -- (cc) -- (cd);
+  \end{scope}
+
+  % C5 es komplementere
+  \begin{scope}[xshift=6.5cm, yshift=0cm]
+    \node[font=\small\bfseries] at (0, 2.3) {$G \cong C_5$};
+    \foreach \i in {1,...,5} {
+      \node[v] (u\i) at ({90 + (\i-1)*72}:1.3) {};
+    }
+    \draw[thick] (u1) -- (u2) -- (u3) -- (u4) -- (u5) -- (u1);
+
+    \node[font=\small\bfseries] at (3.5, 2.3) {$\overline{G} \cong C_5$};
+    \foreach \i in {1,...,5} {
+      \node[v] (w\i) at ({3.5 + 1.3*cos(90 + (\i-1)*72)}, {1.3*sin(90 + (\i-1)*72)}) {};
+    }
+    \draw[thick] (w1) -- (w3) -- (w5) -- (w2) -- (w4) -- (w1);
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 ::: elmelet
 **Elméleti háttér — komplementer és izomorfia.** $G$ és $\overline{G}$ élhalmaza diszjunkt, uniójuk a teljes gráf $\binom n2$ éle. Izomorf gráfoknak ugyanannyi élük van, így egy önkomplementer gráfnak pontosan $\frac{n(n-1)}{4}$ éle van — ennek egésznek kell lennie (szükséges feltétel). A létezést egy konkrét izomorfizmus megadása igazolja (pl. $P_4$-nél az $a \mapsto c$, $b \mapsto a$, $c \mapsto d$, $d \mapsto b$ megfeleltetés éltartó $G$ és $\overline G$ között).
 :::
@@ -73,6 +114,35 @@ Egy 6 pontú, egyszerű, összefüggő gráfban van 1, 2, 3, 4 és 5 fokú csúc
 - **$x = 5$ nem lehet:** két 5-ödfokú csúcs mindegyike mind a többi csúccsal szomszédos. Így minden csúcs foka legalább 2 lenne, de van 1-edfokú.
 - **$x = 1$ nem lehet:** az 5-ödfokú csúcs mindenkivel szomszédos. A két 1-edfokú csúcsnak más szomszédja nincs. A 4-edfokú csúcs így legfeljebb az 5-ödfokúval, a 2-edfokúval és a 3-adfokúval lehet szomszédos: csak 3 szomszéd.
 - **$x = 3$ megvalósítható:** legyenek a fokok $v_1 : 5$, $v_2 : 4$, $v_3, v_4 : 3$, $v_5 : 2$, $v_6 : 1$. Élek: $v_1$ mind az öt másikkal, valamint $v_2v_3$, $v_2v_4$, $v_2v_5$, $v_3v_4$. A gráf összefüggő, mert $v_1$ mindenkivel szomszédos.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.05,
+  v/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small}
+]
+  \node[v, fill=yellow!20, label=above:{$v_1 \ (d=5)$}] (v1) at (0, 0) {$v_1$};
+  \node[v, label=above:{$v_2 \ (d=4)$}] (v2) at (90:2) {$v_2$};
+  \node[v, label=right:{$v_3 \ (d=3)$}] (v3) at (18:2) {$v_3$};
+  \node[v, label=below right:{$v_4 \ (d=3)$}] (v4) at (-54:2) {$v_4$};
+  \node[v, label=below left:{$v_5 \ (d=2)$}] (v5) at (-126:2) {$v_5$};
+  \node[v, label=left:{$v_6 \ (d=1)$}] (v6) at (162:2) {$v_6$};
+
+  % v1 osszes ele
+  \draw[thick] (v1) -- (v2);
+  \draw[thick] (v1) -- (v3);
+  \draw[thick] (v1) -- (v4);
+  \draw[thick] (v1) -- (v5);
+  \draw[thick] (v1) -- (v6);
+
+  % tobbi el
+  \draw[thick] (v2) -- (v3);
+  \draw[thick] (v2) -- (v4);
+  \draw[thick] (v2) -- (v5);
+  \draw[thick] (v3) -- (v4);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 ::: elmelet
 **Elméleti háttér — szükséges feltételek és konstrukció.** Fokszámsorozatoknál először a szükséges feltételeket használjuk a lehetséges értékek szűkítésére: paritás (kézfogási lemma), $0 < d \le n - 1$ (összefüggő, egyszerű), és a „mindenkivel szomszédos” csúcsok következményei (egy $(n-1)$-edfokú csúcs mellett nincs izolált csúcs, két ilyen mellett nincs elsőfokú). A megmaradt értéknél a létezést konstrukcióval igazoljuk.
@@ -174,6 +244,34 @@ Bármely további él metszi $ab$-t, $bc$-t és $ca$-t is. Ehhez két végpontja
 
 (Nem egyszerű gráfban ezek többszörös élekkel, illetve a csillag középpontjában hurokélekkel is előfordulhatnak.)
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.0,
+  v/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small}
+]
+  % Haromszog K3
+  \begin{scope}[xshift=0cm]
+    \node[font=\small\bfseries] at (0, 1.8) {Háromszög ($K_3$)};
+    \node[v] (a) at (90:1.1) {$a$};
+    \node[v] (b) at (210:1.1) {$b$};
+    \node[v] (c) at (330:1.1) {$c$};
+    \draw[thick] (a) -- (b) -- (c) -- (a);
+  \end{scope}
+
+  % Csillag K_{1,k}
+  \begin{scope}[xshift=5.5cm]
+    \node[font=\small\bfseries] at (0, 1.8) {Csillag ($K_{1,k}$, pl. $K_{1,5}$)};
+    \node[v, fill=blue!15] (c) at (0, 0) {$c$};
+    \foreach \i in {1,...,5} {
+      \node[v] (l\i) at ({(\i-1)*72}:1.3) {};
+      \draw[thick] (c) -- (l\i);
+    }
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 ::: elmelet
 **Elméleti háttér — skatulyaelv fokszámokra és a kézfogási lemma.** a) Egyszerű $n$ csúcsú gráfban a fokok $\{0, \dots, n-1\}$-ből valók, de $0$ és $n - 1$ egyszerre nem fordulhat elő, így csak $n - 1$ lehetséges érték marad $n$ csúcsra (skatulyaelv). Többszörös élekkel a fok tetszőlegesen nagy lehet, ezért az érvelés összeomlik. b) A kézfogási lemma paritásos következménye. c) Esetszétválasztás: vagy van minden élen rajta levő csúcs (csillag), vagy a metszési feltétel egy háromszöget kényszerít ki, és utána minden további élnek a háromszög két csúcsát kellene összekötnie.
 :::
@@ -272,6 +370,37 @@ $$3,3,3,2,2,2,1,1,1 \to 2,2,2,2,1,1,1,1 \to 2,1,1,1,1,1,1 \to 1,1,1,1,0,0.$$
 A maradék négy 1-es két független él, tehát a sorozat realizálható.
 
 Konkrét példa: egy $C_6$ kör, amelynek három (nem szomszédos) csúcsához egy-egy függő élt kötünk. A fokok $3,3,3,2,2,2,1,1,1$.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.0,
+  v/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small}
+]
+  % C6 csucsai
+  \foreach \i in {1,...,6} {
+    \node[v] (c\i) at ({(\i-1)*60}:1.4) {};
+  }
+  \draw[thick] (c1) -- (c2) -- (c3) -- (c4) -- (c5) -- (c6) -- (c1);
+
+  % 3 fuggo el (1, 3, 5 csucsokhoz)
+  \node[v, label=right:{$1$}] (l1) at (0:2.5) {};
+  \node[v, label=above left:{$1$}] (l3) at (120:2.5) {};
+  \node[v, label=below left:{$1$}] (l5) at (240:2.5) {};
+  \draw[thick] (c1) -- (l1);
+  \draw[thick] (c3) -- (l3);
+  \draw[thick] (c5) -- (l5);
+
+  % Fokszam feliratok a belso csucsokra
+  \node[font=\scriptsize, left=2pt] at (c1) {$3$};
+  \node[font=\scriptsize, below left] at (c2) {$2$};
+  \node[font=\scriptsize, below right] at (c3) {$3$};
+  \node[font=\scriptsize, right=2pt] at (c4) {$2$};
+  \node[font=\scriptsize, above right] at (c5) {$3$};
+  \node[font=\scriptsize, above left] at (c6) {$2$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 b) **Nincs:** a fokszámösszeg $33$ páratlan.
 

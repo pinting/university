@@ -230,6 +230,37 @@ $$P = v_1 v_2 \dots v_m.$$
    - $C_3 = v_1 v_i v_{i+1} \dots v_j v_1$, amely a $v_1 v_i$ élből, a $P$ út $v_i$-től $v_j$-ig tartó szakaszából ($j - i$ darab él) és a $v_j v_1$ élből áll. Ennek hossza:
      $$|C_3| = 1 + (j - i) + 1 = j - i + 2.$$
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.1,
+  v/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small}
+]
+  % P ut csucsai
+  \node[v, fill=yellow!20] (v1) at (0, 0) {$v_1$};
+  \node[v] (v2) at (1.2, 0) {$v_2$};
+  \node[font=\small] (dots1) at (2.2, 0) {$\dots$};
+  \node[v, fill=blue!15] (vi) at (3.2, 0) {$v_i$};
+  \node[font=\small] (dots2) at (4.2, 0) {$\dots$};
+  \node[v, fill=green!15] (vj) at (5.2, 0) {$v_j$};
+  \node[font=\small] (dots3) at (6.2, 0) {$\dots$};
+  \node[v] (vm) at (7.2, 0) {$v_m$};
+
+  % P ut szakaszai
+  \draw[very thick] (v1) -- (v2) -- (dots1) -- (vi) -- (dots2) -- (vj) -- (dots3) -- (vm);
+
+  % Hurkok (v1-bol vi-be es vj-be)
+  \draw[thick, blue!80!black] (v1) to[bend left=35] node[above, font=\scriptsize] {$v_1 v_i \text{ húr}$} (vi);
+  \draw[thick, red!80!black] (v1) to[bend left=45] node[above, font=\scriptsize] {$v_1 v_j \text{ húr}$} (vj);
+
+  % Feliratok a harom korre
+  \node[font=\footnotesize, blue!80!black] at (1.6, 0.7) {$C_1 \ (h=i)$};
+  \node[font=\footnotesize, red!80!black] at (2.6, 1.4) {$C_2 \ (h=j)$};
+  \node[font=\footnotesize, green!50!black] at (4.2, -0.5) {$C_3 \ (h=j-i+2)$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 4. **Paritásvizsgálat:**
    - Ha $i$ páros, akkor $C_1$ egy **páros hosszúságú kör**.
    - Ha $j$ páros, akkor $C_2$ egy **páros hosszúságú kör**.

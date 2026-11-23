@@ -34,6 +34,33 @@ Egy körmentes gráf komponensei fák, tehát **$n$ csúcsú, $k$ komponensű k�
 
 b) Például a $\{1, 2, 3\}$ csúcshalmazon az $1 - 2 - 3$ út (élei $\{1,2\}, \{2,3\}$) és a $2 - 1 - 3$ út (élei $\{1,2\}, \{1,3\}$). Mindkettő $3$ csúcsú út, tehát izomorfak, de az élhalmazuk különböző, így számozott fákként nem azonosak. (Az első fában a $2$, a másodikban az $1$ a középső csúcs.)
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+  scale=1.0,
+  pt/.style={circle, draw=black, fill=white, inner sep=2pt, font=\small}
+]
+  % 1-2-3 ut
+  \begin{scope}[xshift=0cm]
+    \node[font=\small\bfseries] at (1, 0.8) {$T_1: E = \{\{1,2\}, \{2,3\}\}$};
+    \node[pt] (1) at (0, 0) {1};
+    \node[pt] (2) at (1, 0) {2};
+    \node[pt] (3) at (2, 0) {3};
+    \draw[thick] (1) -- (2) -- (3);
+  \end{scope}
+
+  % 2-1-3 ut
+  \begin{scope}[xshift=6cm]
+    \node[font=\small\bfseries] at (1, 0.8) {$T_2: E = \{\{1,2\}, \{1,3\}\}$};
+    \node[pt] (2b) at (0, 0) {2};
+    \node[pt] (1b) at (1, 0) {1};
+    \node[pt] (3b) at (2, 0) {3};
+    \draw[thick] (2b) -- (1b) -- (3b);
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 c) A Prüfer-kódban az $i$ csúcs pontosan $\deg(i) - 1$-szer szerepel. Ha a kód $n - 2$ eleme csupa különböző, akkor $n - 2$ csúcs pontosan egyszer szerepel, ezek foka $2$; a maradék $2$ csúcs nem szerepel, ezek levelek. **A fa tehát egy út** (egy fa, amelynek minden csúcsa legfeljebb másodfokú, út), és a kódban éppen az út belső csúcsai szerepelnek. Megfordítva, minden út kódja csupa különböző számból áll, mert minden belső csúcs foka $2$. (A kód a belső csúcsokat általában nem az úton elfoglalt sorrendjükben sorolja fel.)
 
 ::: elmelet

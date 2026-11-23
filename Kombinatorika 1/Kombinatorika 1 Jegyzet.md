@@ -1285,7 +1285,7 @@ Ez éppen a Catalan-rekurzió, tehát a lemma szerint $t_n = C_n$, vagyis $T_n =
   \coordinate (vm1) at (2.8, 0.2);
   \coordinate (vm) at (2.2, -1.0);
 
-  \draw[triang] (v1) -- (vk) -- (vm) -- cycle;
+  \draw[triang] (v1) -- (vk) -- (vm) -- (v1);
   \draw[poly] (v1) -- (v2) -- (-2.2, 1.2) -- (vk);
   \path (v2) -- (-2.2, 1.2) node[midway, left=2pt] {\scriptsize $\dots$};
   \draw[poly] (vk) -- (1.5, 1.5) -- (vm1) -- (vm);
