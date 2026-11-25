@@ -940,6 +940,52 @@ A Catalan-számok előkészítéseként két, első ránézésre egymástól tá
 \end{tikzpicture}
 \end{center}
 
+### Ferde utak a rácson
+
+Egy másik gyakori — a következő szakaszban közvetlenül is használható — rácsútmodellben a lépések iránya átlós.
+
+> **Definíció (Ferde út).** *Ferde lépésnek* nevezzük az $(1, 1)$ vektorral (ferdén felfelé) vagy az $(1, -1)$ vektorral (ferdén lefelé) való lépést. Egy rácspontokon haladó út **ferde út**, ha minden lépése ferde lépés.
+
+Mivel minden ferde lépés pontosan $1$-gyel növeli az $x$-koordinátát, egy $(0, 0)$-ból az $(a, b)$ pontba vezető ferde út szükségképpen pontosan $a$ lépésből áll.
+
+> **Lemma (Ferde utak száma).** Legyenek $a \ge 0$ és $b \in \mathbb{Z}$ egészek. Az origóból az $(a, b)$ pontba vezető ferde utak száma
+> $$\binom{a}{(a+b)/2},$$
+> ha $a + b$ páros és $|b| \le a$; különben nincs ilyen út.
+
+*Bizonyítás.* Jelölje $f$ a felfelé, $\ell$ a lefelé lépések számát. Mivel minden lépés $1$-gyel növeli az $x$-koordinátát, $f + \ell = a$; az $y$-koordináta felfelé lépéskor $1$-gyel nő, lefelé lépéskor $1$-gyel csökken, így $f - \ell = b$. A két egyenletet összeadva $2f = a + b$, vagyis
+$$f = \frac{a + b}{2}.$$
+Ez pontosan akkor egész, ha $a + b$ páros, és pontosan akkor esik $0$ és $a$ közé ($0 \le f \le a$, azaz $0 \le \frac{a+b}{2} \le a \iff -a \le b \le a$), ha $|b| \le a$. Ilyenkor az $a$ lépés közül pontosan az a kérdés, melyik $f = \frac{a+b}{2}$ lépés megy ferdén felfelé, tehát az utak száma $\binom{a}{(a+b)/2}$. $\blacksquare$
+
+**Megjegyzés (Binomiális együttható kiterjesztése).** A $|b| \le a$ feltétel szemléletesen azt jelenti, hogy az $(a, b)$ pont az $y = x$ és az $y = -x$ egyenesek közötti, a pozitív $x$-tengelyt tartalmazó szögtartományban fekszik. Ha megállapodunk abban, hogy $\binom{n}{m} = 0$, valahányszor $m < 0$ vagy $m > n$ (összhangban azzal, hogy egy $n$ elemű halmaznak ilyenkor nincs $m$ elemű részhalmaza), akkor a lemma $\binom{a}{(a+b)/2}$ képlete minden olyan esetben igaz, amikor $a + b$ páros.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.68,
+  gridline/.style={draw=black!20, thin},
+  axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
+  cone/.style={draw=black!45, dashed},
+  pathstep/.style={draw=black, very thick, -{Stealth[scale=0.8]}},
+  pt/.style={circle, draw=black, fill=black, inner sep=1.7pt}
+]
+  \draw[gridline] (0, -2) grid (6, 4);
+  \draw[axis] (-0.4, 0) -- (6.7, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -2.4) -- (0, 4.4) node[above] {\footnotesize $y$};
+  \draw[cone] (0,0) -- (4.3, 4.3) node[above right] {\scriptsize $y=x$};
+  \draw[cone] (0,0) -- (2.3, -2.3) node[below right] {\scriptsize $y=-x$};
+
+  \draw[pathstep] (0,0) -- (1,1);
+  \draw[pathstep] (1,1) -- (2,2);
+  \draw[pathstep] (2,2) -- (3,1);
+  \draw[pathstep] (3,1) -- (4,2);
+  \draw[pathstep] (4,2) -- (5,3);
+  \draw[pathstep] (5,3) -- (6,2);
+
+  \node[pt, label=below left:{\footnotesize $(0,0)$}] at (0,0) {};
+  \node[pt, label=right:{\footnotesize $(6,2)$}] at (6,2) {};
+
+  \node at (3.2, -3.0) {\footnotesize Ferde út $(0,0)$-ból $(6,2)$-be: $6$ lépésből $f = \frac{6+2}{2} = 4$ felfelé, $\ell = 2$ lefelé; összesen $\binom{6}{4} = 15$ út.};
+\end{tikzpicture}
+\end{center}
+
 ### A folyó-probléma
 
 > **Feladat.** Egy egyenes folyó ugyanazon partján áll a $B$ pont és az $M$ pont. A $B$-ből az $M$-be kell eljutnunk úgy, hogy közben **érintjük a folyót** (például vizet merítünk belőle). Melyik a legrövidebb útvonal?
@@ -948,7 +994,7 @@ Az ötlet a **tükrözés**. Tükrözzük az $M$ pontot a folyó egyenesére; a 
 $$|BP| + |PM| = |BP| + |PM'| \ge |BM'|$$
 a háromszög-egyenlőtlenség szerint, egyenlőséggel pontosan akkor, ha $P$ a $BM'$ szakaszon van. A legrövidebb útvonal tehát az, amelyik a folyót a $BM'$ szakasz és a folyó metszéspontjában érinti.
 
-Valójában többet is kaptunk: egy **kölcsönösen egyértelmű megfeleltetést** a folyót érintő $B \to M$ útvonalak és a $B \to M'$ útvonalak között. Egy folyót érintő útvonalnak az **első** érintési pont *utáni* részét tükrözzük a folyóra, így egy $B$-ből $M'$-be vezető útvonalat kapunk; megfordítva, minden $B \to M'$ útvonal keresztezi a folyót (hiszen $B$ és $M'$ a két ellentétes parton van), és ha az első közös pont utáni részét visszatükrözzük, a folyót érintő $B \to M$ útvonalat kapunk. Ez a két művelet egymás inverze. Ez a **tükrözési elv**, és a következő szakaszban rácsutakra alkalmazzuk.
+Valójában többet is kaptunk: egy **kölcsönösen egyértelmű megfeleltetést** a folyót érintő $B \to M$ útvonalak és a $B \to M'$ útvonalak között. Egy folyót érintő útvonalnak az **első** érintési pont *utáni* részét tükrözzük a folyóra, így egy $B$-ből $M'$-be vezető útvonalat kapunk; megfordítva, minden $B \to M'$ útvonal keresztezi a folyót (hiszen $B$ és $M'$ a két ellentétes parton van), és ha az első közös pont utáni részét visszatükrözzük, a folyót érintő $B \to M$ útvonalat kapunk. Ez a két művelet egymás inverze. (Megjegyezzük, hogy pontosan ugyanilyen érvényes bijekciót kapunk akkor is, ha az első érintési pont helyett mindenütt az **utolsó** érintési pont utáni részt tükrözzük.) Ez a **tükrözési elv**, és a következő szakaszban rácsutakra alkalmazzuk.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9,
@@ -1108,10 +1154,63 @@ $$\binom{2n}{n} - \binom{2n}{n-1} = \left(1 - \frac{n}{n+1}\right)\binom{2n}{n} 
 
 Az első néhány érték (megállapodás szerint $C_0 = 1$, ami az üres sornak felel meg):
 
-| $n$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| $\binom{2n}{n}$ | 1 | 2 | 6 | 20 | 70 | 252 | 924 |
-| $C_n$ | 1 | 1 | 2 | 5 | 14 | 42 | 132 |
+| $n$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| $\binom{2n}{n}$ | 1 | 2 | 6 | 20 | 70 | 252 | 924 | 3432 | 12870 | 48620 |
+| $C_n$ | 1 | 1 | 2 | 5 | 14 | 42 | 132 | 429 | 1430 | 4862 |
+
+### Ferde utas levezetés és a tükrözési módszer receptje
+
+A pénztár-feladatot **ferde utakkal** is felírhatjuk, ami sok alkalmazásban még áttekinthetőbb, mert a „pénztár egyenlege” közvetlenül a függőleges $y$-koordináta lesz:
+
+- Ha valaki $1$ euróssal ($10$ forintossal) fizet, lépjünk $(1, 1)$-gyel ferdén felfelé; ha $2$ euróssal ($20$ forintossal), lépjünk $(1, -1)$-gyel ferdén lefelé. Ekkor a jó és rossz sorrendek együttesen az $(0, 0) \to (2n, 0)$ ferde utak ($\binom{2n}{n}$ darab).
+- A pénztáros pontosan akkor akad el valamikor, ha az út az $x$-tengely alá megy, vagyis érinti a **tiltott $y = -1$ vízszintes egyenest**.
+- A végpont, $(2n, 0)$ tükörképe az $y = -1$ egyenesre a $(2n, -2)$ pont. Egy rossz út utolsó $y = -1$-en lévő $X$ pontja utáni részét tükrözve bijekciót kapunk az $y = -1$-et érintő $(0, 0) \to (2n, 0)$ és az összes $(0, 0) \to (2n, -2)$ ferde út között. A ferde utakról szóló lemma alapján utóbbiak száma $\binom{2n}{(2n-2)/2} = \binom{2n}{n-1}$, így újra $C_n = \binom{2n}{n} - \binom{2n}{n-1}$ adódik.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.72,
+  gridline/.style={draw=black!20, thin},
+  axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
+  forbidden/.style={draw=black!70, dashed, thick},
+  commonpath/.style={draw=black, very thick},
+  origtail/.style={draw=black!45, line width=1.4pt},
+  refltail/.style={draw=black, very thick, dashed},
+  pt/.style={circle, draw=black, fill=black, inner sep=1.8pt},
+  hitpt/.style={circle, draw=black, fill=white, very thick, inner sep=2.2pt}
+]
+  \draw[gridline] (0,-3) grid (8,2);
+  \draw[axis] (-0.3, 0) -- (8.8, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -3.3) -- (0, 2.5) node[above] {\footnotesize $y$};
+  \draw[forbidden] (-0.3, -1) -- (8.6, -1) node[right] {\footnotesize $y = -1$ \scriptsize (tiltott egyenes)};
+
+  % Rossz ut: (0,0)->(1,1)->(2,0)->(3,-1)->(4,0)->(5,-1)->(6,0)->(7,1)->(8,0)
+  % Utolso erintes: X=(5,-1)
+  \draw[commonpath] (0,0) -- (1,1) -- (2,0) -- (3,-1) -- (4,0) -- (5,-1);
+  \draw[origtail] (5,-1) -- (6,0) -- (7,1) -- (8,0);
+  \draw[refltail] (5,-1) -- (6,-2) -- (7,-3) -- (8,-2);
+  \draw[draw=black!30, dotted, thick] (8,0) -- (8,-2);
+
+  \node[pt, label=above left:{\footnotesize $(0,0)$}] at (0,0) {};
+  \node[hitpt, label=below left:{\small $X(5,-1)$}] at (5,-1) {};
+  \node[pt, label=above right:{\footnotesize $(2n,0)$}] at (8,0) {};
+  \node[pt, label=below right:{\footnotesize $(2n,-2)$}] at (8,-2) {};
+
+  \node at (4.0, -3.9) {\footnotesize Ferde utas tükrözés ($n = 4$): az utolsó $X \in \{y = -1\}$ pont utáni rész tükrözése $(2n,-2)$-be visz.};
+\end{tikzpicture}
+\end{center}
+
+> **Tipikus példa (Belépés a táncterembe).** Hányféleképpen mehet be $12$ fiú és $14$ lány egy táncterembe (egyesével), ha odabent mindig legalább annyi lány kell legyen, mint fiú? *Mi változik, ha a személyek megkülönböztethetők?*
+>
+> - **Séta:** Egy belépő fiú jelentsen $(1, 1)$ (ferdén felfelé), egy belépő lány $(1, -1)$ (ferdén lefelé) lépést. A magasság a bent lévő fiúk és lányok számának különbsége, így a $(0, 0)$-ból a $(26, -2)$ pontba jutunk ($26$ lépésből $12$ felfelé). Az összes séta száma $\binom{26}{12}$.
+> - **Tiltott egyenes:** A feltétel szerint a magasság soha nem lehet pozitív, vagyis az út nem érintheti az $y = 1$ egyenest.
+> - **Számolás:** A $(26, -2)$ végpont tükörképe az $y = 1$ egyenesre $(26, 4)$. A tükrözési elv szerint a rossz séták bijekcióban állnak a $(0, 0) \to (26, 4)$ ferde utakkal, amelyek száma $\binom{26}{(26+4)/2} = \binom{26}{15} = \binom{26}{11}$. A jó fiú–lány belépési sorrendek száma tehát
+>   $$\binom{26}{12} - \binom{26}{11}.$$
+>   Ha a belépő emberek **megkülönböztethetők**, minden jó fiú–lány mintázatnál a $12$ fiú $12!$-féle, a $14$ lány $14!$-féle sorrendben érkezhet, így a válasz $12! \cdot 14! \cdot \left(\binom{26}{12} - \binom{26}{11}\right)$.
+
+A hasonló feladatok megoldásának **általános háromlépéses receptje** mindig ugyanaz:
+1. A feladatot lefordítjuk rácspontokon való sétára.
+2. Meghatározzuk a **tiltott egyenest**: azokat a pontokat, ahol a feltétel először sérül (például ha a különbség egyszer $+1$ lesz, mielőtt $+2$ lehetne).
+3. A jó séták számát *összes mínusz rossz* alakban kapjuk; a rossz séták száma a kezdőpontból a végpont tiltott egyenesre vett tükörképébe vezető séták száma. (Ha a személyek vagy tárgyak megkülönböztethetők, a végén szorozni kell a belső sorrendek számával.)
 
 ## 16. A Catalan-számok rekurziója és alkalmazásai
 
@@ -1175,9 +1274,16 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
 **Megjegyzés.** Ez a rekurzió nem lineáris, és nem is véges rendű: $C_n$ kiszámolásához az **összes** korábbi tagra szükség van. A 12. szakasz módszere tehát nem alkalmazható rá — a zárt képlethez itt a bijektív (tükrözéses) gondolatmenet vezetett el. A rekurzió viszont arra kiválóan alkalmas, hogy más feladatokról megmutassuk, hogy ugyancsak a Catalan-számokra vezetnek.
 
 ::: kiegeszites
-**Kiegészítés — Lemma.** *Ha a $(t_n)_{n\ge0}$ sorozatra $t_0 = 1$ és minden $n \ge 1$-re $t_n = \sum_{k=1}^{n} t_{k-1}t_{n-k}$, akkor $t_n = C_n$ minden $n$-re.*
+**Kiegészítés — Lemma, pozitív részletösszegek és a Catalan-számok eltoltjai.**
 
-*Bizonyítás.* Erős teljes indukció: $t_0 = 1 = C_0$, és ha $t_m = C_m$ minden $m < n$-re, akkor a jobb oldalon csak $n$-nél kisebb indexek szerepelnek, így $t_n = \sum_{k=1}^{n} C_{k-1}C_{n-k} = C_n$. $\blacksquare$
+1. *Pozitív köztes részletösszegek.* Legyen $n \ge 1$. Azoknak az $a_1, \dots, a_{2n} \in \{+1, -1\}$ sorozatoknak a száma, amelyekre $a_1 + \dots + a_{2n} = 0$, és minden köztes részletösszeg **szigorúan pozitív** ($s_j := a_1 + \dots + a_j > 0$ minden $j = 1, \dots, 2n-1$-re), éppen $C_{n-1}$. Valóban, ekkor szükségszerűen $a_1 = +1$ (különben $s_1 \le 0$) és $a_{2n} = -1$ (különben $s_{2n-1} \le 0$); ezeket elhagyva a maradék $2(n-1)$ hosszú sorozat minden részletösszege eggyel csökken, így pontosan egy nemnegatív részletösszegű sorozatot kapunk (ez éppen a fenti bizonyításban szereplő $C_{k-1}$ szimbolikus alakja).
+2. *Alaplemma ($C_n$ felismerése).* Ha a $(t_n)_{n\ge0}$ sorozatra $t_0 = 1$ és minden $n \ge 1$-re $t_n = \sum_{k=1}^{n} t_{k-1}t_{n-k}$, akkor erős teljes indukcióval $t_n = C_n$ minden $n \ge 0$-ra. (A Catalan-rekurzióban minden tag indexének összege $(k-1) + (n-k) = n - 1$.)
+3. *Egy indexszel eltolva ($A_n := C_{n-1}$, $n \ge 1$).* A $C_{n-1}$-es rekurzióban $k = i - 1$ helyettesítéssel:
+   $$A_1 = 1, \qquad A_n = \sum_{i=1}^{n-1} A_i A_{n-i} \qquad (n \ge 2).$$
+   Itt minden tagban az indexek összege $n$. Ha bármely $(X_n)_{n \ge 1}$ sorozat teljesíti ugyanezt a kezdőértéket ($X_1 = 1$) és rekurziót ($X_n = \sum_{i=1}^{n-1} X_i X_{n-i}$), akkor indukcióval $X_n = C_{n-1}$ minden $n \ge 1$-re (például az $n$ tényezős szorzat zárójelezéseinek száma).
+4. *Két indexszel eltolva ($B_n := C_{n-2}$, $n \ge 2$).* A $C_{n-2}$-es rekurzióban $j = k + 2$ helyettesítéssel:
+   $$B_2 = 1, \qquad B_n = \sum_{j=2}^{n-1} B_j B_{n+1-j} \qquad (n \ge 3).$$
+   Itt minden tagban az indexek összege $n + 1$. Ha bármely $(Y_n)_{n \ge 2}$ sorozat teljesíti $Y_2 = 1$-et és ugyanezt a rekurziót ($Y_n = \sum_{j=2}^{n-1} Y_j Y_{n+1-j}$), akkor indukcióval $Y_n = C_{n-2}$ minden $n \ge 2$-re (például a konvex $n$-szög háromszögeléseinek száma). $\blacksquare$
 :::
 
 ### Alkalmazások
@@ -1431,8 +1537,8 @@ Ezzel a leszámlálás fejezet végére értünk.
 - **Fibonacci-számok:** $F_n = F_{n-1} + F_{n-2}$, $F_0 = 0$, $F_1 = 1$; $\sum_{i=1}^k F_i = F_{k+2} - 1$, $\sum_{i=1}^{k} F_{2i-1} = F_{2k}$, $\sum_{i=1}^k F_i^2 = F_kF_{k+1}$, $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$; Binet-képlet: $F_n = \frac{1}{\sqrt5}\big(\Phi^n - \Psi^n\big)$.
 - **Lineáris rekurziók:** az $a_n = c_1a_{n-1} + c_2a_{n-2}$ megoldásai kétdimenziós alteret alkotnak. Karakterisztikus egyenlet: $q^2 - c_1q - c_2 = 0$. Két különböző gyök esetén $a_n = \alpha q_1^n + \beta q_2^n$, kétszeres gyök esetén $a_n = \alpha q^n + \beta nq^n$; $\alpha$ és $\beta$ a kezdeti feltételekből adódik. $k$-adrendű rekurziónál egy $m$-szeres $q$ gyök a $q^n, nq^n, \dots, n^{m-1}q^n$ megoldásokat adja. Visszafelé: a megoldás alakjából a gyököket, abból a rekurziót kapjuk (pl. $n^3$ csak negyedrendű rekurziónak lehet megoldása).
 - **Rekurzív gondolkodás:** nevezzük el a mennyiséget, számoljunk kis eseteket, keressünk rekurziót esetszétválasztással (lépcsőmászás: $L_n = F_{n+1}$; szomszédos $1$-esek nélküli $0$–$1$ sorozatok: $F_{n+2}$; dominólefedések: $F_{n+1}$).
-- **Rácsutak:** $(0,0) \to (a,b)$: $\binom{a+b}{a}$. **Tükrözési elv:** az első érintés utáni rész tükrözése bijekció.
-- **Catalan-számok:** $C_n = \binom{2n}{n} - \binom{2n}{n-1} = \frac{1}{n+1}\binom{2n}{n}$, rekurzió: $C_n = \sum_{k=1}^n C_{k-1}C_{n-k}$. Ezek számolják a pénztár-feladat jó sorrendjeit, a helyes zárójelezéseket, a konvex $(n+2)$-szög háromszögeléseit és az $n+1$ tényezős szorzat zárójelezéseit.
+- **Rácsutak és ferde utak:** jobbra/felfelé $(0,0) \to (a,b)$: $\binom{a+b}{a}$; ferde utak $(1,1)$ és $(1,-1)$ lépésekkel $(0,0) \to (a,b)$-be ($a+b$ páros, $|b|\le a$): $\binom{a}{(a+b)/2}$. **Tükrözési elv:** az első (vagy utolsó) érintés utáni rész tükrözése a tiltott egyenesre bijekció; recept: séta $\to$ tiltott egyenes $\to$ összes mínusz tükörképbe vezető út.
+- **Catalan-számok:** $C_n = \binom{2n}{n} - \binom{2n}{n-1} = \frac{1}{n+1}\binom{2n}{n}$ ($C_0=1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862,\dots$), rekurzió: $C_n = \sum_{k=1}^n C_{k-1}C_{n-k}$ (indexösszeg $n-1$). Eltoltak: $A_n = C_{n-1}$ ($A_1=1$, $A_n = \sum_{i=1}^{n-1} A_i A_{n-i}$, indexösszeg $n$) és $B_n = C_{n-2}$ ($B_2=1$, $B_n = \sum_{j=2}^{n-1} B_j B_{n+1-j}$, indexösszeg $n+1$). Ezek számolják a pénztár-feladat jó sorrendjeit, a helyes zárójelezéseket, a konvex $n$-szög háromszögeléseit ($C_{n-2}$) és az $n$ tényezős szorzat zárójelezéseit ($C_{n-1}$).
 
 ---
 

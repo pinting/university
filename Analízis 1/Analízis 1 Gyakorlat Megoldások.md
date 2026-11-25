@@ -6126,6 +6126,1741 @@ Ugyanez a matematikai probléma merül fel, amikor egy derékszögű folyosókan
   *Bizonyítás.* A konvexitás miatt $a < x$-re $\frac{f(x) - f(a)}{x - a} \ge f'(a)$, megszorozva a pozitív $(x - a)$-val kapjuk az egyenlőtlenséget. Ha $x < a$, akkor $\frac{f(a) - f(x)}{a - x} \le f'(a)$, megszorozva $(a - x)$-szel: $f(a) - f(x) \le f'(a)(a - x) \iff f(x) \ge f(a) + f'(a)(x - a)$.
   Megfordítva, ha az egyenlőtlenség teljesül, akkor $a < b$-re $f'(a) \le \frac{f(b) - f(a)}{b - a} \le f'(b)$, így $f'$ monoton nő, tehát $f$ konvex.
 
+# Analízis 1 – 17. feladatlap – megoldások
+
+### I. Mat. BSc Analízis 1 · 2026/27 első félév
+
+## 173. feladat
+
+Határozzuk meg az összes olyan függvényt, amelyre $f^{(6)}(x) = 0$ teljesül $\forall x \in \mathbb{R}$-re.
+
+**Megoldás.**
+
+Alkalmazzuk hatszor egymás után azt a tételt (a Lagrange-féle középértéktétel következményét), amely szerint ha egy $g$ függvény deriváltja egy intervallumon azonosan $0$, akkor $g$ konstans azon az intervallumon (itt $I = \mathbb{R}$):
+
+- $f^{(6)}(x) = 0 \implies f^{(5)}(x) = c_5$ (konstans).
+- $(f^{(4)}(x) - c_5 x)' = f^{(5)}(x) - c_5 = 0 \implies f^{(4)}(x) = c_5 x + c_4$.
+- $(f'''(x) - \frac{c_5}{2}x^2 - c_4 x)' = 0 \implies f'''(x) = \frac{c_5}{2}x^2 + c_4 x + c_3$.
+- Folytatva ugyanezt az integrálási láncot $f''$-re, $f'$-re és végül $f$-re: minden előző lépés egyetlen primitív polinomja adódik hozzá egy tetszőleges új konstanssal, így
+  $$f(x) = a_5 x^5 + a_4 x^4 + a_3 x^3 + a_2 x^2 + a_1 x + a_0 \qquad (a_0, a_1, \dots, a_5 \in \mathbb{R}),$$
+  vagyis $f$ legfeljebb $5$-ödfokú valós polinom.
+
+Megfordítva, bármely legfeljebb $5$-ödfokú polinom $6$-odik deriváltja nyilván azonosan $0$ $\mathbb{R}$-en.
+
+**Válasz:** Az összes legfeljebb $5$-ödfokú valós együtthatós polinom: $\displaystyle f(x) = \sum_{k=0}^{5} a_k x^k$ ($a_k \in \mathbb{R}$).
+
+::: elmelet
+**Elméleti háttér — azonosan eltűnő $n$-edik derivált.** Egy $I$ intervallumon pontosan az legfeljebb $(n - 1)$-edfokú polinomokra teljesül, hogy $f^{(n)} \equiv 0$. A bizonyítás kulcsa a Lagrange-tételből nyert konstanssági kritérium ($g' \equiv 0$ intervallumon $\implies g$ konstans) indukciós alkalmazása.
+:::
+
+---
+
+## 174. feladat
+
+$$\left(\frac{1}{x^2 - 1}\right)^{(20)} = \ ?$$
+
+**Megoldás.**
+
+Értelmezési tartomány: $x \in \mathbb{R} \setminus \{-1, 1\}$. Bontsuk a racionális törtfüggvényt parciális törtekre:
+
+$$\frac{1}{x^2 - 1} = \frac{1}{(x - 1)(x + 1)} = \frac{1}{2}\left(\frac{1}{x - 1} - \frac{1}{x + 1}\right) = \frac{1}{2}\Big((x - 1)^{-1} - (x + 1)^{-1}\Big).$$
+
+Teljes indukcióval könnyen igazolható, hogy tetszőleges $c \in \mathbb{R}$ és $n \in \mathbb{N}$ esetén ($x \neq c$):
+$$\frac{d^n}{dx^n}\big((x - c)^{-1}\big) = (-1)^n \cdot n! \cdot (x - c)^{-(n+1)}.$$
+*(Valóban, $n=0$-ra $(x-c)^{-1}$; az $n$-ről $(n+1)$-re való áttéréskor a szorzó $(-n-1)$ adja a $(-1)$ előjelet és a $(n+1)!$ faktoriálist.)*
+
+A deriválás linearitása miatt $n = 20$-ra ($ (-1)^{20} = 1$):
+
+$$\left(\frac{1}{x^2 - 1}\right)^{(20)} = \frac{1}{2}\cdot 20!\left(\frac{1}{(x - 1)^{21}} - \frac{1}{(x + 1)^{21}}\right) = \mathbf{\frac{20!}{2} \cdot \frac{(x + 1)^{21} - (x - 1)^{21}}{(x^2 - 1)^{21}}}.$$
+
+::: elmelet
+**Elméleti háttér — parciális törtek és magasabb rendű deriváltak.** Racionális függvény $n$-edik deriváltját nem hányadosszabállyal számoljuk ki $n$-szer (az exponenciálisan szétágazna), hanem parciális törtekre bontás után minden $\frac{1}{(x - c)^k}$ alakú alaptagot az ismert hatványszabállyal külön-külön deriválunk.
+:::
+
+---
+
+## 175. feladat
+
+$$(\sin 5x \cos 2x)^{(4)} = \ ?$$
+
+**Megoldás.**
+
+Alkalmazzuk először a szorzat-összeg trigonometrikus azonosságot ($\sin\alpha\cos\beta = \frac{1}{2}[\sin(\alpha+\beta) + \sin(\alpha-\beta)]$):
+
+$$\sin 5x \cos 2x = \frac{1}{2}\big(\sin 7x + \sin 3x\big).$$
+
+Tudjuk, hogy $\sin(kx)$ egymást követő deriváltjai $4$-es periódussal ismétlődnek:
+- $(\sin(kx))' = k\cos(kx)$,
+- $(\sin(kx))'' = -k^2\sin(kx)$,
+- $(\sin(kx))''' = -k^3\cos(kx)$,
+- $(\sin(kx))^{(4)} = k^4\sin(kx)$.
+
+A deriválás linearitásával:
+
+$$(\sin 5x \cos 2x)^{(4)} = \frac{1}{2}\big(7^4 \sin 7x + 3^4 \sin 3x\big) = \mathbf{\frac{2401}{2}\sin 7x + \frac{81}{2}\sin 3x}.$$
+
+::: elmelet
+**Elméleti háttér — trigonometrikus szorzatok $n$-edik deriváltja.** Bár a Leibniz-szabály is használható volna, a trigonometrikus azonosságokkal történő összegalakba írás sokkal egyszerűbb, mert a $\sin(kx)$ függvények $4$-szeri deriválásra csupán $k^4$-nel szorzódva visszatérnek önmagukba: $(\sin(kx))^{(n)} = k^n \sin\left(kx + \frac{n\pi}{2}\right)$.
+:::
+
+---
+
+## 176. feladat
+
+Adjuk meg a $g(x) = x \cdot e^{-x}$ függvény $n$-edik deriváltját, $g^{(n)}(x)$-et.
+
+**Megoldás.**
+
+Használjuk a Leibniz-szabályt ($n \ge 1$, de az eredmény $n = 0$-ra is érvényes) az $u(x) = x$ és $v(x) = e^{-x}$ tényezőkre:
+$$g^{(n)}(x) = \sum_{k=0}^{n} \binom{n}{k} u^{(k)}(x) \, v^{(n-k)}(x).$$
+
+Mivel $u^{(0)}(x) = x$, $u^{(1)}(x) = 1$, és minden $k \ge 2$ esetén $u^{(k)}(x) = 0$, az összegben csupán az első két tag marad meg ($k = 0$ és $k = 1$). Továbbá $v^{(m)}(x) = (-1)^m e^{-x}$, ezért:
+
+$$\begin{aligned}
+g^{(n)}(x) &= \binom{n}{0} \cdot x \cdot (-1)^n e^{-x} + \binom{n}{1} \cdot 1 \cdot (-1)^{n-1} e^{-x} \\
+&= (-1)^n x e^{-x} - n(-1)^n e^{-x} \\
+&= \mathbf{(-1)^n (x - n) e^{-x}} \qquad (n \in \mathbb{N}).
+\end{aligned}$$
+
+*(Ellenőrzés: $n = 0 \implies x e^{-x}$; $n = 1 \implies -(x-1)e^{-x} = (1-x)e^{-x}$; $n = 2 \implies (x-2)e^{-x}$.)*
+
+::: elmelet
+**Elméleti háttér — csonkolt Leibniz-formula.** Ha egy $p(x) \cdot v(x)$ szorzatban $p$ alacsony fokú polinom (itt elsőfokú), a Leibniz-formula $\sum_{k=0}^n \binom{n}{k} p^{(k)} v^{(n-k)}$ mindössze $\deg p + 1$ tagra zsugorodik, függetlenül attól, mekkora $n$.
+:::
+
+---
+
+## 177. feladat
+
+Vizsgáljuk meg konvexitás szempontjából az $f(x) = x^4 + x^3 - 18x^2 + 24x - 12$ és a $g(x) = 2 - |x^5 - 1|$ függvényeket.
+
+**Megoldás.**
+
+### 1. $f(x) = x^4 + x^3 - 18x^2 + 24x - 12$
+
+A függvény kétszer (sőt akárhányszor) differenciálható $\mathbb{R}$-en:
+$$f'(x) = 4x^3 + 3x^2 - 36x + 24,$$
+$$f''(x) = 12x^2 + 6x - 36 = 6(2x^2 + x - 6) = 6(2x - 3)(x + 2).$$
+
+Az $f''$ zérushelyei: $x_1 = -2$ és $x_2 = \frac{3}{2}$. A másodfokú kifejezés főegyütthatója pozitív, ezért:
+- $x \in (-\infty, -2)$ esetén $f''(x) > 0$,
+- $x \in \left(-2, \frac{3}{2}\right)$ esetén $f''(x) < 0$,
+- $x \in \left(\frac{3}{2}, +\infty\right)$ esetén $f''(x) > 0$.
+
+Mivel $f$ folytonos $\mathbb{R}$-en:
+- **$f$ szigorúan konvex** a $(-\infty, -2]$ és a $\left[\frac{3}{2}, +\infty\right)$ intervallumokon.
+- **$f$ szigorúan konkáv** a $\left[-2, \frac{3}{2}\right]$ intervallumon.
+- **Inflexiós pontok:** $x_1 = -2$ (ahol $f(-2) = 16 - 8 - 72 - 48 - 12 = -124$) és $x_2 = \frac{3}{2}$ (ahol $f\left(\frac{3}{2}\right) = \frac{81}{16} + \frac{27}{8} - \frac{81}{2} + 36 - 12 = -\frac{129}{16}$).
+
+---
+
+### 2. $g(x) = 2 - |x^5 - 1|$
+
+Vizsgáljuk az abszolút érték előjelváltását ($x^5 - 1 = 0 \iff x = 1$):
+$$g(x) = \begin{cases} x^5 + 1, & \text{ha } x \le 1, \\ 3 - x^5, & \text{ha } x \ge 1. \end{cases}$$
+
+A két nyílt intervallumon külön-külön kétszer differenciálható:
+- Ha $x < 1$: $g'(x) = 5x^4$, $g''(x) = 20x^3$.
+  - $x \in (-\infty, 0)$ esetén $g''(x) < 0$,
+  - $x \in (0, 1)$ esetén $g''(x) > 0$.
+- Ha $x > 1$: $g'(x) = -5x^4$, $g''(x) = -20x^3 < 0$.
+
+Így a konvexitási intervallumok:
+- **$g$ szigorúan konkáv** a $(-\infty, 0]$ és a $[1, +\infty)$ intervallumokon.
+- **$g$ szigorúan konvex** a $[0, 1]$ intervallumon.
+
+Vizsgáljuk a határpontokat:
+- **$x = 0$:** itt $g'(0) = 0$ létezik, és a függvény görbülete a $0$-ban konkávból konvexbe vált át ($g''$ előjelet vált), tehát **$(0, 1)$ inflexiós pont**.
+- **$x = 1$:** bár itt is görbületváltás látható ($[0, 1]$-en konvex, $[1, +\infty)$-en konkáv), a bal és jobb oldali derivált eltér:
+  $$g'_-(1) = \lim_{x \to 1^-} 5x^4 = 5 \neq -5 = \lim_{x \to 1^+} (-5x^4) = g'_+(1).$$
+  Mivel $x = 1$-ben **nem létezik** $g'(1)$ (éles töréspont, lokális maximumhely), a definíció szerint $x = 1$ **nem inflexiós pont**. (És sem $1$-et tartalmazó nyílt intervallumon nem konvex/konkáv, hiszen például $g(1) = 2 > \frac{g(0{,}5) + g(1{,}5)}{2}$, miközben a meredekségek is csökkennek $5$-ről $-5$-re, viszont $0$ és $1$ között már konvex.)
+
+::: elmelet
+**Elméleti háttér — inflexiós pont feltétele és töréspontok.** Az előadáson tanult definíció szerint az $a$ pont akkor *inflexiós hely*, ha $f$-nek létezik (véges vagy végtelen) deriváltja $a$-ban, és az $a$ két oldalán a konvexitás és konkávitás felváltja egymást. Töréspontban ($f'_-(a) \neq f'_+(a)$) még akkor sincs inflexiós pont, ha a két oldalon különböző a görbület előjele!
+:::
+
+---
+
+## 178*. feladat
+
+Legyen $f$ differenciálható $a$ egy pontozott környezetében és legyen $\displaystyle\lim_{x \to a} \frac{f(x) - f(a)}{x - a} = \infty$. Következik-e ebből, hogy $\displaystyle\lim_{x \to a} f'(x) = \infty$?
+
+**Megoldás.**
+
+**Nem következik!** (Bár az $f$-nek létezik végtelen deriváltja az $a$ pontban, $f'$ a pont környezetében akár erősen oszcillálhat is.)
+
+Adjunk ellenpéldát $a = 0$ esetén! Legyen:
+$$f(x) = \begin{cases} \sqrt[3]{x} + x^2 \sin\left(\dfrac{1}{x^2}\right), & \text{ha } x \neq 0, \\ 0, & \text{ha } x = 0. \end{cases}$$
+
+Ellenőrizzük a feltételeket és az állítást:
+1. **Differenciálhatóság $\mathbb{R} \setminus \{0\}$-ban:** Mind a $\sqrt[3]{x} = x^{1/3}$ ($x \neq 0$-ra), mind az $x^2 \sin(1/x^2)$ függvény differenciálható a $0$ egy pontozott környezetében (sőt minden $x \neq 0$-ra):
+   $$f'(x) = \frac{1}{3}x^{-2/3} + 2x\sin\left(\frac{1}{x^2}\right) - \frac{2}{x}\cos\left(\frac{1}{x^2}\right) \qquad (x \neq 0).$$
+2. **A különbségi hányados határértéke $x \to 0$-ban:**
+   $$\frac{f(x) - f(0)}{x - 0} = \frac{x^{1/3}}{x} + x\sin\left(\frac{1}{x^2}\right) = x^{-2/3} + x\sin\left(\frac{1}{x^2}\right) \longrightarrow +\infty \quad (x \to 0),$$
+   hiszen $x^{-2/3} = \frac{1}{\sqrt[3]{x^2}} \to +\infty$, míg $\left|x\sin\left(\frac{1}{x^2}\right)\right| \le |x| \to 0$. Tehát a feltétel teljesül ($\infty$, pontosabban $+\infty$ értelemben).
+3. **Az $f'(x)$ határértékének nemlétezése:** Válasszuk a $0$-hoz tartó pozitív sorozatokat:
+   - Ha $x_k = \frac{1}{\sqrt{2k\pi}} \to 0^+$ ($k \ge 1$), akkor $\cos(1/x_k^2) = 1$, $\sin(1/x_k^2) = 0$, ezért
+     $$f'(x_k) = \frac{1}{3}(2k\pi)^{1/3} - 2\sqrt{2k\pi} \longrightarrow -\infty \qquad (k \to \infty).$$
+   - Ha $y_k = \frac{1}{\sqrt{(2k+1)\pi}} \to 0^+$ ($k \ge 1$), akkor $\cos(1/y_k^2) = -1$, $\sin(1/y_k^2) = 0$, ezért
+     $$f'(y_k) = \frac{1}{3}\big((2k+1)\pi\big)^{1/3} + 2\sqrt{(2k+1)\pi} \longrightarrow +\infty \qquad (k \to \infty).$$
+   Ráadásul mivel $f'$ folytonos az $(y_k, x_k)$ intervallumon és a végpontokban ellentétes előjelű nagy $k$-ra, a Bolzano-tétel szerint létezik $z_k \in (y_k, x_k)$ ($z_k \to 0$) is, amelyre $f'(z_k) = 0$!
+
+Következésképpen $\displaystyle\lim_{x \to 0} f'(x)$ **nem létezik** (sem véges, sem $+\infty$, sem $\infty$ határérték nem áll fenn).
+
+::: elmelet
+**Elméleti háttér — $f'(a)$ és $\lim_{x \to a} f'(x)$ kapcsolata.** A különbségi hányados határértéke ($+\infty$) az $x^{1/3}$ főtag miatt jön létre, miközben a kicsi amplitúdójú, de gyorsan oszcilláló $x^2 \sin(1/x^2)$ tag deriváltja ($-\frac{2}{x}\cos(1/x^2)$) $1/x$ rendben felülírja az $x^{-2/3}$-ot. (Ez rokon azzal az ismert ténnyel, hogy egy mindenütt differenciálható függvény deriváltja sem feltétlenül folytonos, pl. $x^2 \sin(1/x^2)$ a $0$-ban.) Ha viszont $\lim_{x\to a} f'(x) = \infty$ *létezik*, akkor a L'Hospital-szabály / Lagrange-tétel miatt a különbségi hányados is $\infty$-hez tart — fordítva tehát nem igaz!
+:::
+
+---
+
+## 179. feladat
+
+Bizonyítsuk be, hogy $e^x + e^{-x} \ge 2 + x^2$ ha $x \in \mathbb{R}$.
+
+**Megoldás.**
+
+**1. megoldás (Taylor-sorfejtéssel):**
+
+Mind $e^x$, mind $e^{-x}$ minden valós $x$-re előáll a Maclaurin-sorának összegeként:
+$$e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \dots,$$
+$$e^{-x} = \sum_{n=0}^{\infty} (-1)^n \frac{x^n}{n!} = 1 - x + \frac{x^2}{2!} - \frac{x^3}{3!} + \frac{x^4}{4!} - \dots$$
+A két konvergens sort tagonként összeadva a páratlan hatványok kiesnek, a páros hatványok megduplázódnak:
+$$e^x + e^{-x} = 2\sum_{k=0}^{\infty} \frac{x^{2k}}{(2k)!} = 2\left(1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \frac{x^6}{6!} + \dots\right) = 2 + x^2 + 2\sum_{k=2}^{\infty} \frac{x^{2k}}{(2k)!}.$$
+Mivel minden $k \ge 2$-re $\frac{x^{2k}}{(2k)!} \ge 0$, ezért $e^x + e^{-x} \ge 2 + x^2$ minden $x \in \mathbb{R}$-re. $\blacksquare$
+
+**2. megoldás (monotonitással és második deriválttal):**
+
+Legyen $h(x) = e^x + e^{-x} - 2 - x^2$ ($x \in \mathbb{R}$). Mivel $h(-x) = h(x)$, a függvény páros, így elég az egyenlőtlenséget $x \ge 0$-ra igazolni. Számoljuk ki a deriváltakat:
+- $h(0) = 1 + 1 - 2 - 0 = 0$,
+- $h'(x) = e^x - e^{-x} - 2x$, innen $h'(0) = 0$,
+- $h''(x) = e^x + e^{-x} - 2 = \left(e^{x/2} - e^{-x/2}\right)^2 \ge 0$ minden $x \in \mathbb{R}$-re.
+
+Így $h'$ monoton növekvő $[0, +\infty)$-en, tehát $x \ge 0$-ra $h'(x) \ge h'(0) = 0$. Emiatt $h$ is monoton növekvő $[0, +\infty)$-en, következésképpen $h(x) \ge h(0) = 0$ minden $x \ge 0$-ra (és paritásnál fogva minden $x \in \mathbb{R}$-re). $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — $\operatorname{ch} x \ge 1 + \frac{x^2}{2}$.** Az egyenlőtlenség $2$-vel való osztása után pontosan a $\operatorname{ch} x = \frac{e^x + e^{-x}}{2} \ge 1 + \frac{x^2}{2}$ alsó becslést adja a koszinusz hiperbolikuszra. Mind a Taylor-sor pozitív páros tagjai, mind a kétszeres integrálás (deriváltakkal való monotonitási lánc) az egyenlőtlenségek bizonyításának két alapvető eszköze.
+:::
+
+---
+
+## 180. feladat
+
+Vázoljuk az $f$ függvény grafikonját az $x = -1$ pont környezetében, ha tudjuk, hogy $f(-1) = 2$, $f'(-1) = -1$, $f''(-1) = 0$, $f'''(x) > 0$, $x \in \mathbb{R}$.
+
+**Megoldás.**
+
+Elemezzük a megadott feltételek geometriai tartalmát:
+1. **Pont és érintő:** $f(-1) = 2$ miatt a görbe áthalad a $(-1; 2)$ ponton. Az $f'(-1) = -1$ érték azt jelenti, hogy a $(-1; 2)$ pontban húzott érintő meredeksége $-1$, egyenlete:
+   $$y = f(-1) + f'(-1)(x + 1) = 2 - (x + 1) = 1 - x.$$
+   Mivel $f'(-1) = -1 < 0$ és $f'$ folytonos, $x = -1$ egy megfelelően kis környezetében $f'(x) < 0$, tehát az **$f$ szigorúan csökken** $-1$ közelében.
+2. **Görbület ($f''$ előjele és inflexiós pont):** Tudjuk, hogy $f'''(x) = (f'')'(x) > 0$ minden $x \in \mathbb{R}$-re, ezért $f''$ szigorúan monoton növekvő $\mathbb{R}$-en. Mivel $f''(-1) = 0$:
+   - Ha $x < -1$, akkor $f''(x) < f''(-1) = 0$, vagyis $f$ **szigorúan konkáv** a $(-\infty, -1]$ intervallumon (a grafikon az érintő **alatt** halad).
+   - Ha $x > -1$, akkor $f''(x) > f''(-1) = 0$, vagyis $f$ **szigorúan konvex** a $[-1, +\infty)$ intervallumon (a grafikon az érintő **fölött** halad).
+
+Tehát az $x = -1$ helyen az $f$-nek **inflexiós pontja** van: a grafikon $x = -1$-nél $-1$ meredekséggel keresztezi az érintőjét, balról nézve konkáv módon alulról közelít az érintőhöz, majd jobbra átlép fölé és konvexté válik. *(Megjegyzés: $f'(-1) = -1$ egyúttal $f'$ globális minimuma is, így távolabb $-1$-től $f'$ akár pozitívvá is válhat.)*
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=1.05,
+  axis/.style={draw=black!70, -{Stealth[scale=0.8]}, thick},
+  gridline/.style={draw=black!15, thin}
+]
+  \draw[gridline] (-3, -0.5) grid (1.5, 4.5);
+  \draw[axis] (-3.1, 0) -- (1.7, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -0.6) -- (0, 4.7) node[above] {\footnotesize $y$};
+  \foreach \x in {-3, -2, -1, 1} {
+    \draw (\x, 0.07) -- (\x, -0.07) node[below] {\scriptsize $\x$};
+  }
+  \foreach \y in {1, 2, 3, 4} {
+    \draw (0.07, \y) -- (-0.07, \y) node[left] {\scriptsize $\y$};
+  }
+  % Erinto y = 1 - x
+  \draw[dashed, black!70, thick] (-2.6, 3.6) -- (1.1, -0.1) node[right] {\scriptsize érintő: $y = 1 - x$};
+  % Mintagorbe: f(x) = 2 - (x+1) + 0.45*(x+1)^3
+  \draw[draw=blue!80!black, very thick, domain=-2.45:0.45, samples=80]
+    plot (\x, {2 - (\x + 1) + 0.45*(\x + 1)*(\x + 1)*(\x + 1)});
+  \draw[dotted, black!50] (-1, 0) -- (-1, 2) -- (0, 2);
+  \fill[green!55!black] (-1.07, 1.93) rectangle (-0.93, 2.07);
+  \node[above right] at (-1, 2.05) {\scriptsize Infl. $(-1; 2)$};
+  \node[above] at (-2.1, 1.55) {\scriptsize konkáv ($f'' < 0$)};
+  \node[right] at (-0.1, 1.65) {\scriptsize konvex ($f'' > 0$)};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — az érintő és az inflexió lokális képe.** Az $f(x) = T_1(x) + \frac{f''(-1)}{2}(x+1)^2 + \frac{f'''(c)}{6}(x+1)^3$ Taylor-formulából itt a másodfokú tag kiesik ($f''(-1) = 0$), így $f(x) - T_1(x) = \frac{f'''(c)}{6}(x+1)^3$: ennek előjele megegyezik $(x+1)$ előjelével ($f''' > 0$ miatt), tehát a görbe valóban alulról fölfelé metszi át az érintőjét.
+:::
+
+---
+
+## 181. feladat
+
+Tegyük fel, hogy $\varphi$ és $\psi$ differenciálható pozitív értékű függvények. Legyen $f(x) = \sqrt[\varphi(x)]{\psi(x)}$. Határozzuk meg $f'(x)$-et.
+
+**Megoldás.**
+
+Mivel $\varphi(x) > 0$ és $\psi(x) > 0$, a gyökös kifejezés a pozitív valós hatványozás definíciója szerint átírható:
+$$f(x) = \psi(x)^{\frac{1}{\varphi(x)}} = e^{\frac{\log \psi(x)}{\varphi(x)}} > 0.$$
+
+Deriváljuk $f$-et az exponenciális láncszabály és a hányadosszabály alkalmazásával (vagy ekvivalensen vegyük $\log f(x) = \frac{\log\psi(x)}{\varphi(x)}$ deriváltját):
+
+$$\begin{aligned}
+f'(x) &= e^{\frac{\log \psi(x)}{\varphi(x)}} \cdot \left(\frac{\log \psi(x)}{\varphi(x)}\right)' \\
+&= \sqrt[\varphi(x)]{\psi(x)} \cdot \frac{\big(\log \psi(x)\big)' \varphi(x) - \log \psi(x) \cdot \varphi'(x)}{\varphi(x)^2} \\
+&= \mathbf{\sqrt[\varphi(x)]{\psi(x)} \cdot \frac{\dfrac{\psi'(x)}{\psi(x)}\varphi(x) - \varphi'(x)\log \psi(x)}{\varphi(x)^2}} \\
+&= \mathbf{\sqrt[\varphi(x)]{\psi(x)} \cdot \frac{\psi'(x)\varphi(x) - \varphi'(x)\psi(x)\log \psi(x)}{\varphi(x)^2 \psi(x)}}.
+\end{aligned}$$
+
+::: elmelet
+**Elméleti háttér — változó gyökkitevős függvény.** Az $\sqrt[u(x)]{v(x)} = v(x)^{1/u(x)}$ pontosan az $a(x)^{b(x)}$ típus egy speciális esete $b(x) = 1/\varphi(x)$ választással. A pozitív értékűség garantálja, hogy $\log \psi(x)$ definiált és $\varphi(x) \neq 0$ a nevezőben.
+:::
+
+---
+
+## 182. feladat
+
+Melyik az egységgömbbe írható maximális térfogatú egyenes körkúp?
+
+**Megoldás.**
+
+*(Vö. a Szélsőérték-számítási gyakorló feladatsor 4. feladatával $R = 1$ speciális esetben.)*
+
+Legyen az $R = 1$ sugarú gömbbe írt egyenes körkúp magassága $m$, az alapkör sugara pedig $r$. Nyilván $m \in (0, 2)$. A gömb középpontja, az alapkör középpontja és az alapkör egy határpontja derékszögű háromszöget alkot $1$ átfogóval és $r, |m - 1|$ befogókkal:
+$$r^2 + (m - 1)^2 = 1^2 \implies r^2 = 1 - (m^2 - 2m + 1) = 2m - m^2.$$
+
+A kúp térfogata $m$ függvényében:
+$$V(m) = \frac{1}{3} r^2 \pi m = \frac{\pi}{3}(2m - m^2)m = \frac{\pi}{3}(2m^2 - m^3) \qquad \big(m \in (0, 2)\big).$$
+
+Deriváljunk $m$ szerint:
+$$V'(m) = \frac{\pi}{3}(4m - 3m^2) = \frac{\pi}{3}m(4 - 3m).$$
+A $(0, 2)$ nyílt intervallumon az egyetlen zérushely:
+$$m = \frac{4}{3}.$$
+Mivel $V'(m) > 0$ ha $m \in \left(0, \frac{4}{3}\right)$, és $V'(m) < 0$ ha $m \in \left(\frac{4}{3}, 2\right)$ (továbbá $V''(4/3) = \frac{\pi}{3}(4 - 8) = -\frac{4\pi}{3} < 0$), itt globális maximum van.
+
+Az alapkör sugara és a maximális térfogat:
+$$r = \sqrt{2 \cdot \frac{4}{3} - \left(\frac{4}{3}\right)^2} = \sqrt{\frac{24 - 16}{9}} = \frac{2\sqrt{2}}{3}, \qquad V_{\max} = \frac{\pi}{3}\cdot\frac{8}{9}\cdot\frac{4}{3} = \frac{32\pi}{81}.$$
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=1.5,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.2pt}
+]
+  \draw[thick] (0,0) circle (1);
+  \coordinate (O) at (0,0);
+  \coordinate (T) at (0,1);
+  \coordinate (C) at (0,-0.3333);
+  \coordinate (A) at (-0.9428,-0.3333);
+  \coordinate (B) at (0.9428,-0.3333);
+  \fill[black!7] (T) -- (A) -- (B) -- cycle;
+  \draw[very thick] (T) -- (A) -- (B) -- cycle;
+  \draw[dashed] (T) -- (C);
+  \draw[dashed] (O) -- node[above right=-1pt] {\scriptsize $1$} (B);
+  \draw (0.12, -0.3333) -- (0.12, -0.2133) -- (0, -0.2133);
+  \node[pt, label=left:{\scriptsize $O$}] at (O) {};
+  \node[pt] at (C) {};
+  \node[left] at (-0.02, -0.18) {\scriptsize $m-1$};
+  \node[below] at (0.47, -0.35) {\scriptsize $r$};
+  \node[right] at (1.05, 0) {\scriptsize gömb ($R=1$)};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+**Válasz:** Az a körkúp adja a maximális térfogatot, amelynek **magassága $m = \frac{4}{3}$** és **alapsugara $r = \frac{2\sqrt{2}}{3}$** (maximális térfogata $V_{\max} = \frac{32\pi}{81}$, ami az egységgömb $\frac{4\pi}{3}$ térfogatának $\frac{8}{27}$-ed része).
+
+::: elmelet
+**Elméleti háttér — az $\frac{8}{27}$-es térfogatarány.** Bármely $R$ sugarú gömbbe írt maximális térfogatú körkúp magassága a gömb átmérőjének kétharmada ($m = \frac{4}{3}R = \frac{2}{3} \cdot 2R$), térfogata pedig mindig a gömb térfogatának $\frac{8}{27}$-szerese (kb. $29{,}63\%$).
+:::
+
+---
+
+## 183. feladat
+
+Bizonyítandó, hogy ha $f'(x) = x^2$, $\forall x \in \mathbb{R}$-re, akkor van olyan konstans, hogy $f(x) = \frac{x^3}{3} + c$.
+
+**Megoldás.**
+
+Tekintsük a
+$$g(x) = f(x) - \frac{x^3}{3} \qquad (x \in \mathbb{R})$$
+segédfüggvényt. Mivel mind $f$, mind $\frac{x^3}{3}$ differenciálható $\mathbb{R}$-en, $g$ is differenciálható $\mathbb{R}$-en, és
+$$g'(x) = f'(x) - \left(\frac{x^3}{3}\right)' = x^2 - x^2 = 0 \qquad \forall x \in \mathbb{R}.$$
+
+Legyen $c = g(0) = f(0)$, és válasszunk egy tetszőleges $x \in \mathbb{R} \setminus \{0\}$ pontot. A Lagrange-féle középértéktétel szerint a $0$ és $x$ közötti nyílt intervallumban létezik olyan $\xi$, amelyre
+$$\frac{g(x) - g(0)}{x - 0} = g'(\xi) = 0 \implies g(x) = g(0) = c.$$
+Ez $x = 0$-ra is triviálisan teljesül, tehát minden $x \in \mathbb{R}$-re $f(x) - \frac{x^3}{3} = c$, vagyis
+$$f(x) = \frac{x^3}{3} + c. \ \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — primitív függvények egyértelműsége additív konstans erejéig.** Ez az állítás az integrálszámítás alaptételének egyik legfontosabb előkészítése: ha két függvénynek ugyanaz a deriváltja egy intervallumon, akkor különbségük deriváltja nulla, így a Lagrange-középértéktétel miatt a két függvény csak egy konstansban térhet el egymástól. (Figyelem: nem összefüggő értelmezési tartományon — például $\mathbb{R} \setminus \{0\}$-on — a konstans szakaszonként különböző is lehet!)
+:::
+
+---
+
+## 184. feladat
+
+Bizonyítsuk be, hogy ha $p$ egy $n$-edfokú polinom, akkor az $e^x - p(x)$ függvénynek legfeljebb $n + 1$ valós gyöke van.
+
+**Megoldás.**
+
+Legyen $g(x) = e^x - p(x)$ ($x \in \mathbb{R}$). Mivel $p$ egy $n$-edfokú polinom, $(n + 1)$-edik deriváltja azonosan $0$, így:
+$$g^{(n+1)}(x) = \left(e^x\right)^{(n+1)} - p^{(n+1)}(x) = e^x - 0 = e^x > 0 \qquad \forall x \in \mathbb{R}.$$
+
+Tegyük fel indirekt, hogy $g$-nek van legalább $n + 2$ különböző valós gyöke: $x_1 < x_2 < \dots < x_{n+2}$. Mivel $g$ akárhányszor differenciálható $\mathbb{R}$-en:
+- A Rolle-tétel szerint a $g$-nek bármely két szomszédos gyöke között van $g'$-nek gyöke, tehát $g'$-nek legalább $n + 1$ különböző valós gyöke van.
+- Újra alkalmazva a Rolle-tételt $g'$-re, $g''$-nek legalább $n$ gyöke van.
+- Így folytatva $(n + 1)$-szer egymás után, a $g^{(n+1)}$ függvénynek legalább $(n + 2) - (n + 1) = 1$ valós gyöke kell legyen: létezik $\xi \in \mathbb{R}$, amelyre $g^{(n+1)}(\xi) = 0$.
+
+Azonban $g^{(n+1)}(\xi) = e^\xi > 0$, ami ellentmondás! Tehát az $e^x - p(x)$ függvénynek legfeljebb $n + 1$ valós gyöke lehet. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — a Rolle-tétel iterálása.** Általánosan igaz, hogy ha egy $k$-szor differenciálható $g$ függvény $k$-adik deriváltja sehol sem tűnik el egy intervallumon, akkor $g$-nek legfeljebb $k$ valós gyöke lehet azon az intervallumon (egyszerű következmény a Rolle-tétel $k$-szori alkalmazásával, pontosan így bizonyítjuk azt is, hogy egy $n$-edfokú nemnulla polinomnak legfeljebb $n$ valós gyöke van).
+:::
+
+---
+
+## 185. feladat
+
+Mutassuk meg, hogy $a, b, c > 0$ esetén $a + b + c \le \sqrt[3]{9}\sqrt[3]{a^3 + b^3 + c^3}$.
+
+**Megoldás.**
+
+**1. megoldás (Jensen-egyenlőtlenséggel):**
+
+Tekintsük az $f(x) = x^3$ függvényt a $(0, +\infty)$ intervallumon. Mivel $f''(x) = 6x > 0$ minden $x > 0$-ra, az $f$ függvény szigorúan konvex $(0, +\infty)$-en. Alkalmazzuk a Jensen-egyenlőtlenséget egyenlő súlyokkal ($\lambda_1 = \lambda_2 = \lambda_3 = \frac{1}{3}$):
+$$f\left(\frac{a + b + c}{3}\right) \le \frac{f(a) + f(b) + f(c)}{3},$$
+vagyis
+$$\left(\frac{a + b + c}{3}\right)^3 \le \frac{a^3 + b^3 + c^3}{3} \iff \frac{(a + b + c)^3}{27} \le \frac{a^3 + b^3 + c^3}{3}.$$
+Mindkét oldalt $27$-tel megszorozva:
+$$(a + b + c)^3 \le 9\big(a^3 + b^3 + c^3\big).$$
+Mivel az $y \mapsto \sqrt[3]{y}$ függvény szigorúan monoton növekvő, köbgyököt vonhatunk:
+$$a + b + c \le \sqrt[3]{9}\sqrt[3]{a^3 + b^3 + c^3}. \ \blacksquare$$
+
+*(Egyenlőség pontosan akkor áll fenn, ha $a = b = c$.)*
+
+**2. megoldás (Hölder-egyenlőtlenséggel):**
+
+Alkalmazzuk a Hölder-egyenlőtlenséget $p = 3$, $q = \frac{3}{2}$ ($\frac{1}{3} + \frac{2}{3} = 1$) kitevőkkel az $(a, b, c)$ és az $(1, 1, 1)$ számhármasra:
+$$a \cdot 1 + b \cdot 1 + c \cdot 1 \le \big(a^3 + b^3 + c^3\big)^{1/3}\big(1^{3/2} + 1^{3/2} + 1^{3/2}\big)^{2/3} = 3^{2/3}\sqrt[3]{a^3 + b^3 + c^3} = \sqrt[3]{9}\sqrt[3]{a^3 + b^3 + c^3}. \ \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — hatványközepek közötti egyenlőtlenség ($M_1 \le M_3$).** A bizonyított egyenlőtlenség $3$-mal elosztva pontosan a számtani és a köbös közép közötti $\frac{a + b + c}{3} \le \sqrt[3]{\frac{a^3 + b^3 + c^3}{3}}$ egyenlőtlenség. Általában minden $n$ pozitív számra és $p > 1$-re a konvex $x^p$ függvényre alkalmazott Jensen-egyenlőtlenség (vagy Hölder) adja a $\frac{1}{n}\sum x_i \le \left(\frac{1}{n}\sum x_i^p\right)^{1/p}$ becslést.
+:::
+
+---
+
+## 186*. feladat
+
+Legyenek $a_k, b_k, c_k \ge 0$ ($k = 1, \dots, n$) valós számok. Mutassuk meg, hogy
+$$\sum_{k=1}^{n} a_k b_k c_k \le \left(\sum_{k=1}^{n} a_k^2\right)^{1/2} \left(\sum_{k=1}^{n} b_k^3\right)^{1/3} \left(\sum_{k=1}^{n} c_k^6\right)^{1/6}.$$
+
+**Megoldás.**
+
+**1. megoldás (háromtényezős Young-egyenlőtlenséggel — közvetlenül az előadás bizonyítása nyomán):**
+
+Ha bármelyik jobb oldali tényező nulla, akkor az összes megfelelő $a_k$, $b_k$ vagy $c_k$ szám nulla, így mindkét oldal $0$, az egyenlőtlenség teljesül. Tegyük fel tehát, hogy
+$$A = \left(\sum_{k=1}^{n} a_k^2\right)^{1/2} > 0, \qquad B = \left(\sum_{k=1}^{n} b_k^3\right)^{1/3} > 0, \qquad C = \left(\sum_{k=1}^{n} c_k^6\right)^{1/6} > 0.$$
+
+Igazoljuk előbb, hogy minden $u, v, w \ge 0$ számra (mivel $\frac{1}{2} + \frac{1}{3} + \frac{1}{6} = 1$):
+$$uvw \le \frac{u^2}{2} + \frac{v^3}{3} + \frac{w^6}{6}.$$
+Ha $u, v, w$ bármelyike $0$, ez triviális; ha $u, v, w > 0$, a $\log$ függvény konkávitása miatt a Jensen-egyenlőtlenséggel:
+$$\log(uvw) = \frac{1}{2}\log(u^2) + \frac{1}{3}\log(v^3) + \frac{1}{6}\log(w^6) \le \log\left(\frac{u^2}{2} + \frac{v^3}{3} + \frac{w^6}{6}\right),$$
+és az exponenciális függvény szigorú monotonitásából adódik a háromtényezős Young-egyenlőtlenség.
+
+Helyettesítsük be ide az $u_k = \frac{a_k}{A}$, $v_k = \frac{b_k}{B}$, $w_k = \frac{c_k}{C}$ számokat, és összegezzük $k = 1$-től $n$-ig:
+$$\frac{1}{ABC}\sum_{k=1}^{n} a_k b_k c_k \le \frac{1}{2A^2}\sum_{k=1}^{n} a_k^2 + \frac{1}{3B^3}\sum_{k=1}^{n} b_k^3 + \frac{1}{6C^6}\sum_{k=1}^{n} c_k^6 = \frac{1}{2}\cdot 1 + \frac{1}{3}\cdot 1 + \frac{1}{6}\cdot 1 = 1.$$
+Mindkét oldalt $ABC$-vel megszorozva kapjuk a kívánt egyenlőtlenséget. $\blacksquare$
+
+**2. megoldás (a kéttagú Hölder-egyenlőtlenség kétszeri alkalmazásával):**
+
+Először alkalmazzuk a Cauchy–Bunyakovszkij–Schwarz-egyenlőtlenséget ($p = 2, q = 2$) az $a_k$ és $(b_k c_k)$ sorozatokra:
+$$\sum_{k=1}^{n} a_k(b_k c_k) \le \left(\sum_{k=1}^{n} a_k^2\right)^{1/2} \left(\sum_{k=1}^{n} b_k^2 c_k^2\right)^{1/2}.$$
+Ezután alkalmazzuk a Hölder-egyenlőtlenséget a $p' = \frac{3}{2}$, $q' = 3$ ($\frac{2}{3} + \frac{1}{3} = 1$) kitevőkkel a $b_k^2$ és $c_k^2$ sorozatokra:
+$$\sum_{k=1}^{n} b_k^2 c_k^2 \le \left(\sum_{k=1}^{n} (b_k^2)^{3/2}\right)^{2/3} \left(\sum_{k=1}^{n} (c_k^2)^3\right)^{1/3} = \left(\sum_{k=1}^{n} b_k^3\right)^{2/3} \left(\sum_{k=1}^{n} c_k^6\right)^{1/3}.$$
+Ennek négyzetgyökét véve és visszaírva az első becslésbe:
+$$\sum_{k=1}^{n} a_k b_k c_k \le \left(\sum_{k=1}^{n} a_k^2\right)^{1/2} \left(\sum_{k=1}^{n} b_k^3\right)^{1/3} \left(\sum_{k=1}^{n} c_k^6\right)^{1/6}. \ \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — általánosított Hölder-egyenlőtlenség.** Ha $p_1, \dots, p_m > 1$ és $\frac{1}{p_1} + \dots + \frac{1}{p_m} = 1$, akkor tetszőleges nemnegatív sorozatokra $\sum_k \prod_{j=1}^m x_{j,k} \le \prod_{j=1}^m \left(\sum_k x_{j,k}^{p_j}\right)^{1/p_j}$. A normálási trükk és a logaritmus konkávitása bármennyi tényezőre változatlanul működik!
+:::
+
+---
+
+## Röpzhra
+
+**Definíciók:** aszimptoták, differenciál, Taylor polinomok.
+
+**Tételek:** L'Hospital szabály, Taylor-formula, lemma bizonyos Taylor sorfejtés konvergenciájáról, $e^x$, $\sin x$, $\cos x$ sorfejtései.
+
+### Definíciók és tételek kidolgozása
+
+#### Definíciók
+
+- **Aszimptoták:**
+  - *Ferde (speciálisan vízszintes) aszimptota:* Ha $\displaystyle\lim_{x \to +\infty}\big(f(x) - (ax + b)\big) = 0$ (ahol $a, b \in \mathbb{R}$), akkor az $y = ax + b$ egyenest az $f$ függvény **$+\infty$-beli aszimptotájának** nevezzük. (Hasonlóan a $-\infty$-ben; $a = 0$ esetén vízszintes aszimptota.)
+  - *Függőleges aszimptota:* Az $x = c$ egyenes az $f$ **függőleges aszimptotája**, ha $\displaystyle\lim_{x \to c^-} |f(x)| = \infty$ vagy $\displaystyle\lim_{x \to c^+} |f(x)| = \infty$.
+- **Differenciál:** Ha $f$ differenciálható az $a$ helyen, akkor az
+  $$df(h) = f'(a) \cdot h \qquad (h \in \mathbb{R})$$
+  lineáris függvényt az $f$ függvény $a$ pontbeli **differenciáljának** nevezzük. Ez a függvény megváltozásának lineáris főrésze ($f(a + h) - f(a) \approx f'(a)h$).
+- **Taylor-polinomok:** Ha $f$ $n$-szer differenciálható az $a$ pontban, akkor az
+  $$T_n(x) = f(a) + \frac{f'(a)}{1!}(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \dots + \frac{f^{(n)}(a)}{n!}(x - a)^n = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x - a)^k$$
+  polinomot az $f$ függvény $a$ körüli **$n$-edik Taylor-polinomjának** nevezzük. (Ez az egyetlen legfeljebb $n$-edfokú polinom, amelynek $a$-ban a $0, 1, \dots, n$-edik deriváltjai megegyeznek $f$ megfelelő deriváltjaival, illetve amelyre $\lim_{x\to a} \frac{f(x) - p(x)}{(x - a)^n} = 0$.)
+
+#### Tételek
+
+- **L'Hospital-szabály:**
+  Legyen $f$ és $g$ differenciálható az $a$ egy $\dot{U}(a)$ pontozott környezetében, ahol $g \neq 0$ és $g' \neq 0$, továbbá teljesüljön az alábbiak közül valamelyik:
+  1. $\displaystyle\lim_{x\to a} f(x) = \lim_{x\to a} g(x) = 0$ (a $\frac{0}{0}$ eset), vagy
+  2. $\displaystyle\lim_{x\to a} |g(x)| = \infty$ (a $\frac{\ast}{\infty}$ eset).
+  Ekkor, ha $\displaystyle\lim_{x\to a}\frac{f'(x)}{g'(x)} = A$, akkor $\displaystyle\lim_{x\to a}\frac{f(x)}{g(x)} = A$. (Érvényes mind a $15$ határérték-típusra: $a \in \{-\infty, c-0, c, c+0, +\infty\}$, $A \in \{-\infty, b \in \mathbb{R}, +\infty\}$.)
+  *Bizonyítás (az $a+0$, $A = b \in \mathbb{R}$, $\frac{0}{0}$ esetre).* Legyen $\varepsilon > 0$. Létezik $\delta > 0$ úgy, hogy minden $t \in (a, a+\delta)$-ra $\left|\frac{f'(t)}{g'(t)} - b\right| < \frac{\varepsilon}{2}$. Legyen $a < y < x < a + \delta$. A Cauchy-féle középértéktétel szerint van $c \in (y, x)$, hogy
+  $$\frac{f(x) - f(y)}{g(x) - g(y)} = \frac{f'(c)}{g'(c)} \in \left(b - \frac{\varepsilon}{2},\ b + \frac{\varepsilon}{2}\right).$$
+  Rögzített $x$ mellett tartsunk $y \to a + 0$-hoz: mivel $f(y) \to 0$ és $g(y) \to 0$, a bal oldal $\frac{f(x)}{g(x)}$-hez tart, így $\frac{f(x)}{g(x)} \in \left[b - \frac{\varepsilon}{2}, b + \frac{\varepsilon}{2}\right]$ minden $x \in (a, a + \delta)$-ra, azaz $\frac{f(x)}{g(x)} \to b$. $\blacksquare$
+
+- **Taylor-formula:**
+  Tegyük fel, hogy $f$ $(n+1)$-szer differenciálható az $[a, x]$ (vagy $(x, a]$) intervallumon. Ekkor létezik $c$ az $a$ és $x$ közötti nyílt intervallumban úgy, hogy
+  $$f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x - a)^k + \frac{f^{(n+1)}(c)}{(n+1)!}(x - a)^{n+1} \qquad (\text{Lagrange-féle maradéktag}),$$
+  továbbá létezik $d$ ugyanezen nyílt intervallumban úgy, hogy
+  $$f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x - a)^k + \frac{f^{(n+1)}(d)}{n!}(x - d)^n (x - a) \qquad (\text{Cauchy-féle maradéktag}).$$
+  *Bizonyítás (a Lagrange-féle maradéktagra, $a < x$ esetén).* Rögzített $x$ mellett tekintsük a $t \in [a, x]$ változójú
+  $$R(t) = \sum_{k=0}^{n} \frac{f^{(k)}(t)}{k!}(x - t)^k - f(x)$$
+  függvényt. Ekkor $R(x) = 0$ és $R(a) = T_n(x) - f(x)$. Deriválva $t$ szerint minden közbülső tag teleszkopikusan kiesik:
+  $$R'(t) = \frac{f^{(n+1)}(t)}{n!}(x - t)^n.$$
+  Legyen $h(t) = (x - t)^{n+1}$, ekkor $h(x) = 0$ és $h'(t) = -(n+1)(x - t)^n$. A Cauchy-középértéktételt $R$-re és $h$-ra alkalmazva $[a, x]$-en létezik $c \in (a, x)$ úgy, hogy
+  $$\frac{R(x) - R(a)}{h(x) - h(a)} = \frac{R'(c)}{h'(c)} \implies \frac{R(a)}{(x - a)^{n+1}} = -\frac{f^{(n+1)}(c)}{(n+1)!} \implies f(x) - T_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x - a)^{n+1}. \ \blacksquare$$
+
+- **Lemma bizonyos Taylor-sorfejtés konvergenciájáról:**
+  Legyen $a, x \in \mathbb{R}$, $I$ az $a$ és $x$ közötti zárt intervallum. Ha $f$ az $I$ minden pontjában akárhányszor differenciálható, és létezik $M \ge 0$, amelyre $|f^{(n)}(y)| \le M$ minden $y \in I$ és $n \in \mathbb{N}$ esetén, akkor
+  $$f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n.$$
+  *Bizonyítás.* A Taylor-formula szerint $|f(x) - T_n(x)| = \left|\frac{f^{(n+1)}(c_n)}{(n+1)!}(x - a)^{n+1}\right| \le M \frac{|x - a|^{n+1}}{(n+1)!}$. Mivel minden rögzített $k \in \mathbb{R}$-re $\lim_{n\to\infty} \frac{k^n}{n!} = 0$ (hiszen elég nagy $n$-re $n! > n^{n/2}$, így $\left|\frac{k^n}{n!}\right| < \left(\frac{|k|}{\sqrt{n}}\right)^n \to 0$), a maradéktag $0$-hoz tart, tehát $T_n(x) \to f(x)$. $\blacksquare$
+
+- **Az $e^x$, $\sin x$ és $\cos x$ sorfejtései:**
+  - *$e^x$:* Az $[0, x]$ (ill. $[x, 0]$) intervallumon $\left|(e^t)^{(n)}\right| = e^t \le \max(1, e^x) = M$, és $a = 0$-ban minden derivált $1$. A fenti lemma szerint minden $x \in \mathbb{R}$-re:
+    $$e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots$$
+  - *$\sin x$ és $\cos x$:* Mivel valamennyi magasabb rendű deriváltjuk $\pm \sin t$ vagy $\pm \cos t$, ezért $|(\sin t)^{(n)}| \le 1$ és $|(\cos t)^{(n)}| \le 1$ minden $t \in \mathbb{R}$-re ($M = 1$). Az $a = 0$-beli deriváltértékeket ($\sin 0 = 0, \cos 0 = 1$) behelyettesítve minden $x \in \mathbb{R}$-re:
+    $$\sin x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots,$$
+    $$\cos x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots$$
+
+# Analízis 1 – Gyakorló feladatsor: Deriválási szabályok – megoldások
+
+### I. Mat. BSc Analízis 1 · Gyakorló feladatsor megoldásai
+
+*(A feladatsor jelöléseit követve $\log$ a természetes alapú logaritmust, míg $\tan, \arctan, \operatorname{arccot}$ a $\operatorname{tg}, \operatorname{arctg}, \operatorname{arcctg}$ függvényeket jelöli.)*
+
+---
+
+## 1. feladat
+
+$$f(x) = (3x^4 - 5x^2 + 7)e^{2x}$$
+
+**Megoldás.**
+
+Alkalmazzuk az $(u \cdot v)' = u'v + uv'$ szorzatszabályt, ahol $u(x) = 3x^4 - 5x^2 + 7$ és $v(x) = e^{2x}$. A $v(x)$ deriválásához a láncszabályt használjuk: $(e^{2x})' = e^{2x} \cdot (2x)' = 2e^{2x}$.
+
+$$\begin{aligned}
+f'(x) &= (3x^4 - 5x^2 + 7)' \cdot e^{2x} + (3x^4 - 5x^2 + 7) \cdot (e^{2x})' \\
+&= (12x^3 - 10x)e^{2x} + (3x^4 - 5x^2 + 7) \cdot 2e^{2x} \\
+&= e^{2x}\big(12x^3 - 10x + 6x^4 - 10x^2 + 14\big) \\
+&= \mathbf{e^{2x}(6x^4 + 12x^3 - 10x^2 - 10x + 14)}.
+\end{aligned}$$
+
+*(Értelmezési tartomány: $D_f = D_{f'} = \mathbb{R}$.)*
+
+::: elmelet
+**Elméleti háttér — szorzatszabály és exponenciális láncszabály.** Ha $f$ és $g$ differenciálható, $(fg)' = f'g + fg'$, továbbá $(e^{g(x)})' = e^{g(x)} \cdot g'(x)$. Exponenciális és polinomiális tényező szorzatakor az $e^{ax}$ tényező mindig kiemelhető, így egy azonos fokszámú polinom és $e^{ax}$ szorzatát kapjuk.
+:::
+
+---
+
+## 2. feladat
+
+$$f(x) = \frac{\log(x^2 + 1)}{x^3 - 2x}$$
+
+**Megoldás.**
+
+Az értelmezési tartományon $x^2 + 1 > 0$ mindig teljesül, csak a nevező zérushelyeit kell kizárni: $x(x^2 - 2) \neq 0 \implies D_f = \mathbb{R} \setminus \{-\sqrt{2}, 0, \sqrt{2}\}$.
+
+Alkalmazzuk a $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$ hányadosszabályt. A számláló deriválásakor láncszabályt használunk: $[\log(x^2 + 1)]' = \frac{1}{x^2 + 1} \cdot (x^2 + 1)' = \frac{2x}{x^2 + 1}$.
+
+$$f'(x) = \frac{\frac{2x}{x^2 + 1} \cdot (x^3 - 2x) - \log(x^2 + 1) \cdot (3x^2 - 2)}{(x^3 - 2x)^2}.$$
+
+Bővítsük a számlálót és a nevezőt $(x^2 + 1)$-gyel az emeletes tört megszüntetéséhez:
+
+$$f'(x) = \frac{2x(x^3 - 2x) - (x^2 + 1)(3x^2 - 2)\log(x^2 + 1)}{(x^2 + 1)(x^3 - 2x)^2} = \mathbf{\frac{2x^2(x^2 - 2) - (x^2 + 1)(3x^2 - 2)\log(x^2 + 1)}{(x^2 + 1)(x^3 - 2x)^2}}.$$
+
+::: elmelet
+**Elméleti háttér — hányadosszabály és emeletes törtek.** A $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$ szabály alkalmazása után, ha $u'$ vagy $v'$ maga is tört, érdemes a teljes tört számlálóját és nevezőjét a belső nevezővel szorozni (itt $x^2 + 1$-gyel) az áttekinthető algebrai alakért.
+:::
+
+---
+
+## 3. feladat
+
+$$f(x) = \sin^3(4x^2 - 1)$$
+
+**Megoldás.**
+
+Kívülről befelé haladva három függvény van egymásba ágyazva: a külső a köbre emelés ($u^3$), a középső a szinusz ($\sin v$), a belső pedig a polinom ($4x^2 - 1$).
+
+$$\begin{aligned}
+f'(x) &= 3\sin^2(4x^2 - 1) \cdot \big[\sin(4x^2 - 1)\big]' \\
+&= 3\sin^2(4x^2 - 1) \cdot \cos(4x^2 - 1) \cdot (4x^2 - 1)' \\
+&= 3\sin^2(4x^2 - 1) \cdot \cos(4x^2 - 1) \cdot 8x \\
+&= \mathbf{24x\sin^2(4x^2 - 1)\cos(4x^2 - 1)}.
+\end{aligned}$$
+
+*($D_f = D_{f'} = \mathbb{R}$.)*
+
+::: elmelet
+**Elméleti háttér — többszörös láncszabály.** Az $(h \circ g \circ k)'(x) = h'(g(k(x))) \cdot g'(k(x)) \cdot k'(x)$ szabály „hagymahéj-szerűen” bontja le a kompozíciót kívülről befelé: minden lépésben csak a legkülső függvényt deriváljuk, változatlanul hagyva annak belső argumentumát, majd szorzunk a belső függvény deriváltjával.
+:::
+
+---
+
+## 4. feladat
+
+$$f(x) = \sqrt{x^2 + \cos(3x)}$$
+
+**Megoldás.**
+
+Az értelmezési tartomány $D_f = \{x \in \mathbb{R} : x^2 + \cos(3x) \ge 0\}$ (valójában minden $x \in \mathbb{R}$ esetén teljesül, kivéve esetleg ahol $x^2 < -\cos(3x)$; a gyök belsejének zérushelyeinél azonban az $f'$ nem véges, tehát $D_{f'} = \{x \in \mathbb{R} : x^2 + \cos(3x) > 0\}$ — valójában például $x=0$-ban $\cos 0 = 1$, ha $|x| \ge 1$ akkor $x^2 \ge 1 \ge -\cos(3x)$, és $|x| < 1$ esetén $x^2 \ge 0$, miközben $3x \in (-3, 3)$, ellenőrizhető, hogy $x^2 + \cos(3x)$ lokális minimumai is pozitívak maradnak-e: $\approx \pm 0{,}87$-nél $(0{,}87)^2 \approx 0{,}76 > 0$, $\cos(2{,}6) \approx -0{,}86$, így vannak rövid intervallumok ahol $x^2 + \cos(3x) < 0$, vagyis $x^2 + \cos(3x) > 0$ a differenciálhatósági tartomány).
+
+A külső függvény a négyzetgyök, amelynek deriváltja $(\sqrt{u})' = \frac{1}{2\sqrt{u}}$ ($u > 0$). A belső kifejezés deriválásánál a $\cos(3x)$ tagra ismét láncszabályt alkalmazunk:
+
+$$\begin{aligned}
+f'(x) &= \frac{1}{2\sqrt{x^2 + \cos(3x)}} \cdot \big(x^2 + \cos(3x)\big)' \\
+&= \frac{1}{2\sqrt{x^2 + \cos(3x)}} \cdot \big(2x - \sin(3x) \cdot 3\big) \\
+&= \mathbf{\frac{2x - 3\sin(3x)}{2\sqrt{x^2 + \cos(3x)}}}.
+\end{aligned}$$
+
+::: elmelet
+**Elméleti háttér — négyzetgyökfüggvény differenciálhatósága.** Mivel $(\sqrt{u})' = \frac{1}{2\sqrt{u}}$, az összetett $\sqrt{u(x)}$ függvény ott biztosan differenciálható (feltéve, hogy $u$ differenciálható), ahol $u(x) > 0$. Az $u(x) = 0$ pontokban a függőleges érintő miatt általában véges derivált nem létezik (hacsak $u$ ott nem magasabb rendben tűnik el).
+:::
+
+---
+
+## 5. feladat
+
+$$f(x) = \frac{e^{\tan x}}{1 + \sin^2 x}$$
+
+**Megoldás.**
+
+Értelmezési tartomány: $D_f = \mathbb{R} \setminus \left\{\frac{\pi}{2} + k\pi : k \in \mathbb{Z}\right\}$ (mert $1 + \sin^2 x \ge 1 > 0$).
+
+A számláló deriváltja: $(e^{\tan x})' = e^{\tan x} \cdot (\tan x)' = e^{\tan x} \cdot \frac{1}{\cos^2 x}$.
+
+A nevező deriváltja: $(1 + \sin^2 x)' = 0 + 2\sin x \cdot (\sin x)' = 2\sin x \cos x$.
+
+Hányadosszabállyal:
+
+$$f'(x) = \frac{e^{\tan x} \cdot \frac{1}{\cos^2 x}(1 + \sin^2 x) - e^{\tan x}(2\sin x \cos x)}{(1 + \sin^2 x)^2}.$$
+
+Emeljük ki az $e^{\tan x}$ tényezőt, és hozzuk közös nevezőre a számlálót:
+
+$$f'(x) = \mathbf{\frac{e^{\tan x}\big(1 + \sin^2 x - 2\sin x \cos^3 x\big)}{\cos^2 x (1 + \sin^2 x)^2}}.$$
+
+::: elmelet
+**Elméleti háttér — trigonometrikus deriváltak.** A $(\tan x)' = \frac{1}{\cos^2 x}$ összefüggés a $\frac{\sin x}{\cos x}$ hányados deriválásából következik a Pitagorasz-azonossággal ($\cos^2 x + \sin^2 x = 1$). Számlálóban megjelenő $\cos^{-2} x$ tényezőt az emeletes tört elkerüléséhez a főnevezőbe célszerű lehozni.
+:::
+
+---
+
+## 6. feladat
+
+$$f(x) = \log\left(\frac{1 - \cos x}{1 + \cos x}\right)$$
+
+**Megoldás.**
+
+Az argumentum pozitív és a nevező nem nulla pontosan akkor, ha $\cos x \neq \pm 1$, azaz $D_f = \mathbb{R} \setminus \{k\pi : k \in \mathbb{Z}\}$.
+
+A hányadosszabály elkerülése érdekében bontsuk szét a logaritmust a $\log\frac{A}{B} = \log A - \log B$ azonossággal ($1 - \cos x > 0$ és $1 + \cos x > 0$ a tartományon):
+
+$$f(x) = \log(1 - \cos x) - \log(1 + \cos x).$$
+
+Most deriváljuk tagonként a láncszabály segítségével:
+
+$$f'(x) = \frac{(1 - \cos x)'}{1 - \cos x} - \frac{(1 + \cos x)'}{1 + \cos x} = \frac{\sin x}{1 - \cos x} - \frac{-\sin x}{1 + \cos x} = \frac{\sin x}{1 - \cos x} + \frac{\sin x}{1 + \cos x}.$$
+
+Hozzuk közös nevezőre a két törtet:
+
+$$f'(x) = \frac{\sin x(1 + \cos x) + \sin x(1 - \cos x)}{(1 - \cos x)(1 + \cos x)} = \frac{2\sin x}{1 - \cos^2 x} = \frac{2\sin x}{\sin^2 x} = \mathbf{\frac{2}{\sin x}}.$$
+
+*(Ellenőrzésképpen: $\frac{1 - \cos x}{1 + \cos x} = \tan^2\frac{x}{2}$, így $f(x) = 2\log\left|\tan\frac{x}{2}\right|$, aminek deriváltja $2 \cdot \frac{1/(2\cos^2(x/2))}{\tan(x/2)} = \frac{1}{\sin(x/2)\cos(x/2)} = \frac{2}{\sin x}$.)*
+
+::: elmelet
+**Elméleti háttér — algebrai/logaritmikus egyszerűsítés deriválás előtt.** Összetett logaritmusos szorzatok, hányadosok és hatványok deriválása előtt a $\log(AB) = \log A + \log B$, $\log(A/B) = \log A - \log B$ és $\log(A^p) = p\log A$ azonosságokkal drámaian egyszerűsíthetjük a számolást. Ügyelni kell azonban rá, hogy az átírt tagok egyenként is csak az adott értelmezési tartomány pozitív tartományain legyenek értelmezve.
+:::
+
+---
+
+## 7. feladat
+
+$$f(x) = x^2\arcsin(2x) + \frac{1}{2}\sqrt{1 - 4x^2}$$
+
+**Megoldás.**
+
+Értelmezési tartomány: $-1 \le 2x \le 1 \iff x \in \left[-\frac{1}{2}, \frac{1}{2}\right]$. Differenciálhatóság a nyílt $\left(-\frac{1}{2}, \frac{1}{2}\right)$ intervallumon áll fenn.
+
+Emlékeztető: $(\arcsin u)' = \frac{u'}{\sqrt{1 - u^2}}$ ($|u| < 1$). Az első tagra szorzatszabályt és láncszabályt, a második tagra láncszabályt alkalmazunk:
+
+$$\begin{aligned}
+f'(x) &= (x^2)'\arcsin(2x) + x^2\big[\arcsin(2x)\big]' + \frac{1}{2}\left(\sqrt{1 - 4x^2}\right)' \\
+&= 2x\arcsin(2x) + x^2 \cdot \frac{2}{\sqrt{1 - (2x)^2}} + \frac{1}{2} \cdot \frac{-8x}{2\sqrt{1 - 4x^2}} \\
+&= 2x\arcsin(2x) + \frac{2x^2}{\sqrt{1 - 4x^2}} - \frac{2x}{\sqrt{1 - 4x^2}} \\
+&= \mathbf{2x\arcsin(2x) + \frac{2x^2 - 2x}{\sqrt{1 - 4x^2}}}.
+\end{aligned}$$
+
+::: elmelet
+**Elméleti háttér — inverz trigonometrikus függvények deriváltja.** Az inverz függvény deriválási tételéből adódik, hogy $\arcsin x$ az $(-1, 1)$ nyílt intervallumon differenciálható, és $(\arcsin x)' = \frac{1}{\sqrt{1 - x^2}}$ (a végpontokban $\pm 1$-nél a derivált $+\infty$, mert ott $\sin'(\pm\pi/2) = \cos(\pm\pi/2) = 0$).
+:::
+
+---
+
+## 8. feladat
+
+$$f(x) = \arctan\left(\frac{e^x - e^{-x}}{2}\right)$$
+
+**Megoldás.**
+
+Emlékeztető: $(\arctan u)' = \frac{u'}{1 + u^2}$, minden $x \in \mathbb{R}$-re értelmezett és differenciálható.
+
+A belső függvény ($\operatorname{sh} x = \frac{e^x - e^{-x}}{2}$) deriváltja:
+
+$$\left(\frac{e^x - e^{-x}}{2}\right)' = \frac{e^x - (-e^{-x})}{2} = \frac{e^x + e^{-x}}{2} = \operatorname{ch} x.$$
+
+Láncszabállyal:
+
+$$\begin{aligned}
+f'(x) &= \frac{1}{1 + \left(\frac{e^x - e^{-x}}{2}\right)^2} \cdot \frac{e^x + e^{-x}}{2} \\
+&= \frac{1}{1 + \frac{e^{2x} - 2 + e^{-2x}}{4}} \cdot \frac{e^x + e^{-x}}{2} \\
+&= \frac{4}{4 + e^{2x} - 2 + e^{-2x}} \cdot \frac{e^x + e^{-x}}{2}.
+\end{aligned}$$
+
+Vegyük észre, hogy a nevezőben $e^{2x} + 2 + e^{-2x} = (e^x + e^{-x})^2$ teljes négyzet áll (vagy hiperbolikus függvényekkel: $1 + \operatorname{sh}^2 x = \operatorname{ch}^2 x$):
+
+$$f'(x) = \frac{2(e^x + e^{-x})}{(e^x + e^{-x})^2} = \mathbf{\frac{2}{e^x + e^{-x}}} = \frac{1}{\operatorname{ch} x}.$$
+
+::: elmelet
+**Elméleti háttér — hiperbolikus és inverz tangens kapcsolat (Gudermann-függvény).** Az $f(x) = \arctan(\operatorname{sh} x)$ függvényt a matematikában Gudermann-függvénynek nevezik; az $1 + \operatorname{sh}^2 x = \operatorname{ch}^2 x$ hiperbolikus alapazonosság miatt deriváltja gyökök és törtek nélkül $\frac{1}{\operatorname{ch} x}$-re egyszerűsödik.
+:::
+
+---
+
+## 9. feladat
+
+$$f(x) = \log_3\left(\sqrt{\frac{x - 1}{x + 1}}\right)$$
+
+**Megoldás.**
+
+Az értelmezési tartomány: $\frac{x - 1}{x + 1} > 0 \iff x \in (-\infty, -1) \cup (1, +\infty)$.
+
+Alakítsuk át a függvényt természetes alapú logaritmusra ($\log_a b = \frac{\log b}{\log a}$), majd használjuk a hatványazonosságot:
+
+$$f(x) = \frac{1}{\log 3} \log\left(\left(\frac{x - 1}{x + 1}\right)^{1/2}\right) = \frac{1}{2\log 3} \log\left(\frac{x - 1}{x + 1}\right).$$
+
+- Ha $x > 1$, mind $x - 1 > 0$, mind $x + 1 > 0$, így $f(x) = \frac{1}{2\log 3}(\log(x - 1) - \log(x + 1))$.
+- Ha $x < -1$, akkor $\frac{x - 1}{x + 1} = \frac{1 - x}{-x - 1}$, ahol $1 - x > 0$ és $-x - 1 > 0$, így $f(x) = \frac{1}{2\log 3}(\log(1 - x) - \log(-x - 1))$.
+
+Mindkét ágon ugyanaz a derivált adódik:
+
+$$f'(x) = \frac{1}{2\log 3}\left(\frac{1}{x - 1} - \frac{1}{x + 1}\right) = \frac{1}{2\log 3} \cdot \frac{(x + 1) - (x - 1)}{(x - 1)(x + 1)} = \frac{1}{2\log 3} \cdot \frac{2}{x^2 - 1} = \mathbf{\frac{1}{(x^2 - 1)\log 3}}.$$
+
+::: elmelet
+**Elméleti háttér — általános alapú logaritmus és előjeles intervallumok.** Tetszőleges $a > 0, a \neq 1$ alap esetén $(\log_a x)' = \frac{1}{x \log a}$. Negatív tényezők hányadosánál a $\log\frac{u}{v} = \log u - \log v$ szétbontás közvetlenül csak $u, v > 0$-ra érvényes, de az abszolút értékes $\log|u| - \log|v|$ (mert $(\log|u|)' = u'/u$) mindkét tartományon változatlanul megadja a deriváltat.
+:::
+
+---
+
+## 10. feladat
+
+$$f(x) = e^{-x^2}\cos(5x) + \frac{x}{\log x}$$
+
+**Megoldás.**
+
+Értelmezési tartomány: $x > 0$ és $\log x \neq 0 \iff x \in (0, 1) \cup (1, +\infty)$.
+
+Az első tagra ($e^{-x^2}\cos(5x)$) szorzatszabályt, a második tagra ($\frac{x}{\log x}$) hányadosszabályt alkalmazunk:
+
+$$\begin{aligned}
+f'(x) &= \big(e^{-x^2}\big)'\cos(5x) + e^{-x^2}\big(\cos(5x)\big)' + \frac{(x)'\log x - x(\log x)'}{\log^2 x} \\
+&= -2x e^{-x^2}\cos(5x) + e^{-x^2}\big(-5\sin(5x)\big) + \frac{1 \cdot \log x - x \cdot \frac{1}{x}}{\log^2 x} \\
+&= \mathbf{-e^{-x^2}\big(2x\cos(5x) + 5\sin(5x)\big) + \frac{\log x - 1}{\log^2 x}}.
+\end{aligned}$$
+
+::: elmelet
+**Elméleti háttér — linearitás és elemi szabályok kombinálása.** Összeg deriváltja a deriváltak összege; a feladat különálló tagjait függetlenül, a saját típusuknak megfelelő szabállyal (szorzatszabály + láncszabály, illetve hányadosszabály) deriváljuk.
+:::
+
+---
+
+## 11. feladat
+
+$$f(x) = \arccos\left(\frac{1 - x^2}{1 + x^2}\right) \qquad (x > 0)$$
+
+**Megoldás.**
+
+Emlékeztető: $(\arccos u)' = -\frac{u'}{\sqrt{1 - u^2}}$ ($|u| < 1$). Mivel $x > 0$, $\left|\frac{1 - x^2}{1 + x^2}\right| < 1$ mindenütt fennáll.
+
+Számítsuk ki külön a belső tört deriváltját:
+
+$$\left(\frac{1 - x^2}{1 + x^2}\right)' = \frac{-2x(1 + x^2) - (1 - x^2)2x}{(1 + x^2)^2} = \frac{-2x - 2x^3 - 2x + 2x^3}{(1 + x^2)^2} = \frac{-4x}{(1 + x^2)^2}.$$
+
+Helyettesítsük ezt be a láncszabályba, és egyszerűsítsük a gyök alatti kifejezést:
+
+$$\begin{aligned}
+f'(x) &= -\frac{1}{\sqrt{1 - \left(\frac{1 - x^2}{1 + x^2}\right)^2}} \cdot \frac{-4x}{(1 + x^2)^2} \\
+&= \frac{1}{\sqrt{\frac{(1 + x^2)^2 - (1 - x^2)^2}{(1 + x^2)^2}}} \cdot \frac{4x}{(1 + x^2)^2} \\
+&= \frac{1 + x^2}{\sqrt{(1 + 2x^2 + x^4) - (1 - 2x^2 + x^4)}} \cdot \frac{4x}{(1 + x^2)^2} \\
+&= \frac{4x}{\sqrt{4x^2}\,(1 + x^2)} = \frac{4x}{2|x|(1 + x^2)}.
+\end{aligned}$$
+
+Mivel a feladat feltétele szerint $x > 0$, ezért $|x| = x$, így egyszerűsíthetünk $2x$-szel:
+
+$$f'(x) = \mathbf{\frac{2}{1 + x^2}}.$$
+
+*(Megjegyzés: ha $x = \tan\theta$ ahol $\theta = \arctan x \in (0, \pi/2)$, akkor $\frac{1 - \tan^2\theta}{1 + \tan^2\theta} = \cos(2\theta)$, és mivel $2\theta \in (0, \pi)$, $f(x) = \arccos(\cos(2\theta)) = 2\theta = 2\arctan x$! Innen is azonnal adódik $f'(x) = \frac{2}{1 + x^2}$; ugyanakkor $x < 0$-ra $f(x) = -2\arctan x$ és $f'(x) = -\frac{2}{1 + x^2}$ lenne, ez magyarázza az $|x|$ szerepét.)*
+
+::: elmelet
+**Elméleti háttér — a $\sqrt{x^2} = |x|$ azonosság szerepe.** Gyökös kifejezések egyszerűsítésekor $\sqrt{x^2}$ nem $x$-szel, hanem $|x|$-szel egyenlő. Ez pontosan azt tükrözi, hogy az itt szereplő $\arccos\frac{1 - x^2}{1 + x^2}$ függvény páros, így $x = 0$-ban megtörik (töréspontja van), és csak $x > 0$-n, illetve $x < 0$-n külön-külön differenciálható ellentétes előjellel.
+:::
+
+---
+
+## 12. feladat
+
+$$f(x) = (\sin x)^{\cos x} \qquad (x \in (0, \pi))$$
+
+**Megoldás.**
+
+Mivel az alap és a kitevő is változó, alkalmazzunk logaritmikus deriválást. Az adott $x \in (0, \pi)$ intervallumon $\sin x > 0$, tehát $y = f(x) > 0$. Vegyük mindkét oldal természetes alapú logaritmusát:
+
+$$\log y = \log\big((\sin x)^{\cos x}\big) = \cos x \cdot \log(\sin x).$$
+
+Deriváljuk mindkét oldalt $x$ szerint (a bal oldalon láncszabállyal, a jobb oldalon szorzatszabállyal):
+
+$$\frac{y'}{y} = (\cos x)'\log(\sin x) + \cos x\big[\log(\sin x)\big]' \implies \frac{y'}{y} = -\sin x\log(\sin x) + \cos x \cdot \frac{\cos x}{\sin x}.$$
+
+Szorozzuk meg mindkét oldalt $y = (\sin x)^{\cos x}$-szel:
+
+$$f'(x) = \mathbf{(\sin x)^{\cos x}\left(\frac{\cos^2 x}{\sin x} - \sin x\log(\sin x)\right)}.$$
+
+::: elmelet
+**Elméleti háttér — logaritmikus deriválás ($u(x)^{v(x)}$ alakú függvények).** Ha mind az alap ($u > 0$), mind a kitevő ($v$) függ $x$-től, nem alkalmazhatjuk önmagában sem a hatványfüggvény-, sem az exponenciális szabályt. Az $u(x)^{v(x)} = e^{v(x)\log u(x)}$ átírás (vagy ekvivalensen a $\log y = v \log u$ differenciálása: $\frac{y'}{y} = v'\log u + v\frac{u'}{u}$) mindkét hozzájárulást automatikusan tartalmazza.
+:::
+
+---
+
+## 13. feladat
+
+$$f(x) = \log\left(x + \sqrt{x^2 + a^2}\right) \qquad (a \in \mathbb{R} \setminus \{0\})$$
+
+**Megoldás.**
+
+Mivel $a \neq 0$, minden $x \in \mathbb{R}$-re $\sqrt{x^2 + a^2} > \sqrt{x^2} = |x| \ge -x$, tehát $x + \sqrt{x^2 + a^2} > 0$, így $D_f = D_{f'} = \mathbb{R}$.
+
+Alkalmazzuk a láncszabályt a külső $\log$ függvényre, majd deriváljuk a zárójelben lévő összeget:
+
+$$f'(x) = \frac{1}{x + \sqrt{x^2 + a^2}} \cdot \left(x + \sqrt{x^2 + a^2}\right)' = \frac{1}{x + \sqrt{x^2 + a^2}} \cdot \left(1 + \frac{2x}{2\sqrt{x^2 + a^2}}\right).$$
+
+Egyszerűsítsünk $2$-vel, és hozzuk közös nevezőre a zárójeles kifejezést:
+
+$$f'(x) = \frac{1}{x + \sqrt{x^2 + a^2}} \cdot \frac{\sqrt{x^2 + a^2} + x}{\sqrt{x^2 + a^2}}.$$
+
+Az $\left(x + \sqrt{x^2 + a^2}\right)$ tényezővel való egyszerűsítés után kapjuk:
+
+$$f'(x) = \mathbf{\frac{1}{\sqrt{x^2 + a^2}}}.$$
+
+*(Megjegyzés: $a = 1$ esetén $f(x) = \log(x + \sqrt{x^2 + 1}) = \operatorname{arsh} x$, az inverz hiperbolikus szinusz, amelynek ismert deriváltja pontosan $\frac{1}{\sqrt{x^2 + 1}}$.)*
+
+::: elmelet
+**Elméleti háttér — az $\operatorname{arsh}$ függvény logaritmikus alakja.** Az $\operatorname{arsh}\frac{x}{|a|} = \log\frac{x + \sqrt{x^2 + a^2}}{|a|}$ összefüggés csak egy $\log|a|$ additív konstansban különbözik a fenti függvénytől, ezért a derivált látványosan leegyszerűsödik egy racionális-gyökös primitív függvény deriváltjára.
+:::
+
+---
+
+## 14. feladat
+
+$$f(x) = \frac{\arcsin(\log x)}{\sqrt{x}}$$
+
+**Megoldás.**
+
+Értelmezési tartomány: $x > 0$ és $-1 \le \log x \le 1$, vagyis $x \in \left[\frac{1}{e}, e\right]$. A nyílt $\left(\frac{1}{e}, e\right)$ intervallumon differenciálható (a végpontokban az $\arcsin$ függőleges érintője miatt nem).
+
+A számláló deriválásához láncszabályt alkalmazunk: $[\arcsin(\log x)]' = \frac{1}{\sqrt{1 - (\log x)^2}} \cdot \frac{1}{x}$. Hányadosszabállyal:
+
+$$f'(x) = \frac{\frac{1}{x\sqrt{1 - \log^2 x}} \cdot \sqrt{x} - \arcsin(\log x) \cdot \frac{1}{2\sqrt{x}}}{(\sqrt{x})^2}.$$
+
+Bővítsük a tört számlálóját és nevezőjét $2x\sqrt{x}$-szel, hogy eltüntessük a belső törteket:
+
+$$f'(x) = \frac{2x - \arcsin(\log x) \cdot x\sqrt{1 - \log^2 x}}{2x^2\sqrt{x}\sqrt{1 - \log^2 x}} = \mathbf{\frac{2 - \arcsin(\log x)\sqrt{1 - \log^2 x}}{2x\sqrt{x}\sqrt{1 - \log^2 x}}}.$$
+
+::: elmelet
+**Elméleti háttér — kompozíció és hányados együtt.** Hányadosszabály során külön figyeljünk az értelmezési és a differenciálhatósági tartomány szétválasztására: az $\arcsin u$ és a $\sqrt{v}$ a határpontokon ($u = \pm 1$, $v = 0$) még definiált és folytonos lehet, de ott már nem végesen differenciálható.
+:::
+
+---
+
+## 15. feladat
+
+$$f(x) = \operatorname{arccot}\left(\sqrt{\frac{1 - \cos x}{1 + \cos x}}\right) \qquad (x \in (0, \pi))$$
+
+**Megoldás.**
+
+Használjuk a félszögek tangensére vonatkozó $\tan^2\frac{x}{2} = \frac{1 - \cos x}{1 + \cos x}$ azonosságot! Mivel $x \in (0, \pi)$, így $\frac{x}{2} \in \left(0, \frac{\pi}{2}\right)$, ahol a tangens pozitív, ezért a négyzetgyök és a négyzet kiejti egymást:
+
+$$\sqrt{\frac{1 - \cos x}{1 + \cos x}} = \sqrt{\tan^2\left(\frac{x}{2}\right)} = \tan\left(\frac{x}{2}\right).$$
+
+Továbbá $\tan \alpha = \cot\left(\frac{\pi}{2} - \alpha\right)$, és mivel $\frac{\pi}{2} - \frac{x}{2} \in \left(0, \frac{\pi}{2}\right) \subset (0, \pi)$, az adott intervallumon az $\operatorname{arccot}$ és a $\cot$ egymás inverzei:
+
+$$f(x) = \operatorname{arccot}\left(\tan\frac{x}{2}\right) = \operatorname{arccot}\left(\cot\left(\frac{\pi}{2} - \frac{x}{2}\right)\right) = \frac{\pi}{2} - \frac{x}{2}.$$
+
+Ennek a lineáris függvénynek a deriváltja azonnal adódik:
+
+$$f'(x) = \mathbf{-\frac{1}{2}}.$$
+
+::: elmelet
+**Elméleti háttér — inverz trigonometrikus szögátírások.** Ha az $\operatorname{arccot}(\dots)$ vagy $\arcsin(\dots)$ argumentuma egy közismert félszög-azonossággal egyetlen trigonometrikus függvénnyé alakítható, mindig ellenőrizzük az argumentum szögtartományát (főérték-tartományt)! Itt $\frac{\pi - x}{2} \in (0, \pi/2)$ beleesik az $\operatorname{arccot}$ $(0, \pi)$ értékkészletébe, így $\operatorname{arccot}(\cot t) = t$ pontosan fennáll.
+:::
+
+---
+
+## 16. feladat
+
+$$f(x) = x^{\log x} \qquad (x > 0)$$
+
+**Megoldás.**
+
+Az $a^b = e^{b\log a}$ azonosság alapján írjuk át a függvényt $e$ alapú hatvánnyá ($x > 0$ esetén):
+
+$$f(x) = x^{\log x} = e^{\log x \cdot \log x} = e^{(\log x)^2}.$$
+
+Most alkalmazzuk a láncszabályt kívülről befelé ($e^u$, majd $v^2$, végül $\log x$):
+
+$$f'(x) = e^{(\log x)^2} \cdot \big[(\log x)^2\big]' = e^{(\log x)^2} \cdot 2\log x \cdot \frac{1}{x} = x^{\log x} \cdot \frac{2\log x}{x} = \mathbf{2\log x \cdot x^{\log x - 1}}.$$
+
+::: elmelet
+**Elméleti háttér — az $a^b = e^{b\log a}$ átírás.** Mind az explicit logaritmikus deriválás ($y'/y$), mind az $e^{v(x)\log u(x)}$ exponenciális átírás ugyanarra az eredményre vezet: az exponenciális átírásnál már csak egy sima $e^w$ külső függvényt és egy szorzatot kell differenciálni.
+:::
+
+---
+
+## 17. feladat
+
+$$f(x) = \frac{2^{\sin x} \cdot \cos(2x)}{\tan x}$$
+
+**Megoldás.**
+
+Értelmezési tartomány: $\tan x$ értelmezett és nem nulla, azaz $x \in \mathbb{R} \setminus \left\{\frac{k\pi}{2} : k \in \mathbb{Z}\right\}$.
+
+Először deriváljuk a számlálót szorzatszabállyal, felhasználva a $(2^u)' = 2^u \log 2 \cdot u'$ képletet:
+
+$$\big(2^{\sin x} \cdot \cos(2x)\big)' = 2^{\sin x}\log 2 \cdot \cos x \cdot \cos(2x) + 2^{\sin x} \cdot \big(-2\sin(2x)\big).$$
+
+Most alkalmazzuk a hányadosszabályt az egész törtre:
+
+$$f'(x) = \frac{2^{\sin x}\big(\log 2 \cos x \cos(2x) - 2\sin(2x)\big)\tan x - 2^{\sin x}\cos(2x)\cdot \frac{1}{\cos^2 x}}{\tan^2 x}.$$
+
+Írjuk be a $\tan x = \frac{\sin x}{\cos x}$ és $\tan^2 x = \frac{\sin^2 x}{\cos^2 x}$ összefüggést, majd bővítsünk $\cos^2 x$-szel (a két tag megfelelő egyszerűsítésével):
+
+$$f'(x) = \frac{2^{\sin x}\big[\sin x \cos x\big(\log 2 \cos x \cos(2x) - 2\sin(2x)\big) - \cos(2x)\big]}{\sin^2 x}.$$
+
+*(Ellenőrzésképpen $x = \frac{\pi}{4}$-nél $\cos(2\cdot\frac{\pi}{4}) = 0$, $u(\frac{\pi}{4}) = 0$, $\tan(\frac{\pi}{4}) = 1$, ezért $f'(\frac{\pi}{4}) = u'(\frac{\pi}{4}) = -2 \cdot 2^{1/\sqrt{2}}$; a kapott képlet $\frac{2^{1/\sqrt{2}}[\frac{1}{2}(-2) - 0]}{1/2} = -2 \cdot 2^{1/\sqrt{2}}$-t ad.)*
+
+::: elmelet
+**Elméleti háttér — tetszőleges alapú exponenciális és emeletes törtek kezelése.** Tetszőleges $a > 0$ alap esetén $(a^u)' = a^u \log a \cdot u'$. Hányadosszabály után a $\tan x = \frac{\sin x}{\cos x}$ és $(\tan x)' = \frac{1}{\cos^2 x}$ együttes átírásánál gondosan figyeljünk a $\cos^2 x$-szel való bővítésre, hogy mind a főnevezőből, mind a számláló összes tagjából pontosan a megfelelő $\cos x$-hatvány maradjon meg.
+:::
+
+---
+
+## 18. feladat
+
+$$f(x) = \log(\log(\tan x)) \qquad \left(x \in \left(\frac{\pi}{4}, \frac{\pi}{2}\right)\right)$$
+
+**Megoldás.**
+
+Az adott $\left(\frac{\pi}{4}, \frac{\pi}{2}\right)$ intervallumon $\tan x > 1$, így $\log(\tan x) > 0$, a függvény végig jól értelmezett.
+
+Háromszoros láncszabállyal, kívülről befelé haladva:
+
+$$\begin{aligned}
+f'(x) &= \frac{1}{\log(\tan x)} \cdot \big[\log(\tan x)\big]' \\
+&= \frac{1}{\log(\tan x)} \cdot \frac{1}{\tan x} \cdot (\tan x)' \\
+&= \frac{1}{\log(\tan x)} \cdot \frac{\cos x}{\sin x} \cdot \frac{1}{\cos^2 x} \\
+&= \frac{1}{\sin x \cos x \log(\tan x)} = \mathbf{\frac{2}{\sin(2x)\log(\tan x)}}.
+\end{aligned}$$
+
+::: elmelet
+**Elméleti háttér — szimmetrikus két- és háromszintű logaritmusok.** A $(\log g(x))' = \frac{g'(x)}{g(x)}$ formula (a $g$ *logaritmikus deriváltja*) többszörös egymásba ágyazásnál egyszerű szorzatot ad. A $\sin x \cos x = \frac{1}{2}\sin(2x)$ kétszeresszög-képlettel az eredmény gyakran tovább tömöríthető.
+:::
+
+---
+
+## 19. feladat
+
+Legyen $y = g(x) = x^5 + 2x^3 + x - 4$. Határozza meg a $g^{-1}$ inverz függvény deriváltját az $y_0 = 0$ pontban, azaz számítsa ki a $(g^{-1})'(0)$ értéket!
+
+**Megoldás.**
+
+Az inverz függvény deriválási tétele szerint:
+$$(g^{-1})'(y_0) = \frac{1}{g'(x_0)},$$
+ahol $x_0$ az az egyetlen érték, amelyre $g(x_0) = y_0$ (és $g'(x_0) \neq 0$).
+
+**1. lépés ($x_0$ meghatározása):** Oldjuk meg a $g(x_0) = 0$ egyenletet:
+$$x_0^5 + 2x_0^3 + x_0 - 4 = 0.$$
+Egész gyökök próbálgatásával látható, hogy $x_0 = 1$ megoldás, hiszen $1^5 + 2(1)^3 + 1 - 4 = 0$.
+
+**2. lépés (invertálhatóság és $g'(x)$):**
+$$g'(x) = 5x^4 + 6x^2 + 1.$$
+Mivel $5x^4 \ge 0$ és $6x^2 \ge 0$, ezért $g'(x) \ge 1 > 0$ minden $x \in \mathbb{R}$-re. A $g$ függvény szigorúan monoton növekvő $\mathbb{R}$-en, tehát invertálható, és az $x_0 = 1$ megoldás egyértelmű.
+
+**3. lépés ($(g^{-1})'(0)$ kiszámítása):**
+$$g'(1) = 5(1)^4 + 6(1)^2 + 1 = 12 \implies (g^{-1})'(0) = \mathbf{\frac{1}{12}}.$$
+
+::: elmelet
+**Elméleti háttér — az inverz függvény deriváltja.** Ha $f$ folytonos és szigorúan monoton egy intervallumon, $f'(x_0) \neq 0$, és $y_0 = f(x_0)$, akkor az $f^{-1}$ inverz függvény differenciálható $y_0$-ban, és $(f^{-1})'(y_0) = \frac{1}{f'(x_0)}$. Geometriai oka, hogy $f^{-1}$ grafikonja az $f$ grafikonjának az $y = x$ egyenesre vett tükörképe, így az érintők meredeksége reciprokos kapcsolatban áll.
+:::
+
+---
+
+## 20. feladat
+
+Legyen $y = h(x) = e^{2x} + 3x + \sin x$. Határozza meg a $h^{-1}$ inverz függvény deriváltját az $y_0 = 1$ pontban, azaz számítsa ki a $(h^{-1})'(1)$ értéket!
+
+**Megoldás.**
+
+**1. lépés ($x_0$ meghatározása):** Keressük azt az $x_0$ értéket, amelyre $h(x_0) = 1$:
+$$e^{2x_0} + 3x_0 + \sin x_0 = 1.$$
+Próbálgatással látható, hogy $x_0 = 0$ megoldás, mert $e^0 + 3(0) + \sin 0 = 1 + 0 + 0 = 1$.
+
+**2. lépés (invertálhatóság és $h'(x)$):**
+$$h'(x) = 2e^{2x} + 3 + \cos x.$$
+Mivel $2e^{2x} > 0$ és $\cos x \ge -1$, ezért $h'(x) > 0 + 3 - 1 = 2 > 0$ minden $x \in \mathbb{R}$ esetén. A $h$ függvény szigorúan monoton növekvő $\mathbb{R}$-en, így invertálható, és az $x_0 = 0$ megoldás egyértelmű.
+
+**3. lépés ($(h^{-1})'(1)$ kiszámítása):**
+$$h'(0) = 2e^0 + 3 + \cos 0 = 2(1) + 3 + 1 = 6 \implies (h^{-1})'(1) = \mathbf{\frac{1}{6}}.$$
+
+::: elmelet
+**Elméleti háttér — injektivitás ellenőrzése deriválttal.** Transzcendens egyenleteknél (mint itt $e^{2x} + 3x + \sin x = 1$) nem tudjuk algebrai úton kizárni más megoldások létezését; éppen a $h'(x) > 0$ egyenlőtlenség igazolja, hogy a függvény szigorúan nő, így a talált $x_0$ gyök szükségképpen az egyetlen.
+:::
+
+# Analízis 1 – Gyakorló feladatsor: Teljes függvényvizsgálat – megoldások
+
+### I. Mat. BSc Analízis 1 · Gyakorló feladatsor megoldásai
+
+## 1. feladat
+
+$$f(x) = x^3 - 3x^2 + 4$$
+
+**Megoldás.**
+
+- **Értelmezési tartomány:** $D_f = \mathbb{R}$.
+- **Paritás, periodicitás:** Nem páros, nem páratlan, nem periodikus.
+- **Tengelymetszetek:**
+  - $y$-tengely ($x = 0$): $f(0) = 4 \implies (0; 4)$.
+  - $x$-tengely ($f(x) = 0$): $x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2 = 0 \implies x_1 = -1$, $x_2 = 2$. Pontok: $(-1; 0)$ és $(2; 0)$.
+- **Határértékek:** $\displaystyle\lim_{x \to -\infty} f(x) = -\infty$, $\displaystyle\lim_{x \to +\infty} f(x) = +\infty$. Mivel $\frac{f(x)}{x} = x^2 - 3x + \frac{4}{x} \to +\infty$, nincs aszimptota.
+- **Első derivált:** $f'(x) = 3x^2 - 6x = 3x(x - 2)$. Zérushelyek: $x_1 = 0$, $x_2 = 2$.
+- **Második derivált:** $f''(x) = 6x - 6 = 6(x - 1)$. Zérushely: $x = 1$.
+
+| $x$ | $(-\infty; 0)$ | $0$ | $(0; 1)$ | $1$ | $(1; 2)$ | $2$ | $(2; +\infty)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| $f'(x)$ | $+$ | $0$ | $-$ | $-$ | $-$ | $0$ | $+$ |
+| $f''(x)$ | $-$ | $-$ | $-$ | $0$ | $+$ | $+$ | $+$ |
+| $f(x)$ | $\nearrow$, $\frown$ | lok. max. $(4)$ | $\searrow$, $\frown$ | infl. $(2)$ | $\searrow$, $\smile$ | lok. min. $(0)$ | $\nearrow$, $\smile$ |
+
+- **Összefoglalás:** szigorúan nő $(-\infty, 0]$-n és $[2, +\infty)$-en, szigorúan csökken $[0, 2]$-n; szigorúan konkáv $(-\infty, 1]$-en, szigorúan konvex $[1, +\infty)$-en. Lokális maximum: $(0; 4)$, lokális minimum: $(2; 0)$, inflexiós pont: $(1; 2)$. (Abszolút szélsőértéke nincs.)
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[xscale=1.0, yscale=0.52,
+  axis/.style={draw=black!70, -{Stealth[scale=0.8]}, thick},
+  gridline/.style={draw=black!15, thin}
+]
+  \draw[gridline] (-2, -2) grid (3.4, 6);
+  \draw[axis] (-2.2, 0) -- (3.6, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -2.2) -- (0, 6.4) node[above] {\footnotesize $y$};
+  \foreach \x in {-2, -1, 1, 2, 3} {
+    \draw (\x, 0.1) -- (\x, -0.1) node[below] {\scriptsize $\x$};
+  }
+  \foreach \y in {-2, 2, 4, 6} {
+    \draw (0.06, \y) -- (-0.06, \y) node[left] {\scriptsize $\y$};
+  }
+  \begin{scope}
+    \clip (-2.1, -2.1) rectangle (3.4, 6.1);
+    \draw[draw=blue!80!black, very thick, domain=-1.3:3.25, samples=80]
+      plot (\x, {\x*\x*\x - 3*\x*\x + 4});
+  \end{scope}
+  \fill[red!85!black] (0, 4) circle (3pt) node[above right] {\scriptsize Max $(0; 4)$};
+  \fill[red!85!black] (2, 0) circle (3pt) node[above right] {\scriptsize Min $(2; 0)$};
+  \fill[green!55!black] (0.94, 1.9) rectangle (1.06, 2.1);
+  \node[right] at (1.08, 2.0) {\scriptsize Infl. $(1; 2)$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — harmadfokú polinomok szimmetriája.** Minden $ax^3 + bx^2 + cx + d$ harmadfokú polinom grafikonja középpontosan szimmetrikus az egyetlen inflexiós pontjára ($f''(x_0) = 0$). Itt az $(1; 2)$ inflexiós pont éppen felezi a $(0; 4)$ lokális maximum és a $(2; 0)$ lokális minimum közötti szakaszt!
+:::
+
+---
+
+## 2. feladat
+
+$$f(x) = x^4 - 2x^2 + 1$$
+
+**Megoldás.**
+
+- **Értelmezési tartomány:** $D_f = \mathbb{R}$.
+- **Paritás:** $f(-x) = (-x)^4 - 2(-x)^2 + 1 = f(x)$, tehát **páros** függvény (tengelyesen szimmetrikus az $y$-tengelyre).
+- **Tengelymetszetek:**
+  - $y$-tengely: $f(0) = 1 \implies (0; 1)$.
+  - $x$-tengely: $x^4 - 2x^2 + 1 = (x^2 - 1)^2 = 0 \implies x_{1,2} = \pm 1$. Pontok: $(-1; 0)$ és $(1; 0)$.
+- **Határértékek:** $\displaystyle\lim_{x \to \pm\infty} f(x) = +\infty$. Nincs aszimptota.
+- **Első derivált:** $f'(x) = 4x^3 - 4x = 4x(x^2 - 1)$. Zérushelyek: $x_1 = -1$, $x_2 = 0$, $x_3 = 1$. Mivel $f(x) = (x^2 - 1)^2 \ge 0$, a $0$ **abszolút minimum** ($\text{értékkészlet: } [0, +\infty)$).
+- **Második derivált:** $f''(x) = 12x^2 - 4 = 4(3x^2 - 1)$. Zérushelyek: $x_{1,2} = \pm\frac{1}{\sqrt{3}} \approx \pm 0{,}58$, ahol $f\left(\pm\frac{1}{\sqrt{3}}\right) = \frac{1}{9} - \frac{2}{3} + 1 = \frac{4}{9}$.
+
+| $x$ | $(-\infty; -1)$ | $-1$ | $(-1; -\frac{1}{\sqrt{3}})$ | $-\frac{1}{\sqrt{3}}$ | $(-\frac{1}{\sqrt{3}}; 0)$ | $0$ | $(0; \frac{1}{\sqrt{3}})$ | $\frac{1}{\sqrt{3}}$ | $(\frac{1}{\sqrt{3}}; 1)$ | $1$ | $(1; +\infty)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| $f'(x)$ | $-$ | $0$ | $+$ | $+$ | $+$ | $0$ | $-$ | $-$ | $-$ | $0$ | $+$ |
+| $f''(x)$ | $+$ | $+$ | $+$ | $0$ | $-$ | $-$ | $-$ | $0$ | $+$ | $+$ | $+$ |
+| $f(x)$ | $\searrow$, $\smile$ | min $(0)$ | $\nearrow$, $\smile$ | infl. $\left(\frac{4}{9}\right)$ | $\nearrow$, $\frown$ | max $(1)$ | $\searrow$, $\frown$ | infl. $\left(\frac{4}{9}\right)$ | $\searrow$, $\smile$ | min $(0)$ | $\nearrow$, $\smile$ |
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[xscale=1.8, yscale=1.1,
+  axis/.style={draw=black!70, -{Stealth[scale=0.8]}, thick},
+  gridline/.style={draw=black!15, thin}
+]
+  \draw[gridline] (-2, 0) grid (2, 3);
+  \draw[axis] (-2.2, 0) -- (2.25, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -0.25) -- (0, 3.2) node[above] {\footnotesize $y$};
+  \foreach \x in {-2, -1, 1, 2} {
+    \draw (\x, 0.06) -- (\x, -0.06) node[below] {\scriptsize $\x$};
+  }
+  \foreach \y in {1, 2, 3} {
+    \draw (0.04, \y) -- (-0.04, \y) node[left] {\scriptsize $\y$};
+  }
+  \begin{scope}
+    \clip (-2.05, -0.15) rectangle (2.05, 3.05);
+    \draw[draw=blue!80!black, very thick, domain=-1.7:1.7, samples=90]
+      plot (\x, {(\x*\x - 1)*(\x*\x - 1)});
+  \end{scope}
+  \fill[red!85!black] (0, 1) circle (2.2pt) node[above right] {\scriptsize Max $(0; 1)$};
+  \fill[red!85!black] (-1, 0) circle (2.2pt) node[below=3pt] {\scriptsize Min $(-1; 0)$};
+  \fill[red!85!black] (1, 0) circle (2.2pt) node[below=3pt] {\scriptsize Min $(1; 0)$};
+  \fill[green!55!black] (-0.61, 0.40) rectangle (-0.54, 0.49);
+  \fill[green!55!black] (0.54, 0.40) rectangle (0.61, 0.49);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — páros függvény vizsgálata.** Ha $f(-x) = f(x)$, elég a függvényt $[0, +\infty)$-en vizsgálni, majd az $y$-tengelyre tükrözni: a deriváltaknál $f'(-x) = -f'(x)$ (páratlan), $f''(-x) = f''(x)$ (páros), így az inflexiós pontok és szélsőértékek is szimmetrikusan jelennek meg.
+:::
+
+---
+
+## 3. feladat
+
+$$f(x) = \frac{x^2 - 1}{x^2 + 1}$$
+
+**Megoldás.**
+
+- **Értelmezési tartomány:** $D_f = \mathbb{R}$ (mivel $x^2 + 1 \ge 1 > 0$).
+- **Paritás:** $f(-x) = f(x)$, tehát **páros** függvény.
+- **Tengelymetszetek:** $y$-tengely: $(0; -1)$; $x$-tengely: $(-1; 0)$ és $(1; 0)$.
+- **Határértékek, aszimptota:**
+  $$\lim_{x \to \pm\infty} \frac{x^2 - 1}{x^2 + 1} = \lim_{x \to \pm\infty} \left(1 - \frac{2}{x^2 + 1}\right) = 1 \implies y = 1 \text{ vízszintes aszimptota } (\text{mindkét irányban}).$$
+- **Első derivált:**
+  $$f'(x) = \frac{2x(x^2 + 1) - (x^2 - 1)2x}{(x^2 + 1)^2} = \frac{4x}{(x^2 + 1)^2}.$$
+  Zérushely: $x = 0$; itt abszolút minimum van: $f(0) = -1$. Abszolút maximum nincs ($f(x) < 1$, $\sup f = 1$).
+- **Második derivált:**
+  $$f''(x) = \frac{4(x^2 + 1)^2 - 4x \cdot 2(x^2 + 1) \cdot 2x}{(x^2 + 1)^4} = \frac{4(1 - 3x^2)}{(x^2 + 1)^3}.$$
+  Zérushelyek: $x_{1,2} = \pm\frac{1}{\sqrt{3}}$, ahol $f\left(\pm\frac{1}{\sqrt{3}}\right) = \frac{1/3 - 1}{1/3 + 1} = -\frac{1}{2}$.
+
+| $x$ | $(-\infty; -\frac{1}{\sqrt{3}})$ | $-\frac{1}{\sqrt{3}}$ | $(-\frac{1}{\sqrt{3}}; 0)$ | $0$ | $(0; \frac{1}{\sqrt{3}})$ | $\frac{1}{\sqrt{3}}$ | $(\frac{1}{\sqrt{3}}; +\infty)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| $f'(x)$ | $-$ | $-$ | $-$ | $0$ | $+$ | $+$ | $+$ |
+| $f''(x)$ | $-$ | $0$ | $+$ | $+$ | $+$ | $0$ | $-$ |
+| $f(x)$ | $\searrow$, $\frown$ | infl. $\left(-\frac{1}{2}\right)$ | $\searrow$, $\smile$ | lok. min. $(-1)$ | $\nearrow$, $\smile$ | infl. $\left(-\frac{1}{2}\right)$ | $\nearrow$, $\frown$ |
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[xscale=0.95, yscale=1.3,
+  axis/.style={draw=black!70, -{Stealth[scale=0.8]}, thick},
+  gridline/.style={draw=black!15, thin}
+]
+  \draw[gridline] (-4, -1.2) grid (4, 1.3);
+  \draw[axis] (-4.2, 0) -- (4.3, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -1.3) -- (0, 1.4) node[above] {\footnotesize $y$};
+  \foreach \x in {-4, -3, -2, -1, 1, 2, 3, 4} {
+    \draw (\x, 0.05) -- (\x, -0.05) node[below] {\scriptsize $\x$};
+  }
+  \draw (0.06, 1) -- (-0.06, 1) node[above left] {\scriptsize $1$};
+  \draw (0.06, -1) -- (-0.06, -1) node[left] {\scriptsize $-1$};
+  \draw[dashed, black!70, thick] (-4.1, 1) -- (4.1, 1) node[above left] {\scriptsize $y = 1$};
+  \draw[draw=blue!80!black, very thick, domain=-4:4, samples=100]
+    plot (\x, {(\x*\x - 1)/(\x*\x + 1)});
+  \fill[red!85!black] (0, -1) circle (2.2pt) node[below right] {\scriptsize Min $(0; -1)$};
+  \fill[green!55!black] (-0.62, -0.54) rectangle (-0.53, -0.46);
+  \fill[green!55!black] (0.53, -0.54) rectangle (0.62, -0.46);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — az Agnesi-görbe rokona.** Mivel $\frac{x^2 - 1}{x^2 + 1} = 1 - \frac{2}{x^2 + 1}$, ez a görbe az előadáson tárgyalt $y = \frac{1}{1 + x^2}$ (Agnesi-görbe) függőleges nyújtásából, tükrözéséből és $+1$-es eltolásából adódik, ezért pontosan ugyanott ($\pm \frac{1}{\sqrt{3}}$-ban) vannak az inflexiós pontjai!
+:::
+
+---
+
+## 4. feladat
+
+$$f(x) = \frac{x^2}{x - 1}$$
+
+**Megoldás.**
+
+- **Értelmezési tartomány:** $D_f = \mathbb{R} \setminus \{1\}$.
+- **Tengelymetszetek:** Csak az origó: $(0; 0)$.
+- **Határértékek, aszimptoták:**
+  - Pólus $x = 1$-ben: $\displaystyle\lim_{x \to 1^-} f(x) = -\infty$, $\displaystyle\lim_{x \to 1^+} f(x) = +\infty \implies x = 1$ függőleges aszimptota.
+  - Ferde aszimptota: polinomosztással
+    $$\frac{x^2}{x - 1} = x + 1 + \frac{1}{x - 1},$$
+    így $\displaystyle\lim_{x \to \pm\infty}\big(f(x) - (x + 1)\big) = 0 \implies y = x + 1$ ferde aszimptota mindkét irányban ($x \to \pm\infty$).
+- **Első derivált:**
+  $$f'(x) = \frac{2x(x - 1) - x^2}{(x - 1)^2} = \frac{x(x - 2)}{(x - 1)^2}.$$
+  Zérushelyek: $x_1 = 0$, $x_2 = 2$.
+- **Második derivált:**
+  $$f''(x) = \frac{(2x - 2)(x - 1)^2 - (x^2 - 2x) \cdot 2(x - 1)}{(x - 1)^4} = \frac{2}{(x - 1)^3}.$$
+  Nincs zérushelye (nincs inflexiós pont).
+
+| $x$ | $(-\infty; 0)$ | $0$ | $(0; 1)$ | $1$ | $(1; 2)$ | $2$ | $(2; +\infty)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| $f'(x)$ | $+$ | $0$ | $-$ | $\nexists$ | $-$ | $0$ | $+$ |
+| $f''(x)$ | $-$ | $-$ | $-$ | $\nexists$ | $+$ | $+$ | $+$ |
+| $f(x)$ | $\nearrow$, $\frown$ | lok. max. $(0)$ | $\searrow$, $\frown$ | pólus $(\mp\infty)$ | $\searrow$, $\smile$ | lok. min. $(4)$ | $\nearrow$, $\smile$ |
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[xscale=0.85, yscale=0.45,
+  axis/.style={draw=black!70, -{Stealth[scale=0.8]}, thick},
+  gridline/.style={draw=black!15, thin}
+]
+  \draw[gridline] (-3, -4) grid (5, 8);
+  \draw[axis] (-3.2, 0) -- (5.3, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -4.2) -- (0, 8.4) node[above] {\footnotesize $y$};
+  \foreach \x in {-3, -2, -1, 1, 2, 3, 4, 5} {
+    \draw (\x, 0.12) -- (\x, -0.12) node[below] {\scriptsize $\x$};
+  }
+  \foreach \y in {-4, -2, 2, 4, 6, 8} {
+    \draw (0.08, \y) -- (-0.08, \y) node[left] {\scriptsize $\y$};
+  }
+  \begin{scope}
+    \clip (-3.1, -4.1) rectangle (5.1, 8.1);
+    \draw[dashed, black!70, thick] (1, -4.1) -- (1, 8.1);
+    \draw[dashed, black!70, thick] (-3.1, -2.1) -- (5.1, 6.1);
+    \draw[draw=blue!80!black, very thick, domain=-3.1:0.86, samples=70]
+      plot (\x, {(\x*\x)/(\x - 1)});
+    \draw[draw=blue!80!black, very thick, domain=1.14:5.1, samples=70]
+      plot (\x, {(\x*\x)/(\x - 1)});
+  \end{scope}
+  \fill[red!85!black] (0, 0) circle (3pt) node[above left] {\scriptsize Max $(0; 0)$};
+  \fill[red!85!black] (2, 4) circle (3pt) node[below right] {\scriptsize Min $(2; 4)$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — miért nagyobb a lokális minimum, mint a lokális maximum?** Nem folytonos (szakadással vagy pólussal kettéválasztott) függvényeknél előfordulhat, hogy a lokális minimum értéke ($4$) nagyobb a lokális maximum értékénél ($0$), hiszen a két tulajdonság csak az adott pontok egy kis környezetére vonatkozik. Polinomosztással ($\frac{x^2}{x-1} = x + 1 + \frac{1}{x-1}$) egyszerre kapjuk meg a ferde aszimptotát és a könnyebb deriválást is!
+:::
+
+---
+
+## 5. feladat
+
+$$f(x) = x e^{-x}$$
+
+**Megoldás.**
+
+- **Értelmezési tartomány:** $D_f = \mathbb{R}$.
+- **Tengelymetszetek:** Csak az origó: $(0; 0)$.
+- **Határértékek, aszimptota:**
+  - $\displaystyle\lim_{x \to -\infty} x e^{-x} = -\infty$ (hiszen $x \to -\infty$ és $e^{-x} \to +\infty$).
+  - L'Hospital-szabállyal $\displaystyle\lim_{x \to +\infty} \frac{x}{e^x} = \lim_{x \to +\infty} \frac{1}{e^x} = 0 \implies y = 0$ vízszintes aszimptota ($x \to +\infty$).
+- **Első derivált:** $f'(x) = 1 \cdot e^{-x} + x(-e^{-x}) = (1 - x)e^{-x}$. Zérushely: $x = 1$, itt abszolút maximuma van ($f(1) = e^{-1} \approx 0{,}37$).
+- **Második derivált:** $f''(x) = -e^{-x} + (1 - x)(-e^{-x}) = (x - 2)e^{-x}$. Zérushely: $x = 2$, ahol $f(2) = \frac{2}{e^2} \approx 0{,}27$.
+
+| $x$ | $(-\infty; 1)$ | $1$ | $(1; 2)$ | $2$ | $(2; +\infty)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| $f'(x)$ | $+$ | $0$ | $-$ | $-$ | $-$ |
+| $f''(x)$ | $-$ | $-$ | $-$ | $0$ | $+$ |
+| $f(x)$ | $\nearrow$, $\frown$ | lok. max. $(e^{-1})$ | $\searrow$, $\frown$ | infl. $(2e^{-2})$ | $\searrow$, $\smile$ |
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[xscale=1.1, yscale=2.8,
+  axis/.style={draw=black!70, -{Stealth[scale=0.8]}, thick},
+  gridline/.style={draw=black!15, thin}
+]
+  \draw[gridline, ystep=0.5] (-1.2, -1) grid (5.2, 0.55);
+  \draw[axis] (-1.3, 0) -- (5.4, 0) node[above] {\footnotesize $x$};
+  \draw[axis] (0, -1.05) -- (0, 0.62) node[right] {\footnotesize $y$};
+  \foreach \x in {-1, 1, 2, 3, 4, 5} {
+    \draw (\x, 0.02) -- (\x, -0.02) node[below] {\scriptsize $\x$};
+  }
+  \draw (0.06, 0.5) -- (-0.06, 0.5) node[left] {\scriptsize $0{,}5$};
+  \draw (0.06, -0.5) -- (-0.06, -0.5) node[left] {\scriptsize $-0{,}5$};
+  \draw (0.06, -1) -- (-0.06, -1) node[left] {\scriptsize $-1$};
+  \begin{scope}
+    \clip (-1.2, -1.05) rectangle (5.2, 0.58);
+    \draw[draw=blue!80!black, very thick, domain=-0.6:5.2, samples=90]
+      plot (\x, {\x * exp(-\x)});
+  \end{scope}
+  \fill[red!85!black] (1, 0.3679) circle (1.6pt) node[above] {\scriptsize Max $(1; e^{-1})$};
+  \fill[green!55!black] (1.94, 0.255) rectangle (2.06, 0.286);
+  \node[above right] at (2.02, 0.27) {\scriptsize Infl. $(2; 2e^{-2})$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — az exponenciális függvény növekedési fölénye.** A $x \to +\infty$ határértéknél az $e^x$ gyorsabban nő a hatványfüggvényeknél ($\frac{x}{e^x} \to 0$), míg $x \to -\infty$-nél mind $x$, mind $e^{-x}$ abszolút értéke végtelenbe tart, így csak a pozitív végtelenben van aszimptota.
+:::
+
+---
+
+## 6. feladat
+
+$$f(x) = \frac{\ln x}{x}$$
+
+**Megoldás.**
+
+- **Értelmezési tartomány:** $D_f = (0; +\infty)$.
+- **Tengelymetszetek:** $y$-tengely nincs ($0 \notin D_f$); $x$-tengely: $\ln x = 0 \implies x = 1 \implies (1; 0)$.
+- **Határértékek, aszimptoták:**
+  - $\displaystyle\lim_{x \to 0^+} \frac{\ln x}{x} = -\infty \implies x = 0$ függőleges aszimptota (jobbról).
+  - L'Hospital-szabállyal $\displaystyle\lim_{x \to +\infty} \frac{\ln x}{x} = \lim_{x \to +\infty} \frac{1/x}{1} = 0 \implies y = 0$ vízszintes aszimptota ($x \to +\infty$).
+- **Első derivált:** $f'(x) = \frac{\frac{1}{x} \cdot x - \ln x \cdot 1}{x^2} = \frac{1 - \ln x}{x^2}$. Zérushely: $x = e$, ahol $f(e) = \frac{1}{e} \approx 0{,}37$, abszolút maximum.
+- **Második derivált:** $f''(x) = \frac{-\frac{1}{x} \cdot x^2 - (1 - \ln x)2x}{x^4} = \frac{2\ln x - 3}{x^3}$. Zérushely: $x = e^{3/2} \approx 4{,}48$, ahol $f(e^{3/2}) = \frac{3}{2e^{3/2}} \approx 0{,}33$.
+
+| $x$ | $(0; e)$ | $e$ | $(e; e^{3/2})$ | $e^{3/2}$ | $(e^{3/2}; +\infty)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| $f'(x)$ | $+$ | $0$ | $-$ | $-$ | $-$ |
+| $f''(x)$ | $-$ | $-$ | $-$ | $0$ | $+$ |
+| $f(x)$ | $\nearrow$, $\frown$ | lok. max. $(e^{-1})$ | $\searrow$, $\frown$ | infl. $\left(\frac{3}{2}e^{-3/2}\right)$ | $\searrow$, $\smile$ |
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[xscale=0.72, yscale=2.8,
+  axis/.style={draw=black!70, -{Stealth[scale=0.8]}, thick},
+  gridline/.style={draw=black!15, thin}
+]
+  \draw[gridline, ystep=0.5] (-0.5, -1) grid (8, 0.55);
+  \draw[axis] (-0.6, 0) -- (8.3, 0) node[above] {\footnotesize $x$};
+  \draw[axis] (0, -1.05) -- (0, 0.62) node[right] {\footnotesize $y$};
+  \foreach \x in {1, 2, 3, 4, 5, 6, 7, 8} {
+    \draw (\x, 0.02) -- (\x, -0.02) node[below] {\scriptsize $\x$};
+  }
+  \draw (0.08, 0.5) -- (-0.08, 0.5) node[left] {\scriptsize $0{,}5$};
+  \draw (0.08, -0.5) -- (-0.08, -0.5) node[left] {\scriptsize $-0{,}5$};
+  \draw (0.08, -1) -- (-0.08, -1) node[left] {\scriptsize $-1$};
+  \begin{scope}
+    \clip (-0.4, -1.05) rectangle (8.1, 0.58);
+    \draw[draw=blue!80!black, very thick, domain=0.5:8.1, samples=100]
+      plot (\x, {ln(\x)/\x});
+  \end{scope}
+  \fill[red!85!black] (2.7183, 0.3679) circle (2pt) node[above] {\scriptsize Max $(e; e^{-1})$};
+  \fill[green!55!black] (4.4, 0.318) rectangle (4.56, 0.35);
+  \node[above right] at (4.5, 0.335) {\scriptsize Infl. $(e^{3/2}; \frac{3}{2}e^{-3/2})$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — az $a^b$ és $b^a$ összehasonlításának klasszikus eszköze.** Mivel $\frac{\ln x}{x}$ szigorúan növekedő $(0, e]$-n és szigorúan csökkenő $[e, +\infty)$-en, az $a^b > b^a \iff \frac{\ln a}{a} > \frac{\ln b}{b}$ egyenlőtlenségből azonnal adódik például, hogy $e^\pi > \pi^e$!
+:::
+
+---
+
+## 7. feladat
+
+$$f(x) = x - \ln(x^2 + 1)$$
+
+**Megoldás.**
+
+- **Értelmezési tartomány:** $D_f = \mathbb{R}$ (mivel $x^2 + 1 \ge 1 > 0$).
+- **Tengelymetszetek:** $x = 0 \implies f(0) = 0 \implies (0; 0)$. Mivel $f'(x) \ge 0$ mindenütt és csak egyetlen pontban nulla, $f$ szigorúan monoton nő, így nincs más zérushelye.
+- **Határértékek, aszimptota:** $\displaystyle\lim_{x \to -\infty} f(x) = -\infty$, $\displaystyle\lim_{x \to +\infty} f(x) = +\infty$. Bár $\displaystyle\lim_{x \to \pm\infty} \frac{f(x)}{x} = 1$, $\displaystyle\lim_{x \to \pm\infty}\big(f(x) - x\big) = \lim_{x \to \pm\infty} \big(-\ln(x^2 + 1)\big) = -\infty$, ezért **nincs aszimptota**.
+- **Első derivált:**
+  $$f'(x) = 1 - \frac{2x}{x^2 + 1} = \frac{x^2 - 2x + 1}{x^2 + 1} = \frac{(x - 1)^2}{x^2 + 1} \ge 0.$$
+  Zérushely: $x = 1$ (páros multiplicitású, így nincs előjelváltás: $(1; 1 - \ln 2)$ teraszpont, és $f$ végig szigorúan monoton nő $\mathbb{R}$-en!).
+- **Második derivált:**
+  $$f''(x) = -\frac{2(x^2 + 1) - 2x(2x)}{(x^2 + 1)^2} = \frac{2(x^2 - 1)}{(x^2 + 1)^2}.$$
+  Zérushelyek: $x_1 = -1$ ($f(-1) = -1 - \ln 2 \approx -1{,}69$) és $x_2 = 1$ ($f(1) = 1 - \ln 2 \approx 0{,}31$).
+
+| $x$ | $(-\infty; -1)$ | $-1$ | $(-1; 1)$ | $1$ | $(1; +\infty)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| $f'(x)$ | $+$ | $+$ | $+$ | $0$ | $+$ |
+| $f''(x)$ | $+$ | $0$ | $-$ | $0$ | $+$ |
+| $f(x)$ | $\nearrow$, $\smile$ | infl. $(-1 - \ln 2)$ | $\nearrow$, $\frown$ | infl. $(1 - \ln 2)$ | $\nearrow$, $\smile$ |
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[xscale=0.85, yscale=0.65,
+  axis/.style={draw=black!70, -{Stealth[scale=0.8]}, thick},
+  gridline/.style={draw=black!15, thin}
+]
+  \draw[gridline] (-3.5, -4) grid (4.5, 2.5);
+  \draw[axis] (-3.7, 0) -- (4.7, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -4.2) -- (0, 2.7) node[above] {\footnotesize $y$};
+  \foreach \x in {-3, -2, -1, 1, 2, 3, 4} {
+    \draw (\x, 0.1) -- (\x, -0.1) node[below] {\scriptsize $\x$};
+  }
+  \foreach \y in {-4, -2, 2} {
+    \draw (0.08, \y) -- (-0.08, \y) node[left] {\scriptsize $\y$};
+  }
+  \begin{scope}
+    \clip (-3.5, -4.1) rectangle (4.5, 2.5);
+    \draw[draw=blue!80!black, very thick, domain=-2.5:4.5, samples=100]
+      plot (\x, {\x - ln(\x*\x + 1)});
+  \end{scope}
+  \fill[green!55!black] (-1.08, -1.79) rectangle (-0.92, -1.59);
+  \node[left] at (-1.08, -1.55) {\scriptsize Infl. $(-1; -1 - \ln 2)$};
+  \fill[green!55!black] (0.92, 0.21) rectangle (1.08, 0.41);
+  \node[above right] at (1.02, 0.35) {\scriptsize Infl. $(1; 1 - \ln 2)$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — miért nem elég $\lim \frac{f(x)}{x} = a$ az aszimptotához?** A ferde aszimptota meglétéhez az $m = \lim_{x\to\pm\infty} \frac{f(x)}{x}$ véges meredekségen felül az is szükséges, hogy a $b = \lim_{x\to\pm\infty}(f(x) - mx)$ határérték is végesen létezzen. Itt a $-\ln(x^2 + 1)$ tag ugyan lassabban tart végtelenbe az $x$-nél, de nem korlátos, ezért a függvény egyre távolabb sodródik bármely $y = x + b$ egyenestől.
+:::
+
+---
+
+## 8. feladat
+
+$$f(x) = \frac{x^3}{x^2 - 1}$$
+
+**Megoldás.**
+
+- **Értelmezési tartomány:** $D_f = \mathbb{R} \setminus \{-1; 1\}$.
+- **Paritás:** $f(-x) = -f(x)$, tehát **páratlan** függvény (középpontosan szimmetrikus az origóra).
+- **Tengelymetszetek:** Csak az origó: $(0; 0)$.
+- **Határértékek, aszimptoták:**
+  - Függőleges: $x = -1$ és $x = 1$ ($\lim_{x\to -1^-} f = -\infty$, $\lim_{x\to -1^+} f = +\infty$; $\lim_{x\to 1^-} f = -\infty$, $\lim_{x\to 1^+} f = +\infty$).
+  - Ferde: $\frac{x^3}{x^2 - 1} = x + \frac{x}{x^2 - 1}$, ahonnan $\lim_{x\to\pm\infty}(f(x) - x) = 0 \implies y = x$ ferde aszimptota ($x \to \pm\infty$).
+- **Első derivált:**
+  $$f'(x) = \frac{3x^2(x^2 - 1) - x^3(2x)}{(x^2 - 1)^2} = \frac{x^2(x^2 - 3)}{(x^2 - 1)^2}.$$
+  Zérushelyek: $x_1 = -\sqrt{3}$ ($f(-\sqrt{3}) = -\frac{3\sqrt{3}}{2}$), $x_2 = 0$ (teraszpont), $x_3 = \sqrt{3}$ ($f(\sqrt{3}) = \frac{3\sqrt{3}}{2}$).
+- **Második derivált:**
+  $$f''(x) = \frac{(4x^3 - 6x)(x^2 - 1)^2 - (x^4 - 3x^2) \cdot 2(x^2 - 1) \cdot 2x}{(x^2 - 1)^4} = \frac{2x(x^2 + 3)}{(x^2 - 1)^3}.$$
+  Zérushely: $x = 0$ (inflexiós pont).
+
+| $x$ | $(-\infty; -\sqrt{3})$ | $-\sqrt{3}$ | $(-\sqrt{3}; -1)$ | $-1$ | $(-1; 0)$ | $0$ | $(0; 1)$ | $1$ | $(1; \sqrt{3})$ | $\sqrt{3}$ | $(\sqrt{3}; +\infty)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| $f'(x)$ | $+$ | $0$ | $-$ | $\nexists$ | $-$ | $0$ | $-$ | $\nexists$ | $-$ | $0$ | $+$ |
+| $f''(x)$ | $-$ | $-$ | $-$ | $\nexists$ | $+$ | $0$ | $-$ | $\nexists$ | $+$ | $+$ | $+$ |
+| $f(x)$ | $\nearrow$, $\frown$ | max $\left(-\frac{3\sqrt{3}}{2}\right)$ | $\searrow$, $\frown$ | pólus | $\searrow$, $\smile$ | infl. $(0)$ | $\searrow$, $\frown$ | pólus | $\searrow$, $\smile$ | min $\left(\frac{3\sqrt{3}}{2}\right)$ | $\nearrow$, $\smile$ |
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[xscale=0.85, yscale=0.58,
+  axis/.style={draw=black!70, -{Stealth[scale=0.8]}, thick},
+  gridline/.style={draw=black!15, thin}
+]
+  \draw[gridline] (-4, -4.5) grid (4, 4.5);
+  \draw[axis] (-4.2, 0) -- (4.3, 0) node[right] {\footnotesize $x$};
+  \draw[axis] (0, -4.7) -- (0, 4.8) node[above] {\footnotesize $y$};
+  \foreach \x in {-4, -3, -2, -1, 1, 2, 3, 4} {
+    \draw (\x, 0.1) -- (\x, -0.1) node[below] {\scriptsize $\x$};
+  }
+  \foreach \y in {-4, -2, 2, 4} {
+    \draw (0.08, \y) -- (-0.08, \y) node[left] {\scriptsize $\y$};
+  }
+  \begin{scope}
+    \clip (-4.1, -4.55) rectangle (4.1, 4.55);
+    \draw[dashed, black!70, thick] (-1, -4.55) -- (-1, 4.55);
+    \draw[dashed, black!70, thick] (1, -4.55) -- (1, 4.55);
+    \draw[dashed, black!70, thick] (-4.1, -4.1) -- (4.1, 4.1);
+    \draw[draw=blue!80!black, very thick, domain=-4.1:-1.16, samples=70]
+      plot (\x, {(\x*\x*\x)/(\x*\x - 1)});
+    \draw[draw=blue!80!black, very thick, domain=-0.94:0.94, samples=70]
+      plot (\x, {(\x*\x*\x)/(\x*\x - 1)});
+    \draw[draw=blue!80!black, very thick, domain=1.16:4.1, samples=70]
+      plot (\x, {(\x*\x*\x)/(\x*\x - 1)});
+  \end{scope}
+  \fill[red!85!black] (-1.732, -2.598) circle (2.5pt);
+  \fill[red!85!black] (1.732, 2.598) circle (2.5pt);
+  \fill[green!55!black] (-0.08, -0.12) rectangle (0.08, 0.12);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
+::: elmelet
+**Elméleti háttér — az $x = 0$ egyidejű terasz- és inflexiós pontja.** A $f'(x)$ számlálójában az $x^2$ páros hatvány miatt $f'$ nem vált előjelet $0$-ban (így $(0; 0)$ nem szélsőértékhely, hanem teraszpont), míg az $f''(x)$-ben az $x$ első hatványa miatt $f''$ előjelet vált $0$-ban — ezért a $(0; 0)$ egyúttal vízszintes érintőjű inflexiós pont.
+:::
+
+# Analízis 1 – Gyakorló feladatsor: Szélsőérték-számítási feladatok – megoldások
+
+### I. Mat. BSc Analízis 1 · Gyakorló feladatsor megoldásai
+
+## 1. feladat
+
+Egy nyitott tetejű, négyzet alapú hasáb alakú dobozt készítünk, amelynek térfogata $32\text{ dm}^3$. Mekkora legyen az alapéle és a magassága, hogy a felhasznált anyagmennyiség (a felszín) a lehető legkisebb legyen?
+
+**Megoldás.**
+
+Legyen az alapél $a$, a hasáb magassága pedig $m$ ($\text{dm}$-ben), ahol $a, m > 0$. A térfogat alapján:
+$$V = a^2 \cdot m = 32 \implies m = \frac{32}{a^2}.$$
+
+A minimalizálandó felszín (mivel a teteje nyitott, csak egy alaplap és négy oldallap van):
+$$A(a) = a^2 + 4am = a^2 + 4a \cdot \frac{32}{a^2} = a^2 + \frac{128}{a} \qquad (a > 0).$$
+
+Deriváljuk a felszínfüggvényt:
+$$A'(a) = 2a - \frac{128}{a^2}.$$
+
+Tegyük egyenlővé nullával:
+$$2a - \frac{128}{a^2} = 0 \implies 2a^3 = 128 \implies a^3 = 64 \implies a = 4.$$
+
+Ellenőrzés második deriválttal:
+$$A''(a) = 2 + \frac{256}{a^3} > 0 \qquad \forall a > 0 \implies A''(4) = 2 + \frac{256}{64} = 6 > 0.$$
+Mivel $a = 4$ az egyetlen kritikus pont a $(0, +\infty)$ intervallumban és $A''(a) > 0$ (vagy előjelvizsgálattal: $A'(a) < 0$ ha $0 < a < 4$, és $A'(a) > 0$ ha $a > 4$), itt valóban globális minimum van.
+
+A magasság kiszámítása:
+$$m = \frac{32}{4^2} = \frac{32}{16} = 2.$$
+
+**Válasz:** A doboz alapéle **$4\text{ dm}$**, a magassága pedig **$2\text{ dm}$** legyen (a minimális felszín $48\text{ dm}^2$).
+
+::: elmelet
+**Elméleti háttér — globális szélsőérték nyílt intervallumon.** Ha egy differenciálható függvénynek egy $I$ intervallumon pontosan egy stacionárius pontja van ($f'(x_0) = 0$), és ott $f''(x_0) > 0$ (vagy még erősebben: végig $f'' > 0$ az intervallumon, így a függvény szigorúan konvex), akkor $x_0$-ban szükségképpen **globális** (abszolút) minimum van az egész intervallumon. Ha ugyanis más pontban nem $0$ a derivált, a monotonitás $x_0$ előtt végig csökkenő, utána végig növekvő.
+:::
+
+---
+
+## 2. feladat
+
+Egy $0{,}5$ literes ($500\text{ cm}^3$) térfogatú, zárt, forgáshenger alakú konzervdobozt tervezünk. Mekkora legyen az alapkör sugara és a henger magassága, hogy a gyártáshoz a lehető legkevesebb fémlemezre legyen szükség?
+
+**Megoldás.**
+
+Legyen a henger alapkörének sugara $r$, a magassága $m$ ($\text{cm}$-ben), ahol $r, m > 0$. A térfogat alapján:
+$$V = r^2\pi m = 500 \implies m = \frac{500}{r^2\pi}.$$
+
+A minimalizálandó felszín (két alaplap és a palást):
+$$A(r) = 2r^2\pi + 2r\pi m = 2r^2\pi + 2r\pi \cdot \frac{500}{r^2\pi} = 2r^2\pi + \frac{1000}{r} \qquad (r > 0).$$
+
+Deriváljuk $r$ szerint:
+$$A'(r) = 4r\pi - \frac{1000}{r^2}.$$
+
+Tegyük egyenlővé nullával:
+$$4r\pi = \frac{1000}{r^2} \implies r^3 = \frac{1000}{4\pi} = \frac{250}{\pi} \implies r = \sqrt[3]{\frac{250}{\pi}} \approx 4{,}30\text{ cm}.$$
+
+Második derivált vizsgálata:
+$$A''(r) = 4\pi + \frac{2000}{r^3} > 0 \qquad (\text{minden } r > 0\text{-ra, tehát globális minimum}).$$
+
+A magasság kiszámítása:
+$$m = \frac{500}{\pi \left(\frac{250}{\pi}\right)^{2/3}} = 2 \cdot \frac{250}{\pi^{1/3} \cdot 250^{2/3}} = 2\sqrt[3]{\frac{250}{\pi}} = 2r \approx 8{,}60\text{ cm}.$$
+
+**Válasz:** A henger sugara **$r = \sqrt[3]{\frac{250}{\pi}} \approx 4{,}30\text{ cm}$**, magassága pedig **$m = 2\sqrt[3]{\frac{250}{\pi}} \approx 8{,}60\text{ cm}$** (vagyis a henger átmérője egyenlő a magasságával).
+
+::: elmelet
+**Elméleti háttér — az optimális zárt henger aránya.** Rögzített térfogat mellett a zárt henger minimális felszínét mindig a „négyzetes” metszetű henger adja ($m = 2r$, a magasság egyenlő az átmérővel), míg egy felül *nyitott* henger esetén (csak egy alaplap van) $m = r$ adódik (hasonlóan az 1. feladathoz, ahol a nyitott négyzet alapú hasábnál $m = a/2$).
+:::
+
+---
+
+## 3. feladat
+
+Egy egyenes folyó egyik partján áll egy erőmű ($A$ pont), a folyó túlpartján, folyásirányban $10\text{ km}$-rel lejjebb pedig egy gyár ($B$ pont). A folyó szélessége mindenhol $2\text{ km}$. Elektromos kábelt kell fektetni az erőműtől a gyárig. A víz alatti kábel fektetése $5$ millió Ft/km, a szárazföldi kábel fektetése pedig $3$ millió Ft/km költséggel jár. A folyó partján milyen távolságra az erőművel szemközti ponttól érjen partot a kábel, hogy a teljes kivitelezési költség a legkisebb legyen?
+
+**Megoldás.**
+
+Jelölje $C$ az erőművel ($A$) szemközti pontot a túlparton, $P$ pedig azt a pontot a túlparton, ahol a kábel partot ér. Legyen a $CP$ távolság $x\text{ km}$, ahol $x \in [0, 10]$ (nyilván $x < 0$ vagy $x > 10$ esetén mind a vízi, mind a szárazföldi szakasz hosszabb volna, mint a megfelelő végponton). Ekkor:
+- A víz alatti szakasz ($AP$) hossza a Pitagorasz-tétel alapján: $\sqrt{2^2 + x^2} = \sqrt{4 + x^2}\text{ km}$.
+- A szárazföldi szakasz ($PB$) hossza: $(10 - x)\text{ km}$.
+
+A teljes költség függvénye (millió Ft-ban):
+$$K(x) = 5\sqrt{4 + x^2} + 3(10 - x) = 5(4 + x^2)^{1/2} + 30 - 3x \qquad (x \in [0, 10]).$$
+
+Deriváljuk a költségfüggvényt (összetett függvény deriválási szabályával):
+$$K'(x) = 5 \cdot \frac{1}{2}(4 + x^2)^{-1/2} \cdot 2x - 3 = \frac{5x}{\sqrt{4 + x^2}} - 3.$$
+
+Tegyük egyenlővé nullával:
+$$\frac{5x}{\sqrt{4 + x^2}} = 3 \implies 5x = 3\sqrt{4 + x^2}.$$
+
+Emeljük négyzetre mindkét oldalt (mivel $x \ge 0$, a művelet ekvivalens):
+$$25x^2 = 9(4 + x^2) \implies 25x^2 = 36 + 9x^2 \implies 16x^2 = 36 \implies x^2 = \frac{36}{16} = \frac{9}{4} \implies x = \frac{3}{2} = 1{,}5.$$
+
+Ellenőrizzük a függvényértékeket a végpontokban és a kritikus pontban, hogy biztosan globális minimumot találjunk a zárt $[0, 10]$ intervallumon:
+- $K(0) = 5\sqrt{4} + 30 = 40$ millió Ft,
+- $K(1{,}5) = 5\sqrt{4 + 2{,}25} + 3(8{,}5) = 5 \cdot 2{,}5 + 25{,}5 = 12{,}5 + 25{,}5 = 38$ millió Ft,
+- $K(10) = 5\sqrt{104} + 0 \approx 50{,}99$ millió Ft.
+
+Látható, hogy $x = 1{,}5\text{ km}$-nél van a globális minimum.
+
+**Válasz:** Az erőművel szemközti ponttól **$1{,}5\text{ km}$-re** folyásirányban lefelé kell partot érnie a kábelnek (a minimális költség **$38$ millió Ft**).
+
+::: elmelet
+**Elméleti háttér — zárt intervallumos minimum és Snellius–Descartes-törvény.** Zárt $[a, b]$ intervallumon a folytonos $K$ függvény abszolút minimuma a belső stacionárius pontok ($K'(x) = 0$) és a végpontok ($a, b$) összehasonlításával biztosan megtalálható (Weierstrass-tétel + Fermat-elv). Figyeljük meg, hogy $\frac{x}{\sqrt{4 + x^2}} = \sin\vartheta = \frac{3}{5}$, ami a két közeg „költségarányának” (sebességarányának) megfelelő fénytörési törvény!
+:::
+
+---
+
+## 4. feladat
+
+Egy $R$ sugarú gömbbe egyenes körkúpot írunk úgy, hogy a kúp csúcsa és az alapkörének kerülete is a gömb felszínére illeszkedik. Mekkora legyen a kúp magassága $R$ függvényében, hogy a kúp térfogata a lehető legnagyobb legyen?
+
+**Megoldás.**
+
+Legyen a kúp magassága $m$, alapkörének sugara $r$. Mivel a kúp a gömbbe van írva, $m \in (0, 2R)$. Ha $m \le R$, a gömb középpontja és a kúp alapköre közötti távolság $R - m$; ha $m > R$, akkor $m - R$. Mindkét esetben a gömb középpontja, az alapkör középpontja és az alapkör egy kerületi pontja derékszögű háromszöget alkot, melynek átfogója $R$, befogói pedig $r$ és $|m - R|$. A Pitagorasz-tétel szerint:
+$$r^2 + (m - R)^2 = R^2 \implies r^2 = R^2 - (m^2 - 2mR + R^2) = 2mR - m^2.$$
+
+A kúp térfogata $m$ függvényében:
+$$V(m) = \frac{1}{3}r^2\pi m = \frac{\pi}{3}(2mR - m^2)m = \frac{\pi}{3}(2Rm^2 - m^3) \qquad \big(m \in (0, 2R)\big).$$
+
+Deriváljuk $V(m)$-et $m$ szerint ($R$ konstans):
+$$V'(m) = \frac{\pi}{3}(4Rm - 3m^2).$$
+
+Keressük a szélsőérték helyét ($V'(m) = 0$):
+$$m(4R - 3m) = 0.$$
+Mivel $m > 0$, az egyetlen belső kritikus pont:
+$$m = \frac{4}{3}R.$$
+
+Második derivált vizsgálata:
+$$V''(m) = \frac{\pi}{3}(4R - 6m) \implies V''\left(\frac{4}{3}R\right) = \frac{\pi}{3}(4R - 8R) = -\frac{4\pi R}{3} < 0.$$
+Mivel $m = \frac{4}{3}R$ az egyetlen stacionárius pont a $(0, 2R)$ intervallumban és itt lokális maximum van (ráadásul $\lim_{m \to 0+} V(m) = \lim_{m \to 2R-} V(m) = 0$), itt veszi fel a kúp a globális maximumát ($V_{\max} = \frac{32\pi}{81}R^3$).
+
+**Válasz:** A kúp térfogata akkor maximális, ha a magassága **$m = \frac{4}{3}R$**.
+
+::: elmelet
+**Elméleti háttér — közös képlet az eltérő geometriai helyzetekre.** Érdemes megfigyelni, hogy $r^2 + (m - R)^2 = R^2$ egyaránt érvényes $m < R$, $m = R$ és $m > R$ esetén is, mert a négyzeten eltűnik a $(m - R)$ előjele. A végpontokban ($m \to 0^+$ és $m \to 2R^-$) a kúp elfajul ($V \to 0$), ezért a pozitív értékű belső stacionárius pont biztosan globális maximumot ad.
+:::
+
+---
+
+## 5. feladat
+
+Egy $a$ és $b$ befogójú derékszögű háromszögbe (ahol $a = 6\text{ cm}$, $b = 8\text{ cm}$) téglalapot írunk úgy, hogy a téglalap két oldala a befogókra illeszkedik, egy csúcsa pedig az átfogón van. Mekkora a beírt téglalap maximális területe, és mennyi ekkor az átlójának a hossza?
+
+**Megoldás.**
+
+Helyezzük a háromszöget a koordináta-rendszerbe úgy, hogy a derékszögű csúcs az origóban legyen, az $a = 6$ befogó az $y$-tengelyen, a $b = 8$ befogó pedig az $x$-tengelyen feküdjön. Ekkor az átfogó egyenesének tengelymetszetes egyenlete:
+$$\frac{x}{8} + \frac{y}{6} = 1 \implies y = 6 - \frac{3}{4}x.$$
+
+Legyen a beírt téglalap átfogón lévő csúcsának koordinátái $(x; y)$, ahol $x \in (0, 8)$ (a $[0, 8]$ lezárás végpontjain a terület $0$). A téglalap területe:
+$$T(x) = x \cdot y = x\left(6 - \frac{3}{4}x\right) = 6x - \frac{3}{4}x^2.$$
+
+Deriválás és zérushely keresés:
+$$T'(x) = 6 - \frac{3}{2}x = 0 \implies \frac{3}{2}x = 6 \implies x = 4.$$
+Mivel $T''(x) = -\frac{3}{2} < 0$ mindenütt, itt globális maximum van.
+
+A másik oldal hossza:
+$$y = 6 - \frac{3}{4} \cdot 4 = 3\text{ cm}.$$
+
+A maximális terület és az átló hossza ($d$):
+$$T_{\max} = 4 \cdot 3 = 12\text{ cm}^2, \qquad d = \sqrt{4^2 + 3^2} = \sqrt{25} = 5\text{ cm}.$$
+
+**Válasz:** A téglalap maximális területe **$12\text{ cm}^2$**, az átlója ekkor **$5\text{ cm}$** hosszú (éppen az eredeti $6-8-10$-es átfogó fele).
+
+::: elmelet
+**Elméleti háttér — az átfogóra fekvő csúcs általános tulajdonsága.** A $(0, 0)$ csúcshoz illeszkedő derékszögű háromszögbe írt $x \cdot y$ területű téglalap maximális területe mindig az átfogó *felezőpontjánál* adódik ($x = b/2$, $y = a/2$), ekkor a téglalap területe a háromszög területének pontosan a fele ($T_{\max} = \frac{1}{2} \cdot \frac{ab}{2} = \frac{ab}{4}$), átlója pedig a derékszögű csúcsból induló súlyvonal, amely egyenlő az átfogó felével!
+:::
+
+---
+
+## 6. feladat
+
+Egy autópályán a forgalom sűrűsége (jármű/km) és az autók átlagsebessége ($v$, km/h) között a következő összefüggés áll fenn: $s(v) = \frac{1200}{v + 0{,}02v^2 + 18}$ (ahol $v > 0$). Mekkora átlagsebességnél a legnagyobb az autópálya áteresztőképessége (azaz az óránként áthaladó járművek száma, $Q(v) = v \cdot s(v)$)?
+
+**Megoldás.**
+
+Az áteresztőképesség függvénye ($v > 0$):
+$$Q(v) = v \cdot s(v) = \frac{1200v}{0{,}02v^2 + v + 18}.$$
+
+Deriváljuk $Q(v)$-t a hányados deriválási szabálya szerint:
+$$Q'(v) = 1200 \cdot \frac{1 \cdot (0{,}02v^2 + v + 18) - v \cdot (0{,}04v + 1)}{(0{,}02v^2 + v + 18)^2} = 1200 \cdot \frac{18 - 0{,}02v^2}{(0{,}02v^2 + v + 18)^2}.$$
+
+Tegyük egyenlővé a deriváltat nullával (a nevező minden $v > 0$-ra pozitív):
+$$18 - 0{,}02v^2 = 0 \implies 0{,}02v^2 = 18 \implies v^2 = \frac{18}{0{,}02} = 900 \implies v = 30 \quad (\text{mivel } v > 0).$$
+
+Előjelvizsgálat:
+- Ha $0 < v < 30$, akkor $18 - 0{,}02v^2 > 0 \implies Q'(v) > 0$ ($Q$ szigorúan monoton nő).
+- Ha $v > 30$, akkor $18 - 0{,}02v^2 < 0 \implies Q'(v) < 0$ ($Q$ szigorúan monoton csökken).
+
+Tehát $v = 30\text{ km/h}$-nál globális maximum van. A maximális áteresztőképesség:
+$$Q(30) = \frac{1200 \cdot 30}{0{,}02 \cdot 900 + 30 + 18} = \frac{36\,000}{18 + 30 + 18} = \frac{36\,000}{66} = \frac{6000}{11} \approx 545{,}45\text{ jármű/óra}.$$
+
+**Válasz:** Az autópálya áteresztőképessége **$v = 30\text{ km/h}$** átlagsebességnél a legnagyobb (ekkor $Q(30) = \frac{6000}{11} \approx 545{,}45\text{ jármű/óra}$).
+
+::: elmelet
+**Elméleti háttér — az első derivált előjelváltása és a számtani–mértani közép kapcsolata.** Gyakorlati törtfüggvényeknél a második derivált helyett gyakran sokkal gyorsabb a $Q'$ előjelváltásának ellenőrzése (elég a számlálót vizsgálni, ha a nevező pozitív). Érdekesség, hogy $Q(v) = \frac{1200}{0{,}02v + 1 + \frac{18}{v}}$, így a nevező minimalizálása a számtani–mértani közép egyenlőtlenségével is azonnal adja az optimumot: $0{,}02v = \frac{18}{v} \iff v = 30$.
+:::
+
+---
+
+## 7. feladat
+
+Egy $1\text{ m}$ széles és $2\text{ m}$ magas ablakot egy téglalapból és a tetejére illesztett félkörből álló (ún. Norman-ablak) formára alakítunk át úgy, hogy az ablak teljes kerülete pontosan $K = 8$ méter maradjon. Mekkora legyen a félkör sugara, hogy az ablakon bejutó fény mennyisége (azaz az ablak összterülete) maximális legyen?
+
+**Megoldás.**
+
+*(Megjegyzés: Az eredeti ablak méretei csupán kontextusként szolgálnak, az átalakítás során a $K = 8\text{ m}$ kerület a kötött feltétel.)* Legyen a félkör sugara $r$, a téglalap alakú alsó rész magassága pedig $y$ ($r, y > 0$). Ekkor a téglalap szélessége $2r$.
+
+Az ablak kerülete (a téglalap alsó oldala, két függőleges oldala, plusz a félkör ívhossza):
+$$K = 2r + 2y + r\pi = 8 \implies 2y = 8 - 2r - r\pi \implies y = 4 - r - \frac{\pi}{2}r.$$
+
+Mivel $y > 0$, az értelmezési tartomány $r \in \left(0, \frac{8}{2 + \pi}\right)$. Az összterület (téglalap + félkör):
+$$T(r) = 2ry + \frac{r^2\pi}{2} = r(8 - 2r - r\pi) + \frac{r^2\pi}{2} = 8r - 2r^2 - \frac{\pi}{2}r^2.$$
+
+Deriváljuk a területfüggvényt $r$ szerint:
+$$T'(r) = 8 - 4r - \pi r = 8 - r(4 + \pi).$$
+
+Keressük a zérushelyet:
+$$8 - r(4 + \pi) = 0 \implies r = \frac{8}{4 + \pi} \approx 1{,}12\text{ m}.$$
+Ellenőrzés: $r = \frac{8}{4+\pi} < \frac{8}{2+\pi}$, így az érték az értelmezési tartomány belsejébe esik.
+
+Második derivált vizsgálata:
+$$T''(r) = -(4 + \pi) < 0 \qquad (\text{minden } r\text{-re, tehát globális maximum}).$$
+Ekkor $y = 4 - \left(1 + \frac{\pi}{2}\right)\frac{8}{4 + \pi} = \frac{16 + 4\pi - 8 - 4\pi}{4 + \pi} = \frac{8}{4 + \pi} = r$.
+
+**Válasz:** A félkör sugara **$r = \frac{8}{4 + \pi} \approx 1{,}12\text{ méter}$** legyen (érdekesség, hogy ekkor $y = r$, vagyis a téglalap magassága éppen megegyezik a félkör sugarával).
+
+::: elmelet
+**Elméleti háttér — az értelmezési tartomány ellenőrzése kényszerfeltételes feladatokban.** Amikor egy változót ($y$-t) kifejezünk a másikkal ($r$-rel), mindig ellenőrizni kell a $y > 0$ feltételből adódó korlátot ($r < \frac{8}{2 + \pi}$), hogy a megtalált kritikus pont valóban megvalósítható geometriai méreteket eredményez-e.
+:::
+
+---
+
+## 8. feladat
+
+Egy megfigyelő egy $h = 3$ méter magas talapzaton álló, $m = 5$ méter magas szobrot néz. A megfigyelő szeme pontosan a talapzat aljával van egy magasságban. Milyen távol álljon meg a talapzat függőleges tengelyétől, hogy a szobor látószöge ($\alpha$) a lehető legnagyobb legyen?
+
+**Megoldás.**
+
+Legyen a megfigyelő távolsága a talapzat tengelyétől $x > 0$ méter. Jelölje $\beta$ a talapzat tetejéhez tartozó emelkedési szöget, $\gamma$ pedig a szobor tetejéhez tartozó emelkedési szöget. Ekkor a szobor látószöge $\alpha(x) = \gamma(x) - \beta(x)$. A derékszögű háromszögekből:
+$$\tan\beta = \frac{h}{x} = \frac{3}{x} \implies \beta(x) = \arctan\left(\frac{3}{x}\right), \qquad \tan\gamma = \frac{h + m}{x} = \frac{8}{x} \implies \gamma(x) = \arctan\left(\frac{8}{x}\right).$$
+
+Tehát a maximalizálandó látószögfüggvény ($x > 0$):
+$$\alpha(x) = \arctan\left(\frac{8}{x}\right) - \arctan\left(\frac{3}{x}\right).$$
+
+Deriváljuk $\alpha(x)$-et az $(\arctan u)' = \frac{u'}{1 + u^2}$ szabály segítségével:
+$$\alpha'(x) = \frac{-\frac{8}{x^2}}{1 + \left(\frac{8}{x}\right)^2} - \frac{-\frac{3}{x^2}}{1 + \left(\frac{3}{x}\right)^2} = \frac{-8}{x^2 + 64} + \frac{3}{x^2 + 9} = \frac{3(x^2 + 64) - 8(x^2 + 9)}{(x^2 + 64)(x^2 + 9)} = \frac{120 - 5x^2}{(x^2 + 64)(x^2 + 9)}.$$
+
+Tegyük egyenlővé nullával:
+$$120 - 5x^2 = 0 \implies x^2 = 24 \implies x = \sqrt{24} = 2\sqrt{6} \approx 4{,}90\text{ m} \qquad (\text{mivel } x > 0).$$
+
+Előjelvizsgálat: mivel a nevező mindenütt pozitív,
+- $0 < x < \sqrt{24}$ esetén $120 - 5x^2 > 0 \implies \alpha'(x) > 0$ ($\alpha$ szigorúan nő),
+- $x > \sqrt{24}$ esetén $120 - 5x^2 < 0 \implies \alpha'(x) < 0$ ($\alpha$ szigorúan csökken).
+
+Így $x = 2\sqrt{6}$ méternél valóban globális maximum van.
+
+**Válasz:** A megfigyelőnek **$x = 2\sqrt{6} \approx 4{,}90$ méterre** kell megállnia a talapzattól (ez pontosan a $h$ és a $h + m$ mértani közepe: $\sqrt{3 \cdot 8}$).
+
+::: elmelet
+**Elméleti háttér — Regiomontanus maximális látószög-problémája.** Az itt tárgyalt feladat az 1471-ből ismert klasszikus **Regiomontanus-féle szögmaximalizálási probléma**. Kiemelten szép geometriai jelentése is van: az optimális $x = \sqrt{h(h+m)}$ távolságnál a megfigyelő szeme, valamint a szobor alja és teteje által meghatározott kör **éppen érinti a szemmagasság vízszintes egyenesét** (a szelőtétel miatt: $x^2 = h(h+m)$).
+:::
+
 # Analízis 1 – 1. ZH (2022 normál) – megoldások
 
 ### B. Sc. I. Mat. Haladó analízis · Első ZH · Normál verzió (2022/23-I. félév)

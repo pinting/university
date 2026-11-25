@@ -35,6 +35,10 @@ $$k_1 + k_2 + k_3 + k_4 + k_5 + k_6 = 8, \qquad k_i \ge 1 \text{ egész}.$$
 A pozitív egész megoldások száma (8 elem közé 5 elválasztófal a 7 lehetséges helyre):
 $$\binom{8-1}{6-1} = \binom{7}{5} = \binom{7}{2} = \mathbf{21}.$$
 
+::: elmelet
+**Elméleti háttér — ismétléses kombináció / gombócos módszer.** Egy $k$-tagú nemcsökkenő sorozatot $1 \le x_1 \le \dots \le x_k \le m$ egyértelműen az határoz meg, hogy az egyes értékek hányszor fordulnak elő. Az $x_1 + \dots + x_m = k$ egyenlet $x_i \ge 1$ pozitív egész megoldásainak száma $\binom{k-1}{m-1}$ (a $k$ gombóc közötti $k-1$ résbe $m-1$ elválasztó pálcika választása).
+:::
+
 ---
 
 ## 2. feladat
@@ -67,6 +71,10 @@ Alkalmazzuk a komplementer módszert: az a) részben kiszámított összes olyan
 
 Ezért a feltételnek megfelelő ültetések száma:
 $$1440 - 480 = \mathbf{960}.$$
+
+::: elmelet
+**Elméleti háttér — blokk-képzés és körsorrend.** Ha bizonyos elemeknek egymás mellett kell ülniük, összevonjuk őket egy blokká (megszorozva a blokkon belüli sorrendek számával), majd a kapott $k$ egységet $(k-1)!$-féleképpen ültetjük kerekasztal köré (mert csak elforgatással azonosítunk, tükörképpel nem). Tiltó feltételnél (*de C és D nem*) komplementert veszünk.
+:::
 
 ---
 
@@ -109,7 +117,11 @@ Számoljuk meg ezen bizottságok lehetséges összeállításait kétféle módo
   lehetőség adódik.
 
 Mivel mindkét gondolatmenet ugyanazt a halmazt (az $n$ tagú, női elnökkel rendelkező bizottságokat) számlálja meg, a két kifejezés szükségképpen egyenlő:
-$$\sum_{k=0}^{n} k \binom{n}{k}^2 = \mathbf{n \binom{2n-1}{n-1}}.$$ $\blacksquare$
+$$\sum_{k=0}^{n} k \binom{n}{k}^2 = \mathbf{n \binom{2n-1}{n-1}}. \ \blacksquare$$
+
+::: elmelet
+**Elméleti háttér — kettős leszámlálás $(S, a)$ párokkal.** A $\sum_{k=0}^n k \binom{n}{k}^2$ összegben az egyik $\binom{n}{k}$-t $\binom{n}{n-k}$-ra írva át látjuk, hogy $n$ tagú részhalmazt választunk egy $n + n = 2n$ elemű $A \cup B$ halmazból, amelynek egy $a \in S \cap A$ eleme ki van tüntetve. A másik oldal azonosítja ugyanezt fordított sorrendben: először a kitüntetett $a \in A$ elemet választjuk ki ($n$ mód), majd a maradék $n-1$ elemet a maradék $2n-1$ elemből.
+:::
 
 ---
 
@@ -157,6 +169,10 @@ Határozzuk meg a konstansokat a kezdőértékekből:
 A zárt képlet tehát:
 $$b_n = \mathbf{\frac{1}{\sqrt{13}} \left[ \left(\frac{3 + \sqrt{13}}{2}\right)^n - \left(\frac{3 - \sqrt{13}}{2}\right)^n \right]}.$$
 
+::: elmelet
+**Elméleti háttér — homogén lineáris rekurziók és a karakterisztikus egyenlet.** Lefedéses feladatokban az első (vagy utolsó) csempe mérete és színei adják az előző kisebb táblákra visszavezetett rekurziót. Az $a_n = c_1 a_{n-1} + c_2 a_{n-2}$ másodrendű lineáris rekurzió karakterisztikus egyenlete $x^2 - c_1 x - c_2 = 0$; két különböző gyök ($x_1 \ne x_2$) esetén az általános megoldás $c_1 x_1^n + c_2 x_2^n$, ahol $c_1, c_2$-t a kezdőértékek egyértelműen meghatározzák.
+:::
+
 ---
 
 ## 5. feladat
@@ -189,6 +205,12 @@ $$5k \ge |E(G)| \ge 5n \implies k \ge n.$$
 Tehát a maximális párosítás éleinek száma legalább $n$.
 Ennek a párosításnak bármely $n$ elemű részhalmaza pontosan $n$ olyan élt ad, amelyek közül semelyik kettőnek sincs közös végpontja. $\blacksquare$
 
+*(Alternatív bizonyítás mohó élválasztással: válasszunk ki egy tetszőleges $uv$ élt, majd töröljük az $u$ és $v$ csúcsokat az összes rájuk illeszkedő éllel együtt. Ezzel legfeljebb $d(u) + d(v) - 1 \le 3 + 3 - 1 = 5$ élt törlünk, hiszen az $uv$ élt a két fokszámban kétszer számoltuk. A maradó gráfban is minden fokszám $\le 3$. Ha $t < n$ élt már kiválasztottunk, legfeljebb $5t$ élt töröltünk, így még legalább $5n - 5t = 5(n - t) > 0$ él maradt, tehát az eljárás $n$ lépésig folytatható.)*
+
+::: elmelet
+**Elméleti háttér — maximális párosítás és mohó csúcstörlés.** Egyszerű gráfban egy $\{u, v\}$ él mindkét végpontjának fokszáma legfeljebb $\Delta$, így az $\{u, v\}$-vel incidens élek száma legfeljebb $2\Delta - 1$ (mivel magát $\{u,v\}$-t nem számoljuk kétszer). Ezért minden $\Delta$-reguláris (vagy $\Delta(G) \le \Delta$) gráfnak van legalább $\lceil |E(G)| / (2\Delta - 1) \rceil$ méretű független élhalmaza (párosítása).
+:::
+
 ---
 
 ## 6. feladat
@@ -215,6 +237,12 @@ $$= 16384 - 8748 + 768 - 4 = 8400.$$
 
 **3. A keresett beosztások száma:**
 $$40824 - 8400 = \mathbf{32\,424}.$$
+
+*(Alternatív megoldás Anna és Béla rögzítésével, Stirling-számok nélkül: először Annának választunk csoportot $4$-féleképpen, majd Bélának a maradék $3$ egyikét — ez $4 \cdot 3 = 12$ lehetőség. Anna és Béla csoportja már nem üres; a maradék $6$ hallgatóra a másik két előírt csoport ürességét tiltjuk szitával: $4^6 - 2 \cdot 3^6 + 2^6 = 4096 - 1458 + 64 = 2702$. Összesen $12 \cdot 2702 = \mathbf{32\,424}$.)*
+
+::: elmelet
+**Elméleti háttér — szürjekciók száma és logikai szita.** $n$ megkülönböztethető elem beosztása $k$ számozott, nemüres csoportba a szürjekciók száma: $\sum_{j=0}^k (-1)^j \binom{k}{j} (k-j)^n$. Érdemes figyelni, hogy először a különleges feltételű elemek (Anna és Béla) elhelyezésével itt már csak *két* halmaz ürességét kellett szitálni.
+:::
 
 ---
 
@@ -266,3 +294,7 @@ Ellenőrizzük mind a 3 lehetséges sorpárt:
 
 Mivel semelyik sorpárban sincs két olyan oszlop, ahol a mezők színe azonos (akár mindkettő piros, akár mindkettő kék) lenne, a táblázatban **egyetlen olyan $2 \times 2$-es részháló sincs, amelynek mind a 4 mezője azonos színű**.
 Ez a színezés igazolja, hogy 6 oszlopra az állítás nem feltétlenül igaz. $\blacksquare$
+
+::: elmelet
+**Elméleti háttér — Zarankiewicz-probléma és skatulyaelv kettős alkalmazása.** Egy $3 \times c$-es kétféle színnel színezett rácsban egyszínű $2 \times 2$-es részháló (kék vagy piros $K_{2,2}$ a kétszínű teljes páros gráfban) elkerülhetetlenségét az oszloponként kötelező azonos színű párok (belső skatulyaelv: $3 > 2$) és az összes lehetséges $(\text{sorpár}, \text{szín})$ típus száma ($\binom{3}{2} \cdot 2 = 6$) közötti skatulyaelv dönti el. Ha $c = 6$, minden konfigurációt pontosan egyszer megvalósítva éles ellenpéldát kapunk.
+:::

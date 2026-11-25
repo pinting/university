@@ -50,17 +50,82 @@ Különböző színű gyöngyökből nyakláncot fűzünk. Hány különböző n
 
 **Megoldás.**
 
-A gyöngyök mind különböző színűek. Kör alakú elrendezésekből $n!$ van (címkézett helyekkel).
+A gyöngyök mind páronként különböző színűek. Rögzítsük először a kör mentén (szabályos $n$-szög csúcsaiban) elhelyezkedő $n$ darab helyet úgy, hogy a helyeket megkülönböztetjük egymástól (nem forgatunk, nem tükrözünk). Az 1. helyre $n$-féle, a 2.-ra $(n-1)$-féle, $\dots$, az $n$-edikre $1$-féle gyöngy kerülhet, így a **rögzített helyek kitöltéseinek száma $n!$**.
 
-- **Forgatás:** egy elrendezésnek $n$ elforgatottja van, és ezek mind különbözők (különböző gyöngyök esetén nem triviális forgatás nem hagyja helyben), így $\frac{n!}{n} = (n-1)!$ nyaklánc.
-- **Forgatás és tükrözés:** $n \ge 3$-ra egyik tükrözés sem hagy helyben elrendezést (legalább egy gyöngypárt felcserél), így minden osztály $2n$ elemű: $\frac{(n-1)!}{2}$ nyaklánc.
+Ugyanannak a nyakláncnak az elforgatott és tükrözött helyzetei azonban több különböző kitöltésként jelennek meg ebben az $n!$ darab elrendezésben. A kérdés az, hány különböző kitöltést ad egyetlen valódi nyaklánc:
 
-a) $n = 4$: **$3! = 6$**, illetve tükrözéssel **$3$**.
+- **Csak forgatás:** Egy rögzített kitöltés $n$ darab elforgatottja ($\frac{360^\circ}{n}$ egész számú többszöröseivel) mind különböző, hiszen a kiválasztott $P$ (piros) gyöngy minden elforgatásban másik helyre kerül. Így a különböző nyakláncok száma $\frac{n!}{n} = (n-1)!$.
+- **Forgatás és tükrözés ($n \ge 3$):** Képzeljük el a nyakláncot a síkban fekvő szabályos $n$-szögként; nevezzük két oldalát **A** és **B** oldalnak. A síkbeli tükrözést fizikailag a térben a nyaklánc síkjában fekvő tükörtengely körüli $180^\circ$-os átfordítással valósíthatjuk meg — átfordítás után mindig a másik oldal kerül felülre. Tetszőleges forgatások és tükrözések sorozatával tehát legfeljebb $2n$ helyzet érhető el: az **A oldal** $n$ elforgatottja és a **B oldal** $n$ elforgatottja.
+  - Az A oldal $n$ elforgatottjában a piros gyöngy mindig másik üregbe kerül, ezért ezek különbözők (ugyanígy a B oldal $n$ elforgatottja is páronként különböző).
+  - Egy A oldali és egy B oldali kitöltés sem eshet egybe ($n \ge 3$ esetén): ha úgy forgatnánk őket, hogy a piros gyöngy ugyanarra a helyre kerüljön, akkor a két szomszédja az A és a B oldalon ellentétes körüljárási sorrendben állna (pl. $n = 8$-ra az A oldalon az óramutató járásával megegyező irányban a kék szomszéd, a B oldalon a zöld szomszéd következik). Mivel minden gyöngy különböző színű, e két szomszéd különböző, így az A és a B oldali helyzetek sem egyezhetnek meg!
+  - *(Megjegyzés: Ha a gyöngyök nem volnának mind különböző színűek — például mind pirosak lennének, vagy váltakozva pirosak és kékek —, akkor ugyanazon nyakláncnak kevesebb, akár csak $1$ vagy $2$ különböző kitöltése volna, így nem oszthatnánk egyszerűen $2n$-nel!)*
 
-b) $n = 8$: **$7! = 5040$**, illetve tükrözéssel **$2520$**.
+Így valódi nyaklánconként **pontosan $2n$** kitöltés jelenik meg, vagyis a nyakláncok száma $\frac{n!}{2n} = \frac{(n-1)!}{2}$. (Algebrai szempontból: a szabályos $n$-szög $n$ forgatása és $n$ tükrözése a $2n$ elemű $D_n$ diédercsoportot alkotja.)
+
+a) $n = 4$: **$3! = 6$**, illetve tükrözéssel $\frac{4!}{8} = \frac{3!}{2} =$ **$3$**.
+
+b) $n = 8$: **$7! = 5040$**, illetve tükrözéssel $\frac{8!}{16} = \frac{7!}{2} =$ **$2520$**. (Nyolc gyöngy esetén a szabályos nyolcszögnek $8$ tükörtengelye van: $4$ szemközti csúcsokon, $4$ szemközti oldalfelezőkön megy át, és az A, illetve B oldal $8$-$8$ elforgatottja összesen $16$ különböző helyzetet ad.)
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.85,
+  bead/.style={circle, draw=black, minimum size=15pt, inner sep=1pt, font=\scriptsize\bfseries},
+  axisnode/.style={circle, draw=black!60, fill=black!8, minimum size=13pt, inner sep=1pt}
+]
+  % Bal: 8 tukortengely szemleltetese
+  \begin{scope}[xshift=-4.3cm]
+    \draw[draw=black!40, thick] (0,0) circle (1.35cm);
+    \foreach \k in {0, 45, ..., 315} {
+      \node[axisnode] at (\k:1.35cm) {};
+    }
+    \foreach \k in {0, 45, 90, 135} {
+      \draw[draw=black!80, thick] (\k:1.75cm) -- (\k+180:1.75cm);
+    }
+    \foreach \k in {22.5, 67.5, 112.5, 157.5} {
+      \draw[draw=black!50, dashed, thick] (\k:1.75cm) -- (\k+180:1.75cm);
+    }
+    \node[text width=4.2cm, align=center] at (0, -2.35) {\scriptsize $4$ csúcstengely (folytonos) + $4$ oldalfelező tengely (szaggatott) $= 8$ tükörtengely};
+  \end{scope}
+
+  % Kozep: A oldal
+  \begin{scope}[xshift=0.3cm]
+    \draw[draw=black!35, thick] (0,0) circle (1.35cm);
+    \draw[draw=black!75, dashed, thick] (0, 1.75) -- (0, -1.75);
+    \draw[->, thick] (90:1.75cm) arc (90:35:1.75cm);
+    \node[bead, fill=red!20] at (90:1.35cm) {P};
+    \node[bead, fill=blue!18] at (45:1.35cm) {K};
+    \node[bead, fill=yellow!30] at (0:1.35cm) {S};
+    \node[bead, fill=violet!20] at (315:1.35cm) {L};
+    \node[bead, fill=orange!25] at (270:1.35cm) {N};
+    \node[bead, fill=teal!20] at (225:1.35cm) {T};
+    \node[bead, fill=brown!25] at (180:1.35cm) {B};
+    \node[bead, fill=green!20] at (135:1.35cm) {Z};
+    \node[text width=3.4cm, align=center] at (0, -2.35) {\scriptsize \textbf{A oldal}: $P$ után óramutatóval $K$ következik};
+  \end{scope}
+
+  % Atforditas nyil
+  \draw[-{Stealth[scale=0.9]}, very thick] (2.15, 0.25) to[bend left=22] node[above, text width=2.2cm, align=center] {\scriptsize $180^\circ$ átfordítás ($PN$ körül)} (4.15, 0.25);
+
+  % Jobb: B oldal
+  \begin{scope}[xshift=6.0cm]
+    \draw[draw=black!35, thick] (0,0) circle (1.35cm);
+    \draw[draw=black!75, dashed, thick] (0, 1.75) -- (0, -1.75);
+    \node[bead, fill=red!20] at (90:1.35cm) {P};
+    \node[bead, fill=green!20] at (45:1.35cm) {Z};
+    \node[bead, fill=brown!25] at (0:1.35cm) {B};
+    \node[bead, fill=teal!20] at (315:1.35cm) {T};
+    \node[bead, fill=orange!25] at (270:1.35cm) {N};
+    \node[bead, fill=violet!20] at (225:1.35cm) {L};
+    \node[bead, fill=yellow!30] at (180:1.35cm) {S};
+    \node[bead, fill=blue!18] at (135:1.35cm) {K};
+    \node[text width=3.4cm, align=center] at (0, -2.35) {\scriptsize \textbf{B oldal}: $P$ után óramutatóval $Z$ következik};
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 ::: elmelet
-**Elméleti háttér — tehénszabály azonos méretű osztályokra.** Ha egy halmazt (itt a címkézett elrendezések $n!$ elemű halmazát) olyan osztályokra bontunk, amelyek mind ugyanakkorák ($d$ eleműek), akkor az osztályok száma $\frac{\text{elemszám}}{d}$. Itt egy osztály az egymásba forgatható (illetve forgatható vagy tükrözhető) elrendezések halmaza. A kulcs annak ellenőrzése, hogy minden osztály *pontosan* $n$ (illetve $2n$) elemű, vagyis hogy egyetlen nem triviális forgatás vagy tükrözés sem viszi önmagába az elrendezést — ez különböző gyöngyöknél teljesül.
+**Elméleti háttér — tehénszabály azonos méretű osztályokra ($D_n$ szimmetriák).** Ha egy véges halmazt (itt a címkézett elrendezések $n!$ elemű halmazát) olyan osztályokra bontunk, amelyek mind ugyanakkora ($d$ elemű) méretűek, akkor az osztályok száma $\frac{\text{elemszám}}{d}$. Itt egy osztály az egymásba forgatható (illetve forgatható vagy tükrözhető) elrendezések halmaza. A kulcs annak ellenőrzése, hogy minden osztály *pontosan* $n$ (illetve $2n$) elemű, vagyis egyetlen nem triviális forgatás vagy tükrözés ($n \ge 3$ esetén) sem hagyja változatlanul a gyöngykiosztást — ez garantáltan teljesül, ha a gyöngyök páronként különböző színűek.
 :::
 
 ## 5. feladat

@@ -1067,6 +1067,238 @@ Milyen hosszú létrát vihetünk be egy toronyba a $h$ magasságú ajtón, ha a
 
 *(Ábrák a lap alján: balra létra bevitele $h$ magasságú ajtón a faltól $d$ távolságra [172. feladat]; középen $3-4-5$ derékszögű háromszög átfogójára támaszkodó beírt téglalap [171. feladat]; jobbra a $\sin x$ függvény és Taylor-polinomjai: $x - x^3/3!$ és $x - x^3/3! + x^5/5!$ [162. b) feladat].)*
 
+# Analízis 1 – 17. feladatlap
+
+### I. Mat. BSc Analízis 1 · 2026/27 első félév
+
+## 173. feladat
+
+Határozzuk meg az összes olyan függvényt, amelyre $f^{(6)}(x) = 0$ teljesül $\forall x \in \mathbb{R}$-re.
+
+## 174. feladat
+
+$$\left(\frac{1}{x^2 - 1}\right)^{(20)} = \ ?$$
+
+## 175. feladat
+
+$$(\sin 5x \cos 2x)^{(4)} = \ ?$$
+
+## 176. feladat
+
+Adjuk meg a $g(x) = x \cdot e^{-x}$ függvény $n$-edik deriváltját, $g^{(n)}(x)$-et.
+
+## 177. feladat
+
+Vizsgáljuk meg konvexitás szempontjából az $f(x) = x^4 + x^3 - 18x^2 + 24x - 12$ és a $g(x) = 2 - |x^5 - 1|$ függvényeket.
+
+## 178*. feladat
+
+Legyen $f$ differenciálható $a$ egy pontozott környezetében és legyen $\displaystyle\lim_{x \to a} \frac{f(x) - f(a)}{x - a} = \infty$. Következik-e ebből, hogy $\displaystyle\lim_{x \to a} f'(x) = \infty$?
+
+## 179. feladat
+
+Bizonyítsuk be, hogy $e^x + e^{-x} \ge 2 + x^2$ ha $x \in \mathbb{R}$.
+
+## 180. feladat
+
+Vázoljuk az $f$ függvény grafikonját az $x = -1$ pont környezetében, ha tudjuk, hogy $f(-1) = 2$, $f'(-1) = -1$, $f''(-1) = 0$, $f'''(x) > 0$, $x \in \mathbb{R}$.
+
+## 181. feladat
+
+Tegyük fel, hogy $\varphi$ és $\psi$ differenciálható pozitív értékű függvények. Legyen $f(x) = \sqrt[\varphi(x)]{\psi(x)}$. Határozzuk meg $f'(x)$-et.
+
+## 182. feladat
+
+Melyik az egységgömbbe írható maximális térfogatú egyenes körkúp?
+
+## 183. feladat
+
+Bizonyítandó, hogy ha $f'(x) = x^2$, $\forall x \in \mathbb{R}$-re, akkor van olyan konstans, hogy $f(x) = \frac{x^3}{3} + c$.
+
+## 184. feladat
+
+Bizonyítsuk be, hogy ha $p$ egy $n$-edfokú polinom, akkor az $e^x - p(x)$ függvénynek legfeljebb $n + 1$ valós gyöke van.
+
+## 185. feladat
+
+Mutassuk meg, hogy $a, b, c > 0$ esetén $a + b + c \le \sqrt[3]{9}\sqrt[3]{a^3 + b^3 + c^3}$.
+
+## 186*. feladat
+
+Legyenek $a_k, b_k, c_k \ge 0$ ($k = 1, \dots, n$) valós számok. Mutassuk meg, hogy
+
+$$\sum_{k=1}^{n} a_k b_k c_k \le \left(\sum_{k=1}^{n} a_k^2\right)^{1/2} \left(\sum_{k=1}^{n} b_k^3\right)^{1/3} \left(\sum_{k=1}^{n} c_k^6\right)^{1/6}.$$
+
+## Röpzhra
+
+**Definíciók:** aszimptoták, differenciál, Taylor polinomok.
+
+**Tételek:** L'Hospital szabály, Taylor-formula, lemma bizonyos Taylor sorfejtés konvergenciájáról, $e^x$, $\sin x$, $\cos x$ sorfejtései.
+
+*(Ábrák a lap alján: balra ortogonális hiperbolacsalád [$x^2 - y^2 = c$ és $xy = k$ szintvonalak]; középen az $y = x^2 \log(x)$ függvény grafikonja; jobbra az $y = x^2 \exp(-x)$ függvény grafikonja.)*
+
+# Analízis 1 – Gyakorló feladatsor: Deriválási szabályok
+
+### I. Mat. BSc Analízis 1 · Gyakorló feladatsor
+
+Határozza meg az alábbi függvények első deriváltját ($f'(x)$) a megadott értelmezési tartományon! *(A feladatsorban $\log$ a természetes alapú logaritmust jelöli.)*
+
+## 1. feladat
+
+$$f(x) = (3x^4 - 5x^2 + 7)e^{2x}$$
+
+## 2. feladat
+
+$$f(x) = \frac{\log(x^2 + 1)}{x^3 - 2x}$$
+
+## 3. feladat
+
+$$f(x) = \sin^3(4x^2 - 1)$$
+
+## 4. feladat
+
+$$f(x) = \sqrt{x^2 + \cos(3x)}$$
+
+## 5. feladat
+
+$$f(x) = \frac{e^{\tan x}}{1 + \sin^2 x}$$
+
+## 6. feladat
+
+$$f(x) = \log\left(\frac{1 - \cos x}{1 + \cos x}\right)$$
+
+## 7. feladat
+
+$$f(x) = x^2 \arcsin(2x) + \frac{1}{2}\sqrt{1 - 4x^2}$$
+
+## 8. feladat
+
+$$f(x) = \arctan\left(\frac{e^x - e^{-x}}{2}\right)$$
+
+## 9. feladat
+
+$$f(x) = \log_3\left(\sqrt{\frac{x - 1}{x + 1}}\right)$$
+
+## 10. feladat
+
+$$f(x) = e^{-x^2}\cos(5x) + \frac{x}{\log x}$$
+
+## 11. feladat
+
+$$f(x) = \arccos\left(\frac{1 - x^2}{1 + x^2}\right) \qquad (x > 0)$$
+
+## 12. feladat
+
+$$f(x) = (\sin x)^{\cos x} \qquad (x \in (0, \pi))$$
+
+## 13. feladat
+
+$$f(x) = \log\left(x + \sqrt{x^2 + a^2}\right) \qquad (a \in \mathbb{R} \setminus \{0\})$$
+
+## 14. feladat
+
+$$f(x) = \frac{\arcsin(\log x)}{\sqrt{x}}$$
+
+## 15. feladat
+
+$$f(x) = \operatorname{arccot}\left(\sqrt{\frac{1 - \cos x}{1 + \cos x}}\right) \qquad (x \in (0, \pi))$$
+
+## 16. feladat
+
+$$f(x) = x^{\log x} \qquad (x > 0)$$
+
+## 17. feladat
+
+$$f(x) = \frac{2^{\sin x} \cdot \cos(2x)}{\tan x}$$
+
+## 18. feladat
+
+$$f(x) = \log(\log(\tan x)) \qquad \left(x \in \left(\frac{\pi}{4}, \frac{\pi}{2}\right)\right)$$
+
+## 19. feladat
+
+Legyen $y = g(x) = x^5 + 2x^3 + x - 4$. Határozza meg a $g^{-1}$ inverz függvény deriváltját az $y_0 = 0$ pontban, azaz számítsa ki a $(g^{-1})'(0)$ értéket! *(Az $x_0$ pontot, melyre $g(x_0) = y_0$, próbálgatással lehet meghatározni.)*
+
+## 20. feladat
+
+Legyen $y = h(x) = e^{2x} + 3x + \sin x$. Határozza meg a $h^{-1}$ inverz függvény deriváltját az $y_0 = 1$ pontban, azaz számítsa ki a $(h^{-1})'(1)$ értéket! *(Az $x_0$ pontot, melyre $h(x_0) = y_0$, próbálgatással lehet meghatározni.)*
+
+# Analízis 1 – Gyakorló feladatsor: Teljes függvényvizsgálat
+
+### I. Mat. BSc Analízis 1 · Gyakorló feladatsor
+
+Végezze el az alábbi függvények teljes vizsgálatát (értelmezési tartomány, tengelymetszetek, paritás, határértékek és aszimptoták, első derivált szerinti vizsgálat, második derivált szerinti vizsgálat, összefoglaló táblázat és grafikon)!
+
+## 1. feladat
+
+$$f(x) = x^3 - 3x^2 + 4$$
+
+## 2. feladat
+
+$$f(x) = x^4 - 2x^2 + 1$$
+
+## 3. feladat
+
+$$f(x) = \frac{x^2 - 1}{x^2 + 1}$$
+
+## 4. feladat
+
+$$f(x) = \frac{x^2}{x - 1}$$
+
+## 5. feladat
+
+$$f(x) = xe^{-x}$$
+
+## 6. feladat
+
+$$f(x) = \frac{\ln x}{x}$$
+
+## 7. feladat
+
+$$f(x) = x - \ln(x^2 + 1)$$
+
+## 8. feladat
+
+$$f(x) = \frac{x^3}{x^2 - 1}$$
+
+# Analízis 1 – Gyakorló feladatsor: Szélsőérték-számítási feladatok
+
+### I. Mat. BSc Analízis 1 · Gyakorló feladatsor
+
+## 1. feladat
+
+Egy nyitott tetejű, négyzet alapú hasáb alakú dobozt készítünk, amelynek térfogata $32\text{ dm}^3$. Mekkora legyen az alapéle és a magassága, hogy a felhasznált anyagmennyiség (a felszín) a lehető legkisebb legyen?
+
+## 2. feladat
+
+Egy $0{,}5$ literes ($500\text{ cm}^3$) térfogatú, zárt, forgáshenger alakú konzervdobozt tervezünk. Mekkora legyen az alapkör sugara és a henger magassága, hogy a gyártáshoz a lehető legkevesebb fémlemezre legyen szükség?
+
+## 3. feladat
+
+Egy egyenes folyó egyik partján áll egy erőmű ($A$ pont), a folyó túlpartján, folyásirányban $10\text{ km}$-rel lejjebb pedig egy gyár ($B$ pont). A folyó szélessége mindenhol $2\text{ km}$. Elektromos kábelt kell fektetni az erőműtől a gyárig. A víz alatti kábel fektetése $5$ millió Ft/km, a szárazföldi kábel fektetése pedig $3$ millió Ft/km költséggel jár. A folyó partján milyen távolságra az erőművel szemközti ponttól érjen partot a kábel, hogy a teljes kivitelezési költség a legkisebb legyen?
+
+## 4. feladat
+
+Egy $R$ sugarú gömbbe egyenes körkúpot írunk úgy, hogy a kúp csúcsa és az alapkörének kerülete is a gömb felszínére illeszkedik. Mekkora legyen a kúp magassága $R$ függvényében, hogy a kúp térfogata a lehető legnagyobb legyen?
+
+## 5. feladat
+
+Egy $a$ és $b$ befogójú derékszögű háromszögbe (ahol $a = 6\text{ cm}$, $b = 8\text{ cm}$) téglalapot írunk úgy, hogy a téglalap két oldala a befogókra illeszkedik, egy csúcsa pedig az átfogón van. Mekkora a beírt téglalap maximális területe, és mennyi ekkor az átlójának a hossza?
+
+## 6. feladat
+
+Egy autópályán a forgalom sűrűsége (jármű/km) és az autók átlagsebessége ($v$, km/h) között a következő összefüggés áll fenn:
+$$s(v) = \frac{1200}{v + 0{,}02v^2 + 18} \qquad (\text{ahol } v > 0).$$
+Mekkora átlagsebességnél a legnagyobb az autópálya áteresztőképessége (azaz az óránként áthaladó járművek száma, $Q(v) = v \cdot s(v)$)?
+
+## 7. feladat
+
+Egy $1\text{ m}$ széles és $2\text{ m}$ magas ablakot egy téglalapból és a tetejére illesztett félkörből álló (ún. Norman-ablak) formára alakítunk át úgy, hogy az ablak teljes kerülete pontosan $K = 8$ méter maradjon. Mekkora legyen a félkör sugara, hogy az ablakon bejutó fény mennyisége (azaz az ablak összterülete) maximális legyen?
+
+## 8. feladat
+
+Egy megfigyelő egy $h = 3$ méter magas talapzaton álló, $m = 5$ méter magas szobrot néz. A megfigyelő szeme pontosan a talapzat aljával van egy magasságban. Milyen távol álljon meg a talapzat függőleges tengelyétől, hogy a szobor látószöge ($\alpha$) a lehető legnagyobb legyen?
+
 # Analízis 1 – 1. ZH (2022 normál)
 
 ### B. Sc. I. Mat. Haladó analízis · Első ZH · Normál verzió (2022/23-I. félév)

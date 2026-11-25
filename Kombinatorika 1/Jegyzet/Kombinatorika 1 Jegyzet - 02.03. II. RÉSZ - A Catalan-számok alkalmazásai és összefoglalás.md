@@ -60,9 +60,16 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
 **Megjegyzés.** Ez a rekurzió nem lineáris, és nem is véges rendű: $C_n$ kiszámolásához az **összes** korábbi tagra szükség van. A 12. szakasz módszere tehát nem alkalmazható rá — a zárt képlethez itt a bijektív (tükrözéses) gondolatmenet vezetett el. A rekurzió viszont arra kiválóan alkalmas, hogy más feladatokról megmutassuk, hogy ugyancsak a Catalan-számokra vezetnek.
 
 ::: kiegeszites
-**Kiegészítés — Lemma.** *Ha a $(t_n)_{n\ge0}$ sorozatra $t_0 = 1$ és minden $n \ge 1$-re $t_n = \sum_{k=1}^{n} t_{k-1}t_{n-k}$, akkor $t_n = C_n$ minden $n$-re.*
+**Kiegészítés — Lemma, pozitív részletösszegek és a Catalan-számok eltoltjai.**
 
-*Bizonyítás.* Erős teljes indukció: $t_0 = 1 = C_0$, és ha $t_m = C_m$ minden $m < n$-re, akkor a jobb oldalon csak $n$-nél kisebb indexek szerepelnek, így $t_n = \sum_{k=1}^{n} C_{k-1}C_{n-k} = C_n$. $\blacksquare$
+1. *Pozitív köztes részletösszegek.* Legyen $n \ge 1$. Azoknak az $a_1, \dots, a_{2n} \in \{+1, -1\}$ sorozatoknak a száma, amelyekre $a_1 + \dots + a_{2n} = 0$, és minden köztes részletösszeg **szigorúan pozitív** ($s_j := a_1 + \dots + a_j > 0$ minden $j = 1, \dots, 2n-1$-re), éppen $C_{n-1}$. Valóban, ekkor szükségszerűen $a_1 = +1$ (különben $s_1 \le 0$) és $a_{2n} = -1$ (különben $s_{2n-1} \le 0$); ezeket elhagyva a maradék $2(n-1)$ hosszú sorozat minden részletösszege eggyel csökken, így pontosan egy nemnegatív részletösszegű sorozatot kapunk (ez éppen a fenti bizonyításban szereplő $C_{k-1}$ szimbolikus alakja).
+2. *Alaplemma ($C_n$ felismerése).* Ha a $(t_n)_{n\ge0}$ sorozatra $t_0 = 1$ és minden $n \ge 1$-re $t_n = \sum_{k=1}^{n} t_{k-1}t_{n-k}$, akkor erős teljes indukcióval $t_n = C_n$ minden $n \ge 0$-ra. (A Catalan-rekurzióban minden tag indexének összege $(k-1) + (n-k) = n - 1$.)
+3. *Egy indexszel eltolva ($A_n := C_{n-1}$, $n \ge 1$).* A $C_{n-1}$-es rekurzióban $k = i - 1$ helyettesítéssel:
+   $$A_1 = 1, \qquad A_n = \sum_{i=1}^{n-1} A_i A_{n-i} \qquad (n \ge 2).$$
+   Itt minden tagban az indexek összege $n$. Ha bármely $(X_n)_{n \ge 1}$ sorozat teljesíti ugyanezt a kezdőértéket ($X_1 = 1$) és rekurziót ($X_n = \sum_{i=1}^{n-1} X_i X_{n-i}$), akkor indukcióval $X_n = C_{n-1}$ minden $n \ge 1$-re (például az $n$ tényezős szorzat zárójelezéseinek száma).
+4. *Két indexszel eltolva ($B_n := C_{n-2}$, $n \ge 2$).* A $C_{n-2}$-es rekurzióban $j = k + 2$ helyettesítéssel:
+   $$B_2 = 1, \qquad B_n = \sum_{j=2}^{n-1} B_j B_{n+1-j} \qquad (n \ge 3).$$
+   Itt minden tagban az indexek összege $n + 1$. Ha bármely $(Y_n)_{n \ge 2}$ sorozat teljesíti $Y_2 = 1$-et és ugyanezt a rekurziót ($Y_n = \sum_{j=2}^{n-1} Y_j Y_{n+1-j}$), akkor indukcióval $Y_n = C_{n-2}$ minden $n \ge 2$-re (például a konvex $n$-szög háromszögeléseinek száma). $\blacksquare$
 :::
 
 ### Alkalmazások
@@ -316,7 +323,7 @@ Ezzel a leszámlálás fejezet végére értünk.
 - **Fibonacci-számok:** $F_n = F_{n-1} + F_{n-2}$, $F_0 = 0$, $F_1 = 1$; $\sum_{i=1}^k F_i = F_{k+2} - 1$, $\sum_{i=1}^{k} F_{2i-1} = F_{2k}$, $\sum_{i=1}^k F_i^2 = F_kF_{k+1}$, $F_{n+1}F_{n-1} - F_n^2 = (-1)^n$; Binet-képlet: $F_n = \frac{1}{\sqrt5}\big(\Phi^n - \Psi^n\big)$.
 - **Lineáris rekurziók:** az $a_n = c_1a_{n-1} + c_2a_{n-2}$ megoldásai kétdimenziós alteret alkotnak. Karakterisztikus egyenlet: $q^2 - c_1q - c_2 = 0$. Két különböző gyök esetén $a_n = \alpha q_1^n + \beta q_2^n$, kétszeres gyök esetén $a_n = \alpha q^n + \beta nq^n$; $\alpha$ és $\beta$ a kezdeti feltételekből adódik. $k$-adrendű rekurziónál egy $m$-szeres $q$ gyök a $q^n, nq^n, \dots, n^{m-1}q^n$ megoldásokat adja. Visszafelé: a megoldás alakjából a gyököket, abból a rekurziót kapjuk (pl. $n^3$ csak negyedrendű rekurziónak lehet megoldása).
 - **Rekurzív gondolkodás:** nevezzük el a mennyiséget, számoljunk kis eseteket, keressünk rekurziót esetszétválasztással (lépcsőmászás: $L_n = F_{n+1}$; szomszédos $1$-esek nélküli $0$–$1$ sorozatok: $F_{n+2}$; dominólefedések: $F_{n+1}$).
-- **Rácsutak:** $(0,0) \to (a,b)$: $\binom{a+b}{a}$. **Tükrözési elv:** az első érintés utáni rész tükrözése bijekció.
-- **Catalan-számok:** $C_n = \binom{2n}{n} - \binom{2n}{n-1} = \frac{1}{n+1}\binom{2n}{n}$, rekurzió: $C_n = \sum_{k=1}^n C_{k-1}C_{n-k}$. Ezek számolják a pénztár-feladat jó sorrendjeit, a helyes zárójelezéseket, a konvex $(n+2)$-szög háromszögeléseit és az $n+1$ tényezős szorzat zárójelezéseit.
+- **Rácsutak és ferde utak:** jobbra/felfelé $(0,0) \to (a,b)$: $\binom{a+b}{a}$; ferde utak $(1,1)$ és $(1,-1)$ lépésekkel $(0,0) \to (a,b)$-be ($a+b$ páros, $|b|\le a$): $\binom{a}{(a+b)/2}$. **Tükrözési elv:** az első (vagy utolsó) érintés utáni rész tükrözése a tiltott egyenesre bijekció; recept: séta $\to$ tiltott egyenes $\to$ összes mínusz tükörképbe vezető út.
+- **Catalan-számok:** $C_n = \binom{2n}{n} - \binom{2n}{n-1} = \frac{1}{n+1}\binom{2n}{n}$ ($C_0=1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862,\dots$), rekurzió: $C_n = \sum_{k=1}^n C_{k-1}C_{n-k}$ (indexösszeg $n-1$). Eltoltak: $A_n = C_{n-1}$ ($A_1=1$, $A_n = \sum_{i=1}^{n-1} A_i A_{n-i}$, indexösszeg $n$) és $B_n = C_{n-2}$ ($B_2=1$, $B_n = \sum_{j=2}^{n-1} B_j B_{n+1-j}$, indexösszeg $n+1$). Ezek számolják a pénztár-feladat jó sorrendjeit, a helyes zárójelezéseket, a konvex $n$-szög háromszögeléseit ($C_{n-2}$) és az $n$ tényezős szorzat zárójelezéseit ($C_{n-1}$).
 
 ---
