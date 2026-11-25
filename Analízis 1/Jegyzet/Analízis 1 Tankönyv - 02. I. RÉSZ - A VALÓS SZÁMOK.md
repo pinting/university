@@ -12,15 +12,17 @@ Az analízis — hagyományos nevén **differenciál- és integrálszámítás**
 
 Hogyan számíthatjuk ki egy egységsugarú kör területét? A sokszögek területét ki tudjuk számolni, hiszen háromszögekre bonthatók. Írjunk tehát a körbe szabályos $n$-szöget! Ez $n$ darab egybevágó egyenlő szárú háromszögre bontható, amelyek szára $1$ (a kör sugara), szárszöge pedig $\frac{2\pi}{n}$ (radiánban). Egy ilyen háromszög területe $\frac{1}{2}\cdot 1 \cdot 1 \cdot \sin\frac{2\pi}{n}$, így a sokszög területe
 $$T_n = \frac{n}{2}\sin\frac{2\pi}{n}.$$
-Néhány érték: $T_4 = 2$, $T_6 \approx 2{,}598$, $T_{12} = 3$, $T_{100} \approx 3{,}1395$, $T_{1000} \approx 3{,}14157$. Ahogy $n$ nő, a sokszög egyre jobban kitölti a kört, és a $T_n$ számok egyre közelebb kerülnek egy bizonyos számhoz, amelyet $\pi$-vel jelölünk.
+Néhány érték: $T_4 = 2$, $T_6 \approx 2{,}598$, $T_{12} = 3$, $T_{100} \approx 3{,}1395$, $T_{1000} \approx 3{,}14157$. Ahogy $n$ nő, a sokszög egyre jobban kitölti a kört — a közelítés *végtelenül finomodik* —, és a $T_n$ számok egyre közelebb kerülnek egy bizonyos számhoz, amelyet $\pi$-vel jelölünk.
 
 De mit jelent pontosan az, hogy a $T_n$ számok „egyre közelebb kerülnek” $\pi$-hez? Egyik $T_n$ sem egyenlő $\pi$-vel, és nincs „utolsó” sokszög. Archimédész (i. e. 250 körül) ezt a módszert **kimerítésnek** nevezte, és lényegében helyesen használta, de pontos fogalmi alapokat nem tudott neki adni. Ezt az alapot a 18. szakaszban rakjuk le, a sorozat határértékének definíciójával. (A 70. szakaszban pedig azt is be fogjuk látni, hogy $T_n \to \pi$ valóban teljesül: ehhez a $\frac{\sin x}{x} \to 1$ határértékre lesz szükség.)
 
 ### A pillanatnyi sebesség problémája
 
-Ejtsünk le egy követ. A fizika szerint (a légellenállást elhanyagolva, és a nehézségi gyorsulást $10\ \mathrm{m/s^2}$-re kerekítve) $t$ másodperc alatt
+Általánosan: ha egy test $t$ időpillanatig megtett útja $s(t)$, akkor a $t_0$ és $t$ közötti időintervallumban az **átlagsebesség**
+$$\frac{\Delta s}{\Delta t} = \frac{s(t) - s(t_0)}{t - t_0},$$
+a *pillanatnyi* sebesség pedig ennek a hányadosnak a határértéke $t \to t_0$ esetén (Leibniz jelölésével $\frac{ds}{dt}$). Nézzük ezt egy konkrét példán! Ejtsünk le egy követ. A fizika szerint (a légellenállást elhanyagolva, és a nehézségi gyorsulást $10\ \mathrm{m/s^2}$-re kerekítve) $t$ másodperc alatt
 $$s(t) = 5t^2$$
-métert esik. Mekkora a sebessége pontosan az $1$. másodpercben?
+métert esik. Mekkora a sebessége pontosan a $t = 1$ időpillanatban (az $1$. másodperc végén)?
 
 Az **átlagsebességet** ki tudjuk számolni: a $[1, 1+h]$ időintervallumban a megtett út $s(1+h) - s(1)$, az eltelt idő $h$, tehát az átlagsebesség
 $$\frac{s(1+h) - s(1)}{h} = \frac{5(1+h)^2 - 5}{h} = \frac{5 + 10h + 5h^2 - 5}{h} = 10 + 5h.$$
@@ -36,7 +38,7 @@ Mindkét problémához két alapfogalomra lesz szükségünk: a **határértékr
 
 A gondolat csírái a görögöknél jelennek meg (Archimédész kimerítéses módszere), de a tényleges kalkulus a XVII. században születik meg. Isaac Newton az 1665-ös pestisjárvány idején dolgozta ki alapgondolatait, amikor a Cambridge-i Egyetemet bezárták, és ő hazaköltözött; ugyanebben az időszakban, tőle függetlenül Gottfried Wilhelm Leibniz is eljutott a differenciál- és integrálszámításhoz. A két felfedezés prioritási vitája évtizedekre megmérgezte az angol és a kontinentális matematika viszonyát. (A mai jelöléseink, például a $\frac{dy}{dx}$, nagyrészt Leibniztől származnak.)
 
-A kalkulust a XVIII. században rendkívül sikeresen alkalmazták — de az alapjai bizonytalanok maradtak. Mit jelent egy „végtelenül kicsiny” mennyiség? Egyszerre nulla is, meg nem is? A **szilárd alapokat** csak a XIX. században fektették le: Augustin-Louis Cauchy az $\varepsilon$–$\delta$ típusú definíciókkal, Karl Weierstrass a teljes „aritmetizálással”, Richard Dedekind pedig a valós számok megkonstruálásával. Ez a könyv ezt a XIX. századi, szigorú utat követi.
+A kalkulust a XVIII. században rendkívül sikeresen alkalmazták — de az alapjai bizonytalanok maradtak. Mit jelent egy „végtelenül kicsiny” mennyiség? Egyszerre nulla is, meg nem is? A **szilárd alapokat** csak a XIX. században (és a halmazelméleti alapokkal a XX. század elején) fektették le: Augustin-Louis Cauchy az $\varepsilon$–$\delta$ típusú definíciókkal, Karl Weierstrass a teljes „aritmetizálással”, Richard Dedekind pedig a valós számok szeletekkel történő megkonstruálásával. Ez a könyv ezt a szigorú utat követi.
 
 ## 2. Számhalmazok és a √2 irracionalitása
 
@@ -70,7 +72,7 @@ A bal oldal páros, tehát $p^2$ páros. Ebből következik, hogy $p$ is páros 
 $$2q^2 = 4k^2 \implies q^2 = 2k^2,$$
 tehát $q^2$ is páros, és ugyanígy $q$ is páros. Ez ellentmond annak, hogy $p$ és $q$ nem mindketten párosak. $\blacksquare$
 
-*Második bizonyítás (a prímfelbontás egyértelműségével).* Ismét induljunk a $2q^2 = p^2$ egyenlőségből, de most ne tegyük fel, hogy a tört egyszerűsített. Vizsgáljuk meg, hányszor szerepel a $2$-es prímtényező a két oldal prímfelbontásában. A jobb oldalon $p^2$ áll; ha $p$-ben a $2$ kitevője $a$, akkor $p^2$-ben $2a$, ami **páros**. A bal oldalon, ha $q$-ban a $2$ kitevője $b$, akkor $2q^2$-ben $2b + 1$, ami **páratlan**. A számelmélet alaptétele szerint a prímfelbontás egyértelmű, tehát a két kitevőnek meg kellene egyeznie — páros szám azonban nem lehet egyenlő páratlannal. Ellentmondás. $\blacksquare$
+*Második bizonyítás (a prímfelbontás egyértelműségével).* Ismét induljunk a $2q^2 = p^2$ egyenlőségből (mivel $\sqrt{2} > 0$, feltehetjük, hogy $p, q \in \mathbb{N}$ pozitív egészek), de most ne tegyük fel, hogy a tört egyszerűsített. Vizsgáljuk meg, hányszor szerepel a $2$-es prímtényező a két oldal prímfelbontásában. A jobb oldalon $p^2$ áll; ha $p$-ben a $2$ kitevője $a$, akkor $p^2$-ben $2a$, ami **páros**. A bal oldalon, ha $q$-ban a $2$ kitevője $b$, akkor $2q^2$-ben $2b + 1$, ami **páratlan**. A számelmélet alaptétele szerint a prímfelbontás egyértelmű, tehát a két kitevőnek meg kellene egyeznie — páros szám azonban nem lehet egyenlő páratlannal. Ellentmondás. $\blacksquare$
 
 A második bizonyítás előnye, hogy azonnal általánosítható: ugyanígy látható be, hogy ha $n$ pozitív egész, de nem négyzetszám, akkor $\sqrt{n}$ irracionális (lásd az 1. feladatot a rész végén).
 
@@ -98,9 +100,9 @@ Ezekből levezethető minden szokásos algebrai azonosság (például $0 \cdot a
 > **A rendezési axiómák.**
 >
 > - **$R_1$ (trichotómia).** Bármely $a, b \in \mathbb{R}$ esetén az $a < b$, $a = b$, $b < a$ állítások közül **pontosan egy** teljesül.
-> - **$R_2$ (tranzitivitás).** Ha $a < b$ és $b < c$, akkor $a < c$.
-> - **$R_3$ (összeadással való összeférhetőség).** Ha $a < b$, akkor minden $c$-re $a + c < b + c$.
-> - **$R_4$ (szorzással való összeférhetőség).** Ha $a < b$ és $c > 0$, akkor $ac < bc$.
+> - **$R_2$ (tranzitivitás).** Bármely $a, b, c \in \mathbb{R}$ esetén, ha $a < b$ és $b < c$, akkor $a < c$.
+> - **$R_3$ (összeadással való összeférhetőség).** Bármely $a, b, c \in \mathbb{R}$ esetén, ha $a < b$, akkor $a + c < b + c$.
+> - **$R_4$ (szorzással való összeférhetőség).** Bármely $a, b \in \mathbb{R}$ és bármely $c > 0$ esetén, ha $a < b$, akkor $ac < bc$.
 
 Ezek a szabályok annyira természetesek, hogy elsőre fölöslegesnek tűnhet kimondani őket. A tanulság éppen az, hogy **minden** egyenlőtlenségekre vonatkozó számolási szabály, amit iskolában tanultunk, ebből a négy axiómából (és a testaxiómákból) levezethető. Nézzünk néhányat — ezek a levezetések egyben jó gyakorlatot nyújtanak az axiomatikus gondolkodásban.
 
@@ -159,7 +161,7 @@ kettős egyenlőtlenséggel. Mindhárom részhez $1$-et adva $-4 < 2x < 6$, majd
 
 Most következik az analízis talán leggyakrabban használt egyenlőtlensége.
 
-> **Tétel (háromszög-egyenlőtlenség).** Minden $a, b \in \mathbb{R}$ esetén
+> **Tétel (háromszög-egyenlőtlenség, röviden $\Delta$-egyenlőtlenség).** Minden $a, b \in \mathbb{R}$ esetén
 > $$|a + b| \le |a| + |b|.$$
 
 **Miért ez a neve?** Síkvektorokra az $|\underline{a} + \underline{b}| \le |\underline{a}| + |\underline{b}|$ egyenlőtlenség azt fejezi ki, hogy egy háromszögben bármely oldal legfeljebb akkora, mint a másik kettő összege. A valós számegyenes ennek egydimenziós esete.
@@ -214,9 +216,9 @@ Legyen $A_n$ ez az állítás.
 $$1 + \dots + n + (n+1) = \frac{n(n+1)}{2} + (n + 1) = \frac{n(n+1) + 2(n+1)}{2} = \frac{(n+1)(n+2)}{2},$$
 ami éppen $A_{n+1}$. A TIND elve szerint az állítás minden $n$-re igaz. $\blacksquare$
 
-**Az indukció nem mindig $1$-től indul.** Ha a kezdőlépést $n_0$-ra igazoljuk, az indukciós lépést pedig minden $n \ge n_0$-ra, akkor az állítás minden $n \ge n_0$-ra igaz. Példa: $2^n \ge n^2$ igaz $n = 1, 2$-re ($2 \ge 1$, $4 \ge 4$), hamis $n = 3$-ra ($8 < 9$), de igaz minden $n \ge 4$-re. Ez utóbbit indukcióval látjuk be: $n = 4$-re $16 \ge 16$. Ha pedig $n \ge 4$ és $2^n \ge n^2$, akkor
+**Az indukció nem mindig $1$-től indul.** Ha a kezdőlépést $n_0$-ra igazoljuk, az indukciós lépést pedig minden $n \ge n_0$-ra, akkor az állítás minden $n \ge n_0$-ra igaz. Példa: $2^n \ge n^2$ igaz $n = 1, 2$-re ($2 \ge 1$, $4 \ge 4$), hamis $n = 3$-ra ($8 < 9$), de igaz minden $n \ge 4$-re (sőt minden $n \ge 5$-re szigorúan $2^n > n^2$ teljesül). A $2^n \ge n^2$ ($n \ge 4$) állítást indukcióval látjuk be: $n = 4$-re $16 \ge 16$. Ha pedig $n \ge 4$ és $2^n \ge n^2$, akkor
 $$2^{n+1} = 2\cdot 2^n \ge 2n^2 = n^2 + n^2 \ge n^2 + 2n + 1 = (n+1)^2,$$
-ahol az utolsó előtti lépésben azt használtuk, hogy $n \ge 3$ esetén $n^2 \ge 3n = 2n + n \ge 2n + 1$.
+ahol az utolsó előtti lépésben azt használtuk, hogy $n \ge 3$ esetén $n^2 \ge 3n = 2n + n \ge 2n + 1$. (Ugyanebből az indukcióból $n_0 = 5$-től indulva a szigorú $2^n > n^2$ egyenlőtlenség is kijön, hiszen $32 > 25$.)
 
 Most már kimondhatjuk és bizonyíthatjuk a háromszög-egyenlőtlenség általános alakját.
 
@@ -249,8 +251,9 @@ A számegyenes leggyakrabban használt részhalmazai az intervallumok.
 > $$[a, b] = \{x \in \mathbb{R} : a \le x \le b\} \quad \text{(zárt intervallum)},$$
 > $$(a, b) = \{x \in \mathbb{R} : a < x < b\} \quad \text{(nyílt intervallum)},$$
 > $$[a, b) = \{x \in \mathbb{R} : a \le x < b\}, \qquad (a, b] = \{x \in \mathbb{R} : a < x \le b\} \quad \text{(félig zárt intervallumok)}.$$
-> Végtelen hosszú intervallumok (félegyenesek):
-> $$[a, +\infty) = \{x : x \ge a\}, \quad (a, +\infty) = \{x : x > a\}, \quad (-\infty, a] = \{x : x \le a\}, \quad (-\infty, a) = \{x : x < a\},$$
+> Végtelen hosszúságú intervallumok (félegyenesek):
+> $$[a, +\infty) = \{x \in \mathbb{R} : x \ge a\}, \qquad (-\infty, a] = \{x \in \mathbb{R} : x \le a\} \quad \text{(zárt félegyenesek)},$$
+> $$(a, +\infty) = \{x \in \mathbb{R} : x > a\}, \qquad (-\infty, a) = \{x \in \mathbb{R} : x < a\} \quad \text{(nyílt félegyenesek)},$$
 > és $(-\infty, +\infty) = \mathbb{R}$.
 
 A szögletes zárójel azt jelzi, hogy a végpont az intervallumhoz tartozik, a kerek, hogy nem. A $\pm\infty$ mellé mindig kerek zárójel kerül, hiszen ezek nem valós számok, tehát nem lehetnek az intervallum elemei. Az $[a, b]$ intervallumot, ha $a, b \in \mathbb{R}$, **korlátos zárt intervallumnak** nevezzük; ezek a félév során különleges szerepet kapnak (54. szakasz).
@@ -278,7 +281,7 @@ Figyeljük meg, hogy a felső korlát **nem egyértelmű**: ha $K$ felső korlá
 
 > **Állítás.** $H$ pontosan akkor korlátos, ha létezik olyan $K \in \mathbb{R}$, hogy minden $h \in H$ esetén $|h| \le K$.
 
-*Bizonyítás.* Ha $|h| \le K$ minden $h$-ra, akkor a 4. szakasz szerint $-K \le h \le K$, tehát $-K$ alsó, $K$ felső korlát. Megfordítva, ha $m$ alsó és $M$ felső korlát, azaz $m \le h \le M$ minden $h \in H$-ra, akkor legyen $K = \max\{|m|, |M|\}$. Ekkor
+*Bizonyítás.* Ha $|h| \le K$ minden $h \in H$-ra, akkor $-K \le h \le K$ (a 4. szakasz szerint $K > 0$-ra, illetve $K = 0$-ra triviálisan $h = 0$, $K < 0$-ra pedig $H = \emptyset$ esetén üresen teljesül), tehát $-K$ alsó, $K$ felső korlát. Megfordítva, ha $m$ alsó és $M$ felső korlát, azaz $m \le h \le M$ minden $h \in H$-ra, akkor legyen $K = \max\{|m|, |M|\}$. Ekkor
 $$-K \le -|m| \le m \le h \le M \le |M| \le K,$$
 tehát $|h| \le K$. $\blacksquare$
 
@@ -292,36 +295,36 @@ Ha a maximum létezik, akkor egyértelmű: ha $M_1$ és $M_2$ is maximum volna, 
 
 **Példák.**
 
-- $H = (0, 1]$: $\max H = 1$, hiszen $1 \in H$ és minden elem legfeljebb $1$. Ugyanakkor $\min H$ **nem létezik**: ha $h \in (0, 1]$ tetszőleges, akkor $\frac{h}{2}$ is a halmazban van, és kisebb $h$-nál, tehát $h$ nem lehet a legkisebb elem.
+- $H = (0, 1]$: $\max H = 1$, hiszen $1 \in H$ és minden elem legfeljebb $1$. Ugyanakkor $\min H$ **nem létezik** (röviden: N. L.): ha $h \in (0, 1]$ tetszőleges, akkor $\frac{h}{2}$ is a halmazban van, és kisebb $h$-nál, tehát $h$ nem lehet a legkisebb elem.
 - $H = (0, 1)$: sem maximuma, sem minimuma nincs, jóllehet korlátos.
 - $H = \left\{ 1, \frac{1}{2}, \frac{1}{3}, \dots \right\} = \left\{ \frac{1}{n} : n \in \mathbb{N} \right\}$: $\max H = 1$, minimuma nincs (hiszen $\frac{1}{n+1} < \frac{1}{n}$).
 - Minden nem üres **véges** halmaznak van maximuma és minimuma (ez indukcióval könnyen belátható az elemszám szerint).
 
 **Egy fontos megfigyelés.** Ha $\max H$ létezik, akkor felső korlátja $H$-nak. Sőt, ha $b$ tetszőleges felső korlátja $H$-nak, akkor $\max H \le b$, hiszen $\max H \in H$, és $b$ minden $H$-beli elemnél nagyobb vagy egyenlő. Vagyis
-$$\max H \text{ a } H \text{ legkisebb felső korlátja}.$$
+$$\max H \text{ a } H \text{ legkisebb felső korlátja (l.k.f.k.)}.$$
 Ez a megfigyelés mutatja meg, hogyan érdemes általánosítani. A maximum gyakran nem létezik (lásd a $(0,1)$ példát), a **legkisebb felső korlát** azonban — mint mindjárt látni fogjuk — mindig létezik, ha a halmaz nem üres és felülről korlátos. Egy feltétellel: ha $\mathbb{R}$-ben dolgozunk, nem $\mathbb{Q}$-ban.
 
 ### A racionális számok hiányossága
 
 Vizsgáljuk meg a
-$$H = \{x \in \mathbb{Q} : x^2 < 2\}$$
-halmazt a racionális számok körében. Ez nem üres ($1 \in H$), és felülről korlátos: például $2$ felső korlát, hiszen ha $x > 2$, akkor $x^2 > 4 > 2$, tehát $x \notin H$. Azt állítjuk, hogy **$H$-nak nincs $\mathbb{Q}$-beli legkisebb felső korlátja.** Ehhez megmutatjuk, hogy bármely racionális felső korlát mellett van nála kisebb racionális felső korlát is.
+$$H_{\sqrt{2}} = \{x \in \mathbb{Q} : x^2 < 2\}$$
+halmazt a racionális számok körében. Ez nem üres ($1 \in H_{\sqrt{2}}$), és felülről korlátos: például $2$ felső korlát, hiszen ha $x > 2$, akkor $x^2 > 4 > 2$, tehát $x \notin H_{\sqrt{2}}$. Azt állítjuk, hogy **$H_{\sqrt{2}}$-nek nincs $\mathbb{Q}$-beli legkisebb felső korlátja.** Ehhez megmutatjuk, hogy bármely racionális felső korlát mellett van nála kisebb racionális felső korlát is.
 
 *1. lépés: ha $s > 0$ racionális és $s^2 < 2$, akkor $s$ nem felső korlát.* Keresünk egy kis pozitív racionális $h$-t úgy, hogy $(s + h)^2 < 2$ is teljesüljön. Legyen
 $$h = \min\left\{\frac{1}{2},\ \frac{2 - s^2}{2s + 1}\right\}.$$
 Ez pozitív racionális szám (hiszen $2 - s^2 > 0$). A minimumban szereplő $\frac{1}{2}$ csak azt biztosítja, hogy $h < 1$ legyen, és így $h^2 < h$. Ekkor
 $$(s + h)^2 = s^2 + 2sh + h^2 < s^2 + 2sh + h = s^2 + h(2s + 1) \le s^2 + (2 - s^2) = 2.$$
-Tehát $s + h \in H$ és $s + h > s$, vagyis $s$ valóban nem felső korlát.
+Tehát $s + h \in H_{\sqrt{2}}$ és $s + h > s$, vagyis $s$ valóban nem felső korlát.
 
-*2. lépés: ha $s$ racionális felső korlát, akkor $s^2 > 2$.* Mivel $1 \in H$, ezért $s \ge 1 > 0$. Az 1. lépés szerint $s^2 < 2$ nem lehet; $s^2 = 2$ pedig a 2. szakasz tétele szerint lehetetlen. Tehát $s^2 > 2$.
+*2. lépés: ha $s$ racionális felső korlát, akkor $s^2 > 2$.* Mivel $1 \in H_{\sqrt{2}}$, ezért $s \ge 1 > 0$. Az 1. lépés szerint $s^2 < 2$ nem lehet; $s^2 = 2$ pedig a 2. szakasz tétele szerint lehetetlen. Tehát $s^2 > 2$.
 
 *3. lépés: ha $s$ racionális felső korlát, akkor van nála kisebb racionális felső korlát.* Legyen
 $$t = s - \frac{s^2 - 2}{2s} = \frac{s^2 + 2}{2s}.$$
 Ez racionális, és $t < s$, mert $s^2 - 2 > 0$ és $2s > 0$. Továbbá
 $$t^2 - 2 = \frac{(s^2+2)^2 - 8s^2}{4s^2} = \frac{s^4 - 4s^2 + 4}{4s^2} = \frac{(s^2 - 2)^2}{4s^2} > 0,$$
-tehát $t^2 > 2$, és $t > 0$. Ha most $x \in H$, akkor $x^2 < 2 < t^2$, amiből $x < t$ (ha $x \ge t > 0$ volna, akkor $x^2 \ge t^2$ adódna). Tehát $t$ is felső korlát.
+tehát $t^2 > 2$, és $t > 0$. Ha most $x \in H_{\sqrt{2}}$, akkor $x^2 < 2 < t^2$, amiből $x < t$ (ha $x \ge t > 0$ volna, akkor $x^2 \ge t^2$ adódna). Tehát $t$ is felső korlát.
 
-Összefoglalva: a $\mathbb{Q}$-ban dolgozva a $H$ halmaz felső korlátjai között **nincs legkisebb**. Szemléletesen: a „legkisebb felső korlát” a $\sqrt{2}$ volna, de az nem racionális, így a $\mathbb{Q}$-ban egy lyuk tátong a helyén. (A 3. lépésben szereplő $s \mapsto \frac{s^2 + 2}{2s} = \frac{1}{2}\left(s + \frac{2}{s}\right)$ átalakítás egyébként a négyzetgyökvonás ősi babiloni módszere: $s = 2$-ből indulva $\frac{3}{2}$, $\frac{17}{12}$, $\frac{577}{408}, \dots$ adódik, amelyek rohamosan közelítik a $\sqrt{2} = 1{,}41421\dots$ értéket.)
+Összefoglalva: a $\mathbb{Q}$-ban dolgozva a $H_{\sqrt{2}}$ halmaz felső korlátjai között **nincs legkisebb**. Szemléletesen: a „legkisebb felső korlát” a $\sqrt{2}$ volna, de az nem racionális, így a $\mathbb{Q}$-ban egy lyuk tátong a helyén. (A 3. lépésben szereplő $s \mapsto \frac{s^2 + 2}{2s} = \frac{1}{2}\left(s + \frac{2}{s}\right)$ átalakítás egyébként a négyzetgyökvonás ősi babiloni módszere: $s = 2$-ből indulva $\frac{3}{2}$, $\frac{17}{12}$, $\frac{577}{408}, \dots$ adódik, amelyek rohamosan közelítik a $\sqrt{2} = 1{,}41421\dots$ értéket.)
 
 ## 8. A teljességi axióma: szuprémum és infimum
 
@@ -337,7 +340,7 @@ A szuprémum egyértelmű: ha $s_1$ és $s_2$ is legkisebb felső korlát volna,
 
 A szuprémumot a gyakorlatban rendszerint a következő jellemzés segítségével kezeljük.
 
-> **Tétel (a szuprémum $\varepsilon$-os jellemzése).** Legyen $H \neq \emptyset$ felülről korlátos, és $s \in \mathbb{R}$. Ekkor $s = \sup H$ pontosan akkor, ha
+> **Tétel (a szuprémum $\varepsilon$-os jellemzése).** Legyen $H \subset \mathbb{R}$, $H \neq \emptyset$ felülről korlátos, és $s \in \mathbb{R}$. Ekkor $s = \sup H$ pontosan akkor, ha
 >
 > 1. $s$ felső korlátja $H$-nak, azaz minden $h \in H$-ra $h \le s$; és
 > 2. minden $\varepsilon > 0$-hoz létezik olyan $h \in H$, amelyre $h > s - \varepsilon$.
@@ -412,7 +415,7 @@ Az $\frac{m}{n}$ racionális szám tehát $a$ és $b$ közé esik.
 
 Az irracionális számhoz alkalmazzuk az előzőt az $\frac{a}{\sqrt{2}} < \frac{b}{\sqrt{2}}$ számokra (feltéve, hogy már tudjuk: $\sqrt{2}$ létezik, ezt az 54. szakaszban bizonyítjuk). Van köztük $q$ racionális szám, és feltehetjük, hogy $q \neq 0$ (ha a talált szám éppen $0$ volna, alkalmazzuk az eljárást a $\left(0, \frac{b}{\sqrt{2}}\right)$ intervallumra). Ekkor $a < q\sqrt{2} < b$, és $q\sqrt{2}$ irracionális, hiszen ha racionális volna, akkor $\sqrt{2} = \frac{q\sqrt{2}}{q}$ is az volna. $\blacksquare$
 
-A racionális és az irracionális számok tehát „összekeveredve”, mindenütt sűrűn helyezkednek el a számegyenesen. (Az 5. részben látni fogjuk, hogy mégis lényegesen több irracionális szám van, mint racionális!)
+A racionális és az irracionális számok tehát „összekeveredve”, mindenütt sűrűn helyezkednek el a számegyenesen. (Az V. részben látni fogjuk, hogy mégis lényegesen több irracionális szám van, mint racionális!)
 
 Most a teljességi axióma második nevezetes következménye.
 
@@ -447,7 +450,7 @@ azaz $c$ minden intervallumban benne van. $\blacksquare$
 
 **Az axiómarendszer rugalmassága.** Megmutatható, hogy a teljességi axióma **ekvivalens** az arkhimédészi és a Cantor-féle tulajdonság együttesével:
 $$\text{Teljességi axióma} \iff \big(\text{arkhimédészi tulajdonság} \wedge \text{Cantor-féle tulajdonság}\big).$$
-Az egyik irányt most láttuk. Ez azt jelenti, hogy a valós számok felépíthetők úgy is, hogy a szuprémum létezése helyett ezt a két tulajdonságot posztuláljuk — ugyanoda jutunk.
+Az egyik irányt most láttuk (a fordított irányt lásd a rész végén a 8. feladatban). Ez azt jelenti, hogy a valós számok felépíthetők úgy is, hogy a szuprémum létezése helyett ezt a két tulajdonságot posztuláljuk — ugyanoda jutunk.
 
 ---
 
@@ -469,15 +472,17 @@ Az egyik irányt most láttuk. Ez azt jelenti, hogy a valós számok felépíthe
 5. Legyen $A, B \subset \mathbb{R}$ nem üres, felülről korlátos, és $A + B = \{a + b : a \in A,\ b \in B\}$. Bizonyítsuk be, hogy $\sup(A + B) = \sup A + \sup B$.
 6. Mutassuk meg, hogy ha $A \subset B$ és $A \neq \emptyset$, $B$ felülről korlátos, akkor $\sup A \le \sup B$.
 7. Az $\left[0, \frac{1}{n}\right]$ intervallumok egymásba skatulyázottak. Mi a metszetük? És a $\left(0, \frac{1}{n}\right]$ intervallumoké? Miért nem mond ellent ez utóbbi a Cantor-féle tulajdonságnak?
+8. Bizonyítsuk be, hogy az arkhimédészi és a Cantor-féle tulajdonságból következik a teljességi axióma!
 
 ### Megoldási útmutatók
 
-1. Kövessük a 2. szakasz második bizonyítását: ha $\sqrt{n} = \frac{p}{q}$, akkor $nq^2 = p^2$. Mivel $n$ nem négyzetszám, van olyan $r$ prím, amelynek kitevője $n$ prímfelbontásában páratlan. Ekkor $r$ kitevője a bal oldalon páratlan, a jobb oldalon páros — ellentmondás.
+1. Kövessük a 2. szakasz második bizonyítását ($p, q \in \mathbb{N}$): ha $\sqrt{n} = \frac{p}{q}$, akkor $nq^2 = p^2$. Mivel $n$ nem négyzetszám, van olyan $r$ prím, amelynek kitevője $n$ prímfelbontásában páratlan. Ekkor $r$ kitevője a bal oldalon páratlan, a jobb oldalon páros — ellentmondás.
 2. a) $-2 \le x + 3 \le 2$, azaz $x \in [-5, -1]$. b) $x - 1 > 4$ vagy $x - 1 < -4$, azaz $x \in (-\infty, -3) \cup (5, +\infty)$. c) Geometriailag: $x$ közelebb van $1$-hez, mint $-1$-hez, azaz $x > 0$. Számolással: mindkét oldal nemnegatív, négyzetre emelve $x^2 - 2x + 1 < x^2 + 2x + 1$, azaz $x > 0$.
 3. Az indukciós lépésben: $\frac{n(n+1)(2n+1)}{6} + (n+1)^2 = \frac{(n+1)\big(n(2n+1) + 6(n+1)\big)}{6} = \frac{(n+1)(2n^2 + 7n + 6)}{6} = \frac{(n+1)(n+2)(2n+3)}{6}$.
 4. a) $\sup = \max = 1$; $\inf = 0$ (az arkhimédészi tulajdonság szerint minden $\varepsilon > 0$-ra van $\frac{1}{n} < \varepsilon$), minimum nincs. b) Az elemek: $0, \frac{3}{2}, -\frac{2}{3}, \frac{5}{4}, -\frac{4}{5}, \dots$. A páros indexű elemek $1 + \frac{1}{n} \le \frac{3}{2}$, a páratlan indexűek $-1 + \frac{1}{n} \le 0$, tehát $\sup = \max = \frac{3}{2}$. Minden elem nagyobb $-1$-nél, és a páratlan indexű elemek tetszőlegesen megközelítik a $-1$-et, így $\inf = -1$, minimum nincs. c) $\frac{n}{n+1} = 1 - \frac{1}{n+1}$; $\inf = \min = \frac{1}{2}$, $\sup = 1$, maximum nincs.
 5. $\sup A + \sup B$ felső korlátja $A + B$-nek, mert $a + b \le \sup A + \sup B$. Adott $\varepsilon > 0$-hoz van $a \in A$, $a > \sup A - \frac{\varepsilon}{2}$, és $b \in B$, $b > \sup B - \frac{\varepsilon}{2}$; ekkor $a + b > \sup A + \sup B - \varepsilon$. Az $\varepsilon$-os jellemzés szerint kész.
 6. $\sup B$ felső korlátja $B$-nek, tehát $A$-nak is; így a legkisebb felső korlát, $\sup A$, legfeljebb ekkora.
-7. Az első metszet $\{0\}$ (a $0$ mindegyikben benne van; ha $x > 0$, akkor elég nagy $n$-re $\frac{1}{n} < x$). A második metszet üres. Ez nem mond ellent a tételnek, mert a $\left(0, \frac{1}{n}\right]$ intervallumok nem zártak.
+7. Az első metszet $\{0\}$ (a $0$ mindegyikben benne van; ha $x < 0$, akkor már $x \notin [0, 1]$, ha pedig $x > 0$, akkor elég nagy $n$-re $\frac{1}{n} < x$). A második metszet üres. Ez nem mond ellent a tételnek, mert a $\left(0, \frac{1}{n}\right]$ intervallumok nem zártak.
+8. Legyen $H \subset \mathbb{R}$ nem üres és felülről korlátos. Válasszunk $h_0 \in H$-t és $b_1$ felső korlátot; ha $h_0$ felső korlát, akkor $h_0 = \max H = \sup H$, különben $a_1 = h_0 < b_1$ (ahol $a_1$ nem felső korlát, $b_1$ felső korlát). Felezzük az $[a_n, b_n]$ intervallumot a $c_n = \frac{a_n + b_n}{2}$ ponttal: ha $c_n$ felső korlátja $H$-nak, legyen $[a_{n+1}, b_{n+1}] = [a_n, c_n]$, különben $[c_n, b_n]$. Így egymásba skatulyázott $[a_n, b_n]$ zárt intervallumokat kapunk, amelyekre $a_n$ sosem felső korlát, $b_n$ mindig az, és $b_n - a_n = \frac{b_1 - a_1}{2^{n-1}}$. A Cantor-féle tulajdonság szerint van $s \in \bigcap_{n=1}^\infty [a_n, b_n]$. Az arkhimédészi tulajdonság (és $2^{n-1} \ge n$) miatt minden $\varepsilon > 0$-ra elég nagy $n$-re $b_n - a_n < \varepsilon$: ebből következik, hogy $s$ felső korlát (különben ha $h > s$, akkor $\varepsilon = h - s$-hez $b_n < s + \varepsilon = h$ volna, ellentmondás), és minden $K < s$-re van $a_n > K$, tehát $K$ nem felső korlát. Így $s = \sup H$.
 
 ---

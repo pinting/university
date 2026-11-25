@@ -67,7 +67,7 @@ Figyeljük meg, hogy a kvantorok mellett álló korlátozások ($\varepsilon > 0
 
 ## C. Halmazok
 
-A **halmaz** fogalmát nem definiáljuk, hanem alapfogalomnak tekintjük: dolgok összessége, amelyről minden dologról eldönthető, hogy beletartozik-e. Ha $x$ eleme az $A$ halmaznak, azt $x \in A$-val jelöljük, ha nem eleme, akkor $x \notin A$-val.
+A **halmaz** fogalmát nem definiáljuk, hanem alapfogalomnak tekintjük: dolgok összessége, amelynél minden dologról eldönthető, hogy beletartozik-e. Ha $x$ eleme az $A$ halmaznak, azt $x \in A$-val jelöljük, ha nem eleme, akkor $x \notin A$-val.
 
 Halmazt megadhatunk elemei felsorolásával, mint $\{1, 2, 3\}$, vagy egy tulajdonsággal, mint
 $$\{x \in \mathbb{R} : x^2 < 2\},$$
@@ -85,7 +85,7 @@ $$A \setminus B = \{x : x \in A \wedge x \notin B\} \quad (\text{különbség}).
 Végtelen sok halmaz uniója és metszete is értelmes: ha $A_1, A_2, \dots$ halmazok, akkor
 $$\bigcup_{n=1}^{\infty} A_n = \{x : \exists n,\ x \in A_n\}, \qquad \bigcap_{n=1}^{\infty} A_n = \{x : \forall n,\ x \in A_n\}.$$
 
-**Példa.** Legyen $A_n = \left(0, \frac{1}{n}\right)$, azaz azon $x$ valós számok halmaza, amelyekre $0 < x < \frac{1}{n}$. Ekkor $\bigcup_n A_n = (0, 1)$ (hiszen $A_1$ a legbővebb), míg a metszet üres: ha $x > 0$, akkor elég nagy $n$-re $\frac{1}{n} < x$, tehát $x \notin A_n$. (Az, hogy „elég nagy $n$-re $\frac{1}{n} < x$”, az arkhimédészi tulajdonság, amelyet a 9. szakaszban bizonyítunk.) Ezt a példát a 9. szakaszban újra elő fogjuk venni.
+**Példa.** Legyen $A_n = \left(0, \frac{1}{n}\right)$, azaz azon $x$ valós számok halmaza, amelyekre $0 < x < \frac{1}{n}$. Ekkor $\bigcup_n A_n = (0, 1)$ (hiszen $A_1$ a legbővebb), míg a metszet üres: ha $x \le 0$, akkor már $x \notin A_1$; ha pedig $x > 0$, akkor elég nagy $n$-re $\frac{1}{n} < x$, tehát $x \notin A_n$. (Az, hogy „elég nagy $n$-re $\frac{1}{n} < x$”, az arkhimédészi tulajdonság, amelyet a 9. szakaszban bizonyítunk.) Ezt a példát a 9. szakaszban újra elő fogjuk venni.
 
 ## D. Bizonyítási módszerek
 

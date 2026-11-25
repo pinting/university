@@ -8,11 +8,12 @@ Ebben a részben három klasszikus egyenlőtlenséget bizonyítunk: a számtani 
 
 Ha két szám „átlagáról” beszélünk, legtöbbször a számtani közepükre gondolunk. Az átlagnak azonban többféle értelmes fogalma van, és mindegyik más-más helyzetben természetes.
 
-> **Definíció (közepek).** Legyenek $a_1, \dots, a_n$ pozitív valós számok.
+> **Definíció (közepek).** Legyenek $a_1, \dots, a_n \in \mathbb{R}$.
 >
 > - A **számtani közepük** $\displaystyle S = \frac{a_1 + a_2 + \dots + a_n}{n}$.
-> - A **mértani (geometriai) közepük** $\displaystyle m = \sqrt[n]{a_1 a_2 \cdots a_n}$.
-> - A **harmonikus közepük** $\displaystyle h = \frac{n}{\frac{1}{a_1} + \frac{1}{a_2} + \dots + \frac{1}{a_n}}$.
+> - Ha $a_1, \dots, a_n > 0$ pozitív valós számok, akkor
+>   - a **mértani (geometriai) közepük** $\displaystyle m = \sqrt[n]{a_1 a_2 \cdots a_n}$,
+>   - a **harmonikus közepük** $\displaystyle h = \frac{n}{\frac{1}{a_1} + \frac{1}{a_2} + \dots + \frac{1}{a_n}}$.
 
 (Az $n$-edik gyök létezését pozitív számokra egyelőre elfogadjuk; bizonyítását az 54. szakaszban adjuk meg.)
 
@@ -31,7 +32,7 @@ A bizonyítás előtt nézzük meg, miért nem működik a szokásos teljes indu
 Jelölje $A_n$ az $n$ számra vonatkozó állítást (az egyenlőség esetével együtt). Az $A_1$ triviális. A bizonyítás három lépésből áll:
 
 - **I.** $A_2$ igaz.
-- **II.** Ha $A_{k}$ igaz, akkor $A_{2k}$ is igaz. Ebből I. segítségével $A_2, A_4, A_8, \dots$, vagyis $A_{2^k}$ minden $k$-ra adódik.
+- **II.** Ha $A_m$ igaz, akkor $A_{2m}$ is igaz. Ebből I. segítségével $A_2, A_4, A_8, \dots$, vagyis $A_{2^k}$ minden $k \in \mathbb{N}$-re adódik.
 - **III.** Ha $A_n$ igaz és $l < n$, akkor $A_l$ is igaz.
 
 Ez a három lépés valóban elég: ha $l$ tetszőleges természetes szám, válasszunk egy $2^k > l$ kettőhatványt (például $k = l$ megfelel, hiszen $2^l > l$). A II. lépés szerint $A_{2^k}$ igaz, a III. lépés szerint pedig ebből $A_l$ is.
@@ -117,7 +118,7 @@ Itt felhasználtuk az indukciós feltevést **és** azt, hogy $1 + x \ge 0$. Ez 
 $$(1+x)(1+nx) = 1 + nx + x + nx^2 = 1 + (n+1)x + nx^2 \ge 1 + (n+1)x,$$
 mert $nx^2 \ge 0$. Ezzel az állítást $(n+1)$-re is igazoltuk. $\blacksquare$
 
-Az indukciós lépésből az is kiolvasható, mikor áll egyenlőség: $n \ge 2$ esetén pontosan akkor, ha $x = 0$ (különben $nx^2 > 0$ miatt szigorú az egyenlőtlenség).
+Az indukciós lépésből az is kiolvasható, mikor áll egyenlőség: $n \ge 2$ esetén pontosan akkor, ha $x = 0$ (különben az $(n - 1)$-ről $n$-re való indukciós lépésben hozzáadott $(n - 1)x^2 > 0$ tag miatt szigorú az egyenlőtlenség).
 
 **Kell-e az $x \ge -1$ feltétel?** Páros $n$-re nem kellene ($n = 2$-re $(1+x)^2 = 1 + 2x + x^2 \ge 1 + 2x$ minden $x$-re igaz), páratlan $n$-re viszont igen. Például $n = 3$, $x = -4$ esetén
 $$(1 + x)^3 = (-3)^3 = -27, \qquad 1 + 3x = -11,$$
@@ -133,9 +134,9 @@ Ez az $e$ számot definiáló sorozat első becslése; a 17. szakaszban folytatj
 $$q^n = (1 + b)^n \ge 1 + nb,$$
 és az arkhimédészi tulajdonság szerint $1 + nb$ — elég nagy $n$-re — bármely adott számnál nagyobb. Ezt a becslést a 22. és a 61. szakaszban fogjuk felhasználni.
 
-**Kiterjesztés racionális kitevőre.** Megmutatható (és a hatványozás tárgyalása után, a 79. szakasz konvexitási eszközeivel magától értetődővé válik), hogy ha $x \ge -1$ és $r$ racionális, akkor
-$$0 < r < 1 \implies (1+x)^r \le 1 + rx, \qquad r > 1 \implies (1+x)^r \ge 1 + rx,$$
-és mindkét esetben egyenlőség pontosan akkor áll, ha $x = 0$. (Az $r = \frac{1}{2}$ esetben ez a jól ismert $\sqrt{1 + x} \le 1 + \frac{x}{2}$ becslés.)
+**Kiterjesztés racionális kitevőre.** Megmutatható (és a hatványozás tárgyalása után, a 79. szakasz konvexitási eszközeivel magától értetődővé válik), hogy ha $x \ge -1$ és $r \in \mathbb{Q}$ pozitív racionális szám (negatív $r$ esetén $x > -1$-et kell feltenni), akkor
+$$0 < r < 1 \implies (1+x)^r \le 1 + rx, \qquad r > 1 \ \text{vagy}\ r < 0\ (x > -1) \implies (1+x)^r \ge 1 + rx,$$
+és mindkét esetben egyenlőség pontosan akkor áll, ha $x = 0$ (a $0^r = 0$ megállapodással az $x = -1$, $r > 0$ esetre is; $r = 0$-ra $(1+x)^0 = 1$ minden $x > -1$-re egyenlőséget ad). (Az $r = \frac{1}{2}$ esetben ez a jól ismert $\sqrt{1 + x} \le 1 + \frac{x}{2}$ becslés.)
 
 ---
 

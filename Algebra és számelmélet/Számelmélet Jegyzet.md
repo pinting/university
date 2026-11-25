@@ -1,4 +1,4 @@
-<!-- Generated file, do not edit! Source: Algebra és számelmélet/Tankönyv/Számelmélet/, regenerate with: make concat -->
+<!-- Generated file, do not edit! Source: Algebra és számelmélet/Jegyzet/Számelmélet/, regenerate with: make concat -->
 
 # Számelmélet Tankönyv
 
