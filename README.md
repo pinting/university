@@ -1,6 +1,7 @@
 # University notes
 
-**PDFs are in the `out` folder!**
+> ### A PDF-eket az `out` mappában találjátok A4 / A5 / A6 lapméretekben!
+> ### The PDFs are in the `out` folder in A4 / A5 / A6 paper sizes!
 
 ## Build
 
