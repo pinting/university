@@ -37,6 +37,37 @@ A szó görög eredetű: *izo* = ugyanaz, *morf* = alak. Az izomorfia a gráfelm
 
 *Példa.* Legyen $V = \{a, b, c, d, e\}$, és az élek $ab$, $bc$, $cd$, $de$, $bd$. Lerajzolhatjuk egy ötszög-szerű alakzatként, de úgy is, hogy a csúcsokat egy egyenesre tesszük $a, b, c, d, e$ sorrendben, a szomszédosakat összekötjük, és a $b$-t a $d$-vel egy ívvel. A két rajz ugyanazt a gráfot ábrázolja.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.95,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
+  edge/.style={draw=black!75, thick}
+]
+  \begin{scope}[xshift=-2.8cm]
+    \node[pt, label=below left:{\footnotesize $a$}] (a1) at (-1.1, -0.5) {};
+    \node[pt, label=above left:{\footnotesize $b$}] (b1) at (-0.6, 0.3) {};
+    \node[pt, label=above:{\footnotesize $c$}] (c1) at (0.0, 1.0) {};
+    \node[pt, label=above right:{\footnotesize $d$}] (d1) at (0.6, 0.3) {};
+    \node[pt, label=below right:{\footnotesize $e$}] (e1) at (1.1, -0.5) {};
+    \draw[edge] (a1) -- (b1) -- (c1) -- (d1) -- (e1);
+    \draw[edge] (b1) -- (d1);
+  \end{scope}
+
+  \node at (-0.4, 0.25) {$\cong$};
+
+  \begin{scope}[xshift=2.2cm]
+    \node[pt, label=below:{\footnotesize $a$}] (a2) at (-1.6, 0) {};
+    \node[pt, label=below:{\footnotesize $b$}] (b2) at (-0.8, 0) {};
+    \node[pt, label=below:{\footnotesize $c$}] (c2) at (0.0, 0) {};
+    \node[pt, label=below:{\footnotesize $d$}] (d2) at (0.8, 0) {};
+    \node[pt, label=below:{\footnotesize $e$}] (e2) at (1.6, 0) {};
+    \draw[edge] (a2) -- (b2) -- (c2) -- (d2) -- (e2);
+    \draw[edge] (b2) to[out=55, in=125] (d2);
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 ## 18. Fokszám és a kézfogási lemma
 
 > **Definíció (fokszám).** Egy $v$ csúcs **fokszáma**, $d(v)$ vagy $\deg(v)$, a $v$-re illeszkedő élek száma (hurokél esetén a hurokél kettővel számít).
@@ -130,6 +161,65 @@ A fák a „legtakarékosabb” összefüggő gráfok: épp elég élük van ahh
 | 4 | $4$ csúcsú út; „csillag” (egy csúcs, hozzá $3$ levél) | 2 |
 | 5 | $5$ csúcsú út; „villa” (egy $3$ fokú csúcs két levéllel és egy $2$ hosszú ággal); csillag (egy csúcs $4$ levéllel) | 3 |
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.85,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.4pt},
+  edge/.style={draw=black!75, thick}
+]
+  % n = 4 (2 trees)
+  \begin{scope}[xshift=-1.9cm, yshift=0.95cm]
+    \node[pt] (p1) at (-0.9, 0) {};
+    \node[pt] (p2) at (-0.3, 0) {};
+    \node[pt] (p3) at (0.3, 0) {};
+    \node[pt] (p4) at (0.9, 0) {};
+    \draw[edge] (p1) -- (p2) -- (p3) -- (p4);
+    \node at (0, -0.55) {\scriptsize $n = 4$: út};
+  \end{scope}
+
+  \begin{scope}[xshift=1.9cm, yshift=0.95cm]
+    \node[pt] (c) at (0, 0.1) {};
+    \node[pt] (l1) at (90:0.65) {};
+    \node[pt] (l2) at (210:0.65) {};
+    \node[pt] (l3) at (330:0.65) {};
+    \draw[edge] (c) -- (l1) (c) -- (l2) (c) -- (l3);
+    \node at (0, -0.65) {\scriptsize $n = 4$: csillag};
+  \end{scope}
+
+  % n = 5 (3 trees)
+  \begin{scope}[xshift=-3.6cm, yshift=-1.1cm]
+    \node[pt] (q1) at (-1.2, 0) {};
+    \node[pt] (q2) at (-0.6, 0) {};
+    \node[pt] (q3) at (0.0, 0) {};
+    \node[pt] (q4) at (0.6, 0) {};
+    \node[pt] (q5) at (1.2, 0) {};
+    \draw[edge] (q1) -- (q2) -- (q3) -- (q4) -- (q5);
+    \node at (0, -0.65) {\scriptsize $n = 5$: út};
+  \end{scope}
+
+  \begin{scope}[xshift=0cm, yshift=-1.1cm]
+    \node[pt] (f1) at (-0.9, 0.45) {};
+    \node[pt] (f2) at (-0.9, -0.45) {};
+    \node[pt] (f3) at (-0.25, 0) {};
+    \node[pt] (f4) at (0.45, 0) {};
+    \node[pt] (f5) at (1.15, 0) {};
+    \draw[edge] (f1) -- (f3) (f2) -- (f3) -- (f4) -- (f5);
+    \node at (0.1, -0.8) {\scriptsize $n = 5$: „villa”};
+  \end{scope}
+
+  \begin{scope}[xshift=3.4cm, yshift=-1.1cm]
+    \node[pt] (s) at (0, 0) {};
+    \node[pt] (s1) at (45:0.65) {};
+    \node[pt] (s2) at (135:0.65) {};
+    \node[pt] (s3) at (225:0.65) {};
+    \node[pt] (s4) at (315:0.65) {};
+    \draw[edge] (s) -- (s1) (s) -- (s2) (s) -- (s3) (s) -- (s4);
+    \node at (0, -0.85) {\scriptsize $n = 5$: csillag};
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 > **Definíció (levél).** Egy fa **levele** egy $1$ fokú csúcsa.
 
 > **Állítás.** Minden legalább $2$ csúcsú fának van levele.
@@ -212,9 +302,9 @@ Az előadáson néhány példát néztünk meg; a többi házi feladat volt.
 
 **Segédállítás.** *Ha egy gráfban két csúcs között két különböző út vezet, akkor a gráfban van kör.*
 
-*Bizonyítás.* Legyen $P = (u = p_0, p_1, \dots, p_k = v)$ és $Q = (u = q_0, q_1, \dots, q_l = v)$ két különböző út. Egyik sem lehet a másik valódi kezdőszelete, mert akkor a hosszabbik út kétszer haladna át $v$-n. Van tehát olyan $i$ index, hogy $p_i = q_i$, de $p_{i+1} \ne q_{i+1}$. Legyen $j > i$ a legkisebb olyan index, amelyre $p_j$ rajta van $Q$-nak a $q_i$ utáni részén — ilyen van, mert $p_k = v = q_l$ —, mondjuk $p_j = q_m$, $m > i$. Ekkor
+*Bizonyítás.* Legyen $P = (u = p_0, p_1, \dots, p_k = v)$ és $Q = (u = q_0, q_1, \dots, q_l = v)$ két különböző út. Egyik sem lehet a másik valódi kezdőszelete, mert akkor a hosszabbik út kétszer haladna át $v$-n. Van tehát olyan legkisebb $i$ index, amelyre $p_i = q_i$, de $p_{i+1} \ne q_{i+1}$ (tehát $p_0 = q_0, \dots, p_i = q_i$). Legyen $j > i$ a legkisebb olyan index, amelyre $p_j$ rajta van $Q$-nak a $q_i$ utáni részén — ilyen van, mert $p_k = v = q_l$ —, mondjuk $p_j = q_m$, $m > i$. Ekkor
 $$p_i,\ p_{i+1},\ \dots,\ p_j = q_m,\ q_{m-1},\ \dots,\ q_{i+1},\ q_i = p_i$$
-kör: a $p_{i+1}, \dots, p_{j-1}$ csúcsok $j$ minimalitása miatt nincsenek rajta $Q$ szóban forgó részén (a $Q$ elején, a $q_0, \dots, q_i = p_0, \dots, p_i$ csúcsok között pedig azért nincsenek, mert $P$ csúcsai különbözők), tehát a csúcsok — a kezdő- és végpont kivételével — különbözők. A hossza $(j - i) + (m - i) \ge 3$, mert $j - i = m - i = 1$ esetén $p_{i+1} = q_{i+1}$ volna. $\blacksquare$
+kör: a $p_{i+1}, \dots, p_{j-1}$ csúcsok $j$ minimalitása miatt nincsenek rajta $Q$-nak a $q_i$ utáni részén (a $q_i = p_i$ csúccsal pedig azért nem eshetnek egybe, mert $P$ csúcsai különbözők), tehát a kör összes csúcsa — a kezdő- és végpont egyezésétől eltekintve — különböző. A hossza $(j - i) + (m - i) \ge 3$, mert $j - i = m - i = 1$ esetén $p_{i+1} = q_{i+1}$ volna. $\blacksquare$
 
 **$1 \Rightarrow 3$.** Legyen $G$ fa, és $u, v$ két nem szomszédos csúcsa. Mivel $G$ összefüggő, van köztük út; ehhez az új $uv$ élt hozzávéve kör keletkezik.
 

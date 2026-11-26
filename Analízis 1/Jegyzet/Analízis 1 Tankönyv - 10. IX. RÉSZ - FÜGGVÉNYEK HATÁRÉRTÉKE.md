@@ -201,9 +201,9 @@ Itt $\alpha$ és $\gamma$ a bővített számegyenes bármely elemei lehetnek (a 
 
 A határérték definíciójának tagadása (B. szakasz):
 $$\exists \varepsilon > 0\ \ \forall \delta > 0\ \ \exists x \in \dot{B}(a, \delta) : |f(x) - b| \ge \varepsilon.$$
-Alkalmazzuk ezt a $\delta = \frac{1}{n}$ értékekre ($n = 1, 2, \dots$; elég nagy $n$-re $\dot{B}\left(a, \frac{1}{n}\right) \subset \dot{U}$): minden $n$-hez van olyan $a_n$, amelyre
+Legyen $\dot{U} = \dot{B}(a, \delta_0)$. Alkalmazzuk ezt a $\delta_n = \min\left\{\delta_0, \frac{1}{n}\right\}$ értékekre ($n = 1, 2, \dots$): minden $n$-hez van olyan $a_n \in \dot{B}(a, \delta_n) \subset \dot{U}$, amelyre
 $$0 < |a_n - a| < \frac{1}{n} \qquad \text{és} \qquad |f(a_n) - b| \ge \varepsilon.$$
-Az így kapott sorozatra $a_n \to a$ (a rendőrelv szerint), $a_n \neq a$, és $a_n \in \dot{U}$ (elég nagy $n$-re) — de $f(a_n) \not\to b$, hiszen minden tag legalább $\varepsilon$ távolságra van $b$-től. $\blacksquare$
+Az így kapott sorozatra $a_n \to a$ (a rendőrelv szerint), $a_n \neq a$, és $a_n \in \dot{U}$ minden $n$-re — de $f(a_n) \not\to b$, hiszen minden tag legalább $\varepsilon$ távolságra van $b$-től. $\blacksquare$
 
 **Fő alkalmazás: a határérték nemlétezésének bizonyítása.** Elég **két** olyan, $\alpha$-hoz tartó sorozatot találni, amelyekre a képsorozatok különböző határértékhez tartanak (vagy egy olyat, amelyre a képsorozat divergens).
 

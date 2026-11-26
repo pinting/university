@@ -113,7 +113,7 @@ $$SL(n, K) = \{A \in K^{n \times n} \mid \det A = 1\}.$$
 
 *Megoldás.* Tegyük fel indirekt módon, hogy egy testben $ab = 0$, ahol $a \ne 0$ és $b \ne 0$. Mivel $a \ne 0$, van $a^{-1}$ inverze. Az $ab = 0$ egyenlőséget balról $a^{-1}$-gyel szorozva $a^{-1}(ab) = a^{-1} \cdot 0 = 0$; az asszociativitás miatt $(a^{-1}a)b = 1 \cdot b = b$, tehát $b = 0$ — ellentmondás. $\blacksquare$
 
-> **11.12 Definíció.** **Integritási tartomány** a kommutatív, egységelemes, nullosztómentes gyűrű.
+> **11.12 Definíció.** **Integritási tartomány** a kommutatív, egységelemes, nullosztómentes gyűrű (amelyben $1 \ne 0$).
 
 Integritási tartomány például $\mathbb{Z}$, $\mathbb{Z}[i]$, $\mathbb{R}[x]$, és minden test. **Nem** nullosztómentes például $\mathbb{Z}_6$, hiszen ott $2 \cdot 3 = 0$, de $2 \ne 0$ és $3 \ne 0$; és nem nullosztómentes a $2 \times 2$-es mátrixok gyűrűje sem.
 
@@ -187,7 +187,7 @@ Itt az $x - \alpha_j$ ($j \le s$) és az $(x - \alpha_j)(x - \bar{\alpha}_j)$ t�
 $$(x - \alpha_j)(x - \bar{\alpha}_j) = x^2 - (\alpha_j + \bar{\alpha}_j)x + \alpha_j\bar{\alpha}_j = x^2 - 2ax + (a^2 + b^2).$$
 **Tehát minden valós együtthatós polinom első- és másodfokú valós együtthatós polinomok szorzatára bomlik.**
 
-> **12.7 Definíció.** Egy $T$ test (vagy integritási tartomány) feletti $f$ polinom **irreducibilis** $T$ felett, ha nem írható fel két kisebb fokú, $T$ feletti polinom szorzataként.
+> **12.7 Definíció.** Egy $T$ test (vagy integritási tartomány) feletti, nem konstans $f$ polinom **irreducibilis** $T$ felett, ha nem írható fel két kisebb fokú, $T$ feletti polinom szorzataként.
 
 (Az egészek felett ezt a definíciót úgy értjük, hogy $f$ nem bontható két kisebb fokú *egész együtthatós* polinom szorzatára; így például $2x + 2 = 2(x + 1)$ irreducibilisnek számít, bár egy konstans kiemelhető belőle.)
 
@@ -209,7 +209,7 @@ Az előbbiek szerint **$\mathbb{R}$ felett csak első- és másodfokú irreducib
 
 Végül egy érdekesség. A $\mathbb{Z}_p$ maradékosztálytestben ($p$ prím) érvényes az úgynevezett **Frobenius-azonosság** (angolul tréfásan *freshman's dream*, „az elsőévesek álma”):
 $$(a + b)^p = a^p + b^p.$$
-*Bizonyítás.* A binomiális tétel szerint $(a + b)^p = \sum_{k=0}^p\binom{p}{k}a^{p-k}b^k$, ahol $\binom{p}{k} = \frac{p!}{k!(p-k)!}$. Ha $1 \le k \le p - 1$, akkor a számlálóban szerepel a $p$ prímtényező, a nevezőben viszont nem (mert $k! $ és $(p - k)!$ minden tényezője kisebb $p$-nél), így $p \mid \binom{p}{k}$, és ezek a tagok $\mathbb{Z}_p$-ben eltűnnek. Csak a $k = 0$ és $k = p$ tag marad: $a^p + b^p$. $\blacksquare$
+*Bizonyítás.* A binomiális tétel szerint $(a + b)^p = \sum_{k=0}^p\binom{p}{k}a^{p-k}b^k$, ahol $\binom{p}{k} = \frac{p!}{k!(p-k)!}$. Ha $1 \le k \le p - 1$, akkor a számlálóban szerepel a $p$ prímtényező, a nevezőben viszont nem (mert $k!$ és $(p - k)!$ minden tényezője kisebb $p$-nél), így $p \mid \binom{p}{k}$, és ezek a tagok $\mathbb{Z}_p$-ben eltűnnek. Csak a $k = 0$ és $k = p$ tag marad: $a^p + b^p$. $\blacksquare$
 
 **Átvitel $\mathbb{Z}_p[x]$-re.** Ha $P(x) = \sum_{k=0}^n c_kx^k \in \mathbb{Z}_p[x]$, akkor a Frobenius-azonosság ismételt alkalmazásával (és mivel $\mathbb{Z}_p[x]$ is kommutatív, $p \cdot 1 = 0$-val)
 $$\big(P(x)\big)^p = \left(\sum_{k=0}^n c_kx^k\right)^p = \sum_{k=0}^n (c_kx^k)^p = \sum_{k=0}^n c_k^px^{kp} = \sum_{k=0}^n c_kx^{kp} = P(x^p),$$
@@ -219,7 +219,7 @@ ahol az utolsó előtti lépésben a kis Fermat-tételt ($c_k^p = c_k$ $\mathbb{
 
 Az irreducibilitási kritériumok közül a leghíresebb a **Schönemann–Eisenstein-kritérium**. Elsőként Theodor Schönemann publikálta 1846-ban (egy általánosabb formában), később azonban sokáig a tőle függetlenül publikáló Gotthold Eisenstein nevén vált ismertté. Eisenstein az eredményt 1850-ben közölte — ugyanabban a folyóiratban (*Crelle-féle Journal*), mint Schönemann —, és az Schönemann tételének speciális esete volt; nagyobb ismertsége miatt mégis az „Eisenstein-kritérium” elnevezés terjedt el. Az elsőbbség Schönemanné, ezért a XX. században egyre gyakoribbá vált a történelmileg pontosabb Schönemann–Eisenstein-kritérium elnevezés.
 
-> **13.1 Tétel (Schönemann–Eisenstein-kritérium).** Legyen $p$ prím, és $f(x) = a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0$ egész együtthatós polinom, amelyre
+> **13.1 Tétel (Schönemann–Eisenstein-kritérium).** Legyen $p$ prím, és $f(x) = a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0$ egész együtthatós, legalább elsőfokú ($n \ge 1$) polinom, amelyre
 >
 > - $p \nmid a_n$,
 > - $p \mid a_{n-1}, a_{n-2}, \dots, a_1, a_0$,

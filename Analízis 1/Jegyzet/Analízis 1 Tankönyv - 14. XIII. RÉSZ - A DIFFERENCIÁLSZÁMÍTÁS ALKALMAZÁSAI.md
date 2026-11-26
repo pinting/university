@@ -162,7 +162,7 @@ Ez a látszólag jelentéktelen állítás alapvető. Erre épül a következő 
 > **Tétel.** Legyen $f \in C[a, b]$, differenciálható az $(a, b)$-n. Ekkor $f$ szigorúan monoton növekedő az $[a, b]$-n pontosan akkor, ha
 >
 > - minden $x \in (a, b)$-re $f'(x) \ge 0$, és
-> - nincs olyan $[c, d] \subset [a, b]$, $c < d$ részintervallum, amelyen $f' \equiv 0$.
+> - nincs olyan $(c, d) \subset (a, b)$, $c < d$ részintervallum, amelyen $f' \equiv 0$.
 
 *Bizonyítás.* $f$ szigorúan monoton nő pontosan akkor, ha monoton nő **és** semmilyen részintervallumon nem állandó (ha $x_1 < x_2$ és $f(x_1) = f(x_2)$, akkor a monotonitás miatt $f$ az $[x_1, x_2]$-n állandó). Az előző tételek szerint ez pontosan a fenti két feltétel. $\blacksquare$
 
@@ -312,7 +312,7 @@ A pozitív nevezőkkel felszorozva és rendezve:
 $$f(x)(b - x) + f(x)(x - a) \le f(a)(b - x) + f(b)(x - a) \implies f(x)(b - a) \le f(a)(b - a) + \big(f(b) - f(a)\big)(x - a),$$
 azaz
 $$f(x) \le f(a) + \frac{f(b) - f(a)}{b - a}(x - a),$$
-ami éppen a konvexitás definíciója. A szigorú eset ugyanígy megy. $\blacksquare$
+ami éppen a konvexitás definíciója. A szigorú eset ugyanígy megy (a ($\Rightarrow$) irányban válasszunk közbülső $x_0 \in (a, b)$ pontot: ekkor $f'(a) \le \frac{f(x_0) - f(a)}{x_0 - a} < \frac{f(b) - f(a)}{b - a} \le f'(b)$). $\blacksquare$
 
 Ha $f$ kétszer differenciálható, akkor $f'$ monotonitását a 76. szakasz szerint $f''$ előjele jellemzi:
 
@@ -410,7 +410,7 @@ A feltétel nem elégséges: $f(x) = x^4$ esetén $f''(0) = 0$, de a $0$ nem inf
 
 **Megjegyzés.** Az $f(x) = x^5$ függvénynek a $0$ inflexiós helye (balra konkáv, jobbra konvex), holott $f''(0) = f'''(0) = f^{(4)}(0) = 0$; csak $f^{(5)}(0) = 120 \neq 0$. Ez vezet az általános szabályhoz:
 
-> **Tétel (magasabb rendű próba).** Legyen $f$ elég sokszor differenciálható $a$-ban, és legyen $f^{(m)}(a)$ ($m \ge 2$) az első nem nulla derivált a másodiktól kezdve: $f''(a) = \dots = f^{(m-1)}(a) = 0$, $f^{(m)}(a) \neq 0$.
+> **Tétel (magasabb rendű próba).** Legyen $f$ $m$-szer differenciálható $a$-ban ($m \ge 2$), és legyen $f^{(m)}(a)$ az első nem nulla derivált a másodiktól kezdve: $f''(a) = \dots = f^{(m-1)}(a) = 0$, $f^{(m)}(a) \neq 0$. (Az $m = 2$ esetben tegyük fel továbbá, hogy $f''$ folytonos $a$-ban — például mert $f$ háromszor differenciálható $a$-ban.)
 >
 > - Ha $m$ **páratlan**, akkor $a$ inflexiós hely.
 > - Ha $m$ **páros**, akkor $f$ az $a$ egy környezetében szigorúan konvex ($f^{(m)}(a) > 0$) vagy szigorúan konkáv ($f^{(m)}(a) < 0$).
@@ -497,7 +497,7 @@ Szemléletesen: $a$ közelében mindkét függvény jól közelíthető az érin
 
 **Történeti megjegyzés.** A szabály névadója Guillaume-François-Antoine de l'Hôpital márki, aki 1696-ban megírta az első differenciálszámítási tankönyvet. A szabályt azonban valójában tanára, Johann Bernoulli fedezte fel, aki egy szerződésben — rendszeres fizetségért cserébe — átengedte matematikai eredményei közlésének jogát l'Hôpitalnak. Bernoulli később keservesen panaszkodott, hogy a szabályt nem az ő nevén ismerik.
 
-> **Tétel (L'Hospital-szabály).** Legyen $f$ és $g$ differenciálható az $\alpha$ egy $\dot{U}$ pontozott környezetében, ahol $g'(x) \neq 0$, és teljesüljön az alábbiak egyike:
+> **Tétel (L'Hospital-szabály).** Legyen $f$ és $g$ differenciálható az $\alpha$ egy $\dot{U}$ pontozott környezetében, ahol $g(x) \neq 0$ és $g'(x) \neq 0$, és teljesüljön az alábbiak egyike:
 >
 > - **(1)** $\displaystyle \lim_{x \to \alpha}f(x) = \lim_{x \to \alpha}g(x) = 0$ (a $\frac{0}{0}$ eset), vagy
 > - **(2)** $\displaystyle \lim_{x \to \alpha}|g(x)| = +\infty$ (a $\frac{\ast}{\infty}$ eset).
@@ -579,7 +579,7 @@ vagyis a hiba „gyorsabban tűnik el”, mint $(x - a)^n$ (ez a **Peano-féle m
 
 A gyakorlatban azonban nem elég tudni, hogy a hiba „kicsi”; azt is tudni akarjuk, **mennyire** kicsi. Erre szolgál a következő tétel, amely a Lagrange-féle középértéktétel messzemenő általánosítása.
 
-> **Tétel (Taylor-formula Lagrange-féle maradéktaggal).** Legyen $f$ $(n + 1)$-szer differenciálható az $a$ és $x$ által határolt zárt intervallumon. Ekkor van olyan $c$ szigorúan $a$ és $x$ között, hogy
+> **Tétel (Taylor-formula Lagrange-féle maradéktaggal).** Legyen $x \neq a$, és legyen $f$ $(n + 1)$-szer differenciálható az $a$ és $x$ által határolt zárt intervallumon. Ekkor van olyan $c$ szigorúan $a$ és $x$ között, hogy
 > $$f(x) = \underbrace{\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x - a)^k}_{T_n(x)} + \underbrace{\frac{f^{(n+1)}(c)}{(n + 1)!}(x - a)^{n+1}}_{\text{Lagrange-féle maradéktag}}.$$
 
 **Figyeljük meg a szerkezetet:** a maradéktag pontosan olyan, mint a Taylor-polinom következő, $(n + 1)$-edik tagja volna — csak a derivált nem az $a$-ban, hanem egy ismeretlen $c$ köztes pontban van kiértékelve. $n = 0$-ra a tétel éppen a Lagrange-féle középértéktétel: $f(x) = f(a) + f'(c)(x - a)$.
@@ -797,7 +797,7 @@ $$45 = 20 + 80e^{kt} \implies e^{kt} = \frac{25}{80} \implies t = \frac{\ln\frac
 3. $f'(x) = 4x^3 - 4 = 0 \iff x = 1$. $f$ szigorúan csökken a $(-\infty, 1]$-en, szigorúan nő az $[1, +\infty)$-en, $f(1) = -2 < 0$, és $\lim_{x \to \pm\infty}f(x) = +\infty$. Mindkét szakaszon pontosan egy gyök van (Bolzano-tétel + szigorú monotonitás).
 4. a) $\frac{1}{2}$ (kétszeri L'Hospital). b) $\frac{1}{6}$ (háromszori L'Hospital, vagy a Taylor-polinom: $x - \sin x = \frac{x^3}{6} + \dots$). c) $x^{1/x} = e^{\frac{\ln x}{x}} \to e^0 = 1$. d) $\frac{\ln x}{x^{-2}} \to \frac{1/x}{-2x^{-3}} = -\frac{x^2}{2} \to 0$.
 5. $T_3(x) = x - \frac{x^2}{2} + \frac{x^3}{3}$; $\ln 1{,}1 \approx 0{,}1 - 0{,}005 + 0{,}000333 = 0{,}095333$. A maradéktag $\frac{f^{(4)}(c)}{4!}x^4$, ahol $|f^{(4)}(c)| = \frac{6}{(1 + c)^4} \le 6$; a hiba legfeljebb $\frac{6}{24}\cdot 0{,}1^4 = 0{,}000025$. (A valódi érték $0{,}0953102\dots$)
-6. $D(f) = \mathbb{R}$; $f'(x) = (1 - x)e^{-x}$, $f''(x) = (x - 2)e^{-x}$. Nő a $(-\infty, 1]$-en, csökken az $[1, +\infty)$-en; abszolút maximum: $f(1) = \frac{1}{e}$. Konkáv a $(-\infty, 2]$-n, konvex a $[2, +\infty)$-en; inflexió a $2$-ben ($f(2) = \frac{2}{e^2}$). $\lim_{x \to +\infty}f(x) = 0$ (L'Hospital: $\frac{x}{e^x} \to 0$), tehát $y = 0$ aszimptota; $\lim_{x \to -\infty}f(x) = -\infty$. Zérushely: $x = 0$.
+6. $D(f) = \mathbb{R}$; $f'(x) = (1 - x)e^{-x}$, $f''(x) = (x - 2)e^{-x}$. Nő a $(-\infty, 1]$-en, csökken az $[1, +\infty)$-en; abszolút maximum: $f(1) = \frac{1}{e}$. Konkáv a $(-\infty, 2]$-n, konvex a $[2, +\infty)$-en; inflexió a $2$-ben ($f(2) = \frac{2}{e^2}$). $\lim_{x \to +\infty}f(x) = 0$ (L'Hospital: $\frac{x}{e^x} \to 0$), tehát $y = 0$ aszimptota a $+\infty$-ben; $\lim_{x \to -\infty}f(x) = -\infty$. Zérushely: $x = 0$.
 7. Ha a téglalap csúcsai $(\pm x, 0)$ és $(\pm x, \sqrt{1 - x^2})$, akkor $A(x) = 2x\sqrt{1 - x^2}$, $x \in [0, 1]$. $A'(x) = \frac{2(1 - 2x^2)}{\sqrt{1 - x^2}} = 0 \iff x = \frac{1}{\sqrt{2}}$; ekkor $A = 1$. (A végpontokban $A = 0$.)
 8. $y(x) = 3e^{-2x}$.
 9. A Lagrange-tétel szerint $\ln(1 + x) - \ln 1 = \frac{1}{1 + c}\cdot x$ valamely $c \in (0, x)$-re, és $\frac{1}{1 + x} < \frac{1}{1 + c} < 1$.

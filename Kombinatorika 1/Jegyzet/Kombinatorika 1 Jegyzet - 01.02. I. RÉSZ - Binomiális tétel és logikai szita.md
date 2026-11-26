@@ -73,6 +73,29 @@ A Pascal-szabály a háromszög **két egymás utáni sorát** kapcsolja össze.
 
 A Pascal-háromszögben a bal oldal egy ferde sor (átló) mentén lefelé haladó számok összege, a jobb oldal pedig az utolsó tag alatt, a másik irányban álló szám: a kijelölt számok egy hokiütőre emlékeztetnek. Például $k = 2$, $n = 5$ esetén $1 + 3 + 6 + 10 = 20 = \binom{6}{3}$.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.9,
+  num/.style={minimum size=17pt, inner sep=1pt, font=\small},
+  shaft/.style={circle, draw=black!80, fill=black!12, thick, minimum size=17pt, inner sep=1pt, font=\small\bfseries},
+  blade/.style={circle, draw=black, fill=black!25, very thick, minimum size=18pt, inner sep=1pt, font=\small\bfseries}
+]
+  \def\dx{0.92}
+  \def\dy{0.62}
+  \node[num] at (0, 0) {$1$};
+  \node[num] at (-0.5*\dx, -\dy) {$1$}; \node[num] at (0.5*\dx, -\dy) {$1$};
+  \node[num] at (-1.0*\dx, -2*\dy) {$1$}; \node[num] at (0, -2*\dy) {$2$}; \node[shaft] (s1) at (1.0*\dx, -2*\dy) {$1$};
+  \node[num] at (-1.5*\dx, -3*\dy) {$1$}; \node[num] at (-0.5*\dx, -3*\dy) {$3$}; \node[shaft] (s2) at (0.5*\dx, -3*\dy) {$3$}; \node[num] at (1.5*\dx, -3*\dy) {$1$};
+  \node[num] at (-2.0*\dx, -4*\dy) {$1$}; \node[num] at (-1.0*\dx, -4*\dy) {$4$}; \node[shaft] (s3) at (0, -4*\dy) {$6$}; \node[num] at (1.0*\dx, -4*\dy) {$4$}; \node[num] at (2.0*\dx, -4*\dy) {$1$};
+  \node[num] at (-2.5*\dx, -5*\dy) {$1$}; \node[num] at (-1.5*\dx, -5*\dy) {$5$}; \node[shaft] (s4) at (-0.5*\dx, -5*\dy) {$10$}; \node[num] at (0.5*\dx, -5*\dy) {$10$}; \node[num] at (1.5*\dx, -5*\dy) {$5$}; \node[num] at (2.5*\dx, -5*\dy) {$1$};
+  \node[num] at (-3.0*\dx, -6*\dy) {$1$}; \node[num] at (-2.0*\dx, -6*\dy) {$6$}; \node[num] at (-1.0*\dx, -6*\dy) {$15$}; \node[blade] (b) at (0, -6*\dy) {$20$}; \node[num] at (1.0*\dx, -6*\dy) {$15$}; \node[num] at (2.0*\dx, -6*\dy) {$6$}; \node[num] at (3.0*\dx, -6*\dy) {$1$};
+
+  \draw[black!60, thick] (s1) -- (s2) -- (s3) -- (s4) -- (b);
+  \node[align=center] at (0, -6*\dy - 0.65) {\footnotesize Hokiütő-azonosság ($k = 2$, $n = 5$): $1 + 3 + 6 + 10 = 20 = \binom{6}{3}$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 *Algebrai bizonyítás (indukció $n$ szerint).* $n = k$-ra mindkét oldal $1$. Ha az állítás igaz $n$-re, akkor a Pascal-szabály szerint
 $$\sum_{i=k}^{n+1} \binom{i}{k} = \binom{n+1}{k+1} + \binom{n+1}{k} = \binom{n+2}{k+1}. \ \blacksquare$$
 
@@ -112,6 +135,39 @@ Az első ötlet: $80 - 25 - 24 - 23 = 8$. Ez azonban hibás, mert aki két nyelv
 $$80 - (25 + 24 + 23) + (10 + 9 + 7) - 1 = 33.$$
 
 Ellenőrizzük egy Venn-diagrammal! Belülről kifelé haladva: mindhárom nyelvet $1$ diák tanulja; csak angolul és németül $10 - 1 = 9$, csak angolul és franciául $9 - 1 = 8$, csak németül és franciául $7 - 1 = 6$; csak angolul $25 - 9 - 8 - 1 = 7$, csak németül $24 - 9 - 6 - 1 = 8$, csak franciául $23 - 8 - 6 - 1 = 8$. Legalább egy nyelvet tehát $1 + 9 + 8 + 6 + 7 + 8 + 8 = 47$ diák tanul, egyiket sem $80 - 47 = 33$. Egyezik.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.92,
+  circ/.style={draw=black!75, thick},
+  reg/.style={font=\small\bfseries}
+]
+  \draw[rounded corners=6pt, draw=black!65, thick, fill=black!3] (-2.85, -2.65) rectangle (2.85, 2.35);
+  \node[anchor=north west] at (-2.7, 2.22) {\footnotesize Összesen: $80$};
+
+  \draw[circ, fill=white, fill opacity=0.45] (-0.75, 0.45) circle (1.25);
+  \draw[circ, fill=white, fill opacity=0.45] (0.75, 0.45) circle (1.25);
+  \draw[circ, fill=white, fill opacity=0.45] (0.0, -0.85) circle (1.25);
+  % Redraw outlines crisply above translucent fills
+  \draw[circ] (-0.75, 0.45) circle (1.25);
+  \draw[circ] (0.75, 0.45) circle (1.25);
+  \draw[circ] (0.0, -0.85) circle (1.25);
+
+  \node at (-1.85, 1.88) {\footnotesize $A$ ($25$)};
+  \node at (1.85, 1.88) {\footnotesize $N$ ($24$)};
+  \node at (0.0, -2.35) {\footnotesize $F$ ($23$)};
+
+  \node[reg] at (-1.21, 0.71) {$7$};
+  \node[reg] at (1.21, 0.71) {$8$};
+  \node[reg] at (0.0, -1.38) {$8$};
+  \node[reg] at (0.0, 0.82) {$9$};
+  \node[reg] at (-0.69, -0.38) {$8$};
+  \node[reg] at (0.69, -0.38) {$6$};
+  \node[reg] at (0.0, 0.01) {$1$};
+  \node[reg] at (2.22, -2.18) {$33$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 Az eljárás neve **logikai szita** (vagy szitaformula, angolul *inclusion–exclusion*): felváltva vonunk le és adunk hozzá, mintha egy szitán rostálnánk át a halmazt.
 

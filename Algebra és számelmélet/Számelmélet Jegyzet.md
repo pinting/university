@@ -688,7 +688,7 @@ tehát $x_{-1} = 1$, $y_{-1} = 0$, $x_0 = 0$, $y_0 = 1$. Ezzel az algoritmus min
 $$r_k = r_{k-2} - r_{k-1} q_k = (a x_{k-2} + b y_{k-2}) - (a x_{k-1} + b y_{k-1}) q_k = a (x_{k-2} - q_k x_{k-1}) + b (y_{k-2} - q_k y_{k-1}),$$
 tehát $r_k$-ra is igaz, mégpedig
 $$x_k = x_{k-2} - q_k x_{k-1}, \qquad y_k = y_{k-2} - q_k y_{k-1}.$$
-Speciálisan az utolsó nem nulla maradék, $r_n = (a, b)$ is előáll ilyen alakban. (Ha $b = 0$, akkor $(a, 0) = |a| = a \cdot (\pm 1) + 0 \cdot 0$.) $\blacksquare$
+Speciálisan az utolsó nem nulla maradék, $r_n = (a, b)$ is előáll ilyen alakban. (Ha $b = 0$, akkor $(a, 0) = |a| = a \cdot (\pm 1) + 0 \cdot 0$; ha pedig $b \mid a$ és $b \ne 0$, akkor $(a, b) = |b| = a \cdot 0 + b \cdot (\pm 1)$.) $\blacksquare$
 
 **Kidolgozott példa (a kiterjesztett euklideszi algoritmus).** Írjuk fel $(252, 198) = 18$-at $252x + 198y$ alakban! Két módszer is kézenfekvő.
 
@@ -972,7 +972,7 @@ ami valóban igaz.
 *Bizonyítás.* Legyen $d = (k, m)$, $k = k_1 d$ és $m = m_1 d$. Ekkor $(k_1, m_1) = 1$ (ha $k_1$-nek és $m_1$-nek volna $1$-nél nagyobb közös osztója, akkor $d$ nem volna a legnagyobb közös osztó). Így
 $$ka \equiv kb \pmod m \iff m \mid k(a - b) \iff m_1 d \mid k_1 d (a - b) \iff m_1 \mid k_1 (a - b).$$
 Mivel $(k_1, m_1) = 1$, a 4. fejezet „hasznos következménye” szerint $m_1 \mid k_1(a - b) \iff m_1 \mid a - b$ (a $\Leftarrow$ irány nyilvánvaló). Tehát
-$$ka \equiv kb \pmod m \iff a \equiv b \pmod{m_1} = \pmod{\tfrac{m}{(k, m)}}. \ \blacksquare$$
+$$ka \equiv kb \pmod m \iff a \equiv b \pmod{m_1}, \quad \text{azaz} \quad a \equiv b \pmod{\tfrac{m}{(k, m)}}. \ \blacksquare$$
 
 ### Teljes maradékrendszer
 

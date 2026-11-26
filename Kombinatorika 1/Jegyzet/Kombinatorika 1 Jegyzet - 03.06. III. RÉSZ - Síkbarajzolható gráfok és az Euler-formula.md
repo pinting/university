@@ -24,6 +24,7 @@ Azonban ez nem a gráf hibája, hanem a lerajzolásé! $K_4$ ugyanis **síkbaraj
 Mindkét esetben metszésmentes síkrajzot kapunk.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
   edge/.style={draw=black!70, thick}
@@ -37,7 +38,7 @@ Mindkét esetben metszésmentes síkrajzot kapunk.
     \draw[edge] (a1) -- (a2) -- (a3) -- (a4) -- (a1);
     \draw[edge] (a1) -- (a3);
     \draw[edge] (a2) -- (a4);
-    \node[below=1.0cm of a4, xshift=0.8cm] {\footnotesize Rossz rajz (metszés)};
+    \node at (0, -1.85) {\footnotesize Rossz rajz (metszés)};
   \end{scope}
 
   % Curved K_4
@@ -48,8 +49,8 @@ Mindkét esetben metszésmentes síkrajzot kapunk.
     \node[v] (b4) at (-0.8, -0.8) {};
     \draw[edge] (b1) -- (b2) -- (b3) -- (b4) -- (b1);
     \draw[edge] (b2) -- (b4);
-    \draw[edge] (b1) to[out=210, in=150, looseness=2.2] (b3);
-    \node[below=1.0cm of b4, xshift=0.8cm] {\footnotesize Jó síkrajz (ív)};
+    \draw[edge] (b1) .. controls (-2.3, -1.3) and (-0.8, -2.0) .. (b3);
+    \node at (0, -1.85) {\footnotesize Jó síkrajz (ív)};
   \end{scope}
 
   % Triangle with center
@@ -62,9 +63,10 @@ Mindkét esetben metszésmentes síkrajzot kapunk.
     \draw[edge] (c1) -- (c4);
     \draw[edge] (c2) -- (c4);
     \draw[edge] (c3) -- (c4);
-    \node[below=1.0cm of c4] {\footnotesize Jó síkrajz (belső csúcs)};
+    \node at (0, -1.85) {\footnotesize Jó síkrajz (belső csúcs)};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Tartományok (lapok)
@@ -80,6 +82,7 @@ Fontos szem előtt tartani:
 A külső tartomány ugyanolyan teljes jogú tartománya a síkrajznak, mint a belsők!
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.95,
   v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
   edge/.style={draw=black!70, thick},
@@ -113,6 +116,7 @@ A külső tartomány ugyanolyan teljes jogú tartománya a síkrajznak, mint a b
     $4$: külső (végtelen) tartomány
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ---
@@ -169,6 +173,7 @@ $$n - e_{\text{fa}} + t_{\text{fa}} = n - (n - 1) + 1 = n - n + 1 + 1 = 2.$$
 Mivel minden korábbi lépésben az $n - e + t$ érték változatlan maradt, az eredeti gráfra is pontosan $n - e + t = 2$ kellett hogy teljesüljön! $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.95,
   v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
   tree/.style={draw=black, very thick},
@@ -208,6 +213,7 @@ Mivel minden korábbi lépésben az $n - e + t$ érték változatlan maradt, az 
     $n - (n-1) + 1 = 2$
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ::: kiegeszites
@@ -248,12 +254,13 @@ $$n - e + t = 2 + 1 = 3.$$
 :::
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=black, inner sep=1.6pt},
   edge/.style={draw=black!70, thick}
 ]
   % Component 1
-  \begin{scope}[xshift=-3.0cm]
+  \begin{scope}[xshift=-2.4cm]
     \draw[rounded corners=10pt, fill=black!4, draw=black!25] (-1.6, -1.6) rectangle (1.6, 1.6);
     \node[v] (p1) at (-0.8, 0) {};
     \node[v] (p2) at (-0.3, 0.9) {};
@@ -267,7 +274,7 @@ $$n - e + t = 2 + 1 = 3.$$
   \end{scope}
 
   % Component 2
-  \begin{scope}[xshift=3.0cm]
+  \begin{scope}[xshift=2.4cm]
     \draw[rounded corners=10pt, fill=black!4, draw=black!25] (-1.4, -1.6) rectangle (1.4, 1.6);
     \node[v] (q1) at (-0.6, 0.6) {};
     \node[v] (q2) at (0.6, 0.4) {};
@@ -278,12 +285,9 @@ $$n - e + t = 2 + 1 = 3.$$
     \node at (0, -1.9) {\footnotesize $2$. komponens ($n_2, e_2, t_2$)};
   \end{scope}
 
-  \node at (0, 0) {\begin{tabular}{c}
-    \textbf{Közös külső tartomány} \\
-    $t = t_1 + t_2 - 1$ \\
-    $n - e + t = c + 1 = 3$
-  \end{tabular}};
+  \node[align=center] at (0, -2.75) {\footnotesize \textbf{Közös külső tartomány:} $t = t_1 + t_2 - 1 \implies n - e + t = c + 1 = 3$};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ---

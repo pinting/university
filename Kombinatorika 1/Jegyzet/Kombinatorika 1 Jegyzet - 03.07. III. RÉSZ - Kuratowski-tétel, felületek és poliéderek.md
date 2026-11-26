@@ -36,6 +36,7 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
 > **Állítás.** A $K_{3,3}$ gráf **nem síkbarajzolható** (a három ház – három kút feladat síkban nem oldható meg).
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
   edge/.style={draw=black!70, thick}
@@ -45,12 +46,13 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
     \foreach \i in {1,...,5} {
       \node[v] (k\i) at ({90 + (\i-1)*72}:1.2) {};
     }
-    \foreach \i in {1,...,5} {
-      \foreach \j in {\i,...,5} {
+    \foreach \i in {1,...,4} {
+      \pgfmathtruncatemacro{\nexti}{\i+1}
+      \foreach \j in {\nexti,...,5} {
         \draw[edge] (k\i) -- (k\j);
       }
     }
-    \node[below=1.4cm of k1] {\begin{tabular}{c} \textbf{$K_5$} \\ $n=5, \, e=10$ \\ $10 \le 3(5)-6 = 9 \text{ (ellentmondás)}$ \end{tabular}};
+    \node at (0, -2.05) {\footnotesize\begin{tabular}{c} \textbf{$K_5$} \\ $n=5, \, e=10$ \\ $10 \le 3(5)-6 = 9 \text{ (ellentmondás)}$ \end{tabular}};
   \end{scope}
 
   % K_{3,3}
@@ -66,9 +68,9 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
         \draw[edge] (h\i) -- (w\j);
       }
     }
-    \node[above=0.05cm of h2] {\footnotesize 3 ház};
-    \node[below=0.05cm of w2] {\footnotesize 3 kút};
-    \node[below=0.8cm of w2] {\begin{tabular}{c} \textbf{$K_{3,3}$} \\ $n=6, \, e=9$ \\ $9 \le 2(6)-4 = 8 \text{ (ellentmondás)}$ \end{tabular}};
+    \node[above=0.08cm of h2] {\footnotesize 3 ház};
+    \node[below=0.08cm of w2] {\footnotesize 3 kút};
+    \node at (0, -2.05) {\footnotesize\begin{tabular}{c} \textbf{$K_{3,3}$} \\ $n=6, \, e=9$ \\ $9 \le 2(6)-4 = 8 \text{ (ellentmondás)}$ \end{tabular}};
   \end{scope}
 
   % Subdivision
@@ -84,9 +86,10 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
     \node[circle, draw=black, fill=white, inner sep=1.8pt, label=above:{$w$}] (t2) at (0, -0.9) {};
     \node[v, label=right:{$v$}] (t3) at (1.2, -0.9) {};
     \draw[edge] (t1) -- (t2) -- (t3);
-    \node[below=0.1cm of t2] {\footnotesize soros bővítés ($u-w-v$)};
+    \node at (0, -1.6) {\footnotesize soros bővítés ($u-w-v$)};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Soros bővítés és topológikus izomorfia
@@ -166,6 +169,7 @@ Foglaljuk össze, amit a síkbarajzolható gráfokról eddig tudunk. Összefügg
 **$\Leftarrow$ (sztereografikus vetítés).** Tegyük a gömböt a síkra úgy, hogy a **déli pólusában** ($D$) érintse a síkot, és legyen $\text{É}$ az **északi pólus**. A gömb minden $P \ne \text{É}$ pontjához rendeljük hozzá az $\text{É}P$ egyenes és a sík $P'$ metszéspontját.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.1,
   pt/.style={circle, draw=black, fill=black, inner sep=1.4pt}
 ]
@@ -179,8 +183,9 @@ Foglaljuk össze, amit a síkbarajzolható gráfokról eddig tudunk. Összefügg
   \node[pt, label=below:{\small $P'$}] at (-1, 0) {};
   \node[pt, label=right:{\small $Q$}] at (1, 1) {};
   \node[pt, label=below:{\small $Q'$}] at (2, 0) {};
-  \node at (0, -0.9) {\footnotesize Sztereografikus vetítés: a gömb $P$ pontjának képe az $\text{É}P$ egyenes és a sík metszéspontja.};
+  \node[align=center] at (0, -1.0) {\footnotesize Sztereografikus vetítés: a gömb $P$ pontjának képe \\ \footnotesize az $\text{É}P$ egyenes és a sík metszéspontja.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 Ez a hozzárendelés **kölcsönösen egyértelmű** a gömbfelület $\text{É}$-tól különböző pontjai és a sík pontjai között: minden $P \ne \text{É}$ pontra az $\text{É}P$ egyenes nem párhuzamos a síkkal, tehát metszi, és megfordítva, minden $P'$ síkbeli pontra az $\text{É}P'$ egyenes $\text{É}$-n kívül pontosan egy pontban metszi a gömböt. A leképezés mindkét irányban folytonos, így folytonos görbéket folytonos görbékbe, egymást nem metsző görbéket egymást nem metsző görbékbe visz. Az $\text{É}$ pontnak nincs képe — a sík „végtelen távoli pontjának” felel meg: ha $P \to \text{É}$, akkor $P'$ a végtelenbe tart.
@@ -227,6 +232,7 @@ Euler eredetileg nem síkgráfokra, hanem **testekre** fogalmazta meg a formulá
 A tétel így is olvasható: *a $0$ dimenziós lapok (csúcsok), az $1$ dimenziós lapok (élek) és a $2$ dimenziós lapok száma váltakozó előjellel összeadva $2$.* Itt egy $k$ dimenziós **lap** a test határának egy olyan része, amely egy $k$ dimenziós síkban fekszik: a csúcs egyetlen pont, az él egy szakasz, a lap egy sokszög.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=black, inner sep=1.5pt},
   edge/.style={draw=black!70, thick}
@@ -240,7 +246,7 @@ A tétel így is olvasható: *a $0$ dimenziós lapok (csúcsok), az $1$ dimenzi�
     \draw[edge] (a) -- (d);
     \draw[edge] (b) -- (d);
     \draw[edge] (c) -- (d);
-    \node at (0, -1.5) {\footnotesize tetraéder: $4 - 6 + 4 = 2$};
+    \node at (0, -1.7) {\footnotesize tetraéder: $4 - 6 + 4 = 2$};
   \end{scope}
   \begin{scope}[xshift=3cm]
     \node[v] (p1) at (-1.2, -1.2) {};
@@ -260,6 +266,7 @@ A tétel így is olvasható: *a $0$ dimenziós lapok (csúcsok), az $1$ dimenzi�
     \node at (0, -1.7) {\footnotesize kocka (hexaéder): $8 - 12 + 6 = 2$};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Hány szabályos test van?

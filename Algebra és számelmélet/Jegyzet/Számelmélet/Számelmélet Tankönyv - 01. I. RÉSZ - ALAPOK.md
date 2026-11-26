@@ -634,7 +634,7 @@ tehát $x_{-1} = 1$, $y_{-1} = 0$, $x_0 = 0$, $y_0 = 1$. Ezzel az algoritmus min
 $$r_k = r_{k-2} - r_{k-1} q_k = (a x_{k-2} + b y_{k-2}) - (a x_{k-1} + b y_{k-1}) q_k = a (x_{k-2} - q_k x_{k-1}) + b (y_{k-2} - q_k y_{k-1}),$$
 tehát $r_k$-ra is igaz, mégpedig
 $$x_k = x_{k-2} - q_k x_{k-1}, \qquad y_k = y_{k-2} - q_k y_{k-1}.$$
-Speciálisan az utolsó nem nulla maradék, $r_n = (a, b)$ is előáll ilyen alakban. (Ha $b = 0$, akkor $(a, 0) = |a| = a \cdot (\pm 1) + 0 \cdot 0$.) $\blacksquare$
+Speciálisan az utolsó nem nulla maradék, $r_n = (a, b)$ is előáll ilyen alakban. (Ha $b = 0$, akkor $(a, 0) = |a| = a \cdot (\pm 1) + 0 \cdot 0$; ha pedig $b \mid a$ és $b \ne 0$, akkor $(a, b) = |b| = a \cdot 0 + b \cdot (\pm 1)$.) $\blacksquare$
 
 **Kidolgozott példa (a kiterjesztett euklideszi algoritmus).** Írjuk fel $(252, 198) = 18$-at $252x + 198y$ alakban! Két módszer is kézenfekvő.
 

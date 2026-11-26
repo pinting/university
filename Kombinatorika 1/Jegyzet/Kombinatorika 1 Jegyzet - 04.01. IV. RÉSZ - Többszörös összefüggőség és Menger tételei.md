@@ -82,7 +82,7 @@ Menger tétele azt mondja ki, hogy ennél több igaz: a két érték **mindig eg
 
 > **Tétel (Menger, pontváltozat — irányítatlan és irányított gráfra).** Legyen $G$ irányítatlan vagy irányított gráf, és $s \ne t \in V(G)$ két olyan csúcsa, amelyek között **nincs közvetlen él** ($st \notin E(G)$, illetve irányított esetben $s \to t \notin E(G)$). Ekkor az $s$-ből $t$-be menő páronként belsőleg **csúcsdiszjunkt** (irányítatlan, illetve irányított) utak **maximális száma** egyenlő az $s$-ből $t$-be menő összes utat lefogó ($s$-től és $t$-től különböző) **csúcsok minimális számával**.
 
-*(Miért kell a pontváltozatban kizárni a közvetlen $st$ — irányítottan $s \to t$ — élet? Mert egy közvetlen élet semmilyen közbenső csúcs törlésével nem lehet lefoglalni; magát $s$-et vagy $t$-t pedig nyilván nem engedhetjük törölni, hiszen akkor egyetlen csúcs minden utat lefogna, miközben akár sok belsőleg diszjunkt út is lehet. Irányított gráfban a fordított irányú $t \to s$ él természetesen megengedett, az nem akadályozza az állítást.)*
+*(Miért kell a pontváltozatban kizárni a közvetlen $st$ — irányítottan $s \to t$ — élet? Mert egy közvetlen élet semmilyen közbenső csúcs törlésével nem lehet lefogni; magát $s$-et vagy $t$-t pedig nyilván nem engedhetjük törölni, hiszen akkor egyetlen csúcs minden utat lefogna, miközben akár sok belsőleg diszjunkt út is lehet. Irányított gráfban a fordított irányú $t \to s$ él természetesen megengedett, az nem akadályozza az állítást.)*
 
 A tételeket az előadáson nem bizonyítottuk.
 
@@ -268,14 +268,14 @@ Most érünk el a két téma találkozásához: Menger tételéből azonnal megk
 
 Ha ugyanis $G' - X$-ben nem volna $s$-$t$ út, akkor $s$ és $t$ a $G' - X$ gráf két különböző komponensében, $C_s$-ben és $C_t$-ben lenne (és $G - X$-ben csak az $st$ él kötné össze ezt a két részt). Mivel $|V(G) \setminus X| \ge (k + 1) - (k - 2) = 3$, a két rész közül legalább az egyikben — mondjuk $C_s$-ben — van egy $s$-től (és $t$-től) különböző $w$ csúcs. Ekkor azonban az $X \cup \{s\}$ csúcshalmaz mérete legfeljebb $k - 1$, és $G - (X \cup \{s\})$-ben nincs út $w$ és $t$ között — ellentmondás azzal, hogy $G$ $k$-szorosan csúcsösszefüggő.
 
-Tehát $G'$-ben $s$ és $t$ nem szomszédosak (feltéve, hogy $G$ egyszerű; ha többszörös él fut közöttük, a többi közvetlen él már magában egy-egy belsőleg diszjunkt út), és elválasztó csúcshalmazuk mérete legalább $k - 1$. Menger tételének pontváltozata szerint $G'$-ben van $k - 1$ belsőleg csúcsdiszjunkt $s$-$t$ út; ezekhez a közvetlen $st$ élet hozzávéve $k$ belsőleg csúcsdiszjunkt utat kapunk $G$-ben. $\blacksquare$
+Tehát $G'$-ben $s$ és $t$ nem szomszédosak (ha $G$-ben többszörös élek is megengedettek, és $s$ és $t$ között több közvetlen él fut, akkor a $G'$-t az összes $st$-él törlésével képezzük; az érvelés erre is változatlanul érvényes), és elválasztó csúcshalmazuk mérete legalább $k - 1$. Menger tételének pontváltozata szerint $G'$-ben van $k - 1$ belsőleg csúcsdiszjunkt $s$-$t$ út; ezekhez egy közvetlen $st$ élet hozzávéve $k$ belsőleg csúcsdiszjunkt utat kapunk $G$-ben. $\blacksquare$
 :::
 
 ### Kétszeres összefüggőség és körök
 
 A $k = 2$ eset különösen szemléletes, mert két belsőleg csúcsdiszjunkt $s$-$t$ út együtt egy **kört** alkot.
 
-> **Tétel.** Legyen $G$ legalább $3$ csúcsú gráf. A következők ekvivalensek:
+> **Tétel.** Legyen $G$ legalább $3$ csúcsú egyszerű gráf. A következők ekvivalensek:
 >
 > 1. $G$ $2$-szeresen (csúcs)összefüggő;
 > 2. $G$ bármely két csúcsán átmegy egy közös kör;

@@ -18,6 +18,7 @@ Rögzített $k$ mellett:
 A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$ jó sorrend van, és ezeket $k = 1, \dots, n$-re összeadva kapjuk az állítást. $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.85,
   gridline/.style={draw=black!25, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -44,8 +45,8 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
   \node[retpt, label=above left:{\footnotesize $(k,k)=(3,3)$}] at (3,3) {};
   \node[pt, label=above right:{\footnotesize $(n,n)=(5,5)$}] at (5,5) {};
 
-  \node at (2.0, 0.7) {\footnotesize $C_{k-1}$};
-  \node at (4.0, 3.7) {\footnotesize $C_{n-k}$};
+  \node at (2.52, 0.48) {\footnotesize $C_{k-1}$};
+  \node at (4.52, 3.48) {\footnotesize $C_{n-k}$};
 
   \node at (2.5, -1.4) {\footnotesize\begin{tabular}{c}
     A Catalan-rekurzió: az első visszatérés az átlóra a $(k,k)$ pontban történik. \\
@@ -53,6 +54,7 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
     a $(k,k)$-tól induló hátralévő rész pedig egy $n-k$ méretű Dyck-út ($C_{n-k}$ lehetőség).
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 *Ellenőrzés:* $C_3 = C_0C_2 + C_1C_1 + C_2C_0 = 2 + 1 + 2 = 5$, és $C_4 = 5 + 2 + 2 + 5 = 14$.
@@ -64,10 +66,10 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
 
 1. *Pozitív köztes részletösszegek.* Legyen $n \ge 1$. Azoknak az $a_1, \dots, a_{2n} \in \{+1, -1\}$ sorozatoknak a száma, amelyekre $a_1 + \dots + a_{2n} = 0$, és minden köztes részletösszeg **szigorúan pozitív** ($s_j := a_1 + \dots + a_j > 0$ minden $j = 1, \dots, 2n-1$-re), éppen $C_{n-1}$. Valóban, ekkor szükségszerűen $a_1 = +1$ (különben $s_1 \le 0$) és $a_{2n} = -1$ (különben $s_{2n-1} \le 0$); ezeket elhagyva a maradék $2(n-1)$ hosszú sorozat minden részletösszege eggyel csökken, így pontosan egy nemnegatív részletösszegű sorozatot kapunk (ez éppen a fenti bizonyításban szereplő $C_{k-1}$ szimbolikus alakja).
 2. *Alaplemma ($C_n$ felismerése).* Ha a $(t_n)_{n\ge0}$ sorozatra $t_0 = 1$ és minden $n \ge 1$-re $t_n = \sum_{k=1}^{n} t_{k-1}t_{n-k}$, akkor erős teljes indukcióval $t_n = C_n$ minden $n \ge 0$-ra. (A Catalan-rekurzióban minden tag indexének összege $(k-1) + (n-k) = n - 1$.)
-3. *Egy indexszel eltolva ($A_n := C_{n-1}$, $n \ge 1$).* A $C_{n-1}$-es rekurzióban $k = i - 1$ helyettesítéssel:
+3. *Egy indexszel eltolva ($A_n := C_{n-1}$, $n \ge 1$).* A $C_{n-1} = \sum_{k=1}^{n-1} C_{k-1} C_{n-1-k}$ rekurzióban az $i = k$ átnevezéssel ($A_i = C_{i-1}$ és $A_{n-i} = C_{n-1-i}$):
    $$A_1 = 1, \qquad A_n = \sum_{i=1}^{n-1} A_i A_{n-i} \qquad (n \ge 2).$$
    Itt minden tagban az indexek összege $n$. Ha bármely $(X_n)_{n \ge 1}$ sorozat teljesíti ugyanezt a kezdőértéket ($X_1 = 1$) és rekurziót ($X_n = \sum_{i=1}^{n-1} X_i X_{n-i}$), akkor indukcióval $X_n = C_{n-1}$ minden $n \ge 1$-re (például az $n$ tényezős szorzat zárójelezéseinek száma).
-4. *Két indexszel eltolva ($B_n := C_{n-2}$, $n \ge 2$).* A $C_{n-2}$-es rekurzióban $j = k + 2$ helyettesítéssel:
+4. *Két indexszel eltolva ($B_n := C_{n-2}$, $n \ge 2$).* A $C_{n-2} = \sum_{k=1}^{n-2} C_{k-1} C_{n-2-k}$ rekurzióban a $j = k + 1$ helyettesítéssel ($B_j = C_{j-2} = C_{k-1}$ és $B_{n+1-j} = C_{n-1-j} = C_{n-2-k}$):
    $$B_2 = 1, \qquad B_n = \sum_{j=2}^{n-1} B_j B_{n+1-j} \qquad (n \ge 3).$$
    Itt minden tagban az indexek összege $n + 1$. Ha bármely $(Y_n)_{n \ge 2}$ sorozat teljesíti $Y_2 = 1$-et és ugyanezt a rekurziót ($Y_n = \sum_{j=2}^{n-1} Y_j Y_{n+1-j}$), akkor indukcióval $Y_n = C_{n-2}$ minden $n \ge 2$-re (például a konvex $n$-szög háromszögeléseinek száma). $\blacksquare$
 :::
@@ -83,6 +85,7 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
 (A háromszöget nem kell felbontani; a négyszöget a két átló bármelyike felbontja; az ötszögnél bármelyik csúcsból húzott két átló jó.) Az $1, 2, 5, 14$ sorozat ismerős! A **sejtés**: $T_n = C_{n-2}$. Az előadáson elhangzott, hogy ez rekurzióval bizonyítható.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.75,
   polyedge/.style={draw=black!70, thick},
   diag/.style={draw=black, very thick},
@@ -148,8 +151,9 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
     \node at (0, -1.3) {\scriptsize $5$-ös csúcsból};
   \end{scope}
 
-  \node at (0, -1.8) {\footnotesize $T_5 = C_3 = 5$: egy konvex ötszög mind az $5$ lehetséges háromszögelése (mindegyik $n-3 = 2$ átlót tartalmaz).};
+  \node[align=center] at (0, -2.0) {\footnotesize $T_5 = C_3 = 5$: egy konvex ötszög mind az $5$ lehetséges háromszögelése \\ \footnotesize (mindegyik $n-3 = 2$ átlót tartalmaz).};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ::: kiegeszites
@@ -165,23 +169,24 @@ Ez éppen a Catalan-rekurzió, tehát a lemma szerint $t_n = C_n$, vagyis $T_n =
 :::
 
 \begin{center}
-\begin{tikzpicture}[scale=0.9,
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.88,
   poly/.style={draw=black!70, thick},
   base/.style={draw=black, line width=2pt},
   triang/.style={draw=black, very thick, fill=black!10},
   pt/.style={circle, draw=black, fill=black, inner sep=1.8pt}
 ]
-  \coordinate (v1) at (-2.6, -1.0);
-  \coordinate (v2) at (-3.2, 0.0);
-  \coordinate (vk) at (-0.4, 1.8);
-  \coordinate (vm1) at (2.8, 0.2);
-  \coordinate (vm) at (2.2, -1.0);
+  \coordinate (v1) at (-3.0, -1.0);
+  \coordinate (v2) at (-4.0, 0.2);
+  \coordinate (vk) at (-0.3, 2.0);
+  \coordinate (vm1) at (3.6, 0.3);
+  \coordinate (vm) at (2.6, -1.0);
 
   \draw[triang] (v1) -- (vk) -- (vm) -- (v1);
-  \draw[poly] (v1) -- (v2) -- (-2.2, 1.2) -- (vk);
-  \path (v2) -- (-2.2, 1.2) node[midway, left=2pt] {\scriptsize $\dots$};
-  \draw[poly] (vk) -- (1.5, 1.5) -- (vm1) -- (vm);
-  \path (1.5, 1.5) -- (vm1) node[midway, right=2pt] {\scriptsize $\dots$};
+  \draw[poly] (v1) -- (v2) -- (-2.8, 1.4) -- (vk);
+  \path (v2) -- (-2.8, 1.4) node[midway, above left=-1pt] {\scriptsize $\dots$};
+  \draw[poly] (vk) -- (2.0, 1.6) -- (vm1) -- (vm);
+  \path (2.0, 1.6) -- (vm1) node[midway, above right=-1pt] {\scriptsize $\dots$};
   \draw[base] (v1) -- (vm);
 
   \node[pt, label=below left:{\small $1$}] at (v1) {};
@@ -190,17 +195,16 @@ Ez éppen a Catalan-rekurzió, tehát a lemma szerint $t_n = C_n$, vagyis $T_n =
   \node[pt, label=right:{\small $m-1$}] at (vm1) {};
   \node[pt, label=below right:{\small $m$}] at (vm) {};
 
-  \node at (-1.8, 0.2) {\footnotesize $k$-szög};
-  \node at (-1.8, -0.2) {\scriptsize ($T_k$ mód)};
-  \node at (1.3, 0.2) {\footnotesize $(m-k+1)$-szög};
-  \node at (1.3, -0.2) {\scriptsize ($T_{m-k+1}$ mód)};
-  \node at (-0.2, -1.3) {\footnotesize kitüntetett $\{1, m\}$ alapél};
+  \node[align=center] at (-2.75, 0.3) {\footnotesize $k$-szög \\ \scriptsize ($T_k$ mód)};
+  \node[align=center] at (2.35, 0.3) {\footnotesize $(m-k+1)$-szög \\ \scriptsize ($T_{m-k+1}$ mód)};
+  \node at (-0.2, -1.35) {\footnotesize kitüntetett $\{1, m\}$ alapél};
 
-  \node at (0, -2.1) {\footnotesize\begin{tabular}{c}
+  \node at (0, -2.2) {\footnotesize\begin{tabular}{c}
     Rekurzió háromszögelésekre: a rögzített $\{1, m\}$ alapélhez a $k$ csúcsot választva \\
     a sokszög két kisebb sokszögre bomlik: $T_m = \sum_{k=2}^{m-1} T_k T_{m-k+1}$.
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 **(B) Szorzatok zárójelezése.** Hányféleképpen zárójelezhető egy $n$ tényezős szorzat, ha a tényezők sorrendje rögzített, és minden lépésben két tényezőt szorzunk össze? Négy tényezőre például
@@ -208,6 +212,7 @@ $$((a\cdot b)\cdot c)\cdot d,\quad (a\cdot(b\cdot c))\cdot d,\quad (a\cdot b)\cd
 ez $5 = C_3$ lehetőség.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.72,
   edge/.style={draw=black!70, thick},
   leaf/.style={inner sep=1pt, font=\scriptsize},
@@ -303,8 +308,9 @@ ez $5 = C_3$ lehetőség.
     \node at (0, -0.4) {\scriptsize $a(b(cd))$};
   \end{scope}
 
-  \node at (0, -0.9) {\footnotesize Egy $4$ tényezős szorzat $C_3 = 5$ különböző zárójelezése és a nekik megfelelő bináris fák.};
+  \node[align=center] at (0, -1.05) {\footnotesize Egy $4$ tényezős szorzat $C_3 = 5$ különböző zárójelezése \\ \footnotesize és a nekik megfelelő bináris fák.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ::: kiegeszites

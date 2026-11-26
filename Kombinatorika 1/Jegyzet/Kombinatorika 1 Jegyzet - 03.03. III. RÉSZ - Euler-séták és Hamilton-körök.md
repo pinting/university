@@ -81,6 +81,26 @@ A Hamilton-út egy (nem zárt) **lánc**: ha $k$ szemet kiszedünk belőle, legf
 
 *A feltétel nem elégséges.* Ismert, hogy a **Petersen-gráf** ($10$ csúcsú, $3$-reguláris gráf: egy ötszög, egy ötágú csillag, és a megfelelő csúcsaik összekötve) teljesíti a fenti szükséges feltételt, Hamilton-köre mégsincs. A szükséges feltétel teljesülése tehát még nem garantálja a Hamilton-kört.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.95,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
+  edge/.style={draw=black!75, thick}
+]
+  \foreach \k/\ang/\oang/\iang in {1/90/90/10, 2/18/18/100, 3/-54/-54/22, 4/-126/-126/153, 5/162/162/80} {
+    \node[pt, label={[label distance=1pt]\oang:{\footnotesize $o_{\k}$}}] (o\k) at (\ang:1.75) {};
+    \node[pt, label={[label distance=0pt]\iang:{\scriptsize $i_{\k}$}}] (i\k) at (\ang:0.85) {};
+  }
+  \draw[edge] (o1) -- (o2) -- (o3) -- (o4) -- (o5) -- (o1);
+  \draw[edge] (i1) -- (i3) -- (i5) -- (i2) -- (i4) -- (i1);
+  \foreach \k in {1,...,5} {
+    \draw[edge] (o\k) -- (i\k);
+  }
+  \node at (0, -2.25) {\footnotesize A Petersen-gráf ($10$ csúcs, $15$ él): nincs benne Hamilton-kör.};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 *Miért nincs a Petersen-gráfban Hamilton-kör?* Legyenek a külső ötszög csúcsai $o_1, \dots, o_5$ (körbe), a belső csillag csúcsai $i_1, \dots, i_5$ (az $i_k$ az $i_{k+2}$-vel és az $i_{k-2}$-vel szomszédos, indexek modulo $5$), és a „küllők” az $o_ki_k$ élek. Tegyük fel, hogy $H$ egy Hamilton-kör. $H$ minden csúcsnál $2$ élt használ a $3$-ból. Egy kör páros sokszor lép át a külső és a belső csúcsok között, és legalább kétszer, így $H$ vagy $2$, vagy $4$ küllőt tartalmaz.
 
 - *$2$ küllő.* A külső ötszögön a két küllős csúcs $1$-$1$, a többi három $2$-$2$ ötszögélt használ $H$-ból, összesen $\frac{2 + 6}{2} = 4$ élt: $H$ külső része egy $5$ csúcsú út, amelynek két végpontja a két küllős csúcs, és ezek az ötszögön **szomszédosak** (a kimaradó él köti össze őket): $o_a, o_{a+1}$. Ugyanígy a belső részen a két küllős csúcs, $i_a$ és $i_{a+1}$ a csillagban szomszédos volna — de $i_a$ szomszédai $i_{a \pm 2}$. Ellentmondás.
@@ -109,6 +129,35 @@ $$x = u_1,\ u_2,\ \dots,\ u_n = y.$$
 Ha ugyanis $x u_{i+1}$ és $u_i y$ is él volna, akkor
 $$x = u_1,\ u_2,\ \dots,\ u_i,\ y = u_n,\ u_{n-1},\ \dots,\ u_{i+1},\ x$$
 Hamilton-kör volna $G$-ben: az úton elmegyünk $u_i$-ig, átugrunk $y$-ba, az úton visszafelé haladunk $u_{i+1}$-ig, és onnan visszaugrunk $x$-be. Ez ellentmondás.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.95,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.7pt},
+  path/.style={draw=black, very thick},
+  skip/.style={draw=black!35, dashed, thick},
+  cross/.style={draw=black, very thick, -{Stealth[scale=0.9]}}
+]
+  \node[pt, label=below:{\footnotesize $x=u_1$}] (u1) at (-3.2, 0) {};
+  \node[pt, label=above:{\footnotesize $u_2$}] (u2) at (-2.0, 0) {};
+  \node[pt, label=below:{\footnotesize $u_i$}] (ui) at (-0.6, 0) {};
+  \node[pt, label=below:{\footnotesize $u_{i+1}$}] (uip) at (0.6, 0) {};
+  \node[pt, label=above:{\footnotesize $u_{n-1}$}] (unm) at (2.0, 0) {};
+  \node[pt, label=below:{\footnotesize $u_n=y$}] (un) at (3.2, 0) {};
+
+  \draw[path, ->, >=Stealth] (u1) -- (u2);
+  \draw[path, dotted] (u2) -- (ui);
+  \draw[skip] (ui) -- (uip);
+  \draw[path, dotted] (uip) -- (unm);
+  \draw[path, <-, >=Stealth] (unm) -- (un);
+
+  \draw[cross] (ui) to[out=-55, in=-125, looseness=1.05] (un);
+  \draw[cross] (uip) to[out=125, in=55, looseness=1.05] (u1);
+
+  \node[align=center] at (0, -1.9) {\footnotesize Ha $xu_{i+1}$ és $u_iy$ is él, a szaggatott $u_iu_{i+1}$ él helyett \\ \footnotesize a két keresztéllel $n$ hosszú kört (Hamilton-kört) kapunk.};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 **3. lépés: hányan lehetnek $y$ szomszédai?** Az $x$ csúcsnak $\deg(x)$ szomszédja van, mind az $u_2, \dots, u_n$ csúcsok között. Mindegyik szomszéd előtt áll az úton egy csúcs; ezek $\deg(x)$ darab különböző csúcsot adnak az $u_1, \dots, u_{n-1}$ közül, és a 2. lépés szerint egyikük sem szomszédja $y$-nak. Az $y$ szomszédai az $u_1, \dots, u_{n-1}$ csúcsok közül kerülnek ki ($y$ nem szomszédja önmagának), ezért
 $$\deg(y) \le (n - 1) - \deg(x), \quad \text{azaz} \quad n - 1 \ge \deg(x) + \deg(y) \ge \frac{n}{2} + \frac{n}{2} = n.$$

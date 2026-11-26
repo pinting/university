@@ -137,7 +137,7 @@ Végül a relációk. Sok matematikai fogalom két dolog közötti viszonyt feje
 - A „kisebb” reláció a valós számokon: $\{(x, y) \in \mathbb{R}^2 : x < y\}$. Ez a koordinátasíkon az $y = x$ egyenes feletti nyílt félsík.
 - Az **oszthatósági** reláció: $(n, m) \in \mathbb{N} \times \mathbb{N}$ akkor áll relációban, ha $n$ osztója $m$-nek, jelölése $n \mid m$.
 
-**A függvény mint reláció.** Ez a definíció lehetővé teszi, hogy a függvény fogalmát is halmazelméletileg precízzé tegyük. Egy $f : A \to B$ függvényt azonosíthatunk a **grafikonjával**, az $\{(a, f(a)) : a \in A\} \subset A \times B$ relációval. Egy $R \subset A \times B$ reláció pontosan akkor grafikonja egy függvénynek, ha minden $a \in A$-hoz **pontosan egy** olyan $b$ van, amelyre $(a, b) \in R$. Geometriailag: minden függőleges egyenes pontosan egy pontban metszi. (Az egységkör, $\{(x,y) : x^2 + y^2 = 1\}$, ezért nem függvény grafikonja: az $x = 0$ egyenes két pontban metszi.)
+**A függvény mint reláció.** Ez a definíció lehetővé teszi, hogy a függvény fogalmát is halmazelméletileg precízzé tegyük. Egy $f : A \to B$ függvényt azonosíthatunk a **grafikonjával**, az $\{(a, f(a)) : a \in A\} \subset A \times B$ relációval. Egy $R \subset A \times B$ reláció pontosan akkor grafikonja egy függvénynek, ha minden $a \in A$-hoz **pontosan egy** olyan $b$ van, amelyre $(a, b) \in R$. Geometriailag: minden függőleges egyenes legfeljebb egy (az $A$ minden pontjában pontosan egy) pontban metszi. (Az egységkör, $\{(x,y) : x^2 + y^2 = 1\}$, ezért nem függvény grafikonja: az $x = 0$ egyenes két pontban metszi.)
 
 **Ekvivalenciarelációk.** Az $A$ halmazon értelmezett $\sim$ relációt **ekvivalenciarelációnak** nevezzük, ha minden $a, b, c \in A$-ra
 

@@ -55,6 +55,7 @@ hiszen a teljes gráfból éppen az osztályokon belüli éleket hagyjuk el.
 *Példák.* A $T(10, 5)$ öt kételemű osztályból áll: élszáma $\binom{10}{2} - 5 \cdot 1 = 45 - 5 = 40$. A $T(11, 4)$ osztályai $3, 3, 3, 2$ eleműek: élszáma $\binom{11}{2} - 3\binom{3}{2} - \binom{2}{2} = 55 - 9 - 1 = 45$. A $T(n, 2)$ a $K_{\lfloor n/2 \rfloor, \lceil n/2 \rceil}$, a Mantel-tétel extremális gráfja.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.8,
   pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
   edge/.style={draw=black!30, thin},
@@ -79,8 +80,9 @@ hiszen a teljes gráfból éppen az osztályokon belüli éleket hagyjuk el.
   \draw[cls] (-1.65, -3.4) rectangle (1.65, -2.6);
   \draw[cls] (-3.4, -1.05) rectangle (-2.6, 1.05);
   \foreach \p in {a1,a2,a3,b1,b2,b3,c1,c2,c3,d1,d2} { \node[pt] at (\p) {}; }
-  \node at (0, -4.1) {\footnotesize A $T(11, 4)$ Turán-gráf: osztályok mérete $3, 3, 3, 2$; minden különböző osztálybeli pár össze van kötve ($45$ él).};
+  \node[align=center] at (0, -4.25) {\footnotesize A $T(11, 4)$ Turán-gráf: osztályok mérete $3, 3, 3, 2$; \\ \footnotesize minden különböző osztálybeli pár össze van kötve ($45$ él).};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 > **Állítás.** Az $n$ csúcsú $r$ osztályú gráfok közül a $T(n, r)$ Turán-gráfnak van a legtöbb éle.
@@ -180,14 +182,39 @@ Ha a tagok mérete tetszőleges, a kérdés könnyű. Az $[n]$ részhalmazai $2^
 
 Érdekesebb a kérdés, ha minden tag **ugyanakkora**, $k$ elemű. Ha $k > n/2$, akkor bármely két $k$ elemű halmaz metszi egymást, így az összes, $\binom{n}{k}$ darab $k$ elemű halmaz metsző rendszert alkot. Ha $k \le n/2$, egy természetes metsző rendszer a **csillag**: egy rögzített elemet tartalmazó összes $k$ elemű halmaz. Ennek $\binom{n-1}{k-1}$ tagja van.
 
-> **Tétel (Erdős–Ko–Rado, 1961).** Ha $k \le n/2$, és $\mathcal{F}$ az $[n]$ halmaz $k$ elemű részhalmazaiból álló metsző rendszer, akkor
+> **Tétel (Erdős–Ko–Rado, 1961).** Ha $1 \le k \le n/2$, és $\mathcal{F}$ az $[n]$ halmaz $k$ elemű részhalmazaiból álló metsző rendszer, akkor
 > $$|\mathcal{F}| \le \binom{n-1}{k-1}.$$
+> ($k = 0$ esetén $\emptyset \cap \emptyset = \emptyset$, így $\mathcal{F} = \emptyset$ és $|\mathcal{F}| = 0$.)
 
 *Bizonyítás (Katona Gyula ciklikus módszere).* Helyezzük el az $[n]$ elemeit egy kör mentén valamilyen sorrendben; az ilyen **ciklikus sorrendek** száma $(n-1)!$. Egy ciklikus sorrendben **ívnek** nevezünk egy $k$ egymást követő elemből álló halmazt; ív pontosan $n$ darab van.
 
 *Lemma.* Egy rögzített ciklikus sorrendben legfeljebb $k$ ív tartozhat $\mathcal{F}$-hez.
 
 Ha egy ív sincs $\mathcal{F}$-ben, kész vagyunk. Különben legyen $I \in \mathcal{F}$ egy ív, elemei a körön az $1., 2., \dots, k.$ helyen. Minden más $\mathcal{F}$-beli ív metszi $I$-t, tehát vagy a $2., \dots, k.$ helyek valamelyikén kezdődik, vagy az $1., \dots, k - 1.$ helyek valamelyikén végződik. Minden $i = 1, \dots, k - 1$-re tekintsük azt az ívet, amely az $i$-edik helyen **végződik**, és azt, amely az $(i+1)$-edik helyen **kezdődik**. Ez a kettő együtt $2k \le n$ egymást követő helyet fed le, tehát **diszjunkt**, így közülük legfeljebb egy lehet $\mathcal{F}$-ben. Az $I$-n kívül minden $I$-t metsző ív ilyen párok valamelyikébe tartozik, így $\mathcal{F}$-ben legfeljebb $1 + (k - 1) = k$ ív van. $\square$
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.92,
+  pt/.style={circle, draw=black, fill=white, thick, minimum size=14pt, inner sep=0pt, font=\scriptsize}
+]
+  \draw[draw=black!25, thick] (0, 0) circle (1.8);
+  \foreach \j in {1,...,9} {
+    \pgfmathsetmacro{\ang}{90 - (\j - 1) * 40}
+    \node[pt] (c\j) at (\ang:1.8) {$\j$};
+  }
+  % I = {1,2,3}
+  \draw[draw=black, very thick] (98:2.15) arc (98:2:2.15);
+  \node at (50:2.45) {\footnotesize $I$};
+  % Diszjunkt pár i = 2-re: {9,1,2} és {3,4,5}
+  \draw[draw=red!75!black, very thick, dashed] (138:1.42) arc (138:42:1.42);
+  \draw[draw=blue!70!black, very thick] (18:1.42) arc (18:-78:1.42);
+  \node[align=center, red!75!black] at (108:0.75) {\scriptsize $i=2$-n \\[-2pt] \scriptsize végződő};
+  \node[align=center, blue!70!black] at (-30:0.72) {\scriptsize $3$-on \\[-2pt] \scriptsize kezdődő};
+
+  \node[align=center] at (0, -2.45) {\footnotesize Katona párosítása ($n = 9$, $k = 3$, $i = 2$): az $i$-edik helyen végződő és az $(i+1)$-ediken \\ \footnotesize kezdődő ív együtt $2k \le n$ helyet fed le, tehát diszjunktak.};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 *A kettős leszámlálás.* Számoljuk meg azokat a $(\sigma, A)$ párokat, ahol $\sigma$ ciklikus sorrend és $A \in \mathcal{F}$ egy íve.
 

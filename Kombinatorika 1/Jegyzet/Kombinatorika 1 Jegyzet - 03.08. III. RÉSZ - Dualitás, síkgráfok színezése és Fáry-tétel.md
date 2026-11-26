@@ -26,6 +26,7 @@ A tartományok színezését a csúcsszínezésre vezetjük vissza.
 Két tartomány között **annyi** élt húzunk, ahány közös élük van (minden közös élen keresztül egyet), így $G^*$-ban többszörös élek is lehetnek; egy hídon keresztül húzott él hurokél. Az élek behúzhatók úgy, hogy ne messék egymást, ezért **$G^*$ is síkbarajzolható** — sőt a konstrukció rögtön egy síkrajzát adja.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.0,
   v/.style={circle, draw=black, fill=black, inner sep=1.6pt},
   dv/.style={circle, draw=black, fill=white, thick, inner sep=1.8pt},
@@ -41,8 +42,9 @@ Két tartomány között **annyi** élt húzunk, ahány közös élük van (mind
   \draw[dual] (I) -- (O);
   \draw[dual] (I) .. controls (-1.6, 1.6) and (-2.9, 0.2) .. (O);
   \draw[dual] (I) .. controls (1.6, 1.6) and (2.9, 0.2) .. (O);
-  \node at (0, -2.0) {\footnotesize Egy háromszög ($n = 3$, $e = 3$, $t = 2$) duálisa: $2$ csúcs és $3$ párhuzamos él.};
+  \node[align=center] at (0, -2.3) {\footnotesize Egy háromszög ($n = 3$, $e = 3$, $t = 2$) duálisa: \\ \footnotesize $2$ csúcs és $3$ párhuzamos él.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 Összefüggő $G$ esetén a duális paraméterei $n^* = t$ és $e^* = e$, az Euler-formula szerint pedig $t^* = 2 - n^* + e^* = 2 - t + e = n$: a duálisnak éppen annyi tartománya van, ahány csúcsa $G$-nek. A szabályos testek élgráfjainál: a kocka duálisa az oktaéder (a kocka $6$ lapja az oktaéder $6$ csúcsa), a dodekaéderé az ikozaéder, a tetraéderé önmaga.
@@ -127,3 +129,85 @@ Ha $G$ **nem összefüggő**, a dolog elromlik: $G^*$ mindig összefüggő (bár
 - Ha az egyik háromszöget a négyszög belsejébe rajzoljuk, a tartományok: két háromszög belseje ($3$-$3$), a négyszög belsejének a háromszögön kívüli része ($4 + 3 = 7$ él) és a külső tartomány ($4 + 3 = 7$ él).
 
 A duális csúcsainak fokszáma a tartományok határoló éleinek száma, így az első duális fokszámai $3, 3, 4, 10$, a másodiké $3, 3, 7, 7$: a két duális nem izomorf, pedig mindkettő ugyanannak a gráfnak a duálisa. (Whitney tétele szerint a 3-szorosan összefüggő síkgráfoknak a gömbön lényegében egyetlen rajzuk van, így ezek duálisa egyértelmű — a fenti $G$-nek viszont elvágó csúcsa van.)
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.88,
+  v/.style={circle, draw=black, fill=black, inner sep=1.4pt},
+  dv/.style={circle, draw=black, fill=white, thick, inner sep=1.7pt},
+  edge/.style={draw=black, thick},
+  dual/.style={draw=black!60, thick, dashed},
+  flab/.style={font=\scriptsize}
+]
+  % Balra: egymás melletti rajz (3, 3, 4, 10)
+  \begin{scope}[xshift=-3.6cm]
+    \node[v, label=below:{\scriptsize $v$}] (v1) at (0, 0) {};
+    \coordinate (a1) at (-1.35, -0.35); \coordinate (b1) at (-0.65, -1.25);
+    \coordinate (c1) at (-0.55, 1.3);   \coordinate (d1) at (0.55, 1.3);
+    \coordinate (e1) at (0.75, -1.05);  \coordinate (f1) at (1.85, -0.15); \coordinate (g1) at (0.95, 0.85);
+    \draw[edge] (v1) -- (a1) -- (b1) -- (v1);
+    \draw[edge] (v1) -- (c1) -- (d1) -- (v1);
+    \draw[edge] (v1) -- (e1) -- (f1) -- (g1) -- (v1);
+    \foreach \p in {a1,b1,c1,d1,e1,f1,g1} { \node[v] at (\p) {}; }
+    \node[flab] at (-0.75, -0.58) {$3$};
+    \node[flab] at (0.0, 0.85) {$3$};
+    \node[flab] at (0.92, -0.05) {$4$};
+    \node[flab] at (1.55, -1.15) {külső: $10$};
+
+    % Dualis alatta
+    \begin{scope}[yshift=-2.85cm]
+      \node[dv, label=below:{\scriptsize $10$}] (O1) at (0.1, -0.45) {};
+      \node[dv, label=above:{\scriptsize $3$}] (D1a) at (-1.35, 0.55) {};
+      \node[dv, label=above:{\scriptsize $3$}] (D1b) at (0.1, 0.75) {};
+      \node[dv, label=above:{\scriptsize $4$}] (D1c) at (1.55, 0.55) {};
+      \draw[dual] (O1) to[bend left=18] (D1a);
+      \draw[dual] (O1) -- (D1a);
+      \draw[dual] (O1) to[bend right=18] (D1a);
+      \draw[dual] (O1) to[bend left=18] (D1b);
+      \draw[dual] (O1) -- (D1b);
+      \draw[dual] (O1) to[bend right=18] (D1b);
+      \draw[dual] (O1) to[bend left=22] (D1c);
+      \draw[dual] (O1) to[bend left=8] (D1c);
+      \draw[dual] (O1) to[bend right=8] (D1c);
+      \draw[dual] (O1) to[bend right=22] (D1c);
+      \node at (0.1, -1.2) {\footnotesize $G_1^*$: fokok $3, 3, 4, 10$};
+    \end{scope}
+  \end{scope}
+
+  % Jobbra: háromszög a négyszög belsejében (3, 3, 7, 7)
+  \begin{scope}[xshift=3.2cm]
+    \node[v, label=above:{\scriptsize $v$}] (v2) at (0, 0) {};
+    \coordinate (a2) at (-1.35, 0.55); \coordinate (b2) at (-1.35, -0.55);
+    \coordinate (e2) at (1.2, -1.25);  \coordinate (f2) at (2.6, 0.0); \coordinate (g2) at (1.2, 1.25);
+    \coordinate (c2) at (1.05, 0.42);  \coordinate (d2) at (1.05, -0.42);
+    \draw[edge] (v2) -- (a2) -- (b2) -- (v2);
+    \draw[edge] (v2) -- (e2) -- (f2) -- (g2) -- (v2);
+    \draw[edge] (v2) -- (c2) -- (d2) -- (v2);
+    \foreach \p in {a2,b2,e2,f2,g2,c2,d2} { \node[v] at (\p) {}; }
+    \node[flab] at (-0.92, 0.0) {$3$};
+    \node[flab] at (0.70, 0.0) {$3$};
+    \node[flab] at (1.85, 0.0) {$7$};
+    \node[flab] at (-0.1, -1.15) {külső: $7$};
+
+    % Dualis alatta
+    \begin{scope}[yshift=-2.85cm, xshift=0.5cm]
+      \node[dv, label={[label distance=5pt]below:{\scriptsize $3$}}] (D2a) at (-1.65, 0.1) {};
+      \node[dv, label={[label distance=5pt]below:{\scriptsize $7$}}] (O2)  at (-0.55, 0.1) {};
+      \node[dv, label={[label distance=5pt]below:{\scriptsize $7$}}] (D2c) at (0.55, 0.1) {};
+      \node[dv, label={[label distance=5pt]below:{\scriptsize $3$}}] (D2b) at (1.65, 0.1) {};
+      \draw[dual] (D2a) to[bend left=24] (O2);
+      \draw[dual] (D2a) -- (O2);
+      \draw[dual] (D2a) to[bend right=24] (O2);
+      \draw[dual] (O2) to[bend left=28] (D2c);
+      \draw[dual] (O2) to[bend left=10] (D2c);
+      \draw[dual] (O2) to[bend right=10] (D2c);
+      \draw[dual] (O2) to[bend right=28] (D2c);
+      \draw[dual] (D2c) to[bend left=24] (D2b);
+      \draw[dual] (D2c) -- (D2b);
+      \draw[dual] (D2c) to[bend right=24] (D2b);
+      \node at (0.0, -1.2) {\footnotesize $G_2^*$: fokok $3, 3, 7, 7$};
+    \end{scope}
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}

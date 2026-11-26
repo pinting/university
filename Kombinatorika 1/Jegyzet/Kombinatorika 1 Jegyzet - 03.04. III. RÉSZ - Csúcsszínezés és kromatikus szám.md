@@ -37,6 +37,7 @@ $$\chi(K_5 - e) = 4.$$
 Egyetlen él elhagyása tehát $1$-gyel csökkentette a kromatikus számot.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.1,
   v/.style={circle, draw=black, fill=black!10, thick, minimum size=18pt, inner sep=0pt},
   edge/.style={draw=black!70, thick},
@@ -59,8 +60,9 @@ Egyetlen él elhagyása tehát $1$-gyel csökkentette a kromatikus számot.
   \draw[edge] (v3) -- (v5);
   \draw[edge] (v4) -- (v5);
 
-  \node[below=0.2cm of v3, xshift=1.2cm] {\footnotesize $K_5 - e$: a szaggatott él hiányzik, így a két végpont azonos színt ($1$) kaphat; $\chi = 4$};
+  \node[align=center] at (0, -1.85) {\footnotesize $K_5 - e$: a szaggatott él hiányzik, \\ \footnotesize így a két végpont azonos színt ($1$) kaphat; $\chi = 4$};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Egy példa
@@ -68,6 +70,7 @@ Egyetlen él elhagyása tehát $1$-gyel csökkentette a kromatikus számot.
 Vizsgáljuk meg az alábbi példagráfot:
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.05,
   c1/.style={circle, draw=black, fill=white, thick, minimum size=18pt, inner sep=0pt},
   c2/.style={circle, draw=black, fill=black!15, thick, minimum size=18pt, inner sep=0pt},
@@ -102,6 +105,7 @@ Vizsgáljuk meg az alábbi példagráfot:
     $\Delta(G) = 5$
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 Ebben a gráfban a csúcsokat sikerült $3$ színnel ($1, 2, 3$) jól kiszínezni: semelyik két szomszédos csúcs nem azonos színű. Mivel a gráf tartalmaz háromszöget (például a felső $3$, a középső $2$ és a jobb oldali $1$ csúcs egy $K_3$-at alkot), $2$ szín nem lehet elegendő, tehát a kromatikus szám pontosan $\chi(G) = 3$. A maximális fokszám $\Delta(G) = 5$ (a középső $2$-es színű csúcsnak $5$ szomszédja van), a legnagyobb teljes részgráf mérete pedig $\omega(G) = 3$.
@@ -144,13 +148,14 @@ Mivel azonban összesen $\Delta(G) + 1$ szín áll rendelkezésünkre, a szomsz�
 A mohó algoritmus tehát minden lépésben talál megengedett színt, soha nem akad el, és legfeljebb $\Delta(G) + 1$ szín felhasználásával egy jó csúcsszínezést állít elő. Ebből következik, hogy $\chi(G) \le \Delta(G) + 1$. $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.95,
   v/.style={circle, draw=black, fill=black!15, thick, minimum size=18pt, inner sep=0pt},
   cur/.style={circle, draw=black, fill=white, very thick, minimum size=20pt, inner sep=0pt},
   edge/.style={draw=black!70, thick}
 ]
-  \draw[rounded corners=15pt, fill=black!5, draw=black!30, dashed] (-3.4, -1.5) rectangle (3.4, 1.8);
-  \node[cur] (v) at (0, 0.1) {$v$};
+  \draw[rounded corners=15pt, fill=black!5, draw=black!30, dashed] (-3.4, -1.5) rectangle (3.4, 1.85);
+  \node[cur] (v) at (0, 0.05) {$v$};
   \node[v] (u1) at (-2.2, 0.9) {$c_1$};
   \node[v] (u2) at (-1.0, 1.2) {$c_2$};
   \node[v] (u3) at (0.6, 1.2) {$c_3$};
@@ -165,8 +170,9 @@ A mohó algoritmus tehát minden lépésben talál megengedett színt, soha nem 
   \path (u3) -- (u4) node[midway] {$\dots$};
 
   \node[below=0.15cm of v] {\footnotesize $k \le \deg(v) \le \Delta(G)$};
-  \node[above=0.05cm of u2] {\footnotesize már kiszínezett szomszédok ($\le \Delta(G)$ tiltott szín)};
+  \node at (0, 2.2) {\footnotesize már kiszínezett szomszédok ($\le \Delta(G)$ tiltott szín)};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Mikor éri el a felső korlátot a kromatikus szám?
@@ -184,6 +190,7 @@ Az előadáson két ilyen családot azonosítottunk:
    Ezzel szemben egy páros kör ($C_{2k}$) mindig kiszínezhető $2$ színnel: $\Delta(C_{2k}) = 2$ és $\chi(C_{2k}) = 2$.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.85,
   v/.style={circle, draw=black, fill=black!10, thick, minimum size=16pt, inner sep=0pt},
   edge/.style={draw=black!70, thick}
@@ -194,7 +201,7 @@ Az előadáson két ilyen családot azonosítottunk:
     \node[v] (k2) at (210:1.1) {$2$};
     \node[v] (k3) at (330:1.1) {$3$};
     \draw[edge] (k1) -- (k2) -- (k3) -- (k1);
-    \node[below=1.2cm of k1] {\begin{tabular}{c} $K_3$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
+    \node at (0, -1.8) {\footnotesize\begin{tabular}{c} $K_3$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
   \end{scope}
 
   % C_5
@@ -205,7 +212,7 @@ Az előadáson két ilyen családot azonosítottunk:
     \node[v] (c4) at (306:1.1) {$2$};
     \node[v] (c5) at (18:1.1) {$3$};
     \draw[edge] (c1) -- (c2) -- (c3) -- (c4) -- (c5) -- (c1);
-    \node[below=1.2cm of c1] {\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
+    \node at (0, -1.8) {\footnotesize\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
   \end{scope}
 
   % C_4
@@ -215,9 +222,10 @@ Az előadáson két ilyen családot azonosítottunk:
     \node[v] (q3) at (225:1.1) {$1$};
     \node[v] (q4) at (315:1.1) {$2$};
     \draw[edge] (q1) -- (q2) -- (q3) -- (q4) -- (q1);
-    \node[below=1.2cm of q1] {\begin{tabular}{c} $C_4$ \\ $\Delta=2, \, \chi=2$ \end{tabular}};
+    \node at (0, -1.8) {\footnotesize\begin{tabular}{c} $C_4$ \\ $\Delta=2, \, \chi=2$ \end{tabular}};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 Meglepő és mély tény, hogy ezen a két triviális eseten kívül **nincs más kivétel**! Ezt mondja ki a gráfelmélet egyik klasszikus eredménye:
@@ -267,6 +275,7 @@ Ekkor:
 3. **Élek kizárólag a különböző színosztályok között futhatnak.**
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   dot/.style={circle, draw=black, fill=black, inner sep=1.2pt},
   edge/.style={draw=black!70, thick}
@@ -297,6 +306,7 @@ Ekkor:
 
   \node at (0, 0.2) {\footnotesize élek csak az osztályok \emph{között} futnak};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 A gráf $k$ színnel való jó színezése tehát **teljesen ekvivalens azzal**, hogy a csúcshalmazát $k$ darab diszjunkt független halmaz uniójára bontjuk szét.

@@ -166,7 +166,7 @@ A határérték egyértelműsége teszi jogossá a $\lim a_n$ jelölést: ha van
 
 *Bizonyítás.* Legyen $a_n \to a$. Alkalmazzuk a definíciót $\varepsilon = 1$-re: van olyan $n_0$, hogy $n \ge n_0$ esetén $|a_n - a| < 1$, és ekkor a háromszög-egyenlőtlenség szerint
 $$|a_n| = |(a_n - a) + a| \le |a_n - a| + |a| < 1 + |a|.$$
-A küszöb előtti véges sok tag közül van abszolút értékben legnagyobb. Így a
+A küszöb előtti véges sok tag közül van abszolút értékben legnagyobb (ha $n_0 = 1$, egyszerűen $K = 1 + |a|$). Így a
 $$K = \max\big\{|a_1|,\ |a_2|,\ \dots,\ |a_{n_0 - 1}|,\ 1 + |a|\big\}$$
 szám minden $n$-re $|a_n| \le K$-t biztosít. $\blacksquare$
 
@@ -584,7 +584,7 @@ $$|a_n - a_m| = |(a_n - a) + (a - a_m)| \le |a_n - a| + |a - a_m| < \frac{\varep
 
 **($\Leftarrow$) Elégségesség.** Ez a nehezebb irány, és itt kell a teljesség (a Bolzano–Weierstrass-tételen keresztül). A terv: (1) a Cauchy-sorozat korlátos; (2) tehát van konvergens részsorozata; (3) és a Cauchy-tulajdonság miatt az egész sorozat ugyanoda tart.
 
-*1. lépés: a sorozat korlátos.* Alkalmazzuk a feltételt $\varepsilon = 1$-re: van olyan $n_1$, hogy minden $n, m \ge n_1$-re $|a_n - a_m| < 1$. Speciálisan ($n = n_1$-gyel) minden $m \ge n_1$-re $|a_m - a_{n_1}| < 1$, azaz $|a_m| < |a_{n_1}| + 1$. Az első $n_1 - 1$ tag véges sok, így
+*1. lépés: a sorozat korlátos.* Alkalmazzuk a feltételt $\varepsilon = 1$-re: van olyan $n_1$, hogy minden $n, m \ge n_1$-re $|a_n - a_m| < 1$. Speciálisan ($n = n_1$-gyel) minden $m \ge n_1$-re $|a_m - a_{n_1}| < 1$, azaz $|a_m| < |a_{n_1}| + 1$. Az első $n_1 - 1$ tag véges sok (ha $n_1 = 1$, egyszerűen $K = |a_1| + 1$), így
 $$K = \max\big\{|a_1|,\ \dots,\ |a_{n_1 - 1}|,\ |a_{n_1}| + 1\big\}$$
 korlátja a sorozatnak.
 

@@ -13,6 +13,7 @@ A Catalan-számok előkészítéseként két, első ránézésre egymástól tá
 :::
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.85,
   gridline/.style={draw=black!25, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -41,8 +42,9 @@ A Catalan-számok előkészítéseként két, első ránézésre egymástól tá
   \node[pt, label=below left:{\footnotesize $S(0,0)$}] at (0,0) {};
   \node[pt, label=above right:{\footnotesize $E(4,3)$}] at (4,3) {};
 
-  \node at (2, -1.0) {\footnotesize Egy rácsút $(0,0)$-ból $(4,3)$-ba: $4$ darab $J$ és $3$ darab $F$ lépés; összesen $\binom{4+3}{4} = 35$ ilyen út van.};
+  \node[align=center] at (2, -1.15) {\footnotesize Egy rácsút $(0,0)$-ból $(4,3)$-ba: $4$ darab $J$ és $3$ darab $F$ lépés; \\ \footnotesize összesen $\binom{4+3}{4} = 35$ ilyen út van.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Ferde utak a rácson
@@ -64,6 +66,7 @@ Ez pontosan akkor egész, ha $a + b$ páros, és pontosan akkor esik $0$ és $a$
 **Megjegyzés (Binomiális együttható kiterjesztése).** A $|b| \le a$ feltétel szemléletesen azt jelenti, hogy az $(a, b)$ pont az $y = x$ és az $y = -x$ egyenesek közötti, a pozitív $x$-tengelyt tartalmazó szögtartományban fekszik. Ha megállapodunk abban, hogy $\binom{n}{m} = 0$, valahányszor $m < 0$ vagy $m > n$ (összhangban azzal, hogy egy $n$ elemű halmaznak ilyenkor nincs $m$ elemű részhalmaza), akkor a lemma $\binom{a}{(a+b)/2}$ képlete minden olyan esetben igaz, amikor $a + b$ páros.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.68,
   gridline/.style={draw=black!20, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -87,8 +90,9 @@ Ez pontosan akkor egész, ha $a + b$ páros, és pontosan akkor esik $0$ és $a$
   \node[pt, label=below left:{\footnotesize $(0,0)$}] at (0,0) {};
   \node[pt, label=right:{\footnotesize $(6,2)$}] at (6,2) {};
 
-  \node at (3.2, -3.0) {\footnotesize Ferde út $(0,0)$-ból $(6,2)$-be: $6$ lépésből $f = \frac{6+2}{2} = 4$ felfelé, $\ell = 2$ lefelé; összesen $\binom{6}{4} = 15$ út.};
+  \node[align=center] at (3.2, -3.2) {\footnotesize Ferde út $(0,0)$-ból $(6,2)$-be: $6$ lépésből $f = \frac{6+2}{2} = 4$ felfelé, \\ \footnotesize $\ell = 2$ lefelé; összesen $\binom{6}{4} = 15$ út.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### A folyó-probléma
@@ -102,6 +106,7 @@ a háromszög-egyenlőtlenség szerint, egyenlőséggel pontosan akkor, ha $P$ a
 Valójában többet is kaptunk: egy **kölcsönösen egyértelmű megfeleltetést** a folyót érintő $B \to M$ útvonalak és a $B \to M'$ útvonalak között. Egy folyót érintő útvonalnak az **első** érintési pont *utáni* részét tükrözzük a folyóra, így egy $B$-ből $M'$-be vezető útvonalat kapunk; megfordítva, minden $B \to M'$ útvonal keresztezi a folyót (hiszen $B$ és $M'$ a két ellentétes parton van), és ha az első közös pont utáni részét visszatükrözzük, a folyót érintő $B \to M$ útvonalat kapunk. Ez a két művelet egymás inverze. (Megjegyezzük, hogy pontosan ugyanilyen érvényes bijekciót kapunk akkor is, ha az első érintési pont helyett mindenütt az **utolsó** érintési pont utáni részt tükrözzük.) Ez a **tükrözési elv**, és a következő szakaszban rácsutakra alkalmazzuk.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   river/.style={draw=black!70, very thick},
   bank/.style={draw=none, fill=black!6},
@@ -125,8 +130,9 @@ Valójában többet is kaptunk: egy **kölcsönösen egyértelmű megfeleltetés
   \draw[pathalt] (B) -- (Palt) -- (M);
   \draw[draw=black!30, dashed] (Palt) -- (Mp);
 
-  \node at (3.0, -2.4) {\footnotesize A tükrözési elv: $|BP| + |PM| = |BP| + |PM'| \ge |BM'|$, egyenlőség a $P^*$ metszéspontban áll fenn.};
+  \node[align=center] at (3.0, -2.55) {\footnotesize A tükrözési elv: $|BP| + |PM| = |BP| + |PM'| \ge |BM'|$, \\ \footnotesize egyenlőség a $P^*$ metszéspontban áll fenn.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ## 15. A Catalan-számok
@@ -157,6 +163,7 @@ Feleltessük meg minden sorrendnek egy rácsutat (töröttvonalat): az $1$ euró
 **Mikor rossz egy sorrend?** Pontosan akkor, ha valamikor egy $2$ eurós fizető üres pénztárhoz érkezik, vagyis ha az út valamikor az $y = x$ átló **fölé** lép. Mivel az út rácspontokon halad, ez azt jelenti, hogy az út **rálép az $y = x + 1$ egyenesre**. Ez a **tiltott egyenes**: ha rálépünk, baj van.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   gridline/.style={draw=black!25, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -176,15 +183,16 @@ Feleltessük meg minden sorrendnek egy rácsutat (töröttvonalat): az $1$ euró
   }
 
   \draw[diag] (-0.2, -0.2) -- (4.5, 4.5) node[right] {\footnotesize $y = x$ \scriptsize (egyenleg $\ge 0$)};
-  \draw[forbidden] (-0.2, 0.8) -- (3.5, 4.5) node[above left] {\footnotesize $y = x + 1$ \scriptsize (tiltott egyenes)};
+  \draw[forbidden] (-0.2, 0.8) -- (3.5, 4.5) node[above right] {\footnotesize $y = x + 1$ \scriptsize (tiltott egyenes)};
 
   \draw[goodpath] (0,0) -- (1,0) -- (2,0) -- (2,1) -- (3,1) -- (3,2) -- (3,3) -- (4,3) -- (4,4);
 
   \node[pt, label=below left:{\footnotesize $(0,0)$}] at (0,0) {};
   \node[pt, label=above right:{\footnotesize $(4,4)$}] at (4,4) {};
 
-  \node at (2.2, -1.1) {\footnotesize Jó sorrend (Dyck-út): az út végig az $y = x$ átlón vagy alatta halad ($x \ge y$), így elkerüli a tiltott egyenest.};
+  \node[align=center] at (2.4, -1.25) {\footnotesize Jó sorrend (Dyck-út): az út végig az $y = x$ átlón vagy alatta halad ($x \ge y$), \\ \footnotesize így elkerüli a tiltott egyenest.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Dobjuk ki a rosszat!
@@ -202,6 +210,7 @@ Megfordítva: minden $(0,0) \to (n-1, n+1)$ út érinti a tiltott egyenest. Az $
 A két eljárás egymás inverze, mert a tükrözés nem változtat az első érintési ponton és az azt megelőző szakaszon. $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.85,
   gridline/.style={draw=black!25, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -243,6 +252,7 @@ A két eljárás egymás inverze, mert a tükrözés nem változtat az első ér
     \scriptsize (Szürke: eredeti folytatás, fekete szaggatott: tükrözött folytatás)
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 A 14. szakasz szerint a $(0, 0) \to (n-1, n+1)$ utak száma $\binom{(n-1)+(n+1)}{n-1} = \binom{2n}{n-1}$. Így a jó utak száma $\binom{2n}{n} - \binom{2n}{n-1}$.
@@ -273,6 +283,7 @@ A pénztár-feladatot **ferde utakkal** is felírhatjuk, ami sok alkalmazásban 
 - A végpont, $(2n, 0)$ tükörképe az $y = -1$ egyenesre a $(2n, -2)$ pont. Egy rossz út utolsó $y = -1$-en lévő $X$ pontja utáni részét tükrözve bijekciót kapunk az $y = -1$-et érintő $(0, 0) \to (2n, 0)$ és az összes $(0, 0) \to (2n, -2)$ ferde út között. A ferde utakról szóló lemma alapján utóbbiak száma $\binom{2n}{(2n-2)/2} = \binom{2n}{n-1}$, így újra $C_n = \binom{2n}{n} - \binom{2n}{n-1}$ adódik.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.72,
   gridline/.style={draw=black!20, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -300,8 +311,9 @@ A pénztár-feladatot **ferde utakkal** is felírhatjuk, ami sok alkalmazásban 
   \node[pt, label=above right:{\footnotesize $(2n,0)$}] at (8,0) {};
   \node[pt, label=below right:{\footnotesize $(2n,-2)$}] at (8,-2) {};
 
-  \node at (4.0, -3.9) {\footnotesize Ferde utas tükrözés ($n = 4$): az utolsó $X \in \{y = -1\}$ pont utáni rész tükrözése $(2n,-2)$-be visz.};
+  \node[align=center] at (4.0, -4.1) {\footnotesize Ferde utas tükrözés ($n = 4$): az utolsó $X \in \{y = -1\}$ pont utáni rész \\ \footnotesize tükrözése $(2n,-2)$-be visz.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 > **Tipikus példa (Belépés a táncterembe).** Hányféleképpen mehet be $12$ fiú és $14$ lány egy táncterembe (egyesével), ha odabent mindig legalább annyi lány kell legyen, mint fiú? *Mi változik, ha a személyek megkülönböztethetők?*

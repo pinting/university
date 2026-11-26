@@ -48,7 +48,7 @@ $$0{,}999\dots = \frac{9}{10} + \frac{9}{100} + \dots = \frac{9}{10}\cdot\frac{1
 
 ## 36. A Cauchy-kritérium sorokra és a szükséges feltétel
 
-Mivel egy sor konvergenciája a részletösszeg-sorozat konvergenciáját jelenti, a 28. szakasz Cauchy-kritériuma közvetlenül alkalmazható. Csak azt kell észrevenni, hogy két részletösszeg különbsége maga is egy (véges) összeg:
+Mivel egy sor konvergenciája a részletösszeg-sorozat konvergenciáját jelenti, a 28. szakasz Cauchy-kritériuma közvetlenül alkalmazható. Csak azt kell észrevenni, hogy két részletösszeg különbsége maga is egy (véges) összeg ($n \ge 2$-re, illetve az $s_0 = 0$ megállapodással $n = 1$-re is):
 $$s_m - s_{n-1} = (a_1 + \dots + a_m) - (a_1 + \dots + a_{n-1}) = a_n + a_{n+1} + \dots + a_m = \sum_{k=n}^{m} a_k.$$
 
 > **Tétel (Cauchy-kritérium sorokra).** A $\sum a_k$ sor akkor és csak akkor konvergens, ha minden $\varepsilon > 0$-hoz létezik olyan $n_0$, hogy minden $m \ge n \ge n_0$ esetén
@@ -109,9 +109,9 @@ $$\sum_{n=1}^\infty \frac{1}{3^n} = \frac{1/3}{1 - 1/3} = \frac{1}{2}, \qquad 0{
 
 *Bizonyítás.* A sor pozitív tagú, tehát elég belátni, hogy a részletösszegei korlátosak. A trükk: minden $n \ge 2$-re
 $$\frac{1}{n^2} < \frac{1}{n(n-1)} = \frac{1}{n-1} - \frac{1}{n},$$
-és az utóbbi sor teleszkopikus. Ezért
+és az utóbbi sor teleszkopikus. Ezért minden $n \ge 2$-re
 $$\sum_{k=1}^{n}\frac{1}{k^2} < 1 + \sum_{k=2}^{n}\left(\frac{1}{k-1} - \frac{1}{k}\right) = 1 + \left(1 - \frac{1}{n}\right) < 2.$$
-A részletösszegek tehát szigorúan monoton növekedők és felülről korlátosak, így a sor konvergens. $\blacksquare$
+(Az $n = 1$ esetben az összeg $1 < 2$.) A részletösszegek tehát szigorúan monoton növekedők és felülről korlátosak, így a sor konvergens. $\blacksquare$
 
 Az összeg pontos értéke $\frac{\pi^2}{6} \approx 1{,}6449$. Ezt Leonhard Euler fedezte fel 1734-ben (a „bázeli probléma” megoldásaként), de a bizonyítás eszközei túlmutatnak ezen a könyvön. Ugyanígy (a majoráns kritériummal) konvergens $\sum \frac{1}{n^p}$ minden $p \ge 2$-re, hiszen $\frac{1}{n^p} \le \frac{1}{n^2}$.
 

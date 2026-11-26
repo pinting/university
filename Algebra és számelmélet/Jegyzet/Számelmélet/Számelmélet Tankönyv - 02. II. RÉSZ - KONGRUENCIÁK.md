@@ -86,7 +86,7 @@ ami valóban igaz.
 *Bizonyítás.* Legyen $d = (k, m)$, $k = k_1 d$ és $m = m_1 d$. Ekkor $(k_1, m_1) = 1$ (ha $k_1$-nek és $m_1$-nek volna $1$-nél nagyobb közös osztója, akkor $d$ nem volna a legnagyobb közös osztó). Így
 $$ka \equiv kb \pmod m \iff m \mid k(a - b) \iff m_1 d \mid k_1 d (a - b) \iff m_1 \mid k_1 (a - b).$$
 Mivel $(k_1, m_1) = 1$, a 4. fejezet „hasznos következménye” szerint $m_1 \mid k_1(a - b) \iff m_1 \mid a - b$ (a $\Leftarrow$ irány nyilvánvaló). Tehát
-$$ka \equiv kb \pmod m \iff a \equiv b \pmod{m_1} = \pmod{\tfrac{m}{(k, m)}}. \ \blacksquare$$
+$$ka \equiv kb \pmod m \iff a \equiv b \pmod{m_1}, \quad \text{azaz} \quad a \equiv b \pmod{\tfrac{m}{(k, m)}}. \ \blacksquare$$
 
 ### Teljes maradékrendszer
 

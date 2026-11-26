@@ -12,17 +12,19 @@ Fogalmazzuk át gráfokra: a csúcsok a társaság $6$ tagja, az élek a kedvel�
 Mivel $K_6 \subset K_7 \subset K_8 \subset \dots$, az állítás automatikusan igaz minden $n \ge 6$ csúcsú teljes gráfra is. **$K_5$-ben azonban még nem igaz:** a $K_5$ éleit színezzük úgy, hogy egy ötszög ($C_5$) élei legyenek pirosak, az átlók (egy ötágú csillag élei) pedig kékek. Mindkét színosztály egy-egy ötszög, így nincs egyszínű háromszög (a piros kör komplementere ugyanilyen ötszög).
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.0,
   pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
-  red/.style={draw=black, very thick},
-  blue/.style={draw=black!55, thick, dashed}
+  red/.style={draw=red!75!black, very thick},
+  blue/.style={draw=blue!70!black, thick, dashed}
 ]
   \foreach \i in {0,1,2,3,4} { \coordinate (p\i) at (90 + 72*\i:1.4); }
   \draw[red] (p0) -- (p1) -- (p2) -- (p3) -- (p4) -- (p0);
   \draw[blue] (p0) -- (p2) -- (p4) -- (p1) -- (p3) -- (p0);
   \foreach \i in {0,1,2,3,4} { \node[pt] at (p\i) {}; }
-  \node at (0, -2.0) {\footnotesize A $K_5$ egyszínű háromszög nélküli színezése: piros (folytonos) ötszög, kék (szaggatott) csillag.};
+  \node[align=center] at (0, -2.05) {\footnotesize A $K_5$ egyszínű háromszög nélküli színezése: \\ \footnotesize piros (folytonos) ötszög, kék (szaggatott) csillag.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Általánosítás és a Ramsey-számok

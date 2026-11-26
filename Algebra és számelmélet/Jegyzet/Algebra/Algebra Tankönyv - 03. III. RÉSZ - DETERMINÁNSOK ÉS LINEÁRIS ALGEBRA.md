@@ -68,7 +68,7 @@ Kifejtve: $(ae + bg)(cf + dh) = acef + adeh + bcfg + bdgh$, és $(af + bh)(ce + 
 $$\det(AB) = adeh + bcfg - adfg - bceh. \qquad (7.6)$$
 (7.4) és (7.6) összevetéséből $\det(AB) = \det A \cdot \det B$. $\blacksquare$
 
-> **7.3 Tétel (geometriai jelentés).** Egy $2 \times 2$-es mátrix determinánsának abszolút értéke megegyezik a mátrix oszlopvektorai által kifeszített paralelogramma területével.
+> **7.3 Tétel (geometriai jelentés).** Egy valós $2 \times 2$-es mátrix determinánsának abszolút értéke megegyezik a mátrix oszlopvektorai által kifeszített paralelogramma területével.
 
 *Bizonyítás.* Legyen $\mathbf{a} = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}$ és $\mathbf{b} = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}$. Belátjuk, hogy az általuk kifeszített paralelogramma $T$ területére
 $$T = \left|\det\begin{pmatrix} a_1 & b_1 \\ a_2 & b_2 \end{pmatrix}\right| = |a_1b_2 - a_2b_1|.$$
@@ -511,7 +511,7 @@ hiszen az új rendszer első komponense a régi első és második komponenséne
 
 **Normálalak.** A Gauss-elimináció lépéseivel — sor- és oszlopműveleteket (sor- és oszlopcserét is) megengedve — minden mátrix a következő alakra hozható:
 $$\begin{pmatrix} E_r & 0 \\ 0 & 0 \end{pmatrix},$$
-ahol a bal felső sarokban egy $r \times r$-es egységmátrix áll, máshol csupa nulla. (A sorműveletekkel lépcsős alakra hozunk, majd a vezéregyesek segítségével oszlopműveletekkel kinullázzuk a soraik többi elemét, végül oszlopcserékkel a vezéregyeseket a főátlóba rendezzük.) Ennek a mátrixnak a sorrangja, oszloprangja és determinánsrangja is nyilvánvalóan $r$ — a benne lévő egyesek száma. Mivel egyik rang sem változott a lépések során, az eredeti mátrix sor-, oszlop- és determinánsrangja is megegyezik. $\blacksquare$
+ahol a bal felső sarokban egy $r \times r$-es egységmátrix áll, máshol csupa nulla. (A sorműveletekkel redukált lépcsős alakra hozunk — ahol a csupa nulla sorok alulra kerülnek, és a vezéregyesek oszlopaiban minden más elem nulla —, majd a vezéregyesek segítségével oszlopműveletekkel kinullázzuk a soraik többi elemét, végül oszlopcserékkel a vezéregyeseket az első $r$ oszlopba, a főátlóba rendezzük.) Ennek a mátrixnak a sorrangja, oszloprangja és determinánsrangja is nyilvánvalóan $r$ — a benne lévő egyesek száma. Mivel egyik rang sem változott a lépések során, az eredeti mátrix sor-, oszlop- és determinánsrangja is megegyezik. $\blacksquare$
 
 ## A III. rész összefoglalása
 

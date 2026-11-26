@@ -67,7 +67,7 @@ $$A^2 = \begin{pmatrix} 2 & 0 & 0 & 2 \\ 0 & 2 & 2 & 0 \\ 0 & 2 & 2 & 0 \\ 2 & 0
 - $(A^2)_{14} = 2$: az $1$-es és a $4$-es város között $2$ kétlépéses útvonal van ($1 \to 2 \to 4$ és $1 \to 3 \to 4$).
 - $(A^2)_{12} = 0$: az $1$-esből a $2$-esbe pontosan két lépésben nem lehet eljutni (az út közvetlenül $1$ lépés, a $4$-es felé kerülve pedig $3$).
 
-A módszer teljes indukcióval tetszőleges $k$ lépéshosszra általánosítható: az $A^k$ mátrix $i$-edik sorának $j$-edik eleme mindig a pontosan $k$ hosszú (az $i$-edik csúcsból a $j$-edikbe vezető) sétáink száma. Például
+A módszer teljes indukcióval tetszőleges $k$ lépéshosszra általánosítható: az $A^k$ mátrix $i$-edik sorának $j$-edik eleme mindig a pontosan $k$ hosszú (az $i$-edik csúcsból a $j$-edikbe vezető) séták száma. Például
 $$A^3 = \begin{pmatrix} 0 & 4 & 4 & 0 \\ 4 & 0 & 0 & 4 \\ 4 & 0 & 0 & 4 \\ 0 & 4 & 4 & 0 \end{pmatrix}:$$
 az $1$-esből a $2$-esbe $4$ háromlépéses séta vezet ($1 \to 2 \to 1 \to 2$, $1 \to 3 \to 1 \to 2$, $1 \to 2 \to 4 \to 2$, $1 \to 3 \to 4 \to 2$).
 
@@ -138,7 +138,7 @@ A mátrixokkal tehát óvatosan kell számolni: például az $(A + B)^2 = A^2 + 
 > $$MM^{-1} = M^{-1}M = E_n.$$
 > Az $M^{-1}$ mátrixot $M$ **inverzének** nevezzük.
 
-Az inverz, ha létezik, egyértelmű: ha $N$ és $N'$ is inverz, akkor $N = NE = N(MN') = (NM)N' = EN' = N'$. Nem minden nem nulla mátrix invertálható: az előbbi $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ például nem, hiszen akkor $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = M^{-1}M\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = M^{-1} \cdot 0 = 0$ következne. Hogy pontosan mely mátrixok invertálhatók, és hogyan számolható ki az inverz, azt a 2.6. pontban és a 9. fejezetben látjuk.
+Az inverz, ha létezik, egyértelmű: ha $N$ és $N'$ is inverz, akkor $N = NE = N(MN') = (NM)N' = EN' = N'$. Nem minden nem nulla mátrix invertálható: az előbbi $M = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ például nem, hiszen akkor $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = M^{-1}M\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = M^{-1} \cdot 0 = 0$ következne. Hogy pontosan mely mátrixok invertálhatók, és hogyan számolható ki az inverz, azt a 2.6. pontban és a 9. fejezetben látjuk.
 
 ## 2. Lineáris egyenletrendszerek és megoldásaik
 
@@ -247,7 +247,7 @@ Ellenőrzés (első sor szorozva az első oszloppal): $2 \cdot \frac{3}{4} + (-1
 
 A műveletek során a **sorcsere is megengedett**. Ha nem szeretünk törtekkel számolni, nyugodtan megszorozhatjuk az egész sort egy alkalmas konstanssal, és csak az eljárás legvégén osztjuk a sorokat úgy, hogy a vezérelemek egyesek legyenek.
 
-**Miért működik a módszer?** Minden táblázathoz hozzárendelhetünk egy mátrixegyenletet: ha a táblázat $(L \mid R)$ alakú, akkor a hozzá tartozó egyenlet
+**Miért működik a módszer?** Tegyük fel, hogy $A$ invertálható. Minden táblázathoz hozzárendelhetünk egy mátrixegyenletet: ha a táblázat $(L \mid R)$ alakú, akkor a hozzá tartozó egyenlet
 $$L \cdot A^{-1} = R.$$
 A kiinduló táblázatra ($L = A$, $R = E$) ez igaz. Ezek az egyenletek a megengedett sorműveletek után is mindig érvényben maradnak (egy sorművelet az $L$ és az $R$ ugyanazon sorain ugyanazt a műveletet végzi, ami $L A^{-1}$ soraira ugyanazt a hatást gyakorolja, mint $R$ soraira). Például a 2. lépés végén kapott táblázathoz az
 $$\begin{pmatrix} 1 & 0 & -1/3 \\ 0 & 1 & -2/3 \\ 0 & 0 & 4/3 \end{pmatrix} A^{-1} = \begin{pmatrix} 2/3 & 1/3 & 0 \\ 1/3 & 2/3 & 0 \\ 1/3 & 2/3 & 1 \end{pmatrix}$$

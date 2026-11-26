@@ -357,6 +357,6 @@ A 43. szakaszban említett, „Hamel-bázissal” konstruált gyengén konvex, d
 3. $f(0) = 1 > 0$, $f(1) = -1 < 0$, $f(2) = 27 > 0$, és alkalmazzuk a Bolzano-tételt mindkét intervallumon.
 4. a) Ugrás minden egész helyen. b) Megszüntethető szakadás a $0$-ban ($f(0) := 1$). c) Másodfajú a $\pm 1$-ben (végtelen féloldali határértékek). d) Ugrás a $0$-ban ($-1$-ről $1$-re; a $0$-ban nincs értelmezve).
 5. Alkalmazzuk a Bolzano-tételt a $h = f - g$ függvényre: $h(a) < 0 < h(b)$.
-6. Az első nem igaz: $f(x) = x$ a $(0, 1)$-en. A második igaz: van olyan $K$, hogy $x > K$ esetén $f(x) < 1$; a $[0, K]$-n a Weierstrass-tétel szerint $f$ felveszi a maximumát, ami legalább $f(0) = 1$, tehát ez az egész $[0, +\infty)$-en is maximum.
+6. Az első nem igaz: $f(x) = x$ a $(0, 1)$-en. A második igaz: van olyan $K > 0$, hogy $x > K$ esetén $f(x) < 1$; a $[0, K]$-n a Weierstrass-tétel szerint $f$ felveszi a maximumát, ami legalább $f(0) = 1$, tehát ez az egész $[0, +\infty)$-en is maximum.
 
 ---

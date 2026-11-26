@@ -81,6 +81,35 @@ Minden lépés után ismét fát kapunk (a 22. szakasz bizonyítása szerint), a
 
 *Példa.* Legyen $n = 9$, és a fa élei:
 $$\{1,2\},\quad \{1,6\},\quad \{1,4\},\quad \{1,9\},\quad \{3,5\},\quad \{3,8\},\quad \{3,4\},\quad \{4,7\}.$$
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.92,
+  v/.style={circle, draw=black, fill=white, thick, minimum size=16pt, inner sep=0pt, font=\footnotesize},
+  edge/.style={draw=black!75, thick}
+]
+  \node[v] (v1) at (-1.8, 0) {$1$};
+  \node[v] (v4) at (0, 0) {$4$};
+  \node[v] (v3) at (1.8, 0) {$3$};
+  \node[v] (v2) at (-3.1, 0.95) {$2$};
+  \node[v] (v6) at (-3.3, 0) {$6$};
+  \node[v] (v9) at (-3.1, -0.95) {$9$};
+  \node[v] (v7) at (0, -1.2) {$7$};
+  \node[v] (v5) at (3.1, 0.75) {$5$};
+  \node[v] (v8) at (3.1, -0.75) {$8$};
+
+  \draw[edge] (v1) -- (v2);
+  \draw[edge] (v1) -- (v6);
+  \draw[edge] (v1) -- (v9);
+  \draw[edge] (v1) -- (v4);
+  \draw[edge] (v4) -- (v7);
+  \draw[edge] (v4) -- (v3);
+  \draw[edge] (v3) -- (v5);
+  \draw[edge] (v3) -- (v8);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 A levelek kezdetben: $2, 5, 6, 7, 8, 9$. Írjuk egy táblázat felső sorába, **mit** tépünk le, az alsóba, **hova** volt kötve:
 
 | levél (mit) | 2 | 5 | 6 | 7 | 8 | 3 | 4 | *1* |

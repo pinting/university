@@ -68,6 +68,7 @@ Az indirekt feltevésünk tehát hamis volt: nem létezhet olyan él, amelynek m
 Minden él tehát szükségképpen egy $A$-beli és egy $B$-beli csúcsot köt össze, így $G$ valóban páros gráf, és $\chi(G) \le 2$. $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=white, thick, minimum size=16pt, inner sep=0pt},
   sq/.style={rectangle, draw=black, fill=black!15, thick, minimum size=15pt, inner sep=0pt},
@@ -76,25 +77,25 @@ Minden él tehát szükségképpen egy $A$-beli és egy $B$-beli csúcsot köt �
 ]
   % Layer 0
   \node[v] (v0) at (0, 2.5) {$v_0$};
-  \node[left=0.5cm of v0] {\footnotesize $d=0$ ($A$, páros)};
+  \node[anchor=east] at (-3.7, 2.5) {\footnotesize $d=0$ ($A$, páros)};
 
   % Layer 1
   \node[sq] (u1) at (-2, 1.2) {$u_1$};
   \node[sq] (u2) at (0, 1.2) {$u_2$};
   \node[sq] (u3) at (2, 1.2) {$u_3$};
-  \node[left=0.5cm of u1] {\footnotesize $d=1$ ($B$, páratlan)};
+  \node[anchor=east] at (-3.7, 1.2) {\footnotesize $d=1$ ($B$, páratlan)};
 
   % Layer 2
   \node[v] (w1) at (-2.5, -0.2) {$w$};
   \node[v] (x) at (0, -0.2) {};
   \node[v] (y) at (2, -0.2) {};
-  \node[left=0.5cm of w1] {\footnotesize $d=2$ ($A$, páros)};
+  \node[anchor=east] at (-3.7, -0.2) {\footnotesize $d=2$ ($A$, páros)};
 
   % Layer 3
   \node[sq] (u) at (-3.2, -1.5) {$u$};
   \node[sq] (v) at (-1.8, -1.5) {$v$};
   \node[sq] (z) at (1, -1.5) {};
-  \node[left=0.5cm of u] {\footnotesize $d=3$ ($B$, páratlan)};
+  \node[anchor=east] at (-3.7, -1.5) {\footnotesize $d=3$ ($B$, páratlan)};
 
   \draw[tree] (v0) -- (u1);
   \draw[tree] (v0) -- (u2);
@@ -108,8 +109,9 @@ Minden él tehát szükségképpen egy $A$-beli és egy $B$-beli csúcsot köt �
 
   % Dashed edge within layer 3
   \draw[bad] (u) -- (v);
-  \node[below=0.2cm of v] {\footnotesize $uv$ él azonos osztályban: páratlan kör keletkezik! ($w \to u \to v \to w$)};
+  \node[align=center] at (-0.6, -2.35) {\footnotesize $uv$ él azonos osztályban: páratlan kör keletkezik! ($w \to u \to v \to w$)};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 > **Következmény (a fák páros gráfok).** Minden fa páros gráf.
@@ -178,7 +180,7 @@ Ez azonnal ad egy triviális alsó korlátot:
 ### Példák
 
 1. **Egy 8 csúcsú példagráf:**
-   Az alábbi gráfban (amelyet alább bemutatunk) a maximális fokszám $\Delta = 4$. Sikerült az éleket $4$ színnel jól kiszínezni, így $\chi'(G) = 4 = \Delta(G)$.
+   Az alább bemutatott gráfban a maximális fokszám $\Delta = 4$. Sikerült az éleket $4$ színnel jól kiszínezni, így $\chi'(G) = 4 = \Delta(G)$.
 
 2. **Az 5-csúcsú kör ($C_5$):**
    A kör minden csúcsának foka $2$, így $\Delta(C_5) = 2$.
@@ -189,6 +191,7 @@ Ez azonnal ad egy triviális alsó korlátot:
    $$\chi'(C_5) = 3 = \Delta(C_5) + 1.$$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.0,
   v/.style={circle, draw=black, fill=black, inner sep=1.5pt},
   edge/.style={draw=black!70, thick}
@@ -214,7 +217,7 @@ Ez azonnal ad egy triviális alsó korlátot:
     \draw[edge] (n6) -- node[right, inner sep=1pt]{\footnotesize $1$} (n7);
     \draw[edge] (n6) -- node[below, inner sep=1pt]{\footnotesize $2$} (n8);
 
-    \node[below=1.2cm of n5] {\begin{tabular}{c} $\Delta(G) = 4$ \\ $\chi'(G) = 4$ \end{tabular}};
+    \node at (0, -1.85) {\footnotesize\begin{tabular}{c} $\Delta(G) = 4$ \\ $\chi'(G) = 4$ \end{tabular}};
   \end{scope}
 
   \begin{scope}[xshift=3.5cm]
@@ -230,9 +233,10 @@ Ez azonnal ad egy triviális alsó korlátot:
     \draw[edge] (c4) -- node[right, inner sep=1pt]{\footnotesize $2$} (c5);
     \draw[edge] (c5) -- node[above right, inner sep=1pt]{\footnotesize $3$} (c1);
 
-    \node[below=1.5cm of c1] {\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi'=3$ \end{tabular}};
+    \node at (0, -1.85) {\footnotesize\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi'=3$ \end{tabular}};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Vizing tétele: az élkromatikus szám csodája

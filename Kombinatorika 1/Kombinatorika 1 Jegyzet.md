@@ -375,6 +375,29 @@ A Pascal-szabály a háromszög **két egymás utáni sorát** kapcsolja össze.
 
 A Pascal-háromszögben a bal oldal egy ferde sor (átló) mentén lefelé haladó számok összege, a jobb oldal pedig az utolsó tag alatt, a másik irányban álló szám: a kijelölt számok egy hokiütőre emlékeztetnek. Például $k = 2$, $n = 5$ esetén $1 + 3 + 6 + 10 = 20 = \binom{6}{3}$.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.9,
+  num/.style={minimum size=17pt, inner sep=1pt, font=\small},
+  shaft/.style={circle, draw=black!80, fill=black!12, thick, minimum size=17pt, inner sep=1pt, font=\small\bfseries},
+  blade/.style={circle, draw=black, fill=black!25, very thick, minimum size=18pt, inner sep=1pt, font=\small\bfseries}
+]
+  \def\dx{0.92}
+  \def\dy{0.62}
+  \node[num] at (0, 0) {$1$};
+  \node[num] at (-0.5*\dx, -\dy) {$1$}; \node[num] at (0.5*\dx, -\dy) {$1$};
+  \node[num] at (-1.0*\dx, -2*\dy) {$1$}; \node[num] at (0, -2*\dy) {$2$}; \node[shaft] (s1) at (1.0*\dx, -2*\dy) {$1$};
+  \node[num] at (-1.5*\dx, -3*\dy) {$1$}; \node[num] at (-0.5*\dx, -3*\dy) {$3$}; \node[shaft] (s2) at (0.5*\dx, -3*\dy) {$3$}; \node[num] at (1.5*\dx, -3*\dy) {$1$};
+  \node[num] at (-2.0*\dx, -4*\dy) {$1$}; \node[num] at (-1.0*\dx, -4*\dy) {$4$}; \node[shaft] (s3) at (0, -4*\dy) {$6$}; \node[num] at (1.0*\dx, -4*\dy) {$4$}; \node[num] at (2.0*\dx, -4*\dy) {$1$};
+  \node[num] at (-2.5*\dx, -5*\dy) {$1$}; \node[num] at (-1.5*\dx, -5*\dy) {$5$}; \node[shaft] (s4) at (-0.5*\dx, -5*\dy) {$10$}; \node[num] at (0.5*\dx, -5*\dy) {$10$}; \node[num] at (1.5*\dx, -5*\dy) {$5$}; \node[num] at (2.5*\dx, -5*\dy) {$1$};
+  \node[num] at (-3.0*\dx, -6*\dy) {$1$}; \node[num] at (-2.0*\dx, -6*\dy) {$6$}; \node[num] at (-1.0*\dx, -6*\dy) {$15$}; \node[blade] (b) at (0, -6*\dy) {$20$}; \node[num] at (1.0*\dx, -6*\dy) {$15$}; \node[num] at (2.0*\dx, -6*\dy) {$6$}; \node[num] at (3.0*\dx, -6*\dy) {$1$};
+
+  \draw[black!60, thick] (s1) -- (s2) -- (s3) -- (s4) -- (b);
+  \node[align=center] at (0, -6*\dy - 0.65) {\footnotesize Hokiütő-azonosság ($k = 2$, $n = 5$): $1 + 3 + 6 + 10 = 20 = \binom{6}{3}$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 *Algebrai bizonyítás (indukció $n$ szerint).* $n = k$-ra mindkét oldal $1$. Ha az állítás igaz $n$-re, akkor a Pascal-szabály szerint
 $$\sum_{i=k}^{n+1} \binom{i}{k} = \binom{n+1}{k+1} + \binom{n+1}{k} = \binom{n+2}{k+1}. \ \blacksquare$$
 
@@ -414,6 +437,39 @@ Az első ötlet: $80 - 25 - 24 - 23 = 8$. Ez azonban hibás, mert aki két nyelv
 $$80 - (25 + 24 + 23) + (10 + 9 + 7) - 1 = 33.$$
 
 Ellenőrizzük egy Venn-diagrammal! Belülről kifelé haladva: mindhárom nyelvet $1$ diák tanulja; csak angolul és németül $10 - 1 = 9$, csak angolul és franciául $9 - 1 = 8$, csak németül és franciául $7 - 1 = 6$; csak angolul $25 - 9 - 8 - 1 = 7$, csak németül $24 - 9 - 6 - 1 = 8$, csak franciául $23 - 8 - 6 - 1 = 8$. Legalább egy nyelvet tehát $1 + 9 + 8 + 6 + 7 + 8 + 8 = 47$ diák tanul, egyiket sem $80 - 47 = 33$. Egyezik.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.92,
+  circ/.style={draw=black!75, thick},
+  reg/.style={font=\small\bfseries}
+]
+  \draw[rounded corners=6pt, draw=black!65, thick, fill=black!3] (-2.85, -2.65) rectangle (2.85, 2.35);
+  \node[anchor=north west] at (-2.7, 2.22) {\footnotesize Összesen: $80$};
+
+  \draw[circ, fill=white, fill opacity=0.45] (-0.75, 0.45) circle (1.25);
+  \draw[circ, fill=white, fill opacity=0.45] (0.75, 0.45) circle (1.25);
+  \draw[circ, fill=white, fill opacity=0.45] (0.0, -0.85) circle (1.25);
+  % Redraw outlines crisply above translucent fills
+  \draw[circ] (-0.75, 0.45) circle (1.25);
+  \draw[circ] (0.75, 0.45) circle (1.25);
+  \draw[circ] (0.0, -0.85) circle (1.25);
+
+  \node at (-1.85, 1.88) {\footnotesize $A$ ($25$)};
+  \node at (1.85, 1.88) {\footnotesize $N$ ($24$)};
+  \node at (0.0, -2.35) {\footnotesize $F$ ($23$)};
+
+  \node[reg] at (-1.21, 0.71) {$7$};
+  \node[reg] at (1.21, 0.71) {$8$};
+  \node[reg] at (0.0, -1.38) {$8$};
+  \node[reg] at (0.0, 0.82) {$9$};
+  \node[reg] at (-0.69, -0.38) {$8$};
+  \node[reg] at (0.69, -0.38) {$6$};
+  \node[reg] at (0.0, 0.01) {$1$};
+  \node[reg] at (2.22, -2.18) {$33$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 Az eljárás neve **logikai szita** (vagy szitaformula, angolul *inclusion–exclusion*): felváltva vonunk le és adunk hozzá, mintha egy szitán rostálnánk át a halmazt.
 
@@ -654,6 +710,29 @@ $$F_{n+2}F_n - F_{n+1}^2 = (F_{n+1} + F_n)F_n - F_{n+1}^2 = F_n^2 - F_{n+1}(F_{n
 
 A négyzetösszeg-azonosságnak szép geometriai jelentése van: az $1 \times 1$, $1 \times 1$, $2 \times 2$, $3 \times 3$, $5 \times 5$, … négyzeteket egymás mellé illesztve mindig téglalapot kapunk, amelynek oldalai két szomszédos Fibonacci-szám. A Cassini-azonosság szerint pedig két szomszédos Fibonacci-szám relatív prím: ha $d$ osztaná $F_n$-et és $F_{n+1}$-et, akkor a $(-1)^n$-et is osztaná.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.58,
+  sq/.style={draw=black!80, thick, fill=black!5}
+]
+  \draw[sq, fill=black!14] (0, 0) rectangle (1, 1);
+  \node at (0.5, 0.5) {\scriptsize $1$};
+  \draw[sq, fill=black!8] (0, 1) rectangle (1, 2);
+  \node at (0.5, 1.5) {\scriptsize $1$};
+  \draw[sq, fill=black!4] (1, 0) rectangle (3, 2);
+  \node at (2.0, 1.0) {\footnotesize $2 \times 2$};
+  \draw[sq, fill=black!9] (0, 2) rectangle (3, 5);
+  \node at (1.5, 3.5) {\footnotesize $3 \times 3$};
+  \draw[sq, fill=black!4] (3, 0) rectangle (8, 5);
+  \node at (5.5, 2.5) {\small $5 \times 5$};
+
+  \draw[|<->|, >=Stealth, thin] (0, -0.45) -- (8, -0.45) node[midway, below=2pt] {\footnotesize $F_6 = 8$};
+  \draw[|<->|, >=Stealth, thin] (8.45, 0) -- (8.45, 5) node[midway, right=2pt] {\footnotesize $F_5 = 5$};
+  \node at (4.2, -1.65) {\footnotesize $1^2 + 1^2 + 2^2 + 3^2 + 5^2 = 5 \cdot 8 = F_5 F_6$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 ::: kiegeszites
 **Kiegészítés — az összeadási képlet.** *Minden $m \ge 1$ és $n \ge 0$ esetén $F_{m+n} = F_mF_{n+1} + F_{m-1}F_n$.*
 
@@ -740,7 +819,7 @@ A Fibonacci-sorozatnál alkalmazott módszer jóval általánosabban is működi
 > $$a_n = c_1 a_{n-1} + c_2 a_{n-2} \qquad (n \ge 2) \qquad (**)$$
 > összefüggést, ahol $c_1, c_2$ adott számok. Ehhez két **kezdeti feltétel** tartozik: $a_0$ és $a_1$ adott.
 
-(Feltesszük, hogy $c_2 \ne 0$; ha $c_2 = 0$, akkor a rekurzió valójában elsőrendű, és a megoldás egyszerűen mértani sorozat.) Az előző szakasz állítása és bizonyítása szó szerint átvihető: a $(**)$-ot kielégítő sorozatok alteret alkotnak. A lemma szerint pedig minden megoldást egyértelműen meghatároz az $(a_0, a_1)$ pár — szemléletesen: a megoldások altere **kétdimenziós**.
+(Feltesszük, hogy $c_2 \ne 0$; ha $c_2 = 0$, akkor a rekurzió valójában elsőrendű, és a megoldás $n \ge 1$-től egyszerűen mértani sorozat.) Az előző szakasz állítása és bizonyítása szó szerint átvihető: a $(**)$-ot kielégítő sorozatok alteret alkotnak. A lemma szerint pedig minden megoldást egyértelműen meghatároz az $(a_0, a_1)$ pár — szemléletesen: a megoldások altere **kétdimenziós**.
 
 **Az ötlet ugyanaz:** keressünk $(q^n)$ alakú mértani sorozatot, amely kielégíti $(**)$-ot:
 $$q^n = c_1 q^{n-1} + c_2 q^{n-2}.$$
@@ -908,6 +987,7 @@ A Catalan-számok előkészítéseként két, első ránézésre egymástól tá
 :::
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.85,
   gridline/.style={draw=black!25, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -936,8 +1016,9 @@ A Catalan-számok előkészítéseként két, első ránézésre egymástól tá
   \node[pt, label=below left:{\footnotesize $S(0,0)$}] at (0,0) {};
   \node[pt, label=above right:{\footnotesize $E(4,3)$}] at (4,3) {};
 
-  \node at (2, -1.0) {\footnotesize Egy rácsút $(0,0)$-ból $(4,3)$-ba: $4$ darab $J$ és $3$ darab $F$ lépés; összesen $\binom{4+3}{4} = 35$ ilyen út van.};
+  \node[align=center] at (2, -1.15) {\footnotesize Egy rácsút $(0,0)$-ból $(4,3)$-ba: $4$ darab $J$ és $3$ darab $F$ lépés; \\ \footnotesize összesen $\binom{4+3}{4} = 35$ ilyen út van.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Ferde utak a rácson
@@ -959,6 +1040,7 @@ Ez pontosan akkor egész, ha $a + b$ páros, és pontosan akkor esik $0$ és $a$
 **Megjegyzés (Binomiális együttható kiterjesztése).** A $|b| \le a$ feltétel szemléletesen azt jelenti, hogy az $(a, b)$ pont az $y = x$ és az $y = -x$ egyenesek közötti, a pozitív $x$-tengelyt tartalmazó szögtartományban fekszik. Ha megállapodunk abban, hogy $\binom{n}{m} = 0$, valahányszor $m < 0$ vagy $m > n$ (összhangban azzal, hogy egy $n$ elemű halmaznak ilyenkor nincs $m$ elemű részhalmaza), akkor a lemma $\binom{a}{(a+b)/2}$ képlete minden olyan esetben igaz, amikor $a + b$ páros.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.68,
   gridline/.style={draw=black!20, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -982,8 +1064,9 @@ Ez pontosan akkor egész, ha $a + b$ páros, és pontosan akkor esik $0$ és $a$
   \node[pt, label=below left:{\footnotesize $(0,0)$}] at (0,0) {};
   \node[pt, label=right:{\footnotesize $(6,2)$}] at (6,2) {};
 
-  \node at (3.2, -3.0) {\footnotesize Ferde út $(0,0)$-ból $(6,2)$-be: $6$ lépésből $f = \frac{6+2}{2} = 4$ felfelé, $\ell = 2$ lefelé; összesen $\binom{6}{4} = 15$ út.};
+  \node[align=center] at (3.2, -3.2) {\footnotesize Ferde út $(0,0)$-ból $(6,2)$-be: $6$ lépésből $f = \frac{6+2}{2} = 4$ felfelé, \\ \footnotesize $\ell = 2$ lefelé; összesen $\binom{6}{4} = 15$ út.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### A folyó-probléma
@@ -997,6 +1080,7 @@ a háromszög-egyenlőtlenség szerint, egyenlőséggel pontosan akkor, ha $P$ a
 Valójában többet is kaptunk: egy **kölcsönösen egyértelmű megfeleltetést** a folyót érintő $B \to M$ útvonalak és a $B \to M'$ útvonalak között. Egy folyót érintő útvonalnak az **első** érintési pont *utáni* részét tükrözzük a folyóra, így egy $B$-ből $M'$-be vezető útvonalat kapunk; megfordítva, minden $B \to M'$ útvonal keresztezi a folyót (hiszen $B$ és $M'$ a két ellentétes parton van), és ha az első közös pont utáni részét visszatükrözzük, a folyót érintő $B \to M$ útvonalat kapunk. Ez a két művelet egymás inverze. (Megjegyezzük, hogy pontosan ugyanilyen érvényes bijekciót kapunk akkor is, ha az első érintési pont helyett mindenütt az **utolsó** érintési pont utáni részt tükrözzük.) Ez a **tükrözési elv**, és a következő szakaszban rácsutakra alkalmazzuk.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   river/.style={draw=black!70, very thick},
   bank/.style={draw=none, fill=black!6},
@@ -1020,8 +1104,9 @@ Valójában többet is kaptunk: egy **kölcsönösen egyértelmű megfeleltetés
   \draw[pathalt] (B) -- (Palt) -- (M);
   \draw[draw=black!30, dashed] (Palt) -- (Mp);
 
-  \node at (3.0, -2.4) {\footnotesize A tükrözési elv: $|BP| + |PM| = |BP| + |PM'| \ge |BM'|$, egyenlőség a $P^*$ metszéspontban áll fenn.};
+  \node[align=center] at (3.0, -2.55) {\footnotesize A tükrözési elv: $|BP| + |PM| = |BP| + |PM'| \ge |BM'|$, \\ \footnotesize egyenlőség a $P^*$ metszéspontban áll fenn.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ## 15. A Catalan-számok
@@ -1052,6 +1137,7 @@ Feleltessük meg minden sorrendnek egy rácsutat (töröttvonalat): az $1$ euró
 **Mikor rossz egy sorrend?** Pontosan akkor, ha valamikor egy $2$ eurós fizető üres pénztárhoz érkezik, vagyis ha az út valamikor az $y = x$ átló **fölé** lép. Mivel az út rácspontokon halad, ez azt jelenti, hogy az út **rálép az $y = x + 1$ egyenesre**. Ez a **tiltott egyenes**: ha rálépünk, baj van.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   gridline/.style={draw=black!25, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -1071,15 +1157,16 @@ Feleltessük meg minden sorrendnek egy rácsutat (töröttvonalat): az $1$ euró
   }
 
   \draw[diag] (-0.2, -0.2) -- (4.5, 4.5) node[right] {\footnotesize $y = x$ \scriptsize (egyenleg $\ge 0$)};
-  \draw[forbidden] (-0.2, 0.8) -- (3.5, 4.5) node[above left] {\footnotesize $y = x + 1$ \scriptsize (tiltott egyenes)};
+  \draw[forbidden] (-0.2, 0.8) -- (3.5, 4.5) node[above right] {\footnotesize $y = x + 1$ \scriptsize (tiltott egyenes)};
 
   \draw[goodpath] (0,0) -- (1,0) -- (2,0) -- (2,1) -- (3,1) -- (3,2) -- (3,3) -- (4,3) -- (4,4);
 
   \node[pt, label=below left:{\footnotesize $(0,0)$}] at (0,0) {};
   \node[pt, label=above right:{\footnotesize $(4,4)$}] at (4,4) {};
 
-  \node at (2.2, -1.1) {\footnotesize Jó sorrend (Dyck-út): az út végig az $y = x$ átlón vagy alatta halad ($x \ge y$), így elkerüli a tiltott egyenest.};
+  \node[align=center] at (2.4, -1.25) {\footnotesize Jó sorrend (Dyck-út): az út végig az $y = x$ átlón vagy alatta halad ($x \ge y$), \\ \footnotesize így elkerüli a tiltott egyenest.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Dobjuk ki a rosszat!
@@ -1097,6 +1184,7 @@ Megfordítva: minden $(0,0) \to (n-1, n+1)$ út érinti a tiltott egyenest. Az $
 A két eljárás egymás inverze, mert a tükrözés nem változtat az első érintési ponton és az azt megelőző szakaszon. $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.85,
   gridline/.style={draw=black!25, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -1138,6 +1226,7 @@ A két eljárás egymás inverze, mert a tükrözés nem változtat az első ér
     \scriptsize (Szürke: eredeti folytatás, fekete szaggatott: tükrözött folytatás)
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 A 14. szakasz szerint a $(0, 0) \to (n-1, n+1)$ utak száma $\binom{(n-1)+(n+1)}{n-1} = \binom{2n}{n-1}$. Így a jó utak száma $\binom{2n}{n} - \binom{2n}{n-1}$.
@@ -1168,6 +1257,7 @@ A pénztár-feladatot **ferde utakkal** is felírhatjuk, ami sok alkalmazásban 
 - A végpont, $(2n, 0)$ tükörképe az $y = -1$ egyenesre a $(2n, -2)$ pont. Egy rossz út utolsó $y = -1$-en lévő $X$ pontja utáni részét tükrözve bijekciót kapunk az $y = -1$-et érintő $(0, 0) \to (2n, 0)$ és az összes $(0, 0) \to (2n, -2)$ ferde út között. A ferde utakról szóló lemma alapján utóbbiak száma $\binom{2n}{(2n-2)/2} = \binom{2n}{n-1}$, így újra $C_n = \binom{2n}{n} - \binom{2n}{n-1}$ adódik.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.72,
   gridline/.style={draw=black!20, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -1195,8 +1285,9 @@ A pénztár-feladatot **ferde utakkal** is felírhatjuk, ami sok alkalmazásban 
   \node[pt, label=above right:{\footnotesize $(2n,0)$}] at (8,0) {};
   \node[pt, label=below right:{\footnotesize $(2n,-2)$}] at (8,-2) {};
 
-  \node at (4.0, -3.9) {\footnotesize Ferde utas tükrözés ($n = 4$): az utolsó $X \in \{y = -1\}$ pont utáni rész tükrözése $(2n,-2)$-be visz.};
+  \node[align=center] at (4.0, -4.1) {\footnotesize Ferde utas tükrözés ($n = 4$): az utolsó $X \in \{y = -1\}$ pont utáni rész \\ \footnotesize tükrözése $(2n,-2)$-be visz.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 > **Tipikus példa (Belépés a táncterembe).** Hányféleképpen mehet be $12$ fiú és $14$ lány egy táncterembe (egyesével), ha odabent mindig legalább annyi lány kell legyen, mint fiú? *Mi változik, ha a személyek megkülönböztethetők?*
@@ -1232,6 +1323,7 @@ Rögzített $k$ mellett:
 A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$ jó sorrend van, és ezeket $k = 1, \dots, n$-re összeadva kapjuk az állítást. $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.85,
   gridline/.style={draw=black!25, thin},
   axis/.style={draw=black!60, -{Stealth[scale=0.8]}, thick},
@@ -1258,8 +1350,8 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
   \node[retpt, label=above left:{\footnotesize $(k,k)=(3,3)$}] at (3,3) {};
   \node[pt, label=above right:{\footnotesize $(n,n)=(5,5)$}] at (5,5) {};
 
-  \node at (2.0, 0.7) {\footnotesize $C_{k-1}$};
-  \node at (4.0, 3.7) {\footnotesize $C_{n-k}$};
+  \node at (2.52, 0.48) {\footnotesize $C_{k-1}$};
+  \node at (4.52, 3.48) {\footnotesize $C_{n-k}$};
 
   \node at (2.5, -1.4) {\footnotesize\begin{tabular}{c}
     A Catalan-rekurzió: az első visszatérés az átlóra a $(k,k)$ pontban történik. \\
@@ -1267,6 +1359,7 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
     a $(k,k)$-tól induló hátralévő rész pedig egy $n-k$ méretű Dyck-út ($C_{n-k}$ lehetőség).
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 *Ellenőrzés:* $C_3 = C_0C_2 + C_1C_1 + C_2C_0 = 2 + 1 + 2 = 5$, és $C_4 = 5 + 2 + 2 + 5 = 14$.
@@ -1278,10 +1371,10 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
 
 1. *Pozitív köztes részletösszegek.* Legyen $n \ge 1$. Azoknak az $a_1, \dots, a_{2n} \in \{+1, -1\}$ sorozatoknak a száma, amelyekre $a_1 + \dots + a_{2n} = 0$, és minden köztes részletösszeg **szigorúan pozitív** ($s_j := a_1 + \dots + a_j > 0$ minden $j = 1, \dots, 2n-1$-re), éppen $C_{n-1}$. Valóban, ekkor szükségszerűen $a_1 = +1$ (különben $s_1 \le 0$) és $a_{2n} = -1$ (különben $s_{2n-1} \le 0$); ezeket elhagyva a maradék $2(n-1)$ hosszú sorozat minden részletösszege eggyel csökken, így pontosan egy nemnegatív részletösszegű sorozatot kapunk (ez éppen a fenti bizonyításban szereplő $C_{k-1}$ szimbolikus alakja).
 2. *Alaplemma ($C_n$ felismerése).* Ha a $(t_n)_{n\ge0}$ sorozatra $t_0 = 1$ és minden $n \ge 1$-re $t_n = \sum_{k=1}^{n} t_{k-1}t_{n-k}$, akkor erős teljes indukcióval $t_n = C_n$ minden $n \ge 0$-ra. (A Catalan-rekurzióban minden tag indexének összege $(k-1) + (n-k) = n - 1$.)
-3. *Egy indexszel eltolva ($A_n := C_{n-1}$, $n \ge 1$).* A $C_{n-1}$-es rekurzióban $k = i - 1$ helyettesítéssel:
+3. *Egy indexszel eltolva ($A_n := C_{n-1}$, $n \ge 1$).* A $C_{n-1} = \sum_{k=1}^{n-1} C_{k-1} C_{n-1-k}$ rekurzióban az $i = k$ átnevezéssel ($A_i = C_{i-1}$ és $A_{n-i} = C_{n-1-i}$):
    $$A_1 = 1, \qquad A_n = \sum_{i=1}^{n-1} A_i A_{n-i} \qquad (n \ge 2).$$
    Itt minden tagban az indexek összege $n$. Ha bármely $(X_n)_{n \ge 1}$ sorozat teljesíti ugyanezt a kezdőértéket ($X_1 = 1$) és rekurziót ($X_n = \sum_{i=1}^{n-1} X_i X_{n-i}$), akkor indukcióval $X_n = C_{n-1}$ minden $n \ge 1$-re (például az $n$ tényezős szorzat zárójelezéseinek száma).
-4. *Két indexszel eltolva ($B_n := C_{n-2}$, $n \ge 2$).* A $C_{n-2}$-es rekurzióban $j = k + 2$ helyettesítéssel:
+4. *Két indexszel eltolva ($B_n := C_{n-2}$, $n \ge 2$).* A $C_{n-2} = \sum_{k=1}^{n-2} C_{k-1} C_{n-2-k}$ rekurzióban a $j = k + 1$ helyettesítéssel ($B_j = C_{j-2} = C_{k-1}$ és $B_{n+1-j} = C_{n-1-j} = C_{n-2-k}$):
    $$B_2 = 1, \qquad B_n = \sum_{j=2}^{n-1} B_j B_{n+1-j} \qquad (n \ge 3).$$
    Itt minden tagban az indexek összege $n + 1$. Ha bármely $(Y_n)_{n \ge 2}$ sorozat teljesíti $Y_2 = 1$-et és ugyanezt a rekurziót ($Y_n = \sum_{j=2}^{n-1} Y_j Y_{n+1-j}$), akkor indukcióval $Y_n = C_{n-2}$ minden $n \ge 2$-re (például a konvex $n$-szög háromszögeléseinek száma). $\blacksquare$
 :::
@@ -1297,6 +1390,7 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
 (A háromszöget nem kell felbontani; a négyszöget a két átló bármelyike felbontja; az ötszögnél bármelyik csúcsból húzott két átló jó.) Az $1, 2, 5, 14$ sorozat ismerős! A **sejtés**: $T_n = C_{n-2}$. Az előadáson elhangzott, hogy ez rekurzióval bizonyítható.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.75,
   polyedge/.style={draw=black!70, thick},
   diag/.style={draw=black, very thick},
@@ -1362,8 +1456,9 @@ A független választás elve szerint rögzített $k$ mellett $C_{k-1}\,C_{n-k}$
     \node at (0, -1.3) {\scriptsize $5$-ös csúcsból};
   \end{scope}
 
-  \node at (0, -1.8) {\footnotesize $T_5 = C_3 = 5$: egy konvex ötszög mind az $5$ lehetséges háromszögelése (mindegyik $n-3 = 2$ átlót tartalmaz).};
+  \node[align=center] at (0, -2.0) {\footnotesize $T_5 = C_3 = 5$: egy konvex ötszög mind az $5$ lehetséges háromszögelése \\ \footnotesize (mindegyik $n-3 = 2$ átlót tartalmaz).};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ::: kiegeszites
@@ -1379,23 +1474,24 @@ Ez éppen a Catalan-rekurzió, tehát a lemma szerint $t_n = C_n$, vagyis $T_n =
 :::
 
 \begin{center}
-\begin{tikzpicture}[scale=0.9,
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.88,
   poly/.style={draw=black!70, thick},
   base/.style={draw=black, line width=2pt},
   triang/.style={draw=black, very thick, fill=black!10},
   pt/.style={circle, draw=black, fill=black, inner sep=1.8pt}
 ]
-  \coordinate (v1) at (-2.6, -1.0);
-  \coordinate (v2) at (-3.2, 0.0);
-  \coordinate (vk) at (-0.4, 1.8);
-  \coordinate (vm1) at (2.8, 0.2);
-  \coordinate (vm) at (2.2, -1.0);
+  \coordinate (v1) at (-3.0, -1.0);
+  \coordinate (v2) at (-4.0, 0.2);
+  \coordinate (vk) at (-0.3, 2.0);
+  \coordinate (vm1) at (3.6, 0.3);
+  \coordinate (vm) at (2.6, -1.0);
 
   \draw[triang] (v1) -- (vk) -- (vm) -- (v1);
-  \draw[poly] (v1) -- (v2) -- (-2.2, 1.2) -- (vk);
-  \path (v2) -- (-2.2, 1.2) node[midway, left=2pt] {\scriptsize $\dots$};
-  \draw[poly] (vk) -- (1.5, 1.5) -- (vm1) -- (vm);
-  \path (1.5, 1.5) -- (vm1) node[midway, right=2pt] {\scriptsize $\dots$};
+  \draw[poly] (v1) -- (v2) -- (-2.8, 1.4) -- (vk);
+  \path (v2) -- (-2.8, 1.4) node[midway, above left=-1pt] {\scriptsize $\dots$};
+  \draw[poly] (vk) -- (2.0, 1.6) -- (vm1) -- (vm);
+  \path (2.0, 1.6) -- (vm1) node[midway, above right=-1pt] {\scriptsize $\dots$};
   \draw[base] (v1) -- (vm);
 
   \node[pt, label=below left:{\small $1$}] at (v1) {};
@@ -1404,17 +1500,16 @@ Ez éppen a Catalan-rekurzió, tehát a lemma szerint $t_n = C_n$, vagyis $T_n =
   \node[pt, label=right:{\small $m-1$}] at (vm1) {};
   \node[pt, label=below right:{\small $m$}] at (vm) {};
 
-  \node at (-1.8, 0.2) {\footnotesize $k$-szög};
-  \node at (-1.8, -0.2) {\scriptsize ($T_k$ mód)};
-  \node at (1.3, 0.2) {\footnotesize $(m-k+1)$-szög};
-  \node at (1.3, -0.2) {\scriptsize ($T_{m-k+1}$ mód)};
-  \node at (-0.2, -1.3) {\footnotesize kitüntetett $\{1, m\}$ alapél};
+  \node[align=center] at (-2.75, 0.3) {\footnotesize $k$-szög \\ \scriptsize ($T_k$ mód)};
+  \node[align=center] at (2.35, 0.3) {\footnotesize $(m-k+1)$-szög \\ \scriptsize ($T_{m-k+1}$ mód)};
+  \node at (-0.2, -1.35) {\footnotesize kitüntetett $\{1, m\}$ alapél};
 
-  \node at (0, -2.1) {\footnotesize\begin{tabular}{c}
+  \node at (0, -2.2) {\footnotesize\begin{tabular}{c}
     Rekurzió háromszögelésekre: a rögzített $\{1, m\}$ alapélhez a $k$ csúcsot választva \\
     a sokszög két kisebb sokszögre bomlik: $T_m = \sum_{k=2}^{m-1} T_k T_{m-k+1}$.
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 **(B) Szorzatok zárójelezése.** Hányféleképpen zárójelezhető egy $n$ tényezős szorzat, ha a tényezők sorrendje rögzített, és minden lépésben két tényezőt szorzunk össze? Négy tényezőre például
@@ -1422,6 +1517,7 @@ $$((a\cdot b)\cdot c)\cdot d,\quad (a\cdot(b\cdot c))\cdot d,\quad (a\cdot b)\cd
 ez $5 = C_3$ lehetőség.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.72,
   edge/.style={draw=black!70, thick},
   leaf/.style={inner sep=1pt, font=\scriptsize},
@@ -1517,8 +1613,9 @@ ez $5 = C_3$ lehetőség.
     \node at (0, -0.4) {\scriptsize $a(b(cd))$};
   \end{scope}
 
-  \node at (0, -0.9) {\footnotesize Egy $4$ tényezős szorzat $C_3 = 5$ különböző zárójelezése és a nekik megfelelő bináris fák.};
+  \node[align=center] at (0, -1.05) {\footnotesize Egy $4$ tényezős szorzat $C_3 = 5$ különböző zárójelezése \\ \footnotesize és a nekik megfelelő bináris fák.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ::: kiegeszites
@@ -1580,6 +1677,37 @@ $$0 \le |E(G)| \le \binom{n}{2}$$
 A szó görög eredetű: *izo* = ugyanaz, *morf* = alak. Az izomorfia a gráfelméletben azt a szerepet tölti be, amit a geometriában az egybevágóság: két egybevágó háromszöget „ugyanolyannak” tekintünk, akárhol is helyezkednek el a síkon, és ugyanígy két izomorf gráfot is, akárhogyan rajzoltuk le őket. A fenti 4. és 5. rajz izomorf gráfokat ábrázol.
 
 *Példa.* Legyen $V = \{a, b, c, d, e\}$, és az élek $ab$, $bc$, $cd$, $de$, $bd$. Lerajzolhatjuk egy ötszög-szerű alakzatként, de úgy is, hogy a csúcsokat egy egyenesre tesszük $a, b, c, d, e$ sorrendben, a szomszédosakat összekötjük, és a $b$-t a $d$-vel egy ívvel. A két rajz ugyanazt a gráfot ábrázolja.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.95,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
+  edge/.style={draw=black!75, thick}
+]
+  \begin{scope}[xshift=-2.8cm]
+    \node[pt, label=below left:{\footnotesize $a$}] (a1) at (-1.1, -0.5) {};
+    \node[pt, label=above left:{\footnotesize $b$}] (b1) at (-0.6, 0.3) {};
+    \node[pt, label=above:{\footnotesize $c$}] (c1) at (0.0, 1.0) {};
+    \node[pt, label=above right:{\footnotesize $d$}] (d1) at (0.6, 0.3) {};
+    \node[pt, label=below right:{\footnotesize $e$}] (e1) at (1.1, -0.5) {};
+    \draw[edge] (a1) -- (b1) -- (c1) -- (d1) -- (e1);
+    \draw[edge] (b1) -- (d1);
+  \end{scope}
+
+  \node at (-0.4, 0.25) {$\cong$};
+
+  \begin{scope}[xshift=2.2cm]
+    \node[pt, label=below:{\footnotesize $a$}] (a2) at (-1.6, 0) {};
+    \node[pt, label=below:{\footnotesize $b$}] (b2) at (-0.8, 0) {};
+    \node[pt, label=below:{\footnotesize $c$}] (c2) at (0.0, 0) {};
+    \node[pt, label=below:{\footnotesize $d$}] (d2) at (0.8, 0) {};
+    \node[pt, label=below:{\footnotesize $e$}] (e2) at (1.6, 0) {};
+    \draw[edge] (a2) -- (b2) -- (c2) -- (d2) -- (e2);
+    \draw[edge] (b2) to[out=55, in=125] (d2);
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 ## 18. Fokszám és a kézfogási lemma
 
@@ -1674,6 +1802,65 @@ A fák a „legtakarékosabb” összefüggő gráfok: épp elég élük van ahh
 | 4 | $4$ csúcsú út; „csillag” (egy csúcs, hozzá $3$ levél) | 2 |
 | 5 | $5$ csúcsú út; „villa” (egy $3$ fokú csúcs két levéllel és egy $2$ hosszú ággal); csillag (egy csúcs $4$ levéllel) | 3 |
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.85,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.4pt},
+  edge/.style={draw=black!75, thick}
+]
+  % n = 4 (2 trees)
+  \begin{scope}[xshift=-1.9cm, yshift=0.95cm]
+    \node[pt] (p1) at (-0.9, 0) {};
+    \node[pt] (p2) at (-0.3, 0) {};
+    \node[pt] (p3) at (0.3, 0) {};
+    \node[pt] (p4) at (0.9, 0) {};
+    \draw[edge] (p1) -- (p2) -- (p3) -- (p4);
+    \node at (0, -0.55) {\scriptsize $n = 4$: út};
+  \end{scope}
+
+  \begin{scope}[xshift=1.9cm, yshift=0.95cm]
+    \node[pt] (c) at (0, 0.1) {};
+    \node[pt] (l1) at (90:0.65) {};
+    \node[pt] (l2) at (210:0.65) {};
+    \node[pt] (l3) at (330:0.65) {};
+    \draw[edge] (c) -- (l1) (c) -- (l2) (c) -- (l3);
+    \node at (0, -0.65) {\scriptsize $n = 4$: csillag};
+  \end{scope}
+
+  % n = 5 (3 trees)
+  \begin{scope}[xshift=-3.6cm, yshift=-1.1cm]
+    \node[pt] (q1) at (-1.2, 0) {};
+    \node[pt] (q2) at (-0.6, 0) {};
+    \node[pt] (q3) at (0.0, 0) {};
+    \node[pt] (q4) at (0.6, 0) {};
+    \node[pt] (q5) at (1.2, 0) {};
+    \draw[edge] (q1) -- (q2) -- (q3) -- (q4) -- (q5);
+    \node at (0, -0.65) {\scriptsize $n = 5$: út};
+  \end{scope}
+
+  \begin{scope}[xshift=0cm, yshift=-1.1cm]
+    \node[pt] (f1) at (-0.9, 0.45) {};
+    \node[pt] (f2) at (-0.9, -0.45) {};
+    \node[pt] (f3) at (-0.25, 0) {};
+    \node[pt] (f4) at (0.45, 0) {};
+    \node[pt] (f5) at (1.15, 0) {};
+    \draw[edge] (f1) -- (f3) (f2) -- (f3) -- (f4) -- (f5);
+    \node at (0.1, -0.8) {\scriptsize $n = 5$: „villa”};
+  \end{scope}
+
+  \begin{scope}[xshift=3.4cm, yshift=-1.1cm]
+    \node[pt] (s) at (0, 0) {};
+    \node[pt] (s1) at (45:0.65) {};
+    \node[pt] (s2) at (135:0.65) {};
+    \node[pt] (s3) at (225:0.65) {};
+    \node[pt] (s4) at (315:0.65) {};
+    \draw[edge] (s) -- (s1) (s) -- (s2) (s) -- (s3) (s) -- (s4);
+    \node at (0, -0.85) {\scriptsize $n = 5$: csillag};
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 > **Definíció (levél).** Egy fa **levele** egy $1$ fokú csúcsa.
 
 > **Állítás.** Minden legalább $2$ csúcsú fának van levele.
@@ -1756,9 +1943,9 @@ Az előadáson néhány példát néztünk meg; a többi házi feladat volt.
 
 **Segédállítás.** *Ha egy gráfban két csúcs között két különböző út vezet, akkor a gráfban van kör.*
 
-*Bizonyítás.* Legyen $P = (u = p_0, p_1, \dots, p_k = v)$ és $Q = (u = q_0, q_1, \dots, q_l = v)$ két különböző út. Egyik sem lehet a másik valódi kezdőszelete, mert akkor a hosszabbik út kétszer haladna át $v$-n. Van tehát olyan $i$ index, hogy $p_i = q_i$, de $p_{i+1} \ne q_{i+1}$. Legyen $j > i$ a legkisebb olyan index, amelyre $p_j$ rajta van $Q$-nak a $q_i$ utáni részén — ilyen van, mert $p_k = v = q_l$ —, mondjuk $p_j = q_m$, $m > i$. Ekkor
+*Bizonyítás.* Legyen $P = (u = p_0, p_1, \dots, p_k = v)$ és $Q = (u = q_0, q_1, \dots, q_l = v)$ két különböző út. Egyik sem lehet a másik valódi kezdőszelete, mert akkor a hosszabbik út kétszer haladna át $v$-n. Van tehát olyan legkisebb $i$ index, amelyre $p_i = q_i$, de $p_{i+1} \ne q_{i+1}$ (tehát $p_0 = q_0, \dots, p_i = q_i$). Legyen $j > i$ a legkisebb olyan index, amelyre $p_j$ rajta van $Q$-nak a $q_i$ utáni részén — ilyen van, mert $p_k = v = q_l$ —, mondjuk $p_j = q_m$, $m > i$. Ekkor
 $$p_i,\ p_{i+1},\ \dots,\ p_j = q_m,\ q_{m-1},\ \dots,\ q_{i+1},\ q_i = p_i$$
-kör: a $p_{i+1}, \dots, p_{j-1}$ csúcsok $j$ minimalitása miatt nincsenek rajta $Q$ szóban forgó részén (a $Q$ elején, a $q_0, \dots, q_i = p_0, \dots, p_i$ csúcsok között pedig azért nincsenek, mert $P$ csúcsai különbözők), tehát a csúcsok — a kezdő- és végpont kivételével — különbözők. A hossza $(j - i) + (m - i) \ge 3$, mert $j - i = m - i = 1$ esetén $p_{i+1} = q_{i+1}$ volna. $\blacksquare$
+kör: a $p_{i+1}, \dots, p_{j-1}$ csúcsok $j$ minimalitása miatt nincsenek rajta $Q$-nak a $q_i$ utáni részén (a $q_i = p_i$ csúccsal pedig azért nem eshetnek egybe, mert $P$ csúcsai különbözők), tehát a kör összes csúcsa — a kezdő- és végpont egyezésétől eltekintve — különböző. A hossza $(j - i) + (m - i) \ge 3$, mert $j - i = m - i = 1$ esetén $p_{i+1} = q_{i+1}$ volna. $\blacksquare$
 
 **$1 \Rightarrow 3$.** Legyen $G$ fa, és $u, v$ két nem szomszédos csúcsa. Mivel $G$ összefüggő, van köztük út; ehhez az új $uv$ élt hozzávéve kör keletkezik.
 
@@ -1864,6 +2051,35 @@ Minden lépés után ismét fát kapunk (a 22. szakasz bizonyítása szerint), a
 
 *Példa.* Legyen $n = 9$, és a fa élei:
 $$\{1,2\},\quad \{1,6\},\quad \{1,4\},\quad \{1,9\},\quad \{3,5\},\quad \{3,8\},\quad \{3,4\},\quad \{4,7\}.$$
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.92,
+  v/.style={circle, draw=black, fill=white, thick, minimum size=16pt, inner sep=0pt, font=\footnotesize},
+  edge/.style={draw=black!75, thick}
+]
+  \node[v] (v1) at (-1.8, 0) {$1$};
+  \node[v] (v4) at (0, 0) {$4$};
+  \node[v] (v3) at (1.8, 0) {$3$};
+  \node[v] (v2) at (-3.1, 0.95) {$2$};
+  \node[v] (v6) at (-3.3, 0) {$6$};
+  \node[v] (v9) at (-3.1, -0.95) {$9$};
+  \node[v] (v7) at (0, -1.2) {$7$};
+  \node[v] (v5) at (3.1, 0.75) {$5$};
+  \node[v] (v8) at (3.1, -0.75) {$8$};
+
+  \draw[edge] (v1) -- (v2);
+  \draw[edge] (v1) -- (v6);
+  \draw[edge] (v1) -- (v9);
+  \draw[edge] (v1) -- (v4);
+  \draw[edge] (v4) -- (v7);
+  \draw[edge] (v4) -- (v3);
+  \draw[edge] (v3) -- (v5);
+  \draw[edge] (v3) -- (v8);
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 A levelek kezdetben: $2, 5, 6, 7, 8, 9$. Írjuk egy táblázat felső sorába, **mit** tépünk le, az alsóba, **hova** volt kötve:
 
 | levél (mit) | 2 | 5 | 6 | 7 | 8 | 3 | 4 | *1* |
@@ -2178,6 +2394,26 @@ A Hamilton-út egy (nem zárt) **lánc**: ha $k$ szemet kiszedünk belőle, legf
 
 *A feltétel nem elégséges.* Ismert, hogy a **Petersen-gráf** ($10$ csúcsú, $3$-reguláris gráf: egy ötszög, egy ötágú csillag, és a megfelelő csúcsaik összekötve) teljesíti a fenti szükséges feltételt, Hamilton-köre mégsincs. A szükséges feltétel teljesülése tehát még nem garantálja a Hamilton-kört.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.95,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
+  edge/.style={draw=black!75, thick}
+]
+  \foreach \k/\ang/\oang/\iang in {1/90/90/10, 2/18/18/100, 3/-54/-54/22, 4/-126/-126/153, 5/162/162/80} {
+    \node[pt, label={[label distance=1pt]\oang:{\footnotesize $o_{\k}$}}] (o\k) at (\ang:1.75) {};
+    \node[pt, label={[label distance=0pt]\iang:{\scriptsize $i_{\k}$}}] (i\k) at (\ang:0.85) {};
+  }
+  \draw[edge] (o1) -- (o2) -- (o3) -- (o4) -- (o5) -- (o1);
+  \draw[edge] (i1) -- (i3) -- (i5) -- (i2) -- (i4) -- (i1);
+  \foreach \k in {1,...,5} {
+    \draw[edge] (o\k) -- (i\k);
+  }
+  \node at (0, -2.25) {\footnotesize A Petersen-gráf ($10$ csúcs, $15$ él): nincs benne Hamilton-kör.};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 *Miért nincs a Petersen-gráfban Hamilton-kör?* Legyenek a külső ötszög csúcsai $o_1, \dots, o_5$ (körbe), a belső csillag csúcsai $i_1, \dots, i_5$ (az $i_k$ az $i_{k+2}$-vel és az $i_{k-2}$-vel szomszédos, indexek modulo $5$), és a „küllők” az $o_ki_k$ élek. Tegyük fel, hogy $H$ egy Hamilton-kör. $H$ minden csúcsnál $2$ élt használ a $3$-ból. Egy kör páros sokszor lép át a külső és a belső csúcsok között, és legalább kétszer, így $H$ vagy $2$, vagy $4$ küllőt tartalmaz.
 
 - *$2$ küllő.* A külső ötszögön a két küllős csúcs $1$-$1$, a többi három $2$-$2$ ötszögélt használ $H$-ból, összesen $\frac{2 + 6}{2} = 4$ élt: $H$ külső része egy $5$ csúcsú út, amelynek két végpontja a két küllős csúcs, és ezek az ötszögön **szomszédosak** (a kimaradó él köti össze őket): $o_a, o_{a+1}$. Ugyanígy a belső részen a két küllős csúcs, $i_a$ és $i_{a+1}$ a csillagban szomszédos volna — de $i_a$ szomszédai $i_{a \pm 2}$. Ellentmondás.
@@ -2206,6 +2442,35 @@ $$x = u_1,\ u_2,\ \dots,\ u_n = y.$$
 Ha ugyanis $x u_{i+1}$ és $u_i y$ is él volna, akkor
 $$x = u_1,\ u_2,\ \dots,\ u_i,\ y = u_n,\ u_{n-1},\ \dots,\ u_{i+1},\ x$$
 Hamilton-kör volna $G$-ben: az úton elmegyünk $u_i$-ig, átugrunk $y$-ba, az úton visszafelé haladunk $u_{i+1}$-ig, és onnan visszaugrunk $x$-be. Ez ellentmondás.
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.95,
+  pt/.style={circle, draw=black, fill=black, inner sep=1.7pt},
+  path/.style={draw=black, very thick},
+  skip/.style={draw=black!35, dashed, thick},
+  cross/.style={draw=black, very thick, -{Stealth[scale=0.9]}}
+]
+  \node[pt, label=below:{\footnotesize $x=u_1$}] (u1) at (-3.2, 0) {};
+  \node[pt, label=above:{\footnotesize $u_2$}] (u2) at (-2.0, 0) {};
+  \node[pt, label=below:{\footnotesize $u_i$}] (ui) at (-0.6, 0) {};
+  \node[pt, label=below:{\footnotesize $u_{i+1}$}] (uip) at (0.6, 0) {};
+  \node[pt, label=above:{\footnotesize $u_{n-1}$}] (unm) at (2.0, 0) {};
+  \node[pt, label=below:{\footnotesize $u_n=y$}] (un) at (3.2, 0) {};
+
+  \draw[path, ->, >=Stealth] (u1) -- (u2);
+  \draw[path, dotted] (u2) -- (ui);
+  \draw[skip] (ui) -- (uip);
+  \draw[path, dotted] (uip) -- (unm);
+  \draw[path, <-, >=Stealth] (unm) -- (un);
+
+  \draw[cross] (ui) to[out=-55, in=-125, looseness=1.05] (un);
+  \draw[cross] (uip) to[out=125, in=55, looseness=1.05] (u1);
+
+  \node[align=center] at (0, -1.9) {\footnotesize Ha $xu_{i+1}$ és $u_iy$ is él, a szaggatott $u_iu_{i+1}$ él helyett \\ \footnotesize a két keresztéllel $n$ hosszú kört (Hamilton-kört) kapunk.};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 **3. lépés: hányan lehetnek $y$ szomszédai?** Az $x$ csúcsnak $\deg(x)$ szomszédja van, mind az $u_2, \dots, u_n$ csúcsok között. Mindegyik szomszéd előtt áll az úton egy csúcs; ezek $\deg(x)$ darab különböző csúcsot adnak az $u_1, \dots, u_{n-1}$ közül, és a 2. lépés szerint egyikük sem szomszédja $y$-nak. Az $y$ szomszédai az $u_1, \dots, u_{n-1}$ csúcsok közül kerülnek ki ($y$ nem szomszédja önmagának), ezért
 $$\deg(y) \le (n - 1) - \deg(x), \quad \text{azaz} \quad n - 1 \ge \deg(x) + \deg(y) \ge \frac{n}{2} + \frac{n}{2} = n.$$
@@ -2264,6 +2529,7 @@ $$\chi(K_5 - e) = 4.$$
 Egyetlen él elhagyása tehát $1$-gyel csökkentette a kromatikus számot.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.1,
   v/.style={circle, draw=black, fill=black!10, thick, minimum size=18pt, inner sep=0pt},
   edge/.style={draw=black!70, thick},
@@ -2286,8 +2552,9 @@ Egyetlen él elhagyása tehát $1$-gyel csökkentette a kromatikus számot.
   \draw[edge] (v3) -- (v5);
   \draw[edge] (v4) -- (v5);
 
-  \node[below=0.2cm of v3, xshift=1.2cm] {\footnotesize $K_5 - e$: a szaggatott él hiányzik, így a két végpont azonos színt ($1$) kaphat; $\chi = 4$};
+  \node[align=center] at (0, -1.85) {\footnotesize $K_5 - e$: a szaggatott él hiányzik, \\ \footnotesize így a két végpont azonos színt ($1$) kaphat; $\chi = 4$};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Egy példa
@@ -2295,6 +2562,7 @@ Egyetlen él elhagyása tehát $1$-gyel csökkentette a kromatikus számot.
 Vizsgáljuk meg az alábbi példagráfot:
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.05,
   c1/.style={circle, draw=black, fill=white, thick, minimum size=18pt, inner sep=0pt},
   c2/.style={circle, draw=black, fill=black!15, thick, minimum size=18pt, inner sep=0pt},
@@ -2329,6 +2597,7 @@ Vizsgáljuk meg az alábbi példagráfot:
     $\Delta(G) = 5$
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 Ebben a gráfban a csúcsokat sikerült $3$ színnel ($1, 2, 3$) jól kiszínezni: semelyik két szomszédos csúcs nem azonos színű. Mivel a gráf tartalmaz háromszöget (például a felső $3$, a középső $2$ és a jobb oldali $1$ csúcs egy $K_3$-at alkot), $2$ szín nem lehet elegendő, tehát a kromatikus szám pontosan $\chi(G) = 3$. A maximális fokszám $\Delta(G) = 5$ (a középső $2$-es színű csúcsnak $5$ szomszédja van), a legnagyobb teljes részgráf mérete pedig $\omega(G) = 3$.
@@ -2371,13 +2640,14 @@ Mivel azonban összesen $\Delta(G) + 1$ szín áll rendelkezésünkre, a szomsz�
 A mohó algoritmus tehát minden lépésben talál megengedett színt, soha nem akad el, és legfeljebb $\Delta(G) + 1$ szín felhasználásával egy jó csúcsszínezést állít elő. Ebből következik, hogy $\chi(G) \le \Delta(G) + 1$. $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.95,
   v/.style={circle, draw=black, fill=black!15, thick, minimum size=18pt, inner sep=0pt},
   cur/.style={circle, draw=black, fill=white, very thick, minimum size=20pt, inner sep=0pt},
   edge/.style={draw=black!70, thick}
 ]
-  \draw[rounded corners=15pt, fill=black!5, draw=black!30, dashed] (-3.4, -1.5) rectangle (3.4, 1.8);
-  \node[cur] (v) at (0, 0.1) {$v$};
+  \draw[rounded corners=15pt, fill=black!5, draw=black!30, dashed] (-3.4, -1.5) rectangle (3.4, 1.85);
+  \node[cur] (v) at (0, 0.05) {$v$};
   \node[v] (u1) at (-2.2, 0.9) {$c_1$};
   \node[v] (u2) at (-1.0, 1.2) {$c_2$};
   \node[v] (u3) at (0.6, 1.2) {$c_3$};
@@ -2392,8 +2662,9 @@ A mohó algoritmus tehát minden lépésben talál megengedett színt, soha nem 
   \path (u3) -- (u4) node[midway] {$\dots$};
 
   \node[below=0.15cm of v] {\footnotesize $k \le \deg(v) \le \Delta(G)$};
-  \node[above=0.05cm of u2] {\footnotesize már kiszínezett szomszédok ($\le \Delta(G)$ tiltott szín)};
+  \node at (0, 2.2) {\footnotesize már kiszínezett szomszédok ($\le \Delta(G)$ tiltott szín)};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Mikor éri el a felső korlátot a kromatikus szám?
@@ -2411,6 +2682,7 @@ Az előadáson két ilyen családot azonosítottunk:
    Ezzel szemben egy páros kör ($C_{2k}$) mindig kiszínezhető $2$ színnel: $\Delta(C_{2k}) = 2$ és $\chi(C_{2k}) = 2$.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.85,
   v/.style={circle, draw=black, fill=black!10, thick, minimum size=16pt, inner sep=0pt},
   edge/.style={draw=black!70, thick}
@@ -2421,7 +2693,7 @@ Az előadáson két ilyen családot azonosítottunk:
     \node[v] (k2) at (210:1.1) {$2$};
     \node[v] (k3) at (330:1.1) {$3$};
     \draw[edge] (k1) -- (k2) -- (k3) -- (k1);
-    \node[below=1.2cm of k1] {\begin{tabular}{c} $K_3$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
+    \node at (0, -1.8) {\footnotesize\begin{tabular}{c} $K_3$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
   \end{scope}
 
   % C_5
@@ -2432,7 +2704,7 @@ Az előadáson két ilyen családot azonosítottunk:
     \node[v] (c4) at (306:1.1) {$2$};
     \node[v] (c5) at (18:1.1) {$3$};
     \draw[edge] (c1) -- (c2) -- (c3) -- (c4) -- (c5) -- (c1);
-    \node[below=1.2cm of c1] {\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
+    \node at (0, -1.8) {\footnotesize\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi=3$ \end{tabular}};
   \end{scope}
 
   % C_4
@@ -2442,9 +2714,10 @@ Az előadáson két ilyen családot azonosítottunk:
     \node[v] (q3) at (225:1.1) {$1$};
     \node[v] (q4) at (315:1.1) {$2$};
     \draw[edge] (q1) -- (q2) -- (q3) -- (q4) -- (q1);
-    \node[below=1.2cm of q1] {\begin{tabular}{c} $C_4$ \\ $\Delta=2, \, \chi=2$ \end{tabular}};
+    \node at (0, -1.8) {\footnotesize\begin{tabular}{c} $C_4$ \\ $\Delta=2, \, \chi=2$ \end{tabular}};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 Meglepő és mély tény, hogy ezen a két triviális eseten kívül **nincs más kivétel**! Ezt mondja ki a gráfelmélet egyik klasszikus eredménye:
@@ -2494,6 +2767,7 @@ Ekkor:
 3. **Élek kizárólag a különböző színosztályok között futhatnak.**
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   dot/.style={circle, draw=black, fill=black, inner sep=1.2pt},
   edge/.style={draw=black!70, thick}
@@ -2524,6 +2798,7 @@ Ekkor:
 
   \node at (0, 0.2) {\footnotesize élek csak az osztályok \emph{között} futnak};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 A gráf $k$ színnel való jó színezése tehát **teljesen ekvivalens azzal**, hogy a csúcshalmazát $k$ darab diszjunkt független halmaz uniójára bontjuk szét.
@@ -2600,6 +2875,7 @@ Az indirekt feltevésünk tehát hamis volt: nem létezhet olyan él, amelynek m
 Minden él tehát szükségképpen egy $A$-beli és egy $B$-beli csúcsot köt össze, így $G$ valóban páros gráf, és $\chi(G) \le 2$. $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=white, thick, minimum size=16pt, inner sep=0pt},
   sq/.style={rectangle, draw=black, fill=black!15, thick, minimum size=15pt, inner sep=0pt},
@@ -2608,25 +2884,25 @@ Minden él tehát szükségképpen egy $A$-beli és egy $B$-beli csúcsot köt �
 ]
   % Layer 0
   \node[v] (v0) at (0, 2.5) {$v_0$};
-  \node[left=0.5cm of v0] {\footnotesize $d=0$ ($A$, páros)};
+  \node[anchor=east] at (-3.7, 2.5) {\footnotesize $d=0$ ($A$, páros)};
 
   % Layer 1
   \node[sq] (u1) at (-2, 1.2) {$u_1$};
   \node[sq] (u2) at (0, 1.2) {$u_2$};
   \node[sq] (u3) at (2, 1.2) {$u_3$};
-  \node[left=0.5cm of u1] {\footnotesize $d=1$ ($B$, páratlan)};
+  \node[anchor=east] at (-3.7, 1.2) {\footnotesize $d=1$ ($B$, páratlan)};
 
   % Layer 2
   \node[v] (w1) at (-2.5, -0.2) {$w$};
   \node[v] (x) at (0, -0.2) {};
   \node[v] (y) at (2, -0.2) {};
-  \node[left=0.5cm of w1] {\footnotesize $d=2$ ($A$, páros)};
+  \node[anchor=east] at (-3.7, -0.2) {\footnotesize $d=2$ ($A$, páros)};
 
   % Layer 3
   \node[sq] (u) at (-3.2, -1.5) {$u$};
   \node[sq] (v) at (-1.8, -1.5) {$v$};
   \node[sq] (z) at (1, -1.5) {};
-  \node[left=0.5cm of u] {\footnotesize $d=3$ ($B$, páratlan)};
+  \node[anchor=east] at (-3.7, -1.5) {\footnotesize $d=3$ ($B$, páratlan)};
 
   \draw[tree] (v0) -- (u1);
   \draw[tree] (v0) -- (u2);
@@ -2640,8 +2916,9 @@ Minden él tehát szükségképpen egy $A$-beli és egy $B$-beli csúcsot köt �
 
   % Dashed edge within layer 3
   \draw[bad] (u) -- (v);
-  \node[below=0.2cm of v] {\footnotesize $uv$ él azonos osztályban: páratlan kör keletkezik! ($w \to u \to v \to w$)};
+  \node[align=center] at (-0.6, -2.35) {\footnotesize $uv$ él azonos osztályban: páratlan kör keletkezik! ($w \to u \to v \to w$)};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 > **Következmény (a fák páros gráfok).** Minden fa páros gráf.
@@ -2710,7 +2987,7 @@ Ez azonnal ad egy triviális alsó korlátot:
 ### Példák
 
 1. **Egy 8 csúcsú példagráf:**
-   Az alábbi gráfban (amelyet alább bemutatunk) a maximális fokszám $\Delta = 4$. Sikerült az éleket $4$ színnel jól kiszínezni, így $\chi'(G) = 4 = \Delta(G)$.
+   Az alább bemutatott gráfban a maximális fokszám $\Delta = 4$. Sikerült az éleket $4$ színnel jól kiszínezni, így $\chi'(G) = 4 = \Delta(G)$.
 
 2. **Az 5-csúcsú kör ($C_5$):**
    A kör minden csúcsának foka $2$, így $\Delta(C_5) = 2$.
@@ -2721,6 +2998,7 @@ Ez azonnal ad egy triviális alsó korlátot:
    $$\chi'(C_5) = 3 = \Delta(C_5) + 1.$$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.0,
   v/.style={circle, draw=black, fill=black, inner sep=1.5pt},
   edge/.style={draw=black!70, thick}
@@ -2746,7 +3024,7 @@ Ez azonnal ad egy triviális alsó korlátot:
     \draw[edge] (n6) -- node[right, inner sep=1pt]{\footnotesize $1$} (n7);
     \draw[edge] (n6) -- node[below, inner sep=1pt]{\footnotesize $2$} (n8);
 
-    \node[below=1.2cm of n5] {\begin{tabular}{c} $\Delta(G) = 4$ \\ $\chi'(G) = 4$ \end{tabular}};
+    \node at (0, -1.85) {\footnotesize\begin{tabular}{c} $\Delta(G) = 4$ \\ $\chi'(G) = 4$ \end{tabular}};
   \end{scope}
 
   \begin{scope}[xshift=3.5cm]
@@ -2762,9 +3040,10 @@ Ez azonnal ad egy triviális alsó korlátot:
     \draw[edge] (c4) -- node[right, inner sep=1pt]{\footnotesize $2$} (c5);
     \draw[edge] (c5) -- node[above right, inner sep=1pt]{\footnotesize $3$} (c1);
 
-    \node[below=1.5cm of c1] {\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi'=3$ \end{tabular}};
+    \node at (0, -1.85) {\footnotesize\begin{tabular}{c} $C_5$ \\ $\Delta=2, \, \chi'=3$ \end{tabular}};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Vizing tétele: az élkromatikus szám csodája
@@ -2852,6 +3131,7 @@ Azonban ez nem a gráf hibája, hanem a lerajzolásé! $K_4$ ugyanis **síkbaraj
 Mindkét esetben metszésmentes síkrajzot kapunk.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
   edge/.style={draw=black!70, thick}
@@ -2865,7 +3145,7 @@ Mindkét esetben metszésmentes síkrajzot kapunk.
     \draw[edge] (a1) -- (a2) -- (a3) -- (a4) -- (a1);
     \draw[edge] (a1) -- (a3);
     \draw[edge] (a2) -- (a4);
-    \node[below=1.0cm of a4, xshift=0.8cm] {\footnotesize Rossz rajz (metszés)};
+    \node at (0, -1.85) {\footnotesize Rossz rajz (metszés)};
   \end{scope}
 
   % Curved K_4
@@ -2876,8 +3156,8 @@ Mindkét esetben metszésmentes síkrajzot kapunk.
     \node[v] (b4) at (-0.8, -0.8) {};
     \draw[edge] (b1) -- (b2) -- (b3) -- (b4) -- (b1);
     \draw[edge] (b2) -- (b4);
-    \draw[edge] (b1) to[out=210, in=150, looseness=2.2] (b3);
-    \node[below=1.0cm of b4, xshift=0.8cm] {\footnotesize Jó síkrajz (ív)};
+    \draw[edge] (b1) .. controls (-2.3, -1.3) and (-0.8, -2.0) .. (b3);
+    \node at (0, -1.85) {\footnotesize Jó síkrajz (ív)};
   \end{scope}
 
   % Triangle with center
@@ -2890,9 +3170,10 @@ Mindkét esetben metszésmentes síkrajzot kapunk.
     \draw[edge] (c1) -- (c4);
     \draw[edge] (c2) -- (c4);
     \draw[edge] (c3) -- (c4);
-    \node[below=1.0cm of c4] {\footnotesize Jó síkrajz (belső csúcs)};
+    \node at (0, -1.85) {\footnotesize Jó síkrajz (belső csúcs)};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Tartományok (lapok)
@@ -2908,6 +3189,7 @@ Fontos szem előtt tartani:
 A külső tartomány ugyanolyan teljes jogú tartománya a síkrajznak, mint a belsők!
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.95,
   v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
   edge/.style={draw=black!70, thick},
@@ -2941,6 +3223,7 @@ A külső tartomány ugyanolyan teljes jogú tartománya a síkrajznak, mint a b
     $4$: külső (végtelen) tartomány
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ---
@@ -2997,6 +3280,7 @@ $$n - e_{\text{fa}} + t_{\text{fa}} = n - (n - 1) + 1 = n - n + 1 + 1 = 2.$$
 Mivel minden korábbi lépésben az $n - e + t$ érték változatlan maradt, az eredeti gráfra is pontosan $n - e + t = 2$ kellett hogy teljesüljön! $\blacksquare$
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.95,
   v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
   tree/.style={draw=black, very thick},
@@ -3036,6 +3320,7 @@ Mivel minden korábbi lépésben az $n - e + t$ érték változatlan maradt, az 
     $n - (n-1) + 1 = 2$
   \end{tabular}};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ::: kiegeszites
@@ -3076,12 +3361,13 @@ $$n - e + t = 2 + 1 = 3.$$
 :::
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=black, inner sep=1.6pt},
   edge/.style={draw=black!70, thick}
 ]
   % Component 1
-  \begin{scope}[xshift=-3.0cm]
+  \begin{scope}[xshift=-2.4cm]
     \draw[rounded corners=10pt, fill=black!4, draw=black!25] (-1.6, -1.6) rectangle (1.6, 1.6);
     \node[v] (p1) at (-0.8, 0) {};
     \node[v] (p2) at (-0.3, 0.9) {};
@@ -3095,7 +3381,7 @@ $$n - e + t = 2 + 1 = 3.$$
   \end{scope}
 
   % Component 2
-  \begin{scope}[xshift=3.0cm]
+  \begin{scope}[xshift=2.4cm]
     \draw[rounded corners=10pt, fill=black!4, draw=black!25] (-1.4, -1.6) rectangle (1.4, 1.6);
     \node[v] (q1) at (-0.6, 0.6) {};
     \node[v] (q2) at (0.6, 0.4) {};
@@ -3106,12 +3392,9 @@ $$n - e + t = 2 + 1 = 3.$$
     \node at (0, -1.9) {\footnotesize $2$. komponens ($n_2, e_2, t_2$)};
   \end{scope}
 
-  \node at (0, 0) {\begin{tabular}{c}
-    \textbf{Közös külső tartomány} \\
-    $t = t_1 + t_2 - 1$ \\
-    $n - e + t = c + 1 = 3$
-  \end{tabular}};
+  \node[align=center] at (0, -2.75) {\footnotesize \textbf{Közös külső tartomány:} $t = t_1 + t_2 - 1 \implies n - e + t = c + 1 = 3$};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ---
@@ -3233,6 +3516,7 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
 > **Állítás.** A $K_{3,3}$ gráf **nem síkbarajzolható** (a három ház – három kút feladat síkban nem oldható meg).
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=black, inner sep=1.8pt},
   edge/.style={draw=black!70, thick}
@@ -3242,12 +3526,13 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
     \foreach \i in {1,...,5} {
       \node[v] (k\i) at ({90 + (\i-1)*72}:1.2) {};
     }
-    \foreach \i in {1,...,5} {
-      \foreach \j in {\i,...,5} {
+    \foreach \i in {1,...,4} {
+      \pgfmathtruncatemacro{\nexti}{\i+1}
+      \foreach \j in {\nexti,...,5} {
         \draw[edge] (k\i) -- (k\j);
       }
     }
-    \node[below=1.4cm of k1] {\begin{tabular}{c} \textbf{$K_5$} \\ $n=5, \, e=10$ \\ $10 \le 3(5)-6 = 9 \text{ (ellentmondás)}$ \end{tabular}};
+    \node at (0, -2.05) {\footnotesize\begin{tabular}{c} \textbf{$K_5$} \\ $n=5, \, e=10$ \\ $10 \le 3(5)-6 = 9 \text{ (ellentmondás)}$ \end{tabular}};
   \end{scope}
 
   % K_{3,3}
@@ -3263,9 +3548,9 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
         \draw[edge] (h\i) -- (w\j);
       }
     }
-    \node[above=0.05cm of h2] {\footnotesize 3 ház};
-    \node[below=0.05cm of w2] {\footnotesize 3 kút};
-    \node[below=0.8cm of w2] {\begin{tabular}{c} \textbf{$K_{3,3}$} \\ $n=6, \, e=9$ \\ $9 \le 2(6)-4 = 8 \text{ (ellentmondás)}$ \end{tabular}};
+    \node[above=0.08cm of h2] {\footnotesize 3 ház};
+    \node[below=0.08cm of w2] {\footnotesize 3 kút};
+    \node at (0, -2.05) {\footnotesize\begin{tabular}{c} \textbf{$K_{3,3}$} \\ $n=6, \, e=9$ \\ $9 \le 2(6)-4 = 8 \text{ (ellentmondás)}$ \end{tabular}};
   \end{scope}
 
   % Subdivision
@@ -3281,9 +3566,10 @@ Ez ellentmondás, hiszen $9 \le 8$ hamis!
     \node[circle, draw=black, fill=white, inner sep=1.8pt, label=above:{$w$}] (t2) at (0, -0.9) {};
     \node[v, label=right:{$v$}] (t3) at (1.2, -0.9) {};
     \draw[edge] (t1) -- (t2) -- (t3);
-    \node[below=0.1cm of t2] {\footnotesize soros bővítés ($u-w-v$)};
+    \node at (0, -1.6) {\footnotesize soros bővítés ($u-w-v$)};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Soros bővítés és topológikus izomorfia
@@ -3363,6 +3649,7 @@ Foglaljuk össze, amit a síkbarajzolható gráfokról eddig tudunk. Összefügg
 **$\Leftarrow$ (sztereografikus vetítés).** Tegyük a gömböt a síkra úgy, hogy a **déli pólusában** ($D$) érintse a síkot, és legyen $\text{É}$ az **északi pólus**. A gömb minden $P \ne \text{É}$ pontjához rendeljük hozzá az $\text{É}P$ egyenes és a sík $P'$ metszéspontját.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.1,
   pt/.style={circle, draw=black, fill=black, inner sep=1.4pt}
 ]
@@ -3376,8 +3663,9 @@ Foglaljuk össze, amit a síkbarajzolható gráfokról eddig tudunk. Összefügg
   \node[pt, label=below:{\small $P'$}] at (-1, 0) {};
   \node[pt, label=right:{\small $Q$}] at (1, 1) {};
   \node[pt, label=below:{\small $Q'$}] at (2, 0) {};
-  \node at (0, -0.9) {\footnotesize Sztereografikus vetítés: a gömb $P$ pontjának képe az $\text{É}P$ egyenes és a sík metszéspontja.};
+  \node[align=center] at (0, -1.0) {\footnotesize Sztereografikus vetítés: a gömb $P$ pontjának képe \\ \footnotesize az $\text{É}P$ egyenes és a sík metszéspontja.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 Ez a hozzárendelés **kölcsönösen egyértelmű** a gömbfelület $\text{É}$-tól különböző pontjai és a sík pontjai között: minden $P \ne \text{É}$ pontra az $\text{É}P$ egyenes nem párhuzamos a síkkal, tehát metszi, és megfordítva, minden $P'$ síkbeli pontra az $\text{É}P'$ egyenes $\text{É}$-n kívül pontosan egy pontban metszi a gömböt. A leképezés mindkét irányban folytonos, így folytonos görbéket folytonos görbékbe, egymást nem metsző görbéket egymást nem metsző görbékbe visz. Az $\text{É}$ pontnak nincs képe — a sík „végtelen távoli pontjának” felel meg: ha $P \to \text{É}$, akkor $P'$ a végtelenbe tart.
@@ -3424,6 +3712,7 @@ Euler eredetileg nem síkgráfokra, hanem **testekre** fogalmazta meg a formulá
 A tétel így is olvasható: *a $0$ dimenziós lapok (csúcsok), az $1$ dimenziós lapok (élek) és a $2$ dimenziós lapok száma váltakozó előjellel összeadva $2$.* Itt egy $k$ dimenziós **lap** a test határának egy olyan része, amely egy $k$ dimenziós síkban fekszik: a csúcs egyetlen pont, az él egy szakasz, a lap egy sokszög.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.9,
   v/.style={circle, draw=black, fill=black, inner sep=1.5pt},
   edge/.style={draw=black!70, thick}
@@ -3437,7 +3726,7 @@ A tétel így is olvasható: *a $0$ dimenziós lapok (csúcsok), az $1$ dimenzi�
     \draw[edge] (a) -- (d);
     \draw[edge] (b) -- (d);
     \draw[edge] (c) -- (d);
-    \node at (0, -1.5) {\footnotesize tetraéder: $4 - 6 + 4 = 2$};
+    \node at (0, -1.7) {\footnotesize tetraéder: $4 - 6 + 4 = 2$};
   \end{scope}
   \begin{scope}[xshift=3cm]
     \node[v] (p1) at (-1.2, -1.2) {};
@@ -3457,6 +3746,7 @@ A tétel így is olvasható: *a $0$ dimenziós lapok (csúcsok), az $1$ dimenzi�
     \node at (0, -1.7) {\footnotesize kocka (hexaéder): $8 - 12 + 6 = 2$};
   \end{scope}
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Hány szabályos test van?
@@ -3542,6 +3832,7 @@ A tartományok színezését a csúcsszínezésre vezetjük vissza.
 Két tartomány között **annyi** élt húzunk, ahány közös élük van (minden közös élen keresztül egyet), így $G^*$-ban többszörös élek is lehetnek; egy hídon keresztül húzott él hurokél. Az élek behúzhatók úgy, hogy ne messék egymást, ezért **$G^*$ is síkbarajzolható** — sőt a konstrukció rögtön egy síkrajzát adja.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.0,
   v/.style={circle, draw=black, fill=black, inner sep=1.6pt},
   dv/.style={circle, draw=black, fill=white, thick, inner sep=1.8pt},
@@ -3557,8 +3848,9 @@ Két tartomány között **annyi** élt húzunk, ahány közös élük van (mind
   \draw[dual] (I) -- (O);
   \draw[dual] (I) .. controls (-1.6, 1.6) and (-2.9, 0.2) .. (O);
   \draw[dual] (I) .. controls (1.6, 1.6) and (2.9, 0.2) .. (O);
-  \node at (0, -2.0) {\footnotesize Egy háromszög ($n = 3$, $e = 3$, $t = 2$) duálisa: $2$ csúcs és $3$ párhuzamos él.};
+  \node[align=center] at (0, -2.3) {\footnotesize Egy háromszög ($n = 3$, $e = 3$, $t = 2$) duálisa: \\ \footnotesize $2$ csúcs és $3$ párhuzamos él.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 Összefüggő $G$ esetén a duális paraméterei $n^* = t$ és $e^* = e$, az Euler-formula szerint pedig $t^* = 2 - n^* + e^* = 2 - t + e = n$: a duálisnak éppen annyi tartománya van, ahány csúcsa $G$-nek. A szabályos testek élgráfjainál: a kocka duálisa az oktaéder (a kocka $6$ lapja az oktaéder $6$ csúcsa), a dodekaéderé az ikozaéder, a tetraéderé önmaga.
@@ -3643,6 +3935,88 @@ Ha $G$ **nem összefüggő**, a dolog elromlik: $G^*$ mindig összefüggő (bár
 - Ha az egyik háromszöget a négyszög belsejébe rajzoljuk, a tartományok: két háromszög belseje ($3$-$3$), a négyszög belsejének a háromszögön kívüli része ($4 + 3 = 7$ él) és a külső tartomány ($4 + 3 = 7$ él).
 
 A duális csúcsainak fokszáma a tartományok határoló éleinek száma, így az első duális fokszámai $3, 3, 4, 10$, a másodiké $3, 3, 7, 7$: a két duális nem izomorf, pedig mindkettő ugyanannak a gráfnak a duálisa. (Whitney tétele szerint a 3-szorosan összefüggő síkgráfoknak a gömbön lényegében egyetlen rajzuk van, így ezek duálisa egyértelmű — a fenti $G$-nek viszont elvágó csúcsa van.)
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.88,
+  v/.style={circle, draw=black, fill=black, inner sep=1.4pt},
+  dv/.style={circle, draw=black, fill=white, thick, inner sep=1.7pt},
+  edge/.style={draw=black, thick},
+  dual/.style={draw=black!60, thick, dashed},
+  flab/.style={font=\scriptsize}
+]
+  % Balra: egymás melletti rajz (3, 3, 4, 10)
+  \begin{scope}[xshift=-3.6cm]
+    \node[v, label=below:{\scriptsize $v$}] (v1) at (0, 0) {};
+    \coordinate (a1) at (-1.35, -0.35); \coordinate (b1) at (-0.65, -1.25);
+    \coordinate (c1) at (-0.55, 1.3);   \coordinate (d1) at (0.55, 1.3);
+    \coordinate (e1) at (0.75, -1.05);  \coordinate (f1) at (1.85, -0.15); \coordinate (g1) at (0.95, 0.85);
+    \draw[edge] (v1) -- (a1) -- (b1) -- (v1);
+    \draw[edge] (v1) -- (c1) -- (d1) -- (v1);
+    \draw[edge] (v1) -- (e1) -- (f1) -- (g1) -- (v1);
+    \foreach \p in {a1,b1,c1,d1,e1,f1,g1} { \node[v] at (\p) {}; }
+    \node[flab] at (-0.75, -0.58) {$3$};
+    \node[flab] at (0.0, 0.85) {$3$};
+    \node[flab] at (0.92, -0.05) {$4$};
+    \node[flab] at (1.55, -1.15) {külső: $10$};
+
+    % Dualis alatta
+    \begin{scope}[yshift=-2.85cm]
+      \node[dv, label=below:{\scriptsize $10$}] (O1) at (0.1, -0.45) {};
+      \node[dv, label=above:{\scriptsize $3$}] (D1a) at (-1.35, 0.55) {};
+      \node[dv, label=above:{\scriptsize $3$}] (D1b) at (0.1, 0.75) {};
+      \node[dv, label=above:{\scriptsize $4$}] (D1c) at (1.55, 0.55) {};
+      \draw[dual] (O1) to[bend left=18] (D1a);
+      \draw[dual] (O1) -- (D1a);
+      \draw[dual] (O1) to[bend right=18] (D1a);
+      \draw[dual] (O1) to[bend left=18] (D1b);
+      \draw[dual] (O1) -- (D1b);
+      \draw[dual] (O1) to[bend right=18] (D1b);
+      \draw[dual] (O1) to[bend left=22] (D1c);
+      \draw[dual] (O1) to[bend left=8] (D1c);
+      \draw[dual] (O1) to[bend right=8] (D1c);
+      \draw[dual] (O1) to[bend right=22] (D1c);
+      \node at (0.1, -1.2) {\footnotesize $G_1^*$: fokok $3, 3, 4, 10$};
+    \end{scope}
+  \end{scope}
+
+  % Jobbra: háromszög a négyszög belsejében (3, 3, 7, 7)
+  \begin{scope}[xshift=3.2cm]
+    \node[v, label=above:{\scriptsize $v$}] (v2) at (0, 0) {};
+    \coordinate (a2) at (-1.35, 0.55); \coordinate (b2) at (-1.35, -0.55);
+    \coordinate (e2) at (1.2, -1.25);  \coordinate (f2) at (2.6, 0.0); \coordinate (g2) at (1.2, 1.25);
+    \coordinate (c2) at (1.05, 0.42);  \coordinate (d2) at (1.05, -0.42);
+    \draw[edge] (v2) -- (a2) -- (b2) -- (v2);
+    \draw[edge] (v2) -- (e2) -- (f2) -- (g2) -- (v2);
+    \draw[edge] (v2) -- (c2) -- (d2) -- (v2);
+    \foreach \p in {a2,b2,e2,f2,g2,c2,d2} { \node[v] at (\p) {}; }
+    \node[flab] at (-0.92, 0.0) {$3$};
+    \node[flab] at (0.70, 0.0) {$3$};
+    \node[flab] at (1.85, 0.0) {$7$};
+    \node[flab] at (-0.1, -1.15) {külső: $7$};
+
+    % Dualis alatta
+    \begin{scope}[yshift=-2.85cm, xshift=0.5cm]
+      \node[dv, label={[label distance=5pt]below:{\scriptsize $3$}}] (D2a) at (-1.65, 0.1) {};
+      \node[dv, label={[label distance=5pt]below:{\scriptsize $7$}}] (O2)  at (-0.55, 0.1) {};
+      \node[dv, label={[label distance=5pt]below:{\scriptsize $7$}}] (D2c) at (0.55, 0.1) {};
+      \node[dv, label={[label distance=5pt]below:{\scriptsize $3$}}] (D2b) at (1.65, 0.1) {};
+      \draw[dual] (D2a) to[bend left=24] (O2);
+      \draw[dual] (D2a) -- (O2);
+      \draw[dual] (D2a) to[bend right=24] (O2);
+      \draw[dual] (O2) to[bend left=28] (D2c);
+      \draw[dual] (O2) to[bend left=10] (D2c);
+      \draw[dual] (O2) to[bend right=10] (D2c);
+      \draw[dual] (O2) to[bend right=28] (D2c);
+      \draw[dual] (D2c) to[bend left=24] (D2b);
+      \draw[dual] (D2c) -- (D2b);
+      \draw[dual] (D2c) to[bend right=24] (D2b);
+      \node at (0.0, -1.2) {\footnotesize $G_2^*$: fokok $3, 3, 7, 7$};
+    \end{scope}
+  \end{scope}
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 ## 46. Gráfparaméterek: független és lefogó halmazok
 
@@ -3778,7 +4152,7 @@ Ha találunk egy javító utat, akkor **javítunk**: az út mentén a fekete él
 \begin{tikzpicture}[scale=0.95,
   pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
   black/.style={draw=black, thin},
-  red/.style={draw=black, line width=2.2pt}
+  red/.style={draw=red!75!black, line width=2.2pt}
 ]
   \begin{scope}
     \node[pt, label=below:{\footnotesize $u$}] (a0) at (0, 0) {};
@@ -4629,7 +5003,7 @@ Menger tétele azt mondja ki, hogy ennél több igaz: a két érték **mindig eg
 
 > **Tétel (Menger, pontváltozat — irányítatlan és irányított gráfra).** Legyen $G$ irányítatlan vagy irányított gráf, és $s \ne t \in V(G)$ két olyan csúcsa, amelyek között **nincs közvetlen él** ($st \notin E(G)$, illetve irányított esetben $s \to t \notin E(G)$). Ekkor az $s$-ből $t$-be menő páronként belsőleg **csúcsdiszjunkt** (irányítatlan, illetve irányított) utak **maximális száma** egyenlő az $s$-ből $t$-be menő összes utat lefogó ($s$-től és $t$-től különböző) **csúcsok minimális számával**.
 
-*(Miért kell a pontváltozatban kizárni a közvetlen $st$ — irányítottan $s \to t$ — élet? Mert egy közvetlen élet semmilyen közbenső csúcs törlésével nem lehet lefoglalni; magát $s$-et vagy $t$-t pedig nyilván nem engedhetjük törölni, hiszen akkor egyetlen csúcs minden utat lefogna, miközben akár sok belsőleg diszjunkt út is lehet. Irányított gráfban a fordított irányú $t \to s$ él természetesen megengedett, az nem akadályozza az állítást.)*
+*(Miért kell a pontváltozatban kizárni a közvetlen $st$ — irányítottan $s \to t$ — élet? Mert egy közvetlen élet semmilyen közbenső csúcs törlésével nem lehet lefogni; magát $s$-et vagy $t$-t pedig nyilván nem engedhetjük törölni, hiszen akkor egyetlen csúcs minden utat lefogna, miközben akár sok belsőleg diszjunkt út is lehet. Irányított gráfban a fordított irányú $t \to s$ él természetesen megengedett, az nem akadályozza az állítást.)*
 
 A tételeket az előadáson nem bizonyítottuk.
 
@@ -4815,14 +5189,14 @@ Most érünk el a két téma találkozásához: Menger tételéből azonnal megk
 
 Ha ugyanis $G' - X$-ben nem volna $s$-$t$ út, akkor $s$ és $t$ a $G' - X$ gráf két különböző komponensében, $C_s$-ben és $C_t$-ben lenne (és $G - X$-ben csak az $st$ él kötné össze ezt a két részt). Mivel $|V(G) \setminus X| \ge (k + 1) - (k - 2) = 3$, a két rész közül legalább az egyikben — mondjuk $C_s$-ben — van egy $s$-től (és $t$-től) különböző $w$ csúcs. Ekkor azonban az $X \cup \{s\}$ csúcshalmaz mérete legfeljebb $k - 1$, és $G - (X \cup \{s\})$-ben nincs út $w$ és $t$ között — ellentmondás azzal, hogy $G$ $k$-szorosan csúcsösszefüggő.
 
-Tehát $G'$-ben $s$ és $t$ nem szomszédosak (feltéve, hogy $G$ egyszerű; ha többszörös él fut közöttük, a többi közvetlen él már magában egy-egy belsőleg diszjunkt út), és elválasztó csúcshalmazuk mérete legalább $k - 1$. Menger tételének pontváltozata szerint $G'$-ben van $k - 1$ belsőleg csúcsdiszjunkt $s$-$t$ út; ezekhez a közvetlen $st$ élet hozzávéve $k$ belsőleg csúcsdiszjunkt utat kapunk $G$-ben. $\blacksquare$
+Tehát $G'$-ben $s$ és $t$ nem szomszédosak (ha $G$-ben többszörös élek is megengedettek, és $s$ és $t$ között több közvetlen él fut, akkor a $G'$-t az összes $st$-él törlésével képezzük; az érvelés erre is változatlanul érvényes), és elválasztó csúcshalmazuk mérete legalább $k - 1$. Menger tételének pontváltozata szerint $G'$-ben van $k - 1$ belsőleg csúcsdiszjunkt $s$-$t$ út; ezekhez egy közvetlen $st$ élet hozzávéve $k$ belsőleg csúcsdiszjunkt utat kapunk $G$-ben. $\blacksquare$
 :::
 
 ### Kétszeres összefüggőség és körök
 
 A $k = 2$ eset különösen szemléletes, mert két belsőleg csúcsdiszjunkt $s$-$t$ út együtt egy **kört** alkot.
 
-> **Tétel.** Legyen $G$ legalább $3$ csúcsú gráf. A következők ekvivalensek:
+> **Tétel.** Legyen $G$ legalább $3$ csúcsú egyszerű gráf. A következők ekvivalensek:
 >
 > 1. $G$ $2$-szeresen (csúcs)összefüggő;
 > 2. $G$ bármely két csúcsán átmegy egy közös kör;
@@ -4854,17 +5228,19 @@ Fogalmazzuk át gráfokra: a csúcsok a társaság $6$ tagja, az élek a kedvel�
 Mivel $K_6 \subset K_7 \subset K_8 \subset \dots$, az állítás automatikusan igaz minden $n \ge 6$ csúcsú teljes gráfra is. **$K_5$-ben azonban még nem igaz:** a $K_5$ éleit színezzük úgy, hogy egy ötszög ($C_5$) élei legyenek pirosak, az átlók (egy ötágú csillag élei) pedig kékek. Mindkét színosztály egy-egy ötszög, így nincs egyszínű háromszög (a piros kör komplementere ugyanilyen ötszög).
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=1.0,
   pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
-  red/.style={draw=black, very thick},
-  blue/.style={draw=black!55, thick, dashed}
+  red/.style={draw=red!75!black, very thick},
+  blue/.style={draw=blue!70!black, thick, dashed}
 ]
   \foreach \i in {0,1,2,3,4} { \coordinate (p\i) at (90 + 72*\i:1.4); }
   \draw[red] (p0) -- (p1) -- (p2) -- (p3) -- (p4) -- (p0);
   \draw[blue] (p0) -- (p2) -- (p4) -- (p1) -- (p3) -- (p0);
   \foreach \i in {0,1,2,3,4} { \node[pt] at (p\i) {}; }
-  \node at (0, -2.0) {\footnotesize A $K_5$ egyszínű háromszög nélküli színezése: piros (folytonos) ötszög, kék (szaggatott) csillag.};
+  \node[align=center] at (0, -2.05) {\footnotesize A $K_5$ egyszínű háromszög nélküli színezése: \\ \footnotesize piros (folytonos) ötszög, kék (szaggatott) csillag.};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 ### Általánosítás és a Ramsey-számok
@@ -5182,6 +5558,7 @@ hiszen a teljes gráfból éppen az osztályokon belüli éleket hagyjuk el.
 *Példák.* A $T(10, 5)$ öt kételemű osztályból áll: élszáma $\binom{10}{2} - 5 \cdot 1 = 45 - 5 = 40$. A $T(11, 4)$ osztályai $3, 3, 3, 2$ eleműek: élszáma $\binom{11}{2} - 3\binom{3}{2} - \binom{2}{2} = 55 - 9 - 1 = 45$. A $T(n, 2)$ a $K_{\lfloor n/2 \rfloor, \lceil n/2 \rceil}$, a Mantel-tétel extremális gráfja.
 
 \begin{center}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tikzpicture}[scale=0.8,
   pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
   edge/.style={draw=black!30, thin},
@@ -5206,8 +5583,9 @@ hiszen a teljes gráfból éppen az osztályokon belüli éleket hagyjuk el.
   \draw[cls] (-1.65, -3.4) rectangle (1.65, -2.6);
   \draw[cls] (-3.4, -1.05) rectangle (-2.6, 1.05);
   \foreach \p in {a1,a2,a3,b1,b2,b3,c1,c2,c3,d1,d2} { \node[pt] at (\p) {}; }
-  \node at (0, -4.1) {\footnotesize A $T(11, 4)$ Turán-gráf: osztályok mérete $3, 3, 3, 2$; minden különböző osztálybeli pár össze van kötve ($45$ él).};
+  \node[align=center] at (0, -4.25) {\footnotesize A $T(11, 4)$ Turán-gráf: osztályok mérete $3, 3, 3, 2$; \\ \footnotesize minden különböző osztálybeli pár össze van kötve ($45$ él).};
 \end{tikzpicture}
+\end{adjustbox}
 \end{center}
 
 > **Állítás.** Az $n$ csúcsú $r$ osztályú gráfok közül a $T(n, r)$ Turán-gráfnak van a legtöbb éle.
@@ -5307,14 +5685,39 @@ Ha a tagok mérete tetszőleges, a kérdés könnyű. Az $[n]$ részhalmazai $2^
 
 Érdekesebb a kérdés, ha minden tag **ugyanakkora**, $k$ elemű. Ha $k > n/2$, akkor bármely két $k$ elemű halmaz metszi egymást, így az összes, $\binom{n}{k}$ darab $k$ elemű halmaz metsző rendszert alkot. Ha $k \le n/2$, egy természetes metsző rendszer a **csillag**: egy rögzített elemet tartalmazó összes $k$ elemű halmaz. Ennek $\binom{n-1}{k-1}$ tagja van.
 
-> **Tétel (Erdős–Ko–Rado, 1961).** Ha $k \le n/2$, és $\mathcal{F}$ az $[n]$ halmaz $k$ elemű részhalmazaiból álló metsző rendszer, akkor
+> **Tétel (Erdős–Ko–Rado, 1961).** Ha $1 \le k \le n/2$, és $\mathcal{F}$ az $[n]$ halmaz $k$ elemű részhalmazaiból álló metsző rendszer, akkor
 > $$|\mathcal{F}| \le \binom{n-1}{k-1}.$$
+> ($k = 0$ esetén $\emptyset \cap \emptyset = \emptyset$, így $\mathcal{F} = \emptyset$ és $|\mathcal{F}| = 0$.)
 
 *Bizonyítás (Katona Gyula ciklikus módszere).* Helyezzük el az $[n]$ elemeit egy kör mentén valamilyen sorrendben; az ilyen **ciklikus sorrendek** száma $(n-1)!$. Egy ciklikus sorrendben **ívnek** nevezünk egy $k$ egymást követő elemből álló halmazt; ív pontosan $n$ darab van.
 
 *Lemma.* Egy rögzített ciklikus sorrendben legfeljebb $k$ ív tartozhat $\mathcal{F}$-hez.
 
 Ha egy ív sincs $\mathcal{F}$-ben, kész vagyunk. Különben legyen $I \in \mathcal{F}$ egy ív, elemei a körön az $1., 2., \dots, k.$ helyen. Minden más $\mathcal{F}$-beli ív metszi $I$-t, tehát vagy a $2., \dots, k.$ helyek valamelyikén kezdődik, vagy az $1., \dots, k - 1.$ helyek valamelyikén végződik. Minden $i = 1, \dots, k - 1$-re tekintsük azt az ívet, amely az $i$-edik helyen **végződik**, és azt, amely az $(i+1)$-edik helyen **kezdődik**. Ez a kettő együtt $2k \le n$ egymást követő helyet fed le, tehát **diszjunkt**, így közülük legfeljebb egy lehet $\mathcal{F}$-ben. Az $I$-n kívül minden $I$-t metsző ív ilyen párok valamelyikébe tartozik, így $\mathcal{F}$-ben legfeljebb $1 + (k - 1) = k$ ív van. $\square$
+
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.92,
+  pt/.style={circle, draw=black, fill=white, thick, minimum size=14pt, inner sep=0pt, font=\scriptsize}
+]
+  \draw[draw=black!25, thick] (0, 0) circle (1.8);
+  \foreach \j in {1,...,9} {
+    \pgfmathsetmacro{\ang}{90 - (\j - 1) * 40}
+    \node[pt] (c\j) at (\ang:1.8) {$\j$};
+  }
+  % I = {1,2,3}
+  \draw[draw=black, very thick] (98:2.15) arc (98:2:2.15);
+  \node at (50:2.45) {\footnotesize $I$};
+  % Diszjunkt pár i = 2-re: {9,1,2} és {3,4,5}
+  \draw[draw=red!75!black, very thick, dashed] (138:1.42) arc (138:42:1.42);
+  \draw[draw=blue!70!black, very thick] (18:1.42) arc (18:-78:1.42);
+  \node[align=center, red!75!black] at (108:0.75) {\scriptsize $i=2$-n \\[-2pt] \scriptsize végződő};
+  \node[align=center, blue!70!black] at (-30:0.72) {\scriptsize $3$-on \\[-2pt] \scriptsize kezdődő};
+
+  \node[align=center] at (0, -2.45) {\footnotesize Katona párosítása ($n = 9$, $k = 3$, $i = 2$): az $i$-edik helyen végződő és az $(i+1)$-ediken \\ \footnotesize kezdődő ív együtt $2k \le n$ helyet fed le, tehát diszjunktak.};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
 
 *A kettős leszámlálás.* Számoljuk meg azokat a $(\sigma, A)$ párokat, ahol $\sigma$ ciklikus sorrend és $A \in \mathcal{F}$ egy íve.
 

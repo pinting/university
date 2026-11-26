@@ -945,7 +945,7 @@ Végül a relációk. Sok matematikai fogalom két dolog közötti viszonyt feje
 - A „kisebb” reláció a valós számokon: $\{(x, y) \in \mathbb{R}^2 : x < y\}$. Ez a koordinátasíkon az $y = x$ egyenes feletti nyílt félsík.
 - Az **oszthatósági** reláció: $(n, m) \in \mathbb{N} \times \mathbb{N}$ akkor áll relációban, ha $n$ osztója $m$-nek, jelölése $n \mid m$.
 
-**A függvény mint reláció.** Ez a definíció lehetővé teszi, hogy a függvény fogalmát is halmazelméletileg precízzé tegyük. Egy $f : A \to B$ függvényt azonosíthatunk a **grafikonjával**, az $\{(a, f(a)) : a \in A\} \subset A \times B$ relációval. Egy $R \subset A \times B$ reláció pontosan akkor grafikonja egy függvénynek, ha minden $a \in A$-hoz **pontosan egy** olyan $b$ van, amelyre $(a, b) \in R$. Geometriailag: minden függőleges egyenes pontosan egy pontban metszi. (Az egységkör, $\{(x,y) : x^2 + y^2 = 1\}$, ezért nem függvény grafikonja: az $x = 0$ egyenes két pontban metszi.)
+**A függvény mint reláció.** Ez a definíció lehetővé teszi, hogy a függvény fogalmát is halmazelméletileg precízzé tegyük. Egy $f : A \to B$ függvényt azonosíthatunk a **grafikonjával**, az $\{(a, f(a)) : a \in A\} \subset A \times B$ relációval. Egy $R \subset A \times B$ reláció pontosan akkor grafikonja egy függvénynek, ha minden $a \in A$-hoz **pontosan egy** olyan $b$ van, amelyre $(a, b) \in R$. Geometriailag: minden függőleges egyenes legfeljebb egy (az $A$ minden pontjában pontosan egy) pontban metszi. (Az egységkör, $\{(x,y) : x^2 + y^2 = 1\}$, ezért nem függvény grafikonja: az $x = 0$ egyenes két pontban metszi.)
 
 **Ekvivalenciarelációk.** Az $A$ halmazon értelmezett $\sim$ relációt **ekvivalenciarelációnak** nevezzük, ha minden $a, b, c \in A$-ra
 
@@ -1152,7 +1152,7 @@ A határérték egyértelműsége teszi jogossá a $\lim a_n$ jelölést: ha van
 
 *Bizonyítás.* Legyen $a_n \to a$. Alkalmazzuk a definíciót $\varepsilon = 1$-re: van olyan $n_0$, hogy $n \ge n_0$ esetén $|a_n - a| < 1$, és ekkor a háromszög-egyenlőtlenség szerint
 $$|a_n| = |(a_n - a) + a| \le |a_n - a| + |a| < 1 + |a|.$$
-A küszöb előtti véges sok tag közül van abszolút értékben legnagyobb. Így a
+A küszöb előtti véges sok tag közül van abszolút értékben legnagyobb (ha $n_0 = 1$, egyszerűen $K = 1 + |a|$). Így a
 $$K = \max\big\{|a_1|,\ |a_2|,\ \dots,\ |a_{n_0 - 1}|,\ 1 + |a|\big\}$$
 szám minden $n$-re $|a_n| \le K$-t biztosít. $\blacksquare$
 
@@ -1570,7 +1570,7 @@ $$|a_n - a_m| = |(a_n - a) + (a - a_m)| \le |a_n - a| + |a - a_m| < \frac{\varep
 
 **($\Leftarrow$) Elégségesség.** Ez a nehezebb irány, és itt kell a teljesség (a Bolzano–Weierstrass-tételen keresztül). A terv: (1) a Cauchy-sorozat korlátos; (2) tehát van konvergens részsorozata; (3) és a Cauchy-tulajdonság miatt az egész sorozat ugyanoda tart.
 
-*1. lépés: a sorozat korlátos.* Alkalmazzuk a feltételt $\varepsilon = 1$-re: van olyan $n_1$, hogy minden $n, m \ge n_1$-re $|a_n - a_m| < 1$. Speciálisan ($n = n_1$-gyel) minden $m \ge n_1$-re $|a_m - a_{n_1}| < 1$, azaz $|a_m| < |a_{n_1}| + 1$. Az első $n_1 - 1$ tag véges sok, így
+*1. lépés: a sorozat korlátos.* Alkalmazzuk a feltételt $\varepsilon = 1$-re: van olyan $n_1$, hogy minden $n, m \ge n_1$-re $|a_n - a_m| < 1$. Speciálisan ($n = n_1$-gyel) minden $m \ge n_1$-re $|a_m - a_{n_1}| < 1$, azaz $|a_m| < |a_{n_1}| + 1$. Az első $n_1 - 1$ tag véges sok (ha $n_1 = 1$, egyszerűen $K = |a_1| + 1$), így
 $$K = \max\big\{|a_1|,\ \dots,\ |a_{n_1 - 1}|,\ |a_{n_1}| + 1\big\}$$
 korlátja a sorozatnak.
 
@@ -1807,7 +1807,7 @@ Az $(M_n)$ sorozat tehát monoton csökkenő, az $(m_n)$ monoton növekedő, íg
 
 > **Definíció.** Az $(a_n)$ sorozat
 >
-> - **limesz szuperiorja** (felső határértéke): $\displaystyle \limsup_{n\to\infty} a_n = \overline{\lim_{n\to\infty}}\, a_n = \lim_{n\to\infty} M_n \in \overline{\mathbb{R}}$;
+> - **limesz szuperiorja** (felső határértéke): $\displaystyle \limsup_{n\to\infty} a_n = \overline{\lim}_{n\to\infty}\, a_n = \lim_{n\to\infty} M_n \in \overline{\mathbb{R}}$;
 > - **limesz inferiorja** (alsó határértéke): $\displaystyle \liminf_{n\to\infty} a_n = \underline{\lim}_{n\to\infty}\, a_n = \lim_{n\to\infty} m_n \in \overline{\mathbb{R}}$.
 
 Mivel $(M_n)$ csökkenő és $(m_n)$ növekedő, a 22. szakasz szerint egyben
@@ -1966,7 +1966,7 @@ $$0{,}999\dots = \frac{9}{10} + \frac{9}{100} + \dots = \frac{9}{10}\cdot\frac{1
 
 ## 36. A Cauchy-kritérium sorokra és a szükséges feltétel
 
-Mivel egy sor konvergenciája a részletösszeg-sorozat konvergenciáját jelenti, a 28. szakasz Cauchy-kritériuma közvetlenül alkalmazható. Csak azt kell észrevenni, hogy két részletösszeg különbsége maga is egy (véges) összeg:
+Mivel egy sor konvergenciája a részletösszeg-sorozat konvergenciáját jelenti, a 28. szakasz Cauchy-kritériuma közvetlenül alkalmazható. Csak azt kell észrevenni, hogy két részletösszeg különbsége maga is egy (véges) összeg ($n \ge 2$-re, illetve az $s_0 = 0$ megállapodással $n = 1$-re is):
 $$s_m - s_{n-1} = (a_1 + \dots + a_m) - (a_1 + \dots + a_{n-1}) = a_n + a_{n+1} + \dots + a_m = \sum_{k=n}^{m} a_k.$$
 
 > **Tétel (Cauchy-kritérium sorokra).** A $\sum a_k$ sor akkor és csak akkor konvergens, ha minden $\varepsilon > 0$-hoz létezik olyan $n_0$, hogy minden $m \ge n \ge n_0$ esetén
@@ -2027,9 +2027,9 @@ $$\sum_{n=1}^\infty \frac{1}{3^n} = \frac{1/3}{1 - 1/3} = \frac{1}{2}, \qquad 0{
 
 *Bizonyítás.* A sor pozitív tagú, tehát elég belátni, hogy a részletösszegei korlátosak. A trükk: minden $n \ge 2$-re
 $$\frac{1}{n^2} < \frac{1}{n(n-1)} = \frac{1}{n-1} - \frac{1}{n},$$
-és az utóbbi sor teleszkopikus. Ezért
+és az utóbbi sor teleszkopikus. Ezért minden $n \ge 2$-re
 $$\sum_{k=1}^{n}\frac{1}{k^2} < 1 + \sum_{k=2}^{n}\left(\frac{1}{k-1} - \frac{1}{k}\right) = 1 + \left(1 - \frac{1}{n}\right) < 2.$$
-A részletösszegek tehát szigorúan monoton növekedők és felülről korlátosak, így a sor konvergens. $\blacksquare$
+(Az $n = 1$ esetben az összeg $1 < 2$.) A részletösszegek tehát szigorúan monoton növekedők és felülről korlátosak, így a sor konvergens. $\blacksquare$
 
 Az összeg pontos értéke $\frac{\pi^2}{6} \approx 1{,}6449$. Ezt Leonhard Euler fedezte fel 1734-ben (a „bázeli probléma” megoldásaként), de a bizonyítás eszközei túlmutatnak ezen a könyvön. Ugyanígy (a majoráns kritériummal) konvergens $\sum \frac{1}{n^p}$ minden $p \ge 2$-re, hiszen $\frac{1}{n^p} \le \frac{1}{n^2}$.
 
@@ -2570,9 +2570,9 @@ Itt $\alpha$ és $\gamma$ a bővített számegyenes bármely elemei lehetnek (a 
 
 A határérték definíciójának tagadása (B. szakasz):
 $$\exists \varepsilon > 0\ \ \forall \delta > 0\ \ \exists x \in \dot{B}(a, \delta) : |f(x) - b| \ge \varepsilon.$$
-Alkalmazzuk ezt a $\delta = \frac{1}{n}$ értékekre ($n = 1, 2, \dots$; elég nagy $n$-re $\dot{B}\left(a, \frac{1}{n}\right) \subset \dot{U}$): minden $n$-hez van olyan $a_n$, amelyre
+Legyen $\dot{U} = \dot{B}(a, \delta_0)$. Alkalmazzuk ezt a $\delta_n = \min\left\{\delta_0, \frac{1}{n}\right\}$ értékekre ($n = 1, 2, \dots$): minden $n$-hez van olyan $a_n \in \dot{B}(a, \delta_n) \subset \dot{U}$, amelyre
 $$0 < |a_n - a| < \frac{1}{n} \qquad \text{és} \qquad |f(a_n) - b| \ge \varepsilon.$$
-Az így kapott sorozatra $a_n \to a$ (a rendőrelv szerint), $a_n \neq a$, és $a_n \in \dot{U}$ (elég nagy $n$-re) — de $f(a_n) \not\to b$, hiszen minden tag legalább $\varepsilon$ távolságra van $b$-től. $\blacksquare$
+Az így kapott sorozatra $a_n \to a$ (a rendőrelv szerint), $a_n \neq a$, és $a_n \in \dot{U}$ minden $n$-re — de $f(a_n) \not\to b$, hiszen minden tag legalább $\varepsilon$ távolságra van $b$-től. $\blacksquare$
 
 **Fő alkalmazás: a határérték nemlétezésének bizonyítása.** Elég **két** olyan, $\alpha$-hoz tartó sorozatot találni, amelyekre a képsorozatok különböző határértékhez tartanak (vagy egy olyat, amelyre a képsorozat divergens).
 
@@ -3019,7 +3019,7 @@ A 43. szakaszban említett, „Hamel-bázissal” konstruált gyengén konvex, d
 3. $f(0) = 1 > 0$, $f(1) = -1 < 0$, $f(2) = 27 > 0$, és alkalmazzuk a Bolzano-tételt mindkét intervallumon.
 4. a) Ugrás minden egész helyen. b) Megszüntethető szakadás a $0$-ban ($f(0) := 1$). c) Másodfajú a $\pm 1$-ben (végtelen féloldali határértékek). d) Ugrás a $0$-ban ($-1$-ről $1$-re; a $0$-ban nincs értelmezve).
 5. Alkalmazzuk a Bolzano-tételt a $h = f - g$ függvényre: $h(a) < 0 < h(b)$.
-6. Az első nem igaz: $f(x) = x$ a $(0, 1)$-en. A második igaz: van olyan $K$, hogy $x > K$ esetén $f(x) < 1$; a $[0, K]$-n a Weierstrass-tétel szerint $f$ felveszi a maximumát, ami legalább $f(0) = 1$, tehát ez az egész $[0, +\infty)$-en is maximum.
+6. Az első nem igaz: $f(x) = x$ a $(0, 1)$-en. A második igaz: van olyan $K > 0$, hogy $x > K$ esetén $f(x) < 1$; a $[0, K]$-n a Weierstrass-tétel szerint $f$ felveszi a maximumát, ami legalább $f(0) = 1$, tehát ez az egész $[0, +\infty)$-en is maximum.
 
 ---
 
@@ -3624,7 +3624,7 @@ Vegyük észre, hogy ez a határérték éppen a $\sin$ függvény $0$-beli deri
 
 *Bizonyítás.* Legyen $0 < x < \frac{\pi}{2}$. Az alapvető geometriai egyenlőtlenség:
 $$\sin x < x < \tan x.$$
-Az első egyenlőtlenséget az 58. szakaszban láttuk be. A második a következő megfontolásból adódik: tekintsük az egységkörön az $(1, 0)$ pontot és az $x$ ívhez tartozó $P$ pontot, és húzzuk meg a körhöz az $(1, 0)$ pontban az érintőt; ezt a $P$-n átmenő origó-kezdetű félegyenes a $(1, \tan x)$ pontban metszi. Az $x$ hosszúságú ív a $\tan x$ hosszú érintőszakasz és a $P$-beli érintőszakasz „belsejében” fut, és **ha egy konvex alakzatot egy másik tartalmaz, akkor a tartalmazó kerülete nagyobb** — ebből $x < \tan x$. (Egy másik szemléltetés területekkel: az egységkör $x$ szögű körcikkének területe $\frac{x}{2}$, és ez a körcikk tartalmazza az $(0,0), (1,0), P$ háromszöget, amelynek területe $\frac{\sin x}{2}$, és benne van a $(0,0), (1,0), (1, \tan x)$ háromszögben, amelynek területe $\frac{\tan x}{2}$.)
+Az első egyenlőtlenséget az 58. szakaszban láttuk be. A második a következő megfontolásból adódik: tekintsük az egységkörön az $A = (1, 0)$ pontot és az $x$ ívhez tartozó $P$ pontot, és húzzuk meg a körhöz az $A$ pontban az érintőt; ezt a $P$-n átmenő origó-kezdetű félegyenes a $T = (1, \tan x)$ pontban metszi. A körhöz a $P$ pontban húzott érintő az $AT$ szakaszt egy $M$ pontban metszi. Az $x$ hosszúságú $AP$ ív és az $AP$ húr által határolt konvex alakzatot tartalmazza az $AMP$ háromszög, és **ha egy konvex alakzatot egy másik tartalmaz, akkor a tartalmazó kerülete nagyobb** — így $x < |AM| + |MP|$. Másrészt a $P$-beli érintő merőleges az $OP$ sugárra, így az $MPT$ háromszög $P$-nél derékszögű, tehát $|MP| < |MT|$; innen $x < |AM| + |MP| < |AM| + |MT| = |AT| = \tan x$. (Egy másik szemléltetés területekkel: az egységkör $x$ szögű körcikkének területe $\frac{x}{2}$, és ez a körcikk tartalmazza az $(0,0), (1,0), P$ háromszöget, amelynek területe $\frac{\sin x}{2}$, és benne van a $(0,0), (1,0), (1, \tan x)$ háromszögben, amelynek területe $\frac{\tan x}{2}$.)
 
 Osszuk el az egyenlőtlenséget a pozitív $\sin x$-szel:
 $$1 < \frac{x}{\sin x} < \frac{1}{\cos x},$$
@@ -3796,7 +3796,7 @@ A szabályokkal (összeg, szorzat, hányados, láncszabály, inverz) együtt ezz
 1. a) $\frac{(2 + h)^3 - 8}{h} = 12 + 6h + h^2 \to 12$. b) $\frac{\frac{1}{(x + h)^2} - \frac{1}{x^2}}{h} = \frac{-(2x + h)}{x^2(x + h)^2} \to -\frac{2}{x^3}$.
 2. a) $3x^2\sin x + x^3\cos x$. b) $\frac{2x(x^2 + 1) - (x^2 - 1)2x}{(x^2 + 1)^2} = \frac{4x}{(x^2 + 1)^2}$. c) $\frac{x}{\sqrt{x^2 + 1}}$. d) $2\sin(3x)\cos(3x)\cdot 3 = 3\sin(6x)$. e) $-2xe^{-x^2}$. f) $\frac{1}{x\ln x}$ ($x > 1$). g) $\frac{1}{1 + 1/x^2}\cdot\left(-\frac{1}{x^2}\right) = -\frac{1}{x^2 + 1}$. h) $x^{\sin x}\left(\cos x\ln x + \frac{\sin x}{x}\right)$.
 3. $f(e) = 1$, $f'(e) = \frac{1}{e}$, tehát $y = 1 + \frac{1}{e}(x - e) = \frac{x}{e}$. (Az érintő átmegy az origón!)
-4. A $\pm 1$ kivételével mindenütt (ott $x^2 - 1$ vagy $1 - x^2$ alakú). Az $1$-ben $f'_+(1) = 2$, $f'_-(1) = -2$; a $-1$-ben $f'_+(-1) = -2$, $f'_-(-1) = 2$. Ezekben nem differenciálható.
+4. A $\pm 1$ kivételével mindenütt (ott $x^2 - 1$ vagy $1 - x^2$ alakú). Az $1$-ben $f'_+(1) = 2$, $f'_-(1) = -2$; a $-1$-ben $f'_+(-1) = 2$, $f'_-(-1) = -2$. Ezekben nem differenciálható.
 5. $x \neq 0$-ra $f(x) = \pm x^2$, $f'(x) = 2|x|$. A $0$-ban $\frac{x|x|}{x} = |x| \to 0$, tehát $f'(0) = 0$. Összesen $f'(x) = 2|x|$.
 6. $\frac{1}{1 + x^2} - \frac{1}{x^2 + 1} = 0$ (a 2.g) feladat szerint). A függvény a $(0, +\infty)$-en és a $(-\infty, 0)$-n is állandó: ott rendre $\frac{\pi}{2}$, illetve $-\frac{\pi}{2}$ (behelyettesítve $x = \pm 1$-et).
 7. $f(1) = 2$, $f'(1) = 3\cdot 1 + 1 = 4$, tehát $(f^{-1})'(2) = \frac{1}{4}$.
@@ -3967,7 +3967,7 @@ Ez a látszólag jelentéktelen állítás alapvető. Erre épül a következő 
 > **Tétel.** Legyen $f \in C[a, b]$, differenciálható az $(a, b)$-n. Ekkor $f$ szigorúan monoton növekedő az $[a, b]$-n pontosan akkor, ha
 >
 > - minden $x \in (a, b)$-re $f'(x) \ge 0$, és
-> - nincs olyan $[c, d] \subset [a, b]$, $c < d$ részintervallum, amelyen $f' \equiv 0$.
+> - nincs olyan $(c, d) \subset (a, b)$, $c < d$ részintervallum, amelyen $f' \equiv 0$.
 
 *Bizonyítás.* $f$ szigorúan monoton nő pontosan akkor, ha monoton nő **és** semmilyen részintervallumon nem állandó (ha $x_1 < x_2$ és $f(x_1) = f(x_2)$, akkor a monotonitás miatt $f$ az $[x_1, x_2]$-n állandó). Az előző tételek szerint ez pontosan a fenti két feltétel. $\blacksquare$
 
@@ -4117,7 +4117,7 @@ A pozitív nevezőkkel felszorozva és rendezve:
 $$f(x)(b - x) + f(x)(x - a) \le f(a)(b - x) + f(b)(x - a) \implies f(x)(b - a) \le f(a)(b - a) + \big(f(b) - f(a)\big)(x - a),$$
 azaz
 $$f(x) \le f(a) + \frac{f(b) - f(a)}{b - a}(x - a),$$
-ami éppen a konvexitás definíciója. A szigorú eset ugyanígy megy. $\blacksquare$
+ami éppen a konvexitás definíciója. A szigorú eset ugyanígy megy (a ($\Rightarrow$) irányban válasszunk közbülső $x_0 \in (a, b)$ pontot: ekkor $f'(a) \le \frac{f(x_0) - f(a)}{x_0 - a} < \frac{f(b) - f(a)}{b - a} \le f'(b)$). $\blacksquare$
 
 Ha $f$ kétszer differenciálható, akkor $f'$ monotonitását a 76. szakasz szerint $f''$ előjele jellemzi:
 
@@ -4215,7 +4215,7 @@ A feltétel nem elégséges: $f(x) = x^4$ esetén $f''(0) = 0$, de a $0$ nem inf
 
 **Megjegyzés.** Az $f(x) = x^5$ függvénynek a $0$ inflexiós helye (balra konkáv, jobbra konvex), holott $f''(0) = f'''(0) = f^{(4)}(0) = 0$; csak $f^{(5)}(0) = 120 \neq 0$. Ez vezet az általános szabályhoz:
 
-> **Tétel (magasabb rendű próba).** Legyen $f$ elég sokszor differenciálható $a$-ban, és legyen $f^{(m)}(a)$ ($m \ge 2$) az első nem nulla derivált a másodiktól kezdve: $f''(a) = \dots = f^{(m-1)}(a) = 0$, $f^{(m)}(a) \neq 0$.
+> **Tétel (magasabb rendű próba).** Legyen $f$ $m$-szer differenciálható $a$-ban ($m \ge 2$), és legyen $f^{(m)}(a)$ az első nem nulla derivált a másodiktól kezdve: $f''(a) = \dots = f^{(m-1)}(a) = 0$, $f^{(m)}(a) \neq 0$. (Az $m = 2$ esetben tegyük fel továbbá, hogy $f''$ folytonos $a$-ban — például mert $f$ háromszor differenciálható $a$-ban.)
 >
 > - Ha $m$ **páratlan**, akkor $a$ inflexiós hely.
 > - Ha $m$ **páros**, akkor $f$ az $a$ egy környezetében szigorúan konvex ($f^{(m)}(a) > 0$) vagy szigorúan konkáv ($f^{(m)}(a) < 0$).
@@ -4302,7 +4302,7 @@ Szemléletesen: $a$ közelében mindkét függvény jól közelíthető az érin
 
 **Történeti megjegyzés.** A szabály névadója Guillaume-François-Antoine de l'Hôpital márki, aki 1696-ban megírta az első differenciálszámítási tankönyvet. A szabályt azonban valójában tanára, Johann Bernoulli fedezte fel, aki egy szerződésben — rendszeres fizetségért cserébe — átengedte matematikai eredményei közlésének jogát l'Hôpitalnak. Bernoulli később keservesen panaszkodott, hogy a szabályt nem az ő nevén ismerik.
 
-> **Tétel (L'Hospital-szabály).** Legyen $f$ és $g$ differenciálható az $\alpha$ egy $\dot{U}$ pontozott környezetében, ahol $g'(x) \neq 0$, és teljesüljön az alábbiak egyike:
+> **Tétel (L'Hospital-szabály).** Legyen $f$ és $g$ differenciálható az $\alpha$ egy $\dot{U}$ pontozott környezetében, ahol $g(x) \neq 0$ és $g'(x) \neq 0$, és teljesüljön az alábbiak egyike:
 >
 > - **(1)** $\displaystyle \lim_{x \to \alpha}f(x) = \lim_{x \to \alpha}g(x) = 0$ (a $\frac{0}{0}$ eset), vagy
 > - **(2)** $\displaystyle \lim_{x \to \alpha}|g(x)| = +\infty$ (a $\frac{\ast}{\infty}$ eset).
@@ -4384,7 +4384,7 @@ vagyis a hiba „gyorsabban tűnik el”, mint $(x - a)^n$ (ez a **Peano-féle m
 
 A gyakorlatban azonban nem elég tudni, hogy a hiba „kicsi”; azt is tudni akarjuk, **mennyire** kicsi. Erre szolgál a következő tétel, amely a Lagrange-féle középértéktétel messzemenő általánosítása.
 
-> **Tétel (Taylor-formula Lagrange-féle maradéktaggal).** Legyen $f$ $(n + 1)$-szer differenciálható az $a$ és $x$ által határolt zárt intervallumon. Ekkor van olyan $c$ szigorúan $a$ és $x$ között, hogy
+> **Tétel (Taylor-formula Lagrange-féle maradéktaggal).** Legyen $x \neq a$, és legyen $f$ $(n + 1)$-szer differenciálható az $a$ és $x$ által határolt zárt intervallumon. Ekkor van olyan $c$ szigorúan $a$ és $x$ között, hogy
 > $$f(x) = \underbrace{\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x - a)^k}_{T_n(x)} + \underbrace{\frac{f^{(n+1)}(c)}{(n + 1)!}(x - a)^{n+1}}_{\text{Lagrange-féle maradéktag}}.$$
 
 **Figyeljük meg a szerkezetet:** a maradéktag pontosan olyan, mint a Taylor-polinom következő, $(n + 1)$-edik tagja volna — csak a derivált nem az $a$-ban, hanem egy ismeretlen $c$ köztes pontban van kiértékelve. $n = 0$-ra a tétel éppen a Lagrange-féle középértéktétel: $f(x) = f(a) + f'(c)(x - a)$.
@@ -4602,7 +4602,7 @@ $$45 = 20 + 80e^{kt} \implies e^{kt} = \frac{25}{80} \implies t = \frac{\ln\frac
 3. $f'(x) = 4x^3 - 4 = 0 \iff x = 1$. $f$ szigorúan csökken a $(-\infty, 1]$-en, szigorúan nő az $[1, +\infty)$-en, $f(1) = -2 < 0$, és $\lim_{x \to \pm\infty}f(x) = +\infty$. Mindkét szakaszon pontosan egy gyök van (Bolzano-tétel + szigorú monotonitás).
 4. a) $\frac{1}{2}$ (kétszeri L'Hospital). b) $\frac{1}{6}$ (háromszori L'Hospital, vagy a Taylor-polinom: $x - \sin x = \frac{x^3}{6} + \dots$). c) $x^{1/x} = e^{\frac{\ln x}{x}} \to e^0 = 1$. d) $\frac{\ln x}{x^{-2}} \to \frac{1/x}{-2x^{-3}} = -\frac{x^2}{2} \to 0$.
 5. $T_3(x) = x - \frac{x^2}{2} + \frac{x^3}{3}$; $\ln 1{,}1 \approx 0{,}1 - 0{,}005 + 0{,}000333 = 0{,}095333$. A maradéktag $\frac{f^{(4)}(c)}{4!}x^4$, ahol $|f^{(4)}(c)| = \frac{6}{(1 + c)^4} \le 6$; a hiba legfeljebb $\frac{6}{24}\cdot 0{,}1^4 = 0{,}000025$. (A valódi érték $0{,}0953102\dots$)
-6. $D(f) = \mathbb{R}$; $f'(x) = (1 - x)e^{-x}$, $f''(x) = (x - 2)e^{-x}$. Nő a $(-\infty, 1]$-en, csökken az $[1, +\infty)$-en; abszolút maximum: $f(1) = \frac{1}{e}$. Konkáv a $(-\infty, 2]$-n, konvex a $[2, +\infty)$-en; inflexió a $2$-ben ($f(2) = \frac{2}{e^2}$). $\lim_{x \to +\infty}f(x) = 0$ (L'Hospital: $\frac{x}{e^x} \to 0$), tehát $y = 0$ aszimptota; $\lim_{x \to -\infty}f(x) = -\infty$. Zérushely: $x = 0$.
+6. $D(f) = \mathbb{R}$; $f'(x) = (1 - x)e^{-x}$, $f''(x) = (x - 2)e^{-x}$. Nő a $(-\infty, 1]$-en, csökken az $[1, +\infty)$-en; abszolút maximum: $f(1) = \frac{1}{e}$. Konkáv a $(-\infty, 2]$-n, konvex a $[2, +\infty)$-en; inflexió a $2$-ben ($f(2) = \frac{2}{e^2}$). $\lim_{x \to +\infty}f(x) = 0$ (L'Hospital: $\frac{x}{e^x} \to 0$), tehát $y = 0$ aszimptota a $+\infty$-ben; $\lim_{x \to -\infty}f(x) = -\infty$. Zérushely: $x = 0$.
 7. Ha a téglalap csúcsai $(\pm x, 0)$ és $(\pm x, \sqrt{1 - x^2})$, akkor $A(x) = 2x\sqrt{1 - x^2}$, $x \in [0, 1]$. $A'(x) = \frac{2(1 - 2x^2)}{\sqrt{1 - x^2}} = 0 \iff x = \frac{1}{\sqrt{2}}$; ekkor $A = 1$. (A végpontokban $A = 0$.)
 8. $y(x) = 3e^{-2x}$.
 9. A Lagrange-tétel szerint $\ln(1 + x) - \ln 1 = \frac{1}{1 + c}\cdot x$ valamely $c \in (0, x)$-re, és $\frac{1}{1 + x} < \frac{1}{1 + c} < 1$.

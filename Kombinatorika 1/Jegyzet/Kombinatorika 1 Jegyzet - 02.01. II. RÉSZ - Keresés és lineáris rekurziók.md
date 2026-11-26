@@ -104,6 +104,29 @@ $$F_{n+2}F_n - F_{n+1}^2 = (F_{n+1} + F_n)F_n - F_{n+1}^2 = F_n^2 - F_{n+1}(F_{n
 
 A négyzetösszeg-azonosságnak szép geometriai jelentése van: az $1 \times 1$, $1 \times 1$, $2 \times 2$, $3 \times 3$, $5 \times 5$, … négyzeteket egymás mellé illesztve mindig téglalapot kapunk, amelynek oldalai két szomszédos Fibonacci-szám. A Cassini-azonosság szerint pedig két szomszédos Fibonacci-szám relatív prím: ha $d$ osztaná $F_n$-et és $F_{n+1}$-et, akkor a $(-1)^n$-et is osztaná.
 
+\begin{center}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[scale=0.58,
+  sq/.style={draw=black!80, thick, fill=black!5}
+]
+  \draw[sq, fill=black!14] (0, 0) rectangle (1, 1);
+  \node at (0.5, 0.5) {\scriptsize $1$};
+  \draw[sq, fill=black!8] (0, 1) rectangle (1, 2);
+  \node at (0.5, 1.5) {\scriptsize $1$};
+  \draw[sq, fill=black!4] (1, 0) rectangle (3, 2);
+  \node at (2.0, 1.0) {\footnotesize $2 \times 2$};
+  \draw[sq, fill=black!9] (0, 2) rectangle (3, 5);
+  \node at (1.5, 3.5) {\footnotesize $3 \times 3$};
+  \draw[sq, fill=black!4] (3, 0) rectangle (8, 5);
+  \node at (5.5, 2.5) {\small $5 \times 5$};
+
+  \draw[|<->|, >=Stealth, thin] (0, -0.45) -- (8, -0.45) node[midway, below=2pt] {\footnotesize $F_6 = 8$};
+  \draw[|<->|, >=Stealth, thin] (8.45, 0) -- (8.45, 5) node[midway, right=2pt] {\footnotesize $F_5 = 5$};
+  \node at (4.2, -1.65) {\footnotesize $1^2 + 1^2 + 2^2 + 3^2 + 5^2 = 5 \cdot 8 = F_5 F_6$};
+\end{tikzpicture}
+\end{adjustbox}
+\end{center}
+
 ::: kiegeszites
 **Kiegészítés — az összeadási képlet.** *Minden $m \ge 1$ és $n \ge 0$ esetén $F_{m+n} = F_mF_{n+1} + F_{m-1}F_n$.*
 
@@ -190,7 +213,7 @@ A Fibonacci-sorozatnál alkalmazott módszer jóval általánosabban is működi
 > $$a_n = c_1 a_{n-1} + c_2 a_{n-2} \qquad (n \ge 2) \qquad (**)$$
 > összefüggést, ahol $c_1, c_2$ adott számok. Ehhez két **kezdeti feltétel** tartozik: $a_0$ és $a_1$ adott.
 
-(Feltesszük, hogy $c_2 \ne 0$; ha $c_2 = 0$, akkor a rekurzió valójában elsőrendű, és a megoldás egyszerűen mértani sorozat.) Az előző szakasz állítása és bizonyítása szó szerint átvihető: a $(**)$-ot kielégítő sorozatok alteret alkotnak. A lemma szerint pedig minden megoldást egyértelműen meghatároz az $(a_0, a_1)$ pár — szemléletesen: a megoldások altere **kétdimenziós**.
+(Feltesszük, hogy $c_2 \ne 0$; ha $c_2 = 0$, akkor a rekurzió valójában elsőrendű, és a megoldás $n \ge 1$-től egyszerűen mértani sorozat.) Az előző szakasz állítása és bizonyítása szó szerint átvihető: a $(**)$-ot kielégítő sorozatok alteret alkotnak. A lemma szerint pedig minden megoldást egyértelműen meghatároz az $(a_0, a_1)$ pár — szemléletesen: a megoldások altere **kétdimenziós**.
 
 **Az ötlet ugyanaz:** keressünk $(q^n)$ alakú mértani sorozatot, amely kielégíti $(**)$-ot:
 $$q^n = c_1 q^{n-1} + c_2 q^{n-2}.$$

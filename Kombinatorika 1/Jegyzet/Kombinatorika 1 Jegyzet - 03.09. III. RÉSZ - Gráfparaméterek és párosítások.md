@@ -132,7 +132,7 @@ Ha találunk egy javító utat, akkor **javítunk**: az út mentén a fekete él
 \begin{tikzpicture}[scale=0.95,
   pt/.style={circle, draw=black, fill=black, inner sep=1.6pt},
   black/.style={draw=black, thin},
-  red/.style={draw=black, line width=2.2pt}
+  red/.style={draw=red!75!black, line width=2.2pt}
 ]
   \begin{scope}
     \node[pt, label=below:{\footnotesize $u$}] (a0) at (0, 0) {};

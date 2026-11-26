@@ -15,7 +15,7 @@ Az $(M_n)$ sorozat tehát monoton csökkenő, az $(m_n)$ monoton növekedő, íg
 
 > **Definíció.** Az $(a_n)$ sorozat
 >
-> - **limesz szuperiorja** (felső határértéke): $\displaystyle \limsup_{n\to\infty} a_n = \overline{\lim_{n\to\infty}}\, a_n = \lim_{n\to\infty} M_n \in \overline{\mathbb{R}}$;
+> - **limesz szuperiorja** (felső határértéke): $\displaystyle \limsup_{n\to\infty} a_n = \overline{\lim}_{n\to\infty}\, a_n = \lim_{n\to\infty} M_n \in \overline{\mathbb{R}}$;
 > - **limesz inferiorja** (alsó határértéke): $\displaystyle \liminf_{n\to\infty} a_n = \underline{\lim}_{n\to\infty}\, a_n = \lim_{n\to\infty} m_n \in \overline{\mathbb{R}}$.
 
 Mivel $(M_n)$ csökkenő és $(m_n)$ növekedő, a 22. szakasz szerint egyben

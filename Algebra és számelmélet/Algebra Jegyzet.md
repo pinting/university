@@ -120,7 +120,7 @@ $$A^2 = \begin{pmatrix} 2 & 0 & 0 & 2 \\ 0 & 2 & 2 & 0 \\ 0 & 2 & 2 & 0 \\ 2 & 0
 - $(A^2)_{14} = 2$: az $1$-es és a $4$-es város között $2$ kétlépéses útvonal van ($1 \to 2 \to 4$ és $1 \to 3 \to 4$).
 - $(A^2)_{12} = 0$: az $1$-esből a $2$-esbe pontosan két lépésben nem lehet eljutni (az út közvetlenül $1$ lépés, a $4$-es felé kerülve pedig $3$).
 
-A módszer teljes indukcióval tetszőleges $k$ lépéshosszra általánosítható: az $A^k$ mátrix $i$-edik sorának $j$-edik eleme mindig a pontosan $k$ hosszú (az $i$-edik csúcsból a $j$-edikbe vezető) sétáink száma. Például
+A módszer teljes indukcióval tetszőleges $k$ lépéshosszra általánosítható: az $A^k$ mátrix $i$-edik sorának $j$-edik eleme mindig a pontosan $k$ hosszú (az $i$-edik csúcsból a $j$-edikbe vezető) séták száma. Például
 $$A^3 = \begin{pmatrix} 0 & 4 & 4 & 0 \\ 4 & 0 & 0 & 4 \\ 4 & 0 & 0 & 4 \\ 0 & 4 & 4 & 0 \end{pmatrix}:$$
 az $1$-esből a $2$-esbe $4$ háromlépéses séta vezet ($1 \to 2 \to 1 \to 2$, $1 \to 3 \to 1 \to 2$, $1 \to 2 \to 4 \to 2$, $1 \to 3 \to 4 \to 2$).
 
@@ -191,7 +191,7 @@ A mátrixokkal tehát óvatosan kell számolni: például az $(A + B)^2 = A^2 + 
 > $$MM^{-1} = M^{-1}M = E_n.$$
 > Az $M^{-1}$ mátrixot $M$ **inverzének** nevezzük.
 
-Az inverz, ha létezik, egyértelmű: ha $N$ és $N'$ is inverz, akkor $N = NE = N(MN') = (NM)N' = EN' = N'$. Nem minden nem nulla mátrix invertálható: az előbbi $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ például nem, hiszen akkor $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = M^{-1}M\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = M^{-1} \cdot 0 = 0$ következne. Hogy pontosan mely mátrixok invertálhatók, és hogyan számolható ki az inverz, azt a 2.6. pontban és a 9. fejezetben látjuk.
+Az inverz, ha létezik, egyértelmű: ha $N$ és $N'$ is inverz, akkor $N = NE = N(MN') = (NM)N' = EN' = N'$. Nem minden nem nulla mátrix invertálható: az előbbi $M = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ például nem, hiszen akkor $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = M^{-1}M\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = M^{-1} \cdot 0 = 0$ következne. Hogy pontosan mely mátrixok invertálhatók, és hogyan számolható ki az inverz, azt a 2.6. pontban és a 9. fejezetben látjuk.
 
 ## 2. Lineáris egyenletrendszerek és megoldásaik
 
@@ -300,7 +300,7 @@ Ellenőrzés (első sor szorozva az első oszloppal): $2 \cdot \frac{3}{4} + (-1
 
 A műveletek során a **sorcsere is megengedett**. Ha nem szeretünk törtekkel számolni, nyugodtan megszorozhatjuk az egész sort egy alkalmas konstanssal, és csak az eljárás legvégén osztjuk a sorokat úgy, hogy a vezérelemek egyesek legyenek.
 
-**Miért működik a módszer?** Minden táblázathoz hozzárendelhetünk egy mátrixegyenletet: ha a táblázat $(L \mid R)$ alakú, akkor a hozzá tartozó egyenlet
+**Miért működik a módszer?** Tegyük fel, hogy $A$ invertálható. Minden táblázathoz hozzárendelhetünk egy mátrixegyenletet: ha a táblázat $(L \mid R)$ alakú, akkor a hozzá tartozó egyenlet
 $$L \cdot A^{-1} = R.$$
 A kiinduló táblázatra ($L = A$, $R = E$) ez igaz. Ezek az egyenletek a megengedett sorműveletek után is mindig érvényben maradnak (egy sorművelet az $L$ és az $R$ ugyanazon sorain ugyanazt a műveletet végzi, ami $L A^{-1}$ soraira ugyanazt a hatást gyakorolja, mint $R$ soraira). Például a 2. lépés végén kapott táblázathoz az
 $$\begin{pmatrix} 1 & 0 & -1/3 \\ 0 & 1 & -2/3 \\ 0 & 0 & 4/3 \end{pmatrix} A^{-1} = \begin{pmatrix} 2/3 & 1/3 & 0 \\ 1/3 & 2/3 & 0 \\ 1/3 & 2/3 & 1 \end{pmatrix}$$
@@ -914,7 +914,7 @@ Kifejtve: $(ae + bg)(cf + dh) = acef + adeh + bcfg + bdgh$, és $(af + bh)(ce + 
 $$\det(AB) = adeh + bcfg - adfg - bceh. \qquad (7.6)$$
 (7.4) és (7.6) összevetéséből $\det(AB) = \det A \cdot \det B$. $\blacksquare$
 
-> **7.3 Tétel (geometriai jelentés).** Egy $2 \times 2$-es mátrix determinánsának abszolút értéke megegyezik a mátrix oszlopvektorai által kifeszített paralelogramma területével.
+> **7.3 Tétel (geometriai jelentés).** Egy valós $2 \times 2$-es mátrix determinánsának abszolút értéke megegyezik a mátrix oszlopvektorai által kifeszített paralelogramma területével.
 
 *Bizonyítás.* Legyen $\mathbf{a} = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}$ és $\mathbf{b} = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}$. Belátjuk, hogy az általuk kifeszített paralelogramma $T$ területére
 $$T = \left|\det\begin{pmatrix} a_1 & b_1 \\ a_2 & b_2 \end{pmatrix}\right| = |a_1b_2 - a_2b_1|.$$
@@ -1357,7 +1357,7 @@ hiszen az új rendszer első komponense a régi első és második komponenséne
 
 **Normálalak.** A Gauss-elimináció lépéseivel — sor- és oszlopműveleteket (sor- és oszlopcserét is) megengedve — minden mátrix a következő alakra hozható:
 $$\begin{pmatrix} E_r & 0 \\ 0 & 0 \end{pmatrix},$$
-ahol a bal felső sarokban egy $r \times r$-es egységmátrix áll, máshol csupa nulla. (A sorműveletekkel lépcsős alakra hozunk, majd a vezéregyesek segítségével oszlopműveletekkel kinullázzuk a soraik többi elemét, végül oszlopcserékkel a vezéregyeseket a főátlóba rendezzük.) Ennek a mátrixnak a sorrangja, oszloprangja és determinánsrangja is nyilvánvalóan $r$ — a benne lévő egyesek száma. Mivel egyik rang sem változott a lépések során, az eredeti mátrix sor-, oszlop- és determinánsrangja is megegyezik. $\blacksquare$
+ahol a bal felső sarokban egy $r \times r$-es egységmátrix áll, máshol csupa nulla. (A sorműveletekkel redukált lépcsős alakra hozunk — ahol a csupa nulla sorok alulra kerülnek, és a vezéregyesek oszlopaiban minden más elem nulla —, majd a vezéregyesek segítségével oszlopműveletekkel kinullázzuk a soraik többi elemét, végül oszlopcserékkel a vezéregyeseket az első $r$ oszlopba, a főátlóba rendezzük.) Ennek a mátrixnak a sorrangja, oszloprangja és determinánsrangja is nyilvánvalóan $r$ — a benne lévő egyesek száma. Mivel egyik rang sem változott a lépések során, az eredeti mátrix sor-, oszlop- és determinánsrangja is megegyezik. $\blacksquare$
 
 ## A III. rész összefoglalása
 
@@ -1511,7 +1511,7 @@ $$SL(n, K) = \{A \in K^{n \times n} \mid \det A = 1\}.$$
 
 *Megoldás.* Tegyük fel indirekt módon, hogy egy testben $ab = 0$, ahol $a \ne 0$ és $b \ne 0$. Mivel $a \ne 0$, van $a^{-1}$ inverze. Az $ab = 0$ egyenlőséget balról $a^{-1}$-gyel szorozva $a^{-1}(ab) = a^{-1} \cdot 0 = 0$; az asszociativitás miatt $(a^{-1}a)b = 1 \cdot b = b$, tehát $b = 0$ — ellentmondás. $\blacksquare$
 
-> **11.12 Definíció.** **Integritási tartomány** a kommutatív, egységelemes, nullosztómentes gyűrű.
+> **11.12 Definíció.** **Integritási tartomány** a kommutatív, egységelemes, nullosztómentes gyűrű (amelyben $1 \ne 0$).
 
 Integritási tartomány például $\mathbb{Z}$, $\mathbb{Z}[i]$, $\mathbb{R}[x]$, és minden test. **Nem** nullosztómentes például $\mathbb{Z}_6$, hiszen ott $2 \cdot 3 = 0$, de $2 \ne 0$ és $3 \ne 0$; és nem nullosztómentes a $2 \times 2$-es mátrixok gyűrűje sem.
 
@@ -1585,7 +1585,7 @@ Itt az $x - \alpha_j$ ($j \le s$) és az $(x - \alpha_j)(x - \bar{\alpha}_j)$ t�
 $$(x - \alpha_j)(x - \bar{\alpha}_j) = x^2 - (\alpha_j + \bar{\alpha}_j)x + \alpha_j\bar{\alpha}_j = x^2 - 2ax + (a^2 + b^2).$$
 **Tehát minden valós együtthatós polinom első- és másodfokú valós együtthatós polinomok szorzatára bomlik.**
 
-> **12.7 Definíció.** Egy $T$ test (vagy integritási tartomány) feletti $f$ polinom **irreducibilis** $T$ felett, ha nem írható fel két kisebb fokú, $T$ feletti polinom szorzataként.
+> **12.7 Definíció.** Egy $T$ test (vagy integritási tartomány) feletti, nem konstans $f$ polinom **irreducibilis** $T$ felett, ha nem írható fel két kisebb fokú, $T$ feletti polinom szorzataként.
 
 (Az egészek felett ezt a definíciót úgy értjük, hogy $f$ nem bontható két kisebb fokú *egész együtthatós* polinom szorzatára; így például $2x + 2 = 2(x + 1)$ irreducibilisnek számít, bár egy konstans kiemelhető belőle.)
 
@@ -1607,7 +1607,7 @@ Az előbbiek szerint **$\mathbb{R}$ felett csak első- és másodfokú irreducib
 
 Végül egy érdekesség. A $\mathbb{Z}_p$ maradékosztálytestben ($p$ prím) érvényes az úgynevezett **Frobenius-azonosság** (angolul tréfásan *freshman's dream*, „az elsőévesek álma”):
 $$(a + b)^p = a^p + b^p.$$
-*Bizonyítás.* A binomiális tétel szerint $(a + b)^p = \sum_{k=0}^p\binom{p}{k}a^{p-k}b^k$, ahol $\binom{p}{k} = \frac{p!}{k!(p-k)!}$. Ha $1 \le k \le p - 1$, akkor a számlálóban szerepel a $p$ prímtényező, a nevezőben viszont nem (mert $k! $ és $(p - k)!$ minden tényezője kisebb $p$-nél), így $p \mid \binom{p}{k}$, és ezek a tagok $\mathbb{Z}_p$-ben eltűnnek. Csak a $k = 0$ és $k = p$ tag marad: $a^p + b^p$. $\blacksquare$
+*Bizonyítás.* A binomiális tétel szerint $(a + b)^p = \sum_{k=0}^p\binom{p}{k}a^{p-k}b^k$, ahol $\binom{p}{k} = \frac{p!}{k!(p-k)!}$. Ha $1 \le k \le p - 1$, akkor a számlálóban szerepel a $p$ prímtényező, a nevezőben viszont nem (mert $k!$ és $(p - k)!$ minden tényezője kisebb $p$-nél), így $p \mid \binom{p}{k}$, és ezek a tagok $\mathbb{Z}_p$-ben eltűnnek. Csak a $k = 0$ és $k = p$ tag marad: $a^p + b^p$. $\blacksquare$
 
 **Átvitel $\mathbb{Z}_p[x]$-re.** Ha $P(x) = \sum_{k=0}^n c_kx^k \in \mathbb{Z}_p[x]$, akkor a Frobenius-azonosság ismételt alkalmazásával (és mivel $\mathbb{Z}_p[x]$ is kommutatív, $p \cdot 1 = 0$-val)
 $$\big(P(x)\big)^p = \left(\sum_{k=0}^n c_kx^k\right)^p = \sum_{k=0}^n (c_kx^k)^p = \sum_{k=0}^n c_k^px^{kp} = \sum_{k=0}^n c_kx^{kp} = P(x^p),$$
@@ -1617,7 +1617,7 @@ ahol az utolsó előtti lépésben a kis Fermat-tételt ($c_k^p = c_k$ $\mathbb{
 
 Az irreducibilitási kritériumok közül a leghíresebb a **Schönemann–Eisenstein-kritérium**. Elsőként Theodor Schönemann publikálta 1846-ban (egy általánosabb formában), később azonban sokáig a tőle függetlenül publikáló Gotthold Eisenstein nevén vált ismertté. Eisenstein az eredményt 1850-ben közölte — ugyanabban a folyóiratban (*Crelle-féle Journal*), mint Schönemann —, és az Schönemann tételének speciális esete volt; nagyobb ismertsége miatt mégis az „Eisenstein-kritérium” elnevezés terjedt el. Az elsőbbség Schönemanné, ezért a XX. században egyre gyakoribbá vált a történelmileg pontosabb Schönemann–Eisenstein-kritérium elnevezés.
 
-> **13.1 Tétel (Schönemann–Eisenstein-kritérium).** Legyen $p$ prím, és $f(x) = a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0$ egész együtthatós polinom, amelyre
+> **13.1 Tétel (Schönemann–Eisenstein-kritérium).** Legyen $p$ prím, és $f(x) = a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0$ egész együtthatós, legalább elsőfokú ($n \ge 1$) polinom, amelyre
 >
 > - $p \nmid a_n$,
 > - $p \mid a_{n-1}, a_{n-2}, \dots, a_1, a_0$,
